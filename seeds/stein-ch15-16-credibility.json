@@ -1,0 +1,302 @@
+[
+  {
+    "id": "stein-plant-physical-capability",
+    "question": "Before a character performs a feat of strength, plant the physical capability earlier — establish that he is a six-foot-three weightlifter before he picks a man up and throws him over a railing.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "If a writer’s concerned about the quality of his writing and needs to say that “Tiny picked him up bodily and threw him over the railing,” he will have planted earlier that Tiny is six foot three and a weightlifter."
+    }
+  },
+  {
+    "id": "stein-plant-only-unconvincing-actions",
+    "question": "Decide which of your actions would seem unconvincing without ground, and plant only those: a punch thrown in retaliation needs no planting, the tripping that provoked it does.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "Planting is necessary when a later action might seem unconvincing to the reader. Not all actions require planting. For instance, if Todd trips Andrew and Andrew then punches Todd, Todd’s action does need planting, Andrew’s punch does not."
+    }
+  },
+  {
+    "id": "stein-plant-motivation-ahead",
+    "question": "Plant a character’s motivation ahead of time before she acts for your convenience — if the plot needs her at the mall, her reason for going must be planted in advance.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "For instance, if a character suddenly gets up to go shopping for the convenience of the author because something is going to happen in a shopping mall, the events in the mall may not be credible unless the motivation for the character going to the mall is planted ahead of time."
+    }
+  },
+  {
+    "id": "stein-plant-with-humor-dialogue",
+    "question": "Plant a character’s motive in a single line of dialogue with a touch of humor, as in: “I’m not going to go on a shopping spree ever again. After today.”",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "The planting can be simple enough through a touch of humor: “I’m not going to go on a shopping spree ever again. After today.”"
+    }
+  },
+  {
+    "id": "stein-rephrase-unmotivated-action",
+    "question": "Instead of narrating an unmotivated action — he went for a walk — rephrase it as a line of dialogue that gives the character a reason, like: “These new shoes are not going to get broken in if I sit around the house.”",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "Or you simply need to get a character out of the house. Instead of an unmotivated walk, he could say."
+    }
+  },
+  {
+    "id": "stein-characterize-bizarre-acts",
+    "question": "Characterize a character as capable of his bizarre conduct before he does it, or the act will seem ludicrous.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "If this were a story about an eccentric who behaves unpredictably, Tom’s strange conduct would require planting. If Thomas’s action is not to seem ludicrous, he would have had to have been characterized as someone who could do something as zany as going out dressed up without his pants."
+    }
+  },
+  {
+    "id": "stein-escalate-eccentricity",
+    "question": "Plant an eccentric act by escalating it in stages across earlier scenes — socks first, then a tie over the undershirt, then no pants at all — so each step is credible.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "I said nothing. But the third Sunday, he remembered to put on a shirt before putting on his tie, then put on a handsome jacket, and left the house without his pants. I thought I’d better speak to him. This revision is funnier, and more credible despite the zaniness of the action. Thomas’s forgetfulness was planted."
+    }
+  },
+  {
+    "id": "stein-credible-central-motivation",
+    "question": "Audit every action central to your story: is its motivation credible at the moment it happens? A major act, like kidnapping, must seem motivated as it takes place or the story reads as made up.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "The worst mistake that a story writer can make is to have unconvincing motivation for actions that are central to the story."
+    }
+  },
+  {
+    "id": "stein-elucidate-major-action-background",
+    "question": "Elucidate the background of a major action before it happens so the reader is not left guessing — what in the character’s past made the act possible?",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "What in the engineer’s background would have made it possible for him to pick a stranger’s child out of a carriage and take it away?"
+    }
+  },
+  {
+    "id": "stein-coincidence-reads-made-up",
+    "question": "Treat every coincidence in your story as a credibility risk: what enchants in life reads in fiction as the author’s contrivance.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "If this happened in a story, the skeptical reader would say that the author is responsible for the coincidence and that it isn’t believable."
+    }
+  },
+  {
+    "id": "stein-diminish-coincidence-detail",
+    "question": "Diminish a coincidence by arranging concrete detail around it — a store only one character needs, a character peering in to avoid the other — so the meeting lands as a true surprise.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "A coincidence still? Yes, but the way the author arranged it with detail—the special store, Sally peering in to avoid Howie, the revolving door—all help to make their coincidental meeting a true surprise."
+    }
+  },
+  {
+    "id": "stein-third-character-stages-meeting",
+    "question": "Diminish a coincidence by having a third character stage the “accidental” meeting at an event that third character arranges.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "For instance, a third character can arrange for Sally and Howie to meet “accidentally” at an event staged by the third character."
+    }
+  },
+  {
+    "id": "stein-no-climax-deus-ex-machina",
+    "question": "If your climax rescues the protagonist by coincidence or a deus ex machina, cut the device and find a credible way out — those devices fool no one.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "The most dangerous place for a coincidence to occur is at the climax of a story. The protagonist has his head on the chopping block. Suddenly the deus ex machina, the god in the machine, comes down for the rescue. Those devices fool no one. They exist for the author’s convenience because he can’t figure out a credible way of rescuing the protagonist."
+    }
+  },
+  {
+    "id": "stein-objectivity-title-page",
+    "question": "Gain objectivity about your own work by replacing your name on a fresh title page with an admired author’s name and reading your manuscript through that author’s eyes; if that fails, use an author you dislike and go at the manuscript with a vengeance to root out unmotivated acts and coincidence.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "You can sometimes get objectivity artificially by making a new title page and replacing your name as author with the name of an author whose work you admire especially. Then read your manuscript with that author’s eyes to see if you can catch any action that is insufficiently motivated or that smacks of coincidence. If that doesn’t work for you, try preparing a new title page and replacing your name with the name of an author whose work you dislike. Go at the manuscript with a vengeance to root out unmotivated acts and coincidence."
+    }
+  },
+  {
+    "id": "stein-find-secret-snapshot",
+    "question": "Conjure a mental snapshot so private you wouldn’t carry it in your wallet — something you wouldn’t want a paramedic, neighbor, closest friend, or family member to find.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "I ask the author to think of a snapshot of something so private he wouldn’t carry it in his wallet because if he were in an accident, he wouldn’t want a paramedic to find it. The snapshot we’re looking for is one the writer wouldn’t want his neighbor or closest friend to see. Not even a family member. Especially not a family member."
+    }
+  },
+  {
+    "id": "stein-write-real-snapshot",
+    "question": "Write down what you see in your most secret snapshot — and if you’re tempted to fudge or invent one, change it to the snapshot you’re actually hiding.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "One of the ways is to write down what you see in your most secret snapshot. If you’re tempted to fudge, don’t. If you’ve decided to give us a made-up snapshot, you’ll serve your writing better by changing it to the snapshot you’re hiding."
+    }
+  },
+  {
+    "id": "stein-snapshot-uniquely-yours",
+    "question": "Check whether any friend or neighbor could have a snapshot just like yours; if so, change it to one that only you have, so your writing could not come out of anyone else’s closet.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "Is your snapshot such that any of your friends or neighbors might have one just like it? If so, change it to one that only you have. Your writing is going to be yours, not writing that could come out of anyone else’s closet."
+    }
+  },
+  {
+    "id": "stein-snapshot-embarrassment-test",
+    "question": "Test your snapshot: would you carry it in your wallet or purse? If yes, it is not secret enough — the snapshots that work best are embarrassing, revelatory, or involve a strong and continuing stimulus to memory.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "Please answer truthfully: would you carry that snapshot in your wallet or purse? If your answer is “yes,” perhaps it’s not so secret. The snapshots that work best are embarrassing, revelatory, or involve a strong and continuing stimulus to memory."
+    }
+  },
+  {
+    "id": "stein-dont-show-photo-album",
+    "question": "Replace the material you would freely show friends and family with the picture you are reluctant to show — readers don’t want your photo album; they have their own.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "Readers don’t want to see your photo album. They have their own. They want to see what’s in the picture you’re reluctant to show."
+    }
+  },
+  {
+    "id": "stein-say-the-unsaid",
+    "question": "Write what other people sometimes think but don’t say — or don’t allow themselves to think.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "A writer needs the courage to say what other people sometimes think but don’t say. Or don’t allow themselves to think."
+    }
+  },
+  {
+    "id": "stein-others-secret-snapshot",
+    "question": "If you start from someone else’s secret snapshot, choose one you would never be allowed to see under any circumstance.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "If you elect to conjure up someone else’s secret snapshot, it has to be one that you wouldn’t be allowed to see under any circumstance."
+    }
+  },
+  {
+    "id": "stein-enemy-snapshot",
+    "question": "Imagine the snapshot the person you truly dislike carries and would never want you to see — and take the second thing that comes to mind, not the first.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "Everyone except liars has at least one person he truly dislikes, maybe even hates. What kind of snapshot would he carry that he wouldn’t want you to see? Don’t tell me the first thing that comes to mind. Maybe the second."
+    }
+  },
+  {
+    "id": "stein-snapshot-pay-test",
+    "question": "Value-test your snapshot: would its owner pay to keep you from seeing it, and would you pay to see it? If you would pay to see it, readers may pay for your book.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "Would your enemy pay to keep you from seeing that snapshot? If not, try another that’s really private. How much would you pay to see a snapshot from your actual enemy? Nothing? Not much? Then it’s not a good snapshot. If you’d pay to see it, maybe people will pay to buy your book."
+    }
+  },
+  {
+    "id": "stein-open-with-snapshot",
+    "question": "Find the emotional root of your book in your secret snapshot and put that image on the page — start the story there, so it becomes a moving experience rather than a plot told from the outside.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "In that snapshot lay the emotional root of her book. After our session, the writer started her novel with a scene in which the decoy was patting the sleeping head of her child before going off to her hazardous work. As a result, the tone of the book changed from an ordinary though suspenseful story told from the outside, to one readers could feel strongly."
+    }
+  },
+  {
+    "id": "stein-recur-snapshot-image",
+    "question": "Bring the snapshot image back at each danger your protagonist faces, so the reader carries it through the whole story.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 15-16",
+      "quote": "With every danger the decoy faced, the reader thought of the sleeping child. The reader, full of emotion now, read the novel not as an interesting plot but as a moving experience."
+    }
+  }
+]

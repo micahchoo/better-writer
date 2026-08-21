@@ -1,0 +1,206 @@
+[
+  {
+    "id": "stein-flashback-01",
+    "question": "Write your story so it seems to be happening now, no matter when it is set.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "Ideally, all fiction should seem to be happening now."
+    }
+  },
+  {
+    "id": "stein-flashback-02",
+    "question": "Read your flashback and judge whether it interrupts the reader's experience of the present story. The reader wants the ride, not a look at the machinery.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "Therefore, the art of writing flashbacks is to avoid interrupting the reader's experience. ... The reader doesn't want to see your chains and pulleys, he just wants the ride."
+    }
+  },
+  {
+    "id": "stein-flashback-03",
+    "question": "Rewrite your flashback as a scene with characters in conflict, however short it is.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "A true flashback, however short, is a scene, preferably with characters in conflict."
+    }
+  },
+  {
+    "id": "stein-flashback-04",
+    "question": "Cut the flashback if it doesn't markedly enhance the present story. If it isn't important to the story, you may not really need it.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "A flashback must illuminate the present story in an important way. Otherwise, why bother? If it doesn't enhance the present story markedly, you may not really need it."
+    }
+  },
+  {
+    "id": "stein-flashback-05",
+    "question": "Rewrite the flashback as an immediate scene the reader witnesses, depicted exactly as the present story would be — not an offstage narrative summary.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "Whenever possible, the flashback should be an immediate scene rather than an offstage narrative summary. The reader needs to witness the flashback rather than be told about what happened. A good flashback is a scene that is depicted exactly as it would be in the present story except for how it is introduced and how the present story is rejoined."
+    }
+  },
+  {
+    "id": "stein-flashback-06",
+    "question": "Slip into your flashback quickly and unobtrusively so the reader never sees it coming and doesn't skip pages.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "The object is to make the transition to the flashback as unobtrusive as possible. Slipping into the flashback quickly avoids the risk of the impatient reader skipping pages because he sees the flashback coming before it grips him."
+    }
+  },
+  {
+    "id": "stein-flashback-07",
+    "question": "Make the first sentence of your flashback arresting.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "The first sentence of a flashback needs to be arresting."
+    }
+  },
+  {
+    "id": "stein-flashback-08",
+    "question": "Purge every \"had\" and \"then\" from your flashback and write it in the straight past tense of your present scenes — \"I remembered\", not \"I had been remembering\".",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "\"Had\" is the number-one villain. It spoils more flashbacks than any other word. Most fiction is written in the straight past tense. When writing flashbacks, as quickly as possible use the same tense you're using for the present scenes. That means in almost all cases the straight past tense, not the variants. Instead of saying, \"I had been remembering ...\", say \"I remembered ...\""
+    }
+  },
+  {
+    "id": "stein-flashback-09",
+    "question": "Open your flashback with dialogue early, even if the flashback is short — dialogue is always an immediate scene.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "In starting a flashback, your aim is to get into an immediate scene as soon as possible. Since dialogue is always in immediate scene, one way of handling flashbacks is to use dialogue early. What most writers don't realize is that you can use dialogue even if the flashback is short."
+    }
+  },
+  {
+    "id": "stein-flashback-10",
+    "question": "Introduce your flashback by seguing from the present scene into the past as inconspicuously as possible, rather than announcing the shift directly.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "You can go into a flashback directly or segue into it. ... I prefer the segue into a flashback to the more direct method, moving from the present scene to a scene in the past inconspicuously."
+    }
+  },
+  {
+    "id": "stein-flashback-11",
+    "question": "Conclude your flashback with a line space, a time marker like \"One week later ...\", or dialogue that restarts the present scene.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "You can use a line space (four blank lines) to mark the passage of time and restart the present scene after the line space. Or you can begin a new paragraph with \"One week later ...\" Or you can restart the present scene with dialogue: \"Last week you didn't talk this way.\""
+    }
+  },
+  {
+    "id": "stein-flashback-12",
+    "question": "Let your character's thoughts, including thoughts of the past, interrupt the present scene to enrich the character and give the scene texture.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "While flashbacks are to be avoided whenever possible, the flashback thought can be immensely useful in enriching both a character and a scene. In life our thoughts interrupt us all the time. ... Thoughts give texture to life and also to novels."
+    }
+  },
+  {
+    "id": "stein-flashback-13",
+    "question": "Build any past material that exceeds quick thoughts in an ongoing scene into a flashback scene that stands on its own — not a narrative of what happened elsewhere.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "If the flashback element is to consist of more than quick thoughts in an ongoing scene, the writer must be certain to create a flashback scene that stands on its own to avoid the flashback becoming a narrative of something that happened elsewhere."
+    }
+  },
+  {
+    "id": "stein-flashback-14",
+    "question": "Fashion a flashback to increase suspense: insert it into a long confrontation scene so it postpones the outcome.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "Flashbacks normally decrease suspense, but they can be fashioned to increase suspense. To heighten the suspense of that confrontation, I inserted three flashbacks into the scene, remembered by Nick, designed to increase the suspense by postponing the outcome of the confrontation."
+    }
+  },
+  {
+    "id": "stein-flashback-15",
+    "question": "Rewrite the background information as present dialogue so the reader witnesses a dramatic scene now and you eliminate the need for a flashback.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "You've just seen how information can be conveyed in present dialogue in such a way that the reader is witnessing a dramatic scene that takes place in the present, thus eliminating the need for a flashback."
+    }
+  },
+  {
+    "id": "stein-flashback-16",
+    "question": "Convey the background the reader needs through a character's silent thoughts during a present scene instead of a flashback.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "Thoughts can accomplish the same purpose. ... Tommy has said absolutely nothing. We've been privy to his thoughts. And we've got the background we need right in the foreground."
+    }
+  },
+  {
+    "id": "stein-flashback-17",
+    "question": "Give the reader knowledge of your character before the crisis arrives — you have to know the people in the car before you see the crash.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 14",
+      "quote": "You have to know the people in the car before you see the car crash. Shirley's flashback thoughts, added to her thoughts in the present, are how the reader gets to know Shirley and begins to want her not to jump."
+    }
+  }
+]

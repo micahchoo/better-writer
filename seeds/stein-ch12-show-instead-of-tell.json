@@ -1,0 +1,254 @@
+[
+  {
+    "id": "stein-show-mindset-01",
+    "question": "Change your mind-set: stop telling what happened somewhere else and start creating an experience for the reader by showing what happened.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "All of these early exposures to offstage happenings contribute to the belief that stories are told. They can be a liability to writers later in life because the writer has to change his mind-set from telling what happened somewhere else to creating an experience for the reader by showing what happened."
+    }
+  },
+  {
+    "id": "stein-show-reporting-rejected-02",
+    "question": "Scan your manuscript for passages where you are consciously or not reporting a story instead of showing it — reporting rather than showing is one of the chief reasons novels are rejected.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "One of the chief reasons novels are rejected is that the writer, consciously or not, is reporting a story instead of showing it."
+    }
+  },
+  {
+    "id": "stein-show-feelings-danger-03",
+    "question": "Treat what a character feels as the one danger area for telling: check that feelings are shown, never reported, before you worry about any other hazard.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "The late John Gardner, in his excellent book On Becoming a Novelist, insisted that the one danger area for “telling” is what a character feels. That may be the most important, but it’s not the only hazard."
+    }
+  },
+  {
+    "id": "stein-show-three-hazards-04",
+    "question": "Audit your passage for the three areas where telling most intrudes: what happened before the story began, what a character looks like, and what a character sees, hears, smells, touches, and tastes.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "There are three areas in which the writer is particularly vulnerable to telling rather than showing: when he tells what happened before the story began; when he tells what a character looks like; and when he tells what a character senses, that is, what he sees, hears, smells, touches, and tastes. Those are all places where the author’s voice can intrude on the reader’s experience."
+    }
+  },
+  {
+    "id": "stein-show-backstory-05",
+    "question": "Rewrite your backstory: show what happened before the story began rather than telling it in narrative summary or in a flashback, and bring offstage events onstage.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "What happened before the story began, sometimes called “backstory,” should be shown rather than told about either in narrative summary or in a flashback. What happens offstage can also be brought onstage and shown."
+    }
+  },
+  {
+    "id": "stein-show-senses-actions-06",
+    "question": "Show what your character sees, hears, smells, touches, and tastes through actions rather than describing them, and convey feelings through actions above all.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "What a character sees, hears, smells, touches, and tastes can be shown through actions rather than described. And feelings, of course, are best shown through actions."
+    }
+  },
+  {
+    "id": "stein-show-known-info-07",
+    "question": "Find any line where one character tells another what the second character already knows and rewrite it — unless it is an accusation, one character should never tell another what the second character already knows.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "One character should never tell another character what the second character already knows—unless it’s an accusation."
+    }
+  },
+  {
+    "id": "stein-show-subtle-info-08",
+    "question": "Rephrase the information you need to plant so it arrives subtly through a natural-sounding remark between characters, the way “Do you think Henry would look more like a doctor if he grew a beard?” quietly reveals that Henry is a doctor.",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "If this kind of telling intrudes, it is really a dodge for the author to convey information, which can be done subtly. For instance: “Do you think Henry would look more like a doctor if he grew a beard?” That is sufficient for the reader to learn that Henry is a doctor and sounds like something that one parent might say to another."
+    }
+  },
+  {
+    "id": "stein-show-trait-action-09",
+    "question": "Rewrite every sentence that states a character’s trait, like “Helen was a wonderful woman, always concerned about her children,” as a visible action, the way Helen parking the car and taking a child by each hand shows her concern without being told.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "Helen was a wonderful woman, always concerned about her children, Charlie and Ginny. There is nothing for the reader to see, therefore the reader feels that he is being told about Helen."
+    }
+  },
+  {
+    "id": "stein-show-cut-telling-10",
+    "question": "Cut any passage that interrupts the reader’s experience to convey a character’s background or anything else the author seems to be supplying — that interruption is telling, not showing, and it starts the reader skipping.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "If that experience is interrupted in order to convey a character’s background, or anything else that the author seems to be supplying, that’s telling, not showing, a major fault because it intrudes upon the reader’s experience."
+    }
+  },
+  {
+    "id": "stein-show-nervous-action-11",
+    "question": "Replace an emotion name like “He was nervous” with the action that shows it, such as “He tapped his fingers on the tabletop.”",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "He was nervous tells. He tapped his fingers on the tabletop shows."
+    }
+  },
+  {
+    "id": "stein-show-action-sequence-12",
+    "question": "Elaborate a character’s feeling into a sequence of small actions and a stray thought, the way a writer setting a yellow pad and a pen on the desk before an important call shows nerves without ever naming them.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "Sometimes longer is better for showing: I put a yellow pad in front of me on the desk. I placed a pen on the yellow pad. This is ridiculous, I’ m not going to write anything, just call. That’s a character about to make an important phone call. The reader isn’t told he’s nervous. The character is given a nervous action."
+    }
+  },
+  {
+    "id": "stein-show-particularity-13",
+    "question": "Replace a general statement like “She boiled water” with particular, visual actions — putting the kettle on the stove, filling it from the faucet, humming until the whistle cuts her short — since the key to the improvement is particularity.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "She boiled water tells. She put the kettle on the stove begins to show. She filled the kettle from the faucet and hummed till the kettle’s whistle cut her humming short shows."
+    }
+  },
+  {
+    "id": "stein-show-metaphor-14",
+    "question": "When information in your work sounds like the author’s intervention, come up with a simile or a metaphor that shows what you are trying to tell.",
+    "verb": "rewrite",
+    "genre": ["fiction", "poetry"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "When you stumble upon information in your work that sounds like the author’s intervention, try to come up with a simile or a metaphor that shows what you’re trying to tell."
+    }
+  },
+  {
+    "id": "stein-show-prefer-metaphor-15",
+    "question": "When you shape your showing image, prefer the compression of a metaphor — “the kelp of her own hair” — over the comparison of a simile — “her hair was like kelp.”",
+    "verb": "rewrite",
+    "genre": ["fiction", "poetry"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "Note that Updike didn’t say “her hair was like kelp” (a simile), but “the kelp of her own hair” (a metaphor), an excellent example of particularity."
+    }
+  },
+  {
+    "id": "stein-show-desire-16",
+    "question": "Rewrite a flat action so that it gives the reader a sense of what the character desperately wants, the way walking “as if against an unseen wind, hoping someone would stop him” shows far more than “He took a walk.”",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "He walked as if against an unseen wind, hoping someone would stop him shows most of all because it gives the reader a sense of what the character desperately wants."
+    }
+  },
+  {
+    "id": "stein-show-visual-test-17",
+    "question": "Test whether a passage is showing rather than telling by determining if it is visual — can the reader see it happening?",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "One clue to whether a writer is showing rather than telling is to determine if the passage is visual."
+    }
+  },
+  {
+    "id": "stein-show-visual-scene-18",
+    "question": "Transform information passed on in a nonfiction vein into a visual scene, choosing visual details — a blush on a freckled face, a too-small crown, two hairpins — so the author is no longer telling.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "conveying the information with visual detail (the blush on Beth’s freckled face, the too-small crown, two hairpins) showed the scene to the reader. No longer is the author telling."
+    }
+  },
+  {
+    "id": "stein-show-color-19",
+    "question": "Show a condition or a change of mood through color alone, the way “the color of cold is blue” shifting to black deep beneath the Arctic water makes the change ominous.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "poetry"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "Beyond the Arctic Circle, the color of cold is blue. But deep beneath the Arctic water, the color of cold is black."
+    }
+  },
+  {
+    "id": "stein-show-experience-20",
+    "question": "Check every passage against the test: does it give the reader an experience, or does it merely pass on information from the author? What readers want from writing is to experience it.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "As I’ve repeated often, what we as readers want from writing is to experience it. Receiving information from the author doesn’t give us an experience."
+    }
+  },
+  {
+    "id": "stein-show-self-audit-21",
+    "question": "Ask yourself of the passage: Are you allowing the reader to see what’s going on? Is the author talking at any point? Can you silence the author with an action that shows what a character feels? Are you naming emotions instead of conveying them by actions?",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 12",
+      "quote": "Are you allowing the reader to see what’s going on? Is the author talking at any point? Can you silence the author by using an action to help the reader understand what a character feels? Are you naming emotions instead of conveying them by actions? Is any character telling another what that character already knows?"
+    }
+  }
+]

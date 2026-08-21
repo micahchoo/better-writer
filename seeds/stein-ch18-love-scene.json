@@ -1,0 +1,536 @@
+[
+  {
+    "id": "stein-love-scene-01",
+    "question": "Give the animal in your story a distinctive particularity, as you would a human character, and tie that characteristic to the story.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "It takes skill to make an animal believable as a character, and the best method is to give it a particularity just as you would a human character, a distinctive characteristic and preferably one that relates to the story—for instance a cat that jumps up into the lap of everyone but the person who loves it."
+    }
+  },
+  {
+    "id": "stein-love-scene-02",
+    "question": "Give the animal in your story a clear want of its own instead of making it a passive recipient of the human characters' wants.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Also, it is important that the animal have a clear want of its own and\n\nnot be merely the passive recipient of human wants."
+    }
+  },
+  {
+    "id": "stein-love-scene-03",
+    "question": "Cut the mechanical description of sexual activity from your love scene; it will not arouse readers and fails to evoke a loving experience between people.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Some people, and consequently some writers, have never learned that mechanical description of sexual activity does not usually arouse readers who are no longer adolescents."
+    }
+  },
+  {
+    "id": "stein-love-scene-04",
+    "question": "Before writing your love scene, consider what the reader is feeling at each moment; the primary erogenous zone is in the reader's head.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The main flaw in most love scenes is similar to that of the main flaws in all other scenes: the reader’s emotions have been insufficiently considered by the writer. The primary erogenous zone is in the head, and that’s where the reader experiences writing."
+    }
+  },
+  {
+    "id": "stein-love-scene-05",
+    "question": "Consider your love scene from the point of view of each partner even when writing from one character's disciplined point of view, so the reader understands the relationship better than either lover does.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "This can be accomplished if the writer considers the love scene from the point of view of each of the characters even when writing from the disciplined point of view of one of them. The reader needs to understand the relationship between the lovers better than either of the lovers do."
+    }
+  },
+  {
+    "id": "stein-love-scene-06",
+    "question": "Build your love scene from tension and tenderness: postpone the consummation as long as credibility permits and keep the likely outcome hidden from the reader.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The two most essential ingredients in love scenes are tension and tenderness. A crisis in the relationship or postponing lovemaking, keeping the lovers apart as long as credibility permits, generates tension. It’s a mistake to let the reader know early the likely outcome of the scene."
+    }
+  },
+  {
+    "id": "stein-love-scene-07",
+    "question": "Rewrite your love scene so the attraction between the lovers seems new, even in a longstanding relationship; no love scene should repeat a familiar ritual.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "No love scene should be the repetition of a familiar ritual. To sustain the reader’s interest in the outcome, the attraction should seem new even in a longstanding relationship."
+    }
+  },
+  {
+    "id": "stein-love-scene-08",
+    "question": "Delay the consummation of your love scene and build anticipation through minutiae—small actions and details—while the possibility of contact hangs in the air.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The writer’s first temptation might be to let them in the house, to get on with it. But delay builds anticipation. It can be accomplished by minutiae:"
+    }
+  },
+  {
+    "id": "stein-love-scene-09",
+    "question": "Cut the sentimentality from your love scene—any emotion that is exaggerated or affected and obviously designed to win the reader's sympathy—and aim instead for a depth of feeling.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The writer invokes sentimentality when he elicits superficial emotions that are exaggerated, excessive, or affected, obviously designed to elicit the reader’s sympathy. Sentimentality in fiction usually comes across as patently insincere, mawkish, or maudlin, and should be avoided. A writer’s sensibility should be directed toward evoking a depth of feeling in the reader, not to fabricating superficial excesses of emotion on the page."
+    }
+  },
+  {
+    "id": "stein-love-scene-10",
+    "question": "Consider putting both the gain and the loss of love in the same story; together they are doubly powerful.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The gain of love and the loss of love are powerful combustibles. It is doubly powerful to have both gain and loss of love in the same story."
+    }
+  },
+  {
+    "id": "stein-love-scene-11",
+    "question": "Make each of your lovers vulnerable in a different way, and evoke the reader's feelings through what they say and do rather than telling the reader what they feel.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Keep in mind that you don’t want to tell the reader what they are feeling, but to evoke feelings in the reader as a result of what the young lovers say to each other and what they do. It helps to make each of them vulnerable in a different way."
+    }
+  },
+  {
+    "id": "stein-love-scene-12",
+    "question": "Derive your love plot and what happens in your love scene from your characters' motivations; remind yourself that plot grows out of character.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "In plotting a love story, a writer must remind himself that plot grows out of character."
+    }
+  },
+  {
+    "id": "stein-love-scene-13",
+    "question": "Give each of your lovers one thing that distinguishes their physical appearance, and a distinctive way of dressing.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Does each of your lovers have one thing that distinguishes his or her physical appearance from that of other people? Is there something distinctive in the way your lovers dress?"
+    }
+  },
+  {
+    "id": "stein-love-scene-14",
+    "question": "Search your love story for root conflicts based on character and upbringing, and add a surface crisis that increases the tension if your lovers are not already at a moment of crisis.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "In devising a love story, search for the root conflicts based on character and upbringing, but also ferret out surface conflict by asking yourself if you have depicted your adult lovers at a moment of crisis. If not, can you add a crisis that will increase the tension of the relationship?"
+    }
+  },
+  {
+    "id": "stein-love-scene-15",
+    "question": "Ask whether your love story has enough friction between the lovers to hold the reader's interest, but not so much that the reader stops believing they are in love.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Whatever your plan, remember that if there is no friction between the lovers, there is no interest on the part of the reader. And if there is massive friction, will the reader be convinced that they are nevertheless in love?"
+    }
+  },
+  {
+    "id": "stein-love-scene-16",
+    "question": "Write ten brief exchanges of dialogue between two lovers that make the reader feel both that they are quarreling and that they are lovers, not ex-lovers.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "One exercise writers in my classes have found to be exceptionally beneficial is writing an exchange of ten lines of dialogue, alternating between two lovers. The object is to have the reader experience two things from the ten lines: that the characters are quarreling and that they are lovers (not ex-lovers)."
+    }
+  },
+  {
+    "id": "stein-love-scene-17",
+    "question": "Write your best scenes with more than one thing going on at a time, as in a quarrel that is unmistakably a lovers' exchange.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "But that is precisely the kind of thing a writer must do in the best of scenes, have more than one thing going on at a time."
+    }
+  },
+  {
+    "id": "stein-love-scene-18",
+    "question": "For your older lovers, keep a hovering notion that they do not have all the time in the world, include the need for companionship, and add a touch that enhances the poignancy.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "In developing your love scene, is there a hovering notion that the lovers do not have all\n\nthe time in the world?\n\nHave you included the need for companionship, often the most urgent need of older people?\n\nHave you included touching or some other physical relationship that will enhance the poignancy?"
+    }
+  },
+  {
+    "id": "stein-love-scene-19",
+    "question": "Imagine your love scene from the perspective of each partner; if you are a man, give special thought to the woman's perspective, and if a woman, to the man's.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The key to writing an effective love scene is to imagine it from the perspective of each of the partners. If the writer is a woman, she should give special thought to the perspective of the man in the scene. If the writer is a man, he should give special thought to the perspective of the woman."
+    }
+  },
+  {
+    "id": "stein-love-scene-20",
+    "question": "Enrich your love scene by having one of the participants gain an insight about the other person.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "A scene can also be enriched if either of the participants gains an insight about the\n\nother person."
+    }
+  },
+  {
+    "id": "stein-love-scene-21",
+    "question": "Plant a meaningful object before your love scene, keep it unnoticed until an important juncture, and let one lover's reaction to it turn the scene so the other must rekindle the relationship.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "You can place an object in the room that is meaningful to one or both lovers. If possible, plant the object before the love scene. Don’t let either of the lovers notice it until an important juncture in that scene, when one of them sees the object, turns off, and the other lover has to rekindle the relationship."
+    }
+  },
+  {
+    "id": "stein-love-scene-22",
+    "question": "Introduce an unexpected misunderstanding that deepens the more one lover tries to clear it up, then bring in a third character who either worsens or resolves the impasse.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "A tack you might consider is to have something unexpected happen that causes a misunderstanding. The more one of the lovers tries to clear up the misunderstanding, the deeper it gets. Make it seem that the impasse is unsurmountable. Then introduce a third character, who can make the impasse worse, or who can provide a way of clearing up the misunderstanding."
+    }
+  },
+  {
+    "id": "stein-love-scene-23",
+    "question": "Interrupt your love scene with a significant thought or memory; it can be more effective than a loud external event.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "But note this. Though an action is the ideal interruption, a thought can also interrupt, particularly a significant thought or memory, and it can be a lot more effective than the local volcano blowing its top."
+    }
+  },
+  {
+    "id": "stein-love-scene-24",
+    "question": "Write a poignant love scene in which the lovers never come close enough to touch; a love scene and a sex scene are not the same.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "A love scene and a sex scene are not the same. A poignant love scene can be written with the lovers not coming close enough to touch."
+    }
+  },
+  {
+    "id": "stein-love-scene-25",
+    "question": "Cut the multiple sexual acts from your erotic scene; a single act kept at bay and stretched out can have a marked erotic effect.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The point to grasp is that the mere description of multiple sexual acts does little or nothing for the reader. A single act,\n\nkept at bay, warmed to, stretched out, can have a marked erotic effect."
+    }
+  },
+  {
+    "id": "stein-love-scene-26",
+    "question": "Before writing your erotic scene, be clear about the relationship between the couple and what the sexual intimacy accomplishes in your story.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "In preparing to write an erotic scene, the writer has to be clear about the relationship between the couple, and has to know what he is trying to accomplish in his story through the sexual intimacy."
+    }
+  },
+  {
+    "id": "stein-love-scene-27",
+    "question": "Give every sexual encounter in your story a meaning for at least one of the characters, or it does not belong in the story.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Even a meaningless assignation has to have a meaning for at least one of the characters or it doesn’t belong in the story."
+    }
+  },
+  {
+    "id": "stein-love-scene-28",
+    "question": "In your one-night stand scene, ask why each participant is doing this and how each reacts during and after, so the encounter conveys something about each character.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "A brief, not-to-be-repeated encounter has greater potential for a story than a meaningless copulation, but to have an important effect on the reader it, too, has to convey something about each character. Why is each of the participants doing this, and how does each of them react to the experience while it’s happening and afterward?"
+    }
+  },
+  {
+    "id": "stein-love-scene-29",
+    "question": "Write the sexual encounter that begins a love affair as a back-and-forth experience, not a straight line; let digressions that serve the scene heighten and extend it.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Think of it as a back-and-forth experience and not a straight line. Each digression—if it doesn’t take the reader away from the fundamental goal of the scene—can heighten and extend the experience."
+    }
+  },
+  {
+    "id": "stein-love-scene-30",
+    "question": "Have your character put himself down in a way that raises him in the reader's eyes; self-deprecation can signal insight and make him a more interesting lover.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "When Thomassy puts himself down, he is actually raising himself in the reader’s eyes. The reader knows how tough and successful he is as a lawyer."
+    }
+  },
+  {
+    "id": "stein-love-scene-31",
+    "question": "Write the tension of arousal in short sentence snippets, then render the breakthrough as one long breathless extended sentence.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Note that the scene consists of many short sentences. Then, the paragraph in which they move to the couch is long, almost all of it one extended sentence. The tension of arousal is handled with snippets. The breakthrough is written as breathless continuum."
+    }
+  },
+  {
+    "id": "stein-love-scene-32",
+    "question": "For lovers who have made love before, add a surprise, the opposite of the expected, or an intrusion that stops the inevitable outcome.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Lovemaking between a couple that has made love before can be a more difficult task for the writer. Art imitates life. If the likely outcome is known to the participants, it removes an element of suspense. For the experienced writer it may mean creating a delay, or even an event or action that stops the inevitable. A scene between lovers experienced with each other can be helped by a surprise, the opposite of the expected, or an intrusion."
+    }
+  },
+  {
+    "id": "stein-love-scene-33",
+    "question": "Break up any scene of continuous lovemaking with thoughts, actions, digressions, and delays pertinent to the story; list each character's concerns and make them different to maximize tension.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "In writing any sexual episode, you have to guard against fashioning a scene of continuous lovemaking. It needs to be broken up by thoughts, actions, digressions, delays that are pertinent to the story. Toward that end, you may find it useful to make a list of each character’s concerns during the scene. To maximize tension, those concerns should be different."
+    }
+  },
+  {
+    "id": "stein-love-scene-34",
+    "question": "Give each of your characters a different script for their love scene, as in the Actors Studio technique.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "Keep the Actors Studio technique in mind by giving each of your characters a different script for their love scene."
+    }
+  },
+  {
+    "id": "stein-love-scene-35",
+    "question": "As you revise your love scene, test each part of it for what you believe the reader is feeling at that moment.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "When you revise, test each part of the scene for what you believe the reader is feeling at that moment."
+    }
+  },
+  {
+    "id": "stein-love-scene-36",
+    "question": "Rephrase the explicit moments in your love scene so the reader's imagination does the work.",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "You need to remind yourself until it becomes second nature that you are playing the emotions of an audience. In writing love scenes, you need to let the reader’s imagination do a lot of the work."
+    }
+  },
+  {
+    "id": "stein-love-scene-37",
+    "question": "Replace violent or graphic moments in your love scenes with small actions or a few well-chosen words; they move the reader more.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The violence that accompanies sex in some novels, film, and TV is not only offensive in principle but also counterproductive. Small actions, or a few well-chosen words, can move the reader much more than an act of violence."
+    }
+  },
+  {
+    "id": "stein-love-scene-38",
+    "question": "In a love between mismatched or unlikely partners, generate the reader's emotion from the conflict of repugnance slowly overcome by affection.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 18",
+      "quote": "The interplay in the audience’s emotions may arise from the conflict of repugnance slowly overcome by affection."
+    }
+  }
+]

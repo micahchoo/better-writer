@@ -1,0 +1,192 @@
+[
+  {
+    "id": "stein-ch03-immediate-scene",
+    "question": "Find the places where you tell offstage events in summary, and rewrite them as immediate scenes the reader witnesses firsthand.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "These clumps of narrative summary are not experienced by today’s readers with the immediacy and excitement of a witnessed event."
+    }
+  },
+  {
+    "id": "stein-ch03-filmable-test",
+    "question": "Test each scene of your piece: could a camera film it? If a scene cannot be filmed, it is not immediate — rework it until it happens visibly before the reader.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "An immediate scene happens in front of the reader, is visible, and therefore filmable. That’s an important test. If you can’t film a scene, it is not immediate."
+    }
+  },
+  {
+    "id": "stein-ch03-nonfiction-scenes",
+    "question": "Go through your nonfiction and convert whatever you can into immediate scenes that happen before the reader's eyes.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "The nonfiction writer who learns to use immediate scenes wherever he can will also find a dramatic improvement in the reception of his work."
+    }
+  },
+  {
+    "id": "stein-ch03-description-double-duty",
+    "question": "Elaborate your static descriptions so each one does more than one job: a setting that also reveals the narrator's state of mind, a room that characterizes the person who lives in it.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "Cheever’s description is not static. It is part of the storytelling, and that is a key to description as it is used by our better writers: It has more than one function."
+    }
+  },
+  {
+    "id": "stein-ch03-jump-cut",
+    "question": "Cut the transitions between your scenes: jump straight from one scene into the next, letting time pass and locales change with no connective tissue.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "Fiction and reporting have now borrowed a film technique called “jump cutting,” moving from one scene into the next with no transition for time to pass or locales to change."
+    }
+  },
+  {
+    "id": "stein-ch03-scene-link",
+    "question": "Where two scenes must be linked, bridge them with a few words of narrative summary — just enough to get the reader from one scene to the next.",
+    "verb": "transition",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "If the scenes must be linked, brief narrative summary can do the linking."
+    }
+  },
+  {
+    "id": "stein-ch03-repetitive-action",
+    "question": "Find summaries of repetitive action, like endless cups of coffee drunk while waiting, and rewrite them as one specific, concrete instance the reader can picture.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "The reader cannot see “endless cups” of anything. A summary of repetitive action does not create a clear image."
+    }
+  },
+  {
+    "id": "stein-ch03-minimize-description",
+    "question": "Cut description that stops the story: minimize scene-setting and keep only what moves the narrative forward.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "My advice to writers yearning for publication is to minimize description, and be sure you don’t stop the story while describing. You are a storyteller, not an interior decorator."
+    }
+  },
+  {
+    "id": "stein-ch03-action-not-motion",
+    "question": "Check your action sequences: anything that is mere motion, things merely happening, replace with action, which is what people do and say.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "In fiction, action consists of what people do and say. Hemingway said it perfectly: “Never mistake motion for action.”"
+    }
+  },
+  {
+    "id": "stein-ch03-dialogue-action",
+    "question": "Rewrite flat exchanges as adversarial dialogue: combative words between characters excite readers' emotions more than sword-play.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "Adversarial dialogue is action. Combative words can excite readers’ emotions more than sword-play."
+    }
+  },
+  {
+    "id": "stein-ch03-remove-interruptions",
+    "question": "Read your piece as a reader and cut everything that interrupts the experience: static description, summaries of what happened offstage between scenes, any glitch that breaks immersion.",
+    "verb": "cut",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "We have to train ourselves to detect and remove interruptions of the reader’s experience. Static descriptions interrupt the story. So does a summary of what has happened offstage between scenes or elsewhere."
+    }
+  },
+  {
+    "id": "stein-ch03-information-through-characters",
+    "question": "Wherever your scene needs information, find a way to have it come naturally out of the characters in the scene instead of stating it baldly in your own voice.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "Instead of finding a way to have the information come naturally out of the characters in the scene, he states the information baldly. The author’s voice interrupts the scene."
+    }
+  },
+  {
+    "id": "stein-ch03-author-offstage",
+    "question": "Re-read your scene for the sound of your own voice and cut it: direct what happens onstage, but never appear as one of the actors.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 3",
+      "quote": "Writers are directors of what transpires on the other side of the glass. They are not one of the actors."
+    }
+  }
+]

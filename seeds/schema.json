@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Writer Seed",
+  "description": "One seed: an actionable question a writer can be asked, derived verbatim from a craft-book claim. Runtime payload for the consumer model is `question` only; `verb` and `source` are audit/integrity fields, never fed at runtime.",
+  "type": "object",
+  "required": ["id", "question", "verb", "genre", "source"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Stable unique slug, e.g. le-guin-adverb-03."
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The seed. 1-2 short imperative sentences, addressed to the writer (you). Self-contained: no book titles, no author names. A small model reshapes it against live text."
+    },
+    "verb": {
+      "type": "string",
+      "enum": ["rewrite", "elaborate", "elucidate", "cut", "transition", "concept-form", "rephrase"],
+      "description": "Intervention kind, classified from the question's own action. Audit/coverage field only - never fed to the runtime model."
+    },
+    "genre": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["fiction", "creative-nonfiction", "memoir", "essay", "poetry", "genre-agnostic"]
+      },
+      "description": "Craft-application genres this seed applies to, judged from the claim's context. Use genre-agnostic when it crosses all of them. The one runtime-relevant axis: the consumer selects by it."
+    },
+    "source": {
+      "type": "object",
+      "required": ["book", "author", "chapter", "quote"],
+      "additionalProperties": false,
+      "properties": {
+        "book": { "type": "string" },
+        "author": { "type": "string" },
+        "chapter": { "type": "string", "description": "Chapter or section locator." },
+        "quote": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Verbatim source sentence(s) the seed derives from. Copied exactly - no paraphrase, no repair. Anti-hallucination anchor; never fed to the runtime model."
+        }
+      }
+    }
+  }
+}

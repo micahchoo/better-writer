@@ -1,0 +1,802 @@
+[
+  {
+    "id": "stein-ch02-opening-goals-01",
+    "question": "Check your opening paragraph against the three goals: does it excite the reader's curiosity about a character or a relationship, introduce a setting, and lend resonance to the story? Revise until the first is strongly at work.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The ideal goals of an opening paragraph are: 1. To excite the reader's curiosity, preferably about a character or a relationship. 2. To introduce a setting. 3. To lend resonance to the story."
+    }
+  },
+  {
+    "id": "stein-ch02-character-wants-02",
+    "question": "Give the character in your first scene something he wants badly, and let the reader feel it early — we are immediately interested in a character who wants something badly.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "As readers, we are immediately interested in a character who wants something badly."
+    }
+  },
+  {
+    "id": "stein-ch02-narrator-stake-03",
+    "question": "Position your narrator in a relationship to the main character that itself raises questions the reader wants answered — will he keep putting up with this person, will the person get what he is after?",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The fact that the narrator is Sammy's boss also piques the reader's curiosity. Will the narrator continue to put up with Sammy's drive? Will Sammy get fired? Will Sammy succeed, and if so at what and how will he do it?"
+    }
+  },
+  {
+    "id": "stein-ch02-surprise-expectation-04",
+    "question": "Plant an early surprise that unsettles the reader's expectation — a twist on who the speaker is or on what you led them to assume.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Our curiosity is aroused when a surprise unsettles our expectation."
+    }
+  },
+  {
+    "id": "stein-ch02-clashing-detail-05",
+    "question": "Find a detail in your first sentence whose description clashes with what happens — a deadly bridge called 'the finest' — so the reader wants to know what happened and why.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "But the key to arousing our interest is in the words 'finest bridge.' Bridges deteriorate. Many are hazardous. But this bridge that suddenly hurtled five people to their death was 'the finest.' We want to know what happened, and why."
+    }
+  },
+  {
+    "id": "stein-ch02-characterization-open-06",
+    "question": "Open with characterization — a personality trait or predicament — instead of incident, and let it seize the reader's attention on its own.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Note that all of Bellow's beginnings except Henderson seize the attention of the reader by characterization, which we get soon enough."
+    }
+  },
+  {
+    "id": "stein-ch02-countervailing-force-07",
+    "question": "Pair a shocking desire with a countervailing force that complicates it — the repugnance of having to touch the person you want to strangle — so the reader feels the tension rather than just the shock.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The narrator wants to perform an act that is taboo and punishable, but what causes the reaction of the reader is the countervailing force, the repugnance at having to touch the person you want to strangle."
+    }
+  },
+  {
+    "id": "stein-ch02-visual-problem-08",
+    "question": "Present your narrator's core problem through a concrete visual image rather than an abstract statement of it — show the wrong parents, don't say 'I was born to the wrong parents.'",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "That visual opening presents the narrator's problem—the wrong parents!—in an attention-grabbing way. How abstract the beginning would have sounded had the author started, 'I was born to the wrong parents.'"
+    }
+  },
+  {
+    "id": "stein-ch02-first-sentence-questions-09",
+    "question": "Ask of your first sentence: does it convey an interesting personality or an action we want to know more about, and can it be made more intriguing by introducing something unusual, shocking, or surprising?",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "There are questions you can ask yourself about your own first sentence: Does it convey an interesting personality or an action that we want to know more about? Can you make your first sentence more intriguing by introducing something unusual, something shocking perhaps, or something that will surprise the reader?"
+    }
+  },
+  {
+    "id": "stein-ch02-season-conventional-10",
+    "question": "Keep a conventional opening if you like, but season it with just enough that is unconventional to rouse the reader's curiosity — a narrator who is 'naked at the moment and talking into the dark.'",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "A craftsman like Cheever will season even the most conventional beginning with just enough that is unconventional to rouse the reader's curiosity."
+    }
+  },
+  {
+    "id": "stein-ch02-concrete-detail-11",
+    "question": "Pack your first paragraph with concrete detail while introducing the main characters and the tension between them.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "That first long paragraph introduces the two main characters, the narrator and his victim. Note the amount of concrete detail."
+    }
+  },
+  {
+    "id": "stein-ch02-action-characterizes-12",
+    "question": "Characterize your protagonist through action in the opening, set up the conflict, and involve the reader in the character's emotional state.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The writer, Anne Mudgett, is using action to characterize. She is also setting up conflict between the narrator and Mason, and involving the reader in Shoshana's emotional state."
+    }
+  },
+  {
+    "id": "stein-ch02-cut-harmony-13",
+    "question": "Cut any opening that describes a happy, harmonious, conflict-free state — 'a wonderful couple' who never argued — the worst possible way to start a story.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The worst possible way to start a story is with something like 'They were a wonderful couple. He loved her and she loved him. They never argued.'"
+    }
+  },
+  {
+    "id": "stein-ch02-omens-14",
+    "question": "Instead of a loud hook, seduce the reader leisurely by planting omens that something is going to happen, building apprehension before the action starts.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "There are, however, more leisurely ways to seduce the reader, through omens."
+    }
+  },
+  {
+    "id": "stein-ch02-monosyllabic-omen-15",
+    "question": "End an ominous sentence with a run of short, monosyllabic words to strengthen the feeling, as in 'the next snow fell.'",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "'Daring death' is an omen. And the rhythm of the words at the end of the sentence is designed to strengthen the ominous feeling in 'the next snow fell.'"
+    }
+  },
+  {
+    "id": "stein-ch02-engine-first-pages-16",
+    "question": "Find the point at which the reader makes the decision not to put the book down — the engine — and move it as close to the top of page one as you can.",
+    "verb": "transition",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The 'engine' of both fiction and nonfiction is the point at which the reader makes the decision not to put the book down. The engine should start in the first three pages, the closer to the top of page one the better."
+    }
+  },
+  {
+    "id": "stein-ch02-engine-exercise-17",
+    "question": "Study the first few pages of the books that have pleased you most and locate the exact place where the engine turns on — where you could not put the book down.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "It is a useful exercise for writers to spend time in their libraries at home or in public libraries, looking at the first few pages of the books that have pleased them most in order to find the exact place where the engine turns on, where the reader will not want to put the book down."
+    }
+  },
+  {
+    "id": "stein-ch02-character-interesting-18",
+    "question": "Make the character you open with quickly more interesting than most of the people who surround us in life, so the reader becomes involved in that life rather than merely savoring your language.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The reader who savors language can be aroused by the author's language, but that arousal won't last unless the reader also becomes involved in the life of a character who is quickly more interesting than most of the people who surround us in life."
+    }
+  },
+  {
+    "id": "stein-ch02-scene-climax-19",
+    "question": "Start with a scene the reader can see, and begin that scene as close to its climax as is feasible to involve the reader quickly.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "If your aim is publication, your best bet is to start with a scene that the reader can see. Where do you start that scene? As close to its climax as is feasible if your aim is to involve the reader quickly."
+    }
+  },
+  {
+    "id": "stein-ch02-flash-characterization-20",
+    "question": "Find the one word in your opening that characterizes your character in a flash — 'ferret' — and make sure that word is doing the work.",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Most writers quickly come up with the correct answer: 'ferret.' It characterizes sixteen-year-old Sammy in a flash."
+    }
+  },
+  {
+    "id": "stein-ch02-original-trait-word-21",
+    "question": "Replace the flat, abstract name for a character trait with an original, concrete word — 'thirsty' instead of 'ambitious.'",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "'thirsty,' an original way of saying Sammy was hungry, meaning ambitious."
+    }
+  },
+  {
+    "id": "stein-ch02-secrecy-hook-22",
+    "question": "Open with an injunction of secrecy or a promise of revelation — 'You must not tell anyone what I am about to tell you' — that makes the reader want what is being withheld.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "'You must not tell anyone,' my mother said, 'what I am about to tell you.'"
+    }
+  },
+  {
+    "id": "stein-ch02-facts-raising-questions-23",
+    "question": "Make your first sentence deliver several facts at once, each of which raises a question the reader wants answered — age, situation, regularity, and the interruption to come.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "That first sentence tells us the narrator is old, that he is in bed with someone of the same sex, that this is a regular event in his life, and the event this day is being interrupted by a visit from an archbishop!"
+    }
+  },
+  {
+    "id": "stein-ch02-quiet-opening-24",
+    "question": "Try a quiet first sentence that intrigues through implication rather than shock — 'She might have been waiting for her lover.'",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Here's a quieter—yet intriguing—opening sentence by one of the century's grand masters, Graham Greene, from an early (1935) novel, England Made Me. She might have been waiting for her lover."
+    }
+  },
+  {
+    "id": "stein-ch02-nonfiction-goal-25",
+    "question": "Treat your nonfiction opening with the same goal as a fiction writer: spark the reader's interest sufficiently to engage him in reading the rest.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "At the beginning of a piece of nonfiction, the goal of the writer is the same as that of a writer of fiction: to spark the reader's interest sufficiently to engage him in reading the rest."
+    }
+  },
+  {
+    "id": "stein-ch02-delayed-reveal-26",
+    "question": "Open your piece with a surprising image and hold back the subject's identity for a delayed reveal — 'several hundred bearers of a strategic commodity... They are goats.'",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "An easy way to interest the reader at the outset is by the use of surprise."
+    }
+  },
+  {
+    "id": "stein-ch02-heightened-experience-27",
+    "question": "Check your opening: does it immerse the reader in heightened experience, emotional or intellectual, more rewarding than the life around him, or does it bore him toward the death end of the line?",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Successful writing immerses the reader in heightened experience—emotional, intellectual, or both—more rewarding than the life around him."
+    }
+  },
+  {
+    "id": "stein-ch02-facts-emotion-28",
+    "question": "Craft your nonfiction facts so they touch the reader's emotions — information sticks best when it is crafted that way.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Information sticks best when it is crafted to touch the reader's emotions."
+    }
+  },
+  {
+    "id": "stein-ch02-cut-five-ws-29",
+    "question": "Stop cramming who, what, when, where, and why into your first paragraph — naked facts are not enough to invite the reader into the rest of the story.",
+    "verb": "cut",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "When the journalist crams who, what, when, where, and why into the first paragraph, how can he hold the reader's attention for the whole of what he has written? Naked facts are frequently not enough to invite a reader's attention to the rest of the story."
+    }
+  },
+  {
+    "id": "stein-ch02-exaggeration-lead-30",
+    "question": "Let metaphor and colorful exaggeration enliven your opening sentences to tempt the reader on, so long as the excess does not mislead anyone about what happened.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Note the colorful exaggeration that strays from strict fact. The street asphalt was not literally crushed into powder ('pulverized') but broken into slabs and pieces."
+    }
+  },
+  {
+    "id": "stein-ch02-spotlight-individual-31",
+    "question": "Open by spotlighting a single individual, characterized however briefly, performing an eccentric and somehow beautiful act — an excellent way of involving the reader's emotions.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Burns helps us see a besieged city by focusing on a single individual performing an eccentric and somehow beautiful act. Spotlighting an individual who is characterized, however briefly, is an excellent way of involving the reader's emotions."
+    }
+  },
+  {
+    "id": "stein-ch02-repetition-effect-32",
+    "question": "Repeat a key word in your lead to underscore the detail that matters — repetition for effect increases the dramatic impact of what's being described.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Did you note that repeating the word 'umbrella' underscored Sorbino's walking out with someone else's purse? That technique—repetition for effect—increases the dramatic impact of what's being described."
+    }
+  },
+  {
+    "id": "stein-ch02-contrast-word-33",
+    "question": "Choose the word that identifies your lead subject by what creates contrast with the event — 'grandmother' rather than her name — to make the difference work.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Did you note the word 'grandmother'? The reporter could have said her name, Alice Hackmeyer, instead, but it wouldn't have created the same contrast with the event as 'grandmother' does."
+    }
+  },
+  {
+    "id": "stein-ch02-action-lead-34",
+    "question": "Introduce action into your first sentence — guards rushing to the scene — to help dramatize it.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Did you note also that the introduction of action—the security guards rushing to the scene—helped dramatize that first sentence?"
+    }
+  },
+  {
+    "id": "stein-ch02-curiosity-engine-35",
+    "question": "Reframe a flat factual lead to turn on the engine of curiosity — find the surprising measure in it, like the family that took fourteen years to move two blocks.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "It took fourteen years for the Buschkowski family to move two blocks. That lead turns on the engine of curiosity, the driving force that gets readers beyond the first sentences."
+    }
+  },
+  {
+    "id": "stein-ch02-visual-lead-36",
+    "question": "Introduce a visual element into your lead — a head held high, trouble keeping his eyes on the judge — to perk it up.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "A visual element can almost always be introduced to perk up a lead."
+    }
+  },
+  {
+    "id": "stein-ch02-attitude-visual-37",
+    "question": "Convey a person's attitude through a visual detail instead of the cliché — show the head held high rather than saying he was 'maintaining his innocence.'",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "This one conveys the attitude of the person without the cliché of 'maintaining his innocence.'"
+    }
+  },
+  {
+    "id": "stein-ch02-small-action-38",
+    "question": "Give your subject a small observed action — ducking his head — to picture him, the way a novelist would.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Head-ducking is not much of an action, but a reporter who is a keen observer of small detail would have the advantage of the novelist in picturing Brucell and giving him an action, however small, like ducking his head:"
+    }
+  },
+  {
+    "id": "stein-ch02-sound-lead-39",
+    "question": "Introduce sound into your lead — the meeting room 'to loud applause' — to make it better.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "George Brucell, a tall man, had to duck his head as the chairman ushered him into the meeting room to loud applause. Better because of the introduction of sound."
+    }
+  },
+  {
+    "id": "stein-ch02-cut-straining-analogy-40",
+    "question": "Check your lead for straining-for-effect analogies and cut the ones where the reader can feel you trying too hard to lure him into dull material.",
+    "verb": "cut",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "In enhancing journalism with the techniques of fiction, caution is required. It's easy to overdo the attempt at analogy. One can feel the New York Times reporter straining for effect in the following attempt to lure the reader into the sometimes dull material of a House of Representatives vote:"
+    }
+  },
+  {
+    "id": "stein-ch02-cut-melodrama-41",
+    "question": "Cut the melodramatic, clichéd phrases from your account — a head dropping 'like a rock,' a back heaving convulsively — they turn the writing unbelievable.",
+    "verb": "cut",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The account turns melodramatic. The toll taker's head drops like a cliché, her back 'heaves convulsively'—and unbelievably."
+    }
+  },
+  {
+    "id": "stein-ch02-concrete-metaphor-42",
+    "question": "Replace flat intensifiers with a concrete, original metaphor that conveys degree — 'pain without pity or horizon' rather than 'endless' — and let contrast sharpen it.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Note the use of metaphoric language, 'pain without pity or horizon.' How much stronger 'horizon' is than 'endless' would be. Note also 'galactic sweep,' an effective and original way of conveying degree. Contrast helps."
+    }
+  },
+  {
+    "id": "stein-ch02-lead-checklist-43",
+    "question": "Run your draft first paragraph through the checklist: does the first sentence trigger curiosity, what will the reader see in it, have you focused on an individual with a visible characteristic doing or saying something, and is there a startling or odd fact that will trap attention?",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Does your first sentence trigger curiosity to make the reader want to continue? What will the reader see in that first sentence? Have you focused on an individual? Have you given us a visible characteristic of that individual? Have you portrayed the individual doing or saying something? Is there a startling or odd fact that will trap attention?"
+    }
+  },
+  {
+    "id": "stein-ch02-visual-parallel-44",
+    "question": "Open with a visual parallel that connects two incongruous elements — the mourners in scuffed white sneakers at the viewing of a draftsman of shoes.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Andy Warhol, draftsman of shoes, is dead, and the people viewing his remains are mostly wearing scuffed white sneakers. Note the visual parallel."
+    }
+  },
+  {
+    "id": "stein-ch02-novel-comparison-45",
+    "question": "Mint a novel comparison for a familiar object — four giant Oscars 'like sullen art deco Nazis' — and trim the hedging that weakens it.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "A novel comparison also makes a good hook: At the Academy Awards, the entrance to the Shrine Civil Auditorium is flanked by four giant Oscars quite, or so it seems to me, like sullen art deco Nazis. The sentence might have been improved by omitting 'or so it seems to me' but the comparison is startling and strong nevertheless."
+    }
+  },
+  {
+    "id": "stein-ch02-contrast-resonance-46",
+    "question": "Enhance the hard fact in your opening with contrast, resonance, and surprise — 'In death, life.'",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "He enhances the hard fact with contrast, resonance, and surprise. In death, life."
+    }
+  },
+  {
+    "id": "stein-ch02-candor-open-47",
+    "question": "Open with candor — something you would rather the world not know, that you might keep secret if you were not a writer.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Can candor at the beginning help your article, perhaps something you would rather the world not know that you might keep secret if you were not a writer?"
+    }
+  },
+  {
+    "id": "stein-ch02-invert-phrase-48",
+    "question": "Invert a familiar phrase in your first sentence — 'Saints should always be judged guilty until they are proved innocent' — to produce two attention-getters in half a sentence.",
+    "verb": "rephrase",
+    "genre": [
+      "essay",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "We don't think of judging saints. And Orwell inverts the usual 'innocent until proven guilty,' producing two attention-getters in half a sentence."
+    }
+  },
+  {
+    "id": "stein-ch02-unexpected-pairing-49",
+    "question": "Pair an unexpected subject with an unexpected attitude in your first sentence — 'I have long been an admirer of the octopus' — to be both surprising and a touch amusing.",
+    "verb": "rewrite",
+    "genre": [
+      "essay",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "I have long been an admirer of the octopus. Octopus? Admirer? That opening is both surprising and a touch amusing."
+    }
+  },
+  {
+    "id": "stein-ch02-announce-theme-50",
+    "question": "Use your first sentence to announce your theme dramatically — 'The two most successful creations of American movies are the gangster and the Westerner: men with guns.'",
+    "verb": "rewrite",
+    "genre": [
+      "essay",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "A first sentence can be used to announce a theme dramatically."
+    }
+  },
+  {
+    "id": "stein-ch02-pseudo-candor-51",
+    "question": "Try opening with pseudo-candor — a disclaimer that does the opposite of what the reader expects and is a cover-up for a fault — as effective as candor.",
+    "verb": "rewrite",
+    "genre": [
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Both examples entice with a slight surprise because they do the opposite of what we expect. Both seem to be disclaimers. Each is a cover-up for a fault. They both might be characterized as pseudo-candor, which can be as effective as candor."
+    }
+  },
+  {
+    "id": "stein-ch02-fact-last-52",
+    "question": "Move your most interesting fact from the first sentence to the last of the opening paragraph, where it thrusts the reader forward into the next paragraph and establishes tone.",
+    "verb": "transition",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "The fact in the last sentence of the paragraph would normally have gone into the first sentence. It was put last for two reasons. It was given the job of thrusting the reader forward into the next paragraph. More important was the establishment of tone."
+    }
+  },
+  {
+    "id": "stein-ch02-buried-lead-53",
+    "question": "Search your draft for a good lead buried elsewhere and bring it forward to replace a less worthy beginning, so the reader is turned on to reading the whole.",
+    "verb": "transition",
+    "genre": [
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "In my first reading of nonfiction I sometimes find that a good lead is buried elsewhere in the draft. Brought forward it can replace a less worthy beginning and help ensure that a reader will be turned on to reading the whole."
+    }
+  },
+  {
+    "id": "stein-ch02-cut-abstractions-54",
+    "question": "Cut the abstractions from your opening — a version bloated with abstractions is boring to read no matter how accurate.",
+    "verb": "cut",
+    "genre": [
+      "essay",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "It is not the brevity that counts but the fact that the Huxley version is bloated with abstractions and is boring to read."
+    }
+  },
+  {
+    "id": "stein-ch02-first-three-pages-55",
+    "question": "Revise your first three pages so they arouse the reader's interest enough to quarantine him from distraction for the several hours the book demands from him.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 2",
+      "quote": "Thereafter, whenever an author told me that his novel really got going on page ten or twenty or thirty, I had to pass on the news that his book in all likelihood was doomed unless he could revise it so that the first three pages aroused the reader's interest enough to quarantine him from distraction for the several hours the book demanded from him."
+    }
+  }
+]

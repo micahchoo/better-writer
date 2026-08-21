@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stein-scripts-conflict-01",
+    "question": "Give the characters in each scene you write different scripts — different intentions for that scene — so their goals clash and the scene turns dramatic.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "The secret of creating conflict in scenes you write is to give your characters different scripts."
+    }
+  },
+  {
+    "id": "stein-script-intent-02",
+    "question": "Define each character's 'script' as their intent in the scene — not the actual lines of dialogue — and keep that instruction brief.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "A “script” in this exercise is not the actual lines of dialogue, only the intent of the character in that scene. Think of the character as getting instructions from you, the writer. It is important to keep the instructions brief."
+    }
+  },
+  {
+    "id": "stein-script-notes-03",
+    "question": "Before you write a scene, make a note of each character's script and make sure the scripts are different and at odds; if a third character enters, give that character a script different from the other two.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "Before you write the scene, make a note as to the “script” or tack (keep it simple) of the first character and then of the second character. Make sure the scripts are different and at odds. Only you will be privy to the scripts of both characters. Let them play out the scene in front of you as you write. And if you have a third character in the scene, give that character a script different from the other two."
+    }
+  },
+  {
+    "id": "stein-literary-scripts-04",
+    "question": "When your scene is literary rather than commercial fiction, make the characters' differing scripts more subtle instead of broadly clashing.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "This technique works well for scenes in both commercial and literary fiction, with the scripts in literary fiction differing more subtly."
+    }
+  },
+  {
+    "id": "stein-scene-playout-05",
+    "question": "Let the characters play out the scene in front of you as you write — decide their scripts, not their lines, in advance.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "Let them play out the scene in front of you as you write."
+    }
+  },
+  {
+    "id": "stein-script-exercise-06",
+    "question": "Take a scene from any novel you are reading and jot down the script — the intent — of each character in it.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "As an exercise, jot down the scripts of each of the characters in a given scene of any novel you may be reading."
+    }
+  },
+  {
+    "id": "stein-crucible-plot-01",
+    "question": "Form a crucible for your plot: an environment, emotional or physical, that bonds your characters and holds them together as things heat up, so they cannot declare a truce and quit.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "A crucible is an environment, emotional or physical, that bonds two people."
+    }
+  },
+  {
+    "id": "stein-crucible-stakes-02",
+    "question": "Make your characters' motivation to keep opposing each other greater than their motivation to run away — or place them where they cannot run: a prison cell, a lifeboat, an army, a family.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "The key to the crucible is that the motivation of the characters to continue opposing each other is greater than their motivation to run away. Or they can’t run away because they are in a prison cell, a lifeboat, an army, or a family."
+    }
+  },
+  {
+    "id": "stein-crucible-locale-03",
+    "question": "If the locale you chose for a scene does not add the stress of a crucible, change the location so it is difficult for one participant to leave, or add background that links the characters and raises the stress of their relationship.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "If the locale you have chosen for a particular scene does not add the stress of a crucible, can you change the location of the scene, making it difficult for one of the participants to leave? Or is there anything that you can add to the background of either or both characters that would link them in a crucible and thereby raise the stress of their relationship?"
+    }
+  },
+  {
+    "id": "stein-closed-environment-04",
+    "question": "Distinguish a closed environment from a crucible: the locale alone does not make a crucible — add an overwhelming relationship that keeps the characters there.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "The location is a crucible, but as yet there is no overwhelming relationship that keeps him there."
+    }
+  },
+  {
+    "id": "stein-locale-tension-05",
+    "question": "When you devise a locale for a scene, choose a closed environment — it will invariably increase the tension — and think of that locale when you are first imagining your characters.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "When devising a locale for a scene, it always pays to give a few moments thought to the possibility of choosing a closed environment. It will invariably increase the tension of the scene. The ideal time to think of that locale is when you are first imagining your characters."
+    }
+  },
+  {
+    "id": "stein-scene-vs-plot-06",
+    "question": "Match the device to the scope: plan individual scenes by giving characters clashing scripts, but plot the whole work around a crucible that binds the characters together.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 7-8",
+      "quote": "While two characters can have different scripts throughout a book, the Actors Studio technique is most valuable for planning individual scenes."
+    }
+  }
+]

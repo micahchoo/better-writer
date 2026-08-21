@@ -1,0 +1,278 @@
+[
+  {
+    "id": "le-guin-crowding-vague-words-01",
+    "question": "Find the flabby phrases and cliches in your draft and replace them with the vivid phrase, the exact word: never use ten vague words where two will do.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "It's what we mean when we exhort ourselves to avoid flabby language and cliches, never to use ten vague words where two will do, always to seek the vivid phrase, the exact word."
+    }
+  },
+  {
+    "id": "le-guin-crowding-keep-story-full-02",
+    "question": "Check each paragraph of your story for slackness: keep the story full of what is happening in it, moving, not wandering into irrelevancies, and interconnected with itself, rich with echoes forward and backward.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "By crowding I mean also keeping the story full, always full of what's happening in it; keeping it moving, not slack and wandering into irrelevancies; keeping it interconnected with itself, rich with echoes forward and backward."
+    }
+  },
+  {
+    "id": "le-guin-crowding-crowd-first-draft-03",
+    "question": "In your first draft crowd in everything boldly; then in revising decide what counts and what tells, and cut and recombine till what is left is what counts.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "Tactically speaking, I'd say go ahead and crowd in the first draft, put everything in boldly. Then in revising decide what counts, what tells; and cut and recombine till what's left is what counts."
+    }
+  },
+  {
+    "id": "le-guin-leaping-leave-out-04",
+    "question": "Look at what you can leave out of your prose: what you leave out is infinitely more than what you leave in, so leave white space around the word, silence around the voice.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "And what you leave out is infinitely more than what you leave in. There has to be white space around the word, silence around the voice."
+    }
+  },
+  {
+    "id": "le-guin-leaping-overcrowded-description-05",
+    "question": "Find any description where you tried to include everything and cut it down: overcrowded descriptions clog the story and suffocate themselves.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "If you try to include everything in a description, you end up like poor Funes the Memorious in Borges's story, which, if you have not read, I recommend with all my heart. Overcrowded descriptions clog the story and suffocate themselves."
+    }
+  },
+  {
+    "id": "le-guin-leaping-action-06",
+    "question": "Read your action scenes — a fist-fight, a battle, a sports event — for blow-by-blow accounts, which create confusion and boredom; leap instead, fast enough and far enough.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "Action writers often crowd but fail to leap fast enough or far enough. We've all read descriptions of a fist-fight, or a battle, or a sports event, which by merely trying to give a blow-by-blow account create confusion and boredom."
+    }
+  },
+  {
+    "id": "le-guin-leaping-action-detail-07",
+    "question": "In an action passage, include everything the reader needs to know and nothing more; make the sensory details intense, brief, and precise, and the language transparent.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "Everything the reader needs to know is included, but nothing more. At each moment we know exactly where we are and what's happening. Every detail both enriches the picture and speeds the action. The language is transparent. The sensory details are intense, brief, precise."
+    }
+  },
+  {
+    "id": "le-guin-leaping-omit-explanations-08",
+    "question": "Leap over years at a time in your narrative, omitting great wads of the protagonist's life; omit the explanations and let the connections make themselves.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "Woolf omits the explanations and lets the connections make themselves. The novel leaps over years at a time, omitting great wads of the protagonist's life."
+    }
+  },
+  {
+    "id": "le-guin-story-definition-09",
+    "question": "Test your story against the definition: a narrative of events, external or psychological, which moves through time or implies the passage of time, and which involves change. Where is the change?",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "I define story as a narrative of events (external or psychological) which moves through time or implies the passage of time, and which involves change."
+    }
+  },
+  {
+    "id": "le-guin-story-in-telling-10",
+    "question": "Check whether your story can be retold as a plot without fatal loss: if the story is not in the plot but in the telling, make sure the telling, not the plot summary, carries it.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "But most serious modern fictions can't be reduced to a plot, or retold without fatal loss except in their own words. The story is not in the plot but in the telling; it is the telling that moves."
+    }
+  },
+  {
+    "id": "le-guin-story-plot-armature-11",
+    "question": "If you are a beginning writer, consider building your narrative on the armature of a strong, shapely plot: a pleasure in itself, reusable generation after generation.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "A strong, shapely plot is a pleasure in itself. It can be reused generation after generation: It provides an armature for narrative that beginning writers may find invaluable."
+    }
+  },
+  {
+    "id": "le-guin-story-conflict-one-behavior-12",
+    "question": "Check whether you have conflated story with conflict: conflict is one kind of behavior; a complex narrative needs the others too — relating, finding, bearing, losing, discovering, parting, changing.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "No narrative of any complexity can be built on or reduced to a single element. Conflict is one kind of behavior. There are others, equally important in any human life, such as relating, finding, bearing, losing, discovering, parting, changing."
+    }
+  },
+  {
+    "id": "le-guin-story-focus-13",
+    "question": "State your story's focus — what it is about, who it is about: the explicit or implicit center to which all the events, characters, sayings, and doings refer.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "We don't have to have the rigid structure of a plot to tell a story; but we do need a focus. What is it about? Who is it about? This focus, explicit or implicit, is the center to which all the events, characters, sayings, doings of the story originally or finally refer."
+    }
+  },
+  {
+    "id": "le-guin-story-trajectory-14",
+    "question": "Trace your story's trajectory: the movement — straight ahead, roundabout, recurrent, or eccentric — which never ceases, from which no passage departs entirely, and to which all passages contribute.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "And a story equally needs what Jill Paton Walsh calls a trajectory: not necessarily an outline or synopsis to follow, but a movement to follow: the shape of a movement, whether it be straight ahead or roundabout or recurrent or eccentric, a movement which never ceases, from which no passage departs entirely, and to which all passages contribute in some way."
+    }
+  },
+  {
+    "id": "le-guin-crowding-focus-trajectory-15",
+    "question": "Audit what you crowd in and where you leap: everything crowded in to enrich the story sensually, intellectually, emotionally should be in focus, part of the story's center, and every leap should follow the trajectory of the whole.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "Everything that is crowded in to enrich the story sensually, intellectually, emotionally, should be in focus, part of the central focus of the story. And every leap should be along the trajectory, following the shape and movement of the whole."
+    }
+  },
+  {
+    "id": "le-guin-terrible-cut-by-half-16",
+    "question": "Take a piece of narrative prose you have written, 400-1000 words, and cut it by half: count the words, reduce them to half that many, and keep the narrative clear and the sensory impact vivid.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "A Terrible Thing to Do",
+      "quote": "Take one of the longer narrative exercises you wrote, perhaps Exercise Seven, Part Four, and cut it by half. It means counting the words and reducing them to half that many while keeping the narrative clear and the sensory impact vivid, not replacing specifics by generalities, and never using the word somehow."
+    }
+  },
+  {
+    "id": "le-guin-terrible-cut-dialogue-17",
+    "question": "If your piece has dialogue, cut every long speech and conversation in half just as implacably as you cut the narration.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "A Terrible Thing to Do",
+      "quote": "If there's dialogue in your piece, cut any long speech or conversation in half just as implacably."
+    }
+  },
+  {
+    "id": "le-guin-terrible-weigh-words-18",
+    "question": "After severe cutting, weigh your words and name which proved to be styrofoam and which gold: severe cutting intensifies your style, forcing you both to crowd and to leap.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "A Terrible Thing to Do",
+      "quote": "Forced to weigh your words, you find out which are the styrofoam and which are the gold. Severe cutting intensifies your style, forcing you both to crowd and to leap."
+    }
+  },
+  {
+    "id": "le-guin-revision-could-go-out-19",
+    "question": "Treat revision consciously as a time to consider what could go out if it had to: cut repetitions, unnecessary explanations, and everything that merely pads.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "A Terrible Thing to Do",
+      "quote": "Unless you are unusually sparing with your words, or wise and experienced enough to cut as you write, revision will almost always involve some cutting of repetitions, unnecessary explanations, and so on. Consider revision consciously as a time to consider what could go out if it had to."
+    }
+  },
+  {
+    "id": "le-guin-chekhov-razor-20",
+    "question": "Apply Chekhov's Razor to your draft: throw out the first three pages — starting a story, we all circle around, explain a lot of stuff, and set things up that don't need to be set up.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "A Terrible Thing to Do",
+      "quote": "Anton Chekhov gave some advice about revising a story: first, he said, throw out the first three pages. But there are few first drafts to which Chekhov's Razor doesn't apply: Starting a story, we all tend to circle around, explain a lot of stuff, set things up that don't need to be set up. Then we find our way and get going, and the story begins very often just about on page 3."
+    }
+  },
+  {
+    "id": "le-guin-cut-trajectory-21",
+    "question": "In revision, cut any passage that sticks out or leaves the main trajectory; notice how often a cut that seemed sure to leave a terrible hole joins up without a seam.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "A Terrible Thing to Do",
+      "quote": "And if any passage sticks out in some way, leaves the main trajectory, it could possibly come out. Often a cut that seemed sure to leave a terrible hole joins up without a seam."
+    }
+  },
+  {
+    "id": "le-guin-cut-favorites-22",
+    "question": "Expect severe cutting to include some of your favorite, most beautiful and admirable sentences and passages, and cut them anyway; you are allowed to cry or moan while you do.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "A Terrible Thing to Do",
+      "quote": "This inevitably includes some of your favorite, most beautiful and admirable sentences and passages. You are allowed to cry or moan while you cut them."
+    }
+  },
+  {
+    "id": "le-guin-telling-self-out-of-way-23",
+    "question": "Get yourself, your ego, your opinions, your mental junk out of the way: find the focus of the story and follow the movement of the story, and let the story tell itself.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Waving Good-bye from the Pier",
+      "quote": "If I can keep myself, my ego, my opinions, my mental junk, out of the way and find the focus of the story and follow the movement of the story, the story tells itself."
+    }
+  }
+]

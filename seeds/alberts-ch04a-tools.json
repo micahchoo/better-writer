@@ -1,0 +1,398 @@
+[
+  {
+    "id": "alberts-scene-time-control",
+    "question": "Map the clock inside each of your scenes and take complete awareness and control of it: decide how much time passes and what the reader experiences of it.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Many of us would love to experience that loss of time more often, but in writing scenes we must have complete awareness and control of time."
+    }
+  },
+  {
+    "id": "alberts-scene-summary-condenses",
+    "question": "Decide passage by passage whether time should be condensed or expanded: use summary to relay many events quickly, a scene to give the impression of real time passing.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "As noted earlier, summary can be used to condense time (in the sense of relaying many events quickly), while a scene expands it (by giving the impression of real time passing)."
+    }
+  },
+  {
+    "id": "alberts-scene-manufacture-time",
+    "question": "Manufacture the time that passes in your scene rather than recording it realistically: select only the actions and thoughts that will have the most impact for your intention.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "So, when you create a scene the passing of time must be represented, it must be manufactured, rather than recorded realistically. You must select the actions and thoughts of the narrator and/or characters within a scene with sensitivity to the choices that will have the most impact, depending on your intention."
+    }
+  },
+  {
+    "id": "alberts-scene-start-late",
+    "question": "Check where each scene begins: if you start with every preliminary, cut back to the moment that matters so details and irrelevant events don't bury the reader.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "You don't want to begin every scene with Adam and Eve or your story would become an unrelenting and oppressive profusion of details and irrelevant events."
+    }
+  },
+  {
+    "id": "alberts-scene-limit-description",
+    "question": "Where your scene moves at a natural pace, limit the description so it doesn't get bogged down—keep only the details that carry a lot of information about the characters.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If you want your scene to give the impression of real time passing at a natural pace, limit the amount of description so the scene doesn't get bogged down but make sure that every bit of description carries a lot of information. Choose your details for what they tell about the characters."
+    }
+  },
+  {
+    "id": "alberts-scene-verb-pace",
+    "question": "Match your verbs to your scene's clock: slow verbs where time should crawl, a pile-up of action verbs where time should race.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Slow time requires slow verbs and fast time requires lots of action."
+    }
+  },
+  {
+    "id": "alberts-scene-slow-motion",
+    "question": "To stretch a moment that took only seconds, heighten the character's perception of physical stimuli—what they feel against their skin, what they hear—and let the language grind to a halt.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "His perception of physical stimuli is heightened—he feels the pages of the newspaper rustling against his arm."
+    }
+  },
+  {
+    "id": "alberts-scene-speed-up",
+    "question": "To speed a scene up, cut sentences into short subject-action constructions and make the verbs explosive and action-filled.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "The sentences are short, mostly subject-action constructions, and the verbs are explosive and action-filled."
+    }
+  },
+  {
+    "id": "alberts-present-tense-immediacy",
+    "question": "Where you want events to feel like they are happening in the very moment of narration, write the scene in present tense for immediacy.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Present tense adds immediacy—events are happening in the very moment they are being narrated."
+    }
+  },
+  {
+    "id": "alberts-past-tense-distance",
+    "question": "Where you want distance from events—the narrator telling the story soon or long after it happened—use past tense or past perfect to give both teller and reader breathing room.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "The past tense and past perfect give a bit of distance from events—they imply that the narrator is telling the story either soon or long after it happened. They provide breathing room for the teller of the tale and the reader."
+    }
+  },
+  {
+    "id": "alberts-future-tense-telegraph",
+    "question": "Weigh the costs of interrupting your narrative before jumping into the future tense: use it occasionally to telegraph information that will change how the reader judges the current characters and action.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "It can be useful, occasionally, in telegraphing information that will be important to the reader's understanding of the ongoing scene. As with flashbacks, it's important to weigh the costs of interrupting the narrative against the possible payoffs such as giving readers a sense of prescience and informing readers of events that will change the way they judge the \"current\" characters and action."
+    }
+  },
+  {
+    "id": "alberts-present-tense-shock",
+    "question": "When a character receives shocking or confusing information, try present tense to show the character's disjointed response.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If you intend to relay shocking or confusing information to a character, to show that character's disjointed response, you might try using the present tense."
+    }
+  },
+  {
+    "id": "alberts-present-tense-countdown",
+    "question": "If your scene needs a moment-by-moment feel—nervous preparations, a ticking countdown—consider present tense.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If your scene requires a moment-by-moment feel, consider using present tense."
+    }
+  },
+  {
+    "id": "alberts-tense-experiment",
+    "question": "Rewrite the same scene in present, past, and future tense and compare: pick the version whose tense matches your intention, whether immediacy, consequences, or a jump from a larger framework.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "You can play around with alternatives to see which tense works best for a particular scene."
+    }
+  },
+  {
+    "id": "alberts-tense-markers",
+    "question": "If you combine tenses in one scene, anchor each jump with time markers so the reader always stays located in time.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "You can combine tenses as long as you're careful to keep the reader located in time. If you're going to combine tenses, be sure to use markers to avoid losing your reader."
+    }
+  },
+  {
+    "id": "alberts-tense-random-switches",
+    "question": "Find every random tense switch in your scene—\"He went downstairs and reaches for the orange juice\"—and either give each switch a reason, an effect you are after, or make the tenses consistent.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "You should not switch tenses unless there is a reason to do so, such as an effect you are after. Random jumping from one tense to another as in \"He went downstairs and reaches for the orange juice\" is both confusing and annoying to a reader."
+    }
+  },
+  {
+    "id": "alberts-time-tags",
+    "question": "Locate each scene in a specific time with a simple time tag—\"June first, 1963\", \"Last Thursday\", \"After she went into labor\"—whenever the reader needs an anchor.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "The easiest way (and a perfectly acceptable one) to locate the scene in a specific time is to use time tags such as June first, 1963 … One day … Last Thursday … Before we sat down for supper … After she went into labor … When the hike ended …"
+    }
+  },
+  {
+    "id": "alberts-time-marker-double-duty",
+    "question": "When you locate a scene in time, let the marker do double duty: instead of stating the facts directly, describe what the narrator sees—a watched sunrise that also establishes setting.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "But whenever a description can do double duty (in this case locating us in time and place) without having to state the facts directly, the prose is particularly economical."
+    }
+  },
+  {
+    "id": "alberts-time-marker-clarity",
+    "question": "Check that your time markers haven't gotten so complex or lyrical that they misfire and the reader gets lost.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If you decide to try a complicated method of locating your scene in time, make sure you haven't gotten so complex or lyrical that your marker misfires and your reader gets lost."
+    }
+  },
+  {
+    "id": "alberts-setting-double-duty",
+    "question": "Ask what your setting does beyond establishing a believable background: could it carry symbolic meaning, reveal aspects of character, or establish mood and tone?",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "One reason for working on setting is to create a credible experience for the reader—to make the scene feel real—but setting can and should do more than just establish a believable background to the action of the scene. Setting can have symbolic meaning, it can reveal aspects of character, establish mood and tone."
+    }
+  },
+  {
+    "id": "alberts-setting-mood",
+    "question": "Compare your scene's setting against the mood you intend: would a change of season, time of day, or state of repair alter the emotional effect on the reader?",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Same place, same situation—father and child returning to the father's childhood home, but a world of difference in mood. The setting is both the same and not the same. What was ominous has become cheerful and promising with just a change of season, time of day, and some fresh paint."
+    }
+  },
+  {
+    "id": "alberts-setting-symbol",
+    "question": "Elucidate the symbolic weight of any place or object in your scene: it must carry meaning beyond its factual identity, and that meaning must be a part of the narrative—on its own, a crumbling castle is just a crumbling castle.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "To make setting function symbolically in a scene, the place or an aspect of it must carry a meaning beyond its factual identity and that meaning must be a part of the narrative. On its own it is just a crumbling castle."
+    }
+  },
+  {
+    "id": "alberts-setting-reveals-character",
+    "question": "Read your setting for what it reveals about character: what would a bedroom tell about its owner—messy or orderly, whose pictures on the dresser?",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "What can the details of the setting show about your character(s) in the scene? For example, what might a bedroom tell about your character? Is it messy or orderly? What pictures does she have on her dresser?"
+    }
+  },
+  {
+    "id": "alberts-see-feel-it",
+    "question": "Place yourself inside the scene before writing: expand \"see it\" to smell, taste, or whatever other sensory details are needed, and describe the setting until it becomes real to you.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "You could expand \"See it\" to include smell it, taste it, or whatever other sensory details are needed, but the essence of the mantra was that I needed to place myself inside the scene in order to write it authentically, and to do that I would have to describe the setting to the extent that it became real to me."
+    }
+  },
+  {
+    "id": "alberts-fantasy-grounding",
+    "question": "If your story turns surreal or fantastic, ground it in a seemingly realistic setting first—place the bizarre within the believable so the interplay makes the setting function.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Pullman has grounded his fantasy in a seemingly realistic setting, and it is within that grounding that he positions the bizarre fact of people possessing personal animal-like daemons."
+    }
+  },
+  {
+    "id": "alberts-description-individualize",
+    "question": "Find the flat, generic descriptions of your characters—\"The old lady sat on the park bench\"—and rephrase them with individuating details that reveal nature: coiffure, tailored jacket, expensive shoes.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If I write \"The old lady sat on the park bench\" I'm describing directly but not revealing anything about her character. But I can add to the description to individualize this old lady and give you a glimpse into her nature. I might dress her quite elegantly, with a neat, upswept coiffure, a fashionable tailored jacket, and expensive shoes with heels."
+    }
+  },
+  {
+    "id": "alberts-stereotype-break",
+    "question": "Give a character a detail that breaks their stereotype—the distinguished-looking man video gambling on his laptop—to catch the reader's interest and make them want to know more.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If the distinguished-looking fellow is video gambling on his laptop, you might think he's in trouble. In either case, you've caught the reader's interest and made him want to know more about the character. The character has come alive for him through description—by showing, you have broken stereotypes and created reader interest."
+    }
+  },
+  {
+    "id": "alberts-appearance-action-disparity",
+    "question": "Create tension by setting a character's appearance against their actions—an elegantly dressed woman tearing yellowed newspaper into strips—and let the disparity make the reader wonder.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "There is already a tension in this scene caused by the disparity between this woman's appearance and her actions. You can use disparity between appearance and actions in your own work to increase tension and therefore reader interest."
+    }
+  },
+  {
+    "id": "alberts-dialogue-context",
+    "question": "Check each line of dialogue against its context: when speech doesn't fit the setting and events around the character, that disconnect shows the reader something important about her.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Study how your character's speech fits the setting and the events around her; if there is a disconnect between the two, you've just shown your reader something important about your character."
+    }
+  },
+  {
+    "id": "alberts-internal-monologue-fiction",
+    "question": "In fiction, use internal monologue to show what lies beneath a character's behavior and appearance—don't waste the opportunity that playwrights and screenwriters don't have.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "The ability to delve into a character's interior world is fiction's gift to writers—something playwrights and screenwriters can't do and memoirists and personal essayists can only do for their narrator. If you're writing fiction, don't waste this opportunity to show what is beneath the surface of behavior and appearance."
+    }
+  },
+  {
+    "id": "alberts-narrator-inner-world",
+    "question": "In creative nonfiction, make sure your narrator's inner world is on the page and that her thoughts are sufficiently revealing of her character.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If you're writing creative nonfiction, make sure your narrator's inner world is on the page and that your (narrator's) thoughts are sufficiently revealing of your (narrator's) character."
+    }
+  },
+  {
+    "id": "alberts-intention-shapes-thoughts",
+    "question": "Before shaping a character's thoughts, name what you want to accomplish in the scene—then shape the thoughts (or your narrator's) to show exactly what you want them to.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "It always comes back to intention—knowing what you want to accomplish in your scene, then shaping your character's thoughts (or choosing your narrator's, in nonfiction) so they show what you want them to."
+    }
+  },
+  {
+    "id": "alberts-combine-reveals",
+    "question": "Combine interior thoughts, actions, and dialogue in the same scene instead of letting them work in isolation to reveal character.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Interior thoughts, actions, and dialogue don't have to work in isolation to reveal character. You can combine these elements effectively."
+    }
+  }
+]

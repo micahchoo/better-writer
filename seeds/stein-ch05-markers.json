@@ -1,0 +1,266 @@
+[
+  {
+    "id": "stein-markers-taboo",
+    "question": "Show, in the interaction of your characters, the gap between what they profess and how they act; deal with the unspoken rather than the acceptable.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "It is, however, a writer’s specialty to deal with taboos, to speak the unspoken, to reveal, to uncover, to show in the interaction of people the difference between what we profess and how we act."
+    }
+  },
+  {
+    "id": "stein-markers-baggage",
+    "question": "Give your main character inherited or trained baggage — upbringing, customs, temperament — and show whether they can overcome it.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Characters, just like people, can strive to overcome this baggage and training."
+    }
+  },
+  {
+    "id": "stein-markers-differences-conflict",
+    "question": "Build the conflict of your scenes and whole plots on the cultural differences between your characters — differences are more important than similarities.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "These differences are a valuable resource for scenes as well as entire plots. It is the underlying basis of conflict in fiction."
+    }
+  },
+  {
+    "id": "stein-markers-pair-different-worlds",
+    "question": "Put two characters of sharply different backgrounds in the same story — readers’ emotions commit quickly — then step back and let the drama of their differences explode without mediating.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "When in fiction, theater, and film the writer brings together people of differing social and cultural backgrounds, he needs to step back to watch the inherent drama of differences explode."
+    }
+  },
+  {
+    "id": "stein-markers-emotional-distance",
+    "question": "Squelch your emotional reactions to your material consciously so you gain enough distance to use it in your work as a writer.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "A writer has to squelch his emotional reactions consciously in order to get enough distance to use them in his work as a writer."
+    }
+  },
+  {
+    "id": "stein-markers-subtle-discernment",
+    "question": "Discern your characters’ differences with subtlety instead of sorting them into good guys and bad guys.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "In many of the films that are nominated for Academy Awards, the discernment of differences becomes more subtle. That discernment becomes a necessity in the best literary and mainstream fiction."
+    }
+  },
+  {
+    "id": "stein-markers-concept",
+    "question": "Give each character markers — easily identified signals of cultural and social background — so the reader identifies their different worlds quickly.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "The process of identifying different worlds for the reader can be accomplished quickly through markers, easily identified signals that to the majority of readers will reveal a character’s cultural and social background."
+    }
+  },
+  {
+    "id": "stein-markers-clothing-belonging",
+    "question": "Use clothing to signal whether two characters belong to the same world — mismatched dress tells the reader they are not together.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Would we expect to see that woman walking in the street with a man wearing a totally sleeveless “muscle” shirt or a cap with a slogan on it? The reader assumes they are not together because they have the appurtenances of widely different backgrounds."
+    }
+  },
+  {
+    "id": "stein-markers-clothing-surroundings",
+    "question": "Describe a character’s clothing as a reaction to the surroundings of the scene — dress that clashes with the setting signals phoniness or contempt.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "clothing is often a reaction to the surroundings in which the clothing is worn. Keep that in mind when you’re describing a character in a specific scene."
+    }
+  },
+  {
+    "id": "stein-markers-decay",
+    "question": "Recheck your markers against today’s readers — class signifiers that once worked have diffused in time, so choose details whose connotations still register.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Though the characteristics that once connoted “lower class” and “upper class” to readers are no longer absolutes, they still work as markers in which readers find connotations and associations."
+    }
+  },
+  {
+    "id": "stein-markers-show-dont-explain",
+    "question": "Cut the sentence that explains what a marker means — show only the detail, the fingernails, and let the reader draw the inference.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "The writer doesn’t have to say what I’ve just said. All he has to show the reader are the fingernails; they are effective markers."
+    }
+  },
+  {
+    "id": "stein-markers-conduct-children",
+    "question": "Characterize instantly through public conduct — how a character behaves with children in public is an immediate marker.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Public conduct with children is an immediate marker. A woman walking with a “dressed-up” child connotes one thing. A woman screaming at her children in the supermarket suggests another."
+    }
+  },
+  {
+    "id": "stein-markers-detail-question",
+    "question": "Run each small detail you give a character — gum chewing, an ankle bracelet, a man’s rings — past the question of what it suggests about their background.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "What does the incessant chewing of gum suggest about a character? What would an ankle bracelet convey to a reader about a character? What about a man wearing multiple large rings, or a diamond ring?"
+    }
+  },
+  {
+    "id": "stein-markers-food-drink",
+    "question": "Use what a character drinks and eats, and where, as a background marker — beer and rye versus Scotch and Perrier signal different worlds.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Food, drink, and the places they are consumed are markers. If the reader knows a character drinks popular brands of American beer, rye whiskey, and chilled red wine, what does the reader guess about the character’s background? If the character drinks Scotch, Perrier, and martinis straight up, does the reader have a different view?"
+    }
+  },
+  {
+    "id": "stein-markers-instant",
+    "question": "Cut any marker that needs a paragraph of explanation — a marker should convey its point instantly or it is not working.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Distinctions of that sort are not good markers for the writer because they require too much description and readers might still not get the point without the author telling them explicitly. A marker should convey its point instantly."
+    }
+  },
+  {
+    "id": "stein-markers-speech",
+    "question": "Characterize through how your character speaks — vocabulary, accent, verbal tics, clichés — as markers of background.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Perhaps the most frequently used marker is found in the vocabulary and expressions of a character’s dialogue."
+    }
+  },
+  {
+    "id": "stein-markers-speech-content",
+    "question": "Rephrase sentences that state a character’s background so the content of the character’s speech — what they know and care about — shows it instead.",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Markers provide the writer with an opportunity to show the character’s background instead of telling the reader about it."
+    }
+  },
+  {
+    "id": "stein-markers-attitudes",
+    "question": "Use a character’s attitude — like expecting to be insulted or mugged by every passerby — as a marker of background.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "Attitudes can also be used as markers:\n\nArthur came to New York expecting to be insulted or mugged by every passerby."
+    }
+  },
+  {
+    "id": "stein-markers-cliche",
+    "question": "Delete cliché markers — the American tourist abroad hunting for hamburgers — and replace them with details that still carry surprise.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "However, be wary of cliché markers such as an American tourist abroad in search of a restaurant that serves hamburgers."
+    }
+  },
+  {
+    "id": "stein-markers-action",
+    "question": "Rewrite characterization so a character’s action — sending food back, overtipping, watching everyone — reveals background in a single stroke.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "I have a strong preference for action markers, that is sentences that describe what a character does and at the same time reveal something about the character’s upbringing or background:\n\nEvery time Zelda ate in a restaurant, she found some reason to send food back to the kitchen."
+    }
+  },
+  {
+    "id": "stein-markers-background-questions",
+    "question": "Ask yourself what inherited trait most shaped your protagonist, what family custom haunts him, which habit he has failed to break, and what in the villain’s upbringing made him what he is — the answers supply useful markers.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "I have sometimes found that even accomplished writers neglect to ask themselves some fundamental questions about their important characters that could provide useful markers. For instance, what trait inherited by the protagonist has most influenced his adult life? What custom of the protagonist’s family still haunts his life? Which personal habit has he tried to break, unsuccessfully, for years? What family tradition has had the most positive influence on the protagonist? What is the single most important factor in the villain’s upbringing that contributed to his reprehensible conduct?"
+    }
+  },
+  {
+    "id": "stein-markers-audit-differences",
+    "question": "Examine your two most important characters for social or class differences; if you have neglected such differences, add some that arouse emotion.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 5",
+      "quote": "If you are presently writing a novel, have you examined it to see if there are some social or class differences between your two most important characters? How do those differences influence the story? If you have neglected such differences, how might you bolster your story by adding some social and cultural differences that arouse emotion?"
+    }
+  }
+]

@@ -1,0 +1,434 @@
+[
+  {
+    "id": "stein-ch04a-characters-first",
+    "question": "Build your story from a character rather than a plot: imagine a person so alive that what they do becomes the story itself.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "There’s a book called Characters Make Your Story that you don’t have to read because the title says it all: Characters make your story. If the people come alive, what they do becomes the story."
+    }
+  },
+  {
+    "id": "stein-ch04a-theme-character-allegiance",
+    "question": "If your story starts from a theme that obsesses you, keep your allegiance to character: imagine characters whose lives involve the theme, so the story survives.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "If their allegiance is to character, their theme-originated story has a better chance of survival."
+    }
+  },
+  {
+    "id": "stein-ch04a-people-in-car-before-crash",
+    "question": "Introduce your characters before the catastrophe: readers need to know the people in the car before they see the car crash, or the events will not move them.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "From those experiences I am convinced that we need to know the people in the car before we see the car crash. The events of a story do not affect our emotions in an important way unless we know the characters."
+    }
+  },
+  {
+    "id": "stein-ch04a-real-person-cameo",
+    "question": "Give a small role to a real, recognizable person — usually a high officeholder — using only a trace of them to jog the reader’s memory.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "One of the devices used by successful thriller writers is to give a small role to a real person, usually a high officeholder. Writers who use this technique do not attempt to characterize famous individuals in depth. A trace to jog memory is enough."
+    }
+  },
+  {
+    "id": "stein-ch04a-trait-through-action",
+    "question": "Find every trait you currently state outright — tall, skinny, brave — and convey it through an action the character performs, so the reader feels it instead of being told it.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The man is not just tall, he is being characterized through an action. Again, the writer is not just describing; he is characterizing by an action."
+    }
+  },
+  {
+    "id": "stein-ch04a-never-stop-story-to-characterize",
+    "question": "Never stop your story to characterize: don’t tell the reader what your character is like — let the reader see your characters talking and doing things.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Don’t ever stop your story to characterize. Avoid telling the reader what your character is like. Let the reader see your characters talking and doing things."
+    }
+  },
+  {
+    "id": "stein-ch04a-exaggeration",
+    "question": "Characterize with deliberate exaggeration — Laverne weighed two tons naked — since nobody takes the hyperbole literally, it communicates quickly and effectively.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Exaggeration is another technique for characterizing: Laverne weighed two tons naked. Nobody believes for a second that Laverne weighed four thousand pounds. In speech we hear it said about an object that “it weighed a ton.” We exaggerate constantly. It’s a way of communicating quickly, and often effectively."
+    }
+  },
+  {
+    "id": "stein-ch04a-fresh-exaggeration-not-cliche",
+    "question": "Replace clichéd exaggerations in dialogue with a fresh line that characterizes — instead of “I’ve been waiting forever,” try “my fingernails could grow an inch just waiting for you.”",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "“I’ve been waiting forever for you” is an exaggeration—and also a cliché. It doesn’t characterize. Here’s how an experienced writer, Rita Mae Brown, did it in her novel High Hearts: “Girl, my fingernails could grow an inch just waiting for you.”"
+    }
+  },
+  {
+    "id": "stein-ch04a-exaggeration-in-character-voice",
+    "question": "Put exaggerations in a character’s mouth rather than the narrator’s — exaggeration spoken by a character is acceptable and characterizes the speaker too.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "That’s not the author talking, it’s a character talking, and therefore an acceptable exaggeration. It also characterizes the speaker."
+    }
+  },
+  {
+    "id": "stein-ch04a-characterize-speaker-and-subject",
+    "question": "Characterize two people at once: when one character describes another, write the description so it reveals the speaker as much as the person spoken about.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Can you characterize more than one person at a time? Of course you can. You characterize the speaker as well as the person spoken about."
+    }
+  },
+  {
+    "id": "stein-ch04a-visual-open-conclusion-close",
+    "question": "Open a characterization with a visual image and close with the character’s conclusion — reversing the order lessens the effect.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Note that the paragraph starts with a visual image—the parents standing next to their car at the bus station—and ends with the character’s conclusion. Had the order been reversed, the effect would be lessened."
+    }
+  },
+  {
+    "id": "stein-ch04a-whole-class",
+    "question": "Have a character characterize a whole class of people: through their snapshot of one person, show what a whole group shares.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Also note that Jane is characterizing not only her mother but a whole class of people."
+    }
+  },
+  {
+    "id": "stein-ch04a-single-word-judgment",
+    "question": "Find the single word that carries a character’s judgment of another — like calling the man “accent” — and let it reveal the speaker, not the person described.",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The word “accent” characterizes not Koch but the speaker Thomassy."
+    }
+  },
+  {
+    "id": "stein-ch04a-cut-excess-detail",
+    "question": "Cut the excess: when you characterize, stop piling on details and search for the single word or phrase that characterizes best.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "If there is a common error among inexperienced writers, it’s that they say too much, they try to characterize with an excess of detail instead of trying to find the word or phrase that characterizes best."
+    }
+  },
+  {
+    "id": "stein-ch04a-eyes-how-used",
+    "question": "Instead of giving a character’s eye color or shape, show how they use their eyes — averting them, glaring, seeking eye contact.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "What inexperienced writers often do is give us the color or shape of eyes. That’s not as effective as conveying how the character uses his eyes."
+    }
+  },
+  {
+    "id": "stein-ch04a-cut-cliched-attributes",
+    "question": "Cut the clichéd physical catalogue — facial features, breasts, hips, broad shoulders, chiseled features — it is top-of-the-head, thoughtless writing.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Another error of inexperienced writers—or journalists in a hurry—is to confine characterization to the obvious physical attributes. For females, facial features, breasts, hips, buttocks, legs. For males, broad shoulders, strong arms, chiseled features, and so on. That’s top-of-the-head, thoughtless writing."
+    }
+  },
+  {
+    "id": "stein-ch04a-story-related-attributes",
+    "question": "Choose physical characteristics that relate to your story: in a love story, a woman’s hair and a man’s voice; invert them to convey an antisexual trait.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Instead of clichéd attributes, consider using physical characteristics that relate to your story."
+    }
+  },
+  {
+    "id": "stein-ch04a-five-ways",
+    "question": "Characterize through at least five channels — physical attributes, clothing and the manner of wearing it, psychological attributes and mannerisms, actions, and dialogue — not just one.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "There are at least five different ways to characterize: 1. Through physical attributes. 2. With clothing or the manner of wearing clothing. 3. Through psychological attributes and mannerisms, 4. Through actions. 5. In dialogue."
+    }
+  },
+  {
+    "id": "stein-ch04a-cut-overused-similes",
+    "question": "Cut overused generalizations and similes — “She shuffled like a bag lady,” “She carried herself like a queen” — they pass on information but evoke nothing.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "You’ll want to avoid generalizations or similes that have been overused, such as “She shuffled like a bag lady” or “She carried herself like a queen.”"
+    }
+  },
+  {
+    "id": "stein-ch04a-keep-visual",
+    "question": "Keep characterization visual whenever possible — write “He walked against an unseen wind” instead of an abstract summary.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Characterization should be kept visual whenever possible: “He walked against an unseen wind” is visual."
+    }
+  },
+  {
+    "id": "stein-ch04a-walking-verbs",
+    "question": "Don’t default to “walk”: choose the verb whose nuance both characterizes and conveys a visual image — promenade, amble, scurry, dart, bolt — and make reflecting on word meanings a daily habit.",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "A writer who always has his characters “walk” is missing opportunities. Variants on walking should be used with caution, however. Their overuse annoys readers. In considering the possible variations for walking, you have been doing what writers should do every day—reflect on the meanings of individual words."
+    }
+  },
+  {
+    "id": "stein-ch04a-triangle-all-three",
+    "question": "Fully characterize every participant in a love triangle: a one-note third character — all sex, no personality — fails to come alive and makes the relationship incredible.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The novel wasn’t working because the husband and wife were characterized successfully, but the mistress seemed to be all sex, a one-note characterization that failed to make her come alive. A triangle doesn’t work unless all three participants are characterized fully."
+    }
+  },
+  {
+    "id": "stein-ch04a-unexpected-simile",
+    "question": "When a character feels one-note, describe them with an unexpected comparison from another category — a woman walking like a young lion — and carry those traits through the book.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "He said he saw her walking across the room like a young lion—a male simile that opened up a new way of characterizing the mistress."
+    }
+  },
+  {
+    "id": "stein-ch04a-posture",
+    "question": "Characterize a character at rest: give them a posture or bearing that conveys personality without motion — “the bearing of a man who had been a soldier a long time ago.”",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The character needn’t be in motion. Posture can provide personality: He had the bearing of a man who had been a soldier a long time ago."
+    }
+  },
+  {
+    "id": "stein-ch04a-psychological-attributes",
+    "question": "Characterize through psychological attributes that connect to the story — how a character deals with friends as employees, talks in ten-mile sentences, or works a party.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Characterizing through psychological attributes can be rewarding because they often connect to the story: He dealt with his friends as if they were employees. He talked and they listened."
+    }
+  },
+  {
+    "id": "stein-ch04a-combine-attributes",
+    "question": "Combine a physical and a psychological attribute in one portrait so each amplifies the other — brittle with arthritis, yet people stop to listen as if Moses spoke.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Physical and psychological attributes can also be combined for purposes of characterization:"
+    }
+  },
+  {
+    "id": "stein-ch04a-set-trait-first-appearance",
+    "question": "Set your character on first appearance: if a trait defines them — a gait, a habit of interrupting — introduce it the moment they appear.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "If you develop a characteristic that’s especially pertinent to your character, or original, it’s a good idea to use it on the character’s first appearance, to “set” the character."
+    }
+  },
+  {
+    "id": "stein-ch04a-protagonist-wants-badly",
+    "question": "Make your protagonist assertive: they want something, want it badly, and want it now — readers have no interest in wimps.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Let’s face it, readers aren’t interested in wimps. They are interested in assertive characters who want something, want it badly, and want it now."
+    }
+  },
+  {
+    "id": "stein-ch04a-intruder-exercise",
+    "question": "Replace a wimpish protagonist: imagine an intruder who barges into your study and tells you to shut up, then write a letter from that rude, assertive, candid, slightly eccentric character to you.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "I ask the writer to imagine that he is in his study with the door closed. A person outside wants to come in. The writer orders the intruder to stay out. I ask the writer to imagine a second person outside his door who says to the first, “Get out of my way,” then comes into the writer’s study without asking. The writer starts to object and this second intruder says, “You shut up and listen for a change!” I urge the writer to listen to the character, rude as he is, and then compose a letter from that new non-wimp character to the writer that is assertive, candid, and at least a touch eccentric."
+    }
+  },
+  {
+    "id": "stein-ch04a-villain-meanspirited",
+    "question": "Make your villain mean-spirited — deriving satisfaction and even pleasure from hurting the hero or blocking their goal — not merely badly behaved.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "As to villains, bad behavior on its own is not as effective as mean spiritedness, deriving satisfaction and even pleasure from hurting the hero or preventing him from attaining his goal."
+    }
+  },
+  {
+    "id": "stein-ch04a-contrasting-situations",
+    "question": "Probe your character across contrasting situations — strangers versus family, a famous old friend versus one down on his luck — the differences reveal who they are.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Does he behave differently toward strangers than he does to members of his family? Such a difference is revealing. Would my character behave differently when he met an old friend who is now famous than when he bumped into another friend of the same vintage who is down on his luck and ashamed?"
+    }
+  },
+  {
+    "id": "stein-ch04a-shout-what-would-we-hear",
+    "question": "Imagine your character with reason to shout: what would we hear? If they would never shout, what thought are they repressing?",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "We know that people reveal themselves more when they raise their voices than when they speak normally. If my character had reason to shout, what would we hear? Or if my character is the kind of person who would never shout, what thought is he repressing?"
+    }
+  },
+  {
+    "id": "stein-ch04a-doing-vs-saying-contrast",
+    "question": "Add dramatic contrast between what your character is doing and what they are saying to themselves — the gap between act and inner voice is the drama.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "It adds to the drama to have contrast between what the character is doing and what he is saying to himself."
+    }
+  },
+  {
+    "id": "stein-ch04a-listen-to-dialogue",
+    "question": "Listen to your character’s dialogue as if they were in the room with you: do their figures of speech and expressions characterize them strongly?",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "When I’m planning a character, I also try to listen to his or her dialogue as if the character were in the room with me. Do they use figures of speech and expressions that characterize strongly?"
+    }
+  },
+  {
+    "id": "stein-ch04a-one-clothing-item",
+    "question": "Give your character one item of clothing that stands out in the reader’s mind — a raincoat worn even when the sun is shining.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "As to a character’s clothing, I try to focus on one item that will stand out in the reader’s mind, for instance the fact that my character always wears a raincoat even when the sun is shining."
+    }
+  },
+  {
+    "id": "stein-ch04a-arrogant-action",
+    "question": "Show a character’s arrogance through action, not speech: what do they do that makes the reader feel it without their saying a word?",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "If he is arrogant, what does he do that will make the reader feel he is arrogant without his saying a word? An arrogant action, I find, works better than arrogant speech."
+    }
+  }
+]

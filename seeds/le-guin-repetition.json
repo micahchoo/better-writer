@@ -1,0 +1,266 @@
+[
+  {
+    "id": "le-guin-repetition-01",
+    "question": "Find a spot where you swapped a repeated word for a farfetched thesaurus substitute; keep the honest repetition instead.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "GAIN [ AM INCLINED TO FAULT JOURNALISTS AND SCHOOLTEACHERS, however well meaning, for declaring it a sin to say the same word twice, driving people to the thesaurus in desperate searches for farfetched substitutes."
+    }
+  },
+  {
+    "id": "le-guin-repetition-02",
+    "question": "Scan your draft for a word repeated without carrying emphasis; fix it with a synonym or a different phrasing.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Repetition can indeed be awkward when a word is emphasized for no reason:"
+    }
+  },
+  {
+    "id": "le-guin-repetition-03",
+    "question": "Find a paragraph where you avoided repeating a word out of rule, and let the repetition back in.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "But to make a rule never use the same word twice in one paragraph; or to state flatly that repetition is to be avoided, is to throw away one of the most valuable tools of narrative prose."
+    }
+  },
+  {
+    "id": "le-guin-repetition-04",
+    "question": "Inventory the repetition in your story beyond single words: repeated phrases, images, the word 'said', near-repetition of events, echoes, reflections, variations.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Repetition of words, of phrases , of images; repetition of said; near-repetition of events; echoes , reflections , variations:"
+    }
+  },
+  {
+    "id": "le-guin-repetition-05",
+    "question": "Find where your prose repeats a beat as obviously as poetry's rhyme and chime, and revise so the sameness is subtler.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "essay"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Prose can't rhyme and chime and repeat a beat as poetry can, or if it does it had better be subtler about it than the first half of this sentence."
+    }
+  },
+  {
+    "id": "le-guin-repetition-06",
+    "question": "Hunt out the repetition that gives your prose its rhythm — it works hidden and obscure, not obvious.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "essay"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "The rhythms of prose and repetition is the cenmeans of achieving rhythm are usually hidden or obscure, not obvious."
+    }
+  },
+  {
+    "id": "le-guin-repetition-07",
+    "question": "Rewrite a passage with open, fearless repetition and read it aloud; let the repeated words carry their due majesty and power.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "All such narration is completely fearless about repetition, it openly and often, both to the story and to give the words their due majesty and power."
+    }
+  },
+  {
+    "id": "le-guin-repetition-08",
+    "question": "Write a passage meant to be read aloud that uses repetition as incantation — as a structural device and for laughter.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Stories written to read aloud to children use a lot of repetition. Kipling's Just So Stories (see Example Two) are a splendid example of repetition used as incantation, as a structural device, and to make you and the child laugh."
+    }
+  },
+  {
+    "id": "le-guin-repetition-09",
+    "question": "Give a character a catchphrase and repeat it, verbatim or nearly so, throughout the story; the reader will wait for it and it will grow funny.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Repetition is often funny The first time David Copperfield hears Mr: Micawber say, \"Something is certain to turn up; 7 it doesn' t mean much to David or to us, but the time we' ve heard or nearly the same words throughout the book, it is very funny: The reader waits for it, as for the inevitable and delight ful repetition of a musical in Haydn."
+    }
+  },
+  {
+    "id": "le-guin-repetition-10",
+    "question": "Notice how each return of a repeated phrase gathers weight; let the darkness underneath the funniness grow darker with every repetition.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "But also, every time gathers weight. The dark ness underneath the funniness grows always a little darker:"
+    }
+  },
+  {
+    "id": "le-guin-repetition-11",
+    "question": "Map the happenings in your story and find the events that echo one another.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Structural repetition is the similarity of the events in a story; happenings that echo one another."
+    }
+  },
+  {
+    "id": "le-guin-repetition-12",
+    "question": "Reread your opening chapter and list the images and themes it plants that the rest of the book repeats, with variations.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "The first chapter contains a deal of \"foreshadowing, the introduction of images and themes that will be repeated throughout the book."
+    }
+  },
+  {
+    "id": "le-guin-repetition-13",
+    "question": "Rewrite a paragraph of narrative (about 150 words) so a noticeable noun, verb, or adjective appears at least three times — not an invisible word like 'said' or 'was'.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Write a paragraph of narrative (150 words) that includes at least three repetitions of a noun, verb, or adjective (a noticeable word, not an invisible one like 'said, \"did\") \"was,"
+    }
+  },
+  {
+    "id": "le-guin-repetition-14",
+    "question": "Elaborate a paragraph to a page of narrative (200-400 words) in which one syntactical construction, or one exact rhythm, repeats several times.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Write a paragraph to a page of narrative (200-400 words) in which you deliberately repeat the syntactical construction, or the exact rhythm; of a phrase or sentence (or more than one) several times."
+    }
+  },
+  {
+    "id": "le-guin-repetition-15",
+    "question": "Connect two sentences that share an exact rhythm with a one-word swing like 'But'.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "The \"But\"' is a swing-word connecting two sentences that are exactly alike in their rhythm."
+    }
+  },
+  {
+    "id": "le-guin-repetition-16",
+    "question": "If you can't hear that two sentences share a rhythm, say them aloud — chant them — until you hear the sameness.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "If you don'thear the sameness , say them aloud, chant them, and you will."
+    }
+  },
+  {
+    "id": "le-guin-repetition-17",
+    "question": "Treat exact syntactic repetition as an exercise in awareness, not as a technique to leave in finished story prose.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Deliberate, exact repetition of this kind is not a technique to use in story-writing; its an exercise in awareness."
+    }
+  },
+  {
+    "id": "le-guin-repetition-18",
+    "question": "Carry exact repetition only as far as you can before the prose goes monotonous; check and revise against the monotony as you write.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "If you carry it on very of course, the prose gets monotonous."
+    }
+  },
+  {
+    "id": "le-guin-repetition-19",
+    "question": "Write a short narrative (350-1000 words) in which something said or done is later echoed or repeated — in a different context, by different people, or on a different scale.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Write a short narrative (350-1000 words) in which something is said or done, and then something is said or done that echoes or repeats it, perhaps in a different context, or by different people, or on a different scale"
+    }
+  },
+  {
+    "id": "le-guin-repetition-20",
+    "question": "When critiquing, concentrate on the effectiveness of the repetitions and whether they are obvious or subtle.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "In critiquing, you might concentrate on the effectiveness of the repetitions and their obviousness or subtlety:"
+    }
+  },
+  {
+    "id": "le-guin-repetition-21",
+    "question": "In memoir and nonfiction, beware forcing unlike events into a repetitive pattern — it distorts the events of a life.",
+    "verb": "cut",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Imnot sure how free the nonfiction writer is to use structural repetition. To force unlike events into a repetitive pattern cer the events of a life surely is one of the memoirist' s"
+    }
+  },
+  {
+    "id": "le-guin-repetition-22",
+    "question": "Collect examples of structural repetition from fiction and nonfiction you admire; noticing how repetition and echoing build structure will sharpen your appreciation.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Look for examples of structural repetition in fiction and nonfiction (and if you have a group, share and recommend them)"
+    }
+  }
+]

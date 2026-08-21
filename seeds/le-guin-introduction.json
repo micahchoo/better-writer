@@ -1,0 +1,122 @@
+[
+  {
+    "id": "le-guin-intro-01",
+    "question": "Learn to read your own work as a reader: you and you alone can judge it, and the judgment can be made rightly only by a writer who has learned to read her own work.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "And ultimately you and you alone can judge your work."
+    }
+  },
+  {
+    "id": "le-guin-intro-02",
+    "question": "Put a finished piece away and forbid yourself to look at it for at least a week, then reread it with a friendly critical eye, with revision in mind: to see its faults and virtues you need to look at it after a real interval.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "To see its faults and virtues we need to look at it after a real interval."
+    }
+  },
+  {
+    "id": "le-guin-intro-03",
+    "question": "Read your finished piece aloud to yourself: speaking and hearing it will show up awkward bits and faults in the rhythm, and can help you make the dialogue natural and lively.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "You might read the piece aloud to yourself, since speaking and hearing it may show up awkward bits and faults in the rhythm, and can help you make the dialogue natural and lively:"
+    }
+  },
+  {
+    "id": "le-guin-intro-04",
+    "question": "Reread your piece looking for what is awkward, unclear, excessive, and what breaks the pace or does not work — then cut or fix it.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "In general , look for whats awkward, unclear; excessive, what breaks the pace, what doesn't work."
+    }
+  },
+  {
+    "id": "le-guin-intro-05",
+    "question": "Develop your craft deliberately: skill in writing frees you to write what you want to write, and it may also show you what you want to write.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "Skill in writing frees you to write what you want to write. It may also show you what you want to write: Craft enables art."
+    }
+  },
+  {
+    "id": "le-guin-intro-06",
+    "question": "Do not wait on luck: you can learn skill, you can earn it, and you can learn to deserve your gift.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "But you can learn skill, you can earn it. You can learn to deserve your gift."
+    }
+  },
+  {
+    "id": "le-guin-intro-07",
+    "question": "Write each scene as the account of an act or action, not a static scene: make something happen, so it ends up in a different place from where it started.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "it should end up in a different place from where it started. That's what narrative does. It goes. It moves."
+    }
+  },
+  {
+    "id": "le-guin-intro-08",
+    "question": "Write to a short, set length and do not exceed it: the limit is itself excellent discipline.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "short, set length and not exceeding it is also an excellent disci pline in itself."
+    }
+  },
+  {
+    "id": "le-guin-intro-09",
+    "question": "Write a paragraph seriously in the style of a writer you admire, not as parody or pastiche: imitation done seriously is a demanding and revealing exercise.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "If you write it not as parody or pastiche but seriously, it can be a demanding and revealing exercise."
+    }
+  },
+  {
+    "id": "le-guin-intro-10",
+    "question": "Read masterful books attentively, with a consciousness of technique in mind: it is useful as well as enjoyable.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Introduction",
+      "quote": "An attentive reading of some of these books, with a consciousness of technique in mind , would be useful as well as enjoyable."
+    }
+  }
+]

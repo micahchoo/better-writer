@@ -1,0 +1,475 @@
+[
+  {
+    "id": "alberts-summary-background-not-in-scene",
+    "question": "When your scene can't naturally carry needed background — family history, past events — move that information into summary instead of stuffing it into dialogue or characters' in-scene thoughts.",
+    "verb": "transition",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "We may need to know characters’ personal or family history in order to understand them. Stuffing that kind of information into scenes by means of dialogue or characters thinking about past events in the midst of ongoing action can be clunky."
+    }
+  },
+  {
+    "id": "alberts-summary-cut-quickie-establishing-scene",
+    "question": "Cut the quickie establishing scene you wrote just to set context; deliver that background in summary instead.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "That kind of quickie establishing scene is better suited to the movies than to prose."
+    }
+  },
+  {
+    "id": "alberts-summary-background-heavy-lifting",
+    "question": "Make each background summary do heavy lifting — it halts the narrative, so cut any that don't earn their place with more than one job.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "Background summary stops the flow of ongoing narrative just as flashbacks slow down scenes. Therefore you have to have good reasons for including it. It has to be doing heavy lifting for you; all the better if it does more than one thing."
+    }
+  },
+  {
+    "id": "alberts-summary-background-double-duty",
+    "question": "Load your background summary with a second job — carrying a theme, setting an expectation, building suspense, or starting the story — after articulating your intentions for the piece.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "You can use background summary to provide necessary information and to carry themes, set up expectations, develop suspense, or even to get a story going once you fully articulate, to yourself, your intentions for the piece."
+    }
+  },
+  {
+    "id": "alberts-summary-setup-shatter",
+    "question": "Establish in background summary the impression of a character that a later scene will contradict and shatter; know that your piece turns on that contrast before setting the expectation.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "If you wish to set up expectations about a person’s character in order to shatter them, you first must know that your piece will turn on a contrast between the impression a person gives and an event that reveals another aspect of the character that contradicts that initial impression. The event, of course, should occur in a scene, but your background summary can establish the initial impression that you will later crush in the scene."
+    }
+  },
+  {
+    "id": "alberts-summary-open-with-background",
+    "question": "Open with background summary that reveals a character's history and sets the story in motion — even the catalytic event can come in summary rather than a scene.",
+    "verb": "transition",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "Background summary placed at the beginning of a work can let us in on the history of a character and also set the story in motion,"
+    }
+  },
+  {
+    "id": "alberts-summary-minor-character-background",
+    "question": "Give minor characters backgrounds too — a few carefully selected words that work hard to round them out and enrich the piece.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "But remember that not only your protagonist or your other main characters deserve backgrounds that will make them more real on the page. The key in using background summary for minor characters is very careful selection—you want a few words to work hard for you in creating as rounded a character as possible."
+    }
+  },
+  {
+    "id": "alberts-summary-landscape-setting",
+    "question": "Describe a place through background summary as part of the piece's overall imaginative landscape — details that exist outside any specific scene and carry your characters' emotional situation.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "You can use background summary as a means of describing a place, and, if you so desire, the emotional situation of your character(s), by including details that exist not in a specific scene, a specific time, but as part of the overall imaginative landscape of your piece."
+    }
+  },
+  {
+    "id": "alberts-summary-setting-detail-selection",
+    "question": "Choose setting details in your summary for what they reveal: pick ones that reflect your characters' emotional states and carry symbolic as well as factual weight.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "Which details will give a clear picture of what matters or mattered to your characters—which details reflect their emotional states? What aspects of background setting might contain symbolic as well as factual weight?"
+    }
+  },
+  {
+    "id": "alberts-summary-compress-span",
+    "question": "Use summary to compress a stretch of time whenever the span of events matters more to the tale than any individual event within it.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "You compress time through summary when the span of events is more important to the tale than are the individual events."
+    }
+  },
+  {
+    "id": "alberts-summary-time-locator-tags",
+    "question": "When your summary leaps across time, keep the reader located with locator tags (\"a few months after,\" \"the next week\") or details that express time passing.",
+    "verb": "transition",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "When you compress time through summary make sure your reader comes along with you by using tags or choosing details that express time passing."
+    }
+  },
+  {
+    "id": "alberts-summary-compression-selection",
+    "question": "Cut from your time-compressing summary every component included only because it happened; compression is selection, and selection gives what remains maximum impact.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "You must have a good reason for including the components that you’ve chosen in your summary. Don’t just put them in because “they happened” or, in fiction, could have happened. Compression means selection, and selection allows the included components to have maximum impact."
+    }
+  },
+  {
+    "id": "alberts-summary-forward-compression",
+    "question": "Summarize the stretch between two scenes — the drive home, the errands, the routine — when none of the intervening events warrants a scene of its own.",
+    "verb": "transition",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "You can also compress time as your narrative moves forward through the use of summary."
+    }
+  },
+  {
+    "id": "alberts-summary-general-time",
+    "question": "Write summary in \"general time\" for events, information, and ideas not tied to a specific moment — nonscene memories, repeated actions, and reflections that stand alone or sit inside scenes.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "However, summaries can be used when you wish to write about events, information, and ideas that do not take place in specific times. I call this “general time”—a kind of nonspecific “stepping out of time.”"
+    }
+  },
+  {
+    "id": "alberts-summary-repeated-actions",
+    "question": "Tell repeated actions in summary — the recurrence is the point — instead of staging a scene for each occurrence.",
+    "verb": "transition",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "Summary is uniquely suited to describing actions and events that happen repeatedly. In repeated time summary, the emphasis is on the recurrent nature of the action rather than an event deserving an individual scene."
+    }
+  },
+  {
+    "id": "alberts-summary-conditional-verbs",
+    "question": "Rewrite repeated actions with conditional verbs (would, could) and time adverbs (always, every, sometimes) instead of writing new scenes.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "The use of conditional verbs (would, could) and adverbs of time (always, every, sometimes) are the simplest and most commonly used approaches."
+    }
+  },
+  {
+    "id": "alberts-summary-repetitious-dialogue",
+    "question": "Show a repeated behavior through summarized, repetitious dialogue — the litany of a character's recurring complaints — rather than in individual scenes.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "If you’re feeling more ambitious you can try indicating repetition through carefully selected phrases that indicate repetition or summarized, repetitious dialogue, as Wolff does."
+    }
+  },
+  {
+    "id": "alberts-summary-listing-repeated-time",
+    "question": "Indicate repeated time with a list — an array of recurring items (the odd lunches, the things they carried) conveys recurrence without scenes.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "It also includes another technique you can use to indicate repeated time—listing. Here, in the context of the excerpt, the list of odd school lunches describes repeated disappointment."
+    }
+  },
+  {
+    "id": "alberts-summary-character-oblique-objects",
+    "question": "Characterize obliquely in summary: let the objects and details a person keeps — the car they drive, the foods they prefer — reveal who they are.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "Characters even can be made individual obliquely, via objects and details described in summary. (Think of what the car you drive, the foods you prefer, the way you dress at home reveal about you.)"
+    }
+  },
+  {
+    "id": "alberts-summary-behavior-not-generic",
+    "question": "Keep summarized behavior specific even in general time — select individual characteristics that fit the character and tell who they are, never generic traits.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "However, summarized description and behavior should never be generic just because it occurs in general time. That means you’ll need to select individual characteristics that not only fit your character’s personality but tell who that character is."
+    }
+  },
+  {
+    "id": "alberts-summary-verbs-adjectives-weight",
+    "question": "Reach past the obvious verbs and adjectives when summarizing a character's habitual behavior; pick the ones that carry the most weight.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "Consider the verbs and adjectives you might use in describing this guy. Reach past the obvious ones for the ones that carry the most weight."
+    }
+  },
+  {
+    "id": "alberts-summary-interior-follow-up",
+    "question": "Follow up a direct statement of a character's inner state (like \"Benna misses everyone\") with detailed, habitual evidence, or it reads as a bald assertion.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "You’ll need to follow up that direct statement with more detailed information or the straightforward observation will come across as rather bald."
+    }
+  },
+  {
+    "id": "alberts-summary-why-how",
+    "question": "Interrogate a summarized interior statement with Why and How — what does the character actually feel, and how does that feeling show — then extend the summary with your answers.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "Ask yourself “Why?” Why does Ralph want to roll off his balcony after talking to his mother? What does he actually feel about her? Guilt? Frustration? Burdened? Angry? Helpless love (perhaps she has dementia)? All of the above? Now think of the “How.”"
+    }
+  },
+  {
+    "id": "alberts-summary-recurring-emotion",
+    "question": "When an emotion recurs — once is not enough — explore it in summary across a span of time instead of staging it in a single scene.",
+    "verb": "transition",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "The answer is that Ralph always feels this way after talking to his mother. Once is not enough. Summary allows you to explore the emotion over a span of time."
+    }
+  },
+  {
+    "id": "alberts-summary-word-attitude",
+    "question": "Rephrase your narrator's descriptions so the verb carries the attitude — \"lurking\" instead of \"hanging around\" — every word counts when revealing interior life.",
+    "verb": "rephrase",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "If your narrator thinks about a person who is always “lurking” around, the word lurking will convey an attitude that differs substantially than if the narrator mused that someone was always “hanging” around or “waiting” around or “appearing unexpectedly.” You have only words to work with; make them count when it comes to revealing interior life."
+    }
+  },
+  {
+    "id": "alberts-summary-identify-inhabit",
+    "question": "To capture a character's irregular thinking in summarized musing, first identify what makes their thinking different, then inhabit the person and let the musings show how the mind works.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "First you have to identify what makes that person’s thinking different from “normal” people. Does the person think repeatedly about who has touched doorknobs and whether or not those doorknob touchers washed their hands after going to the bathroom? Or does she garble her thoughts and veer from sentimentality to anger as a drunk might? Is it an adult with a child’s mistaken trust of strangers? (Or is it, in fact, a child, with the attention to sensory detail that children possess?) After clarifying the difference in your own mind, you must perform a feat of imagination and inhabit that person."
+    }
+  },
+  {
+    "id": "alberts-summary-first-person-freewrite",
+    "question": "Free write from the character's first-person point of view, even if the piece is third person. Memoirists can free write from their child-self; treat it as a throwaway exercise for entering their interior life.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "I often find it useful, with fiction, when I’m having difficulty getting inside a character (“normal” or not) to free write from the first-person point of view of that person, even if the novel or story is in third person."
+    }
+  },
+  {
+    "id": "alberts-summary-exterior-interior-questions",
+    "question": "Combine exterior and interior in summary: ask your characters what they wear, how they move, where they shop, then tell the answers to reveal how they think generally.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "What does this person wear? How does he move or speak? Where does she shop and what for? What does he do if he encounters a child or a dog? What does she watch on television, or does she even watch television at all? And so on—ask questions of your characters to find out who they are. Then use those answers to tell your readers who this person is and how she thinks generally."
+    }
+  },
+  {
+    "id": "alberts-summary-specific-in-general",
+    "question": "Get specific when you tell how someone behaves and feels in general — not in time and place, but in detail and emotion — or your summary has no impact.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 6",
+      "quote": "The irony is that to tell how someone behaves and feels in general you have to get specific if you want your summary to have impact, just as O’Brien gets specific in the details that characterize the men in the platoon. You won’t be specific in time and place in the same way as in a scene, but specific in detail and emotion."
+    }
+  }
+]

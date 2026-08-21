@@ -1,0 +1,302 @@
+[
+  {
+    "id": "le-guin-plot-not-story",
+    "question": "Look at your story apart from its plot — plot merely connects happenings in causal chains and is not superior to story, and not even necessary to it; some great stories have neither.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "A story that has nothing but action and plot is a pretty poor affair; and some great stories have neither: To my mind, plot is merely one way of a story, connecting the happenings tightly, usually through causal chains. Plot is a marvelous device: But it's not superior to story; and not even necessary to it."
+    }
+  },
+  {
+    "id": "le-guin-quiet-action",
+    "question": "Find the movement in your story's quietest moments: a letter sent that doesn't arrive, a thought unspoken, the passage of a summer — that can be action enough.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "a story must move, something must happen; but the action can be nothing more than a letter sent that doesn't ar rive, a thought unspoken; the passage of a summer"
+    }
+  },
+  {
+    "id": "le-guin-start-from-piece",
+    "question": "Start a story from just a character, a conversation, a situation, or a place — no elaborate plot plan needed — and find the story there.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "All you need may be a character or two,or a conversation, or a situation, or a place, and you'll find the story there."
+    }
+  },
+  {
+    "id": "le-guin-world-in-story",
+    "question": "Create and explain the world of your story inside the story itself — the reader has no way to know it unless the narrative tells them.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "The world of the story must be created and ex plained in the story:"
+    }
+  },
+  {
+    "id": "le-guin-expository-lump",
+    "question": "Find where your narrative pours out information as a lecture and break up the Expository Lump — grind the information into the story instead.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "and then he does , endlessly we have what science fiction writers call an Expository Lump."
+    }
+  },
+  {
+    "id": "le-guin-memoir-freight",
+    "question": "Cut the expository freight from your memoir — the load of explaining and describing can stall it just as badly as it stalls science fiction.",
+    "verb": "cut",
+    "genre": ["memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "This expository freight can be as much a problem in memoir as it is in science fiction."
+    }
+  },
+  {
+    "id": "le-guin-invisible-exposition",
+    "question": "Practice invisible exposition: tell the reader things without appearing to tell — let the information ride inside the story.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "We're practicing invisible exposition."
+    }
+  },
+  {
+    "id": "le-guin-dialogue-only",
+    "question": "Write a scene as pure dialogue — no stage directions, no description of the characters — so everything the reader knows comes through what the characters say.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "Write it like a play, with A and B as the characters' names No stage directions. No description of the characters. Nothing but what A says and what B says."
+    }
+  },
+  {
+    "id": "le-guin-crisis-topic",
+    "question": "Put two people into a crisis situation — the car out of gas, the spaceship about to crash — and let their talk carry the story.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "If you want a suggestion for the topic, put two people into some kind of crisis situation: the car just ran out of gas; the space ship is about to crash; the doctor has just realized that the old man she's treating for a heart attack is her father ."
+    }
+  },
+  {
+    "id": "le-guin-read-aloud",
+    "question": "Read your writing out loud — not in a whisper — and hear how natural or stagey it sounds, where the emphasis goes wrong.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "If you're working yourself , read it out loud."
+    }
+  },
+  {
+    "id": "le-guin-voices-distinct",
+    "question": "Differentiate each character's voice until a reader could tell the speakers apart without name tags.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "Could we tell the two voices apart without the A and B signals, and if not, how might be more differenti ated?"
+    }
+  },
+  {
+    "id": "le-guin-natural-talk",
+    "question": "Test every line of dialogue against how people actually talk, and rework anything that sounds stagey.",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "Do people actually talk this way?"
+    }
+  },
+  {
+    "id": "le-guin-story-world-around-dialogue",
+    "question": "Where your scene is nothing but voices, create the story-world and its people around the dialogue — with only disembodied voices, too much is missing.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "In fiction, a tremendous amount of story and character may be given through the dialogue, but the story-world and its people have to be created by the storyteller: If there's nothing in it but disembodied voices, too much is missing:"
+    }
+  },
+  {
+    "id": "le-guin-memoir-monologue",
+    "question": "Let the people in your memoir speak in their own voices — if everyone says only what you wanted to hear, all we hear is an interminable monologue.",
+    "verb": "rewrite",
+    "genre": ["memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "If all the people in the memoir say only what the author wanted to hear, all we hear is the author speaking an interminable monologue."
+    }
+  },
+  {
+    "id": "le-guin-listen-characters",
+    "question": "Let a character talk through you: be quiet, listen, and write what they think and say as it rises from inside them.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "Listen. Just be quiet, and listen."
+    }
+  },
+  {
+    "id": "le-guin-stranger-moccasins",
+    "question": "Write from inside a viewpoint character you dislike, suspending judgment — walk a mile in their moccasins and see the world through their eyes instead of exposing how awful they are.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "That is a legitimate and canny writing tactic. But it defeats the purpose of the exercise, which is to suspend your judgment on this person. What the exercise asks is to walk a mile in their moccasins, seeing the world through their eyes."
+    }
+  },
+  {
+    "id": "le-guin-stranger-distance",
+    "question": "Choose a viewpoint character you can actually write inside: someone profoundly different from you socially, culturally, or by language or nation may not be accessible to you as a character.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "A person who is profoundly different from you socially, turally, by language, by nation, may in fact not be accessible to you as a character."
+    }
+  },
+  {
+    "id": "le-guin-displacement",
+    "question": "Practice psychological displacement: write a scene from inside a person of a different gender, age, or generation, even though it feels hard and scary.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "For some writers who have never practised this sort of psy chological displacement, it can be hard and scary just to change gender to write as a person of the opposite sex."
+    }
+  },
+  {
+    "id": "le-guin-memoir-pov",
+    "question": "Revive a memory of someone you disliked or held in contempt and write the moment from that person's point of view, guessing how they felt, what they saw, and how they perceived you.",
+    "verb": "rewrite",
+    "genre": ["memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "Revive a memory of a person you have disliked , or held in contempt, or felt to be very alien to you."
+    }
+  },
+  {
+    "id": "le-guin-repetition",
+    "question": "Repeat a small, quiet description word for word later in the story, so the changed context gives it a different, deeper resonance.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "the last two sentences of this little description are repeated word for word, with an utterly different, heartbreaking resonance. (Oh, the power of repetition!)"
+    }
+  },
+  {
+    "id": "le-guin-stage-without-actors",
+    "question": "Describe the stage without the actors on it: say nothing directly about the absent person or untold event that is the real subject — let the place suggest it.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "This is the stage without the actors on it; this is the camera panning before the action starts. And this kind of suggestion is something words can do better than any other medium, even film."
+    }
+  },
+  {
+    "id": "le-guin-untold-event",
+    "question": "Give a glimpse of an event's mood and nature by describing the place where it happened or is about to happen — never the event itself.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "Give us a glimpse of the mood and nature of some event or deed by describing the place room, rooftop, street, park, landscape, whatever where it happened or is about to happen."
+    }
+  },
+  {
+    "id": "le-guin-every-detail-tells",
+    "question": "Cut every detail that doesn't tell: a mere inventory of articles bores the reader — make each detail build the mood you want.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "A mere inventory of articles won't do it, and will bore the reader. Every detail must tell."
+    }
+  },
+  {
+    "id": "le-guin-senses-beyond-sight",
+    "question": "In your description, reach for senses other than sight — sound above all, and a particular scent or stink that sets the feeling-tone.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "In descriptive writing, give a thought from time to time to the senses other than sight . Sound, above all, is evocative: We havea limited vocabulary for smell , but mention of a certain scent or stink can set a feeling-tone:"
+    }
+  },
+  {
+    "id": "le-guin-character-voice-scene",
+    "question": "Repeat your descriptive scene in the voice of a character instead of the authorial voice — let a character in the story describe it.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Indirect Narration, or What Tells",
+      "quote": "If you find \"Implication\" an interesting exercise, you can repeat either or both parts: this time, instead of the authorial voice, use the voice of a character in the story to describe the scene."
+    }
+  }
+]

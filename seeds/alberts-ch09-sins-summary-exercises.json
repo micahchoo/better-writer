@@ -1,0 +1,206 @@
+[
+  {
+    "id": "alberts-sins-summary-redundant-01",
+    "question": "Cut exposition that merely repeats what your scene already shows or what your dialogue already speaks.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Any exposition that tells what is already being shown in a scene is definitely unnecessary. Exposition that duplicates what is spoken in dialogue is particularly onerous"
+    }
+  },
+  {
+    "id": "alberts-sins-summary-oddity-02",
+    "question": "Where exposition only restates the shown action, replace it with detail that reveals a character oddity — a quirk the scene can't display, like a habit that exposes whether the character is clumsy or self-destructive.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "However, if the exposition stated that “Jack often bashed his thumb with hammers and doors and he’d even once stepped on his thumb while tying his shoe,” the summary would be useful because it would reveal an oddity about Jack’s character—either he is exceedingly clumsy or self-destructive."
+    }
+  },
+  {
+    "id": "alberts-sins-summary-extraneous-03",
+    "question": "Cut exposition made of details and facts thrown in for their own sake — such as an entire genealogy for a minor character whose family history has no bearing on the central story.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Other unnecessary exposition occurs when details and facts are thrown in for their own sake without contributing to the overall work. If the writer gives us an entire genealogy of a character’s family when the character is minor or if the story of his great-great-great-grandparents has no bearing on the central story, that would be unnecessary exposition."
+    }
+  },
+  {
+    "id": "alberts-sins-summary-triage-04",
+    "question": "Question the necessity of each expository summary: is the information extraneous, or better shown through scenes? Try removing some of your exposition to see if anything has really been lost.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Question the necessity of your expository summaries. Are you offering information in your exposition that can be eliminated because it is extraneous (like that family genealogy) or better shown through scenes? Try removing some of your exposition to see if anything has really been lost."
+    }
+  },
+  {
+    "id": "alberts-sins-summary-misplaced-05",
+    "question": "Find events in your summaries that require evoking in scene — a moment of revelation or major change in the narrator’s or protagonist’s life — and rewrite them as scenes, not reported summaries.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Go back through your summaries and make sure that they don’t contain a reported version of an event that requires evoking in scene. If it is a moment of revelation or major change in the life of the narrator or protagonist, it probably should be a scene, not summary."
+    }
+  },
+  {
+    "id": "alberts-sins-summary-generalizations-06",
+    "question": "Identify the generalizations in your summaries — blanket statements about ethnicity, gender, age, or education, even generalized praise — and spend time transforming each one into a richly descriptive, individualized portrayal.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "See if you can identify any generalizations in your own summaries. Spend a little time with each one, asking yourself how you might transform the generalization into a richly descriptive portrayal."
+    }
+  },
+  {
+    "id": "alberts-sins-summary-abstraction-07",
+    "question": "Locate the abstractions in your work and determine whether each deepens readers’ understanding or makes them turn away: demonstrate big ideas such as love, patriotism, or sacrifice in the particular, moving from the particular to the universal rather than the other way around.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Study your own work to see if you can locate abstractions. If you can, try to determine if the abstractions deepen readers’ understanding of the situation you’re describing or if the abstraction will make them turn away. Are you using big ideas such as love, patriotism, sacrifice as abstractions instead of demonstrating them in the particular, with the kind of detail that draws a reader in?"
+    }
+  },
+  {
+    "id": "alberts-sins-summary-tired-08",
+    "question": "Redline the reflective phrases that have a ring of familiarity — “He loved her with all his heart,” “There is no place like home” — and find a fresh way to get your point across. Push yourself: do you really agree with the familiar line?",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Have any tired observations slipped into your work? Do you find lines such as “He loved her with all his heart” or “There is no place like home”? Give your work a read-through and redline phrases and sentences that have that ring of familiarity to them. Then find a fresh way to get your point across."
+    }
+  },
+  {
+    "id": "alberts-sins-summary-pretentious-09",
+    "question": "Look over your reflections for grandiose or pedantic comments that set your narrator up as superhumanly wise or benevolent, check the pretentiousness-o-meter, and scale those observations and judgments back down to size.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Look over your reflections to make sure they don’t come across as grandiose or pedantic. If you find yourself making the kind of comments that set your narrator up as superhumanly wise or benevolent, check the pretentiousness-o-meter. Then scale those observations and judgments back down to size."
+    }
+  },
+  {
+    "id": "alberts-exercise-sensory-outing-01",
+    "question": "Write a paragraph of summary about a childhood outing, using vivid sensory detail throughout.",
+    "verb": "elaborate",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Write a paragraph of summary about a childhood outing in which you use vivid sensory detail."
+    }
+  },
+  {
+    "id": "alberts-exercise-condense-decades-02",
+    "question": "Write a page of summary that condenses thirty years in the history of a family — and make it interesting.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Write a page of summary that condenses thirty years in the history of a family. Make it interesting!"
+    }
+  },
+  {
+    "id": "alberts-exercise-character-summary-03",
+    "question": "Create a character using summary: include interior thoughts, external description, summarized behavior, and narrative commentary.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Create a character using summary; include interior thoughts, external description, summarized behavior, and narrative commentary."
+    }
+  },
+  {
+    "id": "alberts-exercise-reflective-voice-04",
+    "question": "Write a paragraph of summary in the voice of a reflective narrator who has just read an old love letter.",
+    "verb": "elaborate",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Write a paragraph of summary in the voice of a reflective nar-rator who just read an old love letter."
+    }
+  },
+  {
+    "id": "alberts-exercise-remove-summary-05",
+    "question": "Select a published scene that contains interspersed summary, remove all the summary embedded in it, and read what remains: what has been lost, and has anything been gained?",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Select a published scene that contains interspersed summary. Remove all summary embedded in the scene and read what remains. What has been lost? Has anything been gained?"
+    }
+  },
+  {
+    "id": "alberts-exercise-narrative-layering-06",
+    "question": "Write two paragraphs of summary with narrative layering: the first in the voice of the narrator as a child, the second in the same narrator’s adult voice — let the older, wiser voice illuminate the younger, more innocent passage.",
+    "verb": "rewrite",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Write two paragraphs of summary with an eye to narrative layering—one paragraph in which the narrator is a child, the second in the voice of the same narrator from an adult perspective. The older, wiser voice should illuminate the younger, more innocent or naïve passage."
+    }
+  },
+  {
+    "id": "alberts-exercise-repeated-time-07",
+    "question": "Write a few paragraphs of summary that display the use of repeated time.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Write a few paragraphs of summary that display the use of re-peated time."
+    }
+  },
+  {
+    "id": "alberts-exercise-irony-tone-08",
+    "question": "Write a paragraph of summary in which the narrator establishes a tone of irony, then rewrite the same paragraph shifting the tone to straightforward and pragmatic.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 9 / Summary Exercises",
+      "quote": "Write a paragraph of summary in which the narrator establishes a tone of irony. Rewrite the same paragraph shifting the tone to straightforward and pragmatic."
+    }
+  }
+]

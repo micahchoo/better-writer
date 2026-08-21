@@ -1,0 +1,266 @@
+[
+  {
+    "id": "alberts-ch8-detail-multijob",
+    "question": "Go through your summaries and make each detail do more than one job: reveal character or further theme, not merely inform.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "When possible, allow your detail to do more than one job. Ask yourself if the details you use in your summaries serve to reveal character or further themes."
+    }
+  },
+  {
+    "id": "alberts-ch8-detail-associations",
+    "question": "Replace a random detail in a summary with one whose associations reinforce the character or situation you are writing about.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "The point here is that the details you use in your summaries shouldn’t be random."
+    }
+  },
+  {
+    "id": "alberts-ch8-detail-sensory",
+    "question": "Add sensory detail—sights and sounds—to a flat summary until it reads as vividly as a scene.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "At night we slept in boggy rooms where headlight beams crawled up and down the walls and mosquitoes sang in our ears, incessant as the tires whining on the highway outside."
+    }
+  },
+  {
+    "id": "alberts-ch8-detail-simile",
+    "question": "Animate one summary detail with a simile to make it memorable, as when potted plants “sat like faithful dwarfs.”",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Not only does Updike put elephant plants into this summary, but he uses a simile—they sat like faithful dwarfs!"
+    }
+  },
+  {
+    "id": "alberts-ch8-detail-concrete",
+    "question": "Expand a flat summary with concrete specifics that let the reader infer more than facts alone, such as the trouble of heating stones in a fire to warm a child’s hands.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "From both versions we understand that the mother cared for her children. But in Allende’s version, we know that the mother went to the trouble of heating stones in a fire to warm their hands."
+    }
+  },
+  {
+    "id": "alberts-ch8-detail-fresh",
+    "question": "Replace an overused detail like a hunched old lady or verdant landscape with a fresh image that makes the subject vivid.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "You don’t want to write about a hunched old lady or verdant landscapes. These details are devalued by their overuse. If your old lady has the posture of a wilting flower, you’ve made her vivid and your summary enlivened."
+    }
+  },
+  {
+    "id": "alberts-ch8-detail-theme",
+    "question": "Audit each concrete detail in your summaries: besides giving information, does it advance the theme?",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Besides giving concrete information, do your details advance theme?"
+    }
+  },
+  {
+    "id": "alberts-ch8-detail-inner-life",
+    "question": "Choose details of behavior or appearance that expose your character’s inner life, like a man careful not to step on cracks.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "To reveal character through summary detail in your own work, choose features of behavior or appearance that expose a character’s inner life."
+    }
+  },
+  {
+    "id": "alberts-ch8-detail-tension-question",
+    "question": "Add a detail that raises an unanswered question to create tension in the summary.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Tension is created when a detail raises an unanswered question."
+    }
+  },
+  {
+    "id": "alberts-ch8-narrative-layering",
+    "question": "Layer your first-person narrative so summaries reveal how your narrator sees the world at different ages and stages of maturity.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Narrative layering refers to a first-person work in which the narrator is seen at either a younger and older age, or from a more naïve as well as a more experienced perspective."
+    }
+  },
+  {
+    "id": "alberts-ch8-narrative-interjection-cut",
+    "question": "Cut each interjection of an older, wiser perspective unless it furthers the reader’s understanding of character and situation in an essential way.",
+    "verb": "cut",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "But remember that each time you interject an older or wiser perspective, you are interrupting the narrative flow. What would make an interjection or juxtaposed perspective worthwhile? It must further the reader’s understanding of characters and situations in an essential way."
+    }
+  },
+  {
+    "id": "alberts-ch8-narrative-interjection-placement",
+    "question": "Question the placement of each older-narrator interjection: could the information sit elsewhere, or must it interrupt the younger narrator’s story right here?",
+    "verb": "transition",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Ask yourself if there is a better place for inserting the information that the older narrator will provide. Does it need to go right here in the midst of the younger person’s story? Why?"
+    }
+  },
+  {
+    "id": "alberts-ch8-tone-mood-summary",
+    "question": "Establish your piece’s tone and mood deliberately in your summaries, where they first take hold.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Summaries are often the place where tone and mood get established, particularly when scenes are allowed to unfold without much interior commentary within characters."
+    }
+  },
+  {
+    "id": "alberts-ch8-tone-name",
+    "question": "Name your intended tone with a precise adjective—urgent, dismissive, ironic, mocking—then check that the wording actually produces it.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "The tone of a piece can be urgent, dismissive, judgmental, ironic, sentimental, mocking, harsh, alarmed, sympathetic, and any other number of adjectives that describe and qualify experience."
+    }
+  },
+  {
+    "id": "alberts-ch8-tone-irony-avoidance",
+    "question": "Check whether you are using irony or humor to avoid emotion on painful material, and rewrite so the fear stays visible underneath the jokes.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Ask yourself if you are using irony or humor as a way to avoid emotion. Sure, Lorrie Moore uses humor very well in her story excerpted above, but she always lets us see the fear underneath the jokes."
+    }
+  },
+  {
+    "id": "alberts-ch8-tone-overwhelm",
+    "question": "Cut or temper any tone that detracts from or overwhelms the material it is meant to carry.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "One of your purposes in choosing a particular tone is to create a mood in your reader, and the mood will be spoiled if the tone detracts from or overwhelms the material."
+    }
+  },
+  {
+    "id": "alberts-ch8-tone-second-person",
+    "question": "If you address a harsh, judgmental tone directly to “you,” reconsider: such address risks making readers turn away.",
+    "verb": "rewrite",
+    "genre": ["essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "The tone forces the reader to examine her own prejudices and assumptions, but when this harsh tone is addressed to “you” there’s a danger of making readers turn away."
+    }
+  },
+  {
+    "id": "alberts-ch8-diction-tone",
+    "question": "Set your summary’s tone through word choice and sentence structure: ordinary words for an informal, conversational feel.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Diction (word choice) and syntax (sentence structure) can help set the tone of a summary."
+    }
+  },
+  {
+    "id": "alberts-ch8-diction-informal",
+    "question": "Rephrase narration with everyday, repeated phrasing like “before that” to give it a conversational, informal quality.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "The repetition of “before that” has an everyday quality, as does the informal phrase “a lot.”"
+    }
+  },
+  {
+    "id": "alberts-ch8-diction-narrator-growth",
+    "question": "Shift your first-person narrator’s language from simple to more complex over the course of the work to show growing age or sophistication.",
+    "verb": "rephrase",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "In first-person narratives, a shift from simple to more complex language over the course of a story can demonstrate a change in the narrator’s age and/or sophistication."
+    }
+  },
+  {
+    "id": "alberts-ch8-metaphor-fresh",
+    "question": "Replace clichéd metaphor or simile in your summaries with fresh symbolic language that suits the material it illustrates.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "Symbolic language—metaphor and similes—is as useful in summaries as it is in scenes as long as it is fresh and not cliché."
+    }
+  },
+  {
+    "id": "alberts-ch8-tone-word-choice",
+    "question": "Rephrase a line so its tone shifts—say it with enthusiasm, then with dismissal—and find the wording that carries the meaning you intend.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 8",
+      "quote": "A big brother could tell his bored little brother “Go fly a kite,” with a tone of enthusiasm and encouragement, or he could say, “Go fly a kite” and mean “get lost.”"
+    }
+  }
+]

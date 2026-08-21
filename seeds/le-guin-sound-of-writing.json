@@ -1,0 +1,194 @@
+[
+  {
+    "id": "le-guin-sound-01",
+    "question": "Hear your prose as sound before meaning: the basic elements of language are physical — the noise words make and the rhythm of their relation.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "The basic elements of language are physical: the noise words make and the rhythm of their relation"
+    }
+  },
+  {
+    "id": "le-guin-sound-02",
+    "question": "Cultivate an awareness of what your own writing sounds like — it is an essential skill for a writer, and one you can relearn.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "an awareness of what your own writing sounds like is an essential skill for a writer."
+    }
+  },
+  {
+    "id": "le-guin-sound-03",
+    "question": "Train your mind's ear: readers hear the sound of your prose even when they read in silence, so listen to your own writing the way they do.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "A reader has a mind's ear. Though we read most of our narratives in silence, a keen inner ear does hear them"
+    }
+  },
+  {
+    "id": "le-guin-sound-04",
+    "question": "Listen for the faults in the sound of your prose — dull, droning, jerky, feeble — and cut them. Keep what is lively, well-paced, flowing, strong, and beautiful.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "Dull , droning, jerky, feeble: these are all faults in the sound of prose, though we may not know we hear them as we read. Lively, well-paced, flowing; strong, beautiful: these are all qualities of the sound of prose, and we rejoice in them as we read"
+    }
+  },
+  {
+    "id": "le-guin-sound-05",
+    "question": "Make each narrative sentence lead to the next — that is its chief duty, keeping the story going.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "Now the chief duty of a narrative sentence is to lead to the next sentence"
+    }
+  },
+  {
+    "id": "le-guin-sound-06",
+    "question": "Read your writing aloud, and loudly — that is how you hear what your prose sounds like.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "(Read them aloud! Read them aloud loudly!)"
+    }
+  },
+  {
+    "id": "le-guin-sound-07",
+    "question": "You have to hear your writing to feel its rhythm — pace and movement depend above all on rhythm.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "But pace and movement depend above all on rhythm, and you have to hear your writing to feel its rhythm."
+    }
+  },
+  {
+    "id": "le-guin-sound-08",
+    "question": "Gorgeousness is not one style: there are lots of ways to be gorgeous, so find the way that fits your own prose instead of imitating one model.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "There are lots of ways to be gorgeous."
+    }
+  },
+  {
+    "id": "le-guin-sound-09",
+    "question": "Write with exuberant vocabulary and musical, dramatic phrasing — give your readers a lifelong sense of the pure beauty of language.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "The Just So Stories are a masterpiece of exuberant vocabulary, musical and dramatic phrasing' and humor."
+    }
+  },
+  {
+    "id": "le-guin-sound-10",
+    "question": "Choose your characters' names for their sound: names are under the fiction writer's control.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "Names are very interesting sounds; and names are often under the fiction writer's control"
+    }
+  },
+  {
+    "id": "le-guin-sound-11",
+    "question": "Write a paragraph to a page (150-300 words) of narrative that's meant to be read aloud, using onomatopoeia, alliteration, repetition, rhythmic effects, made-up words or names, dialect — any sound effect you like. Don't use rhyme or regular meter: this is a prose exercise.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "Write a paragraph to a page (150-300 words) of narrative that's meant to be read aloud. Use onomatopoeia, alliteration; repetition, rhythmic effects, made-up words or names, dialect any kind of soundeffect you like"
+    }
+  },
+  {
+    "id": "le-guin-sound-12",
+    "question": "Rewrite your scene so that what happens happens in the sounds of the words and the rhythms of the sentences — let the events take place in the sound itself.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "Make what happens happen in the sounds of the words, the rhythms of the sentences."
+    }
+  },
+  {
+    "id": "le-guin-sound-13",
+    "question": "Reframe your read-aloud piece as one written for children, if that's the only way you can give yourself permission to cut loose and play with sound.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "Write it for children, if that's the only way you can give yourself permission to do it."
+    }
+  },
+  {
+    "id": "le-guin-sound-14",
+    "question": "Take the view out the window, the mess on the desk, or something weird somebody said, and make a gorgeous sentence or two or three out of it.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "Look at the view out the window or the mess on the desk, or remember something that happened yesterday or something weird that somebody said, and make a gorgeous sentence or two or three out of it."
+    }
+  },
+  {
+    "id": "le-guin-sound-15",
+    "question": "Take your sound piece and play some more with it — improve it here and there, make the sound of it still stronger and livelier.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "play some more with it, make the sound of it still stronger and livelier."
+    }
+  },
+  {
+    "id": "le-guin-sound-16",
+    "question": "Ask yourself whether concentrating on the sound of your writing released or enabled anything unusual or surprising — a voice you haven't often used.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Sound of Your Writing",
+      "quote": "Did concentrating on the sound of the writing release or enable anything unusual or surprising, a voice you haven't often used?"
+    }
+  }
+]

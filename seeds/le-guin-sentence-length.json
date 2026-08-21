@@ -1,0 +1,158 @@
+[
+  {
+    "id": "le-guin-sentence-length-01",
+    "question": "Rewrite your scene so each sentence leads to the next until the scene ends.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "And so, until the scene ends, each sentence should lead to the next sentence."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-02",
+    "question": "Treat sentence length as a rhythm instrument: as you revise, consider how the length of each sentence beats the pace of your prose.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Sentence length has a lot to do with the rhythm of prose."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-03",
+    "question": "Vary your sentence lengths: a page of all-short sentences sounds stupid, a page of all-long ones sounds stuffy.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "As Strunk and White say, variety in sentence length is what's needed. All short will sound stupid."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-04",
+    "question": "Match each sentence's length to what it says and does: let a complicated perception or feeling work itself out in a long sentence, and keep a simple action in a short one.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "This kind of subject may well require a complicated sentence that can work itself out at some length."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-05",
+    "question": "Write a long sentence so its length gives weight to the last clause; read it aloud to hear where the weight falls.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "If you read it aloud you'Il hear how the length of the sentence gives weight to the last clause of it."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-06",
+    "question": "Find two sentences you would normally separate with a period and rephrase them as one sentence joined by a semicolon, so the connection between them stays visible and the flow continues.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "so that most of these sentences would have been equally 'correct\" if Austen had used periods instead of semicolons."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-07",
+    "question": "Build sentences more deliberately than you speak them: because you can revise, you are not bound to speech-like short prose.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Itsa myth that short-sentence prose is more like the way we speak. A writer can build a sentence in a more deliberate way than a speaker can, because a writer can revise."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-08",
+    "question": "Write a half-page to a page of narrative, up to 350 words, that is all one sentence.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Part Two: Write a half-page to a page of narrative, up to 350 words, which is all one sentence."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-09",
+    "question": "Write a paragraph of narrative, 100 to 150 words, in sentences of seven or fewer words; no fragments — every sentence must have a subject and a verb.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Part One: Write a paragraph of narrative, 100-150 words, in sentences of seven or fewer words. No sentence fragments!* Each must have a subject and a verb"
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-10",
+    "question": "Use a very long sentence when powerful, gathering emotion is building, or when you want to sweep a lot of characters in together.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "For Part Two: A very long sentence is suited to powerful, gathering emotion, and to sweeping a lot of characters in together."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-11",
+    "question": "Elucidate any long sentence whose syntax could lose the reader; make the syntax clear and assured so no one has to go back and start over.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Is the syntax of the sentence clear and assured, so that the reader doesn't get lost and have to go back and start over?"
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-12",
+    "question": "Cut the mechanical rule that sentences and paragraphs must be kept short: it comes from journalism, not from good prose, so let the story, not the rule, decide where your sentences and paragraphs break.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Rules about keeping sentences and paragraphs short are mechanical spin-offs from journalism and a highly artificial school of action writing."
+    }
+  },
+  {
+    "id": "le-guin-sentence-length-13",
+    "question": "Tell the same story twice, once in short sentences and once in long ones, and see what the sentence length does to the story.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "If you told two different stories in the two different sentence lengths, you might try telling the same story in both, and see what happens to the story."
+    }
+  }
+]

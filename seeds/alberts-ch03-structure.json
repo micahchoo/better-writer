@@ -1,0 +1,182 @@
+[
+  {
+    "id": "alberts-scene-three-parts",
+    "question": "Audit each scene for its three structural parts: a way in (beginning), the work it accomplishes (middle), and a graceful exit (ending).",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "You must find a way to get into a scene (beginning), accomplish the work of the scene (middle), and exit gracefully (ending)."
+    }
+  },
+  {
+    "id": "alberts-scene-opening-choice",
+    "question": "Decide how each scene opens—with a slow buildup from the beginning or in medias res—so the choice fits the subject and the mood you want to convey.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "There’s no rule about which way to start a scene—with a slow buildup from the beginning or in medias res—but your choice should fit the nature of the subject and the mood you wish to convey."
+    }
+  },
+  {
+    "id": "alberts-scene-in-medias-res",
+    "question": "Open a scene in the midst of action or dialogue when you want to cut to the chase and establish the conflict immediately.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Starting in media res works here because it basically cuts to the chase."
+    }
+  },
+  {
+    "id": "alberts-scene-slow-opening",
+    "question": "Open a scene slowly, with scene-setting description first, when the buildup should set the mood and introduce the theme.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "The slow buildup sets the appropriate mood and introduces theme (such as Phoenix’s strength against odds)."
+    }
+  },
+  {
+    "id": "alberts-scene-reader-interest",
+    "question": "Establish reader interest quickly in the scene’s opening, whether through immediate conflict or an engaging character.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Whether you provide your reader with a slower introduction like Welty or jump right into a scene as Schorer did, it’s important to keep in mind that you need to establish reader interest quickly."
+    }
+  },
+  {
+    "id": "alberts-scene-themes-early",
+    "question": "Plant a theme of the larger work early in the scene—even in its first sentence.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Themes of the larger work can be introduced and developed at any point in the scene—beginning, middle, or end."
+    }
+  },
+  {
+    "id": "alberts-scene-middle",
+    "question": "Work the middle of the scene: intensify conflict, develop and reveal character, and move the action forward as complications arise and the stakes rise.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Once you’ve established reader interest and gotten your scene underway, the middle of the scene is where you intensify conflict, develop and reveal character, and move the action forward. Conflict intensifies as complications arise and the stakes are raised."
+    }
+  },
+  {
+    "id": "alberts-scene-end-unresolved",
+    "question": "Leave a scene unresolved when you want suspense or interest to pull readers into the next scene.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Scene endings do not necessarily mean scene resolutions. You may want to leave a scene unresolved in order to create suspense or interest in the next scene."
+    }
+  },
+  {
+    "id": "alberts-scene-end-strongly",
+    "question": "End the scene strongly; don’t let it fizzle out.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "The ideal is to end a scene strongly; you don’t want it to fizzle out."
+    }
+  },
+  {
+    "id": "alberts-scene-end-image",
+    "question": "End the scene with an image or lingering action that crystallizes the themes or events of the scene.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Many writers exit a scene through the use of an image or lingering action that crystallizes the themes or events presented in the scene, as does Schorer in “The Face Within the Face.”"
+    }
+  },
+  {
+    "id": "alberts-scene-end-sensory",
+    "question": "End the scene with lingering sensory details that leave the reader with the feeling of the place.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "fiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "The travel writer Colin Thubron, in Shadow of the Silk Road, has a lovely way of ending scenes with lingering sensory details and images."
+    }
+  },
+  {
+    "id": "alberts-scene-end-dialogue",
+    "question": "End the scene on a line of dialogue, cutting off the reply to magnify the final line’s impact and add suspense.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Occasionally writers end scenes on a line of dialogue, cutting off the reader’s chance to hear a reply and magnifying the impact of the final line, while adding a degree of suspense—what would the response have been?"
+    }
+  },
+  {
+    "id": "alberts-scene-end-action",
+    "question": "End the scene with a deliberate action—the final position gives that action extra weight.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "The placement of a final action gives it more weight than if it didn’t end the scene."
+    }
+  },
+  {
+    "id": "alberts-scene-ending-punctuation",
+    "question": "Punctuate the scene ending: use it to put form to the scene, emphasize themes, end forward motion, and assert a rest before more scenes and summaries arrive.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Whether you use action, image, or a line of dialogue to end your scene, the ending is a form of punctuation, putting form to the scene, emphasizing themes, ending forward motion, asserting a rest before more scenes and summaries arrive."
+    }
+  },
+  {
+    "id": "alberts-scene-ending-flourish",
+    "question": "Vary your scene endings—ending every scene with a flourish becomes an obvious device.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 3",
+      "quote": "Though every single scene doesn’t need to end with a flourish (and frequent use of weighty scene endings can become an obvious device), scenes that end with powerful imagery, dialogue, or action will reverberate in the reader’s mind."
+    }
+  }
+]

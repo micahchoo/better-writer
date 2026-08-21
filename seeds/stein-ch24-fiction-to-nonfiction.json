@@ -1,0 +1,278 @@
+[
+  {
+    "id": "stein-fictnonfic-precision",
+    "question": "Rework your word choices until each one satisfies precision, clarity, and euphony—weigh alternatives instead of taking the first word that comes to mind.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "It should be no secret to readers of this book that I favor work in which the writer presents his best not his quickest, and where the language used comes not from the top of the head but from a consideration of precision, clarity, euphony, and alternatives."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-framework",
+    "question": "Set what you report in a framework by connecting it to what has happened elsewhere or in the past, so the recorded events gain a second dimension and sight becomes insight.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Reporting in nonfiction can be accurate, like a photograph taken merely to record. The best of nonfiction, however, often sets what it sees in a framework, what has happened elsewhere or in the past. As the recorded events march before the reader, a scrim lifts to convey other dimensions, sight becomes insight, reporting becomes art."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-emotion",
+    "question": "Revise the passage so it evokes emotion in the reader—people are moved more by what they feel than by what they understand.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Like fiction, nonfiction accomplishes its purpose better when it evokes emotion in the reader. We might prefer everyone on earth to be rational, but the fact is that people are moved more by what they feel than by what they understand."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-anecdote-idea",
+    "question": "Develop an idea through an anecdote involving people rather than presenting it abstractly.",
+    "verb": "elaborate",
+    "genre": ["essay", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Ideas seem to attract readers when developed through anecdotes involving people."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-breathe",
+    "question": "Revise your portrait of a real person until they breathe on the page—name, title, and appearance alone do not make the reader know them.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "If the characters do not breathe, the exercise of assembling the facts of their lives may be of use to scholars but not to readers. Too often, though, what we get in newspapers and magazines is the person’s name and title and little else, sometimes a photo or drawing. We may know what the person looks like, but we don’t yet know the person."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-unusual-detail",
+    "question": "Vitalize a person in a sentence or two by selecting one unusual characteristic, drawing on animals, fish, birds, insects, or plants for the image.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Novelists learn to provide vitality to minor characters in a sentence or two, usually by selecting one characteristic that is unusual. Our dictionaries are full of animals, fish, birds, and insects that can be used in the characterization of people."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-specific-appearance",
+    "question": "Make a person come alive by rendering their appearance with one specific detail.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "The best way to make a person come alive is by rendering the person’s appearance with some specific detail."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-metaphor-psychology",
+    "question": "Rephrase a characterization so a single physical metaphor (like “an owl of a man”) carries the likeness while the rest of the sentence carries the psychology.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "His accountant is an owl of a man who keeps one eyelid half shut not because of an affliction but because there is much in this world he is not prepared to see. Note the key words and phrases. “Owl” characterizes the man physically, the rest of the sentence characterizes him psychologically."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-vague-feeling",
+    "question": "Replace a vague factual image like “dressed all in black” with particulars that carry feeling, not just the fact.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "A layman might describe a man as being dressed all in black. The image is vague, it gets the fact across, but not the feeling. It could have been written by anybody."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-markers",
+    "question": "Add markers—dress, possessions, habits, routines—that signal a person’s background, and practice using them consciously a few times until it becomes a rewarding habit.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Markers that signal a person’s background can be as useful to writers of nonfiction as to novelists, though few think of markers as a matter of course. If reporters try to use markers consciously a few times, it can become a rewarding habit."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-risks",
+    "question": "Take risks in characterizing public figures; if a liberty doesn’t work, it will be apparent when you revise.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "It’s worth taking risks. If it doesn’t work, it will be apparent when you revise."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-earlier-later",
+    "question": "Where appropriate, evoke what your subject looked like earlier and later in life.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "One of the strengths in the description of Lenin is the evocation of what he looked like earlier and later. That’s a technique all writers can employ under appropriate circumstances."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-research",
+    "question": "Use your documented research not only to characterize a historical person but to give the reader a rich experience.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Goodwin’s book is worth studying for its technique in using research, all of it documented, not only to characterize historical persons but to provide the reader with a rich experience."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-group-of-ten",
+    "question": "Check whether a reader could identify the person you’re writing about if they saw them in a group of ten; rewrite until they could.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Would the reader be able to identify the person you’re writing about if he was seen in a group of ten people?"
+    }
+  },
+  {
+    "id": "stein-fictnonfic-eyes",
+    "question": "Give the person’s eyes something to do—show how they look at a person or look away.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Have you done anything with the person’s eyes, the way they are used, to look at a person or to look away?"
+    }
+  },
+  {
+    "id": "stein-fictnonfic-action-feelings",
+    "question": "Convey how a person feels by describing an action rather than by stating the feeling.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Have you given the reader a sense of how that person feels through describing an action rather than by stating the person’s feelings?"
+    }
+  },
+  {
+    "id": "stein-fictnonfic-habit",
+    "question": "Give the person a habit—tapping a finger, pointing eyeglasses, laughing too loud, waving hands in a particular way—that makes them more visible.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Does your person have a habit like tapping a finger, pointing eyeglasses, laughing too loud, waving his hands in a particular way that would make him more visible?"
+    }
+  },
+  {
+    "id": "stein-fictnonfic-gait",
+    "question": "Find something individual about the person’s gait or posture and put it on the page.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Is there anything individual about the gait or posture of the person?"
+    }
+  },
+  {
+    "id": "stein-fictnonfic-resonance-matters",
+    "question": "Lend resonance to a characterization by invoking other matters in which the person was involved.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Can you lend resonance to your characterization by invoking other matters in which your person was involved?"
+    }
+  },
+  {
+    "id": "stein-fictnonfic-change",
+    "question": "In a longer work, use how your person has changed over time.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "Has your person changed much? In a longer work, can you use that change?"
+    }
+  },
+  {
+    "id": "stein-fictnonfic-scene-essence",
+    "question": "When you set a scene, convey the essence of the occasion—the reader gets facts, but it is the essence that conveys truth.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "The reader gets the information, the facts, but not the essence of the occasion, and it is the essence that conveys truth."
+    }
+  },
+  {
+    "id": "stein-fictnonfic-scene-resonance",
+    "question": "Build resonance into a scene so it carries what the moment means beyond the visible action—the difference between ordinary and extraordinary writing.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "The difference between ordinary nonfiction and extraordinary writing, as in Mattingly, is often in the resonance:"
+    }
+  },
+  {
+    "id": "stein-fictnonfic-eyewitness",
+    "question": "Ground the details of a scene you never witnessed in eyewitness testimony and paintings so readers trust the rendering.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 24",
+      "quote": "The writing—quite apart from Mattingly’s considerable reputation as a historian—convinces us that the author has feasted on every scrap of eyewitness testimony and on paintings to convey that scene."
+    }
+  }
+]

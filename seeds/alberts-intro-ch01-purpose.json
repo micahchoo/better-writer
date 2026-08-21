@@ -1,0 +1,266 @@
+[
+  {
+    "id": "alberts-scene-summary-balance",
+    "question": "Audit your draft for the balance of scene and summary: good prose needs both, so find where over-scening or over-summarizing weakens the work.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Good prose almost always requires both showing and telling, scenes and summary, the two basic components of creative prose."
+    }
+  },
+  {
+    "id": "alberts-scene-time-place",
+    "question": "Check that each of your scenes is anchored in a specific time and place, with events transpiring in real time.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Scenes are episodes that occur within a specific time and place, just like in films, and they give the reader a sense of events transpiring in real time."
+    }
+  },
+  {
+    "id": "alberts-reflection-in-moment",
+    "question": "Rewrite any character reflection that floats in a vague narrative ether so it happens in the moment, inside the scene.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Even when Margaret reflects on dentists and suicide, she is reflecting in the moment, within the scene and not in some vague narrative ether."
+    }
+  },
+  {
+    "id": "alberts-scene-for-decisive-choice",
+    "question": "When a character makes a choice with dramatic import, recast that moment as a scene rather than a summary.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "The writer uses a scene here because this is the moment in which Margaret makes her choice and therefore it has dramatic import."
+    }
+  },
+  {
+    "id": "alberts-compress-over-scened-info",
+    "question": "Find scenes that dramatize information not worth that much space and compress them into summary, so the remaining scenes carry the emphasis.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "A work comprised of scenes alone, especially a long work, can be a welter of dramatic renderings, many of which provide information that doesn’t deserve to take up that much space."
+    }
+  },
+  {
+    "id": "alberts-summary-what-it-carries",
+    "question": "Identify the material between your scenes—background exposition, description outside a scene, interior thoughts, repeated events, compressed action, and narrative commentary—and make sure it lives in summary, not scene.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Summaries are the material in between scenes—they may contain background exposition, description that doesn’t occur in a specific scene, interior thoughts, events that happen repeatedly or that are being recounted in a compressed fashion, and narrative commentary or reflection."
+    }
+  },
+  {
+    "id": "alberts-voice-in-summary",
+    "question": "Write your summaries as narrative commentary in your own distinctive voice—voice often comes through best there.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "A distinctive voice, that elusive quality we all desire as writers, often comes through best in summary."
+    }
+  },
+  {
+    "id": "alberts-summary-enriches-scene",
+    "question": "Elaborate a scene with surrounding summary that gives it context, so scene and summary enrich each other.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "The summary gives context to the scene in the doctor’s office. The Margaret and Verbsky scene can proceed without the summary but the summary has enriched the scene, and vice versa."
+    }
+  },
+  {
+    "id": "alberts-cut-summary-recap",
+    "question": "Cut any summary that explains what a scene has already made obvious; let the scene evoke the most significant events.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "I still resent, as most readers would, a narrative in which the author explains what a scene has already made obvious—reporting rather than evoking the most significant events in the characters’ lives. That sort of summarizing leaves the reader far removed from the action and emotions of the characters; it’s alienating and dull."
+    }
+  },
+  {
+    "id": "alberts-summary-must-earn-place",
+    "question": "Test each summary: if it does not deepen themes, reveal character, or express your distinctive voice, it is a distancing shortcut—cut it.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "The trick with summary is determining when it’s a distancing shortcut or unnecessary explication, and when it’s a chance to deepen themes, reveal character, and express an author’s distinctive voice."
+    }
+  },
+  {
+    "id": "alberts-slide-scene-summary",
+    "question": "Decide at each point whether scene or summary is called for, and slide between them gracefully.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Once you have learned the potential of both scene and summary, you must decide which is called for when, and how to slide between them gracefully."
+    }
+  },
+  {
+    "id": "alberts-dramatize-not-report",
+    "question": "Rewrite events so they are dramatized rather than reported: ground the reader in place and give the illusion of real time passing.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "To be truly engaged in the lives of characters, events must be dramatized rather than simply reported; for dramatic impact we must be grounded in place and experience the illusion of real time passing, which only occurs in scenes."
+    }
+  },
+  {
+    "id": "alberts-change-is-essence",
+    "question": "Make sure change occurs in your scene—in characters, in circumstances, or in the reader’s perceptions—since change is the essence of narrative.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "And change—in characters, in circumstances, and in the perceptions of readers—is the essence of narrative."
+    }
+  },
+  {
+    "id": "alberts-articulate-scene-intention",
+    "question": "For each scene, ask what it is really about, what is at stake, and how it contributes to the piece; the answers tell you what to cut, keep, develop, or drop.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Ask yourself the following questions: What is this scene really about? What is at stake in the scene? How does this scene contribute to the piece as a whole? Once you have established a clear intention you will know what needs to be cut, what should stay, what should be developed further, or even if the scene should be there at all."
+    }
+  },
+  {
+    "id": "alberts-scene-purpose-check",
+    "question": "Check each scene against the jobs scenes perform—emotional connection, dramatized events, plot movement, conflict, suspense, change, character revelation, theme, mood, resolution—and make sure it meets at least a few.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Scenes are never there just for “color”; they have several very important jobs to do. Most scenes don’t meet all of the criteria listed below but they should meet at least a few."
+    }
+  },
+  {
+    "id": "alberts-emotional-connection-detail",
+    "question": "Give your characters recognizable yet complex emotions, and render the experience as it happens in time, complete with sensory detail, so the reader goes through it with them.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Scenes create an emotional connection for the reader by making characters and events seem real, and by giving characters recognizable, though complex, emotions. The “real” feeling comes from the reader going through the experience with the character as it’s happening in time, complete with sensory detail."
+    }
+  },
+  {
+    "id": "alberts-action-reveals-character",
+    "question": "Reveal character through what the character does in the dramatized action itself, rather than telling the reader who they are.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "the action itself reveals an aspect of Sally’s character—she’s a pleaser but she’s also impulsive."
+    }
+  },
+  {
+    "id": "alberts-mood-through-details",
+    "question": "Establish mood through concrete details that combine into a tone, rather than naming the mood outright.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "the silliness of an adult breaking an ankle on a playground slide, and the ridiculous tippy espadrilles all combine to suggest that the story might be ironic or perhaps playful."
+    }
+  },
+  {
+    "id": "alberts-scene-can-raise-not-resolve",
+    "question": "Don’t force resolution into every scene: a scene can raise a problem the narrative resolves further along, or introduce themes developed later.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "The scene does not contain resolution (a satisfying outcome to a problem raised by the story). That would have to occur further along in the narrative, but the scene could introduce themes that will be developed later."
+    }
+  },
+  {
+    "id": "alberts-theme-not-plot",
+    "question": "Articulate what your story or essay is about on its deepest level—theme, distinct from plot—and make sure the scene emphasizes it.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "(Theme is not plot; theme is what the story or essay is about on its deepest level.)"
+    }
+  },
+  {
+    "id": "alberts-action-vs-plot",
+    "question": "Check the causality of your story: action is “this happened, then that,” plot is “this happened because that”—rewrite the sequence so later events happen because of earlier ones.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "Action refers to the events that happen in a scene and in the narrative as a whole—this happened, then that happened. Plot, however, is action with a cause-and-effect relationship—this happened because that happened."
+    }
+  },
+  {
+    "id": "alberts-scene-plot-critical-events",
+    "question": "Write plot-critical events as scenes and summarize the routine ones—match the treatment to the event’s importance.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Introduction / Chapter 1",
+      "quote": "You want to make sure you use scenes rather than summary whenever you are writing about events that are particularly important to the plot."
+    }
+  }
+]

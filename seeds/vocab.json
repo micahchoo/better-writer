@@ -1,0 +1,9 @@
+{
+  "genres": ["fiction", "creative-nonfiction", "memoir", "essay", "poetry", "genre-agnostic"],
+  "verbs": ["rewrite", "elaborate", "elucidate", "cut", "transition", "concept-form", "rephrase"],
+  "_notes": {
+    "topic-probe": "agent-side only - lives in agent_sketch.md, NOT a bank verb.",
+    "runtime_fields": ["question"],
+    "audit_fields": ["id", "verb", "genre", "source"]
+  }
+}

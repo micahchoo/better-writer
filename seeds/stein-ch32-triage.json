@@ -1,0 +1,638 @@
+[
+  {
+    "id": "stein-triage-01",
+    "question": "Look forward to rewriting: treat your first draft as material to excise and improve, not as finished.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "The biggest difference between a writer and a would-be writer is their attitude toward rewriting. The writer, professional or not, looks forward to the opportunity of excising words, sentences, paragraphs, chapters that do not work and to improving those that do."
+    }
+  },
+  {
+    "id": "stein-triage-02",
+    "question": "Remove any self-imposed limit on how much rewriting you will do.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If you set a limit on how much rewriting you will do, you are merely devising an artificial barrier between your work and success."
+    }
+  },
+  {
+    "id": "stein-triage-03",
+    "question": "Do not revise front-to-back: sort the problems in your manuscript and attend to major matters first.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Their order can be changed, as long as the principle is maintained: major matters are attended to first."
+    }
+  },
+  {
+    "id": "stein-triage-04",
+    "question": "Print a hard copy of your manuscript to consult while revising — seeing your words on paper gives you a fresh impression — and reprint each section after major changes so you work from clean copy.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Even if you use a computer, I recommend that you have a hard copy of your manuscript to consult for the simple reason that seeing what you wrote on paper will give you a fresh impression of your work."
+    }
+  },
+  {
+    "id": "stein-triage-05",
+    "question": "Test your main characters: if you cannot think of an important character in situations away from the story, that character needs more work.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Do you find yourself thinking about them in situations that are not in your book? If so, good! That means your characters are alive in your mind and should come alive in the minds of your audience. If you can't think of an important character in situations away from the story, that character may need more work."
+    }
+  },
+  {
+    "id": "stein-triage-06",
+    "question": "If your protagonist is too like yourself, give the character a distinctive trait — positive or negative — that you are sure you do not have.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If it is, that may be a symptom of the autobiography trap, creating a character that is too like yourself, which hurts the distance that every author needs from his creations. One way to ameliorate the problem is to give the character a distinctive trait—positive or negative—that you are absolutely sure you don't have."
+    }
+  },
+  {
+    "id": "stein-triage-07",
+    "question": "Add some sparkle to your main character — an interesting eccentricity, a personality characteristic that makes his company enjoyable — because you are asking the reader to spend hours with him.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "You are asking your reader to spend a good number of hours with that character. You may need to add some sparkle to your character, some interesting eccentricity, perhaps a personality characteristic that will make his company more enjoyable."
+    }
+  },
+  {
+    "id": "stein-triage-08",
+    "question": "Imagine you have just won a two-million-dollar lottery and your character hears about it on the news; use his reactions to make him more interesting.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "One way to find out is to imagine that you have just won a lottery jackpot of two million dollars. Your character doesn't know you've been playing Lotto, but he is likely to hear about it on the news."
+    }
+  },
+  {
+    "id": "stein-triage-09",
+    "question": "Humanize your characters by giving them the kind of thoughts people have in life — not always \"nice\" thoughts.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "This method of revision makes certain that you have humanized your characters by giving them the kind of thoughts—not always “nice” thoughts—that people have in life. The danger is portraying a person that nobody wants to spend time with."
+    }
+  },
+  {
+    "id": "stein-triage-10",
+    "question": "Make your protagonist undergo change in the course of the novel; if yours does not, revise it so that it does.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "In a story the length of a novel, it is essential that the protagonist undergo change. If yours at present does not, it isn't too late."
+    }
+  },
+  {
+    "id": "stein-triage-11",
+    "question": "Keep to a single villain or antagonist; more than one diffuses the impact of the villainy.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Note that I use the singular—“villain” or “antagonist.” If you have more than one, you may be diffusing the impact of the character's villainy by spreading it."
+    }
+  },
+  {
+    "id": "stein-triage-12",
+    "question": "Deepen the degree of your antagonist's villainy: is he morally bad rather than just badly behaved, malicious rather than mischievous?",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Is your antagonist morally bad, not just badly behaved? Does your antagonist enjoy doing wrong to people? Is your character not just mischievous but malicious?"
+    }
+  },
+  {
+    "id": "stein-triage-13",
+    "question": "Give your villain something that charms or entices people — charm, charisma, position, or wealth — or he cannot attract victims.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "No villain can attract victims unless he has charm, charisma, position, or wealth."
+    }
+  },
+  {
+    "id": "stein-triage-14",
+    "question": "If your villain is hard to make charming or interesting, try seeing him through the eyes of someone who loves him; a humanized villain is a more effective adversary.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If you're having difficulty making your villain charming or interesting, try seeing him through the eyes of someone who loves him. Or at least cares a lot about him. The villain will be a more effective adversary if he has been humanized."
+    }
+  },
+  {
+    "id": "stein-triage-15",
+    "question": "Do not model a villain on an enemy from your life: novels are not a place to get even — create characters more interesting than the nasties you know.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Novels are not a place to get even. Think of yourself as in the business of creating characters who are more interesting than the nasties you know in person."
+    }
+  },
+  {
+    "id": "stein-triage-16",
+    "question": "Give each minor character one special characteristic, or characterize them through one of the senses you have neglected.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Just one special characteristic can make a difference. An easy way to help characterize minor players is to use one of the senses you may have neglected."
+    }
+  },
+  {
+    "id": "stein-triage-17",
+    "question": "Make sure you have a credible conflict between protagonist and antagonist; a plot needs people overcoming obstacles against high odds and strong adversaries.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "The next step is to be sure you have a credible conflict between your protagonist and the antagonist. Stories from time immemorial have consisted of people overcoming obstacles against high odds and strong adversaries. If you've followed a different course, your plot may not be strong enough to sustain the reader's interest."
+    }
+  },
+  {
+    "id": "stein-triage-18",
+    "question": "Name your most memorable scene without looking at the manuscript — if you cannot remember it, it is not memorable — then name your least memorable scene.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "What is the most memorable scene in your book? Don't go to your manuscript for clues. If you can't remember the scene, it isn't memorable!"
+    }
+  },
+  {
+    "id": "stein-triage-19",
+    "question": "Cut your least memorable scene; if cutting it removes information the reader needs, convey that information in an existing scene instead.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Don't be disappointed if you can't think of a radical revision of your least memorable scene. The usual remedy is to cut it! If cutting it removes some piece of information the reader needs, find some other way of conveying that information in an existing scene."
+    }
+  },
+  {
+    "id": "stein-triage-20",
+    "question": "Subject the new least memorable scene to the same scrutiny: would the book be stronger without it? Keep cutting until every remaining scene contributes.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Once you've revised or done away with your least memorable scene, you now have a new least memorable scene! You need to subject it to the same tough scrutiny. Would the book be stronger without it?"
+    }
+  },
+  {
+    "id": "stein-triage-21",
+    "question": "If you cannot find a weak scene, put the manuscript aside for a week, a month, or longer — the longer the better — then look again; the weakest scene will jump out.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Put the manuscript aside for a week, a month, or longer (the longer the better), then look again. The weakest scene will jump out at you, staring you straight in the eye until you decide whether to let it live or die."
+    }
+  },
+  {
+    "id": "stein-triage-22",
+    "question": "From memory, jot down the three most important actions in your novel and test whether each is motivated in a way you would accept if someone else told the story.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "First, from memory, jot down what you believe to be the three most important actions in your novel. Is each action motivated in a way that you would accept if this story were told by somebody else?"
+    }
+  },
+  {
+    "id": "stein-triage-23",
+    "question": "Establish the motivation of an action by planting it ahead of the scene in which the action takes place.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Motivation can usually be established by planting it ahead of the scene in which the action takes place."
+    }
+  },
+  {
+    "id": "stein-triage-24",
+    "question": "Plant an object like a gun much earlier than its use, so the use becomes almost inevitable; derive suspense from its not being used when the reader expects it.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If a gun is seen in the hands of someone who is not known to carry a gun and then almost immediately fired, it will seem as if the author's heavy hand is at work. If the gun is planted much earlier, the use of it becomes almost inevitable. In fact much suspense can be derived from its not being used when the audience thinks it will be."
+    }
+  },
+  {
+    "id": "stein-triage-25",
+    "question": "Replace coincidence with motivated action: motivation is not an option but a necessity, and coincidence is the mark of transient works.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Motivating actions takes work, and using coincidence is much easier. But coincidence is the mark of transient works, and I have met few novelists who are satisfied to think of their work as merely temporary entertainment."
+    }
+  },
+  {
+    "id": "stein-triage-26",
+    "question": "Review every significant action for character consistency; fix any action not in keeping with the character, or that sounds farfetched, by planting a motive in a prior scene.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Is there any action in your manuscript that is not in keeping with the character? Is there any action that under examination sounds farfetched? It might be fixed by planting a motive in a prior scene."
+    }
+  },
+  {
+    "id": "stein-triage-27",
+    "question": "Read the first page as if it were written by a contemporary author you admire, then ask: is there a compelling reason to go on to page two? If not, your opening has not sparked the reader's curiosity.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Now read the first page as if it were the other author's manuscript. After reading the first page, would you go on to the next page? If there isn't a compelling reason to go to page two, it usually means that you haven't sparked the reader's curiosity."
+    }
+  },
+  {
+    "id": "stein-triage-28",
+    "question": "Read the manuscript from page one to the end as a reader and an editor, not as a writer — critically, like a tough editor.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Embarking on a general revision calls for starting on page one and working through the manuscript to the end, reading as a reader and an editor, not as a writer."
+    }
+  },
+  {
+    "id": "stein-triage-29",
+    "question": "When in doubt about a change, do not make it; note it for later consideration, and expect most of those notes to be discarded.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If in doubt about a change, don't make the change. Instead, make a note to yourself for later consideration. I find that when I look at such notes days or weeks later, many of those questionable ideas for revision get discarded."
+    }
+  },
+  {
+    "id": "stein-triage-30",
+    "question": "Tighten the manuscript: overwriting in first drafts is normal — the skill is recognizing on a later reading what can be eliminated and having the guts to cut it.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "It is perfectly normal to overwrite in first drafts. The test of a writer's skill is in recognizing on later reading what can be eliminated, and then having the guts to do the cutting."
+    }
+  },
+  {
+    "id": "stein-triage-31",
+    "question": "When unsure whether a paragraph contributes, block-move it to the end of the manuscript; later, restore only the paragraphs that earn their place.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Every time he came to a paragraph he wasn't sure contributed to the book, he marked it and with a block move transferred it to the end, after the last page. When he finished he found that he had transferred dozens of paragraphs and that only one or two, in modified form, deserved a place in the text."
+    }
+  },
+  {
+    "id": "stein-triage-32",
+    "question": "Eliminate between-the-scenes material — the offstage recounting of actions not seen — or make such material active and interesting in itself.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Your second objective is to watch out for the between-the-scenes material, especially the offstage recounting of actions not seen. Try to eliminate as many of these as you can, or make them active and interesting in themselves."
+    }
+  },
+  {
+    "id": "stein-triage-33",
+    "question": "Cut whatever seems not absolutely necessary, and watch for places where your own attention flags — that is usually a sign something needs to be revised or cut.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "In your general revision, cut words, phrases, sentences, or paragraphs, pages, or whole scenes that seem not absolutely necessary. Watch for places where your own attention flags. That's usually a sign that something needs to be revised or cut."
+    }
+  },
+  {
+    "id": "stein-triage-34",
+    "question": "Vary the length of your sentences; ideally follow an especially long sentence with a short, even abrupt one, but avoid a mechanical short-long-short-long pattern.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If your sentences are all approximately the same length, the effect will be monotonous. Vary the length of sentences. Ideally, follow an especially long sentence with a short, even abrupt sentence. Don't do this all the time. A pattern of short-long-short-long can get almost as monotonous as all long or all short sentences."
+    }
+  },
+  {
+    "id": "stein-triage-35",
+    "question": "Break an unbroken mellifluous cadence — a lovely rhythm, kept up, will put a reader to sleep.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "An unbroken mellifluous cadence, lovely for a few sentences, if kept up will put a reader to sleep."
+    }
+  },
+  {
+    "id": "stein-triage-36",
+    "question": "Be relentless in moving the story forward; where it bogs down and you cannot see an immediate fix, mark the place in the margin, write down what may be wrong, and come back to it later.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Unless you are consciously trying to slow things down between fast-moving scenes, be relentless in moving the story forward. If you find it bogging down at any point, it could be for many reasons: perhaps too slow a pace, not enough happening. If you don't see an immediate fix, mark the place in the margin and write down what you think might be wrong."
+    }
+  },
+  {
+    "id": "stein-triage-37",
+    "question": "Mark any section where you catch the author talking or a mix of points of view, and revise it.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If you catch the author talking at any point, or a mix of points of view, mark the section so that you can return to Chapter 13 for guidance."
+    }
+  },
+  {
+    "id": "stein-triage-38",
+    "question": "Keep your characters under stress from time to time, and make the stress increase — fiction deals with the most stressful moments of the characters' lives.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Are your characters under stress from time to time? Does the stress increase? Keep reminding yourself that fiction deals with the most stressful moments of the characters' lives."
+    }
+  },
+  {
+    "id": "stein-triage-39",
+    "question": "Cut every unessential adjective and adverb; cut \"very\"; make every word count.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "As you go through, cut every unessential adjective and adverb. Cut “very.” Cut “poor” for everything but poverty. Make every word count."
+    }
+  },
+  {
+    "id": "stein-triage-40",
+    "question": "If you have said the same thing twice in different words, cut the weaker one; swap a repeated uncommon word for a synonym; and mark every cliché for excision.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If you've said the same thing twice in different words, pick the better one and cut the other. If you find yourself using the same uncommon word twice within a few pages, use your thesaurus to pick a synonym. And in your read-through, mark every cliché for excision."
+    }
+  },
+  {
+    "id": "stein-triage-41",
+    "question": "Put the speaker identification first (\"George said\") whenever there is any chance the reader will not know who is speaking; otherwise let it follow or omit it.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If there is any chance that the reader won't know who is speaking at that point, the “George said” should come first. If it is clear who is speaking, “George said” can follow what he says or be omitted."
+    }
+  },
+  {
+    "id": "stein-triage-42",
+    "question": "Transpose the order of words, phrases, or clauses in a sentence to let its emphasis fall where you want it.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "In my own work, I make transpositions hundreds of times in a book-length manuscript. Sometimes it is to let the emphasis of a sentence fall in a different place."
+    }
+  },
+  {
+    "id": "stein-triage-43",
+    "question": "Transpose words when their order could make a reader momentarily misread the sentence, so the first reading is the correct one.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Because readers will undoubtedly have had experience with a pulse being taken at the wrist, they may suppose that immediately on reading the word “pulse.” Immediately, they read “in the neck” and have to change their first view. That kind of glitch can momentarily disturb the reading experience. To avoid it, I simply transposed a few words."
+    }
+  },
+  {
+    "id": "stein-triage-44",
+    "question": "Remove conspicuous passages you love — images and sentences that jump off the page and interfere with the story — and save them in a special box to look into years later.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "When you “love” certain images or sentences, they are frequently so conspicuous as to interfere with the story. If they are, save them in a special box that you'll look into five years from now, and thank me for having asked you to remove them from your manuscript, though it may have hurt at the time."
+    }
+  },
+  {
+    "id": "stein-triage-45",
+    "question": "Root out sentimentality — an excess of response to a stimulus — and underplay to evoke emotion in the reader.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Root out sentimentality, which is an excess of response to a stimulus. It makes writing “flowery.” Your job is to stimulate emotions in the reader. An excessive response turns off the reader, just as it does people in life:"
+    }
+  },
+  {
+    "id": "stein-triage-46",
+    "question": "Make sure there is something visual on every page: mark V in the corner of pages that have a visual element and NV on pages that do not, then return to introduce a visual element on every NV page.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "Until you are in the habit of making sure that there is something visual on every page, while reviewing the draft put a small V in the lower right corner of every page that has something visual on it. This provides a discipline as you develop the experience of reading with an editor's eye. If a page has nothing visual, mark NV and return to it later to introduce a visual element."
+    }
+  },
+  {
+    "id": "stein-triage-47",
+    "question": "If your characters usually speak in complete sentences, fix it so they don't.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "In dialogue sequences, if your characters usually speak in complete sentences, fix it so they don't."
+    }
+  },
+  {
+    "id": "stein-triage-48",
+    "question": "Break up any dialogue that runs longer than three sentences with an interjection, thought, or action, and make responses oblique at least from time to time.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If any dialogue runs longer than three sentences, break it up with an interjection from another character or a thought or action. Check to see that responses in dialogue are oblique, at least from time to time."
+    }
+  },
+  {
+    "id": "stein-triage-49",
+    "question": "Catch every place a character \"muttered\" or \"screamed\" instead of \"said,\" and substitute \"he said\" and \"she said\" — the dialogue, not the tag, should tell how lines are spoken.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "In your general revision, catch the places where a character “muttered,” “screamed,” and the like instead of “said.” Substitute “he said” and “she said” for language that tells the reader how the lines are spoken. That's the dialogue's job."
+    }
+  },
+  {
+    "id": "stein-triage-50",
+    "question": "Make a checklist of everything to catch during your general revision; if you cannot do it all in one pass, save some items for a second pass.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "If you are new to the process, you'll want to make a checklist of all the things I've suggested catching during general revision. If you find that you just can't do everything in one pass, save some things for a second pass later on."
+    }
+  },
+  {
+    "id": "stein-triage-51",
+    "question": "Consider whether bringing a strong scene forward would provoke the reader's curiosity more than the scene that presently starts the book.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "You may want to ask yourself, if you were to bring a strong scene forward, would that provoke the reader's curiosity more than the scene that presently starts the book?"
+    }
+  },
+  {
+    "id": "stein-triage-52",
+    "question": "Make the ending of your book a high point of satisfaction for the reader; if it is not, consider whether another scene or circumstance would make a better ending.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "You might consider at this stage whether the ending of your book is a high point of satisfaction for the reader. If not, is there another scene or circumstance that might make a better ending?"
+    }
+  },
+  {
+    "id": "stein-triage-53",
+    "question": "For a final read-through, work with a clean manuscript in which your changes are not visible, and fix anything that momentarily makes you see words on the page and takes you out of experiencing the story.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 32",
+      "quote": "For your next read-through, work with a clean manuscript in which the changes you've made are not visible as changes. (One of the great advantages of working on a computer!) This time, as you read, watch for anything that momentarily makes you see words on the page and takes you out of experiencing the story."
+    }
+  }
+]

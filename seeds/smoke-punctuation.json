@@ -1,0 +1,158 @@
+[
+  {
+    "id": "le-guin-punctuation-01",
+    "question": "Name the punctuation marks you avoid out of fear or uncertainty. Practice using them until they feel like tools in your kit, not rules to trip you.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "If you aren't interested in punctuation, or are afraid of it, you' re missing out on a whole kit of the most essential , beauti ful, elegant tools a writer has to work with"
+    }
+  },
+  {
+    "id": "le-guin-punctuation-02",
+    "question": "Go through a draft and mark every place you used language carelessly or stupidly. Rewrite those sentences, because language misused breeds lies and half-truths even with the best intentions.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "We need to remember that it works the other way round too. Even with the best intentions , language misused , language used stupidly; care lessly, brutally, language used wrongly; breeds lies, half-truths , confusion."
+    }
+  },
+  {
+    "id": "le-guin-punctuation-03",
+    "question": "Treat using language well as your first duty as a writer. For each sentence you write, ask whether your use of language is honest.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "In that sense you can say that grammar is morality. And it is in that sense that Isay a writer' s first duty is to use language well."
+    }
+  },
+  {
+    "id": "le-guin-punctuation-04",
+    "question": "Before you 'correct' a sentence, ask whether the rule serves clarity or just marks you as a member of a grammatical in-group. Do not let correctness become a shibboleth that divides writers.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "Correct grammar; correct usage, are used as tests or shibboleths to form an ingroup of those who speak and write English 'correctly' and an out-group of those who don' t. And guess which group has the power?"
+    }
+  },
+  {
+    "id": "le-guin-punctuation-05",
+    "question": "Scan your written prose for incorrect usage that is not part of a conscious, consistent dialect voice. Rewrite it, because left alone it can invalidate the whole piece.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "\"incorrect usage, in written prose, unless part of a conscious, consistent dialect voice, is disastrous."
+    }
+  },
+  {
+    "id": "le-guin-punctuation-06",
+    "question": "Find the half-finished sentences and misused words in your writing that would pass aloud but fail on the page. Rewrite them so the words alone are clear, without voice or intonation to help.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "Our standards for writing are higher and more formal than for speaking."
+    }
+  },
+  {
+    "id": "le-guin-punctuation-07",
+    "question": "Find a place where you broke a grammar or punctuation rule. Rephrase the sentence so the break reads as a knowing choice, not an error — you may only break the rules you know.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "Only if you know the rule can you break it."
+    }
+  },
+  {
+    "id": "le-guin-punctuation-08",
+    "question": "Scan your prose for ungrammatical, overcorrected, or colloquial usages that stick out on the page. Cut them — they make the sentence sound all wrong even when they are not morally wrong.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "For all of us, this involves avoiding ungrammatical, overcor rected, or colloquial' usages that stick out painfully in written prose."
+    }
+  },
+  {
+    "id": "le-guin-punctuation-09",
+    "question": "List the punctuation problems you have with your own writing: what you feel uncertain about, and which rules you are impatient with — those are the places where your prose will slip.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "What problems do you have with punctuation? What do you feel uncertain about? What rules are you impatient with?"
+    }
+  },
+  {
+    "id": "le-guin-punctuation-10",
+    "question": "Look up every punctuation usage that worries you. Study model examples from writers you trust and practice imitating them until the usage feels easy.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "In the term, it's worth looking up the things that worry you."
+    }
+  },
+  {
+    "id": "le-guin-punctuation-11",
+    "question": "Take a few paragraphs of prose you admire and study the punctuation in them: why did the author break that sentence there, where did she want a pause, how much of the rhythm is carried by the punctuation?",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "did she break that sentence that way, did she want a pause there, how much of the rhythm of the prose is actually established by the punctuation, how's it done?"
+    }
+  },
+  {
+    "id": "le-guin-punctuation-12",
+    "question": "Rewrite a passage of your own narrative with all punctuation removed — no paragraphs, no breaks — so it must make itself clear without punctuation. Then punctuate it again, rewriting wherever the punctuation was doing the work, and ask which version is stronger.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "The nonpunctuated passage had to find a way to make itself clear without punctuation. To punctuate it may involve rewriting it."
+    }
+  },
+  {
+    "id": "le-guin-punctuation-13",
+    "question": "Read through a draft for sentences where a missing or misplaced comma changes the meaning. Make sure each comma commits the sentence to what you actually mean.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Punctuation",
+      "quote": "Eats shoots and leaves."
+    }
+  }
+]

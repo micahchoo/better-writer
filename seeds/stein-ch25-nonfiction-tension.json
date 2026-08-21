@@ -1,0 +1,302 @@
+[
+  {
+    "id": "stein-nf-desire-engine-01",
+    "question": "Structure your nonfiction piece around somebody wanting something, facing obstacles, trying to get it, and finally getting or not getting it — make the conscious use of desire the engine of the telling.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "All storytelling from the beginning of recorded time is based on somebody wanting something, facing obstacles, not getting it, trying to get it, trying to overcome obstacles, and finally getting or not getting what he wanted. What has interested listeners, readers, and viewers for centuries is available in the conscious use of desire in nonfiction."
+    }
+  },
+  {
+    "id": "stein-nf-conflict-present-02",
+    "question": "Check your article, story, or book for dramatic conflict: the reader's interest flags wherever you failed to keep in mind that dramatic conflict has been the basis of stories from the beginning of time.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "In articles, newspaper stories, and books, the reader’s interest often flags because the writer did not keep in mind that dramatic conflict has been the basis of stories from the beginning of time."
+    }
+  },
+  {
+    "id": "stein-nf-conflict-lowkey-03",
+    "question": "Examine the cast of your piece for two people, parties, organizations, or entities in conflict; where the conflict is not immediately apparent, bring the conflicting elements closer together and highlight it, actual or potential.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Are there two people, two parties, two organizations, or two entities of any kind that are in conflict? If the conflict might not be immediately apparent to the reader, can the writer provide some help by bringing the conflicting elements closer to each other and by highlighting the conflict, actual or potential?"
+    }
+  },
+  {
+    "id": "stein-nf-plant-desire-04",
+    "question": "Plant the desire before the thwart: conflict can arise from a thwarted desire, but the reader must already know what was wanted for the thwarting to move them.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Conflict can arise from a thwarted desire, but the desire must be planted."
+    }
+  },
+  {
+    "id": "stein-nf-raise-objective-06",
+    "question": "Raise the importance of what your subject wants: the more important the objective, the bigger the conflict will seem when obstacles block the want — even an unattainable want can stimulate the reader's emotions.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "The more important the objective, the bigger the conflict will seem to the reader if there are obstacles in the way of gratifying the want. The thing that’s wanted may not be possible. Nevertheless, the reader can have his emotions stimulated by that unrealistic and unattainable want."
+    }
+  },
+  {
+    "id": "stein-nf-want-to-beginning-07",
+    "question": "Before you begin writing, determine whether any of the people in your story want something badly, and move that material up to the beginning to touch a match to the reader's emotions.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "When the writer has his material and is ready to begin writing, that’s the time to determine whether any of the people in the story he is about to write want something badly. Bringing that material up to the beginning could help touch a match to the reader’s emotions."
+    }
+  },
+  {
+    "id": "stein-nf-differing-scripts-08",
+    "question": "When preparing to write any passage or scene involving two people, focus on their differing intentions (or scripts) so their conflict positions itself in adversarial situations where conflict is inherent.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "In preparing to write any passage or scene involving two people, if the writer focuses on their differing intentions (or “scripts”), he will immediately see the dramatic advantages of positioning their conflict in many kinds of adversarial situations in which conflict is inherent in the circumstances."
+    }
+  },
+  {
+    "id": "stein-nf-crucible-planning-09",
+    "question": "At the planning stage, consider placing your two adversaries in a crucible — a situation that holds them together more than anything drives them apart — so their conflict cannot end in a truce.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Nonfiction writing would be more dramatic and tap the reader’s emotions more if the crucible were considered more often in the planning stage."
+    }
+  },
+  {
+    "id": "stein-nf-suspense-holding-off-10",
+    "question": "Create suspense by making the reader expect something to happen and then holding off: suspense occurs when what the reader expects is not happening yet because you are holding off.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Suspense is a valuable technique for the writer who wants to make his reader keep turning pages. It occurs when the reader expects something to happen and it isn’t happening yet because the author is holding off."
+    }
+  },
+  {
+    "id": "stein-nf-first-paragraph-withhold-12",
+    "question": "Rewrite your first paragraph so it arouses curiosity by withholding one piece of information until a bit later.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Can your first paragraph arouse curiosity by withholding a piece of information till a bit later?"
+    }
+  },
+  {
+    "id": "stein-nf-unresolved-controversy-13",
+    "question": "Set up a question or controversy in your story and do not answer or resolve it immediately.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Does your story set up a question or controversy and not answer or resolve it immediately?"
+    }
+  },
+  {
+    "id": "stein-nf-cut-suspense-killing-facts-14",
+    "question": "Cut facts that unnecessarily diminish suspense early in your piece.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Are you loading in facts that unnecessarily diminish suspense early?"
+    }
+  },
+  {
+    "id": "stein-nf-unexplained-action-15",
+    "question": "Describe an action that arouses curiosity but do not explain it in the same paragraph.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Have you described an action that may arouse curiosity but that isn’t explained in the same paragraph?"
+    }
+  },
+  {
+    "id": "stein-nf-question-arousal-16",
+    "question": "Convert any sentence in your piece to a question that will arouse curiosity rather than satisfy it.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Can you convert any sentence to a question that will arouse curiosity rather than satisfy it?"
+    }
+  },
+  {
+    "id": "stein-nf-reader-conclusion-17",
+    "question": "Handle the story so that at the end the reader draws his own conclusion — provide the conflict for interest but let the reader make the judgment.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "This method of handling the story not only provides conflict for reader interest, at the end it lets the reader draw his own conclusion."
+    }
+  },
+  {
+    "id": "stein-nf-consistent-pov-18",
+    "question": "Build and maintain suspense in your nonfiction through a consistent point of view in which the reader learns only what the narrator knows, and learns it when the narrator learns it.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "The following true story demonstrates how suspense can be built and maintained in nonfiction through a consistent point of view in which the reader learns only what the narrator knows, and learns it when the narrator learns it:"
+    }
+  },
+  {
+    "id": "stein-nf-no-telegraphing-19",
+    "question": "Hold back from giving the conclusion first: starting with the outcome telegraphs the story and spoils it, even though giving the conclusion first is our instinct in life.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "If I had started to recount what had happened by saying, “The superintendent of the building I was staying in burned to death last weekend,” I would have spoiled the story by telegraphing the outcome. That’s what we do in life. Our instinct is to give the conclusion first."
+    }
+  },
+  {
+    "id": "stein-nf-humanize-20",
+    "question": "Humanize the people in your story by name and a couple of humanizing particulars before anything happens to them, particularizing as often as possible.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "I didn’t refer to Roger as “the superintendent.” I called him by his name. I said a couple of things to humanize him. I particularized as often as possible."
+    }
+  },
+  {
+    "id": "stein-nf-tension-suspense-distinction-21",
+    "question": "Keep the difference between tension and suspense in mind as you build your piece: suspense arouses anxious uncertainty about what might happen, while tension involves the sudden onset of stress, strain, or pressure.",
+    "verb": "elucidate",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Suspense arouses a feeling of anxious uncertainty in the reader about what might happen, or a hope that something bad won’t happen. Tension usually involves the sudden onset of a feeling of stress, strain, or pressure."
+    }
+  },
+  {
+    "id": "stein-nf-time-date-tension-22",
+    "question": "Create tension by the simple mention of a time or date that carries dread — “It was four o’clock in the morning” works because it is an hour when most people are asleep.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Tension can be created by the simple mention of a time or date. “It was four o’clock in the morning” creates tension because it’s an hour when most people are asleep."
+    }
+  },
+  {
+    "id": "stein-nf-separate-action-23",
+    "question": "Separate the two parts of an action into distinct sentences — the order given, then the refusal — because the separation itself creates the tension.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "What creates the tension is separating the two parts of the action."
+    }
+  },
+  {
+    "id": "stein-nf-stretch-confrontation-24",
+    "question": "Stretch a tense situation, often a confrontation between persons or groups, out over paragraphs and pages — the continuation of tension is what keeps it alive.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "The continuation of tension over paragraphs and pages comes from stretching out a tense situation, often a confrontation between persons or groups."
+    }
+  },
+  {
+    "id": "stein-nf-short-sentences-tension-25",
+    "question": "Write short sentences and short paragraphs in your tense passages to increase tension, and resist the temptation to rush to a conclusion.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "Short sentences and short paragraphs help increase tension. A common error is the writer’s temptation to rush to a conclusion."
+    }
+  },
+  {
+    "id": "stein-nf-repetition-suspense-26",
+    "question": "Repeat a key name or phrase deliberately — the purposeful repetition of “Mount St. Vincent” — to help set up suspense.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "The purposeful repetition of “Mount St. Vincent” helps set up the suspense."
+    }
+  },
+  {
+    "id": "stein-nf-switch-thread-27",
+    "question": "Heighten suspense by switching to a different part of the story — another person, another thread — before the reader learns what they want to know.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 25",
+      "quote": "The switch to a different part of the story (the spokesperson for the bus company) heightens the suspense."
+    }
+  }
+]

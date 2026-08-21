@@ -1,0 +1,222 @@
+[
+  {
+    "id": "stein-envelope-one-effective-detail",
+    "question": "When you give your reader detail on character, clothing, settings, or actions, choose the single most effective detail and err on the side of too little rather than too much, so the reader’s imagination has room to work.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "My advice on achieving a balance is to choose the most effective detail and to err on the side of too little rather than too much. For the reader’s imagination, less is more."
+    }
+  },
+  {
+    "id": "stein-envelope-one-distinguishing-item",
+    "question": "Describe a character’s clothing with one distinguishing item and let the reader imagine the rest, instead of listing the full outfit as if preparing a missing persons bulletin.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "A more common error is detailing the clothing worn by a character as if preparing a missing persons bulletin, when one distinguishing item would suffice and allow the reader to imagine the rest."
+    }
+  },
+  {
+    "id": "stein-envelope-withhold-interior",
+    "question": "When a character’s outward action already carries the moment, cut the sentences telling the reader what the character is thinking or seeing, and trust the reader to imagine whatever fits the story.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "Does the author tell us what the grandmother is thinking? Or seeing? Not a bit. The reader, given the context, can imagine whatever he likes that fits the story."
+    }
+  },
+  {
+    "id": "stein-envelope-trigger-imagination",
+    "question": "Treat the reader’s experience as an envelope: fill it with just enough detail to trigger the reader’s imagination, and never so much that nothing is left for it to do.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "I have sometimes described the reader’s experience to students as an “envelope.” It is a mistake to fill the envelope with so much detail that little or nothing is left to the reader’s imagination. The writer’s job is to fill the envelope with just enough to trigger the reader’s imagination."
+    }
+  },
+  {
+    "id": "stein-envelope-evoke-terror",
+    "question": "Instead of describing your character’s terror, create the circumstances that make the reader feel the terror directly, the way Kafka does.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "Less is more when it comes to stimulating strong emotions in the reader. One of the mistakes made by some of the popular thriller writers is that they describe the terror of characters instead of letting the reader feel the terror as Kafka does."
+    }
+  },
+  {
+    "id": "stein-envelope-unresolved-threat",
+    "question": "End a chapter at a moment of unresolved threat — a menace left unspecified, as in “something else can happen” — so the reader’s own anticipation does the terrorizing between chapters.",
+    "verb": "transition",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "Vitarelli had a character saying, “You have two choices, I can kill you or something else can happen. Why don’t you wait and see.” End of chapter. The envelope is made. The reader can terrorize himself by waiting, or he can go on reading."
+    }
+  },
+  {
+    "id": "stein-pace-short-sentences-paragraphs",
+    "question": "Step up your pace by shortening sentences and paragraphing more frequently; the two together accelerate the pace even more than either alone.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "Journalists know that short sentences step up pace. They also know that frequent paragraphing accelerates the pace. Short sentences plus frequent paragraphing step up pace even more."
+    }
+  },
+  {
+    "id": "stein-pace-adversarial-dialogue",
+    "question": "Pick up the pace of a scene with a quick exchange of adversarial dialogue, letting the lines get clipped and each paragraph hold a single short sentence.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "In fiction, a quick exchange of adversarial dialogue often proves to be an ideal way of picking up pace by the use of short sentences and paragraphing."
+    }
+  },
+  {
+    "id": "stein-pace-skipping-for-effect",
+    "question": "Skip the routine steps of an action and jump from one significant beat to the next — “skipping for effect” — even if that eliminates two thirds of the words.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "He washed his body, shaved his jaws, drank his coffee, and missed the seven-thirty-one. Eliminating about two thirds of the words steps up the pace brilliantly. I call this “skipping for effect.”"
+    }
+  },
+  {
+    "id": "stein-pace-skip-anticipated-scene",
+    "question": "Flip forward past a scene the reader anticipates — end the chapter before it happens and open the next elsewhere — so the scene lives only in the reader’s imagination and the pace quickens.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "A technique for stepping up pace in fiction that isn’t used enough is flipping forward past a scene that never appears in the book."
+    }
+  },
+  {
+    "id": "stein-pace-cut-weak-scene",
+    "question": "When revising, find scenes that don’t work as well as you had hoped and consider skipping them entirely — if removing the scene propels the pace, you turn a liability into an asset.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "In revising your manuscript, you may find some scene that doesn’t work as well as you had hoped. Consider skipping that scene and turning a liability into an asset if removing the scene propels the pace of your story."
+    }
+  },
+  {
+    "id": "stein-pace-jump-cut",
+    "question": "Jump-cut from one scene to the next without the in-between matter of travel and transition — close the door, line space, next scene — because showing the getting-there is a drag and boring.",
+    "verb": "cut",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "With this technique, a story moves from one scene to the next without the in-between matter that would be part of getting from one place to the next."
+    }
+  },
+  {
+    "id": "stein-pace-purposeful-slowdown",
+    "question": "Build purposeful slowdowns into your book from time to time, because readers, like athletes, must catch their breath.",
+    "verb": "transition",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "Yet the best of good books have purposeful slowdowns in pace from time to time because the authors know that readers, like athletes, must catch their breath."
+    }
+  },
+  {
+    "id": "stein-pace-scene-switch-suspense",
+    "question": "Follow each cliffhanging chapter ending with a chapter that moves to a different location or has different characters — it sustains suspense and also increases the pace of your story.",
+    "verb": "transition",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 19-20",
+      "quote": "In the chapter on suspense, I showed how suspense can be prolonged throughout an entire book by following each cliffhanging chapter ending with a chapter that moves to a different location or has different characters."
+    }
+  }
+]

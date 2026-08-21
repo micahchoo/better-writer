@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+web/dist/
+.vite/
+*.tsbuildinfo
+
+# secrets — .env holds model endpoints and STT paths; never commit
+.env
+.env.*
+!.env.example
+
+# local data — the writer's drafts and everything the app writes at runtime
+data/
+
+# python (seed bank tooling)
+__pycache__/
+*.pyc
+.venv/
+
+# source material — craft-book text and PDFs used to extract the seed bank
+Books/
+
+# vendored third-party tooling (its own repo)
+opendataloader-pdf/
+
+# os / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/

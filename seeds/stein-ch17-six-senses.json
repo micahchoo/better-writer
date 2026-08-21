@@ -1,0 +1,170 @@
+[
+  {
+    "id": "stein-six-senses-01",
+    "question": "Find a scene that relies only on sight and sound and rewrite it so your characters also touch, taste, and smell — a character stripped of these has lost part of their humanity.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "Then, as writers, we let three of our senses atrophy, as if our characters had lost part of their humanity and didn't need to touch, taste, and smell."
+    }
+  },
+  {
+    "id": "stein-six-senses-02",
+    "question": "Listen to the sounds in your scene and write them as you actually hear them, not as the clichés like \"meow\" or \"thwack\" — find the sound your reader will recognize but has never seen in print.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "There's no point to your using Joyce's sound or the cliché meow. Listen to your cat and see if you can't come up with something that your readers will recognize but perhaps will never have seen in print before."
+    }
+  },
+  {
+    "id": "stein-six-senses-03",
+    "question": "Mark where sound stops in your scene and write the pauses, the momentary silences — the absence of sound that makes music possible.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "Sound, of course, is not continuous. It is interrupted by pauses, by momentary silences, the absence of sound that makes music possible."
+    }
+  },
+  {
+    "id": "stein-six-senses-04",
+    "question": "Render smells accurately: particularize what each place or object smells like — rubber bands have a marked odor, an old book smells musty — instead of leaving the sense vague.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "It is important not only to be aware of and use smells, but to be accurate in rendering them. Rubber bands have a marked odor. An old book smells musty. Unseen wind has a smell."
+    }
+  },
+  {
+    "id": "stein-six-senses-05",
+    "question": "Use smell to help your reader experience a setting: what odor would draw them into the room — fresh-baked bread drifting like an invitation?",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "A writer can use the sense of smell to good effect in many ways, for instance, to help a reader experience a setting: I could tell we were coming to the kitchen. The odor of fresh-baked bread drifted into the hallway like an invitation to follow where it led."
+    }
+  },
+  {
+    "id": "stein-six-senses-06",
+    "question": "Give a character a habitual scent that does the characterizing for you — a signature perfume that tells the reader they use too much of it.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "Characterization can benefit from the use of smell: Sally fluttered in, enveloped in her newest perfume. This tells us that Sally habitually uses too much perfume."
+    }
+  },
+  {
+    "id": "stein-six-senses-07",
+    "question": "Look for the smell that is absent from your scene — like the rose bred of its smell — and use that absence to carry meaning.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "The absence of smell is also useful to a writer: \"They've bred the smell out of roses,\" Gloria said."
+    }
+  },
+  {
+    "id": "stein-six-senses-08",
+    "question": "Blindfold yourself, empty your pocket or purse onto a table, and describe each object by touch alone, as if to someone from another planet — you can't say it feels like plastic, you have to particularize.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "Feel each object with your fingertips, describing it as best you can as if to someone from another planet who wouldn't know what those strange objects are that you carry everywhere you go. You can't say a credit card feels like plastic. You have to particularize."
+    }
+  },
+  {
+    "id": "stein-six-senses-09",
+    "question": "Go through every scene you write and use the sense of touch at least once.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "Your writing can only gain if you attempt to use the sense of touch at least once in every scene."
+    }
+  },
+  {
+    "id": "stein-six-senses-10",
+    "question": "From memory, describe the foods of your last meal to a guest who has never tasted them — invent similes and metaphors so their taste buds pop, and never feed cardboard meals to your characters.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "You wouldn't feed cardboard meals to guests. Don't feed cardboard meals to your characters. Make your reader's taste buds pop, even if he's from outer space."
+    }
+  },
+  {
+    "id": "stein-six-senses-11",
+    "question": "Write a moment where a character senses something beyond the five senses — a door closing when there is no wind, someone in the room who is not there — in mainline as well as mystery and suspense fiction.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "A writer can make excellent use of a \"sixth sense\" in mainline fiction as well as in mystery and suspense fiction. You are alone in the house, and you hear a door close. Is it the wind? But there is no wind inside the house."
+    }
+  },
+  {
+    "id": "stein-six-senses-12",
+    "question": "Your first visual impression of a person or place is usually a cliché — look again for the distinguishing detail, the particularity, the thing nobody has seen quite that way before.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "The first thing you see is usually a cliché. We see the tall man, the attractive woman, the room full of people, the clean-cut lawn. These are the easy images that leap to mind. The writer's job is to look for distinguishing detail, the particularity, in visualizing what his reader is to see: the man whose wavy hair wouldn't stay under his cap"
+    }
+  },
+  {
+    "id": "stein-six-senses-13",
+    "question": "Switch the sense to make a metaphor: describe what is seen through another sense, as when a character can \"smell the difference\" — the switch lands the point quickly.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "A technique used too seldom involves changing the sense: Zalatnick led me into the shop not as if I was a fellow looking for a job but as if I was a friend of a friend. I was sure the men in the shop could smell the difference. \"Smell\" isn't meant to be taken literally. Switching the sense from seeing to smelling creates a metaphor that gets the point across to the reader quickly."
+    }
+  },
+  {
+    "id": "stein-six-senses-14",
+    "question": "Check your sensory characterizations: each one must be an action, somebody doing something — never stop the story to characterize or to use the senses.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 17",
+      "quote": "If you look at those examples again, you'll note that each of the characterizations is an action. Somebody is doing something. There's no need to stop a story to characterize or to use the senses."
+    }
+  }
+]

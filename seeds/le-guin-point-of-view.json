@@ -1,0 +1,348 @@
+[
+  {
+    "id": "le-guin-pov-reliable-narrator-01",
+    "question": "In your memoir or nonfiction narrative, remember that the \"I\" is the author: hold yourself to relating what happened, and don't change facts to make the story neater.",
+    "verb": "concept-form",
+    "genre": [
+      "memoir",
+      "creative-nonfiction",
+      "essay"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "In autobiography and memoir; in nonfiction narrative of any kind, the \"I\" (whether the writer uses it or not) is the author. Reading nonfiction, we assume that the author is not inventing, but relating, and won't change facts to make the story neater at least, not blatantly."
+    }
+  },
+  {
+    "id": "le-guin-pov-fiction-narrator-not-author-02",
+    "question": "Clarify that the \"I\" or third-person narrator of your fiction is not you, and decide how reliable that narrator is — unreliable narrators may deliberately or innocently misrepresent the facts.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "In fiction, the \"I\" narrator (or the third-person narrator) is not the author: Most first- and third-person narrators in serious fiction used to be trustworthy, just like memoirists. But unreliable narrators are now fairly common in fiction, narrators who deliberately innocently misrepresent the facts."
+    }
+  },
+  {
+    "id": "le-guin-pov-first-person-limit-03",
+    "question": "Cut anything in your first-person scene that the viewpoint character could not know, feel, perceive, think, guess, or remember — the reader infers other people only from what \"I\" sees and says of them.",
+    "verb": "cut",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "\"I\" tells the story and is centrally involved in it. what \"I\" knows, feels, perceives, thinks, guesses , remembers, etc , can be told."
+    }
+  },
+  {
+    "id": "le-guin-pov-limited-third-limit-04",
+    "question": "Check your limited-third-person scene: nothing may be seen, known, or told except what the viewpoint character sees, knows, and tells — this limitation concentrates the voice and gives it authenticity.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "It has the same essential limitation: that nothing can be seen, known, or told except what the narrator sees, knows, and tells."
+    }
+  },
+  {
+    "id": "le-guin-pov-not-pronoun-swap-05",
+    "question": "When you move a passage from first to limited third person, don't just switch the pronoun and verb endings: treat it as a change of voice, because the reader's relationship to \"I\" is not the same as to \"he\" or \"she\".",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "First person is a different voice from limited third. The reader 's relationship to that voice is different because the author' s relationship to it is different."
+    }
+  },
+  {
+    "id": "le-guin-pov-involved-author-freedom-06",
+    "question": "In an involved-author passage, let the narrative shift freely among characters' perceptions and into analysis or prediction only the author could make — a description of a room with nobody there to see it.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "The story is not told from within any single character. There may be numerous viewpoint characters, and the narrative voice may change at any time from one to another character within the perception, analysis, or prediction that only the author could make."
+    }
+  },
+  {
+    "id": "le-guin-pov-detached-author-07",
+    "question": "Retell your scene in the detached-author voice: say only what a neutral observer (a fly on the wall) could infer from behavior and speech, and never enter a character's mind.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "There is no viewpoint character: The narrator is not one of the characters, and can say of the characters only what a neutral observer (an intelligent fly on the wall) might infer of them from behavior and speech. The author never enters a character' s mind."
+    }
+  },
+  {
+    "id": "le-guin-pov-observer-narrator-08",
+    "question": "If you use an observer-narrator, keep them a witness rather than the protagonist: the story is about events they witnessed, not about them.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "The narrator is one of the characters , but not the principal character present, but not a major actor in the events. The difference from first-person narration is that the story is not about the narrator."
+    }
+  },
+  {
+    "id": "le-guin-pov-inconsistent-shifts-09",
+    "question": "Hunt out inconsistent or frequent POV shifts in your story: unless handled with awareness and skill, they jerk the reader around, bouncing between incompatible identifications, confusing emotion, and garbling the story.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "In fiction, inconsistent POV is a very frequent problem. Unless handled with awareness and skill, frequent POV shifts jerk the reader around, bouncing in and out of incompatible identi fications, confusing emotion, garbling the story:"
+    }
+  },
+  {
+    "id": "le-guin-pov-memoir-no-omniscience-10",
+    "question": "In your memoir, flag any narration of another real person's private thoughts or motives as your guesswork, opinion, or interpretation — a memoirist can't be omniscient, even for a moment.",
+    "verb": "rewrite",
+    "genre": [
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "A memoirist doesn't have the right to do this without clearly indicating that Aunt Jane's thoughts and Uncle Fred's motives aren' t known facts, but the author's guess work, opinion; or interpretation. Memoirists can't be omniscient, even for a moment."
+    }
+  },
+  {
+    "id": "le-guin-pov-shift-is-structural-11",
+    "question": "Treat any POV shift as a major change of voice: going from first to third person, or from involved author to observer-narrator, affects the whole tone and structure of your narrative.",
+    "verb": "transition",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "Shifts within limited third person from one character' s mind to another's call for awareness and care. Its a major change of voice to go from first to third person, or from involved author to observer-narrator: The shift will affect the whole tone and structure of your narrative"
+    }
+  },
+  {
+    "id": "le-guin-pov-control-shifts-12",
+    "question": "For every shift of viewpoint character in your story, be aware of it, have a reason for it, and stay in control of it.",
+    "verb": "transition",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "must be aware of, have a reason and be in control of all shifts of viewpoint character."
+    }
+  },
+  {
+    "id": "le-guin-pov-memoir-invent-fiction-13",
+    "question": "If you're a memoirist, practice limited third person by inventing a story with made-up characters — using it on factual narrative is trespassing, since you can't know what another real person thought and felt.",
+    "verb": "rewrite",
+    "genre": [
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "To use limited third person in factual narrative is to trespass, pretending you know what another real person thought and felt."
+    }
+  },
+  {
+    "id": "le-guin-pov-no-dialogue-14",
+    "question": "In your POV practice scenes, use little or no dialogue: while characters talk, their voices cover the POV, and you're not exploring that voice.",
+    "verb": "cut",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "Please use little or no dialogue in these POV exercises While the characters talk, their voices cover the POV, and so you're not exploring that voice"
+    }
+  },
+  {
+    "id": "le-guin-pov-retell-other-participant-15",
+    "question": "Retell the same story from the point of view of one of the other people involved in it.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "Second: Retell the same story from the POV of one of the other people involved in it."
+    }
+  },
+  {
+    "id": "le-guin-pov-accident-twice-16",
+    "question": "Tell the story of an accident twice: once in the detached author mode or in a journalistic, reportorial voice, then from the viewpoint of a character involved in the accident.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "Or tell the story of an accident twice: once in the detached author mode, or in a journalistic, reportorial voice; then from the viewpoint of a character involved in the accident"
+    }
+  },
+  {
+    "id": "le-guin-pov-add-onlooker-17",
+    "question": "Add a character who was there but not a participant, only an onlooker, and tell the same story in that character's voice.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "If there wasn't a character in the original version who was there but was not a participant, only an onlooker; add such a character now."
+    }
+  },
+  {
+    "id": "le-guin-pov-involved-author-context-18",
+    "question": "When you expand a scene into the involved-author voice, give the story a context: find out what led up to it, and follow it further.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "You may find you need to give it a context, find out what led up to it, or follow it further."
+    }
+  },
+  {
+    "id": "le-guin-pov-story-concerns-you-19",
+    "question": "For your involved-author practice, choose a story that concerns you, not one you use to preach.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "I do mean that the story should be about something that concerns you."
+    }
+  },
+  {
+    "id": "le-guin-pov-genre-convention-20",
+    "question": "Don't default to your genre's conventional POV: for romance, first person, observer-narrator, and involved author narration are equally suited to the genre.",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "Romances are conventionally told in limited third person, through the perceptions of the heroine, but first person, observernarrator, and involved author narration are equally suited to the genre"
+    }
+  },
+  {
+    "id": "le-guin-pov-choice-changes-meaning-21",
+    "question": "If a story sticks and won't go right, try changing who tells it: the choice of point of view makes an immense difference to the tone, the effect, even the meaning of the story.",
+    "verb": "transition",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "The choice of point(s) of view, the voice in which one narrates one's story; can make an immense difference to the tone, the effect, even the meaning of the story:"
+    }
+  },
+  {
+    "id": "le-guin-pov-unsignalled-shift-rare-22",
+    "question": "Don't attempt quick, unsignalled POV shifting unless you command it with immense certainty and skill — it dissolves viewpoints into one another and is rare for a reason.",
+    "verb": "transition",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "This kind of quick, unsignalled shifting, discussed further below, is rare, and takes immense certainty and skill."
+    }
+  },
+  {
+    "id": "le-guin-pov-thoughts-as-dialogue-23",
+    "question": "Present a character's unspoken thoughts directly, exactly as you would dialogue, but without quotation marks or italics — just make it clear the thought is going on inside someone's head.",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "Thoughts are handled exactly like dialogue, if you present them directly: But in presenting characters' thoughts you don' t have to use quotation marks, and I think italics or any typographical device overemphasizes the material."
+    }
+  },
+  {
+    "id": "le-guin-pov-limited-third-dominance-24",
+    "question": "Understand your default to limited third person: it became the predominant modern fictional voice partly in reaction to the Victorian fondness for involved author narration and its abuses.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Point of View and Voice",
+      "quote": "Limited third person is the predominant modern fictional voice partly in reaction to the Victorian fondness for involved author narration; and the many possible abuses of it."
+    }
+  }
+]

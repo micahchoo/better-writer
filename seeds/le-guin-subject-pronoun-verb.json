@@ -1,0 +1,350 @@
+[
+  {
+    "id": "le-guin-passive-01",
+    "question": "Find the passive constructions in your prose, name the doer, and make the doer the subject — convert them to active voice.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "It was proposed that the motion be tabled. Two passives. Ms. Brown proposed that the committee table the motion. Two actives."
+    }
+  },
+  {
+    "id": "le-guin-passive-02",
+    "question": "Scan your prose for passives used because they are indirect and polite; rewrite them so someone takes responsibility — who thought it, who did it.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "People often use the passive voice because its indirect, polite, unaggressive, and admirably suited to making thoughts seem as if nobody had personally thought them and deeds seem as if nobody had done them, so that nobody need take responsibility:"
+    }
+  },
+  {
+    "id": "le-guin-passive-03",
+    "question": "Check that the passive hasn't seeded itself into your style where it doesn't belong, and root it out.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "Make sure it hasn't seeded itself where it doesn' t belong."
+    }
+  },
+  {
+    "id": "le-guin-passive-04",
+    "question": "Before banning the passive voice, know what it is: the passive is not the verb to be.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "But I find that many people who on about banning the passive voice don't even know what it is. have confused it with the verb to be"
+    }
+  },
+  {
+    "id": "le-guin-there-is-01",
+    "question": "Rewrite your There-is and There-are constructions with exact, colorful verbs — \"Three great oaks stand on the road to Doomthorpe\" is stronger than \"There are three great oaks on the road to Doomthorpe.\"",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "verbs are more exact and colorful than the verb to ... for instance, the sentence above might be stronger as: \"Three great oaks stand on the road to Doomthorpe:\""
+    }
+  },
+  {
+    "id": "le-guin-there-is-02",
+    "question": "Don't ban the There-is construction outright — it is not inherently wrong and has its uses in the right place.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "But there is nothing inherently wrong with There-is, and there are reasons for it"
+    }
+  },
+  {
+    "id": "le-guin-limited-third-01",
+    "question": "Write from inside your story character: tell only what that single character perceives, feels, knows, remembers, and guesses.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "in \"limited third\" you' re writing from inside your story character: You can tell only what that single character perceives , feels , knows, remembers , guesses."
+    }
+  },
+  {
+    "id": "le-guin-limited-third-02",
+    "question": "Cut anything in your limited-third-person scene that the viewpoint character cannot perceive — if Della wouldn't see her own violet eyes, don't describe them; if she is aware of them, show it through her action.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "You can say, \"Della looked up into Rodney' s adoring face; but you can't say, 'Della raised her incredibly beautiful violet eyes to Rodney's adoring face. Why not? Because although Della may be aware she's incredibly beautiful and has violet eyes, thats not what Della sees when she looks up. Thats what Rodney sees. And Della is the person whose mind you' re in."
+    }
+  },
+  {
+    "id": "le-guin-tense-01",
+    "question": "Remember that in narrative, the past tense is not past and the present tense is not present — both are entirely fictive.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "past tense is not past and the present tense is not present. Both are entirely fictive."
+    }
+  },
+  {
+    "id": "le-guin-tense-02",
+    "question": "Write abstract discourse and generalities in the present tense — generalities aren't time-bound.",
+    "verb": "concept-form",
+    "genre": ["essay", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "Abstract discourse such as this essay is always in the present tense. Generalities aren' t time-bound."
+    }
+  },
+  {
+    "id": "le-guin-tense-03",
+    "question": "Don't write present-tense generalities about people or practices that belong to the past — describe what is past as past.",
+    "verb": "rewrite",
+    "genre": ["essay", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "anthropologists used to write, \"The Ussu worship forest spirits; even when the last three Ussu were Mormon converts working for the lumber mill."
+    }
+  },
+  {
+    "id": "le-guin-present-tense-01",
+    "question": "Know that in the present tense narration is linear, leading moment to next moment and excluding global temporal reference — it implies discontinuity.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "In the present tense, narration is linear, leading to the next moment, excluding global temporal reference:. ... The present tense implies discontinuity:"
+    }
+  },
+  {
+    "id": "le-guin-present-tense-02",
+    "question": "If you write in the present tense, keep out simple and compound past forms and the future — they become awkward and highly artificial.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "use of the simple or compound past tenses becomes awkward and use of the future highly artificial."
+    }
+  },
+  {
+    "id": "le-guin-past-tense-01",
+    "question": "Use the past tense for easy movement in time: it gives access to times before and after the period of the narrative and implies continuity.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "By giving easy access to times before and after the period of the narrative, this tense includes a vast histori cal and narrative context. It implies continuity:"
+    }
+  },
+  {
+    "id": "le-guin-present-tense-03",
+    "question": "Don't mistake a narrow focus for immediacy — the present tense's narrow focus merely leaves out more.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "A narrow focus isn' t more immediate: it merely leaves out more."
+    }
+  },
+  {
+    "id": "le-guin-present-tense-04",
+    "question": "Be aware that the present tense flattens the affect of your voice and produces a curious sameness in narrative.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "From this flatness derives the curious sameness of present-tense narrative. It all sounds rather alike:"
+    }
+  },
+  {
+    "id": "le-guin-present-tense-05",
+    "question": "In present-tense narrative, write \"then,\" not \"now\" — this is a story, not actuality.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "We write, \"She slaps the Velcro fasteners on her Adidas, then gets up and stretches. ... We use then because this isn't the present, isn't actual."
+    }
+  },
+  {
+    "id": "le-guin-past-tense-02",
+    "question": "In past-tense narration, use the past perfect for a time before the narrative moment — \"I hadn't seen,\" not \"I didn't see.\"",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "since the simple past \"I didn't see refers to a time previous to the present; but it occurs in a past-tense sentence, where a previous time would \"I hadn't seen.\""
+    }
+  },
+  {
+    "id": "le-guin-tense-switch-01",
+    "question": "Signal every switch of narrative tense with a line break, a dingbat, or a new chapter — otherwise your reader gets mixed up about what happened before what.",
+    "verb": "transition",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "if you switch the tense of your narrative frequently and without some kind of signal (a line break, a dingbat,; anew chapter) your reader will all mixed up as to what pened before what and what's happening after which and when we are, Or were, at the moment."
+    }
+  },
+  {
+    "id": "le-guin-tense-switch-02",
+    "question": "Before changing tenses mid-story, ask yourself whether you have a reason for the change — a tense switch is a big deal, like changing viewpoint characters.",
+    "verb": "transition",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "So its worthwhile to think, before changing tenses in mid story, whether you have any reason for so."
+    }
+  },
+  {
+    "id": "le-guin-tense-04",
+    "question": "Practice the past tenses you're hesitant about until they come freely — regaining free use of them increases your range of options as a storyteller.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "To regain free use of them is to increase your range of options as a storyteller. There are times the present tense is the right one, and there are times the past tense is the right one. Let yourself be able to make the choice."
+    }
+  },
+  {
+    "id": "le-guin-show-dont-tell-01",
+    "question": "Don't read \"show, don't tell\" as listing actions and objects without interpreting — keep your judgment and emotion in the text.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "List actions and objects, but don' t interpret, lest you be seen as judgmental; don' t show emotion, lest you be seen as unsophisticated"
+    }
+  },
+  {
+    "id": "le-guin-old-woman-01",
+    "question": "Write a sketch of an old woman at a present activity — washing dishes, gardening, whatever — as she thinks about an event from her youth, intercutting between \"now\" and \"then\" with at least two time-jumps.",
+    "verb": "elaborate",
+    "genre": ["fiction", "memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "You're going to write this sketch intercutting between the two times. \"Now\" is the kitchen, the garden, the desk, whatever, and \"then is what happened when she was young. Your narration will move back and forth between \"now\" and \"then. There should be at least two of these moves or time-jumps."
+    }
+  },
+  {
+    "id": "le-guin-old-woman-02",
+    "question": "Write the sketch in a chosen person (first or third) and a chosen tense arrangement — all past, all present, \"now\" present with \"then\" past, or \"now\" past with \"then\" present — and label your choice.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "Choose a PERSON: first person / third person (her namelshe). Choose a TENSE: all in past tense / all in present tense / \"now\" in present tense, \"then' in past tense / \"now\" in past tense, \"then\" in present tense. Write the story. Label it Person (a) Tenses (c) or whichever you chose."
+    }
+  },
+  {
+    "id": "le-guin-old-woman-03",
+    "question": "Now write the same story again in the other person and a different choice of tenses, and label it.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "Version Two: Now write the same story in the other person and a different choice of tenses. (Label it.)"
+    }
+  },
+  {
+    "id": "le-guin-old-woman-04",
+    "question": "When you write the second version, don't find-replace the pronouns and verb endings on a computer — write it over, and let the changed person and tense change the wording.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "Don't strain to keep the wording of the two versions identical, and please don't just g0 through it on a computer changing the pronoun and the verb endings. Write it over:"
+    }
+  },
+  {
+    "id": "le-guin-old-woman-05",
+    "question": "Within one version, keep the person of the verb constant — only the tense may shift.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "Within one version, the verb tense may shift, but the person of the verb can't."
+    }
+  },
+  {
+    "id": "le-guin-old-woman-06",
+    "question": "Compare your two versions: which pronoun works best for the story, which tense suits the material, how awkward are the time-shifts, and what actually differs between the versions?",
+    "verb": "elucidate",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "It may be useful to discuss the ease or awkwardness of the time-shifts; how well suited the tenses chosen are to the material; which pronoun works best for this story; which choice or combination of tenses works best for this story; whether there's much difference between the two ver sions and if there what is it"
+    }
+  },
+  {
+    "id": "le-guin-old-woman-07",
+    "question": "Read narrative prose with a particular consciousness of what persons and tenses of the verb are used, why the author used them, and how often the narrative tense changes.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Subject Pronoun and Verb",
+      "quote": "it can be useful to read narrative prose, for a while, with a particular consciousness of what persons and tenses of the verb are used"
+    }
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "id": "stein-tension-01",
+    "question": "Consciously create moments in which the reader feels tension. Remember that your job is to give readers stress, strain, and pressure—readers love in fiction what they hate in life.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "Their job is to give readers stress, strain, and pressure. The fact is that readers who hate those things in life love them in fiction."
+    }
+  },
+  {
+    "id": "stein-tension-02",
+    "question": "Distinguish tension from suspense in your pacing: use tension in brief bursts that last seconds or minutes, and let suspense carry the long arc of the work.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "Suspense can last over a long period, sometimes for an entire book. Tension is felt in seconds or minutes."
+    }
+  },
+  {
+    "id": "stein-tension-03",
+    "question": "Create tension by causing friction: have a character resist a demand or order, and keep the resistance going, because the tension lasts only as long as the disobedience.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "I quickly point out that the way to create tension is to cause friction (ordering “Stand up!”) and to have the recipient of the order not stand up; the tension will continue only as long as the disobedience."
+    }
+  },
+  {
+    "id": "stein-tension-04",
+    "question": "Cut the immediate relief of your character’s pressing problem: don’t resolve it at once, but stretch the tension out as long as possible.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "In examining the manuscripts of hundreds of writers over the years, a common fault I’ve observed is that the writer creates a pressing problem for a character and then immediately relieves the pressure by resolving it. That’s humane but not a writer’s function. His mission is to manipulate the emotions of the audience, and when it comes to moments of tension, to stretch them out as long as possible."
+    }
+  },
+  {
+    "id": "stein-tension-05",
+    "question": "Rewrite your opening to note a single chilling “fact”—something concrete and precise—that alarms the reader on its own.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "A common way to create tension in a novel is to simply note a “fact” that is likely to chill any reader."
+    }
+  },
+  {
+    "id": "stein-tension-06",
+    "question": "Place the first moment of tension as close to the beginning of your work as possible—it puts you in charge of the reader’s emotions.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "The most important moment of tension in a novel is its first use, which should be as close to the beginning of the book as possible. It puts the writer in charge of the reader’s emotions."
+    }
+  },
+  {
+    "id": "stein-tension-07",
+    "question": "After your early pages have fastened the reader to a character, create moments of tension for that character as soon as possible.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "The closer writing gets to literature, the more likely it is that what fastens us to the early pages is our interest in a character. And then, as soon as possible, the writer creates some moments of tension for that character."
+    }
+  },
+  {
+    "id": "stein-tension-08",
+    "question": "Describe a character’s dangerous work in minute detail so the reader feels tension mount with every turn of the screw.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "The author describes what the man is doing in minute detail. The reader, aware of the man as a human being, aware also of the five-year-old watching from a distance, feels tension mount with every turn of the screw."
+    }
+  },
+  {
+    "id": "stein-tension-09",
+    "question": "Give the scene a deadline and show it closing in—at four o’clock panic, at two minutes to six extreme tension—until the last-moment arrival.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "At four o’clock the hero, Frank, has not yet arrived, and Molly, glancing at the time, is tense. So is the reader. At five o’clock Molly is beginning to panic. At two minutes to six, the reader’s tension is extreme. At one minute to six, Frank arrives breathless."
+    }
+  },
+  {
+    "id": "stein-tension-10",
+    "question": "Put your character in an unavoidable meeting with a dangerous figure from their past, and let the reader grow tense instantly.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "The elevator stops on the fifth floor, and the dangerously neurotic man she jilted gets on. The reader becomes instantly tense."
+    }
+  },
+  {
+    "id": "stein-tension-11",
+    "question": "Pile one tense moment on another, adding to the degree of tension toward a climax instead of ending the confrontation at once.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "What we’ve done is add one tense moment to another, piling up the degree of tension toward a climax."
+    }
+  },
+  {
+    "id": "stein-tension-12",
+    "question": "Before the confrontation pays off, insert a complication—a volunteer who fumbles the rifle, a missing flashlight—that stretches the tension out.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "The temptation for the inexperienced writer is to have the older man go in and shoot the crazed animal right off. That makes short shrift of the tension. By adding the element of the younger volunteer and the flashlight, we add to the tension, stretching it out."
+    }
+  },
+  {
+    "id": "stein-tension-13",
+    "question": "Build moments of high tension even when the outcome is already known: stretch out the moments in which the reader hopes the character will stop, change course, not go through with it.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "This isn’t suspense because he told us at the outset that he committed the crime. But there are moments of high tension, stretched out."
+    }
+  },
+  {
+    "id": "stein-tension-14",
+    "question": "Relocate a sentence in your scene—transpose it to a later position and re-paragraph around it—to increase tension without changing a word.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "I transposed one sentence and created two new paragraphs. Note the increase in tension, though no words have been changed."
+    }
+  },
+  {
+    "id": "stein-tension-15",
+    "question": "Write dialogue that sparks with friction, generating tension in the reader the way it does in life.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 10",
+      "quote": "One of the easiest ways to create tension is by means of dialogue. The best dialogue sparks with friction, generating tension in the reader as it does in life."
+    }
+  }
+]

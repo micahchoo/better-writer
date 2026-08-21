@@ -1,0 +1,278 @@
+[
+  {
+    "id": "stein-dialogue-semblance-01",
+    "question": "Treat dialogue as a semblance of speech, not a recording: invent exchanges that are leaner than real talk and build in tempo or content toward a climax.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Dialogue, contrary to popular view, is not a recording of actual speech; it is a semblance of speech, an invented language of exchanges that build in tempo or content toward climaxes."
+    }
+  },
+  {
+    "id": "stein-dialogue-echoes-02",
+    "question": "Cut echoes from your dialogue — replies that mirror the question back. Remove every line that merely repeats what was said.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Talk is full of echoes. Echoes don’t belong in dialogue."
+    }
+  },
+  {
+    "id": "stein-dialogue-oblique-03",
+    "question": "Rewrite your dialogue so characters answer obliquely, not directly — the best dialogue leaves the question half-unanswered.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Dialogue, to the contrary, is indirect. The key word to understanding the nature of dialogue is that the best dialogue is oblique."
+    }
+  },
+  {
+    "id": "stein-dialogue-openquestion-04",
+    "question": "Rephrase a direct question so it opens the gate for an oblique answer: “Why are you giving me the third degree?” demands a reply, but “What’s this third degree?” invites one.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "A simple change in the question can open the gate wide for an oblique response: “What’s this third degree?”"
+    }
+  },
+  {
+    "id": "stein-dialogue-combat-05",
+    "question": "Rewrite a flat exchange so the talk turns tough, combative, or adversarial — such talk can be as exciting as physical action.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "When talk is tough, combative, or adversarial it can be as exciting as physical action."
+    }
+  },
+  {
+    "id": "stein-dialogue-fewlines-06",
+    "question": "Rewrite an exchange so a few lines imply the speakers’ shared, unresolved past — no speeches at each other.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Characters don’t need to make speeches at each other. From just four lines the reader learns that these two people have probably had a relationship in the past that is not resolved, and at least for one of them the relationship is filled with bitterness."
+    }
+  },
+  {
+    "id": "stein-dialogue-incidental-07",
+    "question": "Turn the conversation with an incidental remark — “It’s beginning to rain” — and let the response carry the plot in a new direction.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Tension can now be increased not only by the substance of their relationship but also by incidental matters. For instance: HE: It’s beginning to rain. SHE: What do you suggest?"
+    }
+  },
+  {
+    "id": "stein-dialogue-lean-08",
+    "question": "Cut filler from dialogue: “uh” and other time-borrowing words are useless, and every word left must count toward characterization, story, or emotion.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "“Uh” is totally useless to a writer. Dialogue is a lean language in which every word counts."
+    }
+  },
+  {
+    "id": "stein-dialogue-meant-09",
+    "question": "Write dialogue for the effect of what is meant, not what is said — the reader supplies the meaning and feels the emotion it generates.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "We’ve learned that what counts is not what is said but the effect of what is meant."
+    }
+  },
+  {
+    "id": "stein-dialogue-intention-10",
+    "question": "Test each line of dialogue by asking what the speaker is trying to accomplish with those exact words — a single word like “Now Ed” can admonish or warn.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "What the reader gets from your fiction is the meaning of words. And most important, the emotion that meaning generates."
+    }
+  },
+  {
+    "id": "stein-dialogue-purpose-11",
+    "question": "State the purpose of each dialogue exchange, then check whether it begins or heightens conflict, stimulates curiosity, creates tension, and builds to a climax or a change in the speakers’ relationship.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "What is the purpose of this exchange? Does it begin or heighten an existing conflict?"
+    }
+  },
+  {
+    "id": "stein-dialogue-monotone-12",
+    "question": "Read your dialogue aloud in a flat monotone; rewrite any line whose words cannot do the job without expression.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "the best way to judge dialogue read aloud is to read it in a monotone without expression. The words have to do the job."
+    }
+  },
+  {
+    "id": "stein-dialogue-cliche-13",
+    "question": "Cut clichés that are out of character and check that every line spoken fits the character’s background.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "The next step is to check if the lines spoken by each character are consistent with that character’s background. Then I remove clichés that are out of character."
+    }
+  },
+  {
+    "id": "stein-dialogue-markers-14",
+    "question": "Differentiate each character’s speech with markers — vocabulary, throwaway words, tight or loose wording, run-on sentences, sarcasm, poor grammar, omitted words — so no two characters sound alike.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "The richest means of such differentiation are speech markers, signals that are quickly identifiable by the reader. Vocabulary is an important marker. Throwaway words and phrases are markers. Tight or loose wording is a marker. Run-on sentences are markers. Sarcasm is a marker. Cynicism is a marker. Poor grammar is a marker. Omitted words are markers. Inappropriate modifiers are markers."
+    }
+  },
+  {
+    "id": "stein-dialogue-vocabulary-15",
+    "question": "Signal a character’s education or pretension with just a word or two of distinctive vocabulary — but only words that fit the character, or they will jar the reader.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Polysyllabic words like intricate, oxymoron, and antediluvian indicate the speaker is well educated or pretentious, depending on the context. The point is that the character’s speech can be differentiated from others’ with just a word or two. Be warned. The words have to fit the character you’ve created. Otherwise, the special vocabulary will jar the reader."
+    }
+  },
+  {
+    "id": "stein-dialogue-jargon-16",
+    "question": "Cut jargon in dialogue to a touch: a surfeit turns characterization into caricature.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Jargon is a marker of stuffiness. One must be careful in its use. A touch is plenty. A surfeit of jargon quickly becomes caricature instead of characterization."
+    }
+  },
+  {
+    "id": "stein-dialogue-throwaway-17",
+    "question": "Cut throwaway words and phrases — “actually,” “basically,” “you see,” “anyway” — unless you keep them deliberately as a character’s verbal tic.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "“Actually,” “basically,” “perhaps,” “I dare say,” “I don’t know what to think,” “it occurs to me,” “you see,” “anyway” are all words that can be cut unless you are choosing to use them as verbal tics of a particular character."
+    }
+  },
+  {
+    "id": "stein-dialogue-diction-18",
+    "question": "Choose each character’s words for their effect — “May I know your name?” signals polite formality, “You, what’s your name?” impolite aggression.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Even the simplest of examples demonstrates how diction can differentiate one character from another. “May I know your name?” comes across as a polite and perhaps excessively formal marker. “You, what’s your name?” sounds impolite and aggressive."
+    }
+  },
+  {
+    "id": "stein-dialogue-dialect-19",
+    "question": "Rewrite dialect without odd spellings or phonetic pronunciations like “seester” — both cost the reader effort and annoy.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Spelling out pronunciations (for instance, “Anyone see my seester?” as an attempt to indicate a Latino accent) is almost always a bad choice. I would also like to caution against a use of dialect in which speech is differentiated from the standard language by odd spellings."
+    }
+  },
+  {
+    "id": "stein-dialogue-ethnic-20",
+    "question": "Elaborate an ethnic character’s speech through content and small errors — omitted words, wrong verbs, missing articles, a foreign word understood in context — rather than phonetic spellings.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "For many kinds of ethnic characters, in addition to word order and rhythm, errors in speech, particularly the omission of words, are useful: “How you get so big?” In addition, you can use the wrong verb, leave out the articles “the” and “a,” devise incomplete or slightly malformed sentences, use vocabulary oddities, and the occasional foreign word that would be understood in context."
+    }
+  },
+  {
+    "id": "stein-dialogue-monologue-21",
+    "question": "Rewrite first-person monologue so it reveals character instead of sounding like answers to a questionnaire of biographical facts.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "Monologue, or direct address to the reader by a character speaking in the first person, uses the same principles as dialogue, though in self-characterization there is a great danger of making a character sound as if he or she were answering a questionnaire instead of talking."
+    }
+  },
+  {
+    "id": "stein-dialogue-historical-22",
+    "question": "Write historical dialogue as invention, not mimicry: pick the more formal and archaic elements of the period’s speech while keeping it intelligible to today’s reader.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "John Fowles, whose novel The French Lieutenant’s Woman takes place in the nineteenth century, points out that writing dialogue for an earlier era involves invention, not just research and mimicry."
+    }
+  },
+  {
+    "id": "stein-dialogue-whitespace-23",
+    "question": "Break a stretch of dense prose with dialogue — the white space makes the reader feel the story is moving faster.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 11",
+      "quote": "P.S. An often overlooked advantage of dialogue in novels and stories is this simple: it provides white space on the page that makes the reader feel that the story is moving faster because the reader’s eyes move quickly down the page."
+    }
+  }
+]

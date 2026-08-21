@@ -1,0 +1,434 @@
+[
+  {
+    "id": "alberts-transition-spacebreak-01",
+    "question": "Use a white space break on the page to mark a shift in time, place, or narrative mode between scenes and summaries—or even a chapter break.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Sometimes a transition can be as simple as a white space break on the page, indicating a shift in time and place or narrative mode (scene or summary), or even a chapter break."
+    }
+  },
+  {
+    "id": "alberts-transition-vignettes-02",
+    "question": "If your scenes and summaries are short, cut back on space breaks and find other forms of transition, so your pages don't read like a list of vignettes.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "If your scenes and summaries tend to be quite short you’ll end up with so many space breaks that your pages will look more like a list than narrative prose, and your novel or memoir may appear to be built on vignettes."
+    }
+  },
+  {
+    "id": "alberts-transition-chronology-03",
+    "question": "Keep readers oriented by maintaining a straightforward chronology, and mark flashbacks clearly whenever you jump backward in time.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Another simple way to keep your readers clear on what’s going on in your work is to generally maintain straightforward chronology (the story moving ever forward in time) with, if warranted, clearly indicated flashbacks."
+    }
+  },
+  {
+    "id": "alberts-transition-timetag-04",
+    "question": "When you come out of a summary into a scene, open with an indicator of time—like 'The following Saturday…'—so readers know exactly when and where they are.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "In this case, each time you come out of a summary you’d use some kind of indicator of time, such as “The following Saturday Melanie found herself on I-91, stuck in traffic, when her phone buzzed. It was Bill.”"
+    }
+  },
+  {
+    "id": "alberts-transition-exitphrase-05",
+    "question": "When you leave a scene for summary, add a connecting phrase that links logically and chronologically to what just happened in the scene.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "A return to summary from the scene could be indicated by a connecting phrase such as “Melanie wondered about Bill’s tone for the rest of the day.” There’s a logical as well as a chronological link between the scene in the car and the summary of Melanie thinking about Bill."
+    }
+  },
+  {
+    "id": "alberts-transition-nonlineardates-06",
+    "question": "If your narrative is nonlinear, keep readers oriented by providing dates at the headings of each chapter.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Nonetheless, she helps us keep time straight by providing dates at the headings of each chapter."
+    }
+  },
+  {
+    "id": "alberts-transition-associative-07",
+    "question": "Move from scene to summary or scene to scene by carrying an associative link—a word, image, or sensory detail—across the shift.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "A good method for moving from scene to summary or scene to scene is to use associative links: words, images, or other sensory details that can carry across different locations, time changes, or narrative modes."
+    }
+  },
+  {
+    "id": "alberts-transition-imageweight-08",
+    "question": "Pivot from scene into summary through an image that carries psychological weight: let the character's eye land on an object in the scene that triggers her reflection.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Lahiri uses the wedding photo of Ruma and Adam on the bedside table as a device to shift from Ruma hanging up the phone (next to the picture, which catches her eye) to her ruminating on the state of her marriage. It’s a clever way of moving us via an image that carries psychological weight, right out of the scene and into summary."
+    }
+  },
+  {
+    "id": "alberts-transition-juxtapose-09",
+    "question": "Set one scene or summary against another so the juxtaposition itself forms the transition, for ironic or emotional effect.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "You may want to set one scene or summary against another, creating a transition through juxtaposition of the two for ironic or emotional effect."
+    }
+  },
+  {
+    "id": "alberts-transition-cliffhanger-10",
+    "question": "Cut excessive cliff-hanger juxtapositions—too many and the device becomes obvious and tiresome.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "You don’t want to set up too many cliff hangers or the device will become obvious and tiresome."
+    }
+  },
+  {
+    "id": "alberts-beginning-anywayin-11",
+    "question": "Stop polishing and just start: any way in is a good way in—begin at a place, a moment, a scene, or a voice that excites you, and find your way from there.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Therefore, any way in is a good way in. You can’t let yourself get stuck in rewrite perfectionism before you find your subject and your story. Just start at a place, a moment, a scene, or a voice that excites you."
+    }
+  },
+  {
+    "id": "alberts-beginning-stakes-12",
+    "question": "Before you craft the final version of your first pages, pin down what's at stake in the piece and what its themes are—until you know, the perfect beginning can't come.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Until you have a fairly solid idea of what’s at stake in your piece and what the themes will be, it’s very difficult to craft the perfect beginning."
+    }
+  },
+  {
+    "id": "alberts-beginning-readerquestions-13",
+    "question": "Answer for yourself the questions readers bring to your opening: what world have they entered, what and who matters, why they matter, and who is guiding them through the tale.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "When readers approach a story, they consciously or unconsciously are trying to figure out what world they’ve entered, what and who matters, why they matter, and who is guiding them through this tale. You won’t be able to help them figure this out until you’ve answered these questions for yourself."
+    }
+  },
+  {
+    "id": "alberts-beginning-late-14",
+    "question": "Don't force your beginning early—accept that many writers only find their true opening after the draft is finished, when plot and ending are known.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Many writers don’t get their beginnings until they’ve finished their draft."
+    }
+  },
+  {
+    "id": "alberts-beginning-contrast-15",
+    "question": "Check whether your beginning sets up a contrast with what unfolds later, so the early lightness or forgiveness makes the coming darkness land harder.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "the beginning provides a playful, nearly lighthearted contrast (everyone forgives Oblansky his “peccadilloes”) to what will happen when Anna falls in love and has an affair."
+    }
+  },
+  {
+    "id": "alberts-beginning-sceneorsummary-16",
+    "question": "Start your piece with scene or summary—either can work—as long as the opening meets the general demands of beginnings and the specific demands of your tale.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "You too can effectively start your piece with a scene or summary, as long as they each meet the general demands of beginnings and the specific demands of your tale."
+    }
+  },
+  {
+    "id": "alberts-beginning-demands-17",
+    "question": "Check your opening against the general demands of beginnings: does it draw readers into the world through setting, situation, or character, and give them a reason to keep reading?",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "By general demands I mean that they give us an opportunity to be drawn into the world of your story (through well-evoked setting, situation, or character) and give us a reason to keep reading (character, voice, conflict, suspense, etc.)."
+    }
+  },
+  {
+    "id": "alberts-beginning-crime-18",
+    "question": "If you're writing a crime drama, start with the crime or its discovery in scene before pulling back into summary to introduce the detectives—the unanswered who and why will draw the reader on.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "if you’re writing a realistic crime drama you might want to start with the crime itself, in scene, or the discovery of it, in scene, before you duck away to introduce us via summary to the detectives who will pursue the case, friends or family members of the victim, and even the victim’s background history."
+    }
+  },
+  {
+    "id": "alberts-beginning-world-19",
+    "question": "In a story set in an alternate reality, spend time establishing the world in summary before introducing characters and situations, so the fantastic elements are easier to accept.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "you might very well want to spend some time creating the world in which your story will take place before characters and situations are introduced, through the use of summary."
+    }
+  },
+  {
+    "id": "alberts-beginning-question-20",
+    "question": "Open with an unanswered question, presented through showing or telling, so the reader keeps going to find the answer.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Each of these questions invites the reader to keep going to find an answer."
+    }
+  },
+  {
+    "id": "alberts-beginning-tension-21",
+    "question": "Open with a character whose presentation and true nature conflict—the tension between what she presents and who she is draws the reader in.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "A paragraph later we learn that Scarlett’s demure demeanor doesn’t hide her lusty and willful true nature, and the tension between what she’s trying to present and who she actually is draws us in."
+    }
+  },
+  {
+    "id": "alberts-beginning-switchmode-22",
+    "question": "If you've shaped your beginning to set up what will follow but aren't satisfied, rephrase it in the other narrative mode—switch scene for summary or vice versa—to get the needed distance or closeness.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Once you are sure of your own intention, and you know that you’ve shaped your beginning to set up what will follow, but you are not satisfied with your attempt, try switching scene for summary or vice versa. Sometimes a change in narrative mode will give the needed distance or closeness that your piece requires."
+    }
+  },
+  {
+    "id": "alberts-beginning-juncture-23",
+    "question": "If the beginning still doesn't work, move it to another juncture: write a scene or summary that occurs before or after your current opening, or try starting from a different character's point of view.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Perhaps you’ve begun your piece too early or too late (as Tolstoy did in his early drafts of Anna Karenina) in the narrative. Consider beginning at another juncture—try writing a scene or summary that occurs before or after your current beginning. Or, if you are writing fiction, try starting with a different character’s point of view."
+    }
+  },
+  {
+    "id": "alberts-ending-closure-24",
+    "question": "Shape your ending to leave a sense of closure—if not complete resolution—and ideally to linger in the reader's mind.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "they must leave your reader with a sense of closure, if not complete resolution, and, ideally, they should linger in the reader’s mind."
+    }
+  },
+  {
+    "id": "alberts-ending-tone-25",
+    "question": "Match the ending's tone and content to everything that came before, whether you cast it in scene or summary.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Whatever you choose—scene or summary—as an ending, it must be suited to what’s come before in terms of tone and content."
+    }
+  },
+  {
+    "id": "alberts-ending-fourkinds-26",
+    "question": "Choose an ending built on reflection, epiphany, pointed action, or a haunting sensory detail—each contains a resolution, and don't worry whether it's scene or summary.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Reflection, epiphany, pointed action, haunting sensory detaileach of these successfully brings the tale to conclusion. Each contains a resolution. Half are scenes, half summaries."
+    }
+  },
+  {
+    "id": "alberts-ending-neatbow-27",
+    "question": "Cut the neat-bow wrap-up: an ending that ties off every detail gives closure but won't stay with a reader.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "You don’t want to wrap up every detail in a neat bow at the end. That kind of ending gives closure, but it won’t stay with a reader."
+    }
+  },
+  {
+    "id": "alberts-ending-change-28",
+    "question": "Check that your piece delivers significant change—in character, narrator, or the reader's perception—by the end of your story, essay, or book.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "There is significant change (in character, narrator, or reader’s perception) over time by the end of your story, essay, or book."
+    }
+  },
+  {
+    "id": "alberts-ending-experiment-29",
+    "question": "If the ending isn't working, switch scene for summary, try ending earlier or later than you do now, or add a scene or summary to see where it takes you.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Just as with beginnings, if you aren’t satisfied with your ending, try switching scene for summary and vice versa. Or try ending earlier or later than where you end now. Add a scene or a summary to your current ending to see where it takes you."
+    }
+  },
+  {
+    "id": "alberts-ending-cutlate-30",
+    "question": "Check whether you reached your ending before your final paragraphs—if so, cut off the last paragraph or page or two.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "I’ve often found that students have reached their ending before their final paragraphs and all they need to do is cut off the last paragraph or page or two."
+    }
+  },
+  {
+    "id": "alberts-mixing-technique-31",
+    "question": "Keep the narrative and your characters primary—technique must serve them, not the other way around.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "it’s crucial to remember that your narrative and your characters must be primary; technique must be in their service, not the other way around."
+    }
+  },
+  {
+    "id": "alberts-exercise-setupsummary-32",
+    "question": "Raise dramatic tension in a scene by opening it with setup summary before the action begins.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Use setup summary to raise dramatic tension in a scene about a woman who has lost her car keys in a darkened parking lot on a city street."
+    }
+  },
+  {
+    "id": "alberts-exercise-insertsummary-33",
+    "question": "Insert a passage of summary into one of your scenes to deepen the reader's sense of the character.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Now, insert summary into the scene of this woman in the parking lot to deepen our sense of the character."
+    }
+  },
+  {
+    "id": "alberts-exercise-ratio-34",
+    "question": "Practice the scene-summary ratio: write a page where summary dominates and scene appears briefly, then a page where scene dominates and summary appears briefly.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Write a page in which summary dominates and scene appears briefly."
+    }
+  },
+  {
+    "id": "alberts-exercise-reflectivesummary-35",
+    "question": "Take a scene you've written and follow it with reflective summary, letting the narrator or character reflect on what just happened.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Take one of the scenes you’ve written earlier, from these exercises or your own work, and follow it with reflective summary."
+    }
+  },
+  {
+    "id": "alberts-cnf-nonlinear-36",
+    "question": "Consider organizing a creative nonfiction piece nonlinearly, relying on thematic or imagistic organizing principles rather than strict chronology.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "Creative nonfiction probably uses nonlinear narratives more often than fiction does, relying on thematic or imagistic organizing principles."
+    }
+  }
+]

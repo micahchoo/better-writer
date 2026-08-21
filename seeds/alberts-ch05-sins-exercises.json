@@ -1,0 +1,266 @@
+[
+  {
+    "id": "alberts-ch05-own-voice",
+    "question": "Scan your work for passages where you've taken on the style and mannerisms of a writer you admire, and rewrite them in your own voice.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "you’ll need to be on the lookout for instances in your work when you’ve taken on the style and mannerisms of writers you admire."
+    }
+  },
+  {
+    "id": "alberts-ch05-analyze-admired-scene",
+    "question": "Analyze a scene from a writer you admire: map how it is built and how it shows rather than tells, then apply that structure to your own scene.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "You can analyze how their scenes are built and discover how they show rather than tell in their scenes."
+    }
+  },
+  {
+    "id": "alberts-ch05-exposition-dialogue",
+    "question": "Rephrase dialogue that delivers exposition the characters would already know, making it sound like natural speech.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Dialogue sounds false whenever it contains information that the characters would already know but the writer inserts as exposition, as in “My mother, Geraldine, would be very happy to come to your house for dinner Uncle Joseph.”"
+    }
+  },
+  {
+    "id": "alberts-ch05-character-idiom",
+    "question": "Rewrite any dialogue where characters speak outside their own idiom, keeping each voice true to how that person actually talks.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Dialogue also sounds stilted when characters speak outside of their own idiom."
+    }
+  },
+  {
+    "id": "alberts-ch05-read-dialogue-aloud",
+    "question": "Read your dialogue aloud; wherever you stumble over the words your characters are speaking, revise the line.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "read your dialogue aloud. If you find yourself stumbling over the words your characters are speaking in your scenes, it’s time to revise."
+    }
+  },
+  {
+    "id": "alberts-ch05-nothing-happens",
+    "question": "Cut or summarize any scene in which no important events or interactions ensue — nothing that reveals character or advances plot or themes.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "If a narrator or character takes her car for an oil change and no important events or interactions ensue, you could and probably should just skip the scene and summarize it."
+    }
+  },
+  {
+    "id": "alberts-ch05-quiet-scene-summary",
+    "question": "When a scene does little to heighten complications or further plot or themes, summarize it instead of dramatizing it — keep a quiet scene only as setup for what comes later.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "if the scene does little in terms of heightening the complications or furthering the plot or themes, consider summarizing instead."
+    }
+  },
+  {
+    "id": "alberts-ch05-continuity",
+    "question": "Check your scenes for continuity contradictions — details like a character's family or circumstances shifting with no explanation — and fix them.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "First there’s the simple problem of lack of continuity, as they say in the movie business—one scene contradicting another."
+    }
+  },
+  {
+    "id": "alberts-ch05-age-credibility",
+    "question": "Rewrite any character whose wisdom or behavior doesn't fit their age and experience, such as children who are preternaturally smarter than their parents.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "On a less obvious level, lack of credibility can occur in situations such as when children are preternaturally wise or always smarter than their parents, like those TV sitcom kids who talk with the ironic smarts of little Jon Stewarts or David Lettermans."
+    }
+  },
+  {
+    "id": "alberts-ch05-memoir-narrator-self-aware",
+    "question": "Rewrite your first-person narrator's attitude so they come across as self-aware rather than self-pitying or self-aggrandizing, so readers trust the emotions and facts.",
+    "verb": "rewrite",
+    "genre": ["memoir", "creative-nonfiction", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "To be credible, a memoir narrator writing from an adult perspective must be self-aware."
+    }
+  },
+  {
+    "id": "alberts-ch05-narrator-trust",
+    "question": "Signal an unreliable narrator deliberately, or don't use one at all: don't risk the reader's trust by making your narrator too self-regarding or too villainous to believe.",
+    "verb": "concept-form",
+    "genre": ["fiction", "memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "But these are cases in which the author deliberately invites you to mistrust the narrator. In most novels and memoirs, trust between reader and narrator is essential. Don’t risk losing that trust by making your narrator either too self-regarding or too villainous to believe in your scenes."
+    }
+  },
+  {
+    "id": "alberts-ch05-sentiment-definition",
+    "question": "Articulate the difference between sentiment and sentimentality in your work — name where genuine emotion ends and the attempt to manipulate the reader begins.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "What is the difference between sentiment and sentimental? I think of it as the difference between real sugar and artificial sweetener. Sentimental scenes are as artificial as Sweet’N Low."
+    }
+  },
+  {
+    "id": "alberts-ch05-earned-emotion",
+    "question": "When you are moved by a scene you've written, ask yourself whether the emotional intensity feels earned — does it match the level of intensity you actually felt?",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "When you are moved by something you read, ask yourself if the emotional intensity in the scene feels earned. Does it match the level of intensity of emotion you felt when reading?"
+    }
+  },
+  {
+    "id": "alberts-ch05-tearjerker-conventions",
+    "question": "Rewrite any death or parting scene that relies on tearjerker conventions — the dying person as an angel, a deathbed conversion, last-minute forgiveness — so the emotion feels earned.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Generally the sentimental death scene requires the dying person to be an angel of some sort—already artificially sweetened—or to have a deathbed conversion to goodness. Frequently last-minute forgiveness is featured."
+    }
+  },
+  {
+    "id": "alberts-ch05-cliche-sentimental-images",
+    "question": "Cut cliché, sentimental images like 'a single tear ran down her cheek' from your scenes.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "And be very careful about using such cliché and sentimental images phrasings as “a single tear ran down her cheek.”"
+    }
+  },
+  {
+    "id": "alberts-ch05-exercise-conflict",
+    "question": "Create a brief scene in which conflict between two characters is apparent, whether small (a choice of restaurant) or large (a divorce).",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Create a brief scene in which conflict is apparent between two characters. The conflict can be small, say, over a choice of restaurant, or large, such as a divorce."
+    }
+  },
+  {
+    "id": "alberts-ch05-exercise-tense-shift",
+    "question": "Write a scene in present tense, then rewrite it in past tense, and compare how the tense shift alters the tone.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Write it in present tense and then rewrite it in past tense. How do these tense shifts alter the tone of the scene? Which works better here? Why?"
+    }
+  },
+  {
+    "id": "alberts-ch05-exercise-revealing-detail",
+    "question": "Choose one detail of appearance, gesture, voice, or action for each character that reveals something important about them, and write a scene in which those details carry the characterization.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Go to a public space and choose one detail (of appearance, gesture, voice, action) for each person you observe that reveals something important about that person. Write a scene in which details reveal character."
+    }
+  },
+  {
+    "id": "alberts-ch05-exercise-setting-mood",
+    "question": "Rewrite one of your scenes in a different season and time of day — early evening in winter versus mid-morning in summer — and consider how time and setting affect mood and tone.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Then rewrite that scene in the morning, mid-summer. Consider the way time and setting affect the mood and tone of the two versions."
+    }
+  },
+  {
+    "id": "alberts-ch05-exercise-eavesdrop",
+    "question": "Eavesdrop on a conversation you can hear but not see, then write the dialogue so the speakers' relationship, power dynamic, and individual voices come through their words alone — identify the agenda and any conflict in the exchange.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Write down as much of the dialogue as you need to establish the relationship between or among the speakers. Is there a power relationship? What is the nature of the information being passed? Is it merely chat, is someone trying to persuade, is there a conflict or does one of the speakers have an agenda? Can you individualize the speakers from their words alone?"
+    }
+  },
+  {
+    "id": "alberts-ch05-exercise-fresh-similes",
+    "question": "Rephrase the obvious comparisons in your work with fresh, surprising similes — write a list of ten and keep the strongest.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Write a list of ten similes that are fresh and surprising."
+    }
+  },
+  {
+    "id": "alberts-ch05-exercise-pov-shift",
+    "question": "Rewrite a scene from a different point of view — if you wrote it in third person, switch to first, or change the point-of-view character — and see what the shift reveals.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 5 / Scene Exercises",
+      "quote": "Rewrite the parent and child scene, above, from a different point of view. If you wrote in third person, rewrite it in first person. Or change the point-of-view character from child to parent or vice versa."
+    }
+  }
+]

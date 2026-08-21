@@ -1,0 +1,398 @@
+[
+  {
+    "id": "stein-flab-cut-pace",
+    "question": "Cut the flab from your text: removing unnecessary words improves pace and strengthens the body of what remains.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Flab-cutting is one of the best means for improving the pace of both fiction and nonfiction. When eliminated, the loss of fat has the welcome side effect of strengthening the body of remaining text."
+    }
+  },
+  {
+    "id": "stein-flab-strip-readmit",
+    "question": "Strip every adjective and adverb from your manuscript, then readmit only the few that survive careful testing.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The quickest way of increasing the pace of a manuscript and strengthening it at the same time is to remove all adjectives and adverbs and then readmit the necessary few after careful testing."
+    }
+  },
+  {
+    "id": "stein-flab-delete-very-quite",
+    "question": "Find and delete every “very” and “quite” that crept into your first draft.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The easiest ones to dispense with are “very” and “quite.” Word processing programs make the process simple. Find and delete all the verys, and quites that crept into your first draft."
+    }
+  },
+  {
+    "id": "stein-flab-two-adjectives",
+    "question": "Find every place where you used two adjectives with a single noun and eliminate one of them, keeping the more concrete or more visual adjective.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The more concrete adjective is the one to keep. Or the one that makes the image more visual."
+    }
+  },
+  {
+    "id": "stein-flab-comma-slows",
+    "question": "When you cut one of two paired adjectives, drop the comma with it—commas tend to slow the reading process.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Quite apart from eliminating one out of six words, the comma goes too, and commas tend to slow the reading process."
+    }
+  },
+  {
+    "id": "stein-flab-precise-meaning",
+    "question": "Never choose between adjectives arbitrarily. Use words for their precise meaning in context; that is the mark of a good writer.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "In addition to eliminating unnecessary words, I am focusing on using words for their precise meaning, which is the mark of a good writer."
+    }
+  },
+  {
+    "id": "stein-flab-keep-visual-words",
+    "question": "When you cut excess verbiage, keep words that help the reader visualize the precise image you are trying to fashion, even when their meaning is implied.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "In cutting excess verbiage, keep words that help the reader visualize the precise image you are trying to fashion."
+    }
+  },
+  {
+    "id": "stein-flab-curiosity-adjective",
+    "question": "Replace bland paired adjectives with a single adjective that piques the reader’s curiosity—curious, strange, eerie—one that makes them want to know why.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Examining your adjectives provides an opportunity to see if you could possibly invoke the reader’s curiosity with an adjective that is better than either one you now have."
+    }
+  },
+  {
+    "id": "stein-flab-adjective-exception",
+    "question": "Where one adjective cannot create the specific image, keep a second adjective or an adverb modifying the adjective, as in “heavily pregnant.”",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Sometimes two adjectives or an adverb modifying the adjective are necessary to create a specific image: Meryl Streep stood the way a heavily pregnant woman will, in two motions, out of the chair and then up."
+    }
+  },
+  {
+    "id": "stein-flab-adjective-necessity",
+    "question": "Test each adjective for necessity: if removing it would mislead the reader, as removing “right” would in “His right eye kept blinking,” keep it.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "An adjective that is a necessity. Example: “His right eye kept blinking.” If you didn’t keep “right,” it might sound as if you were talking about a one-eyed man."
+    }
+  },
+  {
+    "id": "stein-flab-two-adverbs",
+    "question": "When two adverbs modify one verb, try eliminating both—the unadorned verb is direct and picks up the pace.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "You could take out either. “She really cared for him” is okay. “She truly cared for him” is okay too. But best of all is “She cared for him.” It is direct, and picks up the pace."
+    }
+  },
+  {
+    "id": "stein-flab-adverb-cluster-shorten",
+    "question": "Sweep out your adverb clusters and shorten your sentences; pace improves from both moves at once.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The pace is improved not only by eliminating five adverbs, but also by shortening the sentences."
+    }
+  },
+  {
+    "id": "stein-flab-adverb-distinct-meaning",
+    "question": "Keep paired adverbs when each conveys a distinct meaning you intend, as “heartily” and “happily” each carry their own connotation.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "He ate heartily, happily. “Heartily” connotes eating a lot, “happily” connotes taking pleasure. If it is the author’s intention to convey both meanings, the adverbs should be retained."
+    }
+  },
+  {
+    "id": "stein-flab-adverb-connotation",
+    "question": "Cut adverbs whose meaning the verb already connotes—scribbling implies hurry, so “hurriedly” goes.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Why get rid of “hurriedly”? Because scribbling connotes hurry."
+    }
+  },
+  {
+    "id": "stein-flab-adverb-keep-tests",
+    "question": "Test each adverb against two keep-rules: does it supply necessary information, or does it help the reader visualize the precise image? Cut the rest.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Keep an adverb that supplies necessary information. Example: “He tried running faster and fell.” If he’s already running, you must keep “faster.”"
+    }
+  },
+  {
+    "id": "stein-flab-cliche-single-word",
+    "question": "Replace clichés—tired, overused word pairs like “huffing and puffing”—with the single word that carries the meaning.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "It’s the “huffing and puffing” that spoils the sentence because that phrase is a cliché, a tired, overused, familiar conjunction of words."
+    }
+  },
+  {
+    "id": "stein-flab-an-one-filler",
+    "question": "Cut empty structural fillers like “an” and “one” in “This idea is an interesting one”; “This idea is interesting” is stronger.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The flab words are “an” and “one.”"
+    }
+  },
+  {
+    "id": "stein-flab-tough-on-self",
+    "question": "Be as tough on yourself in eliminating unnecessary words as an editor would be—the best writers are the toughest on themselves.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Be as tough on yourself in eliminating unnecessary words as you think I might be if I were editing your manuscript. The best writers of the hundreds I’ve dealt with over the years were also the toughest on themselves."
+    }
+  },
+  {
+    "id": "stein-flab-word-list",
+    "question": "Compile your own list of flab words—“however,” “almost,” “perhaps,” “there is”—and sweep your text for each one.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Certain words frequently constitute flab and can be eliminated: “however,” “almost,” “entire,” “successive,” “respective,” “perhaps,” “always,” “there is.” Each writer can compile a list of his own, words he uses from time to time that contribute nothing but flab to a text."
+    }
+  },
+  {
+    "id": "stein-flab-merge-sentences",
+    "question": "Find two sentences where the second merely names what the first already implies, and merge them into one faster sentence.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "In the moment of illumination, though, he saw him. Buster Devonne was counting his money."
+    }
+  },
+  {
+    "id": "stein-flab-restating-words",
+    "question": "Cut words that restate what another word already encompasses, like “private and public” before “life,” and drop phrases that add unnecessary information.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The word “life” encompasses private and public. “Over the last fifteen years” provided unnecessary information that weakened the sentence."
+    }
+  },
+  {
+    "id": "stein-flab-cut-middle-sentence",
+    "question": "When a whole sentence adds nothing, cut the entire sentence—the deletion strengthens what is left and steps up the pace.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "I cut the entire middle sentence, which didn’t add anything. The deletion strengthened what was left and stepped up the pace:"
+    }
+  },
+  {
+    "id": "stein-flab-chapter-ending",
+    "question": "At your chapter endings, cut sentences that are excessively sentimental or too abstract, leaving the reader with a concrete emotion instead.",
+    "verb": "cut",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "In revising, I thought the sentence “What does a mother do with her love?” excessively sentimental. And “Why did God do nothing?” was too abstract to leave the reader with a suitable emotion at the end of the chapter. I cut both sentences."
+    }
+  },
+  {
+    "id": "stein-flab-one-plus-one",
+    "question": "Apply the formula “one plus one equals a half”: saying the same thing over and over minimizes its impact, so cut the redundancy.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "I’ve been teaching my strange formula “One plus one equals a half” for a long time. It has been of value even to the most talented and successful of writers."
+    }
+  },
+  {
+    "id": "stein-flab-own-editor",
+    "question": "Become your own editor: publishers do far less line editing than they used to, so catching redundancy is the writer’s job.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The hard fact is that editors do a lot less line editing than they used to. If a novel requires a lot of line editing, it is less likely to be taken on by a publisher, who has to consider the cost of editing. Which is why is it incumbent upon writers to become, in effect, their own editors."
+    }
+  },
+  {
+    "id": "stein-flab-parents-mom-dad",
+    "question": "Cut redundancies where one term includes the other—“my parents, Mom and Dad”—and keep one or the other, not both.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Who else might her parents be besides “Mom and Dad”? The script writer should have kept one or the other, not both."
+    }
+  },
+  {
+    "id": "stein-flab-keep-setup",
+    "question": "When two sentences say the same thing, cut the one that weakens the setup—keep the short first sentence so the specific image lands.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "You could have eliminated either of the first two sentences. My preference would be to eliminate the second sentence because the short first sentence sets up the effective last sentence better:"
+    }
+  },
+  {
+    "id": "stein-flab-general-clause",
+    "question": "When a general clause restates a more specific one, delete the general clause—it says the same thing twice.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The first clause is general and familiar. “It was a time of purest humiliation” is more specific. All you have to do is delete the words “a dreadful situation” and you have a more specific sentence that doesn’t say the same thing twice."
+    }
+  },
+  {
+    "id": "stein-flab-duplicate-images",
+    "question": "When two images convey the same thing, cut one—duplicated images make the reader conscious of the craft instead of the effect, and the pace speeds up.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Two images that convey the same thing make the reader conscious of the images instead of letting the reader experience the effect. And by cutting one of the two, the pace speeds up."
+    }
+  },
+  {
+    "id": "stein-flab-obvious-adjective",
+    "question": "Cut adjectives that state the obvious or add nothing to the image—“quaint and white” weakens “an old man in sculptured soap.”",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "We usually think of soap as white unless a color is indicated. And “quaint” means “odd in a pleasing way” or “oldfashioned.” Neither definition really helps the image in this context. “An old man in sculptured soap” is strong. “An old man in sculptured soap, quaint and white,” is weaker."
+    }
+  },
+  {
+    "id": "stein-flab-narrator-generalization",
+    "question": "Cut your narrator’s generalization about what he has just shown—the specific scene is enough, and the generalization distracts.",
+    "verb": "cut",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The narrator’s generalization of what he sees is distracting. In the editing, the second sentence should come out."
+    }
+  },
+  {
+    "id": "stein-flab-intentional-piling",
+    "question": "Don’t apply the one-plus-one rule to a conscious piling-up of words for effect—intentional piling adds force; accidental repetition diminishes it.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The “one plus one” guideline does not apply to a conscious piling-up of words for effect."
+    }
+  },
+  {
+    "id": "stein-flab-accuracy-necessity",
+    "question": "Look closely at what you write and test each word and phrase for both accuracy and necessity.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "In this chapter, we’ve learned to look closely at what we write, to test each word and phrase both for accuracy and necessity."
+    }
+  }
+]

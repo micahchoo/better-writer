@@ -1,0 +1,266 @@
+[
+  {
+    "id": "stein-suspense-hold-curiosity",
+    "question": "Open your story and find the moment that arouses the reader's curiosity about what will happen next; then hold that curiosity alive, unresolved, for as long as you can.",
+    "verb": "concept-form",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "Suspense is achieved by arousing the reader’s curiosity and keeping it aroused as long as possible."
+    }
+  },
+  {
+    "id": "stein-suspense-hangman",
+    "question": "Put your protagonist in serious trouble, then refuse to rescue them: hang your hero by his fingertips and leave him hanging as long as the story can bear.",
+    "verb": "concept-form",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "Your job is to avoid rescuing the hero as long as possible. You leave him hanging."
+    }
+  },
+  {
+    "id": "stein-suspense-want-delay",
+    "question": "Find the moment your reader wants something to happen and it isn't happening yet—or wants something to stop and it doesn't—and build the scene around that delay.",
+    "verb": "concept-form",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "Suspense builds when the reader wants something to happen and it isn’t happening yet. Or something is happening and the reader wants it to stop, now. And it doesn’t."
+    }
+  },
+  {
+    "id": "stein-suspense-danger-checklist",
+    "question": "Check your scene against these sources of anxious uncertainty: a prospective or immediate danger to a character, an unwanted confrontation, an old fear about to become real, or a life crisis demanding immediate action.",
+    "verb": "concept-form",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "• A prospective danger to a character. • An actual immediate danger to a character. • An unwanted confrontation. • A confrontation wanted by one character and not by the other. • An old fear about to become a present reality. • A life crisis that requires an immediate action."
+    }
+  },
+  {
+    "id": "stein-suspense-dance-away",
+    "question": "Set up something that cries for resolution, then deliberately dance away from the reader's problem, dealing with other things and prolonging the reader's desperate need for resolution.",
+    "verb": "transition",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "The writer’s duty is to set up something that cries for a resolution and then to act irresponsibly, to dance away from the reader’s problem, dealing with other things, prolonging and exacerbating the reader’s desperate need for resolution."
+    }
+  },
+  {
+    "id": "stein-suspense-escalate-danger",
+    "question": "When your character overcomes an immediate danger, don't eliminate the danger—make them face an even greater one instead.",
+    "verb": "rewrite",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "• Don’t eliminate the prospective danger to a character. • Don’t let the character overcome the immediate danger without facing an even greater danger."
+    }
+  },
+  {
+    "id": "stein-suspense-hold-confrontation",
+    "question": "If your character is apprehensive about an unwanted confrontation, hold it off as long as possible.",
+    "verb": "rewrite",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "• If your character is apprehensive about an unwanted confrontation, make sure you hold off that confrontation as long as possible."
+    }
+  },
+  {
+    "id": "stein-suspense-worsen-fear",
+    "question": "When a character's old fear is about to become a present reality, don't relieve the fear; make the situation worse than the character anticipated.",
+    "verb": "rewrite",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "• When an old fear is about to become a present reality, don’t relieve the fear. Make the situation worse than the character anticipated."
+    }
+  },
+  {
+    "id": "stein-suspense-backfire-crisis",
+    "question": "When a character's life crisis demands immediate action, make certain the action backfires and prolong the crisis.",
+    "verb": "rewrite",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "• If a character’s life crisis requires an immediate action, make certain that the action backfires. Prolong the crisis."
+    }
+  },
+  {
+    "id": "stein-suspense-frustrate-expectation",
+    "question": "Recast the outcome of each major turn so it does not take the reader where he wants to go.",
+    "verb": "rephrase",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "The key is not to take the reader where he wants to go."
+    }
+  },
+  {
+    "id": "stein-suspense-delay-with-thought",
+    "question": "Find an action the reader urgently wants to happen, then delay it by having the character think about the past before acting.",
+    "verb": "elaborate",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "The reader wants the young sailor to climb the rigging to free the bird. That action is delayed by the young sailor’s thoughts about the past. The delay causes tension in the reader."
+    }
+  },
+  {
+    "id": "stein-suspense-scene-jump",
+    "question": "End a scene with your character in serious trouble, then start the next scene in a different location with a different character, leaving the reader in suspense about the first.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "We leave the reader in suspense and go to the next location, Chicago, where we see a scene with a different character, say the hero’s fiancée, getting into trouble."
+    }
+  },
+  {
+    "id": "stein-suspense-lines-at-once",
+    "question": "Count the lines of suspense running through your book: are two or three characters in unresolved trouble at once, each in a different location?",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "All of these events are in the same town, but by starting each scene in a different location and focusing each on a different character, we now have three lines of suspense going at the same time."
+    }
+  },
+  {
+    "id": "stein-suspense-scene-chart",
+    "question": "Chart each scene on its own line: its location (different from the preceding scene, if possible), its principal character, and the action in brief; if a scene has no action, it isn't really a scene.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "On each line, note the location (different from the location of the preceding scene, if possible), the principal character in the scene, and, briefly, the action that takes place there. Be brief. (Keep in mind that if there is no action, you don’t really have a scene.)"
+    }
+  },
+  {
+    "id": "stein-suspense-cut-interstices",
+    "question": "Scan your novel for narrative summaries of offstage happenings between scenes and cut them: the reader's interest is in the scenes, not the interstices between them.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "One of the frequent failings of novelists is the inclusion of material between scenes. This usually takes the form of a narrative summary of offstage happenings."
+    }
+  },
+  {
+    "id": "stein-suspense-cut-weakest-scene",
+    "question": "Look at your list of scenes, find the weakest one where your own interest flags, and cut it; then repeat with the next weakest. You are not a scene preserver.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "Look at your list of scenes and find the weakest one, where your own interest flags. If you eliminate your weakest scene, you will strengthen your book as a whole. It takes guts, but do it!"
+    }
+  },
+  {
+    "id": "stein-suspense-chapter-ending",
+    "question": "Audit every chapter ending except the last: does it arouse the reader's interest anew and thrust them forward into the next chapter?",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "When each chapter of a novel (except the last) ends, the reader’s interest should be aroused anew, thrusting him forward in the novel."
+    }
+  },
+  {
+    "id": "stein-suspense-unresolved-trouble",
+    "question": "End each chapter with your hero or heroine in unresolved trouble, as serials and soap operas do, so the reader wants to see what happens next.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "• Ideally, each chapter might end the way the movies used to end their weekly serials: with the hero or heroine in unresolved trouble."
+    }
+  },
+  {
+    "id": "stein-suspense-chapter-length",
+    "question": "Review your chapter lengths: keep chapters short so the story seems to move faster, but avoid any chapter under three printed pages.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "• Short chapters make a story seem to move faster. • Normally avoid chapters of fewer than three printed pages. They may not be long enough to engage the reader’s emotions."
+    }
+  },
+  {
+    "id": "stein-suspense-study-chapter-ends",
+    "question": "Pick up a suspense or thriller you couldn't put down and study its chapter endings: note how each ends on a suspenseful note and throws the reader forward into the next chapter.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "Pick up any well-known suspense or thriller writer’s work and look at the chapter endings. You’ll see how most of the time each chapter ends on a suspenseful note and throws the reader forward into the next chapter."
+    }
+  },
+  {
+    "id": "stein-suspense-subtle-literary",
+    "question": "In literary fiction, keep the suspense subtle but still ensure each chapter ending arouses the reader's curiosity about what happens next.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "In literary novels, of course, the suspense is often more subtle. All forms of fiction have one thing in common: the chapter endings arouse the reader’s curiosity about what will happen next."
+    }
+  },
+  {
+    "id": "stein-suspense-reorder-chapters",
+    "question": "Reorganize your chapters in any order that accelerates the suspense of the whole, keeping time moving only forward and avoiding shifts that disturb the reader.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 9",
+      "quote": "Your chapters are not cemented in place. You can reorganize them in any fashion that accelerates the suspense of the whole. Watch out for time shifts that would disturb the reader. Try to keep moving only forward in time until you’ve had a good deal of experience."
+    }
+  }
+]

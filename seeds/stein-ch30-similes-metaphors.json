@@ -1,0 +1,134 @@
+[
+  {
+    "id": "stein-simile-strain",
+    "question": "Scan your manuscript for similes and metaphors that show strain or are inaccurate, and cut them.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "Try, fly, experiment, but if it shows strain, if it isn’t accurate, cut it."
+    }
+  },
+  {
+    "id": "stein-simile-deflect",
+    "question": "Read each simile and metaphor in your draft and ask whether it deflects your reader’s attention from the story to the words on the page; if it does, cut or replace it.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "Inaccurate similes and metaphors have the effect of deflecting the reader’s attention from the story to the words on the page."
+    }
+  },
+  {
+    "id": "stein-simile-savor",
+    "question": "Find a flat, adverb-driven statement in your draft and rewrite it as a simile that connects two things previously unconnected, so the comparison keeps its savor.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "We identify a jack-in-the-box popping up with suddenness, but if it said “She sprang up suddenly,” we’d lose the savor of the comparison."
+    }
+  },
+  {
+    "id": "stein-metaphor-fresh-pairing",
+    "question": "Write a metaphor by bringing together two words or phrases that do not ordinarily belong together so that their proximity conveys a fresh meaning.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "This figure of speech results when words or phrases are brought together that do not ordinarily belong together, yet by their proximity convey a fresh meaning:"
+    }
+  },
+  {
+    "id": "stein-simile-cliche",
+    "question": "Find similes and metaphors in your draft that are clichés tired from overuse, and rephrase them into fresh comparisons.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "Simile: He felt like a million dollars. Metaphor: It was food for thought. Those examples are clichés, tired from overuse."
+    }
+  },
+  {
+    "id": "stein-metaphor-mixed",
+    "question": "Search your draft for mixed metaphors—two or more unrelated metaphors unsuccessfully combined—and rewrite one side of the image so the comparison holds together.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "One of the hazards is, of course, the mixed metaphor, in which two or more unrelated metaphors are unsuccessfully combined:"
+    }
+  },
+  {
+    "id": "stein-metaphor-mood",
+    "question": "Use a metaphor to set the mood of a scene: describe the setting through an image that carries the feeling you want the reader to share.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "Cheever uses metaphor to set a mood: The sky was overcast, and poured down onto the dirt crossroads a very discouraging light."
+    }
+  },
+  {
+    "id": "stein-metaphor-nonfiction",
+    "question": "In a nonfiction piece, find a concrete image that could carry a metaphor and add one to enhance the prose.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "Metaphors can enhance nonfiction also. Witness: In some cases, generally around public buildings like the White House and State Department, the protective cordon was Saran-Wrap tight."
+    }
+  },
+  {
+    "id": "stein-metaphor-long-stretch",
+    "question": "Don’t be afraid of a long stretch in a metaphor: if it makes its point instantly, the distance between the two things is what gives it power.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "It’s a long stretch from the Emperor of Japan to a light bulb, but it sure makes its point instantly."
+    }
+  },
+  {
+    "id": "stein-simile-barebones",
+    "question": "Reread your draft for spots of bare-bones writing that could be improved by a simile or metaphor you hadn’t thought of when drafting, and add one.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "In examining your work, can you find spots of “bare bones” writing that could be improved by a simile or metaphor that you hadn’t thought of when you were getting your early draft onto paper?"
+    }
+  },
+  {
+    "id": "stein-metaphor-overdone",
+    "question": "Audit the density of figures of speech in your draft: if they are overdone, they backfire—cut until each comparison earns its place.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 30",
+      "quote": "Similes and metaphors are the wonders of writing, and like all wonderful things carry a price. If figures of speech are overdone, they backfire."
+    }
+  }
+]

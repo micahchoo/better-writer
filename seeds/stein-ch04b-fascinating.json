@@ -1,0 +1,618 @@
+[
+  {
+    "id": "stein-ch04b-extraordinary-not-ordinary",
+    "question": "Make your characters extraordinary rather than “perfectly ordinary” — readers don’t seek the company of people who seem like everyone else.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "People who are exactly like other people probably don’t exist. But people who seem like most other people litter our lives, and we don’t usually seek their company because they are boring. Readers don’t read novels in order to experience the boredom they often experience in life. They want to meet interesting people, extraordinary people, preferably people different from anyone they’ve met before in or out of fiction."
+    }
+  },
+  {
+    "id": "stein-ch04b-distinct-but-relatable",
+    "question": "Make your character just different enough to interest the reader without seeming “special,” so readers from any walk of life can identify with their plight.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "I made the Browns just different enough to interest the reader, but it was important that they not seem “special.” Therefore, when calamity hits the Browns, readers from any walk of life can identify with their plight, which is critical for the story. Stephen King usually has quite ordinary-seeming characters get involved in extraordinary circumstances. In most instances, however, you’ll want to make your characters as distinctive as possible rather than “ordinary.”"
+    }
+  },
+  {
+    "id": "stein-ch04b-extraordinary-evident-early",
+    "question": "Make your character’s extraordinary quality evident almost immediately after they appear, unless the story’s thrust is the gradual unveiling of unusual habits or ambition.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The extraordinary quality of a character should usually be made evident almost immediately after he or she appears in the story, unless the thrust of a story is to have the gradual unveiling of a character’s unusual habits or ambition."
+    }
+  },
+  {
+    "id": "stein-ch04b-cut-cartoon-extremes",
+    "question": "Cut characterization so extreme it makes the character seem like a cartoon — such characters are hard to make credible in mainstream fiction.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Beware of characters who are so extreme as to seem like cartoon characters. Some characters in Charles Dickens’s novels seem wildly exaggerated. Such characters are difficult to make credible to readers of mainstream fiction today."
+    }
+  },
+  {
+    "id": "stein-ch04b-character-terms-span",
+    "question": "Explore the full span of meaning of personality, disposition, temperament, individuality, and eccentricity for your character — the exercise itself improves characterization.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "My students find that their work in characterization improves markedly after they’ve considered the full span of meaning of those terms. ... Personality refers to the distinctive traits of an individual, a set of behaviors, attitudes, manners, and mannerisms that identify a person."
+    }
+  },
+  {
+    "id": "stein-ch04b-disposition",
+    "question": "Define your character’s disposition — their customary emotional response to the people and places of their world.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The disposition of a person is her attitude toward the people and places of the world, her customary response, particularly her emotional response."
+    }
+  },
+  {
+    "id": "stein-ch04b-temperament",
+    "question": "Define your character’s temperament — their characteristic way of confronting a new day or a new development.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Temperament is a person’s manner of behaving, thinking, and particularly reacting to people and circumstances, his characteristic way of confronting a new day or a new development."
+    }
+  },
+  {
+    "id": "stein-ch04b-individuality-concrete-detail",
+    "question": "Describe your character’s singularity with the particulars of concrete detail — the traits by which others recognize them.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "A writer describes a character’s singularity with the particulars of concrete detail. These are the characteristics by which an individual is recognized by others. Her differentness is her identity. It can be said that the individuality of a person marks her off, singles her out, sets her apart, and ultimately defines her."
+    }
+  },
+  {
+    "id": "stein-ch04b-eccentricity-offbeat",
+    "question": "Give your character an offbeat manner of behavior, dress, or speech that is peculiar to them and unlike most other people.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Eccentricity is an offbeat manner of behavior, dress, or speech that is peculiar to a person and greatly dissimilar to the same characteristics of most other people."
+    }
+  },
+  {
+    "id": "stein-ch04b-idiosyncrasy-others-view",
+    "question": "Rephrase your character’s quirk as others see it, not as the character sees it — they believe their idiosyncrasies are “perfectly normal.”",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The idiosyncrasies of a person are, of course, as seen by others rather than that person, who often believes his or her idiosyncrasies to be “perfectly normal.”"
+    }
+  },
+  {
+    "id": "stein-ch04b-fashion-not-eccentricity",
+    "question": "Check that your character’s oddity is individual behavior, not conformity to a widespread group mode — shared fashion isn’t eccentricity.",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "When a great number of young men take to wearing an earring, that is not eccentricity. When young women iron their hair as many did in the sixties, that is not eccentricity. They are conforming to a widespread group mode."
+    }
+  },
+  {
+    "id": "stein-ch04b-cut-unidentifiable-extremes",
+    "question": "Cut protagonists who are psychotic or habitual drunks — readers find it difficult to identify with such behavior.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Eccentric behavior is sometimes said to be nutty behavior, implying strange behavior, which is perfectly suitable for fiction. But “nutty” can also mean crazy, which is not intended here for an important reason. There are two types seldom seen in fiction: people who are psychotic and habitual drunks. Readers find it difficult to identify with their behavior."
+    }
+  },
+  {
+    "id": "stein-ch04b-self-contradiction",
+    "question": "Characterize through self-contradiction — a character explaining himself in contradictory terms fascinates readers.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Dostoevsky’s opening of Notes from Underground has a character explaining himself. He is so self-contradictory that when I read this opening aloud to students, they invariably laugh:"
+    }
+  },
+  {
+    "id": "stein-ch04b-eccentric-person-you-know",
+    "question": "Think of the most eccentric person you know, imagine your character doing their most eccentric thing, then adjust it to a variation that stays in character.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Think of the most eccentric person you know. What makes him (or her) eccentric? What is the most eccentric thing they have ever done? What might they do that would seem even more eccentric? Then think of your character doing that very thing! Unlikely? Unreasonable? Surprising? All of the above? If such behavior would be out of character ... for your protagonist, then what variation of it would be in character?"
+    }
+  },
+  {
+    "id": "stein-ch04b-eccentricity-or-wrong-character",
+    "question": "Ask whether your character is capable of any important eccentricity — if not, you may have picked a character readers won’t find interesting.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "If your character isn’t capable of any important eccentricity, you may have picked a character who will not be greatly interesting to readers."
+    }
+  },
+  {
+    "id": "stein-ch04b-contrast",
+    "question": "Characterize through contrast — give a character a behavior that clashes with their appearance, like the immaculately dressed woman picking her nose.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Contrast is a useful technique for characterization. It sometimes has the extra virtue of surprise. ... What helped characterize her for me was the contrast between her appearance and her nose-picking."
+    }
+  },
+  {
+    "id": "stein-ch04b-clothing-rephrase",
+    "question": "Rephrase top-of-the-head descriptions of your character’s clothing into visual images that say something particular about them.",
+    "verb": "rephrase",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Characterizing through unusual clothing or the manner of wearing clothing is another often neglected possibility. What it requires is to avoid the easy description that first comes to mind. ... The first description doesn’t say anything particular about either Ellen or the gown. The second is visual and tells us how Ellen and the gown came across in a way that made them both look good."
+    }
+  },
+  {
+    "id": "stein-ch04b-verbal-habit",
+    "question": "Rewrite how you describe a character’s tastes as a distinctive verbal habit — the words they use to name other people.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Martin referred to men who wore shirts and ties all day not as people but as “suits.”"
+    }
+  },
+  {
+    "id": "stein-ch04b-countervailing-attribute",
+    "question": "Give a character attributes that go against their dominant behavior in the scene to come.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "An important technique that is used too seldom by novelists is to give a character life by introducing attributes that go against the character’s dominant behavior in the scene to come."
+    }
+  },
+  {
+    "id": "stein-ch04b-power-vulnerability",
+    "question": "When introducing a character who holds power in a scene, suggest their vulnerability before they exercise it; when introducing a character who will be hurt, show their strength at the outset.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "A common fault in fiction is the portrayal of characters as all good or all bad. Therefore, when introducing a character who will be in a position of power in a scene, suggest that character’s vulnerability before the character exercises power. Conversely, when introducing a character who will be hurt emotionally or physically in the scene to come, show the character’s strength at the outset."
+    }
+  },
+  {
+    "id": "stein-ch04b-protagonist-change-novel",
+    "question": "Plan how your protagonist changes by the end of the novel — a risk taker may step into adulthood by learning that some risks are foolhardy.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "In a novel it is common and desirable for the principal character to change by the end of the book. If the protagonist is a risk taker, he may step into adulthood by learning that some kinds of risks are foolhardy."
+    }
+  },
+  {
+    "id": "stein-ch04b-change-consistency",
+    "question": "Make your character’s change surprising but consistent — never out of sync with what the reader knows of them.",
+    "verb": "transition",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "These are just a few examples of how a character might change in the course of a novel. The writer has to ask, is the change consistent with the character as portrayed? A change can be surprising, but it should not seem out of sync with what we know about the character."
+    }
+  },
+  {
+    "id": "stein-ch04b-short-story-scope",
+    "question": "Scope your short story to one event or episode with room for a change of attitude toward something specific — not a profound character transformation.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "In a short story there is usually time for only one event or episode. ... There is room for a change of attitude toward something specific. Most often there isn’t room in a short story for a character to experience enough to cause a profound change."
+    }
+  },
+  {
+    "id": "stein-ch04b-know-more-perspective",
+    "question": "When you have trouble improving a characterization, you need to know more — view your character from a different perspective.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Somerset Maugham said, “You can never know enough about your characters.” When you have trouble improving a particular characterization, you need to know more. The remedy may lie in viewing your character from a different perspective."
+    }
+  },
+  {
+    "id": "stein-ch04b-bitter-complaint",
+    "question": "Have your character complain bitterly about something and listen — bitter complaining speaks from the gut and reveals what is normally hidden from public view.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Another way is to have your character complain bitterly about something. In life, complaining is more effective when it is done in a normal voice, the words speaking for themselves. However, bitter complaining connotes an emotional overload. At such times, your character is speaking, as it were, from the gut or the heart rather than the head. Listen to the character in that state. It will help you with the part of characterization that is normally hidden from public view."
+    }
+  },
+  {
+    "id": "stein-ch04b-child-clothes",
+    "question": "Imagine your adult character secretly dressed in children’s clothes and ask why — but take the character’s answer, not yours.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Imagine your adult character secretly dressed in children’s clothes. Why is he doing that? What you want is not your answer, but the character’s answer to that question. The child in an adult character may have a poignant memory of a lasting hurt. Or a marvelous secret to reveal."
+    }
+  },
+  {
+    "id": "stein-ch04b-suddenly-old",
+    "question": "Visualize your character as suddenly rather old — how would appearance, dress, and walk change? — and carry something of that into the present-age characterization.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Yet another way is to visualize your character as suddenly rather old. How would that change her appearance, dress, walk? Is there anything that you can incorporate in your characterization at your character’s present age? Some people preserve characteristics of their childhood, others seem prematurely old in some way. So do some characters."
+    }
+  },
+  {
+    "id": "stein-ch04b-out-of-ordinary-action",
+    "question": "Unfetter your imagination — see your character flapping arms trying to fly, or walking in the snow without shoes; readers are interested in the out-of-the-ordinary.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Unfetter your imagination. Can you see your character flapping arms, trying to fly? Or trying to kiss everyone at a party? Or walking in the snow without shoes? Readers are interested in the out-of-the-ordinary. All these questions involve the character in action, the ideal way to characterize."
+    }
+  },
+  {
+    "id": "stein-ch04b-nude-vulnerability",
+    "question": "Imagine your character in the nude, honestly and in detail — people in the nude become especially vulnerable, and a person seen realistically in the nude is immediately credible.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Last, imagine your character in the nude. This one almost always works if you portray your character in the nude honestly and in detail. People in the nude become especially vulnerable."
+    }
+  },
+  {
+    "id": "stein-ch04b-villain-seems-normal",
+    "question": "Make your villain seem like a normal human being — no whips, no snarling — whose villainy is an ineradicable part of his nature.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Once upon a time, readers tolerated mustache-twirling villains with no countervailing virtues in their makeup. Today’s readers can be roughly divided into two groups, those who accept the fantasy villains of childhood, as in the James Bond stories and Arnold Schwarzenegger films, and those who insist on credibility. In life, villains do not uncurl whips and snarl. They seem like normal human beings. But normal humans are not villains. What distinguishes the true villain is not just the degree to which he hides his villainy under an attractive patina to snare his victims, but his contact with evil."
+    }
+  },
+  {
+    "id": "stein-ch04b-antagonist-mannerism",
+    "question": "Give your antagonist a slightly disturbing physical mannerism — an involuntary blink, a sniff, nose-wrinkling — whose repetition grates on readers.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Can he have a physical mannerism that would be at least slightly disturbing to most people, for instance an involuntary blinking of one eye? Or sniffing? Frequent nosewrinkling? Earlobe-pulling? Elbow-scratching? It is the repetitive nature of such mannerisms that grates on readers."
+    }
+  },
+  {
+    "id": "stein-ch04b-antagonist-with-strangers",
+    "question": "Decide how your antagonist behaves toward people they’ve never met — effusive charm, over-deference, discourtesy, open boredom, or arrogance.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "How does your antagonist behave toward people he’s never met before? Does he effuse charm, is he overly deferential, or is he discourteous, uninterested, openly bored, arrogant? All of these are characteristics that would help form the reader’s attitude toward your villain."
+    }
+  },
+  {
+    "id": "stein-ch04b-traits-in-action",
+    "question": "Weave your characters’ traits into the story as part of an action — keep your explanations out of it.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "To weave individual characteristics into a story, as much as possible let them come out during or as part of an action. The object is to avoid holding up the story and to keep the writer’s explanations out of it."
+    }
+  },
+  {
+    "id": "stein-ch04b-villain-human-side",
+    "question": "Give your villain a human side — a wife and child, charm — so the reader meets the person behind the evil.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "That’s the key, of course. Uck is human. We meet his wife and child. He can be charming if he wants to. Nevertheless, he is fundamentally evil in the way he attaches himself to the life of the protagonist and won’t let go. He is not just getting a lift in the rain, he is the leech that cannot be pulled off the skin. Uck has taken the first step in pushing himself into the protagonist’s life and has begun the process of forcing the"
+    }
+  },
+  {
+    "id": "stein-ch04b-curable-or-evil",
+    "question": "Ask whether your antagonist is curable — bad will work, but evil will provide a more profound experience for the reader.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "You need to ask yourself about your antagonist, Is he curable? Is he bad but can be straightened out? Bad will work, but evil will provide a more profound experience for the reader."
+    }
+  },
+  {
+    "id": "stein-ch04b-protagonist-will",
+    "question": "Give your protagonist will — desire reinforced by ambition — so they drive readers through the story.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "We have seen that wimpishness is off-putting in a protagonist. We have a sense that will—desire reinforced by ambition—is what makes protagonists drive us through their stories."
+    }
+  },
+  {
+    "id": "stein-ch04b-minor-one-characteristic",
+    "question": "Select one memorable characteristic that singles each minor character out from the rest of humanity — especially fleeting ones.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The most efficient technique for making minor characters come alive is to select one memorable characteristic that singles them out from the rest of humanity. This is particularly true for fleeting characters, those that appear and vanish, not to return."
+    }
+  },
+  {
+    "id": "stein-ch04b-minor-cut-overcharacterization",
+    "question": "Cut minor-character detail that fools the reader into expecting a larger role — sometimes all you want is for the reader to be able to see them.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "I’ve seen minor characters given too much characterization, fooling the reader into thinking they had some larger role to play. Sometimes all you want is for the reader to be able to see the minor character. Here’s how Nanci Kincaid does it:"
+    }
+  },
+  {
+    "id": "stein-ch04b-minor-action-characterization",
+    "question": "Characterize a minor character in a few words through a single action — not a description of their uniform or clothing.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "The priest was young and blushed easily. ... In just seven words, the priest is visible even before his special uniform is described. Note that blushing is an action that characterizes,"
+    }
+  },
+  {
+    "id": "stein-ch04b-minor-through-eyes",
+    "question": "Characterize a minor character through the eyes of an important character.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Characterizing a minor character through the eyes of an important character is a valuable technique."
+    }
+  },
+  {
+    "id": "stein-ch04b-minor-advances-plot",
+    "question": "Use a minor character to characterize a major player and to advance the plot at the same time.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "Minor characters can not only help characterize the major players in a story, but can also advance the plot."
+    }
+  },
+  {
+    "id": "stein-ch04b-classic-conversation",
+    "question": "Before sleep, imagine a conversation between the character you are working on and a character you love from a classic; listen to what one says and how the other answers.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "As you are readying yourself for sleep, imagine a scene in which that character and the character you are working on have a conversation about the story of your book. Imagine what one says and how the other answers. In due course, let yourself sleep. You might find that in the first moments of wakefulness the next morning, you’ll want to reach for a pad and paper at your bedside to record some thoughts about your character, enriched by his or her conversation with a character you loved."
+    }
+  },
+  {
+    "id": "stein-ch04b-what-people-think",
+    "question": "Write what other people think but don’t say — don’t be a Pollyanna.",
+    "verb": "rewrite",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "A writer cannot be a Pollyanna. He is in the business of writing what other people think but don’t say,"
+    }
+  },
+  {
+    "id": "stein-ch04b-emotion-manipulation",
+    "question": "When you pit characters against each other, decide which emotions you are manipulating in the reader.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 4",
+      "quote": "What the writers have been doing with this character all along, of course, is manipulating our emotions, which is exactly what your role is when you are pitting characters against each other to create a story."
+    }
+  }
+]

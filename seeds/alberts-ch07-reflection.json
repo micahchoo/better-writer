@@ -1,0 +1,350 @@
+[
+  {
+    "id": "alberts-reflection-voice",
+    "question": "Add reflective summary at points where a distinct narrative voice can ponder and comment on the action or characters.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "It is through reflective summary, or reflection, that we get to hear a distinct narrative voice that ponders and comments on the action or characters."
+    }
+  },
+  {
+    "id": "alberts-show-dont-tell",
+    "question": "Don’t let the show-don’t-tell rule silence your narrator—allow a strong reflective voice to ponder and interpret people and events.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "We’ve been so ingrained with the message “show, don’t tell” that we forget that some of the most powerful writers have strong reflective voices that ponder and interpret people and events."
+    }
+  },
+  {
+    "id": "alberts-reflective-intrigue",
+    "question": "Write reflection that raises ideas your story will then live out, so the reader is intrigued and hungry to see how the story answers them.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Dickens reflects in a manner that gets you intrigued so you are hungry to find out how the story will live out the ideas raised by his introduction."
+    }
+  },
+  {
+    "id": "alberts-reflection-to-specifics",
+    "question": "After a reflective passage of large abstractions, move quickly into the specifics of your story—don’t build the whole piece from abstractions.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Of course he’s speaking in large abstractions and you wouldn’t want to read (or write) a book made up only of abstractions, and Dickens certainly gets into the specifics of his story soon after this reflective introduction."
+    }
+  },
+  {
+    "id": "alberts-reflection-tells-why",
+    "question": "Let your narrative voice tell the reader not just what happened but why it happened or what it means.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "a reflective narrative voice acts as guide and interpreter through a tale; it’s a voice that says it’s not enough to know what happened, I’ll attempt to tell you why it happened or what it means."
+    }
+  },
+  {
+    "id": "alberts-old-fashioned-omniscience",
+    "question": "If you are writing historical fiction or a period piece, use old-fashioned omniscient narrative reflection to intentionally mimic the style of an earlier time.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "For those who are writing historical fiction or period pieces, this sort of “old-fashioned” narrative reflection might serve you well if you wish to intentionally mimic the style of an earlier time."
+    }
+  },
+  {
+    "id": "alberts-brief-omniscient-open",
+    "question": "Open a story with a brief omniscient reflective passage—a paragraph or two—then slide into the mind of the protagonist.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Sometimes an omniscient reflective narrator can be used briefly as a device to begin a story before introducing or sliding into the mind of the protagonist, and it often only lasts for the first paragraph or two."
+    }
+  },
+  {
+    "id": "alberts-omniscient-modesty-pose",
+    "question": "Let your intrusive reflective narrator strike a pose of omniscience tempered with self-deprecating modesty.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "This reflective narrator who insists on intruding on the story strikes a pose—that of both omniscience and self-deprecating modesty."
+    }
+  },
+  {
+    "id": "alberts-study-omniscient-antecedents",
+    "question": "Before using an ironic omniscient reflective narrator, study nineteenth-century omniscient narrators to absorb their diction, syntax, and general style so you can adapt them.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Often these omniscient reflective narrators take an ironic tone—a sort of winking at the reader to say, “We know this is old-fashioned; it’s a game we’re playing.” It’s a game you can play if you care to, but you’ll need to know your antecedents first, which means studying nineteenth-century omniscient reflective narrators to familiarize yourself with their diction, syntax, and general style in order to adapt them for your own purposes."
+    }
+  },
+  {
+    "id": "alberts-retrospective-distance",
+    "question": "Build your retrospective story or memoir on the distance between the older, wiser narrator and the younger self as character.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "That distance between older, wiser narrator and younger self as character is an essential part of a retrospective story or memoir."
+    }
+  },
+  {
+    "id": "alberts-scenes-of-innocence",
+    "question": "Keep the scenes and summaries of the younger self’s innocence so the older voice of wisdom has power—show the steps along the way to knowledge.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Without the scenes and summaries of his innocence, the voice of wisdom would have much less power."
+    }
+  },
+  {
+    "id": "alberts-define-younger-self",
+    "question": "Define the differences between your narrator’s older and younger selves: is the younger self naive, hopeful, full of illusions, given to excesses? Pin down its nature.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "First, you must define the differences between the narrator’s older and younger selves. Ask yourself, is the younger narrator/ character: Naïve? Energetic? Hopeful? Full of illusions? Given to excesses? Does she drink too much? Jump from relationship to relationship? Submissive with authority?Impoverished? Abused? Happy-go-lucky? Whatever the nature of the younger narrator/character, you need to pin it down."
+    }
+  },
+  {
+    "id": "alberts-younger-situation",
+    "question": "Define the younger self’s situation in terms of geography, housing, family, school, and work.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Now define this younger person’s situation in terms of geography, housing, family, school, work, etc."
+    }
+  },
+  {
+    "id": "alberts-define-older-self",
+    "question": "Ask the same defining questions of your older, wiser narrator that you asked of the younger self.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Who is the adult or older narrator now? Ask the same questions of your “wiser” narrator."
+    }
+  },
+  {
+    "id": "alberts-overcome-detachment",
+    "question": "If your older narrator feels detached from the younger self, figure out the younger person’s motives—why she was silly or he was cruel—to reconnect the two selves.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "You’ll have to find a way to connect the older narrator to his or her younger self or the retrospective reflection won’t have depth and power. One way to overcome detachment is to figure out the motives of the younger person—why was she that silly or he that cruel?"
+    }
+  },
+  {
+    "id": "alberts-judgmental-reflection",
+    "question": "Check whether your reflective narrator judges the younger self too harshly—heavy judgment can spoil the reader’s experience.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "If you answered that your reflective narrator feels very judgmental toward her younger self, this too can spoil the experience for your reader."
+    }
+  },
+  {
+    "id": "alberts-rosy-reflection",
+    "question": "Ask whether you are letting your narrator off the hook: be completely honest in assessing both the younger and older self rather than reflecting in too rosy a light.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "If your narrator reflects on his earlier self in too rosy a light, honesty can be sacrificed, leading to the reader losing confidence, trust, and ultimately interest in the narrator and story. Ask yourself, are you letting your narrator off the hook? Have you been completely honest in your assessment of the narrator both younger and older?"
+    }
+  },
+  {
+    "id": "alberts-scene-specific-feelings",
+    "question": "Ask what your adult narrator feels about the younger self in each specific scene—when the younger self was victimized, achieved, or made foolish choices—and let conflicting emotions stand.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "What does the adult narrator feel if her younger self was victimized, if the younger self achieved, if the younger self made foolish choices—be specific, responding to scenes from your story."
+    }
+  },
+  {
+    "id": "alberts-digressive-reflection",
+    "question": "Digress in your reflection from the personal to the historical or informational to make the narrative more layered and thought provoking.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Reflection that “digresses” from the personal to the historical or informational can make a narrative both more layered and more thought provoking."
+    }
+  },
+  {
+    "id": "alberts-concrete-ladder",
+    "question": "Use concrete experience as a ladder to great abstractions, and when the reflection has gone far enough, return to the most precise observations of the world around you.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "She uses the concrete as a ladder to great abstractions. Yet when she’s gone too far for you, she comes back to the most precise observations of the world around her."
+    }
+  },
+  {
+    "id": "alberts-brief-digression",
+    "question": "Keep digressive reflection to about a paragraph, then bring the narrative elements back into play—don’t interrupt the story for too long.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "But the digression only lasts for a paragraph before the author starts to bring the narrative elements back into play. The author is careful not to interrupt his novel for too long."
+    }
+  },
+  {
+    "id": "alberts-humor-in-summary",
+    "question": "Express humor through reflective summary—irony, absurdity, exaggeration, odd juxtapositions, sarcasm—where it can’t be voiced in a scene.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Summary gives a writer the opportunity to express humor through reflection, apart from actions or speech."
+    }
+  },
+  {
+    "id": "alberts-withhold-for-comedy",
+    "question": "Withhold a key fact from your reflective summary, dropping hints along the way, so the reveal lands with playful surprise in straightforward language.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Despite the title, and the fact that Orlean gives hints along the way, such as Biff eating hotel soap, we’re still surprised to learn that Biff is a boxer, a show dog. The effect is playful, though the language is straightforward."
+    }
+  },
+  {
+    "id": "alberts-put-down-tone",
+    "question": "Achieve humorous put-downs through the extremity and absurdity of your examples, but never put down the reader—imply you share the assumptions and the wit.",
+    "verb": "rewrite",
+    "genre": ["essay", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Bryson accomplishes his put-down of this particular place by the extremity and absurdity of his examples. But he doesn’t put down his reader—he implies that we are all buddies here and that we share his assumptions and his wit."
+    }
+  },
+  {
+    "id": "alberts-include-self-in-criticism",
+    "question": "When your humor criticizes the reader, include yourself in the criticism—criticize “us,” not “them”—or the reader will feel attacked rather than laugh.",
+    "verb": "rewrite",
+    "genre": ["essay", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Sedaris manages to be critical of us as Americansand us is an important word here, because if he were critical of readers and didn’t include himself, we’d become annoyed and resentful rather than laugh."
+    }
+  },
+  {
+    "id": "alberts-consistent-intent",
+    "question": "Decide whether your piece is light entertainment or basically serious with touches of irony, and stay consistent—don’t waver between using characters for humor and expecting readers to be moved by them.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "You must decide if your piece is going to be light in tone, a piece of entertainment, or basically serious with a few touches of irony, a few laughs. What won’t work is if you keep wavering between intentions—using your characters for humorous effect and then expecting people to be moved by their loves and losses."
+    }
+  },
+  {
+    "id": "alberts-technique-matches-intent",
+    "question": "Match your reflective humor to your intent: for entertainment use narrative exaggeration; for literary aims let irony and absurdity shine without overwhelming the story or characters.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "If your aim is to entertain more than it is to illuminate, go ahead and make use of such humorous reflective techniques as narrative exaggeration. If your intention is primarily literary, look for the irony and the absurdity in your story and let it shine without allowing it overwhelm the story or the characters."
+    }
+  },
+  {
+    "id": "alberts-reflection-earns-momentum",
+    "question": "Cut any reflection that doesn’t repay the momentum it costs—each reflective passage must add insight or interest for the reader.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "Reflection, like flashbacks, slows the action. It interrupts the narrative’s forward movement. So any reflection you add to your story must be worth the loss of momentum, in terms of adding insight or interest for the reader."
+    }
+  },
+  {
+    "id": "alberts-meditative-essay",
+    "question": "If your essay is meditative, moving by association rather than plot, let it depend on reflection—a lot of it, as long as it stays relevant and well written.",
+    "verb": "concept-form",
+    "genre": ["essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 7",
+      "quote": "if you’re writing a meditative rather than a narrative essay, which might move by association rather than a chronology of action, the piece will depend on reflection rather than plot, so a lot of reflection (as long as it is relevant and well written) will not be a problem."
+    }
+  }
+]

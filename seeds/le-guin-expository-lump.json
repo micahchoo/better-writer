@@ -1,0 +1,62 @@
+[
+  {
+    "id": "le-guin-expository-lump-compost-01",
+    "question": "Find the chunk of background information in your scene and compost it: break it up, spread it out, and slip it into conversation or action-narration as implication, passing reference, or hint.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Expository Lump",
+      "quote": "As you write the scene, \"compost\" the information, break it up, spread it out, slip it into conversation or action-narration or anywhere you can make implication, by passing reference, by hint, by any means you like."
+    }
+  },
+  {
+    "id": "le-guin-expository-lump-standalone-02",
+    "question": "Make your scene understandable to a reader who has not read your background notes: include enough of the situation that it stands alone without them.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Expository Lump",
+      "quote": "You don't have to write the whole story; just a scene or two that is based on this information and includes enough of it to be understandable to a reader who has not read the information."
+    }
+  },
+  {
+    "id": "le-guin-expository-lump-real-process-03",
+    "question": "Choose something you know how to do that involves a complex series of specific actions — making bread, sailing a boat, repairing an engine — and build a scene around the process.",
+    "verb": "elaborate",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Expository Lump",
+      "quote": "Think of something you know how to do that involves a complex series of specific actions: for example; making a loaf of bread or a piece of jewelry, building a barn, playing a game of blackjack or a game of polo, sailing a boat, repairing an engine, setting up a conference, setting a broken wrist, setting type"
+    }
+  },
+  {
+    "id": "le-guin-expository-lump-process-scene-04",
+    "question": "Rewrite your scene so the process runs with at least two people present, either in the background of a conversation or as the locus of the action.",
+    "verb": "rewrite",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Expository Lump",
+      "quote": "Write a scene, involving at least two people; in which this process is going on, either in the background of a conversation, or as the locus of the action."
+    }
+  },
+  {
+    "id": "le-guin-expository-lump-steps-subordinate-05",
+    "question": "Make the steps of the process clear to the reader, but keep it in the background — the process should not appear to be what the piece is about.",
+    "verb": "rewrite",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "The Expository Lump",
+      "quote": "Whatever the process is, make the various steps clear to the reader, but don't let it appear to be what the piece is all about."
+    }
+  }
+]

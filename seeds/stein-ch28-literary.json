@@ -1,0 +1,194 @@
+[
+  {
+    "id": "stein-read-what-you-write",
+    "question": "Audit what you read for pleasure — the field and the quality of language you require of books is what you will write. Do not expect your work to succeed in a field you don’t habitually read for pleasure.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "In the end, you write what you read. If you read literary fiction with pleasure, that’s what you will attempt to write. If you read thrillers or romances, you will in all likelihood end up writing for the audience of which you are a part. The same is true for nonfiction—not merely the field of interest, but the quality of language and insight you require of your books, read or written."
+    }
+  },
+  {
+    "id": "stein-literary-character",
+    "question": "Write characters understood in depth, engaged in activities resonant with the ambiguities and stresses of life, so that they persist in the reader’s mind after the reading is over.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "The literary novelist is concerned primarily with character understood in depth and engaged in activities that are resonant with the ambiguities and stresses of life. The richness of the best literary fiction is derived primarily from the creation of characters who will persist in the reader’s mind after the reading experience is over."
+    }
+  },
+  {
+    "id": "stein-diction",
+    "question": "Choose each word for its precise meaning and its sound, arrange your words deliberately, and select them for effect — excellence in diction is the most important characteristic of fine writing.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "Diction involves the choice of words for their precise meaning and sound, the arrangement of those words, and their selection for effect. Excellence in diction is the most important characteristic of fine writing."
+    }
+  },
+  {
+    "id": "stein-word-attention",
+    "question": "Attend to the individual meaning and resonance of every word and show respect for the reader’s intelligence — that attention is what separates literary writing from commercial.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "The most distinguishing difference between “commercial” writers like Grisham and literary writers is the attention paid to the individual meanings and resonance of words and the respect shown for the reader’s intelligence."
+    }
+  },
+  {
+    "id": "stein-human-vs-humane",
+    "question": "When a word’s meaning is fuzzy to you, stop and ask what it precisely means — “human” is not “humane” — and replace words chosen off the top of your head out of speed.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "In the best of newspapers the best of journalists are usually forced to write quickly“off the top of the head” is the convenient expression—and that’s where an imprecise use of “human” comes from: speed and a minimum of thought, for surely both experienced authors of the Schwarzkopf biography know better."
+    }
+  },
+  {
+    "id": "stein-verbal-trunk",
+    "question": "Replace vague phrases like “a regular guy” — verbal trunks into which a hundred readers pile their own meanings — and say exactly what you mean.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "Did they mean Schwarzkopf was what in colloquial parlance we call “a regular guy”? And if so, what is meant by “a regular guy”? It’s a verbal trunk into which a hundred readers would pile many meanings relating to their own experience."
+    }
+  },
+  {
+    "id": "stein-perfect-beyond-editor",
+    "question": "Improve your work beyond the requirements of your editor or the public — hunt precise nuances and listen to the sound of words instead of stopping at good enough.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "Fiction writers who don’t improve their work beyond the requirements of their editors or the public do not have an interest in perfection because they are deaf to the sound of words and have no instinct or training to hunt precise nuances."
+    }
+  },
+  {
+    "id": "stein-emote-evoke",
+    "question": "Rewrite the places where you convey your own emotion — where you emote — so they instead stimulate an emotion in the reader, which is to evoke.",
+    "verb": "rewrite",
+    "genre": ["poetry", "fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "Poetry and fiction share certain characteristics. In fashioning poetry, a common beginner’s mistake is to emote instead of to evoke, to convey the writer’s emotion rather than to stimulate an emotion from the reader."
+    }
+  },
+  {
+    "id": "stein-word-pairing",
+    "question": "Bring two words together that have not been together before — achieve precision by creating a new grouping of words rather than using each word only for its exact meaning.",
+    "verb": "concept-form",
+    "genre": ["poetry", "fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "One way to a reader’s emotion is to bring two words together that have not been together before. Therefore precision is achieved in poetry by the creation of a new grouping of words rather than by using each word for its exact meaning."
+    }
+  },
+  {
+    "id": "stein-lilting-house",
+    "question": "When you want to convey an emotion, search for words that evoke it — “lilting house” rather than the direct, obvious “happy house.”",
+    "verb": "rephrase",
+    "genre": ["poetry", "fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "A poor poet might have written “happy house,” which is direct and obvious. The “lilting house” evokes the happiness."
+    }
+  },
+  {
+    "id": "stein-streetlamp-vigil",
+    "question": "Give an object a human characteristic with a single word, as “the street-lamp’s vigil” gives the lamp vigilance — compress a metaphor to one word.",
+    "verb": "rewrite",
+    "genre": ["poetry", "fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "The most famous poem of Delmore Schwartz, “In the Naked Bed, in Plato’s Cave,” mixes ordinary description (“A fleet of trucks strained uphill, grinding”) with fresh metaphor (“The street-lamp’s vigil”). The street-lamp is given a human characteristic—vigilance—with a single word."
+    }
+  },
+  {
+    "id": "stein-austere-compression",
+    "question": "Compress your poem to austerity — strip every word that does not earn its place, since poetry usually involves austere compression.",
+    "verb": "cut",
+    "genre": ["poetry"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "Poetry usually involves austere compression."
+    }
+  },
+  {
+    "id": "stein-sound-of-words",
+    "question": "Listen to the sound of your words as you write literary fiction — sound can contribute to the effect even when readers rarely notice it working.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "In commercial fiction, the sound of words is rarely considered except for the occasional—and inaccurate—“splat” or “rat-a-tat-tat.” In literary fiction, the sound of words can contribute to the effect, though that is rarely noticed by readers."
+    }
+  },
+  {
+    "id": "stein-particularity",
+    "question": "Rewrite for particularity: to be specific is not as precise as to be particular — replace the merely concrete with the particular.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "Once the word from editors was “be concrete.” But to be specific is not as precise as to be particular, which is much more advantageous to the creative writer."
+    }
+  },
+  {
+    "id": "stein-forgotten-coffee",
+    "question": "Track the objects in your scene: when a character orders coffee, the coffee must appear — rewrite scenes where a prop vanishes between request and delivery.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "Coffee? Yes, he said, black. She disappeared and returned with a cup and saucer.\n\nThe coffee itself was presumably forgotten by the author."
+    }
+  },
+  {
+    "id": "stein-distinctive-voice",
+    "question": "Strive toward a distinctive voice or style — precision, freshness, insight, and resonance are the shared interests of writers who produce durable work.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 28",
+      "quote": "Those novelists and nonfiction writers who strive to produce durable work share an interest in precision and freshness in the use of words, in insights into human nature and the physical world, and in resonance. These writers usually develop a “voice” or style that is distinctive."
+    }
+  }
+]

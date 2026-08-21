@@ -1,0 +1,494 @@
+/* Import JetBrains Mono from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+:root {
+  /* Light theme colors */
+  --bg-light: #f7f7f7;
+  --card-bg-light: #ffffff;
+  --text-light: #2d3748;
+  --muted-light: #718096;
+  --border-light: #e2e8f0;
+  --accent-light: #3b82f6;
+  --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  /* Dark theme colors */
+  --bg-dark: #000000;
+  --card-bg-dark: #1a1a1a;
+  --text-dark: #ffffff;
+  --muted-dark: #cccccc;
+  --border-dark: #333333;
+  --accent-dark: #60a5fa;
+  --shadow-dark: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+body .w-md-editor-text-input {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+  overflow: hidden;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  padding: 8px;
+  padding-top: max(8px, env(safe-area-inset-top, 8px));
+  padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
+  padding-left: max(8px, env(safe-area-inset-left, 8px));
+  padding-right: max(8px, env(safe-area-inset-right, 8px));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+
+@supports (height: 100dvh) {
+  .app {
+    height: 100dvh;
+  }
+}
+
+.app.light {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+.app.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* Top bar: title, genre picker, mode badge */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 4px;
+  flex: 0 0 auto;
+}
+
+.app-title {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.genre-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.genre-label {
+  font-size: 12px;
+  color: var(--muted-light);
+}
+
+.app.dark .genre-label {
+  color: var(--muted-dark);
+}
+
+.genre-select {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: var(--card-bg-light);
+  color: var(--text-light);
+  outline: none;
+  cursor: pointer;
+}
+
+.app.dark .genre-select {
+  border-color: var(--border-dark);
+  background: var(--card-bg-dark);
+  color: var(--text-dark);
+}
+
+.genre-select:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.mode-badge {
+  margin-left: auto;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-light);
+  color: var(--muted-light);
+  user-select: none;
+}
+
+.app.dark .mode-badge {
+  border-color: var(--border-dark);
+  color: var(--muted-dark);
+}
+
+.mode-badge.mode-local {
+  color: #15803d;
+  border-color: rgba(21, 128, 61, 0.4);
+}
+
+.app.dark .mode-badge.mode-local {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+/* Editor area */
+.editor-container {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-light);
+}
+
+.app.light .editor-container {
+  background-color: var(--card-bg-light);
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--border-light);
+}
+
+.app.dark .editor-container {
+  background-color: var(--card-bg-dark);
+  box-shadow: var(--shadow-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.editor-wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* React MD Editor styles */
+.w-md-editor {
+  --md-editor-font-family: 'JetBrains Mono', monospace !important;
+  height: 100% !important;
+  border: none !important;
+  background-color: transparent !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.w-md-editor-text-container {
+  height: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  overflow: auto !important;
+}
+
+.w-md-editor-text {
+  height: auto !important;
+  min-height: 100% !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  padding: 1.25rem !important;
+  padding-bottom: 9rem !important; /* keep the bottom clear of the docked panel */
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  resize: none !important;
+  box-sizing: border-box !important;
+  line-height: 1.5 !important;
+  -webkit-text-size-adjust: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.w-md-editor-text:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.w-md-editor .w-md-editor-text-input {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.w-md-editor-preview {
+  height: 100% !important;
+  padding: 1.25rem !important;
+  padding-bottom: 9rem !important;
+  border: none !important;
+  background: transparent !important;
+  overflow-y: auto !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+[data-color-mode="dark"] .w-md-editor {
+  --color-border-default: var(--border-dark) !important;
+}
+
+[data-color-mode="dark"] .wmde-markdown {
+  --color-canvas-default: transparent !important;
+}
+
+[data-color-mode="dark"] .w-md-editor-preview {
+  color: var(--text-dark) !important;
+}
+
+[data-color-mode="light"] .w-md-editor-preview {
+  color: var(--text-light) !important;
+}
+
+[data-color-mode="light"] .w-md-editor-text {
+  background-color: var(--card-bg-light) !important;
+  color: var(--text-light) !important;
+}
+
+[data-color-mode="dark"] .w-md-editor-text {
+  background-color: var(--card-bg-dark) !important;
+  color: var(--text-dark) !important;
+}
+
+/* Dictation (local mode only) */
+.editor-controls {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+  bottom: max(12px, env(safe-area-inset-bottom, 12px));
+}
+
+.dictate-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: var(--card-bg-light);
+  color: var(--text-light);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app.dark .dictate-button {
+  border-color: var(--border-dark);
+  background: var(--card-bg-dark);
+  color: var(--text-dark);
+}
+
+.dictate-button:hover {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.dictate-button.recording {
+  border-color: #e53e3e;
+  color: #e53e3e;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.dictate-button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Coach panel: bottom-right docked, one question at a time */
+.coach-panel {
+  position: absolute;
+  bottom: max(56px, calc(env(safe-area-inset-bottom, 0px) + 56px));
+  right: 12px;
+  max-width: 380px;
+  min-width: 260px;
+  z-index: 90;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  background: var(--card-bg-light);
+  box-shadow: var(--shadow-light);
+  color: var(--text-light);
+  font-size: 13px;
+}
+
+.app.dark .coach-panel {
+  border-color: var(--border-dark);
+  background: var(--card-bg-dark);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+.coach-question {
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.coach-placeholder {
+  margin: 0 0 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--muted-light);
+  line-height: 1.5;
+}
+
+.app.dark .coach-placeholder {
+  color: var(--muted-dark);
+}
+
+.coach-sparkle {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.coach-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.coach-ask {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--accent-light);
+  background: var(--accent-light);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.coach-ask:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.coach-ask:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.coach-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted-light);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.app.dark .coach-dismiss {
+  color: var(--muted-dark);
+}
+
+.coach-dismiss:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Error toast */
+.error-toast {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #feb2b2;
+  background: rgba(254, 226, 226, 0.95);
+  color: #c53030;
+  font-size: 12px;
+  box-shadow: var(--shadow-light);
+}
+
+.app.dark .error-toast {
+  border-color: #c53030;
+  background: rgba(69, 26, 26, 0.95);
+  color: #fc8181;
+}
+
+.error-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.error-dismiss:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(229, 62, 62, 0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .coach-panel {
+    left: 12px;
+    right: 12px;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .coach-actions {
+    flex-wrap: wrap;
+  }
+
+  .topbar {
+    gap: 10px;
+  }
+}

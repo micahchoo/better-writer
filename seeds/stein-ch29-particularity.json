@@ -1,0 +1,266 @@
+[
+  {
+    "id": "stein-particularity-concept-01",
+    "question": "Audit a passage of your writing for detail that individualizes: find the particulars that differentiate one person from another, one act from another, one place from any others like it. Where the detail is generic, particularize it.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "It is not just detail that distinguishes good writing, it is detail that individualizes. I call it “particularity.”"
+    }
+  },
+  {
+    "id": "stein-particularity-characterize-02",
+    "question": "Characterize an individual through particularity — how they look, dress, or speak — without resorting to clichés or generalizations.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "To characterize, particularity is used to show how an individual looks, dresses, or speaks without resort to clichés or generalizations."
+    }
+  },
+  {
+    "id": "stein-particularity-metaphor-03",
+    "question": "Particularize through your viewpoint character's perception: instead of saying a smile is like an implant, have the character think it is an implant.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "Note the use of metaphor to particularize. It doesn’t say Roberts’s smile is like an implant, Thomassy thinks it is an implant."
+    }
+  },
+  {
+    "id": "stein-particularity-action-04",
+    "question": "Give a character a methodical, particularized action — like moving his gaze deliberately from eyes to hair to chin to ears — that disconcerts others and reveals his nature.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "Thomassy moved his gaze from Roberts’s confident eyes to Roberts’s blond hair, then Roberts’s chin, then Roberts’s left ear, then Roberts’s right ear. The four points of the cross."
+    }
+  },
+  {
+    "id": "stein-particularity-place-05",
+    "question": "Replace a general statement about a place (\"The apartment was bigger than they ever expected\") by stretching out particulars — the echo of a voice, the height of the ceiling, carved plaster angels — so the reader experiences the place along with the characters.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "By stretching out the particulars (the echo of the agent’s voice, the height of the ceiling, the carved plaster angels), the reader experiences the place along with the characters."
+    }
+  },
+  {
+    "id": "stein-particularity-dialogue-06",
+    "question": "Let dialogue particularize a character: give a character a line that reveals a trait — like Joe’s \"Is it in the same town?\" revealing his sense of humor.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "In addition, the dialogue also particularizes one of the characters. Joe, for instance, has a sense of humor."
+    }
+  },
+  {
+    "id": "stein-particularity-object-07",
+    "question": "If an ordinary object matters to your story, particularize it — its location, size, color, how it moves — so the reader's attention is called to it.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "If an ordinary object is important to a story, particularization will help call attention to it."
+    }
+  },
+  {
+    "id": "stein-particularity-purpose-08",
+    "question": "Audit every detail you have added: none should be waste words; each must have a purpose, such as making a transaction credible. Cut the particulars that merely decorate.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "The details do not consist of waste words; they have a purpose in making the transaction credible."
+    }
+  },
+  {
+    "id": "stein-particularity-simplify-09",
+    "question": "Resist the pressure to clip language short when your aim is to provide an experience for the reader: \"The apartment was large\" doesn't do it. Keep the extra words that make the experience of the action possible and credible.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "However, simplification is not necessarily appropriate if one’s aim is to provide an experience for the reader. “The apartment was large” doesn’t do it. Nor does putting an envelope in front of somebody. The extra words are not wasted because they make the experience of the action possible and credible."
+    }
+  },
+  {
+    "id": "stein-particularity-keywords-10",
+    "question": "Find the two most particular words in your sentence — like \"bald pink knees\" — and make sure the sentence would turn ordinary without them.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "The crucial words, of course, are “bald pink knees,” a particularization that makes the character and the place instantly visible and in the reader’s experience unique. If we were to eliminate the words “bald” and “pink” how diminished that opening sentence would be:"
+    }
+  },
+  {
+    "id": "stein-particularity-repeat-11",
+    "question": "When a character repeats an action like laughing within a few pages, particularize each instance instead of repeating \"She laughed\" — make each laugh distinct.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "Particularizing is also useful if you have occasion to repeat something—like a character laughing—and don’t want to bore the reader by repeating a phrase like “She laughed” several times within the same few pages:"
+    }
+  },
+  {
+    "id": "stein-particularity-top-of-head-12",
+    "question": "Catch yourself writing top-of-the-head — the cliché or the generalization that comes first — and replace it with a sentence that particularizes in an interesting way.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "The temptation is always to use either a cliché or a generalization, what I call “top-of-thehead writing.” In this chapter we are trying to fashion sentences that are writerly, that particularize in an interesting way."
+    }
+  },
+  {
+    "id": "stein-particularity-measured-13",
+    "question": "Turn an ordinary appearance sentence into one that characterizes through a measurable, comparative particular — \"Cecilia’s skirts were three inches shorter than her age allowed\" instead of \"Cecilia wore short skirts.\"",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "Cecilia wore short skirts. It doesn’t take much to turn that ordinariness into a sentence that characterizes and particularizes: Cecilia’s skirts were three inches shorter than her age allowed."
+    }
+  },
+  {
+    "id": "stein-particularity-evidence-14",
+    "question": "Convey a trait like \"Vernon was a heavy smoker\" through particularized evidence — how he coughs, how others treat him — rather than stating the generalization.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "Vernon coughed from the ground up. When a waitress heard Vernon’s voice she always guided him to the smoking section without asking."
+    }
+  },
+  {
+    "id": "stein-particularity-hands-15",
+    "question": "If you deal with a character's hands, give them something particular to do — like a hand that periodically checks for itself — instead of leaving them at a loss.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "If you’re going to deal with a character’s hands, give them something to do, as this author did:"
+    }
+  },
+  {
+    "id": "stein-particularity-staged-16",
+    "question": "When a person comes into view, don't describe him all at once: delay part of the description, start at a distance, then notice more. Use the same staged particularization for places.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "When a person comes into view, the writer’s temptation is to describe him all at once. It’s more effective to delay part of the description. Start at a distance, then notice more. It enhances the tension. The same technique of particularizing in stages works for places as well as people."
+    }
+  },
+  {
+    "id": "stein-particularity-diction-17",
+    "question": "Go word by word through a passage and demand precision of meaning — le mot juste, exactly the right word.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "The requirement is precision of meaning, le mot juste, exactly the right word."
+    }
+  },
+  {
+    "id": "stein-particularity-sharpen-18",
+    "question": "When a cliché offers itself, sharpen it with an unexpected, precise phrase — \"the exquisitely perfect last second\" instead of \"the last second.\"",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "The lazy writer’s cliché would have been “Pickpockets wait until the last second.” Instead, the journalist avoided the cliché and sharpened the meaning by calling it “the exquisitely perfect last second.”"
+    }
+  },
+  {
+    "id": "stein-particularity-paragraph-19",
+    "question": "Work on one paragraph at a time; perfect a single paragraph of particularity and use it as the model for the whole book.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "You work on one paragraph at a time. If you perfect a single paragraph, you have a model for a book."
+    }
+  },
+  {
+    "id": "stein-particularity-sound-20",
+    "question": "Choose adjectives and adverbs for the particular sound of words — branches that swoosh and thump, gravel that pops — rather than cutting them all on principle.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "Adjectives and adverbs, which normally should be cut, are all over the place. They are used to wonderful effect because she uses the particular sound of words."
+    }
+  },
+  {
+    "id": "stein-particularity-practice-21",
+    "question": "Practice particularizing in your letters and personal correspondence, replacing generalizations and clichés, so the habit carries over into your work.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "If you work at particularizing in all of your personal correspondence, the recipients will enjoy what you write much more—and you will be practicing what you need to perfect to get your books published and to build an audience for your writings."
+    }
+  },
+  {
+    "id": "stein-particularity-opening-22",
+    "question": "Revise an opening that lacks particularity: use actions where possible, have people talk or think in particulars, make locale, objects, and people distinctive and visible, use other senses, and make it ominous if you can.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 29",
+      "quote": "Use actions if possible. If people are in your opening, have them talk or think in particulars. Make locale, objects, and people distinctive and visible. Use other senses if appropriate. And make it ominous if you can."
+    }
+  }
+]

@@ -1,0 +1,206 @@
+[
+  {
+    "id": "stein-quoting-breakup-01",
+    "question": "Break up any quoted speech that runs more than three sentences — insert something visual, however slight, between the chunks.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "If you quote anyone for more than three sentences, that’s a speech. Break it up with something visual."
+    }
+  },
+  {
+    "id": "stein-quoting-interruption-02",
+    "question": "Break a long quote with a seemingly inconsequential physical detail: a cough humanizes the speaker, a pointed glance implies conflict.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "The first interruption humanizes the speaker and adds to the reality. The second—a glance at the mayor—invokes a suspicion of conflict by seeming to blame the mayor for the problems the speaker is talking about."
+    }
+  },
+  {
+    "id": "stein-quoting-meaning-03",
+    "question": "Cut reported speech freely: you are not obligated to reproduce every word, only to preserve the speaker’s meaning.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "In reporting spoken words, it is not a writer’s obligation to reproduce all of the words as long as the speaker’s meaning is preserved."
+    }
+  },
+  {
+    "id": "stein-quoting-roughness-04",
+    "question": "Keep quoted speech rough: few people speak in complete grammatical sentences, and perfectly formed sentences come across to the reader as made up.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "Few people speak in complete and grammatical sentences. Moreover, perfectly formed sentences often come across to the reader as made up. In quoting, the writer has to beware of cleaning up a speaker’s sentences."
+    }
+  },
+  {
+    "id": "stein-quoting-color-05",
+    "question": "Edit quoted material toward the color of the speaker’s words — expletives and grammatical howlers included — neither a verbatim transcript nor a straightened-out version.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "I wasn’t arguing for a verbatim transcript of the tapes but for a retention of their color, which I succeeded in getting, and which all writers who deal with the spoken words of others should strive for."
+    }
+  },
+  {
+    "id": "stein-quoting-select-06",
+    "question": "Cut excess quotation from an interview: keep only what reveals the character of the speaker or defines subject matter, preserve what is confrontational, colorful, or especially appropriate, and ditch the rest.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "When you’re reporting the results of an interview, you will likely end up with too much quotation. You want to keep those parts that reveal the character of the speaker or that define subject matter. You want to preserve comments that are confrontational, colorful, or especially appropriate, and ditch the rest."
+    }
+  },
+  {
+    "id": "stein-quoting-neverinvent-07",
+    "question": "Never intentionally misquote and never invent dialogue: fabricated attributed speech is a highly visible sign of untrustworthy writing.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "Never intentionally misquote. And never invent dialogue."
+    }
+  },
+  {
+    "id": "stein-quoting-fiction-08",
+    "question": "If you find yourself inventing dialogue in nonfiction, redirect that instinct into a play, novel, or movie, where invented speech belongs.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "If you find yourself inventing dialogue, write a play, novel, or movie."
+    }
+  },
+  {
+    "id": "stein-quoting-substantiate-09",
+    "question": "Treat dialogue as a danger in nonfiction: use only direct quotes that sound real and can be substantiated.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "For the writer of articles and books as well as journalism, dialogue is a danger unless one uses direct quotes that sound real and can be substantiated."
+    }
+  },
+  {
+    "id": "stein-guts-inoffensive-01",
+    "question": "Take the oath to write nothing inoffensive: the success of an article or nonfiction book rests on your courage in revealing normally unspoken things about yourself or your society.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "A long time ago I took an oath never to write anything inoffensive. The single characteristic that most makes a difference in the success of an article or nonfiction book is the author’s courage in revealing normally unspoken things about himself or his society."
+    }
+  },
+  {
+    "id": "stein-guts-unspeakable-02",
+    "question": "Rewrite toward the unspeakable: what makes writing at its best interesting is your willingness to say things that people don’t ordinarily say.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "What makes writing at its best interesting is the writer’s willingness to broach the unspeakable, to say things that people don’t ordinarily say."
+    }
+  },
+  {
+    "id": "stein-guts-reluctance-03",
+    "question": "Put what you actually think into the text: overcome your natural reluctance to say the things you think — fig leaves have no place on the minds of the best writers.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "Yes, after overcoming their natural reluctance to say the things they think. Fig leaves have no place on either the bodies or the minds of the best writers."
+    }
+  },
+  {
+    "id": "stein-guts-exposed-04",
+    "question": "Know that as a nonfiction writer you are more exposed than the novelist, who hides a little under the presumption that he is making things up — dare anyway.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "The novelist has it easier. He hides a little—just a little—under the presumption that he is making things up. The nonfiction writer who dares to dare is more exposed."
+    }
+  },
+  {
+    "id": "stein-guts-borrowcandor-05",
+    "question": "Borrow the candor of another: quote someone else’s daring words — pass the candor chalice — to make the candid point yourself.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "Vidal, who has never wanted for vitriol much less candor, begins one piece about Tennessee Williams by passing the candor chalice to Williams, whom he quotes saying, “I particularly like New York on hot summer nights when all the ... uh, superfluous people are off the streets.” Borrowing the candor of another has been useful to Joan Didion also."
+    }
+  },
+  {
+    "id": "stein-guts-fulcrum-06",
+    "question": "Find the one concrete incident in your material that can serve as the fulcrum of your piece and build the essay around it.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "As Pemberton was drying one of the Baccarat glasses, it shattered in her hand, a happy accident in that she used it as the fulcrum of her piece."
+    }
+  },
+  {
+    "id": "stein-guts-forthrightness-07",
+    "question": "Distinguish forthrightness from sensationalism: what your writing requires is honesty of a kind that gets self-suppressed by the public, not tabloid shock.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "It should be evident by now that forthrightness doesn’t involve sensationalism suitable for the exploitation tabloids. What it requires is honesty of a kind that gets selfsuppressed by the public."
+    }
+  },
+  {
+    "id": "stein-guts-profession-08",
+    "question": "Elaborate the hidden reality of your own work: write about what actually happens in your field — its normally private, unspoken acts — with precision, clarity, grace, and candor.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 26-27",
+      "quote": "He does what no surgeon has done before, with precision, clarity, grace, imagination, and candor:"
+    }
+  }
+]

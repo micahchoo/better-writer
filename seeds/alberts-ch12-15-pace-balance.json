@@ -1,0 +1,326 @@
+[
+  {
+    "id": "alberts-scene-moments-in-summary",
+    "question": "In a piece carried mostly by summary, stop the ongoing flow of summary and render in scene only the moments of utmost importance to your narrator or protagonist.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "The authors have chosen to stop the ongoing flow of summary to focus in closely, through scene, at particular, wellchosen moments that are of utmost importance to the narrator or protagonist."
+    }
+  },
+  {
+    "id": "alberts-primal-scene-center",
+    "question": "Identify the scene at the center of your story—the event everything else spins around, the one that must be returned to—and make sure it is the event you dramatize.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "the center around which the general life of these soldiers, their day-to-day existence, spins. It is the underlying source of all terror. It is the cruel joke, the happenstance—killed while peeing. It is the primal scene, in essence, of the story, the one that must be returned to."
+    }
+  },
+  {
+    "id": "alberts-earned-abstraction",
+    "question": "Before lifting your story into big summarized abstractions, supply the specificity of concrete details so the reader trusts you.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "The reader has come to trust O’Brien through the specificity of the concrete details he has supplied. The particularized summary and the focused scene have set us up for the more abstract picture of these soldiers, and all the soldiers like them, who carried the burdens of the war."
+    }
+  },
+  {
+    "id": "alberts-summary-exclusion-caveat",
+    "question": "Before writing a piece of fiction that relies on summary to the near exclusion of scene, consider that very few writers carry it off outside a book-length work; creative nonfiction, with its reliance on reflection, tolerates it better.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "there are very few writers who can carry off the piece that relies on summary to the near exclusion of scene, at least in fiction, and not in a book-length work. Creative nonfiction, with its greater reliance on reflection, may be less scene dependent."
+    }
+  },
+  {
+    "id": "alberts-forward-motion",
+    "question": "Cut any passage, fast or slow, that does not contribute to the forward movement of the whole.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "All aspects of the piece, whether slow or fast, must in some way contribute to the forward movement of the whole."
+    }
+  },
+  {
+    "id": "alberts-human-condition-pauses",
+    "question": "Do not rush from major plot point to major plot point; let the story pause long enough for the reader to learn something about the human condition along the way.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "A good story hits these major plot points but allows us to learn something about the human condition along the way."
+    }
+  },
+  {
+    "id": "alberts-breathing-space",
+    "question": "After a stretch of fast-paced action, give readers breathing space with a slower section—scene or summary.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "When a lot of fast-paced action has occurred, it’s only natural to give readers some breathing space with a slower section, be it scene or summary."
+    }
+  },
+  {
+    "id": "alberts-pace-vs-form",
+    "question": "Remember that pace comes from time, not form: a scene can be slow because it mimics a deliberate progression of time, and a summary can be rapid because it compresses minutes, days, years.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "a scene doesn’t mean speed just because it contains actions, nor does a summary necessarily indicate slowness; scenes can be slow because they are mimicking a deliberate progression of time, and summaries can be rapid because they are compressing time—minutes, days, years."
+    }
+  },
+  {
+    "id": "alberts-compress-time-spans",
+    "question": "Compress the spans of time that do not need examination into a single sentence of summary—“Over the next two years Ralph saw his father only a few times”—and save scene for the spans that require careful attention.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "can be compressed with summary such as “Over the next two years Ralph saw his father only a few times.”"
+    }
+  },
+  {
+    "id": "alberts-slow-scene-with-summary",
+    "question": "Slow a scene’s pace by deliberately inserting background summary into the ongoing scene.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "You can slow the pace even further by inserting background summary into an ongoing scene, as described above."
+    }
+  },
+  {
+    "id": "alberts-cut-scene-bog",
+    "question": "Cut unnecessary conversations and irrelevant background exposition from your scenes—they slow the pace until the reader loses sight of what’s at stake in the scene.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "But you don’t want to bog down your scene with unnecessary conversations or irrelevant background exposition, slowing it down to such a degree that the reader loses sight of what’s at stake in the scene."
+    }
+  },
+  {
+    "id": "alberts-diagnose-pace",
+    "question": "Mark the places where you get bored reading your own draft and the holes where it rushes; work out why each drags or races, then cut or add so the narrative moves forward smoothly and compellingly.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "Where do you get bored reading the draft? Where are there holes? Mark those places and consider them carefully. What can you cut or add to make the draft move forward in a manner that is both smooth and compelling?"
+    }
+  },
+  {
+    "id": "alberts-reflection-beyond-scene",
+    "question": "When you follow a scene with reflective summary, make the reflection deepen understanding of the scene or take the reader beyond its events—never restate what the scene has already shown.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "The important thing with this technique is that the reflection must deepen our understanding of the scene or take us beyond the events of the scene rather than restating what the scene has already shown."
+    }
+  },
+  {
+    "id": "alberts-reflection-fresh",
+    "question": "Cut a follow-up reflection that is obvious, general, or obscure; keep only what adds something important that engages readers and enlarges the scope of the story.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "Your follow-up reflection must not only be fresh in that it doesn’t restate what has been well shown in the scene but it also can’t be obvious, general, or obscure lest your reader wonder why you bothered with it at all. Consider if you have something important to add that will engage readers and enlarge the scope of the story."
+    }
+  },
+  {
+    "id": "alberts-rich-summary",
+    "question": "Make your summaries richly detailed—a summary rendered with rich detail reads as fully dramatized and keeps the story from flattening.",
+    "verb": "elaborate",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "I had mistaken the proportions of scene and summary in these memoirs because both of these authors made their summaries so richly detailed."
+    }
+  },
+  {
+    "id": "alberts-genre-proportions",
+    "question": "Set your scene-to-summary ratio by genre: in a thriller keep summary to what readers need plus connective tissue between scenes, in romance favor scenes that share the protagonist’s emotions, and in science fiction use exposition to establish the world but scene for the important events.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "if you are writing a fast-paced, action-packed political thriller, you probably will want to keep most of your summary limited to just what the reader needs to know about the characters and the background of the political situation so readers can follow the story, with a little summary-as-connective tissue between scenes thrown in. Romance writers tend to focus on scenes because their readers’ primary goal is sharing the emotions of the protagonist. Science fiction writers generally include considerable exposition to set up the parameters of the imaginary worlds their characters live in. But they too depend on scene for the important events."
+    }
+  },
+  {
+    "id": "alberts-voice-in-summary",
+    "question": "Write your summaries to carry your narrative voice—voice is often best displayed in summary, not buried in the information.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "Much of that novel is carried by Bridget’s witty voice, and narrative voice is often best displayed in summary."
+    }
+  },
+  {
+    "id": "alberts-integrate-history",
+    "question": "Integrate any inserted history or place description into the overall intention of the story so it echoes the events within the scenes rather than arriving at random.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "The insertion of history or place description can’t be a random choice; it must be integrated into the overall intention for the story. That place or family history might in some way echo the events that occur within the scenes."
+    }
+  },
+  {
+    "id": "alberts-alternation",
+    "question": "Find an alternation between scene and summary, showing and telling, somewhere on the spectrum of predominance.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "like most of us you’ll want to find an alternation between scene and summary, showing and telling, somewhere on the spectrum of predominance."
+    }
+  },
+  {
+    "id": "alberts-open-with-scene",
+    "question": "Open with a brief, vividly rendered scene that hooks the reader, then follow with the background summary—starting with the context loses interest.",
+    "verb": "transition",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "If Wolff had started off with all that background about traveling the West with his mother, I would not have been half as interested as I was after that quick glimpse, that shocking event in the scene that opens the book. I’m hooked, and now I can step back to get the context."
+    }
+  },
+  {
+    "id": "alberts-intention-first",
+    "question": "Before deciding how much scene and summary to use, get clear on what you wish to accomplish in the overall work; your proportions depend on what’s at stake and what you want to emphasize.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "You can’t know how much scene, how much summary to use if you aren’t clear on what you wish to accomplish in the overall work. Your proportions of scene and summary depend on your being aware of what’s at stake in your piece and what you wish to emphasize."
+    }
+  },
+  {
+    "id": "alberts-emotion-vs-intellect",
+    "question": "Choose scene or summary point by point by asking whether you want to engage the reader’s emotions or intellect—there is no formula for how much to show and how much to tell.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "There just isn’t a formula for how much to show and how much to tell. You have to take into consideration whether you want to engage the emotions or the intellect of your reader at various points in the piece."
+    }
+  },
+  {
+    "id": "alberts-scene-purpose-check",
+    "question": "Ask of each scene whether it moves the plot forward, reveals character, and engages the reader emotionally; cut what drags with unnecessary details or pointless dialogue, or start the scene sooner or later.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "Do my scenes move the plot forward? Do they reveal character? Do they engage the reader emotionally? Do they drag on and show unnecessary details, pointless dialogue, etc? Should they be started sooner or later?"
+    }
+  },
+  {
+    "id": "alberts-summary-to-scene",
+    "question": "Find the significant events and moments of change you have only summarized and render them in scene.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "Have I summarized anything (significant events, moments of change, etc.) that needs to be in a scene?"
+    }
+  },
+  {
+    "id": "alberts-summary-length",
+    "question": "Cut summaries that run so long the emotional connection is lost, and give readers a breather where scenes pile up.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "Does the summary go on so long that the emotional connection is lost? Do the scenes pile up, requiring a breather via summary?"
+    }
+  },
+  {
+    "id": "alberts-smooth-shift",
+    "question": "Check that every shift from scene to summary feels smooth.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "Does the shift from scene to summary feel smooth?"
+    }
+  },
+  {
+    "id": "alberts-climax-fast-sections",
+    "question": "When your story is truly action-based and the action is rising toward a dramatic climax, let fast sections follow on each other’s heels until the climax is reached.",
+    "verb": "transition",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 12-15",
+      "quote": "However, if your story is truly action-based and the action is rising toward a dramatic climax, it’s okay to allow fast sections to follow on each other’s heels until the climax has been reached."
+    }
+  }
+]

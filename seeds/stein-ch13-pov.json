@@ -1,0 +1,482 @@
+[
+  {
+    "id": "stein-pov-slip-fatal",
+    "question": "Scan your story for any slip in point of view and correct it — one slip can hurt a story badly, and several can be fatal.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "It can be said that one slip of point of view by a writer can hurt a story badly, and several slips can be fatal."
+    }
+  },
+  {
+    "id": "stein-pov-no-mixing",
+    "question": "Do not mix points of view within the same scene, chapter, or novel — sticking to one point of view intensifies the reader's experience.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "In general, I advise the less-experienced writer not to mix points of view within the same scene, chapter, or even the same novel. It is unsettling to the reader. If you mix points of view, the author’s authority seems to dissolve. The writer seems arbitrary rather than controlled. Sticking to a point of view intensifies the experience of a story."
+    }
+  },
+  {
+    "id": "stein-pov-shift-identify",
+    "question": "If you shift point of view between parts or chapters, establish and clearly identify the new point of view at the outset of each part or chapter.",
+    "verb": "transition",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "It was only after my confidence increased that I started using multiple first-person points of view in different parts or chapters, with the point of view established and clearly identified at the outset of each part or chapter."
+    }
+  },
+  {
+    "id": "stein-pov-shelve-second",
+    "question": "Shelve the second-person point of view: involve the reader emotionally through identification with a character, not by addressing him as \"you.\"",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Second person is used so rarely that I suggest just shelving it. I think of it as the crackerbarrel mode, the storyteller seeking to involve the reader in the story as if he were a character. The fact is that the reader is quite prepared to be involved emotionally in the story not as himself but through identification with one or more of the characters."
+    }
+  },
+  {
+    "id": "stein-pov-whose-story",
+    "question": "Decide whose story this is and focus on individuals — the reader wants to know whose story he is following, and a story about everybody is a story about nobody.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "A story about everybody is a story about nobody. Before he’ll let himself become involved, the reader wants to know whose story this is. He expects the writer to focus on individuals."
+    }
+  },
+  {
+    "id": "stein-pov-author-voice",
+    "question": "In first person, rewrite any line that sounds like you the author rather than the character speaking.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "The author of a first-person story must constantly be on guard against telling the reader something that will sound like the author rather than the character."
+    }
+  },
+  {
+    "id": "stein-pov-scene-witness",
+    "question": "Cut scenes your first-person character wasn't a witness to — he can't know what goes on beyond his ken.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "You can’t have scenes your first-person character isn’t a witness to."
+    }
+  },
+  {
+    "id": "stein-pov-no-mirror",
+    "question": "Reveal a first-person narrator's looks without the mirror cliché: let him think about his looks or changes in them, or have another character remark on them in dialogue.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "A character seeing himself in a mirror is a cliché. However, a first-person character can think about his looks, or changes in his looks. Or another character can say something like: “Are you dyeing your hair?”"
+    }
+  },
+  {
+    "id": "stein-pov-reveal-good",
+    "question": "In first person, reveal the narrator's good qualities through his actions and other characters' speech, not through self-description.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Therefore, in the first-person POV the author relies on action and the speech of other characters to reveal things—particularly good thingsabout the “I” character."
+    }
+  },
+  {
+    "id": "stein-pov-no-withhold",
+    "question": "If your first-person narrator takes the reader into his confidence, don't let him withhold an essential secret — the reader will feel cheated.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "If the character takes the reader into his confidence, the character can’t “forget” to provide the reader with an essential secret or other important piece of information. When the reader learns that something was withheld, he will feel cheated."
+    }
+  },
+  {
+    "id": "stein-pov-strip-secret",
+    "question": "When your first-person character is reluctant to reveal a secret, have another character strip the secret from him in heated conversation.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "The most dramatic way of handling information that the character is reluctant to convey is for another character to strip the secret from him in heated conversation:"
+    }
+  },
+  {
+    "id": "stein-pov-survival-suspense",
+    "question": "Before choosing first person for a story about surviving life-threatening dangers, weigh the lost suspense: the narrator must survive to finish the story.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "A point sometimes overlooked by beginners is that if a story centers on the narrator’s ability to survive life-threatening dangers, some suspense will be lost in the first person because the character will have to survive to finish the story!"
+    }
+  },
+  {
+    "id": "stein-pov-perceptive-character",
+    "question": "Choose first person when your protagonist is highly intelligent or perceptive, so his complex thoughts reach the reader directly and intimately.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "The first-person point of view is valuable, for instance, if you’ve drawn a character who is highly intelligent or perceptive. His or her complex thoughts can be conveyed much more directly and intimately to the reader."
+    }
+  },
+  {
+    "id": "stein-pov-empathy-horror",
+    "question": "Use first person when your protagonist does horrible things — it can draw the reader's emotions, even empathy, into the character despite his acts.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Another advantage of first person is that it can involve the reader’s emotions—even empathy—with a protagonist who does horrible things."
+    }
+  },
+  {
+    "id": "stein-pov-no-preface",
+    "question": "Cut the preface: readers skip it and miss essential information — develop that material skillfully inside the story itself.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "In general I advise against the use of prefaces in fiction. Some readers skip them, and in doing so, miss essential information. I have found that the essential material of prefaces can almost always be skillfully developed in the story itself."
+    }
+  },
+  {
+    "id": "stein-pov-third-one-at-a-time",
+    "question": "Write third person consistently from one character's point of view at a time, though you may report what any character hears, smells, touches, or tastes.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Third person works best when the story is seen consistently from the point of view of one character at a time, though the author is free to report what any of the characters hear, smell, touch, and taste."
+    }
+  },
+  {
+    "id": "stein-pov-most-affected",
+    "question": "When each chapter uses a different character's POV, choose for each scene the character most affected by that scene's events.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "If you adopt a loose form of third person in which, say, each chapter is seen from a different character’s POV, be sure to choose for each scene the character who is most affected by the events of that scene."
+    }
+  },
+  {
+    "id": "stein-pov-restraint-discipline",
+    "question": "Establish the limitation of your third-person POV and stick to it — the restraint becomes an advantage, a discipline.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Once the author establishes the limitation of the third-person point of view, he must stick to it and the limitation becomes an advantage, a restraint, a discipline."
+    }
+  },
+  {
+    "id": "stein-pov-omniscient-voice",
+    "question": "Choose the omniscient POV only if your authorial voice has personality, authority, some wisdom, and ideally a fresh sense of humor — the author must be quite a character to manage it.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "The omniscient POV allows the author to speak in his own voice, to say things that would be inappropriate for any of his characters to say. The author’s voice, however, should have personality, authority, some wisdom, and ideally a fresh sense of humor."
+    }
+  },
+  {
+    "id": "stein-pov-omniscient-danger",
+    "question": "In omniscient POV, rewrite any passage where the reader hears the author talking instead of experiencing the story — the mode lacks discipline, so guard your credibility.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "The danger of the omniscient POV is that the reader will hear the author talking instead of experiencing the story. The omniscient POV lacks discipline."
+    }
+  },
+  {
+    "id": "stein-pov-image-vantage",
+    "question": "Check every image against your POV character's physical position — cut or rewrite any description from a vantage the character cannot have.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "From the driver’s point of view, would a twisting road ever look “like a carelessly abandoned garden hose”? The image is forced."
+    }
+  },
+  {
+    "id": "stein-pov-sustain-or-omniscient",
+    "question": "Focus on the POV of one character at a time and sustain it; if readers must know what everybody thinks, use the looser omniscient form instead.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Whatever genre you write in, my recommendation is that you focus on the POV of one character at a time, and sustain it, or you’re likely to get into trouble. If you’ve got to let your readers know what everybody thinks, you’d probably be better off using the omniscient point of view, the loosest of forms."
+    }
+  },
+  {
+    "id": "stein-pov-thought-capability",
+    "question": "Don't put thoughts into a character's head that are beyond that character's intelligence or capabilities.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Similarly, if the author is writing about people less intelligent than himself, he must be careful not to put thoughts into a character’s head that are beyond that character’s capabilities."
+    }
+  },
+  {
+    "id": "stein-pov-rewrite-from-another",
+    "question": "If your draft isn't satisfying you, set it aside and rewrite it from another point of view — third to first, omniscient to third or first.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "One advantage of understanding point of view is that if your work isn’t satisfying you, you can always put the draft aside and rewrite it from another point of view. If you’ve used third person, try first. If you’ve used omniscient, try third or first. Or both."
+    }
+  },
+  {
+    "id": "stein-pov-offstage-motivate",
+    "question": "When your first-person narrator reports an offstage scene he didn't witness, motivate the reporting and keep the report visual.",
+    "verb": "rewrite",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "The point to remember is that you have to motivate the reporting of offstage scenes. And whenever possible keep the report visual."
+    }
+  },
+  {
+    "id": "stein-pov-case-for-self",
+    "question": "Write first-person narration as the character making a case for himself — his view of himself, the others, the world — not as neutral reporting.",
+    "verb": "rephrase",
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Think of it this way: the character talking to the reader is not only conveying everything the reader gets to know, the character is making a case for himself. It’s his view of himself, the others, the world."
+    }
+  },
+  {
+    "id": "stein-pov-i-different",
+    "question": "Develop the \"I\" character until he is sufficiently different from you.",
+    "verb": "elaborate",
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Is the “I” character sufficiently different from you?"
+    }
+  },
+  {
+    "id": "stein-pov-he-for-i",
+    "question": "Test your scene's point of view by converting it: third person is first person with \"he\" or \"she\" substituted for \"I\" — see whose eyes the scene is really seen through.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "The simplest way of understanding third person is that it is the same as first person except that you have substituted “he” or “she” for “I.”"
+    }
+  },
+  {
+    "id": "stein-pov-narrator-observation",
+    "question": "When your first-person narrator reads another character's feelings, mark the report as his interpretation — what he believes, not the other character's view.",
+    "verb": "elucidate",
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "He sees what he believes to be in the eyes of his friends Blair and Cynthia, but it is not their view of how they feel, it is his view."
+    }
+  },
+  {
+    "id": "stein-pov-hop-limit",
+    "question": "Limit how many characters' POVs the reader enters in a short span — too many shifts in quick succession make the experience dizzying.",
+    "verb": "cut",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "The problem was that in the first twenty-eight pages, I counted seven characters into whose point of view the reader was admitted for a short period. It was a dizzying experience."
+    }
+  },
+  {
+    "id": "stein-pov-action-emotion",
+    "question": "Check your point of view discipline: have you avoided telling how a character feels and relied on actions to make the reader experience the emotion?",
+    "verb": "rewrite",
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Have you avoided telling us how a character feels? Have you relied on actions to help the reader experience emotion?"
+    }
+  },
+  {
+    "id": "stein-pov-narrator-role",
+    "question": "Make your narrator the protagonist or a principal character directly involved in the action — he can even be the villain of the piece.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Today, a narrator is more often the protagonist or a principal character directly involved in the action. He can even be the villain of the piece."
+    }
+  },
+  {
+    "id": "stein-pov-objectivity-sterile",
+    "question": "Before writing objectively, know that complete objectivity is sterile of emotion — reserve it for stories that are mainly action.",
+    "verb": "concept-form",
+    "genre": [
+      "fiction"
+    ],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 13",
+      "quote": "Complete objectivity tends to be sterile of emotion, particularly the kind of intimacy that readers enjoy in literary novels, but it is useful in stories that are mainly action."
+    }
+  }
+]

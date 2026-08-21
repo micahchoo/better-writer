@@ -1,0 +1,218 @@
+[
+  {
+    "id": "stein-resonance-biblical-names",
+    "question": "Choose names for your characters and phrases that carry built-in associations — biblical or otherwise — so they reverberate before the story explains them.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "We have seen how the opening words of Moby Dick, “Call me Ishmael,” have instant resonance because of the biblical associations of Ishmael. The same would be true of other memorable names from the Bible, whether used for characters or in appropriate phrases."
+    }
+  },
+  {
+    "id": "stein-resonance-historical-figures-fleeting",
+    "question": "Keep public and historical figures in your story fleeting — appearing only briefly — and cut any attempt to reproduce them at length, especially their dialogue.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "Put an Eisenhower or a Kennedy into a story, and it resonates, especially if he appears fleetingly. I say “fleetingly” because most writers who try to reproduce historical characters at length, including their dialogue, usually fail."
+    }
+  },
+  {
+    "id": "stein-resonance-liturgy",
+    "question": "Borrow the language of liturgy or religious ritual to lend resonance to a key scene.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "His novel Vespers draws some resonance from its title, but I would urge you to read at least the first four and a half pages of that book to see how liturgy lends stunning resonance to a scene that involves a killing."
+    }
+  },
+  {
+    "id": "stein-resonance-death-metaphor",
+    "question": "Lend importance to an ordinary day or moment by pairing it with a metaphor that draws on death or some vast, final scale.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "In T. Correghessan Boyle’s 1987 novel World’s End the author lends importance to a day by the use of a metaphor drawing on the possibility of the death of the earth:"
+    }
+  },
+  {
+    "id": "stein-resonance-invoke-death-opening",
+    "question": "Open your story by invoking your protagonist’s death — or the feeling of it approaching — to give the work resonance from the outset.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "In the last of his Rabbit Angstrom books, Rabbit at Rest, John Updike invokes his protagonist’s death at the outset:"
+    }
+  },
+  {
+    "id": "stein-resonance-bold-conclusion",
+    "question": "Open with a bold philosophical statement so its resonance carries into the sentences and paragraphs that follow.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "The world is what it is; men who are nothing, who allow themselves to become nothing, have no place in it. That first sentence lends resonance to the sentence and paragraphs that follow, perhaps to the book as a whole."
+    }
+  },
+  {
+    "id": "stein-resonance-setting-explains-life",
+    "question": "When you describe a birthplace or formative setting, make the description go a long way toward explaining the person’s life and work rather than merely detailing the place.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "Some writers of biography will describe the subject’s birthplace in detail, but miss an opportunity for resonance."
+    }
+  },
+  {
+    "id": "stein-resonance-hyperbole",
+    "question": "Exaggerate a perception — hyperbole — to lend resonance to what might otherwise seem ordinary.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "A hyperbole is, of course, an exaggeration that is not meant to be taken literally. For the novelist, it presents an opportunity to lend resonance to what might otherwise seem ordinary."
+    }
+  },
+  {
+    "id": "stein-resonance-part-titles",
+    "question": "Title the parts of your book so the names resonate even before the reader encounters the first sentence.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "By Naming the parts of a book. Omens are important in seeding suspense. The prolific British novelist Francis King lists five parts for his novel Act of Darkness. The first is titled simply “Omens.” It lends a touch of resonance even before the reader encounters the first sentence."
+    }
+  },
+  {
+    "id": "stein-resonance-omens",
+    "question": "Plant omens early in your narrative to seed suspense.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "Omens are important in seeding suspense."
+    }
+  },
+  {
+    "id": "stein-resonance-chapter-titles-nonfiction",
+    "question": "In nonfiction, name your chapters with phrases that resonate — an allusion that evokes a familiar opposite, or a metaphor — so the effect lands twice: in the table of contents and at the heads of chapters.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "A greater value can be derived from naming chapters in nonfiction. Orville Schell’s 1994 book on China, Mandate of Heaven, has some chapter titles that invoke resonance twice, in the table of contents, and at the heads of chapters: “A Hundred Flowers Fade” evokes its familiar opposite, A Hundred Flowers Bloom. “The Graying of Chinese Culture” derives its effect through a metaphor that resonates."
+    }
+  },
+  {
+    "id": "stein-resonance-character-expertise",
+    "question": "Give a character the authentic, specialized thoughts of their profession so the resonance of those thoughts confirms the character’s reality.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "The reader absolutely believes that this narrator, Kay Fischer, is an architect. She is, of course, an invention of the author. Her thoughts about architecture provide the resonance that confirms her reality."
+    }
+  },
+  {
+    "id": "stein-resonance-technobabble",
+    "question": "Invent plausible professional-sounding theory — technobabble — to authenticate a character and their profession.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "I invented Dr. Koch’s theory as resonance to authenticate Dr. Koch and his profession. In commercial fiction today, technobabble is used in a similar way."
+    }
+  },
+  {
+    "id": "stein-resonance-aphorism-voice",
+    "question": "If an aphorism is in the author’s voice, put it in the third-person or omniscient point of view, never the first-person point of view of a character.",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "There are two points to remember about the use of aphorisms: If they are in the author’s voice, the point of view has to be either the third-person or the omniscient author’s point of view, not the first-person point of view of a character."
+    }
+  },
+  {
+    "id": "stein-resonance-aphorism-character",
+    "question": "Put aphorisms in a character’s dialogue only if you are sure the character is the kind who could and would spout aphorisms on occasion.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "If they are in a character’s dialogue, as in the case of Louie, you had better be sure the character you’ve created is the kind who could and would spout aphorisms on occasion."
+    }
+  },
+  {
+    "id": "stein-resonance-epigraph",
+    "question": "Choose an epigraph that conveys the larger import of your work, so the work itself needn’t become didactic.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "An appropriate epigraph can convey the larger import of a novel, without the novel itself becoming didactic."
+    }
+  },
+  {
+    "id": "stein-resonance-cut-preliminaries",
+    "question": "Cut excessive preliminaries — author’s notes, prefaces, multiple epigraphs — an excess can read as defensive.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "An excess of preliminaries might be interpreted as defensive. Don’t overdo it."
+    }
+  },
+  {
+    "id": "stein-resonance-from-writing",
+    "question": "Aim for resonance that comes from the writing itself — the visual sweep of the language — not only from borrowed devices like names, epigraphs, or titles.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 31",
+      "quote": "The ideal resonance comes from the writing itself. The visual sweep introduces a work of history with resonance that stems from the skill of the writing."
+    }
+  }
+]

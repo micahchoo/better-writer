@@ -1,0 +1,194 @@
+[
+  {
+    "id": "alberts-setup-summary-flow",
+    "question": "Before a scene that follows another scene, add a setup summary that provides context or increases dramatic tension so the story flows smoothly instead of jumping choppily.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "But when you need your story to flow smoothly, or if you want to increase the impact of a scene by preceding it with summary that provides context or increases dramatic tension, setups can be very useful."
+    }
+  },
+  {
+    "id": "alberts-habitual-markers-routine",
+    "question": "In your setup summary, establish the character's routine with markers of repeated time such as \u201cnever\u201d and \u201calways\u201d so the scene that follows disturbs a recognizable pattern.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "By using summary first—including markers for repeated time such as \u201cnever\u201d and \u201calways\u201d—to set up the scene, I\u2019ve established the tedium and hectic, disorganized nature of Marie\u2019s life before the action begins."
+    }
+  },
+  {
+    "id": "alberts-summary-scene-division",
+    "question": "Treat summary as the vehicle for information and scene as the vehicle for emotion: give the reader the larger picture in summary, then let the scene carry the visceral experience.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "Our response to this extended scene is visceral. We experience Kingston\u2019s emotions even as we have our own reactions to the events she dramatizes. The summarized parts that precede it evoke a more cerebral response, in which we are given information that will help us see the larger picture."
+    }
+  },
+  {
+    "id": "alberts-turning-point-ordinary",
+    "question": "Rewrite the setup so the character's habitual, ordinary behavior is established in summary, then break that habit in a scene where the character steps out of the summarized behavior—that break is your turning point.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "When you establish a character\u2019s behavior in summary by using general time—habitual, repeated, ordinary (as in Kingston\u2019s portrayal of her silence and embarrassment)—and then you break that habit, confront the ordinary in a scene in which the character steps out of her summarized behavior (as in Kingston\u2019s attack on the other girl), you have a turning point, a moment of change."
+    }
+  },
+  {
+    "id": "alberts-dramatic-scene-background",
+    "question": "Before a dramatic scene that is focused on the immediate actions and words of the characters, add setup summary so the reader understands more about the characters than the scene itself can show.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "This kind of summary as setup is particularly helpful with dramatic scenes that require the reader to understand more about the characters than the scene shows because the scene is focused on the immediate actions and words of the characters."
+    }
+  },
+  {
+    "id": "alberts-tension-before-scene",
+    "question": "Precede a scene with summary that offers relevant information and creates expectation for something important that is about to happen, so the reader is primed before the scene's events unfold.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "Writers occasionally set up scenes by using summary that not only offers relevant information but creates expectation for something important that will happen in a scene."
+    }
+  },
+  {
+    "id": "alberts-unanswered-question-expectation",
+    "question": "Before a scene, raise an unanswered question in the setup summary—relevant detail that creates an expectation in the reader—to build tension for what follows.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "It has to be relevant and it has to create an expectation in the reader. Raising an unanswered question is one way of creating expectation."
+    }
+  },
+  {
+    "id": "alberts-dont-pretell",
+    "question": "Cut any setup summary that pretells something the following scene will show—if the summary reveals what happens, it weakens rather than strengthens the scene.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "If your summary pretells something that the scene will show, it will weaken rather than strengthen the scene."
+    }
+  },
+  {
+    "id": "alberts-choppiness-as-feature",
+    "question": "Keep choppy scene-to-scene jumps without setup when you are portraying the disjointed thought patterns of a distraught or mentally ill character, or stacking scenes like an album of memories.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "Choppiness is fine if you\u2019re portraying the disjointed thought patterns of a distraught or mentally ill character, or stacking up scenes like an album of memories."
+    }
+  },
+  {
+    "id": "alberts-expository-insertion-texture",
+    "question": "Insert a brief expository description into a scene to add texture, symbolism, or a momentary slowing of pace—keep it short enough that it does not interrupt the scene for long.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "Whatever the purpose, and we can\u2019t know without a longer sample, the expository insertion adds texture without interrupting the scene for long."
+    }
+  },
+  {
+    "id": "alberts-quick-summary-shapes-reading",
+    "question": "Insert a quick summary mid-scene—a few summarizing words—that gives the reader a much fuller sense of the characters' situation and shapes the interpretation of the scenes that follow.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "With those few summarizing words, midscene, we\u2019ve been given a much fuller sense of this family\u2019s situation."
+    }
+  },
+  {
+    "id": "alberts-reveal-decision-process",
+    "question": "When a character makes a pivotal decision in a scene, insert summary that reveals the process of reasoning behind it—the scene alone shows the choice, not the why.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "We\u2019d know that the narrator decided not to go to war but we wouldn\u2019t know why. The summary inserted into this scene plays a very important role in revealing character motivation and transformation."
+    }
+  },
+  {
+    "id": "alberts-emotional-base-shift",
+    "question": "Trim your mid-scene summary to only what is needed to convey the character's emotional base and emotional shift, since every interruption of forward movement costs momentum.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "Whenever forward movement is interrupted you pay a price in momentum lost. So you want to add only enough summary within the scene to allow us to understand the emotional base and the emotional shift."
+    }
+  },
+  {
+    "id": "alberts-natural-pause-insertion",
+    "question": "Insert summary at a natural pause in the action or dialogue of a scene—such as when a character says something the narrator or protagonist needs to reflect on—rather than mid-momentum.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "An example of a good place to insert summary in a scene is a natural pause in action or dialogue, such as when a character says something that the narrator or protagonist needs to reflect on."
+    }
+  },
+  {
+    "id": "alberts-summarized-repeated-dialogue",
+    "question": "Render a conversation that recurs in repeated time as summarized dialogue—with phrases like \u201cevery time\u201d and \u201cthen next time\u201d—instead of staging it as a scene.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "Although there\u2019s dialogue, it is summarized. The phrases \u201cevery time my mother\u2019s rung up\u201d and \u201cthen next time\u201d establish that this dialogue occurs in repeated time, not a scene:"
+    }
+  },
+  {
+    "id": "alberts-test-summary-insertions",
+    "question": "Test each summary insertion by making two versions of the scene—one without the insertions and one with them—then add the summary back bit by bit and cut any insertion that adds nothing essential.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 10-11",
+      "quote": "To test the effectiveness of the summary you have inserted in a scene, make two versions of a scene, one without the insertions and one with them. Compare the two. Does the one without feel deficient or incomprehensible in any way? Now start adding in the summary, bit by bit, rereading the scene each time after an addition. Does each insertion add anything essential to the scene? If not, cut out that insertion. If so, leave it in."
+    }
+  }
+]

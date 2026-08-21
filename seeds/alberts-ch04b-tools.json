@@ -1,0 +1,494 @@
+[
+  {
+    "id": "alberts-scene-purpose-01",
+    "question": "Decide what you need to reveal about the character in this scene, then articulate the scene’s purpose: what the character wants and what obstacles or aid they will encounter.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "You can use the interplay between interior thoughts, dialogue, and behavior to establish and reveal character in your own scenes by deciding what you need to show your reader about the character in that particular scene. This means articulating for yourself a purpose for the scene and a purpose for the character in that scene—what your character wants in the scene and what your character will encounter by way of obstacles to that desire (or aid in fulfilling that desire)."
+    }
+  },
+  {
+    "id": "alberts-cliched-revelation-02",
+    "question": "List every way you could show your character’s desire—through gesture, speech, inner thoughts—and cut any that feel too familiar, stereotypical, or clichéd.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Then think of all the ways you can show that desire—through gesture, speech, inner thoughts—and discard any that seem too familiar or expectedstereotypical or clichéd."
+    }
+  },
+  {
+    "id": "alberts-repeat-once-03",
+    "question": "Check for redundancy between channels: once a character has thought something internally or said it in dialogue, do not repeat it in the other form—once is enough.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Remember not to repeat in dialogue what your character has thought internally and vice versa—once is enough."
+    }
+  },
+  {
+    "id": "alberts-contradiction-tool-04",
+    "question": "Wield contradiction deliberately: let a character’s words, thoughts, and behavior disagree for effect, but not so much that the character reads as schizophrenic.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Contradiction is a useful tool but one that must be wielded carefully."
+    }
+  },
+  {
+    "id": "alberts-dialogue-multitask-06",
+    "question": "Give your dialogue more than one job in the scene—reveal character, tip off region or class, expose themes, heighten drama, provide background—never let it be mere “color.”",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "It can also tip off the reader to identifying characteristics such as region of origin, social class, education level, mood of speaker, whether or not someone’s been drinking, etc. Dialogue can expose themes, heighten the drama, provide background, and occasionally add humor. It should do more than just one of these in a scene."
+    }
+  },
+  {
+    "id": "alberts-regional-dialogue-07",
+    "question": "Ask of your dialogue: do the word choices reveal where each character comes from geographically or economically, and what mood they are in?",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Do your characters speak with a regional idiom? Is there any way that their choice of words could tell your reader where they come from geographically or economically? Can you tell the mood of your characters from the manner in which they speak?"
+    }
+  },
+  {
+    "id": "alberts-dialogue-believable-08",
+    "question": "Make your dialogue seem as though it is generated naturally from the events transpiring, even though you are selecting and shaping it to your own ends.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "The dialogue must always sound believable—it must seem as though it is generated naturally from the events transpiring, even though you are selecting and shaping it to your own ends."
+    }
+  },
+  {
+    "id": "alberts-read-dialogue-aloud-09",
+    "question": "Read your dialogue aloud as you work—or have someone read it aloud to you—and rephrase anything that does not sound convincing.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Most important: Read your dialogue aloud as you work to see if it sounds convincing. Better yet, if you can, have someone read it aloud to you."
+    }
+  },
+  {
+    "id": "alberts-dialogue-themes-10",
+    "question": "Infuse your dialogue so it echoes the themes of your piece, the way a character’s talk of mistrust can sound your story’s central note.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "How might you infuse your dialogue so it echoes themes in your piece, as the diner owner’s wife does above when she discusses mistrusting people in the excerpt above?"
+    }
+  },
+  {
+    "id": "alberts-dialogue-background-11",
+    "question": "If a passage of dialogue exists only to deliver background, cut it and present that background through narrative summary instead.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If expository dialogue serves no purpose in the scene besides exposition, it is usually better to present the background through narrative summary, which will be discussed in Section II."
+    }
+  },
+  {
+    "id": "alberts-dialogue-background-reason-12",
+    "question": "When background is carried through dialogue, give it a function in the scene and a reason the character tells that history now.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "When background is carried through dialogue there has to be a reason for that background to be revealed in the scene. It has to have a function in the scene and there needs to be a reason that the character is telling that history now."
+    }
+  },
+  {
+    "id": "alberts-mouthpiece-13",
+    "question": "Cut any dialogue where a character announces the meaning of the story too directly—characters who serve as mouthpieces for the author lose believability.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "As for letting your dialogue carry themes, that too is tricky as once again you don’t want your character to announce the meaning of the story too directly—whenever characters serve as mouthpieces for the author their believability dwindles."
+    }
+  },
+  {
+    "id": "alberts-speechless-14",
+    "question": "Watch out for characters who make speeches at length, especially with abstractions like courage, honor, or devotion—people rarely make speeches in conversation.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "people rarely make the kinds of speeches you hear in overly earnest or sentimental movies; people rarely make speeches at all in conversation. If your characters are going on at length and especially if they are using abstractions such as courage and honor or devotion, watch out!"
+    }
+  },
+  {
+    "id": "alberts-dialogue-individual-15",
+    "question": "Write dialogue that is natural to the individual: ask what this character would say at that moment, in that circumstance.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Second, it’s not enough that your characters speak in a natural manner in general, it must be natural to them as individuals—what would she say at that moment, in that circumstance?"
+    }
+  },
+  {
+    "id": "alberts-dialogue-audit-16",
+    "question": "Audit each dialogue passage: does it move the scene forward, heighten tension, put forth themes, or reveal character? Cut words or lines that do none of these.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Ask yourself, as you look over your dialogue, what it’s doing for the scene? Does it move the scene forward, heighten tension, put forth themes, reveal character? When you read it aloud to see how it sounds, check for words or lines that could be cut."
+    }
+  },
+  {
+    "id": "alberts-dialect-stereotypes-17",
+    "question": "Ask yourself whether your use of dialect relies on stereotypes that diminish the humanity of any character—stereotyping only weakens the work.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Ultimately you must make your own decision about your writing, but at the least you should ask yourself if you are using stereotypes and therefore diminishing the humanity of any character, which will only weaken the work in the end."
+    }
+  },
+  {
+    "id": "alberts-dialect-wordchoice-18",
+    "question": "If you avoid writing dialect, establish each character’s speech habits through word choice and rhythm instead.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "There are some authors who insist that dialect should never be used and that a writer must establish characters’ speech habits through the use of word choice and rhythm."
+    }
+  },
+  {
+    "id": "alberts-dialogue-tags-19",
+    "question": "Make sure your reader always knows who is speaking: use dialogue tags unless actions and description show the speaker, so no one has to read back.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Dialogue tags are essential unless you are able to show through the actions and description who is speaking. It’s very frustrating when a reader has to read back to see who is talking when."
+    }
+  },
+  {
+    "id": "alberts-tag-adverbs-20",
+    "question": "Cut adverbs that follow dialogue tags: the action and the words themselves should show the manner of speaking (“Drop dead!” she said angrily is redundant).",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Be very sparing with adverbs following the tag. The action and words should show the manner in which the character is speaking. You don’t need “Drop dead!” she said angrily, since the dialogue shows her anger."
+    }
+  },
+  {
+    "id": "alberts-tag-verb-speech-21",
+    "question": "Make sure each dialogue tag is actually a verb of speech—“You’re cute,” she winked makes no sense.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Make sure your dialogue tag is actually a verb of speech. “You’re cute,” she winked makes no sense."
+    }
+  },
+  {
+    "id": "alberts-tag-plain-said-22",
+    "question": "Use plain said or says for dialogue tags and cut pointed or whimsical verbs of speech (raged, harrumphed) that distract from the dialogue.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Avoid overly colorful verbs of speech. There’s nothing wrong with good old said or says. Pointed or whimsical verbs of speech tend can distract from the dialogue as in “Get out!” she raged, or “Can’t you kids quit bothering that cat?” the old lady harrumphed."
+    }
+  },
+  {
+    "id": "alberts-close-third-recast-23",
+    "question": "Recast a close-third-person passage in first person (or vice versa) to test the difference in intimacy—close third stays within the perceptions of a single mind.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "It wouldn’t be terribly difficult to recast this in first person, nor would it make an enormous change in effect because the thirdperson narration above is close third, meaning it stays within the perceptions of a single mind."
+    }
+  },
+  {
+    "id": "alberts-second-person-24",
+    "question": "Consider what second person does to your scene: it either makes the reader the primary character or suggests a narrator estranged from himself—either way it adds tension.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "You can use second-person point of view to accomplish two things: (1) It puts the reader in the position of being the primary character “you”, or (2) alternatively, it creates a sense that the narrator is detached from himself, alienated, estranged."
+    }
+  },
+  {
+    "id": "alberts-pov-try-versions-25",
+    "question": "If the narrative voice and point of view don’t come naturally, try different versions of the scene and keep the one that best serves your intention.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If the narrative voice and point of view don’t come to you naturally, it’s worth trying different versions to see which works best according to your intention for the scene."
+    }
+  },
+  {
+    "id": "alberts-limited-retrospective-26",
+    "question": "Weigh which narrative voice your scene needs: the limited voice has immediacy, while an older, wiser voice can interpret and comprehend even mid-action.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "The limited voice has immediacy; an older and/or wiser voice can interpret and comprehend even in the middle of the ongoing action. You must weigh which effect is desired."
+    }
+  },
+  {
+    "id": "alberts-scene-movement-27",
+    "question": "Check that your scene has movement: by its end the reader should feel in a different place—something changed, or the reader’s perception of the characters changed.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "When you get to the end of the scene, just as when you get to the end of a book, you want to feel that you are in a different place than when you entered. Within that scene something has changed, or something has changed in your perception of the narrator or characters."
+    }
+  },
+  {
+    "id": "alberts-static-scene-28",
+    "question": "Even a scene in which no one moves from a chair needs emotional movement—a revealing interaction or a shift in the reader’s perception—or it will feel static.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "A scene might take place in a short time period in which no one moves from her chair. But if no emotional movement occurs in that scene of two people in their chairs, such as some kind of revealing interaction, or if the reader’s perception of those people doesn’t change over the course of the scene, the scene would feel pretty static."
+    }
+  },
+  {
+    "id": "alberts-movement-audit-29",
+    "question": "Examine the movement in your scene and distinguish physical from emotional movement: does a character change, or does the reader’s perception of the characters change?",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Examine the movement within your own scenes and see if you can distinguish physical and/or emotional movement. Is the emotional movement in your scene within a character (has anyone changed over the course of the scene) or is the emotional movement supposed to occur within the reader, who has a new perception of the character(s) and their situations?"
+    }
+  },
+  {
+    "id": "alberts-chronology-reason-30",
+    "question": "When you rearrange chronology with flashbacks or out-of-order events, have an important reason: it must serve the piece more than it disrupts.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "In any case, when an author chooses to rearrange the chronology of a scene with flashbacks or taking events out of order, there should be an important reason for that choice. It must serve the piece more than it disrupts."
+    }
+  },
+  {
+    "id": "alberts-detail-weight-31",
+    "question": "Use details to do more than create a believable world: they can carry themes, reveal character, and heighten or provide drama.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "At their best, details do more than just create a believable world in which the story or essay or chapter exists. Details can also carry themes, reveal character, heighten or provide drama."
+    }
+  },
+  {
+    "id": "alberts-detail-significance-32",
+    "question": "Sort your concrete details: a brown dog, a ceramic cup, a hose on the lawn are ordinary unless they carry meaning for the character in this particular scene—make significance count.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "First, let’s distinguish between ordinary concrete details such as a brown dog, a ceramic cup, a hose on the lawn, the building on the left—and details that carry greater meaning. All of the details mentioned above could be significant in a particular scene. If seeing a brown dog reminds a character of the time her father ran over her beloved pet, a brown dog is significant in that scene."
+    }
+  },
+  {
+    "id": "alberts-detail-grounded-33",
+    "question": "Keep symbolic details concrete and grounded so the symbolism never overwhelms the story—and avoid so many significant details that the scene turns heavy-handed.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Most remarkable to me when reading this story is that every detail is both concrete and significant, so the highly symbolic nature of Erdrich’s prose never overwhelms the story being told. It is always grounded, always believable."
+    }
+  },
+  {
+    "id": "alberts-firstperson-details-34",
+    "question": "In first-person narrative, notice which details your narrator selects—those choices automatically reveal the narrator’s character.",
+    "verb": "elucidate",
+    "genre": ["fiction", "memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "The details in a first-person narrative, be it fiction or nonfiction, automatically reveal the character of the narrator because the first-person narrator has made the choice to notice and select those details that have meaning to him."
+    }
+  },
+  {
+    "id": "alberts-memoir-details-35",
+    "question": "In memoir or personal essays, choose your details with intention: what you describe reveals what matters to your narrative persona, sets the mood, and hints at themes.",
+    "verb": "rewrite",
+    "genre": ["memoir", "essay", "creative-nonfiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "For those of you writing memoir or personal essays, be aware that the details you include always reveal what’s important to your narrative persona, and they go a long way toward setting the mood and hinting at themes."
+    }
+  },
+  {
+    "id": "alberts-syntax-variety-36",
+    "question": "Vary your syntax and sentence length: unrelieved subject/verb/object constructions tire the reader, and extremely long convoluted sentences leave them gasping.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If all of your sentences are simple subject/verb/object constructions (He opened the door. He picked up the newspaper.) your reader will soon grow tired of the repetitive structure and probably believe that the character being described is some kind of somnambulist, moving in a waking dream."
+    }
+  },
+  {
+    "id": "alberts-narrator-words-details-37",
+    "question": "To make your narrator sound like a child (or any persona), choose not only the words they would use but also the details they would observe.",
+    "verb": "rewrite",
+    "genre": ["fiction", "memoir", "creative-nonfiction", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "If you want your narrator to sound like a child, you must not only choose the words a child would use but the details that a child would observe."
+    }
+  },
+  {
+    "id": "alberts-verb-associations-38",
+    "question": "Choose verbs for their emotional associations: he croaked versus he expired both mean dead, but each carries the narrator’s attitude and sets the tone.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "Compare he croaked to he expired. In both examples, the subjects are equally dead. But each verb carries with it the narrator’s attitude toward the dead person as well as information about the manner in which each person died."
+    }
+  },
+  {
+    "id": "alberts-metaphor-context-39",
+    "question": "Check that each metaphor and simile makes sense within the context of the scene—the image must fit the material that contains it.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "You’ll want to make sure that the metaphors and similes you choose fit the material that contains them."
+    }
+  },
+  {
+    "id": "alberts-simile-theme-40",
+    "question": "Choose similes that advance your themes and set up what’s to come, not merely pleasant images: a lopped-off head sun works because it foreshadows violence.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "With this disturbing simile, Babel sets up the themes and violent actions to come; it is 1920 and the Russian Red Army has entered and is laying waste to villages in Poland. If he’d said, “the orange sun looked like a child’s bright balloon,” he would have missed the chance to advance his themes."
+    }
+  },
+  {
+    "id": "alberts-cliche-41",
+    "question": "Hunt out and cut clichéd language—sparkling eyes, jet-black hair, loving someone more than life itself—tired language flattens and kills even exciting scenes.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "No matter how exciting the action in a scene might be, tired, overused language will flatten and kill it. When eyes sparkle or twinkle, when hair is jet black or a man loves his girlfriend more than life itself, we know we are in the hands of a lazy or inexperienced writer who hasn’t taken the time to find fresh language."
+    }
+  },
+  {
+    "id": "alberts-fresh-language-42",
+    "question": "In revision, keep your language fresh—but don’t hype it to the point where diction and imagery distract from the scene.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 4",
+      "quote": "That’s not to say you should hype up language to the point of absurdity so the diction and imagery distract from the scene. But, in the act of composition and revision, work to keep your language fresh."
+    }
+  }
+]

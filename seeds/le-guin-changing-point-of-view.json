@@ -1,0 +1,146 @@
+[
+  {
+    "id": "le-guin-povshift-01",
+    "question": "When you shift point of view, check that you know when and how you are doing it, so that the reader is carried effortlessly with you.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "And you need to know when and how to do it, so that when you shift, you carry the reader effortlessly with you."
+    }
+  },
+  {
+    "id": "le-guin-povshift-02",
+    "question": "If you shift between first and third person in a short piece, ask whether you have a compelling reason for it — this shift is enormously difficult at that length.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "Shifting between first and third person, as in the Another Additional Option to Exercise Six, is enormously difficult in a short piece."
+    }
+  },
+  {
+    "id": "le-guin-povshift-03",
+    "question": "Check your piece for a shift between a detached and an involved authorial voice — you cannot mix the two modes within one piece.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "You can't shift between detached and involved authorial voice within one piece."
+    }
+  },
+  {
+    "id": "le-guin-povshift-04",
+    "question": "Where your narration moves from one viewpoint character to another often, tighten control until the reader is never jerked from mind to mind or unsure whose mind they are in.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "but if it happens very often, unless the writing is superbly controlled (like Example Six) , read ers will tire of jerked from mind to mind, or will lose track of whose mind re supposed to be in."
+    }
+  },
+  {
+    "id": "le-guin-povshift-05",
+    "question": "Find any momentary slip into another character's viewpoint — even a single word of what they see or feel — and cut it.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "Remember when Della raised her violet eyes? That was a one-word POV shift. It doesn' t work."
+    }
+  },
+  {
+    "id": "le-guin-povshift-06",
+    "question": "Where you want distance, narrate in third person from the involved author's position, freely limiting perception to a single character for a while.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "the involved author can and usually does use thirdperson narration freely, and may limit perception for some while to a single person."
+    }
+  },
+  {
+    "id": "le-guin-povshift-07",
+    "question": "Rewrite your scene shifting among several viewpoint characters in limited third person, marking each change with a line break or the narrator's name.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "Mark the changes with line breaks, with the narrator's name in head of that section"
+    }
+  },
+  {
+    "id": "le-guin-povshift-08",
+    "question": "Rewrite your scene shifting point of view from character to character several times, deliberately, with no obvious signal to the reader that you are doing so.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "shifting POV from character to character several times without any obvious signal"
+    }
+  },
+  {
+    "id": "le-guin-povshift-09",
+    "question": "Consciously and deliberately imitate a piece of prose you admire, as training toward finding your own narrative voice — the consciousness is what matters.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "I think conscious, deliberate imitation of a piece of prose one admires can be training, a means towards finding one's own voice as a narrative writer."
+    }
+  },
+  {
+    "id": "le-guin-povshift-10",
+    "question": "As the involved author, you may dip into another character's viewpoint for a single moment — do it with care, and never in limited third person.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "With care, the involved author can do this (Tolkien does it with the fox). But it cannot be done in limited third person."
+    }
+  },
+  {
+    "id": "le-guin-povshift-11",
+    "question": "Recognize that involved-author narration and limited third person overlap: with a subtle authorial voice, it can be hard to tell which mode a piece is written in.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "When the authorial voice is subtle, it can be hard to say for sure which mode a piece is written in."
+    }
+  },
+  {
+    "id": "le-guin-povshift-12",
+    "question": "Recognize that fear of plagiarizing and an individualistic valuation of originality can stop you from using deliberate imitation as a learning tool.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Changing Point of View",
+      "quote": "A rational fear of plagiarizing, and an individualistic valuation of originality have stopped many prose writers from deliberate imitation as a learning tool."
+    }
+  }
+]

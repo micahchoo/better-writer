@@ -1,0 +1,278 @@
+[
+  {
+    "id": "alberts-groundwork-foreshadow",
+    "question": "Plant early references or parallels that foreshadow major events to come—a stumble off a step before a cliff fall—so the momentous scene lands with greater meaning.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "To lay the groundwork for future scenes in your own work, consider the possibilities for foreshadowing major events to come, through references or parallels that will have greater meaning when those more momentous scenes occur."
+    }
+  },
+  {
+    "id": "alberts-desire-obstacle-tension",
+    "question": "Name each scene's central desire and the obstacle that thwarts it—desire plus obstacle is what creates narrative tension.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Either way, it involves characters having desires and those desires being thwarted by obstacles of some kind. These desires and the obstacles thrown in their way create narrative tension."
+    }
+  },
+  {
+    "id": "alberts-hidden-conflict",
+    "question": "Carve conflict that is less overt: let a character's hidden emotions and motives come through to the reader without stating them.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Unlike in the Amy Tan scene in which a child screams “I don’t want to be your daughter,” the wife is less overt about her emotions and her motives, but the message comes through to the reader."
+    }
+  },
+  {
+    "id": "alberts-emotion-via-gesture",
+    "question": "Denote a character's emotional state through action or dialogue—a nervous gesture instead of a line that tells us they are nervous.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "It’s usually more vivid and more affecting when emotional states can be denoted by action or dialogue in scenes rather than by authorial telling."
+    }
+  },
+  {
+    "id": "alberts-tension-whole-piece",
+    "question": "Remember that not every scene needs conflict, but the piece as a whole must carry narrative tension—without opposition, characters' real natures are never tested or revealed.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Though not every scene has to contain conflict there must be narrative tension in the piece as a whole."
+    }
+  },
+  {
+    "id": "alberts-modulate-conflict",
+    "question": "Vary the intensity of your conflict scenes—if every scene runs at full blast, readers grow exhausted and numb.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Not every conflict scene has to be earth-shatteringly intense; in fact, readers would become exhausted and perhaps even numb if all scenes offered only the constant barrage of (usually violent) conflict that Hollywood blockbuster movies provide."
+    }
+  },
+  {
+    "id": "alberts-cut-purposeless-scenes",
+    "question": "Cut any scene that doesn't ultimately move the piece forward—a scene without conflict must at least serve as setup for conflicts to come.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Scenes without any form of conflict can still be useful—they can serve as setup for conflicts to come, for instance. But if they don’t serve a purpose that ultimately moves the entire piece forward in a significant way, perhaps they shouldn’t be scenes at all."
+    }
+  },
+  {
+    "id": "alberts-conflict-development",
+    "question": "Check whether your conflicts develop as the piece moves on—intensify and further complicate the initial conflicts rather than leaving them static, and make their resolutions satisfying.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Think about the conflicts operating in your own work. Do they develop as the piece moves on or do they remain static? What ways might you intensify and further complicate the initial conflicts? Does the resolution of these conflicts feel satisfying?"
+    }
+  },
+  {
+    "id": "alberts-conflict-reveals-character",
+    "question": "Let conflict reveal character—keep scenes whose only purpose is displaying a trait rare, since too many of them lose the reader.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "The development of conflict and character go hand in hand because conflict reveals character."
+    }
+  },
+  {
+    "id": "alberts-turning-point-in-scene",
+    "question": "Render turning points in the action or a character's emotions as scenes, never as summary.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Turning points in the action or the character’s emotions must be rendered in scenes rather than summary."
+    }
+  },
+  {
+    "id": "alberts-internal-turning-point",
+    "question": "Try a turning point with no direct confrontation: a character quietly coming to an important decision or seeing the truth about a situation without voicing it.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Turning points can occur without direct confrontation. A turning point scene might be wholly internal, as when it leads up to a character making an important decision or coming to see the truth about a situation without necessarily voicing that awareness."
+    }
+  },
+  {
+    "id": "alberts-credible-turning-point",
+    "question": "Make each turning point grow naturally out of what comes before it—readers won't believe a change that comes out of thin air.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "You want your readers to believe in the turning point, and they won’t if it comes out of thin air."
+    }
+  },
+  {
+    "id": "alberts-suspense-reader-knows-more",
+    "question": "Create suspense by letting the reader know more than the character knows.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Suspense can be generated in a scene when the reader knows more than the character knows, as in all those teen slasher movies when the innocent party girl goes wandering down the dark hall at night and the audience thinks, Don’t open that door!"
+    }
+  },
+  {
+    "id": "alberts-suspense-open-question",
+    "question": "Raise an open-ended question in a scene—if readers are engaged enough to care about the answer, suspense will compel them to read on.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Scenes can create suspense by raising an open-ended question: Will the girlfriend be tempted by her boyfriend’s best friend? Will the child pass the exam? Will Hamlet ever get over his indecision and take action to avenge his father’s murder? Will the new stepmother win over the angry and resentful stepchildren? Will Joe get his promotion when he’s called in to speak with his boss? Will the cop give you a ticket? If we’re so engaged with the characters and the situation that we care about the answer, the suspense will compel us to read on."
+    }
+  },
+  {
+    "id": "alberts-sensory-grounding",
+    "question": "Develop the sensory details that pin your character to the moment—a hot puppy's skin, cool air, the tang of coffee—so the fall out of the moment lands dramatically.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Notice the level of detail in this scene, which contains no dialogue and no more action than a woman patting a puppy at a gas station. Dillard develops the sensory details that pin her to the moment—the puppy’s skin is hot, the air is cool, she tastes the tang of coffee on her tongue. Those grounding details make her fall from the experience of living in the moment all the more dramatic."
+    }
+  },
+  {
+    "id": "alberts-flashback-payoff",
+    "question": "Include a flashback only when its payoff outweighs the forward momentum it costs, and anchor it to a real connection with the ongoing scene.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "In writing, you want the flashback to have a connection to the ongoing or surrounding scenes. It shouldn’t be random—there has to be a good reason to go into a flashback as it stops the ongoing action. Flashbacks should provide information essential to readers’ understanding of the current scene. The payoff for including them must outweigh the cost of losing forward momentum."
+    }
+  },
+  {
+    "id": "alberts-no-stacked-flashbacks",
+    "question": "Don't stack multiple flashbacks in one scene—the backward motion becomes irritating and the interruptions confusing; filter extra memories elsewhere in the story.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Taken all together, multiple flashbacks are confusing and counterproductive."
+    }
+  },
+  {
+    "id": "alberts-flashback-no-remember",
+    "question": "Drop the announcing verbs from flashback entries—'The last time Dave had run over a squirrel…' functions fine without 'remember' or 'recall' and is less obviously a device.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Try not to use verbs such as “remember” or “recall,” as in “Dave remembered the last time he’d run over a squirrel … ” to announce a flashback. “The last time Dave had run over a squirrel … ” functions fine without the verb “to remember” and is less obviously a device."
+    }
+  },
+  {
+    "id": "alberts-flashback-tense-shift",
+    "question": "Shift the verb tense to mark the move into a flashback—present to past, or a few past-perfect verbs when the scene is already in past tense.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "A verb change is important. If you’re writing your scene in the present tense, a simple shift to past tense lets us know we’ve moved back in time."
+    }
+  },
+  {
+    "id": "alberts-flashback-locate-in-time",
+    "question": "Keep your reader located in time through every flashback—use time markers on entry and draw attention back to the ongoing action on return, or readers give up.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "The important thing is that you keep your reader located in time; it’s very frustrating for readers when they can’t figure out what’s happening when and they’re likely to give up on your story."
+    }
+  },
+  {
+    "id": "alberts-resolution-believable",
+    "question": "Make a resolution scene believable—it must grow naturally out of the characters and actions that precede it and must not feel sentimental, forced, or tacked on.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "The trick with the “happy ending” resolution is that it can’t be sentimental or forced. The scene of the resolved difference must be believable; it must grow naturally out of the characters and actions that precede it and must not feel tacked on."
+    }
+  },
+  {
+    "id": "alberts-resolution-subtle",
+    "question": "Consider a subtle resolution—the real resolution can be an emotional realization that precedes the story's final, more obvious event.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Resolutions don’t always have to come with the finality of death or happy endings or divorce; resolutions can be less obvious, more subtle."
+    }
+  },
+  {
+    "id": "alberts-resolution-fits-work",
+    "question": "Match the resolution's scale to the work that precedes it—highly dramatic work earns a dramatic resolution, a small personal story wants a quiet one.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapter 2",
+      "quote": "Resolution scenes must fit the work that precedes them—if the work is highly dramatic we expect a dramatic resolution scene—for instance, a critical battle in a war story; if the work is small and personal, as in “Cathedral,” then the resolution should be quiet as well."
+    }
+  }
+]

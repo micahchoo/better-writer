@@ -1,0 +1,230 @@
+[
+  {
+    "id": "stein-originality-01",
+    "question": "Separate your originality into its two components—the originality of what you say and the originality of the way you say it—and clarify which one is distinctive in your current work.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "It usually develops over time, and has two components, the originality of what is said and the originality of the way it is said."
+    }
+  },
+  {
+    "id": "stein-originality-02",
+    "question": "Go through a passage and examine each word for its necessity, precision, and clarity; cut or replace any word that fails one of the three.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "Many authors first find their “voice” when they learn to examine each word for its necessity, precision, and clarity, as we are doing here."
+    }
+  },
+  {
+    "id": "stein-originality-03",
+    "question": "Imagine yourself on a rooftop with the townspeople below, allowed to shout down one last sentence—the sentence the world will remember you by—and write that sentence down.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "I ask you to imagine yourself on a rooftop, the townspeople assembled below. You are allowed to shout down one last sentence. It is the sentence that the world will remember you by forever."
+    }
+  },
+  {
+    "id": "stein-originality-04",
+    "question": "Test your sentence: could any person you know have said it? Revise it until you are convinced no one else could have said that sentence.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "Is your sentence one that could have been said by any person you know? If so, revise it until you are convinced no one else could have said that sentence."
+    }
+  },
+  {
+    "id": "stein-originality-05",
+    "question": "Try making your sentence outrageous, then try turning it into a question, and compare which version is stronger.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "Is your sentence outrageous? Could it be? Is your sentence a question? Would it be stronger as a question?"
+    }
+  },
+  {
+    "id": "stein-originality-06",
+    "question": "Imagine the person you love most strongly disagreeing with your sentence; add a second sentence answering their disagreement, and make sure it is stronger than the first.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "Suppose the person you most love in all the world were to strongly disagree with your sentence. Can you answer his or her disagreement in a second sentence? Please add it. Has your second sentence weakened your first? It usually does. If so, make it stronger than the first."
+    }
+  },
+  {
+    "id": "stein-originality-07",
+    "question": "Imagine your greatest enemy challenging your sentence; revise it so that your statement is incontrovertible and your enemy cannot take the last word.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "You don’t want to give your enemy the last word or let him respond in a way that would demolish what you’ve said. Can you alter your sentence so that your statement will be enemy-proof?"
+    }
+  },
+  {
+    "id": "stein-originality-08",
+    "question": "Revise your sentence so that it could be whispered and still heard, and notice whether the whisper version turns out stronger than the shouted one.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "Suppose you found out that the only way to get your message across would be if you whispered your sentence. How would you revise it so that it would be suitable for whispering?"
+    }
+  },
+  {
+    "id": "stein-originality-09",
+    "question": "Lay out all the versions of your sentence; combine the virtues of one into another, then choose the version that is most original—the one least likely to have been written by someone else.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "Is there a prior version that is actually stronger than the last? Can the virtues of one be embodied in another? And most important, which sentence now strikes you as the most original, the one least likely to have been written by someone else?"
+    }
+  },
+  {
+    "id": "stein-originality-10",
+    "question": "Distrust the sentence that comes first: hone, change, and polish the words of a single sentence to test all of its possibilities.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "In the meantime, you’ve had another lesson in the value of shunning the sentence that comes first, and honing, changing, polishing the words of a single sentence to test all of its possibilities."
+    }
+  },
+  {
+    "id": "stein-titles-01",
+    "question": "Check whether your title insulates your book from the public; if it does not arouse a reader’s interest or promise a rich experience, revise it.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "I have met many talented writers who insulate their books from the public with titles that are not likely to arouse a reader’s interest or to promise a rich experience."
+    }
+  },
+  {
+    "id": "stein-titles-02",
+    "question": "Stand in a bookstore and study the titles of books by authors you don’t know; note which titles tempt you to pick the books up and which don’t, then judge your own title by the same standard.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "You’ll see how many books don’t tempt you to pick them up because of their titles, and which titles intrigue you enough to want to take them down off the shelf and read the flaps."
+    }
+  },
+  {
+    "id": "stein-titles-03",
+    "question": "Look past the short-description title for your nonfiction work and find the more imaginative title that would appeal to readers.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "What many nonfiction writers neglect is the appeal more imaginative titles hold for readers."
+    }
+  },
+  {
+    "id": "stein-titles-04",
+    "question": "Look for your title in the lines of poems and songs that resonate with your book’s theme and audience.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "Many effective titles have come from poems and songs, and I thought of a song that would likely be remembered by a prime audience for the book, the tens of thousands of infantry officers of World War II."
+    }
+  },
+  {
+    "id": "stein-titles-05",
+    "question": "Choose a title early that people respond to, and let that response spur you to complete the work.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "A title that people respond to can spur completion of the work."
+    }
+  },
+  {
+    "id": "stein-titles-06",
+    "question": "Make your title a metaphor: put two things together that don’t ordinarily go together, so the title intrigues and exercises the reader’s imagination.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "All seven of those titles are metaphors. They put two things together that don’t ordinarily go together."
+    }
+  },
+  {
+    "id": "stein-titles-07",
+    "question": "Title your novel with the leading character’s name plus an energizing factor rather than the bare name.",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "One way of enticing a reader is to title a novel with the name of the leading character plus an energizing factor."
+    }
+  },
+  {
+    "id": "stein-titles-08",
+    "question": "Consider each word of your title carefully: even words that mean the same thing can make or break the book, so test synonymous rewordings against each other.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "Though the words mean the same, the latter title for the same novel might have quashed the book’s chances in the marketplace."
+    }
+  },
+  {
+    "id": "stein-titles-09",
+    "question": "Remember that a title’s primary function is not to convey meaning but to sound enticing and exude resonance; test your title against that standard.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 22-23",
+      "quote": "The point to remember is that the primary function of a title is not to convey meaning as much as to sound enticing and if possible exude resonance."
+    }
+  }
+]

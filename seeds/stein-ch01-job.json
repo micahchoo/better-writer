@@ -1,0 +1,326 @@
+[
+  {
+    "id": "stein-ch01-intention",
+    "question": "Check the intention behind your draft: if it is self-expression, a message, or being liked by readers, reset it so your purpose is providing the reader an experience superior to what they encounter in everyday life.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "Those are all occasional outcomes of the correct intention, which is to provide the reader with an experience that is superior to the experiences the reader encounters in everyday life."
+    }
+  },
+  {
+    "id": "stein-ch01-monotone-read",
+    "question": "Have a friend with no talent for acting read your draft aloud in a flat monotone, as if the words had no meaning; wherever the emotion dies, rewrite so the words themselves carry it.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "What we learned with each stab of pain was that the words themselves and not the inflections supplied by the reader had to carry the emotion of the story."
+    }
+  },
+  {
+    "id": "stein-ch01-dissect-masterwork",
+    "question": "Take a story you admire and dissect it over and over — read it repeatedly until it surrenders the secrets of how it works.",
+    "verb": "elucidate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "It was from this practice that I learned the value of dissecting a piece of writing repeatedly until it surrendered its secrets."
+    }
+  },
+  {
+    "id": "stein-ch01-sameness-variety",
+    "question": "Scan your draft for sameness — the same sentence shapes and rhythms, like a blue suit with a blue shirt and blue tie — and rewrite for variety.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "“Your suit is blue,” he said. “Your shirt is blue, your tie is blue. That’s what’s wrong with your writing.”"
+    }
+  },
+  {
+    "id": "stein-ch01-tough-skin",
+    "question": "Treat expert criticism as something to endure and perfect against: no matter how advanced your career, criticism cuts to the quick, so keep working to challenge it.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "It took some time for me to learn the other lesson, that a writer, shy or not, needs a tough skin, for no matter how advanced one’s experience and career, expert criticism cuts to the quick, and one learns to endure and to perfect, if for no other reason than to challenge the pain-maker."
+    }
+  },
+  {
+    "id": "stein-ch01-clarity-precision",
+    "question": "Edit each sentence against the two objectives of all prose — clarity and precision — and rework anything that fails either.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "What I learned from my destroyed work were the two simple objectives of all prose writing, to be clear and to be precise."
+    }
+  },
+  {
+    "id": "stein-ch01-boredom-cut",
+    "question": "Hunt for the moments in your draft that could produce ten seconds of boredom — an audience has almost no tolerance for a mishap — and cut them.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "First, the necessity of sitting through bad plays, to witness coughing and squirming in the audience, to have ears up like a rabbit to catch what didn’t work, to observe how little tolerance an audience has for a mishap, ten seconds of boredom breaking an hour-long spell."
+    }
+  },
+  {
+    "id": "stein-ch01-study-mistakes",
+    "question": "Read a few chapters of a transient bestseller and study its mistakes — you can learn more from the painfully bad than from masterpieces, and it sharpens your editorial eye.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "I learned more from the painfully bad than from the few remarkable plays that kept me enthralled. Today, I urge my students once they have begun to master craft, to read a few chapters of John Grisham’s The Firm, or some other transient bestseller, to see what they can learn from the mistakes of writers who don’t heed the precise meanings of the words they use."
+    }
+  },
+  {
+    "id": "stein-ch01-write-the-unspoken",
+    "question": "Find what your characters see or sense in silence but never say, and write the words that reveal what would otherwise be blinked away.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "Wilder taught me that what a writer deals with is the unspoken, what people see or sense in silence."
+    }
+  },
+  {
+    "id": "stein-ch01-readers-pleasure",
+    "question": "Make the writing a good experience for both partners — you and the reader — and stop ignoring the reader’s pleasure in the exchange.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "It has to be a good experience for both partners, the writer and the reader, and it is a source of distress to me to observe how frequently writers ignore the pleasure of their partners."
+    }
+  },
+  {
+    "id": "stein-ch01-fiction-cut-information",
+    "question": "Remove raw information from your fiction: when information obtrudes, the experience of the story pauses and the author seems to be filling in — cut anything that distracts from the experience even momentarily.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "In fiction, when information obtrudes the experience of the story pauses. Raw information comes across as an interruption, the author filling in. The fiction writer must avoid anything that distracts from the experience even momentarily."
+    }
+  },
+  {
+    "id": "stein-ch01-nonfiction-freshness",
+    "question": "Find the raw, pedestrian facts in your nonfiction and elaborate them with images, anecdotes, characterization, and writerly precision — borrow fiction’s techniques to bring the page alive.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "The reader, soon bored, yearns for the images, anecdotes, characterization, and writerly precision that make informational writing come alive on the page. That is where the techniques of fiction can be so helpful to the nonfiction writer."
+    }
+  },
+  {
+    "id": "stein-ch01-evoke-not-communicate",
+    "question": "Rephrase the passage so it evokes an emotion in the reader rather than merely communicating how you feel — the emotional effect is better suited to your purpose.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "Even when we write love letters, we are trying to communicate how we feel and not necessarily trying to evoke an emotion in the recipient, though that might be better suited to our purpose."
+    }
+  },
+  {
+    "id": "stein-ch01-extraordinary-experience",
+    "question": "Practice consciously providing an extraordinary experience for the reader — craft so the reader is oblivious to the fact that they are seeing words on paper.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "What it requires is the conscious practice of providing an extraordinary experience for the reader, who should be oblivious to the fact that he is seeing words on paper."
+    }
+  },
+  {
+    "id": "stein-ch01-sensation-not-fact",
+    "question": "Rewrite the passage so it evokes sensation in the reader — not the fact that it’s raining, but the feeling of being rained upon.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "As E. L. Doctorow once put it, “Good writing is supposed to evoke sensation in the reader, not the fact that it’s raining, but the feeling of being rained upon.”"
+    }
+  },
+  {
+    "id": "stein-ch01-opening-curiosity",
+    "question": "Rewrite your opening so it arouses curiosity instead of answering everything up front — a reader who is sated by the first paragraph moves on to the next story.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "Today, the best of good journalists are arousing their readers’ curiosity in the first paragraph and seducing them into the rest of the story."
+    }
+  },
+  {
+    "id": "stein-ch01-nonfiction-no-invention",
+    "question": "Audit your nonfiction for invention: you may make readers feel what happened, but you dare not invent what happened, cannot invent actions, and cannot guess what people were thinking.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "It can make us feel what happened, but dares not invent what happened. Nonfiction can describe effectively what people do and thereby move us, but it cannot invent those actions. Nonfiction can report what people say, but it cannot guess what they were thinking."
+    }
+  },
+  {
+    "id": "stein-ch01-statistic-to-individual",
+    "question": "Take a statistic in your draft and refocus it on one individual the reader can see — lose the numbers and focus on the person, as 1,400 homeless people become the man on the 88th Street bench.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "fiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "TRADITIONAL NONFICTION: New York City has more than 1,400 homeless people. BETTER NONFICTION: The man who has laid claim to the bench on the corner of 88th Street and Park Avenue is one of New York City’s 1,400 homeless people."
+    }
+  },
+  {
+    "id": "stein-ch01-plan-readers-adventure",
+    "question": "Before writing each scene, plan the reader’s adventure through it; after a respite away from it, revise with an editor’s steel gaze to see how the reader’s experience might be improved.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "But the less experienced writer can plan the reader’s adventure before he writes each scene, and in revising that scene after a respite away from it, with the steel gaze of an editor he can see how the reader’s experience might be improved."
+    }
+  },
+  {
+    "id": "stein-ch01-dry-prose",
+    "question": "Rewrite the dry passages of your draft so they enable the reader to see as they read, move them, and stimulate the intellect with insight — otherwise the writing fails its purpose.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "What we mean by “dry” is that it does not enable us to see as we read, it does not move us, and, most important, it does not stimulate our intellect with insight, its ostensible purpose."
+    }
+  },
+  {
+    "id": "stein-ch01-calculated-effect",
+    "question": "Treat everything in your writing as calculated for effect — every word and its order chosen deliberately, the way Lincoln calculated almost everything for effect.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "The historian Shelby Foote reminds us, “Lincoln was highly intelligent. Almost everything he did was calculated for effect.” That statement is one no writer should ever forget."
+    }
+  },
+  {
+    "id": "stein-ch01-fresh-imagery",
+    "question": "Find the flat, cliché-ridden phrases in your draft and rewrite them with fresh simile and metaphor — the electricity of fresh imagery empowers the reader’s feelings and compels attention.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "When a writer or speaker understands the electricity of fresh simile and metaphor, his choice of words empowers our feelings, his language compels our attention, acceptance, and action."
+    }
+  },
+  {
+    "id": "stein-ch01-what-might-have-happened",
+    "question": "Take an incident you witnessed or remember and write not what happened but what might have happened — let it be a taking-off point, not a report.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "For the story writer, witnessing—or remembering—incidents in life must be more than an act of reporting. It is the taking-off point not of what happened, but of what might have happened."
+    }
+  },
+  {
+    "id": "stein-ch01-framework-insight",
+    "question": "Elaborate your report by setting what you saw in a framework — what has happened elsewhere or in the past — so the scrim lifts, sight becomes insight, and reporting becomes art.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "The best of nonfiction, however, sets what it sees in a framework, what has happened elsewhere or in the past. As the recorded events march before us, a scrim lifts to convey another dimension, the highlighting focuses our attention, sight becomes insight, reporting becomes art."
+    }
+  },
+  {
+    "id": "stein-ch01-practice-craft",
+    "question": "Practice your craft deliberately, as ballet dancers, pianists, and actors do — only writers expect to achieve mastery without practice.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "By practice one learns to use what one has understood. Only writers, it seems, expect to achieve some level of mastery without practice."
+    }
+  },
+  {
+    "id": "stein-ch01-daily-discipline",
+    "question": "Write at the same time every day and re-revise without balking — set aside the excuses, since difficulties do not excuse the work.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "Others find excuses for not writing at the same time every day, balk at re-revising incessantly, or excuse themselves because their lives are beset by difficulties."
+    }
+  },
+  {
+    "id": "stein-ch01-work-stands-alone",
+    "question": "Check that your work does its job with you absent — the writing alone must act on the reader’s mind and emotions, because the writer is dispensable and the work must do the job.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 1",
+      "quote": "In fact when the writer finishes his work, he can vanish from the earth and his book will continue to affect the reader’s mind and emotions. The writer becomes dispensable. The work must do the job."
+    }
+  }
+]

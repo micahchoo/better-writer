@@ -1,0 +1,86 @@
+[
+  {
+    "id": "le-guin-adverb-01",
+    "question": "Go through a passage of your own prose and find every adverb whose meaning the verb already carries, and every adjective whose meaning the noun already carries. Rewrite so the verb or noun itself does the work.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "When the quality that the adverb indicates can be in the verb itself (they ran quickly raced) or the quality the adjective indicates can be put in the noun itself (a growling voice = à growl), the prose will be cleaner; more intense, more vivid."
+    }
+  },
+  {
+    "id": "le-guin-adverb-02",
+    "question": "Scan a page of your own writing and list the qualifiers you reach for again and again — your habitual 'very', 'just', 'kind of'. Cut every one that is not earning its place.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "You might just look at your own writing to see if you have some very favorite qualifiers that you kind of use just a little too often."
+    }
+  },
+  {
+    "id": "le-guin-adverb-03",
+    "question": "Find every 'somehow' in your draft and replace it with the actual cause or mechanism. Nothing can happen somehow.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "Nothing can happen somehow."
+    }
+  },
+  {
+    "id": "le-guin-adverb-04",
+    "question": "In your adjective-free, adverb-free passage, allow only the time adverbs that are genuinely necessary — then, next, later — and keep even those to a minimum.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "Adverbs of time (then, next, later; etc.) may be necessary, but be sparing"
+    }
+  },
+  {
+    "id": "le-guin-adverb-05",
+    "question": "Write your first adjective-free, adverb-free draft on new material, not on something you've already written. Save your old passages for later rounds of the exercise.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "The first time you do the exercise, write something new."
+    }
+  },
+  {
+    "id": "le-guin-adverb-06",
+    "question": "Reread your adjective-free passage and ask: would adding an adjective or adverb here and there improve it, or is it satisfactory without? Keep it chaste unless a specific qualifier earns its way back in.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "Would the piece be improved by the addition of an adjective or adverb here and there, or is it satisfactory without?"
+    }
+  },
+  {
+    "id": "le-guin-adverb-07",
+    "question": "Look back at your adjective-free draft and notice the devices and usages the constraint forced you into — especially your choice of verbs and your use of simile and metaphor. Name what changed in your writing.",
+    "verb": "elucidate",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "notice the devices and usages you were forced into by the requirements of the exercise: It may have affected particularly your choice of verbs and your use of simile and metaphor"
+    }
+  }
+]

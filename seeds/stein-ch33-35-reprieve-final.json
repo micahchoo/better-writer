@@ -1,0 +1,374 @@
+[
+  {
+    "id": "stein-first-draft-flawed",
+    "question": "Expect your first draft to be flawed and to need your editorial skills. Instead of despairing over how awful it reads, treat revision as your second chance to fix it.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "If you review what you’ve written and exclaim, “Oh my God, this is awful!” you’ll only dispirit yourself. The experienced writer knows his first draft will be flawed, that he will get a chance to employ his editorial skills in fixing it."
+    }
+  },
+  {
+    "id": "stein-big-fixes-first",
+    "question": "Fix the major problems in your manuscript before starting a page-by-page, front-to-back revision, so you don’t grow cold on the work.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "To avoid growing cold, I advocate fixing major things before starting on a page-by-page, front-to-back revision."
+    }
+  },
+  {
+    "id": "stein-open-with-incident",
+    "question": "Open by personifying your subject in an incident involving an individual rather than in abstract statement.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "A good way to begin is to personify your subject matter in an incident involving an individual."
+    }
+  },
+  {
+    "id": "stein-buried-anecdote-opening",
+    "question": "Search your draft for a buried anecdote that could be made stronger than your present opening, and consider promoting it to the top.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Sometimes the germ of such an anecdote is buried elsewhere in the draft. If so, examine it to see if it has the potential of being made stronger than your present opening."
+    }
+  },
+  {
+    "id": "stein-visual-opening",
+    "question": "Ask whether your opening is sufficiently visual for the reader to see it; if not, make it visual.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Also ask yourself if your opening is sufficiently visual to be seen by the reader."
+    }
+  },
+  {
+    "id": "stein-immediate-scenes-page-one",
+    "question": "Use immediate scenes wherever you can in your nonfiction, and put your first immediate scene on page one.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Most important, the nonfiction writer who learns to use immediate scenes wherever he can will also find a dramatic improvement in the readability of his work. The ideal place for your first immediate scene is on page one."
+    }
+  },
+  {
+    "id": "stein-curiosity-engine",
+    "question": "Ask whether your beginning provokes sufficient curiosity, and how soon after the start the reader reaches the engine of your piece—the point at which they decide not to stop reading.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Before you settle on a beginning, ask yourself if it provokes sufficient curiosity in the reader. How soon after your beginning will the reader comes upon the “engine” of your article or book, the place at which the reader decides not to stop reading?"
+    }
+  },
+  {
+    "id": "stein-build-to-climax",
+    "question": "Check whether your article builds toward a climax instead of making one point after another on a plateau.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "If you are writing an article, does it make one point after another on a plateau, or does it build toward a climax?"
+    }
+  },
+  {
+    "id": "stein-chapter-ends-point-forward",
+    "question": "End most chapters of your book so that they point toward the next chapter.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "If it is a book, does the end of most chapters point toward the next?"
+    }
+  },
+  {
+    "id": "stein-convert-summaries-to-scenes",
+    "question": "Convert summaries into visual events the reader can see; for the summaries you keep, shorten them so the reader doesn’t lose attention.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Have you summarized material that would make interesting visual passages if you converted the summaries to events the reader could see? If there are summaries you cannot or don’t want to convert to scenes, can you shorten them in order to avoid losing the reader’s attention? If you want to “jump-cut,” the reader will go along with you."
+    }
+  },
+  {
+    "id": "stein-withhold-answer-suspense",
+    "question": "Create suspense by raising a question and withholding the answer for a while; find a place in the piece where you can do this now.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Have you created occasional suspenseful interest by raising a question and withholding the answer for a while? Can you recall any place where this might be done now?"
+    }
+  },
+  {
+    "id": "stein-resonance",
+    "question": "Give your work resonance by weaving in reverberations of other times, places, important events, or influential people.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Does your work have reverberations of other times or places, of important events or influential people? The most mundane subjects can be given a lift by the use of resonance."
+    }
+  },
+  {
+    "id": "stein-nonfiction-tension",
+    "question": "Consciously try to create stress for the reader—some delicious tension—by adapting fiction’s tension techniques to your nonfiction.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Have you consciously tried to create stress for the reader, some delicious tension?"
+    }
+  },
+  {
+    "id": "stein-cut-weakest-part",
+    "question": "Read your manuscript as if you were its editor and it was written by someone else: identify the weakest part, cut it, condense it if it can’t be cut entirely, or add something to its beginning that arouses the reader’s curiosity.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "If you were the editor of your manuscript and it was written by someone else, what would you choose as the weakest part? Look at that section now and see if you can eliminate it. If you can’t cut it entirely, can you condense it? Is there anything you can add to the beginning of that section that would arouse the reader’s curiosity?"
+    }
+  },
+  {
+    "id": "stein-memorable-passage-clue",
+    "question": "Articulate what makes your most memorable passage so good, and use that insight as a clue for what to do with your weakest part.",
+    "verb": "elucidate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Consider your most memorable passage. What makes it so good? Does that provide a clue as to what you might do with your weakest part?"
+    }
+  },
+  {
+    "id": "stein-new-weakest-part",
+    "question": "After cutting or changing the weakest part, find the new weakest part that has taken its place; improve it, or cut it and stitch together what comes immediately before and after.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Surprise: If you’ve cut or changed the weakest part, you have a new weakest part. In retrospect, do you know why it is weak? Can you improve it? Can you cut it and stitch together what comes immediately before and immediately after?"
+    }
+  },
+  {
+    "id": "stein-focused-reading-hunter",
+    "question": "Do a focused reading of your manuscript as a hunter on assignment, hunting for specific errors and omissions rather than reading as a reader.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "When you’ve considered those questions and fixed whatever needed fixing, it may be time for a focused reading, by which I mean a reading of your manuscript in which you read not as a reader but as a hunter for specific errors and omissions as if on assignment to do so."
+    }
+  },
+  {
+    "id": "stein-visible-every-page",
+    "question": "Make sure something visible appears on every page: pencil a V in the corner of each page that has something visual, and on pages without a V, create something visual.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Is there something visible on every page? If you are reviewing what you wrote in hard copy, pencil a V in a lower corner of every page that has something visual, and on pages without a V, see if you can create something visual, even if it is a leaf falling from a tree."
+    }
+  },
+  {
+    "id": "stein-cut-flab-cliches",
+    "question": "Go after most adjectives and adverbs and all flab as an editor, not as the writer. Cut every cliché—say it new or say it straight—and cut similes or metaphors that show signs of strain.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Have you eliminated most adjectives and adverbs, and the unnecessary words we call flab? Go after them as an editor, not as the writer. Cut every cliché you come across. Say it new or say it straight. Can you spot any similes or metaphors that show signs of strain and should now be cut?"
+    }
+  },
+  {
+    "id": "stein-remove-padding",
+    "question": "Remove the padding—unnecessary digressions and overly extensive patches of description—from your manuscript, since you always strengthen text when you remove the padding.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "As you work along as an editor, do you see any places where the author might have padded the manuscript with unnecessary digressions, overly extensive patches of description, or anything else that strikes you as filler? You always strengthen text when you remove the padding."
+    }
+  },
+  {
+    "id": "stein-read-as-reader-after-break",
+    "question": "After fixing the larger problems and hunting down the smaller ones, take time away from the manuscript, then read it as a reader rather than an editor.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Now that you’ve fixed the larger problems and hunted and killed the smaller ones, take some time away from the manuscript and then read it as a reader, not an editor. But keep an editorial pencil handy, just in case."
+    }
+  },
+  {
+    "id": "stein-le-mot-juste",
+    "question": "Replace every approximate word with the precisely right word: delight in le mot juste and never let the near-miss word pass in your own work.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "The serious writer is addicted to the precise meaning of words in his own work and admires le mot juste in the work of others. For him, the approximate word is never satisfactory, and he delights in the tools that enable him to be as precise as possible."
+    }
+  },
+  {
+    "id": "stein-thesaurus-variety",
+    "question": "When a word is overused in your text, consult a thesaurus that offers near misses and far-off synonyms, and use them to add color as well as diversity.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "My other online thesaurus came up with no fewer than twenty-one “synonyms”—some near misses and some pretty far off—that enabled my student to add color as well as diversity to her text."
+    }
+  },
+  {
+    "id": "stein-character-before-plot",
+    "question": "Start with the character rather than a preconceived plot: from the character, then the word, and from the character’s words, bring forth the action.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Thou shalt not sprinkle characters into a preconceived plot lest thou produce hackwork. In the beginning was the character, then the word, and from the character’s words is brought forth action."
+    }
+  },
+  {
+    "id": "stein-hero-faults-villain-charm",
+    "question": "Give your hero faults and your villain charm: the hero’s faults bring him to life, and the villain’s charm is the honey with which he lures the innocent.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Thou shalt imbue thy heroes with faults and thy villains with charm, for it is the faults of the hero that bring forth his life, just as the charm of the villain is the honey with which he lures the innocent."
+    }
+  },
+  {
+    "id": "stein-characters-act-not-meek",
+    "question": "Let your characters do things readers crave—steal, kill, covet—rather than keeping them meek, innocent, forgiving, and peaceable, which makes readers yawn.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Thy characters shall steal, kill, dishonor their parents, bear false witness, and covet their neighbor’s house, wife, manservant, maidservant, ox, and ass, for reader’s crave such actions and yawn when thy characters are meek, innocent, forgiving, and peaceable."
+    }
+  },
+  {
+    "id": "stein-particularity-not-abstraction",
+    "question": "Sweep the abstractions out of your prose, for readers are attracted by particularity.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Thou shalt not saw the air with abstractions, for readers, like lovers, are attracted by particularity."
+    }
+  },
+  {
+    "id": "stein-dialogue-words-carry-decibels",
+    "question": "Cut the manner verbs from your dialogue tags—mutter, whisper, blurt, bellow, scream—and let the words themselves carry their own decibels.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Thou shalt not mutter, whisper, blurt, bellow, or scream, for it is the words and not the characterization of the words that must carry their own decibels."
+    }
+  },
+  {
+    "id": "stein-infect-reader-tension",
+    "question": "Infect your reader with anxiety, stress, and tension, for the conditions they deplore in life they relish in fiction.",
+    "verb": "rewrite",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Thou shalt infect thy reader with anxiety, stress, and tension, for those conditions that he deplores in life he relishes in fiction."
+    }
+  },
+  {
+    "id": "stein-dialogue-foreign-tongue",
+    "question": "Write dialogue as a foreign tongue—a semblance of speech, not a record of it—in which directness diminishes and obliqueness sings.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Thou shalt not forget that dialogue is as a foreign tongue, a semblance of speech and not a record of it, a language in which directness diminishes and obliqueness sings."
+    }
+  },
+  {
+    "id": "stein-evoke-not-vent-emotions",
+    "question": "Don’t vent your emotions onto the reader; your duty is to evoke the reader’s emotions.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapters 33-35",
+      "quote": "Above all, thou shalt not vent thy emotions onto the reader, for thy duty is to evoke the reader’s emotions, and in that most of all lies the art of the writer."
+    }
+  }
+]
