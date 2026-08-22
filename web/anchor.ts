@@ -284,18 +284,33 @@ export function extractAnchor(question: string, draft: string, cursorOffset: num
     if (!QUOTE_MARKS.test(open)) continue;
     if ((open === "'" || open === '\u2019') && (isLetter(question[i - 1]) || isLetter(question[i + 1]))) continue;
 
-    let bestForThisOpen = null;
+    let bestForThisOpen: { start: number; end: number; span: number } | null = null;
+    let bestDist = Infinity;
     for (let j = i + 3; j < question.length; j++) {
       const close = question[j];
       if (!QUOTE_MARKS.test(close)) continue;
       if ((close === "'" || close === '\u2019') && isLetter(question[j - 1]) && isLetter(question[j + 1])) continue;
       const inner = question.slice(i + 1, j).trim();
       if (inner.split(/\s+/).filter(Boolean).length < 2) continue; // too short — keep scanning outward
-      const pos = lowerDraft.indexOf(inner.toLowerCase());
-      if (pos === -1) break; // nothing at this reach; longer closes will miss too
-      const cand = { start: pos, end: pos + inner.length, span: inner.length };
-      if (bestForThisOpen === null || cand.span > bestForThisOpen.span) bestForThisOpen = cand;
-      // keep scanning past internal apostrophes — prefer the longest match
+      // Find EVERY occurrence and keep the closest to the cursor: repeated
+      // paragraphs (or identical filler windows) make the first occurrence
+      // global-first, which can sit in an entirely different window.
+      const needle = inner.toLowerCase();
+      const positions: number[] = [];
+      let pos = lowerDraft.indexOf(needle);
+      while (pos !== -1) {
+        positions.push(pos);
+        pos = lowerDraft.indexOf(needle, pos + 1);
+      }
+      // Prefer the occurrence closest to the cursor so repeated paragraphs
+      // anchor to THIS window, not an earlier twin of the same text.
+      for (const p of positions) {
+        const dist = Math.abs(p - cursorOffset);
+        if (bestForThisOpen === null || dist < bestDist || (dist === bestDist && p < bestForThisOpen.start)) {
+          bestForThisOpen = { start: p, end: p + needle.length, span: needle.length };
+          bestDist = dist;
+        }
+      }
     }
     if (bestForThisOpen && (bestQuote === null || bestForThisOpen.span > bestQuote.span)) {
       bestQuote = bestForThisOpen;
