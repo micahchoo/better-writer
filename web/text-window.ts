@@ -60,6 +60,30 @@ export function textWindow(markdown: string, cursorOffset: number): string {
 }
 
 /**
+ * Return the full markdown with [CURSOR START]/[CURSOR END] wrapped around
+ * the cursor block, so the server sees the whole draft plus the cursor
+ * envelope. Cursor-block selection follows textWindow's rules: a cursor on an
+ * empty line takes the next block, falling back to the last block at the end
+ * of the document. Empty document -> empty string.
+ */
+export function markFullDraft(markdown: string, cursorOffset: number): string {
+  const blocks = splitBlocks(markdown);
+  if (blocks.length === 0) return '';
+
+  const index = findCursorBlock(blocks, cursorOffset);
+  if (index === -1) return '';
+
+  const block = blocks[index];
+  return (
+    markdown.slice(0, block.start) +
+    `${CURSOR_START}\n` +
+    markdown.slice(block.start, block.end) +
+    `\n${CURSOR_END}` +
+    markdown.slice(block.end)
+  );
+}
+
+/**
  * Split markdown into blocks, tracking each block's offsets.
  *
  * Lines are grouped into blocks; a blank line ends a block. Within a run of
@@ -67,7 +91,7 @@ export function textWindow(markdown: string, cursorOffset: number): string {
  * starts a new list-item block (a following non-marker line is a lazy
  * continuation of that item), and anything else continues a paragraph.
  */
-function splitBlocks(markdown: string): Block[] {
+export function splitBlocks(markdown: string): Block[] {
   const blocks: Block[] = [];
   let current: { lines: string[]; start: number; kind: BlockKind } | null = null;
 

@@ -1,24 +1,61 @@
-/* Import JetBrains Mono from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+/* Better Writer — sage garden skin.
+   World: a stationery desk. Cream sheets sit on a sage felt mat; terracotta
+   marks the things you press; after dark the desk lamp turns the room a deep
+   green-charcoal. The draft keeps the typewriter voice (JetBrains Mono); the
+   coach speaks in an editorial serif (Newsreader).
+   Token primitives: surface (bg / card / control), four text tiers worth of
+   separation, border progression, ONE accent (terracotta), semantic danger +
+   marker. Every component value below traces back to these. */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap');
 
 :root {
-  /* Light theme colors */
-  --bg-light: #f7f7f7;
-  --card-bg-light: #ffffff;
-  --text-light: #2d3748;
-  --muted-light: #718096;
-  --border-light: #e2e8f0;
-  --accent-light: #3b82f6;
-  --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* Light theme: cream sheet on the sage desk */
+  --bg-light: #e3e8dc;
+  --card-bg-light: #f9f7ee;
+  --control-bg-light: #f0eee1;
+  --text-light: #2f3a32;
+  --muted-light: #5e6e59;
+  --border-light: #ccd4c1;
+  --accent-light: #a8502e;
+  --on-accent-light: #fdf6ef;
+  --danger-light: #b23f2a;
+  --ok-text-light: #44673a;
+  --ok-border-light: rgba(68, 103, 58, 0.45);
+  --marker-light: rgba(232, 191, 68, 0.36);
+  --ring-light: rgba(168, 80, 46, 0.3);
+  --popover-border-light: #b9c4a9;
+  --toast-border-light: #e2b39c;
+  --toast-bg-light: rgba(250, 236, 225, 0.95);
+  --pulse-ring-light: rgba(178, 63, 42, 0.4);
+  --shadow-light:
+    0 1px 2px rgba(47, 58, 50, 0.05),
+    0 6px 18px rgba(47, 58, 50, 0.08);
 
-  /* Dark theme colors */
-  --bg-dark: #000000;
-  --card-bg-dark: #1a1a1a;
-  --text-dark: #ffffff;
-  --muted-dark: #cccccc;
-  --border-dark: #333333;
-  --accent-dark: #60a5fa;
-  --shadow-dark: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  /* Dark theme: the study at lamplight — green-charcoal base, moss raised
+     surfaces. Dark leans on borders, not shadows, so the shadow stays quiet. */
+  --bg-dark: #20261e;
+  --card-bg-dark: #2a3227;
+  --control-bg-dark: #313a2d;
+  --text-dark: #e8e6d8;
+  --muted-dark: #9fa892;
+  --border-dark: #3f4b3a;
+  --accent-dark: #ce8258;
+  --on-accent-dark: #241206;
+  --danger-dark: #eb9078;
+  --ok-text-dark: #a5c996;
+  --ok-border-dark: rgba(165, 201, 150, 0.4);
+  --marker-dark: rgba(232, 191, 68, 0.26);
+  --ring-dark: rgba(206, 130, 88, 0.4);
+  --popover-border-dark: #55654d;
+  --elevated-bg-dark: #343f2f;
+  --toast-border-dark: #a4573c;
+  --toast-bg-dark: rgba(52, 30, 21, 0.95);
+  --pulse-ring-dark: rgba(235, 144, 120, 0.35);
+  --shadow-dark: 0 2px 12px rgba(0, 0, 0, 0.32);
+
+  /* Voices: the draft types itself in mono; the coach asks in serif */
+  --font-draft: 'JetBrains Mono', ui-monospace, monospace;
+  --font-coach: 'Newsreader', Georgia, serif;
 }
 
 * {
@@ -30,7 +67,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-draft);
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -39,7 +76,7 @@ body {
 }
 
 body .w-md-editor-text-input {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-draft);
 }
 
 body {
@@ -83,6 +120,17 @@ body {
   color: var(--text-dark);
 }
 
+/* Keyboard focus speaks once, in the accent: every button and select rings
+   the same way instead of each control inventing its own. */
+.app :is(button, select):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring-light);
+}
+
+.app.dark :is(button, select):focus-visible {
+  box-shadow: 0 0 0 2px var(--ring-dark);
+}
+
 /* Top bar: title, genre picker, mode badge */
 .topbar {
   display: flex;
@@ -93,9 +141,11 @@ body {
 }
 
 .app-title {
+  font-family: var(--font-coach);
+  font-style: italic;
   font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  font-size: 17px;
+  letter-spacing: 0.01em;
 }
 
 .genre-field {
@@ -105,7 +155,9 @@ body {
 }
 
 .genre-label {
-  font-size: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--muted-light);
 }
 
@@ -114,12 +166,12 @@ body {
 }
 
 .genre-select {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-draft);
   font-size: 12px;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 6px;
   border: 1px solid var(--border-light);
-  background: var(--card-bg-light);
+  background: var(--control-bg-light);
   color: var(--text-light);
   outline: none;
   cursor: pointer;
@@ -127,12 +179,8 @@ body {
 
 .app.dark .genre-select {
   border-color: var(--border-dark);
-  background: var(--card-bg-dark);
+  background: var(--control-bg-dark);
   color: var(--text-dark);
-}
-
-.genre-select:focus {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
 
 .mode-badge {
@@ -153,21 +201,21 @@ body {
 }
 
 .mode-badge.mode-local {
-  color: #15803d;
-  border-color: rgba(21, 128, 61, 0.4);
+  color: var(--ok-text-light);
+  border-color: var(--ok-border-light);
 }
 
 .app.dark .mode-badge.mode-local {
-  color: #4ade80;
-  border-color: rgba(74, 222, 128, 0.4);
+  color: var(--ok-text-dark);
+  border-color: var(--ok-border-dark);
 }
 
-/* Editor area */
+/* Editor area: the sheet of paper */
 .editor-container {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: var(--shadow-light);
@@ -193,11 +241,11 @@ body {
 
 /* React MD Editor styles */
 .w-md-editor {
-  --md-editor-font-family: 'JetBrains Mono', monospace !important;
+  --md-editor-font-family: var(--font-draft) !important;
   height: 100% !important;
   border: none !important;
   background-color: transparent !important;
-  border-radius: 12px !important;
+  border-radius: 10px !important;
   overflow: hidden !important;
 }
 
@@ -211,7 +259,7 @@ body {
 .w-md-editor-text {
   height: auto !important;
   min-height: 100% !important;
-  font-family: 'JetBrains Mono', monospace !important;
+  font-family: var(--font-draft) !important;
   padding: 1.25rem !important;
   padding-bottom: 9rem !important; /* keep the bottom clear of the docked panel */
   border: none !important;
@@ -243,7 +291,7 @@ body {
   border: none !important;
   background: transparent !important;
   overflow-y: auto !important;
-  font-family: 'JetBrains Mono', monospace !important;
+  font-family: var(--font-draft) !important;
 }
 
 [data-color-mode="dark"] .w-md-editor {
@@ -292,9 +340,9 @@ body {
   padding: 0 12px;
   border-radius: 6px;
   border: 1px solid var(--border-light);
-  background: var(--card-bg-light);
+  background: var(--control-bg-light);
   color: var(--text-light);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-draft);
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
@@ -303,19 +351,34 @@ body {
 
 .app.dark .dictate-button {
   border-color: var(--border-dark);
-  background: var(--card-bg-dark);
+  background: var(--control-bg-dark);
   color: var(--text-dark);
 }
 
 .dictate-button:hover {
   border-color: var(--accent-light);
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 0 2px var(--ring-light);
+}
+
+.app.dark .dictate-button:hover {
+  border-color: var(--accent-dark);
+  box-shadow: 0 0 0 2px var(--ring-dark);
 }
 
 .dictate-button.recording {
-  border-color: #e53e3e;
-  color: #e53e3e;
+  border-color: var(--danger-light);
+  color: var(--danger-light);
   animation: pulse 1.5s ease-in-out infinite;
+}
+
+.app.dark .dictate-button.recording {
+  border-color: var(--danger-dark);
+  color: var(--danger-dark);
+  --pulse-ring: var(--pulse-ring-dark);
+}
+
+.app.light .dictate-button.recording {
+  --pulse-ring: var(--pulse-ring-light);
 }
 
 .dictate-button:disabled {
@@ -323,7 +386,8 @@ body {
   cursor: default;
 }
 
-/* Coach panel: bottom-right docked, one question at a time */
+/* Coach panel: bottom-right docked, one question at a time. This is the
+   coach's mouthpiece, so it carries the serif voice, not the typewriter's. */
 .coach-panel {
   position: absolute;
   bottom: max(56px, calc(env(safe-area-inset-bottom, 0px) + 56px));
@@ -331,13 +395,13 @@ body {
   max-width: 380px;
   min-width: 260px;
   z-index: 90;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: 10px;
   border: 1px solid var(--border-light);
   background: var(--card-bg-light);
   box-shadow: var(--shadow-light);
   color: var(--text-light);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .app.dark .coach-panel {
@@ -349,7 +413,9 @@ body {
 
 .coach-question {
   margin: 0 0 10px;
-  line-height: 1.5;
+  font-family: var(--font-coach);
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 .coach-placeholder {
@@ -357,8 +423,11 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 6px;
+  font-family: var(--font-coach);
+  font-style: italic;
+  font-size: 14px;
   color: var(--muted-light);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .app.dark .coach-placeholder {
@@ -377,25 +446,31 @@ body {
 }
 
 .coach-ask {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-draft);
   font-size: 12px;
   font-weight: 500;
   padding: 5px 12px;
   border-radius: 6px;
   border: 1px solid var(--accent-light);
   background: var(--accent-light);
-  color: #ffffff;
+  color: var(--on-accent-light);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .coach-ask:hover:not(:disabled) {
-  filter: brightness(1.1);
+  filter: brightness(1.08);
 }
 
 .coach-ask:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+.app.dark .coach-ask {
+  border-color: var(--accent-dark);
+  background: var(--accent-dark);
+  color: var(--on-accent-dark);
 }
 
 .coach-dismiss {
@@ -418,10 +493,160 @@ body {
 }
 
 .coach-dismiss:hover {
-  background: rgba(59, 130, 246, 0.1);
+  background: var(--ring-light);
 }
 
-/* Error toast */
+.app.dark .coach-dismiss:hover {
+  background: var(--ring-dark);
+}
+
+/* Sweep + clear (local mode only): sit next to Ask now in the coach panel */
+.coach-sweep,
+.coach-clear {
+  font-family: var(--font-draft);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app.dark .coach-sweep,
+.app.dark .coach-clear {
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+.coach-sweep:hover:not(:disabled),
+.coach-clear:hover:not(:disabled) {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+.app.dark .coach-sweep:hover:not(:disabled),
+.app.dark .coach-clear:hover:not(:disabled) {
+  border-color: var(--accent-dark);
+  color: var(--accent-dark);
+}
+
+.coach-sweep:disabled,
+.coach-clear:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Question highlight overlay (see highlight.tsx): a translucent marker over
+   the anchored span plus a small popover with the question. The mirror's text
+   is transparent; only the span background paints, so the editor text shows
+   through tinted like a marker stroke. */
+.coach-highlight-layer {
+  pointer-events: none;
+}
+
+.coach-highlight-mirror,
+.coach-highlight-mirror > code {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Wrap-lock: the overlay must break lines exactly like the textarea. The
+   layer inherits the app's 1.5 line-height, but the textarea renders at
+   its own line-height — a mismatch drifts every highlight after the first
+   wrapped line (measured 164px by the end of a full draft). Lock both
+   boxes to the textarea's computed line-height instead. */
+.coach-highlight-mirror {
+  line-height: var(--bw-textarea-line-height, 21px);
+}
+
+.coach-highlight-span {
+  background: var(--marker-light);
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.app.dark .coach-highlight-span {
+  background: var(--marker-dark);
+}
+
+.coach-popover {
+  position: absolute;
+  max-width: 300px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  /* One elevation level above the sheet: firmer border + real layered
+     shadow, or it camouflages into the text underneath. */
+  border: 1px solid var(--popover-border-light);
+  background: var(--card-bg-light);
+  box-shadow:
+    0 1px 2px rgba(47, 58, 50, 0.08),
+    0 4px 10px rgba(47, 58, 50, 0.1),
+    0 12px 28px rgba(47, 58, 50, 0.16);
+  color: var(--text-light);
+  font-family: var(--font-coach);
+  font-size: 14px;
+  line-height: 1.55;
+  pointer-events: none;
+}
+
+.app.dark .coach-popover {
+  border-color: var(--popover-border-dark);
+  background: var(--elevated-bg-dark);
+  color: var(--text-dark);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 6px 16px rgba(0, 0, 0, 0.38),
+   0 14px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Per-note resolve action inside the popover. The layer stays
+   click-through; only interactive elements flip to auto. The clickable
+   highlight span is the sweep's click-to-open target: tapping it opens
+   (or closes) that note's popover without touching the textarea. */
+.coach-resolve {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-draft);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--muted-light);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+}
+
+.coach-highlight-clickable {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.app.dark .coach-resolve {
+  border-color: var(--border-dark);
+  color: var(--muted-dark);
+}
+
+.coach-resolve:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+  background: var(--ring-light);
+}
+
+.app.dark .coach-resolve:hover {
+  border-color: var(--accent-dark);
+  color: var(--accent-dark);
+  background: var(--ring-dark);
+}
+
+/* Error toast: a quiet ember, not an alarm siren */
 .error-toast {
   position: absolute;
   top: 12px;
@@ -434,17 +659,17 @@ body {
   max-width: 80%;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #feb2b2;
-  background: rgba(254, 226, 226, 0.95);
-  color: #c53030;
+  border: 1px solid var(--toast-border-light);
+  background: var(--toast-bg-light);
+  color: var(--danger-light);
   font-size: 12px;
   box-shadow: var(--shadow-light);
 }
 
 .app.dark .error-toast {
-  border-color: #c53030;
-  background: rgba(69, 26, 26, 0.95);
-  color: #fc8181;
+  border-color: var(--toast-border-dark);
+  background: var(--toast-bg-dark);
+  color: var(--danger-dark);
 }
 
 .error-dismiss {
@@ -465,13 +690,19 @@ body {
   background: rgba(0, 0, 0, 0.1);
 }
 
+.app.dark .error-dismiss:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* The recording pulse radiates in the theme's danger tone; custom properties
+   resolve against the pulsing element, so one keyframes serves both themes. */
 @keyframes pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4);
+    box-shadow: 0 0 0 0 var(--pulse-ring);
   }
   50% {
-    box-shadow: 0 0 0 6px rgba(229, 62, 62, 0);
+    box-shadow: 0 0 0 6px transparent;
   }
 }
 

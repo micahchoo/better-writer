@@ -1,7 +1,7 @@
 import { execFile, type ExecFileException } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import type { Genre, Seed } from './types.js';
+import type { Genre, Seed, Verb } from './types.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -38,17 +38,31 @@ export function parsePullOutput(stdout: string): Seed {
  * Pull one random seed for a genre by shelling out to `retrieve.py pull`.
  * The genre is used once to select the seed and then discarded — it is never
  * runtime input to the model.
+ *
+ * When `verb` is given, the pull is narrowed to that verb's bucket via
+ * `--verb`. If the verb'd call fails for ANY reason — exec rejection, or an
+ * empty bucket (parsePullOutput throws on an empty JSON array) — it retries
+ * ONCE with no verb and returns whatever the uniform lottery yields. Without
+ * a verb, errors propagate as before.
  */
-export async function pullSeed(genre: Genre): Promise<Seed> {
- let stdout: string;
+export async function pullSeed(genre: Genre, verb?: Verb): Promise<Seed> {
+ const args = [RETRIEVE_PY, 'pull', '--genre', genre];
+ if (verb !== undefined) {
+  args.push('--verb', verb);
+ }
  try {
   const { stdout: out } = await execFileAsync(
    'python3',
-   [RETRIEVE_PY, 'pull', '--genre', genre],
+   args,
    { encoding: 'utf8', maxBuffer: 4 * 1024 * 1024 },
   );
-  stdout = out;
+  return parsePullOutput(out);
  } catch (err) {
+  if (verb !== undefined) {
+   // Verb bucket came up empty or the verb'd call failed — fall back to the
+   // uniform lottery. One level deep at most: this call has no verb.
+   return pullSeed(genre);
+  }
   // promisify(execFile) rejects with ExecFileException, which carries stderr.
   const execErr = err as ExecFileException;
   const detail =
@@ -57,5 +71,4 @@ export async function pullSeed(genre: Genre): Promise<Seed> {
     : execErr.message;
   throw new Error(`seed pull failed for genre "${genre}": ${detail}`);
  }
- return parsePullOutput(stdout);
 }

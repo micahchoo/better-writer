@@ -24,7 +24,10 @@ const GENRE_AGNOSTIC: Genre = 'genre-agnostic';
 export type CoachMode = 'static' | 'local';
 
 export interface Coach {
-  ask(textWindow: string, genre: Genre): Promise<string>;
+  /** Ask for one craft question. `cursorOffset` is the caret offset in the
+   * full draft; the local server receives it as `cursor_offset` (the client
+   * uses it for anchor adjacency). The static coach ignores it. */
+  ask(textWindow: string, genre: Genre, cursorOffset: number): Promise<string>;
 }
 
 /**
@@ -45,7 +48,7 @@ export class StaticCoach implements Coach {
     this.seeds = seeds;
   }
 
-  async ask(_textWindow: string, genre: Genre): Promise<string> {
+  async ask(_textWindow: string, genre: Genre, _cursorOffset: number): Promise<string> {
     const pool = this.seeds.filter((seed) => seedMatchesGenre(seed, genre));
     if (pool.length === 0) {
       throw new Error(`No seeds available for genre "${genre}".`);
@@ -63,8 +66,8 @@ export class LocalCoach implements Coach {
     this.endpoint = endpoint;
   }
 
-  async ask(textWindow: string, genre: Genre): Promise<string> {
-    const body: AskRequest = { text_window: textWindow, genre };
+  async ask(textWindow: string, genre: Genre, cursorOffset: number): Promise<string> {
+    const body: AskRequest = { text_window: textWindow, genre, cursor_offset: cursorOffset };
     const res = await fetch(`${this.endpoint}/ask`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

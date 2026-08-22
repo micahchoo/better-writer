@@ -58,6 +58,8 @@ export type Complete = (
 /** POST /ask — the client asks the server to reshape one question. */
 export interface AskRequest {
   text_window: string;
+  /** Character offset of the cursor in the draft; used client-side for anchor adjacency. The server ignores it. */
+  cursor_offset: number;
   genre: Genre;
 }
 

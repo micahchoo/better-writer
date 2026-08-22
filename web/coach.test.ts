@@ -33,14 +33,14 @@ describe('StaticCoach', () => {
   it('only returns questions from seeds matching the genre filter', async () => {
     const coach = new StaticCoach(seeds)
     for (let i = 0; i < 50; i++) {
-      const question = await coach.ask('ignored', 'fiction')
+      const question = await coach.ask('ignored', 'fiction', 0)
       expect(['Fiction question?', 'Any genre question?']).toContain(question)
     }
   })
 
   it('returns the question verbatim — no id or provenance', async () => {
     const coach = new StaticCoach([fiction])
-    expect(await coach.ask('ignored', 'fiction')).toBe('Fiction question?')
+    expect(await coach.ask('ignored', 'fiction', 0)).toBe('Fiction question?')
   })
 
   it('picks uniformly across the filtered pool (random index maps to a pool member)', async () => {
@@ -48,9 +48,9 @@ describe('StaticCoach', () => {
     try {
       const coach = new StaticCoach([fiction, agnostic])
       Math.random = () => 0
-      expect(await coach.ask('ignored', 'fiction')).toBe('Fiction question?')
+      expect(await coach.ask('ignored', 'fiction', 0)).toBe('Fiction question?')
       Math.random = () => 0.99
-      expect(await coach.ask('ignored', 'fiction')).toBe('Any genre question?')
+      expect(await coach.ask('ignored', 'fiction', 0)).toBe('Any genre question?')
     } finally {
       Math.random = originalRandom
     }
@@ -58,14 +58,14 @@ describe('StaticCoach', () => {
 
   it('throws a descriptive error when no seed matches the genre', async () => {
     const coach = new StaticCoach([fiction])
-    await expect(coach.ask('ignored', 'poetry')).rejects.toThrow(/poetry/)
+    await expect(coach.ask('ignored', 'poetry', 0)).rejects.toThrow(/poetry/)
   })
 })
 
 describe('makeCoach', () => {
   it('"static" coaches against the real bundled seed bank', async () => {
     const coach = makeCoach('static')
-    const question = await coach.ask('ignored', 'memoir')
+    const question = await coach.ask('ignored', 'memoir', 0)
     expect(typeof question).toBe('string')
     expect(question.length).toBeGreaterThan(10)
   })
@@ -81,14 +81,18 @@ describe('makeCoach', () => {
     vi.stubGlobal('fetch', fetchMock)
 
     const coach = makeCoach('local')
-    const question = await coach.ask('window text', 'essay')
+    const question = await coach.ask('window text', 'essay', 42)
 
     expect(question).toBe('Server question?')
     expect(fetchMock).toHaveBeenCalledTimes(1)
     const [url, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit]
     expect(url).toBe('/ask')
     expect(init.method).toBe('POST')
-    expect(JSON.parse(String(init.body))).toEqual({ text_window: 'window text', genre: 'essay' })
+    expect(JSON.parse(String(init.body))).toEqual({
+      text_window: 'window text',
+      genre: 'essay',
+      cursor_offset: 42,
+    })
   })
 
   it('"local" throws when /ask fails', async () => {
@@ -97,7 +101,7 @@ describe('makeCoach', () => {
       vi.fn(async () => new Response('boom', { status: 500, statusText: 'Internal Server Error' })),
     )
     const coach = makeCoach('local')
-    await expect(coach.ask('window text', 'fiction')).rejects.toThrow(/500/)
+    await expect(coach.ask('window text', 'fiction', 0)).rejects.toThrow(/500/)
   })
 })
 
