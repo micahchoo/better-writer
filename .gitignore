@@ -22,6 +22,9 @@ __pycache__/
 
 # source material — craft-book text and PDFs used to extract the seed bank
 Books/
+# chunked/transcribed chapters derived from source material - intermediate
+# extraction state; the committable output is the curated seeds/ pairs
+extract/chunks/
 
 # vendored third-party tooling (its own repo)
 opendataloader-pdf/
