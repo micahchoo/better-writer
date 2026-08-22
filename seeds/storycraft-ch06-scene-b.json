@@ -1,0 +1,170 @@
+[
+  {
+    "id": "storycraft-ch06b-setting-character",
+    "question": "Make setting a constant presence in your narrative, letting place step into the foreground with such insistence that it almost becomes a character in its own right.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "In the strongest regional writing, setting is a constant presence, and place steps into the foreground with such insistence that it almost becomes a character in its own right."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-setting-accumulate-details",
+    "question": "Accumulate concrete, evocative details so that, taken together, they make your setting feel like a unique and special place.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Dogs chained outside cabins, shacks, canoes—every detail adds to a sense of Alaska as a unique and special place. Cumulatively, they add up to what literary critics refer to as \u201csetting.\u201d"
+    }
+  },
+  {
+    "id": "storycraft-ch06b-setting-senses",
+    "question": "Build your sense of setting through the sights, sounds, and smells of the place, weaving them into the action line.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Robin Cody captures my part of the world, the Paciﬁc Northwest, as well as anybody does, largely through the sights, sounds, and smells that give a strong sense of setting."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-vivid-details-real",
+    "question": "Make each scene seem absolutely real by choosing the most vivid details you can find, since they are the most important elements of a living scene.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Ultimately, the point of description is to create scenes that seem absolutely real, and vivid details are the most important elements in living scenes."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-scene-through-pov",
+    "question": "Show the scene through the eyes of a particular character moving through their own world, creating the illusion that the reader sees it as that character does.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "But the frosting on the scenic cake is the illusion that we\u2019re seeing a scene through the eyes of particular characters as they move through their own worlds."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-weave-description",
+    "question": "Weave your description seamlessly into the action line so it gains authenticity by appearing as the characters move, rather than standing apart from the action.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Such descriptions gain added authenticity because they\u2019re woven so seamlessly into the action line."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-move-through-scene",
+    "question": "Write the scene so the reader moves through it alongside the POV characters, rather than watching it from the distance of a theater seat.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "We see the world as the POV characters move through it, and the most involving scenes pass by as though we\u2019re walking or driving through them with those characters, not as though we\u2019re staring at them from a theater seat."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-scenes-not-topics",
+    "question": "Proceed through a series of scenes carefully selected to tell the story, instead of organizing your narrative by topic the way a report is.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "A narrative, in contrast, proceeds through a series of scenes carefully selected to tell the story."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-plot-structure-first",
+    "question": "Think of your story as a series of scenic episodes and plot the scenic structure as the first step to planning the narrative, since nothing clarifies a story more.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Once you get used to thinking of stories as a series of scenic episodes, plotting the scenic structure becomes the natural ﬁrst step to planning the narrative."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-scenes-separated",
+    "question": "Make each scene substantially removed from the others in time and space, letting one scene end and another open somewhere else down the narrative arc.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "each of Barry Newman\u2019s scenes is substantially removed from the others in time and space. One scene ends, and another opens somewhere else down the narrative arc."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-typographic-separation",
+    "question": "Separate each major scenic unit in your narrative with a typographical device such as star-line breaks, bullets, or drop caps.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "in most print narratives typographical devices—typically star-line breaks, bullets, or drop caps—separate each major unit in the overall structure."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-cliffhanger",
+    "question": "End each scene with a cliff-hanger, an action that portends drama in the next section and pulls the reader onward.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Underneath the boxes designating the scenes, I wrote a few words describing the action that would end the scene with a cliff-hanger, an action portending drama in the next section."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-dont-guess-truelife",
+    "question": "Never guess at what happened in a true-life narrative; interview the sources to capture the actual words and events rather than inventing them.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "But you can\u2019t guess in a true-life narrative."
+    }
+  },
+  {
+    "id": "storycraft-ch06b-scenic-blueprint",
+    "question": "Plan each scene and sketch out the scenic blueprint for the whole narrative before reporting, so the process focuses your questions and zeroes in on the story's key moments.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "The process guides the reporting that follows, focusing the questions and zeroing in on the story\u2019s key moments."
+    }
+  }
+]

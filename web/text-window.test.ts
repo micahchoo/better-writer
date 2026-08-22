@@ -1,85 +1,74 @@
 import { describe, expect, it } from 'vitest'
-import { textWindow } from './text-window'
+import { CURSOR_END, CURSOR_START, buildAskWindow, findCursorEnvelope } from './text-window'
 
-const CURSOR = (text: string) => `[CURSOR START]\n${text}\n[CURSOR END]`
+const unmarked = (marked: string) => marked.split(CURSOR_START).join('').split(CURSOR_END).join('')
 
-describe('textWindow', () => {
-  it('marks the cursor paragraph in a single-block document', () => {
-    expect(textWindow('Hello world.', 0)).toBe(CURSOR('Hello world.'))
+describe('buildAskWindow', () => {
+  it('joins block texts with blank lines', () => {
+    expect(buildAskWindow(['A.', 'B.', 'C.'], null)).toBe('A.\n\nB.\n\nC.')
   })
 
-  it('marks the block containing the cursor, with one before and two after', () => {
-    const doc = 'A.\n\nB.\n\nC.\n\nD.\n\nE.'
-    expect(textWindow(doc, doc.indexOf('C'))).toBe(`B.\n\n${CURSOR('C.')}\n\nD.\n\nE.`)
+  it('wraps the marked block in cursor markers', () => {
+    expect(buildAskWindow(['A.', 'B.', 'C.'], 1)).toBe(`A.\n\n${CURSOR_START}\nB.\n${CURSOR_END}\n\nC.`)
   })
 
-  it('marks a whole multi-line paragraph, not just the cursor line', () => {
-    const doc = 'Para line one.\nPara line two.\n\nNext block.'
-    expect(textWindow(doc, doc.indexOf('line two'))).toBe(
-      `${CURSOR('Para line one.\nPara line two.')}\n\nNext block.`,
-    )
+  it('marks the first and last blocks too', () => {
+    expect(buildAskWindow(['A.', 'B.'], 0)).toBe(`${CURSOR_START}\nA.\n${CURSOR_END}\n\nB.`)
+    expect(buildAskWindow(['A.', 'B.'], 1)).toBe(`A.\n\n${CURSOR_START}\nB.\n${CURSOR_END}`)
   })
 
-  it('stops the window at a heading — nothing from the far side', () => {
-    const doc = 'Before one.\n\nBefore two.\n\n## Middle\n\nCurrent.\n\nAfter one.\n\nAfter two.'
-    expect(textWindow(doc, doc.indexOf('Current'))).toBe(`${CURSOR('Current.')}\n\nAfter one.\n\nAfter two.`)
+  it('handles a single-block window', () => {
+    expect(buildAskWindow(['A.'], 0)).toBe(`${CURSOR_START}\nA.\n${CURSOR_END}`)
   })
 
-  it('stops before-blocks at a heading', () => {
-    const doc = 'Before.\n\n## Heading\n\nCurrent.'
-    expect(textWindow(doc, doc.indexOf('Current'))).toBe(CURSOR('Current.'))
+  it('produces an empty string for an empty window', () => {
+    expect(buildAskWindow([], null)).toBe('')
+  })
+})
+
+describe('findCursorEnvelope', () => {
+  it('reports the marked block span as offsets into the unmarked window', () => {
+    const marked = `A.\n\n${CURSOR_START}\nB.\n${CURSOR_END}\n\nC.`
+    const envelope = findCursorEnvelope(marked)
+    expect(envelope).not.toBeNull()
+    expect(unmarked(marked).slice(envelope!.start, envelope!.end)).toBe('\nB.\n')
   })
 
-  it('treats a heading as the cursor block when the cursor is on it', () => {
-    const doc = 'Lead-in.\n\n## Title\n\nFollow-on.'
-    expect(textWindow(doc, doc.indexOf('## Title'))).toBe(
-      `Lead-in.\n\n${CURSOR('## Title')}\n\nFollow-on.`,
-    )
+  it('covers only the marked block, not its neighbors', () => {
+    // A sweep window: three blocks, only the middle marked.
+    const marked = `Alpha beta.\n\n${CURSOR_START}\nDelta zeta.\n${CURSOR_END}\n\nEta theta.`
+    const envelope = findCursorEnvelope(marked)
+    expect(envelope).not.toBeNull()
+    const text = unmarked(marked)
+    expect(text.slice(envelope!.start, envelope!.end)).toBe('\nDelta zeta.\n')
   })
 
-  it('keeps a cursor block fully isolated between two headings', () => {
-    const doc = '# Top\n\nBody one.\n\n# Next\n\nBody two.'
-    expect(textWindow(doc, doc.indexOf('Body one'))).toBe(CURSOR('Body one.'))
+  it('covers a single-block marked window in full', () => {
+    const marked = `${CURSOR_START}\nOnly para.\n${CURSOR_END}`
+    const envelope = findCursorEnvelope(marked)
+    expect(envelope).not.toBeNull()
+    const text = unmarked(marked)
+    expect(envelope).toEqual({ start: 0, end: text.length })
+    expect(text.slice(envelope!.start, envelope!.end)).toBe('\nOnly para.\n')
   })
 
-  it('treats each list item as a separate block', () => {
-    const doc = '- one\n- two\n- three'
-    expect(textWindow(doc, doc.indexOf('- two'))).toBe(`- one\n\n${CURSOR('- two')}\n\n- three`)
+  it('returns null when no marker is present', () => {
+    expect(findCursorEnvelope('A.\n\nB.\n\nC.')).toBeNull()
   })
 
-  it('keeps a list item continuation attached to its item', () => {
-    const doc = '- one\n  continuation\n- two'
-    expect(textWindow(doc, doc.indexOf('- two'))).toBe(`- one\n  continuation\n\n${CURSOR('- two')}`)
+  it('returns null when only one marker is present', () => {
+    expect(findCursorEnvelope(`${CURSOR_START}\nA.`)).toBeNull()
+    expect(findCursorEnvelope(`A.\n${CURSOR_END}`)).toBeNull()
   })
 
-  it('treats ordered list items as separate blocks', () => {
-    const doc = '1. first\n2. second'
-    expect(textWindow(doc, doc.indexOf('2. second'))).toBe(`1. first\n\n${CURSOR('2. second')}`)
+  it('returns null when the END marker precedes the START marker', () => {
+    expect(findCursorEnvelope(`${CURSOR_END}\nA.\n${CURSOR_START}`)).toBeNull()
   })
+})
 
-  it('handles a cursor on an empty line by taking the next block', () => {
-    const doc = 'First.\n\nSecond.'
-    const cursorAt = doc.indexOf('First.') + 'First.'.length + 1 // on the blank line
-    expect(textWindow(doc, cursorAt)).toBe(`First.\n\n${CURSOR('Second.')}`)
-  })
-
-  it('handles a cursor at the very end of the document', () => {
-    const doc = 'Only para.'
-    expect(textWindow(doc, doc.length)).toBe(CURSOR('Only para.'))
-  })
-
-  it('handles a cursor on leading blank lines', () => {
-    const doc = '\n\nFirst.'
-    expect(textWindow(doc, 1)).toBe(CURSOR('First.'))
-  })
-
-  it('returns an empty string for an empty document', () => {
-    expect(textWindow('', 0)).toBe('')
-    expect(textWindow('\n\n', 1)).toBe('')
-  })
-
-  it('handles CRLF line endings without corrupting block text', () => {
-    const doc = 'One.\r\n\r\nTwo.'
-    expect(textWindow(doc, doc.indexOf('Two'))).toBe(`One.\n\n${CURSOR('Two.')}`)
+describe('marker tokens', () => {
+  it('exports the exact wire tokens', () => {
+    expect(CURSOR_START).toBe('[CURSOR START]')
+    expect(CURSOR_END).toBe('[CURSOR END]')
   })
 })

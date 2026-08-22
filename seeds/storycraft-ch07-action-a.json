@@ -1,0 +1,254 @@
+[
+  {
+    "id": "storycraft-ch07a-open-with-action",
+    "question": "Rewrite your opening line so that something actually happens in it, right out of the blocks.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Something should happen in the ﬁ rst line of your narrative."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-aimless-action",
+    "question": "Cut any aimless action from your opening and make sure it carries readers from one intriguing development to the next.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Aimless action gets you nowhere, and readers expect an opening that takes them from one intriguing development to the next."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-point-of-attack",
+    "question": "Open at the point of attack—a moment where something vital is at stake, where a conﬂ ict will lead to a crisis or a character has reached a turning point.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "An ideal “point of attack,” he added, zeros in on a moment where something vital is at stake."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-narrative-hook",
+    "question": "Rewrite your opening lines so they immediately demand attention, crackling with enough energy to turn heads and serve as a narrative hook.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "ﬁ rst lines in the popular print media must immediately demand attention, crackling with enough energy to turn heads."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-tease-reader",
+    "question": "Open by teasing your readers—plant a detail that makes them wonder what happens next.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "you can, for example, tease your readers, making them wonder what happens next."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-protagonist-pov",
+    "question": "Start your story from the protagonist’s point of view so readers feel they are facing the coming challenges themselves.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "start each story from the protagonist’s point of view. Telling a story from the perspective of the key player helps put readers in the scene, where they can recognize the coming challenges as though they themselves were facing them."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-protagonist-verb-open",
+    "question": "Open with the protagonist’s name immediately followed by a strong verb.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "the default option for any narrative opening is to begin with the name of the protagonist and to immediately follow that with a strong verb."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-quiet-openings",
+    "question": "For a quiet story, open quietly—but make sure something is still happening from the first line.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Not every narrative opening demands slam- bang action. Quieter stories call for quieter openings. But it’s still essential that something is happening."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-keep-action-moving",
+    "question": "Once you launch the action, keep it moving—pause for explanation only when necessary and never drift into navel-gazing.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "But readers won’t cut you much slack for what old newshounds derisively called “navel- gazing.” So once you launch it, keep the action moving."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-forward-motion",
+    "question": "Keep the story rolling forward—even a small action that tells what happened next beats a passage that lies still.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Pulling away from the curb is not explosive action, but it keeps the story rolling forward. It tells you what happened next."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-verbs-signify-action",
+    "question": "Sweep your prose for ﬂ abby verbs and weak sentence syntax—verbs carry the action, so replace the limp ones with strong, precise verbs.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Verbs signify action. And, if you’re going to keep a story moving, you’ll need lots of good ones."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-strong-verb-rewrite",
+    "question": "Recreate an action scene with a strong active verb in simple tense—drop the weak verb, the expletive, and the unnecessary perfect tense.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "The writer had all the ingredients, but he cloaked their impact with a weak verb, an expletive, and an unnecessary perfect tense."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-linking-verbs-exposition",
+    "question": "Limit linking verbs to exposition—use them where you must explain, then return to action.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "For exposition, you usually need a few linking verbs, the weakest form."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-to-be-no-action",
+    "question": "Cut forms of “to be” and sense verbs that merely state an equivalency—they carry no action.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Like the sense verbs—“smells,” “tastes,” “feels,” “looks,” and so on—“to be” merely states an equivalency."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-intransitive-motion-only",
+    "question": "When you need real momentum, favor verbs that show cause and effect—motion alone, without causality, is not the most powerful action.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "But because they don’t describe causality, they’re still not the most powerful action words available."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-transitive-advances-story",
+    "question": "Use transitive verbs to advance the story—they show action with consequences rather than just extending the narrative with a series of motions.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Transitive verbs, therefore, allow you to advance story, rather than just extending the narrative by describing a series of actions."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-active-voice-syntax",
+    "question": "Keep the acting subject at the start of the sentence—passive syntax cripples even the most active verb.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Contrary to widespread misconception, active voice is a matter of syntax, not just verbs."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-passive-strips-causality",
+    "question": "Replace passive voice where it strips human causality—active voice shows who affects what and advances the narrative.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Part of the problem with passive voice is that it strips human causality from a sentence."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-passive-workaround",
+    "question": "Rewrite a passive sentence so the actor appears—instead of “was released,” write “went home.”",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "But those instances are relatively rare, and you can usually ﬁ nd your way around them. How about writing, “After six days in the hospital, Tashina went home”?"
+    }
+  },
+  {
+    "id": "storycraft-ch07a-simple-tense",
+    "question": "Prefer simple past or present tense over past perfect or present progressive—the simple form keeps the action vigorous.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Action- oriented storytellers steer clear of tenses such as past perfect or present progressive in favor of simple past or present."
+    }
+  },
+  {
+    "id": "storycraft-ch07a-delete-had",
+    "question": "Delete an unnecessary “had” where context already makes the timing clear.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "But he didn’t need the “had.” The context made it clear that the attack took place earlier in the story. So why didn’t he simply delete “had”?"
+    }
+  }
+]

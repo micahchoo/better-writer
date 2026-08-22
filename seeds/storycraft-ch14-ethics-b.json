@@ -1,0 +1,302 @@
+[
+  {
+    "id": "storycraft-ch14b-immersion-guest",
+    "question": "In an immersion, be a good house guest: follow your host's lead, stay polite and nonjudgmental, and disrupt the household routine as little as possible.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "A good guest is polite and nonjudgmental. He follows his host’s lead, disrupting the household routine as little as possible."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-immersion-declare-mission",
+    "question": "Before an immersion, explain to the people you will document that your job is to observe and write—so your presence doesn't alter the reality you're covering.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Rich’s job was to document their work without altering reality via his own involvement, a mission he explained to team members before leaving for Sri Lanka."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-ethics-four-mandates",
+    "question": "Judge your reporting against the four ethical mandates: speak the truth, remain independent, minimize harm, and be accountable.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "that duty includes four ethical mandates: 1) Speak the truth. 2) Remain independent. 3) Minimize harm. 4) Be accountable."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-firstperson-life-in-story",
+    "question": "When you're a character in your own first-person narrative, treat whatever happens to you as a legitimate part of the story.",
+    "verb": "elaborate",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "When you’re playing a part in your own narrative, anything that happens to you can be a legitimate part of the story."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-secrecy-last-resort",
+    "question": "Use secrecy or undercover methods only as a last resort—whenever possible, be up front with people about who you are and what you're doing.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Secrecy is something that I think a journalist or a nonﬁction writer should only use as a last resort, because whenever possible in this life it’s good to be up front with people."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-explain-ground-rules",
+    "question": "Before a narrative project, explain the ground rules going in: describe your role as a writer and how it may differ from what sources expect.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Explain the ground rules going in, says Bob Steele. Describe your role as a writer and how it might differ from what sources expect."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-direct-conversation",
+    "question": "Have a very direct conversation with sources early in a project—even trying to talk them out of the story—so both sides' expectations are clear.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "She insists on having “a very direct conversation” early on. “There have been times,” she says, “when I’ve almost tried to talk people out of doing stories.”"
+    }
+  },
+  {
+    "id": "storycraft-ch14b-revisit-conversation",
+    "question": "On a long project, revisit the direct conversation with sources and engage them in your process as the story develops.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "On a long project, that direct conversation bears revisiting. Sensitive writers engage sources in their process."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-manuscript-review-proviso",
+    "question": "If you let a source review a manuscript, preface it with the proviso that you're open to correcting errors but your interpretations remain your own.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "an exercise that I always precede with the proviso that I’m totally open to correcting errors but that my interpretations remain my own."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-too-good-to-check",
+    "question": "When a story is 'too good to check,' actively hunt for evidence that contradicts it instead of protecting the story template.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "A good story is a temptation. When we take off in pursuit of one, we run the risk of ignoring evidence that might contradict it, either because we don’t want to spoil it or because we simply don’t think of possibilities outside the story template."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-avoid-dark-side",
+    "question": "Resist the story's pull to credit one character with too much responsibility, inflate a minor incident's significance, or tie up loose ends more neatly than real life allows.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "A complete story calls for a protagonist. So the dark side credits one character with more responsibility for resolving a complication than she deserves. A complete story calls for a climax. So the dark side invests a minor incident with more signiﬁ cance than it deserves. A complete story calls for resolution. So the temptation is to wrap up loose ends more neatly than is ever the case in real life."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-never-mix-fiction",
+    "question": "If your material won't support the story you want, write fiction or correctly label the work—never secretly mix fiction's reliance on imagination with nonfiction forms.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "You can write a nonﬁ ction book or produce a documentary. You can write a novel or produce a feature ﬁ lm. But you can’t secretly mix ﬁction’s reliance on imagination with nonﬁ ction forms, no matter the temptation."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-good-faith-not-absolute-accuracy",
+    "question": "Work in good faith rather than chasing absolute accuracy: check and double-check, do your best to get everything right, and never deliberately falsify anything, large or small.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "The real route to responsible nonﬁ ction is not absolute accuracy but good faith. You work hard at your craft and do your best to get everything right. You check and double- check. And you never deliberately falsify anything, large or small."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-verbatim-quotes",
+    "question": "Don't alter a direct quotation, even slightly, if the change could affect the speaker's meaning.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Ultimately, I decided that I couldn’t make the change honestly and put “the” back."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-quoted-reconstruction",
+    "question": "Edit the stumbles and false starts out of quoted speech, but never put quotation marks around dialogue you can't verify came from the source.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Editing out meaningless meandering is one thing. Putting quotation marks around questionable dialogue is something else, and ethical nonﬁction writers recognize the distinction."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-avoid-casting",
+    "question": "Avoid casting: don't seek out only the sources who make your point and ignore those who will muddy your theme.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Neither can you seek out sources you know will make your point and ignore those who will muddy your theme, a practice known as “casting.”"
+    }
+  },
+  {
+    "id": "storycraft-ch14b-no-false-witness-claims",
+    "question": "Don't give readers the impression you witnessed something you actually reconstructed from others' reporting.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "And you can’t give the impression that you witnessed something you reconstructed."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-ethical-process",
+    "question": "Work through a process that weighs competing interests, asks key questions, and considers all the practical alternatives instead of applying an ethical formula.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "The only workable route to ethical behavior is working through a process that weighs competing interests, asks key questions, and considers all the practical alternatives."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-idea-ethics-questions",
+    "question": "When a story idea takes shape, measure it against ethical questions: can you get access to key sources honestly, how much can you observe directly, and will your theme emerge from the reporting or be imposed on the facts?",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Can you get access to key sources honestly? How much can you observe directly, and how much will you need to reconstruct?"
+    }
+  },
+  {
+    "id": "storycraft-ch14b-reporting-questions",
+    "question": "During reporting, ask whether you're using diverse, representative sources, how your sources know what they know, whether you've double-checked eyewitness accounts against documents, and whether your sources—or you—have conflicts of interest.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Am I using diverse, representative sources, or am I trying to make a case by casting? How do my sources know what they know? Have I double- checked eyewitness accounts against documentary evidence? Do my sources have conﬂ icts of interest? Do I?"
+    }
+  },
+  {
+    "id": "storycraft-ch14b-final-edit-questions",
+    "question": "In final editing, ask whether you can vouch for the verbatim accuracy of anything in quotation marks, back up every generalization, and make attributions that keep sources clear and the chronology straight.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Can you vouch for the verbatim accuracy of anything inside quotation marks? Can you back up every generalization, or should you ratchet your claims back a notch or two? Do the attributions make the sources clear, keep the chronology straight, and reveal when you’re speculating?"
+    }
+  },
+  {
+    "id": "storycraft-ch14b-prosecutorial-editing",
+    "question": "Apply prosecutorial editing: question everything in your draft with the tough intensity a district attorney brings to a criminal defendant.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Much of the process boils down to what’s known as “prosecutorial editing,” a habit of mind that questions everything with the same tough intensity that a district attorney brings to bear on a criminal defendant."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-evidence-standards",
+    "question": "Set explicit standards for evidence and balance: rely on primary sources, avoid interest-group material, use opinion from across the political spectrum, and find at least three examples from diverse sources to buttress every point.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Everything they published would come from primary sources, they would avoid material from interest groups, they would use opinion from across the political spectrum, and they would ﬁ nd at least three examples—from diverse sources and regions—to buttress every point."
+    }
+  },
+  {
+    "id": "storycraft-ch14b-no-mindreading",
+    "question": "Beware mindreading in your draft: cut phrases like 'seemed to feel' that claim inner states you can't know, and rewrite the moment from observable behavior.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "But Hart’s markup cautioned Hallman to “be careful of statements such as ‘seemed to feel.’ We don’t want anybody accusing us of mindreading.”"
+    }
+  },
+  {
+    "id": "storycraft-ch14b-questions-not-codes",
+    "question": "Rely on the questions you ask yourself rather than a fixed ethics code to determine how ethically you operate.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "It’s the questions you ask, not the answers you give, that determine how ethically you operate."
+    }
+  }
+]

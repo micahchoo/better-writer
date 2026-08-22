@@ -21,11 +21,8 @@
 
 import { extractAnchor } from './anchor.js';
 import type { AnchorRecord } from './draft-store.js';
-import { splitBlocks } from './text-window.js';
+import { buildAskWindow, splitBlocks } from './text-window.js';
 import type { Genre } from '../src/types.js';
-
-const CURSOR_START = '[CURSOR START]';
-const CURSOR_END = '[CURSOR END]';
 
 /** Blocks per window: 3, with a tail of fewer than 3 absorbed into the last window. */
 const WINDOW_BLOCKS = 3;
@@ -71,13 +68,12 @@ export interface SweepWindowPlan {
 /**
  * Join a window's blocks with blank lines, wrapping its middle block in
  * [CURSOR START]/[CURSOR END] (the earlier of the two middles on an even
- * block count), matching text-window's marker formatting.
+ * block count). Delegates the assembly to buildAskWindow so the marker
+ * formatting stays single-sourced in text-window.
  */
 function markWindow(blocks: BlockLike[]): string {
   const middle = blocks.length % 2 === 1 ? Math.floor(blocks.length / 2) : blocks.length / 2 - 1;
-  return blocks
-    .map((block, index) => (index === middle ? `${CURSOR_START}\n${block.text}\n${CURSOR_END}` : block.text))
-    .join('\n\n');
+  return buildAskWindow(blocks.map((block) => block.text), middle);
 }
 
 /**
@@ -115,11 +111,17 @@ export function planSweep(markdown: string): SweepWindowPlan[] {
  * is logged and skipped — a sweep never emits an unanchored or
  * out-of-window annotation.
  *
- * Throws only when coach.ask throws: a failing ask aborts the whole sweep
- * mid-way by design, surfaced to the caller with the notes so far discarded.
+ * Aborting is a normal exit, not a failure: when shouldAbort() returns true
+ * before a window's ask, the loop stops and the notes collected so far are
+ * returned — the promise resolves. Throwing is reserved for coach.ask
+ * itself: a failing ask still rejects the sweep mid-way, with the notes so
+ * far discarded.
  *
  * @param plan the windows to ask, in document order
- * @param opts genre, the coach seam, the full draft, and the onNote callback
+ * @param opts genre, the coach seam, the full draft, and the onNote callback;
+ *   optionally onProgress (fired with the completed window count and the
+ *   plan length after each ask resolves or is skipped — never after an
+ *   abort) and shouldAbort (consulted before each ask; true stops the loop)
  * @returns every note that anchored inside its window, in plan order
  */
 export async function runSweep(
@@ -129,6 +131,8 @@ export async function runSweep(
     coach: { ask(textWindow: string, genre: Genre, cursorOffset: number): Promise<string> };
     draft: string;
     onNote(note: SweepNote): void;
+    onProgress?(done: number, total: number): void;
+    shouldAbort?(): boolean;
   },
 ): Promise<SweepNote[]> {
   // Map each planned window's start offset to its block span in the draft,
@@ -142,12 +146,12 @@ export async function runSweep(
 
   const notes: SweepNote[] = [];
   for (let index = 0; index < plan.length; index++) {
+    // A stop request takes effect before the next ask: the loop breaks and
+    // the notes collected so far are returned (a normal, resolved exit).
+    if (opts.shouldAbort?.()) break;
     const window = plan[index];
-    const raw = await opts.coach.ask(window.markedText, opts.genre, window.startOffset);
-    // The model sometimes quotes the literal marker tokens when grounding in
-    // the marked region ("In the detail \"[CURSOR START] ...\""). Strip them —
-    // they are our plumbing, never the writer's words.
-    const question = raw.replace(/\[CURSOR (START|END)\]/g, '').replace(/\s{2,}/g, ' ').trim();
+    // /ask returns decoded prose: the server strips marker tokens before the gate.
+    const question = await opts.coach.ask(window.markedText, opts.genre, window.startOffset);
 
     const anchor = extractAnchor(question, opts.draft, window.startOffset);
     const bounds = boundsByStart.get(window.startOffset) ?? null;
@@ -155,6 +159,7 @@ export async function runSweep(
       console.warn(
         `[coach-sweep] skipping window ${index}: the coach's answer did not anchor inside the window bounds`,
       );
+      opts.onProgress?.(index + 1, plan.length);
       continue;
     }
 
@@ -168,6 +173,7 @@ export async function runSweep(
     };
     notes.push(note);
     opts.onNote(note);
+    opts.onProgress?.(index + 1, plan.length);
   }
   return notes;
 }

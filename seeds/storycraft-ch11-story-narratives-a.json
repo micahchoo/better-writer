@@ -1,0 +1,170 @@
+[
+  {
+    "id": "storycraft-ch11a-identify-narrative-form",
+    "question": "Cast cold eyes on your material and decide what sort of narrative it is, then name the tools you'll need to build it.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "Early in the process of launching a narrative, they cast cold eyes on their material and ask a fundamental question: \"Just what sort of narrative are we talking about here, and what tools will I need to build it?\""
+    }
+  },
+  {
+    "id": "storycraft-ch11a-short-piece-situation-not-character",
+    "question": "Remember that a short piece lacks the running room to probe character complexity, so let it explore situation instead.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "A short piece of writing lacks the running room necessary to probe the complexities of character. So a general principle of fiction—that the novel explores character and the short story explores situation—also applies to nonfiction."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-short-narrative-focus-on-action",
+    "question": "Focus a short narrative on the action line rather than on developing its characters.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "For that reason short nonfiction narratives focus on action."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-limit-scenes",
+    "question": "Confine a short narrative to one or two scenes, budgeting about five hundred words as the minimum for each scene and its action line.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "Short narrative writers also must confine themselves to one or two scenes. As a rule of thumb, I figure about five hundred words as a minimum for creating a scene and the action line it contains."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-start-fast-end-abrupt",
+    "question": "Start a short narrative with immediate action, bursting out of the blocks, and let the arc end abruptly and precipitously.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "Short story narratives also have to start faster and end more abruptly, the narrative arc spiking up and falling precipitously. I urge writers to burst out of the blocks with immediate action."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-draft-early",
+    "question": "Rough out a story draft as soon as you can, even before the narrative arc is complete, because the sooner you begin writing the sooner your brain begins processing the story.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "The sooner you begin writing, the sooner your brain will begin processing the story."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-dont-close-with-news-quotes",
+    "question": "Don't close a narrative with direct quotes and a status update on a character, which flattens it into a standard news feature instead of a true story.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "But it closed with direct quotes from Lortie and an update on his condition, which kept the focus on the injured pianist and gave the story the flavor of a standard news feature, rather than a true narrative."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-rising-and-falling-tension",
+    "question": "Include episodes that create both rising and falling tension in a narrative, not a single unbroken climb.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "I argued that good narrative includes rising and falling tension, which the Tchaikovsky episode provided."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-open-with-atmosphere-scene",
+    "question": "Develop your opening into a full-fledged scene that captures the atmosphere of the place where the trouble first breaks.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "I urged David to develop the opening so that it functioned as a full-fledged scene that captured the atmosphere of the elegant restaurant where symphony president William Ryberg first heard that his star pianist was injured and couldn't play."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-withhold-key-detail",
+    "question": "When the pivotal event of your story arrives, withhold its contents briefly to heighten the drama.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "When the fatal phone call arrived, I suggested, David should withhold its contents, heightening drama."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-kicker-word",
+    "question": "Choose a kicker word for a key spot that is one syllable, has a strong consonant sound, and carries tremendous emotional content.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "\"Dreads\" is a terrific kicker word, I said. It's one syllable, it has a strong consonant sound, and it has tremendous emotional content."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-let-authority-and-voice-show",
+    "question": "Let your own authority and voice come through in the telling, offering insight from your expertise that naive readers can't supply themselves.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "I urged David to let his authority and voice come through. As a storyteller, he was more than a music critic here."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-continuing-character",
+    "question": "Develop a minor figure into a continuing character who recurs to set up the climax and stress the doubt that heightens the drama.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "But in Version 4, Welch became a continuing character. We used him to set up Kasman's Monday performance, stressing the doubt that heightened the drama."
+    }
+  },
+  {
+    "id": "storycraft-ch11a-end-on-specific-image",
+    "question": "Resolve the ending's tension through a specific, electrifying image of a character's action rather than a general statement.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "Most importantly, Welch gave added cachet to the ending, embodying action that created a electrifying image for readers, one that resolved tension with the power of specificity."
+    }
+  }
+]

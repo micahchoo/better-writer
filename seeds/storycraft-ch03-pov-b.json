@@ -1,0 +1,146 @@
+[
+  {
+    "id": "storycraft-ch03b-choose-stance",
+    "question": "Choose the stance for each scene — the place you position your camera and the direction you point it — to give readers the best angle on the unfolding story.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "Bias aside, you ordinarily pick a stance to give readers the best angle on the unfolding story."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-shift-stance-to-follow-action",
+    "question": "Shift your stance as the story unfolds, moving the camera to whichever position captures each phase of the action best rather than locking it in one place.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "So Stu’s stance—his camera position—is inside the patrol car with McGowan, watching as the pickup crosses McGowan’s ﬁeld of view. But that stance won’t work for all the action that follows, and Stu moves his camera several times before he ends the yarn."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-coherent-visual-frame",
+    "question": "Keep readers unconsciously secure about where they stand by maintaining a coherent visual frame that creates a stage for continuous action, avoiding the jump cuts that jar viewers by butting inconsistent bits of action together.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "To immerse readers in a story, you want them unconsciously secure about their various positions for viewing it. The point is to let them see the action as though they were there themselves. That means they need a coherent visual frame, creating a stage for continuous action. You want to avoid what videographers call “jump cuts,” sudden breaks in the unfolding narrative that jar viewers by butting inconsistent bits of action together."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-interview-for-scene-detail",
+    "question": "When you weren’t there for a scene, quiz an eyewitness about exactly what they could see from their position — the doorways, the walls, the people, the objects — until the scene assumes a detailed, coherent shape.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "So, I asked, “What can you see when you look into the kitchen from the living room?” Tom described the arched doorway. He mentioned the kitchen table. I quizzed him about what hung on the walls, the mother’s appearance, and the veggies. The scene assumed a more detailed, coherent shape."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-summary-vs-scenic-narrative",
+    "question": "Recognize the two distances of narrative: write in summary narrative when you step way back from the action, and shift into scenic narrative when you shrink the distance.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "When the distance is great, when you step way back from the action, you write in summary narrative. When you shrink the distance, you shift into scenic narrative."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-ladder-of-abstraction",
+    "question": "Think of your story on a ladder of abstraction that rises from the most concrete level of any concept up through ever-larger categories, and place each sentence on the rung it belongs to.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "The ladder, one of the most useful concepts for any writer, rises from the most concrete level of any concept through an increasingly abstract series of categories."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-descend-ladder-for-immersion",
+    "question": "Write on the lowest rungs of the abstraction ladder to put readers in the scene, letting them see, hear, and sometimes smell what a firsthand observer would, because emotion originates on the ladder’s lower rungs.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "The lowest rungs of the ladder put you in the scene. Hence the notion of scenic narrative. You see it. You hear it. Sometimes, you even smell it. So you can react as a ﬁ rsthand observer would. You feel the fear as the Green Wall approaches. You share the horror when Byars’s body appears. Emotion originates on the ladder’s lower rungs."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-climb-ladder-for-meaning",
+    "question": "Climb the ladder when you want meaning and comprehensiveness, trading the ability to form concrete images for knowledge that applies across a larger class of things.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "You gain comprehensiveness as you climb the ladder, but you lose the ability to form concrete images."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-vary-distance",
+    "question": "Constantly shift between scenic and summary modes, ascending and descending the ladder of abstraction as you vary distance, rather than committing to show-don’t-tell alone.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "Most nonﬁ ction narrative writers constantly shift between scenic and summary modes, varying distance with each oscillation. They ignore the writing gurus who harp at them to “show, don’t tell,” knowing that good writing constantly ascends and descends the ladder of abstraction. They show and tell."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-open-scene-with-specific-actions",
+    "question": "Open a scene not with a summary lead but with a sequence of specific actions that unfold moment by moment.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "To describe the Highway 23 accident scenically, a storyteller might begin not with a summary lead, but with a sequence of speciﬁ c actions"
+    }
+  },
+  {
+    "id": "storycraft-ch03b-stories-emphasize-process",
+    "question": "When a situation offers enough story elements — a protagonist, a complication, a series of plot points — tell it as a story that emphasizes process rather than outcomes.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "But stories offer rewards beyond raw information, the kind that yield meaning by recreating life as it’s lived. Stories emphasize process, rather than outcomes. So if readers don’t need the main point immediately and if a situation offers enough story elements—ingredients such as a protagonist, a complication, and a series of plot points—a narrative might be the better way to go."
+    }
+  },
+  {
+    "id": "storycraft-ch03b-report-tunnel-vision",
+    "question": "Watch for the tunnel vision that report-writing can give you, which traps you on the middle rungs of the abstraction ladder and cripples your ability to tell a story.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "But reports can give you tunnel vision, trapping you on the middle rungs of the abstraction ladder and crippling your ability to tell a good story."
+    }
+  }
+]

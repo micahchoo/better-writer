@@ -12,6 +12,8 @@
  * It rejects, never rewrites. Outputs that fail go back to the model once,
  * then fall back to a topic probe (see reshape.ts).
  */
+import { CURSOR_END, CURSOR_START } from '../web/text-window.js';
+
 export function isSingleQuestion(s: string): boolean {
  const t = s.trim();
  if (t.length === 0) return false;
@@ -25,8 +27,18 @@ export function isSingleQuestion(s: string): boolean {
  questionMark = i;
  }
  if (questionMark === -1) return false; // no `?`
- if (questionMark !== t.length - 1) return false; // trailing text after `?`
- return true;
+if (questionMark !== t.length - 1) return false; // trailing text after `?`
+return true;
+}
+
+/**
+ * Remove the transport's cursor-marker tokens from model output. The model
+ * sometimes quotes the literal `[CURSOR START]` / `[CURSOR END]` tokens when
+ * grounding in the marked region; they are our plumbing, never the writer's
+ * words, so decode precedes every gate predicate (see reshape.tryComplete).
+ */
+export function stripCursorMarkers(output: string): string {
+ return output.split(CURSOR_START).join('').split(CURSOR_END).join('');
 }
 
 /**
@@ -141,19 +153,21 @@ export function echoesText(question: string, textWindow: string): boolean {
  * each side, with the markers stripped.
  */
 function cursorEnvelope(textWindow: string): string {
- const startMarker = textWindow.indexOf('[CURSOR START]');
- const endMarker = textWindow.indexOf('[CURSOR END]');
+ const startMarker = textWindow.indexOf(CURSOR_START);
+ const endMarker = textWindow.indexOf(CURSOR_END);
  if (startMarker === -1 || endMarker === -1 || endMarker < startMarker) {
   return textWindow;
  }
  const blocks = textWindow.split(/\n\s*\n/);
- const marked = blocks.findIndex((b) => b.includes('[CURSOR START]'));
+ const marked = blocks.findIndex((b) => b.includes(CURSOR_START));
  if (marked === -1) return textWindow;
  return blocks
   .slice(Math.max(0, marked - 1), marked + 2)
   .join('\n\n')
-  .replace(/\[CURSOR START\]/g, '')
-  .replace(/\[CURSOR END\]/g, '');
+  .split(CURSOR_START)
+  .join('')
+  .split(CURSOR_END)
+  .join('');
 }
 
 /**

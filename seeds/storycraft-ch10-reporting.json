@@ -1,0 +1,620 @@
+[
+  {
+    "id": "storycraft-ch10-immersion-being-there",
+    "question": "Immerse yourself in your subject's world—being there and watching, listening, smelling, and feeling—instead of relying only on secondhand accounts.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Being there and watching. And listening, and smelling, and feeling. That’s immersion reporting."
+    }
+  },
+  {
+    "id": "storycraft-ch10-understand-much-write-little",
+    "question": "Before you write even a little bit, make sure you understand a lot about your subject.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "You’ve got to understand a lot,” McPhee said, “to write even a little bit."
+    }
+  },
+  {
+    "id": "storycraft-ch10-live-without-knowing",
+    "question": "Stay patient during long immersion reporting and be willing to live without knowing the outcome while the story unfolds.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Patience is a huge part of it,” Conover has said. “Being able to live ‘without knowing’ is crucial to the method."
+    }
+  },
+  {
+    "id": "storycraft-ch10-let-action-speak",
+    "question": "Let dramatic action speak for itself—let the theme emerge from the flow of life, showing rather than stating it from a soapbox.",
+    "verb": "rewrite",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "they are free to let dramatic action speak for itself.” When Tom Hallman told Gary Wall’s story, he never once stepped back and baldly stated that “action creates identity.” The story unfolded naturally, showing rather than telling."
+    }
+  },
+  {
+    "id": "storycraft-ch10-immersion-kitbag",
+    "question": "For immersion reporting, breathe your subjects' air, quietly observe and hang around, learn the rhythm of their typical work, pick up their vocabulary, read their literature, and find their gurus.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Breathing their air.”\n- 2. “Quietly observing, hanging around.”\n- 3. “Understanding the rhythm of their typical work.”\n- 4. “Learning their vocabulary.”\n- 5. “Reading their literature”—texts, guidebooks, professional publications.\n- 6. “Finding their gurus."
+    }
+  },
+  {
+    "id": "storycraft-ch10-ride-alongs-everywhere",
+    "question": "Take the ride-along approach to observation in many different fields, not just one night in a squad car.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Police ride- alongs,” she says, “ought to happen in lots of different ﬁelds."
+    }
+  },
+  {
+    "id": "storycraft-ch10-fly-on-the-wall",
+    "question": "Stay until familiarity breeds trust: once you disappear into the background, subjects relax and become themselves.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "But familiarity breeds trust, or at least indifference. The “ﬂ y- on- the- wall” technique operates on just that principle. Once something gets familiar enough, it disappears into the background. Only then, the theory goes, will the subjects of an immersion reporter’s interest relax and become themselves."
+    }
+  },
+  {
+    "id": "storycraft-ch10-talk-your-way-in",
+    "question": "Plan how you will talk your way into an observation point—you can't simply walk into a stranger's world and assume the fly-on-the-wall position.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "You can’t just knock on a door, walk into a stranger’s house, and assume your ﬂy- on- the- wall observation point. Somehow, you have to talk your way in."
+    }
+  },
+  {
+    "id": "storycraft-ch10-empathize-beyond-range",
+    "question": "Empathize with personalities outside your usual imaginative range—people unlike yourself—and let that openness drive your reporting.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "But, above all, the reporter must be able to empathize with personalities outside his usual imaginative range, mentalities unlike\n\n\n\n<!-- PAGE 160 -->\n\n\n\nhis own, kinds of people he would never have written about had he not been forced to by encountering them inside the journalistic situation."
+    }
+  },
+  {
+    "id": "storycraft-ch10-nonjudgmental-interview",
+    "question": "Keep any judgmental reaction out of your eyes and your questions during an interview, or the source will close down.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "If you have a judgmental reaction in your eyes during an interview, or a judgmental nuance as you pose a question, people will close down."
+    }
+  },
+  {
+    "id": "storycraft-ch10-student-to-teacher",
+    "question": "Position yourself as a student to your source's teacher—“I am a person who doesn't know much: Can you help me?”",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "I often try to position myself as a student to their teacher. I am a person who doesn’t know much: Can you help me?"
+    }
+  },
+  {
+    "id": "storycraft-ch10-interested-listener",
+    "question": "Show genuine interest in your sources—people want to tell their stories, but only to someone who is truly interested in them.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "people want to tell their stories. But only if you’re interested in them, which I am."
+    }
+  },
+  {
+    "id": "storycraft-ch10-stubborn-persistence",
+    "question": "Gaining access takes quiet confidence and relentless determination—if you fail once, try again, and again.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Barging into other people’s lives takes quiet conﬁ dence and relentless determination. If you fail once, you try again. And again. “Stubbornness really helps,” says Tom French, “being really, really stubborn."
+    }
+  },
+  {
+    "id": "storycraft-ch10-get-history-right",
+    "question": "When reconstructing a major event, pitch survivors on the it's-your-one-chance-to-get-history-right argument—preliminary reports are often shallow and misleading.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "it’s- yourone- chance- to- get- history- right” argument. Anyone who’s been swept up in major news knows that preliminary reports of the event are often shallow and misleading."
+    }
+  },
+  {
+    "id": "storycraft-ch10-firsthand-credibility",
+    "question": "Report what you saw with your own eyes—firsthand observation carries a credibility that attributions and speculation undermine.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Nothing beats seeing the action ﬁ rsthand. If you can tell readers you saw it with your own eyes, you carry the kind of credibility that’s admissible in court. And observational narrative—the kind generated by full- body immersionprojects authority. Your writer’s voice naturally sounds more conﬁdent when\n\n\n\n<!-- PAGE 162 -->\n\n\n\nit’s not undermined by attributions and speculation. “Listen to me, pal,” you seem to be saying. “I was there, and that’s the way it was."
+    }
+  },
+  {
+    "id": "storycraft-ch10-shit-happens-fallback",
+    "question": "When real events don't conform to your story's original shape, look for other lessons in what actually happened—every development says something about life.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "But every story development says something about life, even if it wasn’t part of the original theme statement, and you often can pull a story out of the hat even if it isn’t the one you thought you had."
+    }
+  },
+  {
+    "id": "storycraft-ch10-reconstructive-backward",
+    "question": "Reconstruct a past event by interviewing witnesses, searching documents, and retracing the action line—working backward from a known destination guarantees a satisfying outcome.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "reconstructing a past event by interviewing witnesses, searching documents, and retracing the action line. Because you’re working backward from a known destination, you guarantee yourself a satisfying outcome."
+    }
+  },
+  {
+    "id": "storycraft-ch10-no-document-overlooked",
+    "question": "Mine letters, newspaper accounts, court records, diaries, memoirs, and private papers for detail—no document is worth overlooking.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "he used letters, newspaper accounts, court records, diaries, memoirs, and collections of private papers to craft Devil in the White City as vividly as though he were actually there for the 1893 Chicago World’s Fair. “No document,” he says, “is worth overlooking."
+    }
+  },
+  {
+    "id": "storycraft-ch10-modern-records",
+    "question": "Weave modern technology's records—cell-phone and surveillance video, searchable eyewitness databases—into a you-are-there narrative line.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "It’s surprising how often modern technology produces records that good reporting can weave into a you- are- there narrative line. Cell- phone and surveillance cameras capture scenes that would have been lost not many years ago."
+    }
+  },
+  {
+    "id": "storycraft-ch10-observe-vs-interview",
+    "question": "Match technique to need: observe a subject while they act, and interview them when you want general information.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "You observe a doctor when she’s treating your patient. You interview her when you want general information about a disease or a treatment."
+    }
+  },
+  {
+    "id": "storycraft-ch10-reconstructive-interview",
+    "question": "For an interview that reconstructs a scene you didn't witness, ask sources to think of their experience as a series of scenes, like a movie, and describe the details that fill each one.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "You might tell them to think of their experience as a series of scenes, as in a movie, and to describe the details that ﬁll each scene."
+    }
+  },
+  {
+    "id": "storycraft-ch10-two-carpenters",
+    "question": "Interview witnesses for scenes you didn't observe by making them complicit helpers—“I need parts to assemble”—so they build the scene with you.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "I want you to work with me, please, as though we are two carpenters. I need parts to assemble.’ They aren’t haplessly yammering while I take things down but become complicit helpers in building the scene. They create the story with me."
+    }
+  },
+  {
+    "id": "storycraft-ch10-trigger-memory",
+    "question": "Trigger sources' recall by reminding them where they were and what was going on when critical events took place—one memory can trigger another.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "one memory can trigger another. So it’s often helpful to remind sources of where they were and what was going on when critical events took place."
+    }
+  },
+  {
+    "id": "storycraft-ch10-ground-rules",
+    "question": "Agree on ground rules with sources up front—on the record, on background, not for attribution, off the record—and treat each as an ironclad contract you can only change by renegotiating.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "One thing you owe your sources, whether you’re interviewing or silently observing, is an up- front discussion that explains the rules of the game. Tradi-\n\n\n\n<!-- PAGE 166 -->\n\n\n\ntional journalistic ground rules work well, regardless of whether you’re writing a book, shooting a documentary, or interviewing for a blog. Consider each of them an ironclad contract. Once you and a source agree to a ground rule, you’re bound to it unless you renegotiate."
+    }
+  },
+  {
+    "id": "storycraft-ch10-on-record-default",
+    "question": "Assume everything is on the record in the absence of any agreement to the contrary, even in situations ordinarily considered private.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "everything is on the record in the absence of any agreement to the contrary, even in situations ordinarily considered private."
+    }
+  },
+  {
+    "id": "storycraft-ch10-backup-with-notes",
+    "question": "Always back up your recordings with notes, and type up more complete notes at the end of the day.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "backing up with notes is a good idea. In any event, I don’t share the fear that tape recorders inhibit sources, producing a kind of Heisenberg effect that alters their words and behavior. Modern audio recorders are quiet and inconspicuous, and sources get used to them in the same way they get used to ﬂy- on- the- wall observers. Eventually, they’ll forget both the reporter and the recorder.\n\nStill, a lot of narrative writers try to keep recorders and notebooks to a minimum when they’re in a scene with a source. Gay Talese occasionally pulled out a notebook for an especially juicy quote, but he also took notes when a source was out of the room. And, like Ted Conover and many others, he would type up more complete notes at the end of the day."
+    }
+  },
+  {
+    "id": "storycraft-ch10-informal-setting",
+    "question": "Hold face-to-face interviews in informal settings—avoid sitting across a desk; ask to move to the kitchen table.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Most good reporters agree that face- to- face interviews are best and that informal settings help to loosen up sources. I’ve always tried to avoid sitting across a desk from a source, even for a conventional news interview. Richard Ben Cramer doesn’t like interviewing in living rooms, because “that’s where you sit with your hands folded.” He asks sources if they can move to the kitchen table."
+    }
+  },
+  {
+    "id": "storycraft-ch10-notebook-sensory",
+    "question": "Fill your reporting notebook with visual details, anecdotes, action sequences, and smells—a quote-filled notebook is death for narrative.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "visual details, anecdotes, action sequences, smells, and the like."
+    }
+  },
+  {
+    "id": "storycraft-ch10-report-on-reporter",
+    "question": "Include reporting on the reporter in your notes—the questions, emotions, and internal reactions you had during observation.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "reporting on the reporter, noting any questions, emotions, or other internal reactions that occurred during observation."
+    }
+  },
+  {
+    "id": "storycraft-ch10-characterization-notes",
+    "question": "Keep your notebook especially rich in physical appearance, facial expressions, gestures, and tone of voice—the elements of direct characterization.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction",
+      "memoir",
+      "fiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "especially rich in scribbled observations of physical appearance, facial expressions, gestures, tone of voice, and all the other elements of direct characterization."
+    }
+  },
+  {
+    "id": "storycraft-ch10-observe-during-interview",
+    "question": "During an interview, ask a question you don't really care about so you can jot down physical appearance, clothing, and surroundings while the source talks.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "ask a question you don’t really care about so that you can jot down details of physical appearance, clothing, and surroundings while the source drones on."
+    }
+  },
+  {
+    "id": "storycraft-ch10-focus-on-motivation",
+    "question": "Focus your reporting on motivation—a story begins when somebody wants something.",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "a story begins when somebody wants something. So reporting for a story narrative should focus on motivation."
+    }
+  },
+  {
+    "id": "storycraft-ch10-psychological-interview",
+    "question": "For a major project, conduct a psychological interview: start with childhood memories, then work through the protagonist's life targeting key decisions and what went into them.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "He starts by asking about childhood memories, looking for the genetic and behavioral roots of motive. Then he works his way through the protagonist’s life, targeting key decisions and the elements that went into them."
+    }
+  },
+  {
+    "id": "storycraft-ch10-theory-of-personality",
+    "question": "Develop a theory of personality to guide your information gathering, then let the details build the theory while the theory guides the search for more details.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "The details build your theory, and your theory guides the search for more details. Once you conclude you’re dealing with a neat freak obsessed with order, ask to peek in his sock drawer."
+    }
+  },
+  {
+    "id": "storycraft-ch10-status-indicators",
+    "question": "Probe motive by noting status indicators—what your character drives, what skis they own, what they drink.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction",
+      "memoir",
+      "fiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "one way you probe motive is by noting the “status indicators” that Tom Wolfe sees as so revealing. Does your character drive a Prius or a Hummer? Does the rack in his garage hold cross- country or downhill skis? Does she drink bourbon or scotch, wine or beer?"
+    }
+  },
+  {
+    "id": "storycraft-ch10-tell-stories-to-get-stories",
+    "question": "To collect anecdotes, prime the pump by telling a story—about yourself or your protagonist—and asking for another.",
+    "verb": "rephrase",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "To get stories,” he said, “you have to tell stories.”\n\nThat’s it! Somebody tells us an agonized tale of a disastrous travel delay, and we respond by dredging out our own misery- loves- company yarn of missed connections or lost baggage.\n\nTo get anecdotes, you prime the pump by telling a story—either on yourself or your protagonist—and asking for another."
+    }
+  },
+  {
+    "id": "storycraft-ch10-faith-in-tiny-moments",
+    "question": "Have faith in the power of tiny, tiny moments—when it looks like nothing is happening, something important may be; pay better attention.",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "You really need to have faith in the power and importance of tiny, tiny moments,” Tom French says. “Newspaper reporters are trained so that we are really good at big moments. But the longer I do this, the more I learn to have faith that in those times when it looks like nothing is happening. In front of me something very important is happening. I just need to learn to pay better attention."
+    }
+  },
+  {
+    "id": "storycraft-ch10-tiffany-window",
+    "question": "Select your details so readers know you have a point—set up a single detail like a Tiffany's window so it shines.",
+    "verb": "cut",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "If readers know that you have a point, that you’re not just aimlessly ﬂopping around among the sights, sounds, and facts of personal history, then they’ll pay close attention to the details you’ve selected. “It’s like a Tiffany’s window,” Mary Roach says. “If there’s only one thing in there and if you really set it up, you can really make it shine."
+    }
+  },
+  {
+    "id": "storycraft-ch10-ask-what-it-means",
+    "question": "Keep asking “What does this mean? Why did she do that?”—the quality of your thinking during reporting determines the impact of the details you find.",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "the quality of the setting is far more important than the quality of the stone. And the quality of the setting reﬂects the quality of your thinking as you proceed through the reporting process. “What does this mean?” you constantly ask yourself? “Why did she do that?"
+    }
+  },
+  {
+    "id": "storycraft-ch10-look-for-conflict",
+    "question": "Break the world down into the universals of story—look for a good conflict, recognize a good protagonist, and you'll find a good story.",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Look for a good conﬂ ict, and chances are you’ll ﬁ nd a good story. Recognize a good protagonist, and chances are you’ll ﬁ nd a challenge that will interest an audience."
+    }
+  },
+  {
+    "id": "storycraft-ch10-what-does-person-want",
+    "question": "Narrow your focus to what a person wants and whether they will get it—will they win the game or give the speech without passing out?",
+    "verb": "rephrase",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "I really try to narrow the focus down to what does this person want and are they going to get it?” he says. “Are they going to win the game or get the award or give the speech without passing out?"
+    }
+  },
+  {
+    "id": "storycraft-ch10-stick-close-complication",
+    "question": "Once you spot someone facing a challenge, stick close, gambling that you've found a protagonist who will eventually resolve their complication.",
+    "verb": "elaborate",
+    "genre": [
+      "creative-nonfiction",
+      "memoir"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Once he spots someone facing a challenge, he sticks close, gambling that he’s found a protagonist who will eventually resolve his complication."
+    }
+  },
+  {
+    "id": "storycraft-ch10-endings-without-beginnings",
+    "question": "Find your way into stories from the resolution end—most news stories are endings without beginnings attached, so dig for the actions that led to the outcome.",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 10",
+      "quote": "Most news stories are endings,” he says, “without beginnings attached."
+    }
+  }
+]

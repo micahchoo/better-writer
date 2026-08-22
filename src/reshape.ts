@@ -1,4 +1,4 @@
-import { copiesSeed, echoesText, isGrounded, isSingleQuestion } from './gate.js';
+import { copiesSeed, echoesText, isGrounded, isSingleQuestion, stripCursorMarkers } from './gate.js';
 import { topicProbe } from './topic-probe.js';
 import type { Complete } from './types.js';
 
@@ -103,7 +103,10 @@ try {
 } catch {
  return { ok: false, reason: 'syntax' };
 }
-const trimmed = output.trim();
+// Decode our transport tokens out of the answer before the gate sees it.
+const trimmed = stripCursorMarkers(output)
+ .replace(/\s{2,}/g, ' ')
+ .trim();
 if (!isSingleQuestion(trimmed)) return { ok: false, reason: 'syntax' };
 if (!isGrounded(trimmed, textWindow)) return { ok: false, reason: 'ungrounded' };
 if (echoesText(trimmed, textWindow)) return { ok: false, reason: 'echo' };

@@ -53,15 +53,20 @@ Specialize a pulled seed's question against the text window. Keep the seed's int
 **Topic Probe**:
 A fixed, agent-side list of content-level questions for when a seed cannot be reshaped against the window. Lives in the agent, not the bank.
 
+**Annotation**:
+One pinned note: the anchor span plus its question, saved with the draft. Lives at data/annotations/current.json on the server; in the browser when no server exists.
+_Avoid_: comment, bookmark
+
 **Output Gate**:
 The mechanical check the reshaped output must pass before it reaches the writer: one sentence, ending in `?`, no list, no trailing text. A failed output gets one corrective retry, then falls back to a topic probe. The gate rejects; it never rewrites.
 _Avoid_: validator, filter, sanitizer
 
 **Coach Panel**:
-The docked bottom-right UI region that shows the single reshaped question. One slot; a new question replaces the old.
+The docked bottom-right UI region for coach output. Shows pinned notes and sweep controls while sweeps run.
+_Avoid_: chat log
 
 **Word-Count Trigger**:
-The rule that pulls a new question: thirty net-new words written since the last question, then a short idle pause. A manual "ask now" always stays available.
+Planned rule for pulling a question: thirty net-new words written since the last question, then a short idle pause. Not wired in the app yet.
 
 **Coach**:
 The small local model whose only job is to ask. Runs locally — no hosted API. It composes freely and commits nothing; the code verifies, the model only asks.

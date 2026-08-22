@@ -66,3 +66,12 @@ export interface AskRequest {
 export interface AskResponse {
   question: string;
 }
+
+/** One pinned craft-question note: the anchor span plus the question, persisted alongside the draft. */
+export interface Annotation {
+  start: number;
+  end: number;
+  fragment: string;
+  question: string;
+  ts: number;
+}

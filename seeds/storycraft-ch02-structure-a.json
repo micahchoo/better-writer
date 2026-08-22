@@ -1,0 +1,134 @@
+[
+  {
+    "id": "storycraft-ch02a-story-shapes",
+    "question": "Check the overall shape of your story against the shapes narratives naturally take, and restore what you've strayed from before it stops being a story.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Stories tend to certain shapes, and if you stray too far from them, you’ll end up with no story at all."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-structure-decision",
+    "question": "Make the structural decision for your piece first, before drafting, so a huge amount of the rest falls into place.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "If you make the right decision about structure, a huge amount becomes absolutely clear."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-polish-plaster",
+    "question": "Treat polish as the final coat over structure, not the core of writing: lock down your structure before fussing over word choice and syntax.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "But polish, Franklin adds, is merely “the plaster on the walls of structure.”"
+    }
+  },
+  {
+    "id": "storycraft-ch02a-visual-blueprint",
+    "question": "Sketch a visual blueprint of your story's assembly — a pattern of parts with its own rules for fitting together — before you write, the way an architect works from a drawing.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Structure is more visual than logical, a pattern of parts with its own rules for ﬁtting pieces together, and most experienced writers create some sort of visual guide to the assembly of a story."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-outline-limits",
+    "question": "Drop the roman-numeral topical outline for your story and reach for a visual diagram instead, because a topical outline won't uncover the patterns at the heart of story.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "The kind of roman numeral outline that Mrs. Grundy taught you in the fourth grade will work ﬁ ne for a news report, a thesis, or an instructional book like this one. But it won’t uncover the patterns at the heart of story."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-diagram-or-unfigured",
+    "question": "Diagram the line of your story, charting its simplest natural path of unfolding; if you can't diagram it, you haven't yet figured out the structure.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "make a diagram, charting the line of the story. I look for the simplest way to let it ﬂ ow, the most natural path of unfolding. Usually, if I can’t diagram it, that means I haven’t ﬁ gured out the structure yet."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-arc-question-answer",
+    "question": "Draw each line of plot as an arc on scrap paper, an A at one end (a question) and a B at the other (its answer).",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "I ﬁ nd it helpful in the planning stages to draw each line of plot as an arc on a piece of scrap paper. Put an A at one end and a B at the other. A is to be a question; B is its answer."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-plan-before-writing",
+    "question": "Plan your story's structure before you begin writing rather than starting without a plan and drifting with your interests, which wastes time on dead ends.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "I’d start without a plan and see where my interests took me. But that method wasn’t very efﬁcient. I wasted a lot of time on dead ends."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-revise-blueprint",
+    "question": "When you run into something unexpected, revise your blueprint rather than abandoning planning — contractors do it all the time.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "If you run into something unexpected, you can always revise the blueprint—contractors do it all the time."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-structure-filters-material",
+    "question": "Keep the structure of your piece in mind as you gather material so things have somewhere to fit, and stop collecting what you won't use.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "I always keep in mind that there is a structure to this,” Mary Roach says, “and things are going to have to ﬁ t. That saves you from collecting a lot of things you won’t use."
+    }
+  },
+  {
+    "id": "storycraft-ch02a-structure-before-polish",
+    "question": "In your first draft, get the right things in the right places and worry about making each sentence perfect only after the whole structure is roughed out.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "your ﬁ rst draft should emphasize the structure—getting the right things in the right placesrather than trying to make each sentence perfect. Once you have the whole structure roughed out, you can go back and rewrite for polish."
+    }
+  }
+]

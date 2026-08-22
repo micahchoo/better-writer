@@ -16,6 +16,15 @@ const DRAFT = 'The quick brown fox jumps over the lazy dog.'
 let host: HTMLDivElement | null = null
 let root: Root | null = null
 
+let lastProps: Partial<HighlightOverlayProps> = {}
+
+/** Re-render the current overlay with updated props (no remount). */
+function rerender(props: Partial<HighlightOverlayProps>): void {
+  lastProps = { ...(lastProps ?? {}), ...props }
+  act(() => {
+    root!.render(<HighlightOverlay {...(lastProps as HighlightOverlayProps)} />)
+  })
+}
 function renderOverlay(props: Partial<HighlightOverlayProps>) {
   host = document.createElement('div')
   document.body.appendChild(host)
@@ -28,9 +37,11 @@ function renderOverlay(props: Partial<HighlightOverlayProps>) {
     cursorBlock: null,
     textareaRef: { current: textarea } as RefObject<HTMLTextAreaElement>,
   }
+  lastProps = { ...defaults, ...props }
   act(() => {
-    root!.render(<HighlightOverlay {...defaults} {...props} />)
+    root!.render(<HighlightOverlay {...(lastProps as HighlightOverlayProps)} />)
   })
+  return textarea
 }
 
 afterEach(() => {
@@ -166,5 +177,66 @@ describe('HighlightOverlay', () => {
     expect(host!.querySelectorAll('.coach-popover').length).toBe(1)
     expect(host!.querySelector('.coach-popover')?.textContent).toBe('First?Resolved')
     expect(host!.querySelector('.coach-highlight-span')?.textContent).toBe('quick')
+  })
+
+  it('applies the current scroll offset to the popover when it opens after scrolling', () => {
+    const onOpenChange = vi.fn()
+    // Start closed (activeId null), open via the real click path, then re-render
+    // with activeId='n1' — exactly how EditorApp drives visibility now that the
+    // parent's activeId is the single source of truth.
+    const textarea = renderOverlay({
+      openOnClickOnly: true,
+      noteId: 'n1',
+      activeId: null,
+      onOpenChange,
+    })
+    expect(host!.querySelector('.coach-popover')).toBeNull()
+    act(() => {
+      host!.querySelector('.coach-highlight-span')!.dispatchEvent(
+        new MouseEvent('pointerdown', { bubbles: true }),
+      )
+    })
+    expect(onOpenChange).toHaveBeenCalledWith('n1')
+    rerender({ openOnClickOnly: true, noteId: 'n1', activeId: 'n1', onOpenChange })
+
+    // jsdom never scrolls (scrollTop reads 0), but the geometry effect reads
+    // the scroller's offsets directly — fake a scrolled scrollport and fire
+    // its scroll event so scrollRef picks up the offsets before placement.
+    Object.defineProperty(textarea, 'scrollTop', { configurable: true, value: 42 })
+    Object.defineProperty(textarea, 'scrollLeft', { configurable: true, value: 13 })
+    act(() => {
+      textarea.dispatchEvent(new Event('scroll'))
+    })
+
+    const popover = host!.querySelector('.coach-popover') as HTMLDivElement | null
+    expect(popover).not.toBeNull()
+    // Regression: the placement effect must re-run when the popover first
+    // mounts and apply the scrolled offsets — otherwise it keeps its default
+    // translate(0,0) and spawns off-screen (dep array missed popoverVisible).
+    expect(popover!.style.transform).toBe('translate(-13px, -42px)')
+  })
+
+  it('shows the popover only while activeId names this note, so a stale slot cannot resurrect it', () => {
+    const onOpenChange = vi.fn()
+    renderOverlay({ openOnClickOnly: true, noteId: 'n1', activeId: null, onOpenChange })
+    expect(host!.querySelector('.coach-popover')).toBeNull()
+    rerender({ activeId: 'n1' })
+    expect(host!.querySelector('.coach-popover')).not.toBeNull()
+    // Parent hands the slot to another note: this popover unmounts even
+    // though this overlay "opened" it — no local state can keep it alive.
+    rerender({ activeId: 'n2' })
+    expect(host!.querySelector('.coach-popover')).toBeNull()
+    // Slot released entirely: stays closed. This is the resurrection bug —
+    // a stale per-overlay flag used to reopen every previously-clicked note.
+    rerender({ activeId: null })
+    expect(host!.querySelector('.coach-popover')).toBeNull()
+    // And a second click while already active reports null (toggle close).
+    rerender({ activeId: 'n1' })
+    act(() => {
+      host!.querySelector('.coach-highlight-span')!.dispatchEvent(
+        new MouseEvent('pointerdown', { bubbles: true }),
+      )
+    })
+    expect(onOpenChange).toHaveBeenLastCalledWith(null)
   })
 })

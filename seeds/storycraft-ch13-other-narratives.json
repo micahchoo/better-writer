@@ -1,0 +1,170 @@
+[
+  {
+    "id": "storycraft-ch13-vignette-single-scene",
+    "question": "Shape your material into a vignette: a single scene standing alone, with an action line running through a geographical place and no complication, crisis, or resolution.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "A vignette is a single scene, standing alone."
+    }
+  },
+  {
+    "id": "storycraft-ch13-vignette-theme-reveal",
+    "question": "Make your standalone vignette work harder than an ordinary scene, offering a slice of life rich in theme that reveals some important secret to good living.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "Because they stand alone, vignettes must work harder to offer a slice of life that’s rich in theme, that reveals some important secret to good living."
+    }
+  },
+  {
+    "id": "storycraft-ch13-bookend-scenic-action",
+    "question": "Write a bookend narrative by bracketing a stretch of expository material with two pieces of engaging scenic action, opening and closing with narrative that holds the duller content in the center.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "To write one, you bracket a stretch of expository material with two pieces of more engaging scenic action, opening and closing with narrative that has the power to hold the longer, duller content in the center."
+    }
+  },
+  {
+    "id": "storycraft-ch13-turn-abstraction-climb",
+    "question": "After your narrative opening, take a turn: climb suddenly up the ladder of abstraction to address the macrocosm that the opening scene represents.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "The next paragraph constituted what’s called a “turn,” a sudden climb on the ladder of abstraction to address the macrocosm that the opening represented."
+    }
+  },
+  {
+    "id": "storycraft-ch13-essay-narrative-turn-conclusion",
+    "question": "Structure your personal essay inductively with three parts—a narrative, a turn, and a conclusion—moving from the particular, rising on the ladder of abstraction, and ending with a cosmic truth.",
+    "verb": "concept-form",
+    "genre": ["essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "All personal essays follow Montaigne’s lead and include a narrative, a turn, and a conclusion. They’re inductive, in other words, moving from the particular (a deformed child), then rising on the ladder of abstraction (arguing that everything born of nature is part of God’s plan), and concluding with some cosmic truth."
+    }
+  },
+  {
+    "id": "storycraft-ch13-write-narrative-discover-feelings",
+    "question": "When something has emotionally affected you without your quite knowing why, write the narrative as a way of discovering your own feelings.",
+    "verb": "elaborate",
+    "genre": ["essay", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "I puzzled about my odd reaction—I’m not given to tears over strange dogs—and ﬁ nally decided to write the narrative as a way of discovering my own feelings."
+    }
+  },
+  {
+    "id": "storycraft-ch13-essay-structure-variations",
+    "question": "Vary your short personal essay's structure: break the narrative into pieces with intermediate conclusions along the way, minimize the narrative to expand abstract discussion, or let the narrative dominate while the cosmic conclusion emerges from subtle literary cues.",
+    "verb": "rewrite",
+    "genre": ["essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "You can break the narrative into pieces, inserting intermediate conclusions along the way. You can minimize the narrative and expand the more abstract discussion of the subject. Or you can let the narrative dominate while the cosmic conclusion emerges from subtle literary cues."
+    }
+  },
+  {
+    "id": "storycraft-ch13-essay-crossover",
+    "question": "Aim your personal essay for a crossover: move readers from the specific to the general, then across to a new ladder of abstraction and down to the specifics of their own lives.",
+    "verb": "concept-form",
+    "genre": ["essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "The ultimate payoff for a personal essay is when readers follow the writer from the speciﬁc to the general, then cross over to a new ladder of abstraction and descend it to the speciﬁ cs of their own lives."
+    }
+  },
+  {
+    "id": "storycraft-ch13-form-that-fits",
+    "question": "Stay open-minded about narrative form: if you have something that would entertain people, treat it as material for a narrative and find the form that fits it.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "The important thing is that you stay open- minded. If you have something that will entertain your buddies over a beer, you probably have the makings of a narrative that will sell somewhere. It’s just a matter of ﬁnding the form that ﬁts."
+    }
+  },
+  {
+    "id": "storycraft-ch13-issue-essay-idea-walk",
+    "question": "Write a narrative issue essay as a quest: carry your idea from source to source, exploring issues, poking and probing, to find information that expands the idea.",
+    "verb": "concept-form",
+    "genre": ["essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "An essay, it’s been said, is a way of “taking an idea for a walk.” In the case of narrative issue essays, the metaphor’s literally true. The essay writer’s legwork carries her from source to source, exploring issues, poking and probing, looking for information that will help expand the idea."
+    }
+  },
+  {
+    "id": "storycraft-ch13-narrative-explore-systems",
+    "question": "Use narrative not only to explore places but also to explore systems, letting the story structure reveal how a system works.",
+    "verb": "elaborate",
+    "genre": ["essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "You can use narrative, he argues, not only to explore places but also to explore systems."
+    }
+  },
+  {
+    "id": "storycraft-ch13-nut-graf",
+    "question": "After a narrative launch, include a nut graf: a summary that tells readers why the issue matters and what the piece will show.",
+    "verb": "elucidate",
+    "genre": ["essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "His fourth paragraph is a “nut graf,” a Wall Street Journal– style summary of why the issue’s important:"
+    }
+  },
+  {
+    "id": "storycraft-ch13-launch-rub-contradictions",
+    "question": "Launch your narrative issue essay with a quiet narrative action line that starts the quest by rubbing two contradictory ideas together.",
+    "verb": "transition",
+    "genre": ["essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "The article begins with a quiet little narrative action line, launching Pollan’s quest by rubbing two contradictory ideas together."
+    }
+  },
+  {
+    "id": "storycraft-ch13-column-storytelling",
+    "question": "Build a column around storytelling rather than table-pounding opinion, using narrative to attract and keep loyal readers.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 13",
+      "quote": "some of the most successful columns attract loyal readers with storytelling skills, rather than table- pounding opinion."
+    }
+  }
+]

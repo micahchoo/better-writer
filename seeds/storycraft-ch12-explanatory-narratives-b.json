@@ -1,0 +1,122 @@
+[
+  {
+    "id": "storycraft-ch12b-3plus2-explainer",
+    "question": "Structure an explanatory narrative as a 3+2 explainer: three narrative scenes separated by two digressions—open with the lead character and the explanatory question, digress for background, follow the character through the action line, digress to complete the explanation, then bring the action to a logical stopping place.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "creating a layer cake means you need a digression between the beginning and the middle and another digression between the middle and the end. That's the minimum, it seems to me, for a true explanatory narrative. It's a form I call the 3+2 explainer—a structure containing three narrative scenes separated by two digressions."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-digression-action-ratio",
+    "question": "Balance an explanatory narrative so you write roughly one word of digression for every word of action, whether you weave the digressions into the narrative or break them out as separate sections.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "If the writer simply weaves the digressions into the narrative, rather than breaking them out as separate sections, the ratio should remain about the same—one word of digression for every word of action."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-scene-length",
+    "question": "Keep each scene in an explanatory narrative around five hundred words, about twelve newspaper column inches, so the scene-digression-scene structure stays taut.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "I generally figure on print scenes averaging about five hundred words, which translates to twelve column inches in a newspaper."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-characters-explain",
+    "question": "Let the characters in an explanatory narrative carry the explanation—choose people whose words and actions do the explaining rather than telling the reader what you know yourself.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "The walking, talking human beings that populate most explanatory narratives are the vehicles the writer uses to explore the subject at hand. The characters, through their words and actions, do the explaining."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-few-traits",
+    "question": "Characterize economically: emphasize just a few key personality traits and bits of personal history for each person you bring onto the page.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "As with most characterization, the writer emphasizes just a few key personality traits and bits of personal history."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-return-to-action",
+    "question": "After any digression, return quickly to the moving action line so the constantly moving action keeps carrying the explanation forward.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "The constantly moving action line greased the explanatory skids."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-episodes-as-windows",
+    "question": "When an explanatory narrative focuses on a person, you need not follow them through a full story arc—share a few brief episodes that serve as windows into their world.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "We meet the scanner head or the greatest salesman who ever lived not to follow them through a narrative arc, complete with point of insight and climax, but to share a few brief episodes that serve as windows into their worlds."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-explanatory-full-story",
+    "question": "You can use an explanatory structure to tell a true story that encompasses a complication, change, character development, and resolution—not just a process explanation.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "But nothing says you can't use an explanatory structure to tell a true story—one that encompasses a complication, change, character development, and resolution."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-outline-segments",
+    "question": "Before writing, craft a detailed outline that tracks each narrative segment and digression in your explanatory narrative.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "Rich worked out his structure, crafting a detailed outline that tracked each narrative segment and digression."
+    }
+  },
+  {
+    "id": "storycraft-ch12b-physical-description-early",
+    "question": "Work a physical description of a character into the text early, and use the details of their clothes and belongings as status indicators that reveal character.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "He worked a physical description into the text early."
+    }
+  }
+]

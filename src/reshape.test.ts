@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { reshape } from './reshape.js';
 import { TOPIC_PROBES } from './topic-probe.js';
 import type { Complete, Turn } from './types.js';
@@ -135,4 +135,27 @@ describe('reshape', () => {
   expect(prompts[1]).toContain(SUFFIXES.seedcopy);
   expect(out).toBe('Which adjectives in your draft earn their place?');
  });
+
+ it('decodes cursor marker tokens out of the answer before the gate', async () => {
+  const complete: Complete = async () =>
+   'Does the [CURSOR START] garden refuse naming [CURSOR END]?';
+  const out = await reshape('What is at stake here?', 'The garden refuses every naming attempt.', complete);
+  expect(out).toBe('Does the garden refuse naming ?');
+  expect(out).not.toContain('[CURSOR START]');
+  expect(out).not.toContain('[CURSOR END]');
+ });
+
+ it('decodes before gating, so a marker-induced trailing token no longer burns a retry', async () => {
+  const complete = vi.fn(async () => 'Why did she walk to the store before buying milk? [CURSOR END]');
+  const out = await reshape(
+   'What is at stake here?',
+   'She walked to the store. She bought milk.',
+   complete,
+  );
+  // The trailing `[CURSOR END]` was the output's only gate problem: it used to
+  // fail isSingleQuestion and exhaust the retry; decoding pre-gate passes on
+  // the first call, so the model is never re-prompted.
+  expect(complete).toHaveBeenCalledTimes(1);
+  expect(out).toBe('Why did she walk to the store before buying milk?');
+});
 });

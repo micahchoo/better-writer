@@ -1,0 +1,182 @@
+[
+  {
+    "id": "storycraft-ch11b-protagonist-captain-of-fate",
+    "question": "Choose as your protagonist a character who can engage the complication, grapple with it through rising action, and resolve it through their own initiative — the captain of their own fate.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "A good protagonist is, most of all, the captain of his fate. For a story to take a form that offers a valuable life lesson, the protagonist must engage the complication, grapple with it through a period of rising action, and ultimately resolve it through his own initiative."
+    }
+  },
+  {
+    "id": "storycraft-ch11b-reject-passive-victim-protagonist",
+    "question": "Test whether your central character can drive the narrative arc: if nothing the character does can change their situation, they fit an explanatory narrative but cannot carry a true story narrative.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "Chesley might provide a ﬂ at action line for an explanatory narrative, but the odds were against him creating the arc of a true story narrative."
+    }
+  },
+  {
+    "id": "storycraft-ch11b-rounded-character-with-change-potential",
+    "question": "Pick as protagonist a rounded character with depth and complexity — and, crucially, the potential for change — rather than a flat one who cannot transform.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "Dorothy, in other words, was no ﬂ at character. She had the depth and complexity Julie needed to capture a fully rounded human being. Dorothy also carried the potential for change, if only she could kick the booze and reunite with her kids."
+    }
+  },
+  {
+    "id": "storycraft-ch11b-theme-statement-subject-verb-object",
+    "question": "Draft a theme statement for your narrative in the crisp form of subject, transitive verb, object — one sentence capturing the core idea that will guide your writing.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "I asked Julie to prepare a theme statement. The process was new to her, and she didn't quite achieve the crisp subject–transitive verb–object form that I prefer. But what she came up with certainly captured the core idea that would guide her writing"
+    }
+  },
+  {
+    "id": "storycraft-ch11b-scenic-outline",
+    "question": "Before writing a long narrative, build a scenic outline: list each scene in order and under it the beats it must hit, so the whole story is planned scene by scene.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "Then she produced this scenic outline:"
+    }
+  },
+  {
+    "id": "storycraft-ch11b-sketch-narrative-arc",
+    "question": "Sketch your narrative arc before writing — exposition, rising action, crisis, climax, falling action, denouement — and use the sketch to guide every scene you write.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "The outline produced a perfect narrative arc, which Julie and I sketched out to guide her writing"
+    }
+  },
+  {
+    "id": "storycraft-ch11b-exposition-slipped-into-first-section",
+    "question": "Give the opening section of your story enough exposition, slipping in background on characters and setting as the action line proceeds, so readers have what they need to understand the complication.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction", "genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "The ﬁ rst section in any story needs a certain amount of exposition, and as the action line proceeded Julie slipped in background on the Yahtin family, giving readers the information they'd need to understand the complication."
+    }
+  },
+  {
+    "id": "storycraft-ch11b-digress-only-after-hooking-reader",
+    "question": "Hold off on substantial background digression until enough of the action line has launched to put readers on the hook; only then is a long expository section safe.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction", "genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "By that point enough of the action line had been launched to provide breath- ing room for more expository digression. The story had readers on the hook, and Julie could safely begin a substantial background section on the Warm Springs tribes, the history of the reservation, and the Yahtins."
+    }
+  },
+  {
+    "id": "storycraft-ch11b-end-section-with-foreshadowing-line",
+    "question": "End a section with a line that completes the central thought and foreshadows the dramatic struggle to come, rather than trailing off into summary.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "She ended the section with a beautiful line that completed the central thought and foreshadowed the dramatic struggle that was to follow:"
+    }
+  },
+  {
+    "id": "storycraft-ch11b-sparse-scene-detail",
+    "question": "Set each scene with sparse but compelling detail: open with an establishing shot, then zero in on the key objects with only a handful of carefully chosen particulars.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "As she did consistently throughout the narrative, Julie set the scene with sparse but compelling detail. Scene 6 opened with an establishing shot of the reservation"
+    }
+  },
+  {
+    "id": "storycraft-ch11b-expository-flashback-in-breathing-space",
+    "question": "Drop an expository flashback only when a hopeful development in the action gives breathing space, using it to fill in background rather than stalling a rising scene.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction", "genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "That hopeful development provided a little more breathing space, and Julie seized it to drop into her second expository ﬂ ashback, a downer historical overview of Dorothy's drug- and alcohol- addicted life."
+    }
+  },
+  {
+    "id": "storycraft-ch11b-rising-action-oscillates",
+    "question": "Shape rising action and the crisis as an oscillating curve of ups and downs rather than a steady climb, so the protagonist's fortunes swing before the climax.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "As it always does in the best stories, Part 2—rising action—had its ups and downs, as did the following section, the crisis. Remember the oscillating curve of rising action and crisis we discussed in the chapter on story structure?"
+    }
+  },
+  {
+    "id": "storycraft-ch11b-point-of-insight",
+    "question": "Build the crisis around a point of insight: a realization that changes the protagonist's understanding of the world and sets up the climax.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "It was what story theorists call the point of insight, the realization that changes the protagonist's understanding of the world and sets up the climax."
+    }
+  },
+  {
+    "id": "storycraft-ch11b-constructive-ending",
+    "question": "When you can, aim for a constructive ending — the protagonist defeating the complication — rather than a tragedy, and let that choice guide which protagonist you build the story around.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "We wanted what Aristotle referred to as a comedy—a story about a protagonist defeating the complication."
+    }
+  },
+  {
+    "id": "storycraft-ch11b-reconstructive-reporting",
+    "question": "Reconstruct scenes you did not witness by interviewing witnesses who saw the moment, and gather enough physical description from their accounts to ground your characterization.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 11",
+      "quote": "At ﬁ rst Julie's reporting was reconstructional. She interviewed witnesses who'd seen Dorothy hit her low point before she enrolled in alcohol treatment, and she gathered background on the Yahtin family. But then her reporting became increasingly observational."
+    }
+  }
+]

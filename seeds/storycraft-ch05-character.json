@@ -1,0 +1,302 @@
+[
+  {
+    "id": "storycraft-ch05-character-as-driving-force",
+    "question": "Identify your protagonist's central want, and check that it drives every action she takes and places her in each scene.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "The personality, values, and desires of a protagonist produce action. And the POV character’s wants put her in a particular place, creating scene."
+    }
+  },
+  {
+    "id": "storycraft-ch05-beyond-disembodied-voices",
+    "question": "Replace a few disembodied quotations with detail that presents your subject as a full human being.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "But those few quotes are all the humanity you’re likely to find. Disembodied voices. A few formal pronouncements on the subject of the piece."
+    }
+  },
+  {
+    "id": "storycraft-ch05-sum-of-values-possessions",
+    "question": "Show your character through the larger context that defines her: her values, beliefs, behaviors, and possessions.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Human beings are the sum of their values, beliefs, behaviors, and possessions. They’re distinctive because they look a certain way, talk a certain way, and walk a certain way. We know them only when we start to tap the larger context that defines them."
+    }
+  },
+  {
+    "id": "storycraft-ch05-nesting-doll-layers",
+    "question": "Reveal character in successively deeper layers, each revelation driving the reader forward to discover more.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "The narrative line reveals one layer of character and then probes further, discovering successively deeper layers."
+    }
+  },
+  {
+    "id": "storycraft-ch05-the-driving-want",
+    "question": "Identify the want that drives your protagonist’s story; the bigger the want, the bigger the story.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "For a storyteller, the critical element of character is the want that drives the story."
+    }
+  },
+  {
+    "id": "storycraft-ch05-want-with-danger",
+    "question": "Give your pivotal character a want so strong that she would destroy or be destroyed in the effort to attain it.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "He must want it so badly that he will destroy or be destroyed in the effort to attain his goal."
+    }
+  },
+  {
+    "id": "storycraft-ch05-evenly-matched-opposition",
+    "question": "Make the antagonist formidable enough that the opposing forces appear evenly matched and readers worry who will win.",
+    "verb": "elaborate",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Drama is interesting only when opposing forces appear evenly matched."
+    }
+  },
+  {
+    "id": "storycraft-ch05-point-of-insight",
+    "question": "Structure the arc so the protagonist fails early attempts, reaches a crisis, then achieves a point of insight that lets her finally overcome the obstacle.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Then she achieves the point of insight, a new way of looking at the world that allows her to finally overcome whatever’s standing between her and her want."
+    }
+  },
+  {
+    "id": "storycraft-ch05-length-determines-character",
+    "question": "Match the depth of character work to your text’s length: the longer the piece, the more room—and need—character has to grow.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "The more story you have, the more room character has to grow. The longer your text, in other words, the more important character becomes in the mix of character, action, and scene."
+    }
+  },
+  {
+    "id": "storycraft-ch05-choose-the-protagonist",
+    "question": "In nonfiction, since you report character rather than create it, choose a protagonist who has been through a struggle and experienced a point of insight.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Even though a nonfiction storyteller has no control over the content of a protagonist’s character, he does control his choice of protagonist. Finding someone who’s been through a struggle and experienced a point of insight suggests that you’re on to something worthwhile."
+    }
+  },
+  {
+    "id": "storycraft-ch05-round-versus-flat",
+    "question": "Make your central character round—many faceted and capable of change—rather than flat and fixed.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "A round character is many faceted and is capable of change.”"
+    }
+  },
+  {
+    "id": "storycraft-ch05-change-through-complication",
+    "question": "Let the odyssey from complication to resolution change your character profoundly.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "the odyssey from complication to resolution changes the character profoundly."
+    }
+  },
+  {
+    "id": "storycraft-ch05-foibles-create-sympathy",
+    "question": "Give your protagonist human foibles, inconsistencies, and a capacity for change so readers see themselves and care what happens.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Human foibles, inconsistencies, and a capacity for change make protagonists sympathetic. It’s only when characters reflect the reality of human complexity that they evoke universals readers can recognize."
+    }
+  },
+  {
+    "id": "storycraft-ch05-show-dont-comment",
+    "question": "Replace straight commentary on your subject with details that lead readers to their own inevitable conclusions about the character.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Instead, the best modern fiction and nonfiction writers let a character’s visible persona speak for itself, the method Burroway calls “direct characterization.” They may occasionally comment on character. But mostly they choose to include details that lead readers to certain inevitable conclusions about the character they are describing."
+    }
+  },
+  {
+    "id": "storycraft-ch05-report-particulars",
+    "question": "Fill your notebook with particulars on your character’s appearance, possessions, behavior, and speech, choosing those that reveal the most about the person.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "They fill their notebooks with particulars on a character’s appearance, material possessions, behavior, and speech and choose those that reveal the most about the person."
+    }
+  },
+  {
+    "id": "storycraft-ch05-three-details",
+    "question": "Describe a character with just three or four details that trigger a stored image; too many specifics break up the face rather than create one.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Three or four details will usually do the trick."
+    }
+  },
+  {
+    "id": "storycraft-ch05-terse-first-image",
+    "question": "Keep the first image of a character terse and drop more descriptive details into the action line later.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Long expository descriptions take readers out of the unfolding story. So keep that first image terse. You can drop more descriptive details into the action line later."
+    }
+  },
+  {
+    "id": "storycraft-ch05-every-word-works",
+    "question": "Cut insignificant actions included only to break up background or dialogue; every detail must advance the action line and develop character.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "The point, as always, is that every word must do some work, and every detail must advance the action line and develop character. You never include detail for its own sake."
+    }
+  },
+  {
+    "id": "storycraft-ch05-gesture-context",
+    "question": "Put a direct quotation in the context of a revealing gesture or mannerism that shows what words hide.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "the reporter was savvy enough to put the direct quotation in the context of a gesture: “‘I’m tired of being the one who’s always wrong,’ she said as she crossed her arms.”"
+    }
+  },
+  {
+    "id": "storycraft-ch05-status-indicators",
+    "question": "Record the pattern of behavior and possessions through which your character expresses—or imagines—her position in the world.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "the recording of . . . the entire pattern of behavior and possessions through which people express their position in the world or what they think it is or what they hope it to be.”"
+    }
+  },
+  {
+    "id": "storycraft-ch05-how-they-speak",
+    "question": "Show how your character speaks—tone, grammar, accent—since the way we talk may be the most revealing detail of all.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "The way we talk may be the most revealing detail of all."
+    }
+  },
+  {
+    "id": "storycraft-ch05-keep-dialect",
+    "question": "Quote people as they really speak, dialect and all, to convey the color of daily life and honest emotion.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "And isn’t the rich patois of an authentic American dialect more likely to convey the color of daily life, the variety of our culture, or honest emotion?"
+    }
+  },
+  {
+    "id": "storycraft-ch05-anecdotes-reveal-character",
+    "question": "Salt your piece with anecdotes—stories within stories—as persuasive evidence for your take on a character.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "These stories within stories maintain reader interest by salting a larger article with little narrative arcs, each one pulling the audience inexorably forward."
+    }
+  },
+  {
+    "id": "storycraft-ch05-detail-must-drive-story",
+    "question": "Cut any detail of appearance, anecdote, or possession that doesn’t reveal something about the story your character drives.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "The purpose of character is to drive story."
+    }
+  },
+  {
+    "id": "storycraft-ch05-theory-of-personality",
+    "question": "Develop a theory of personality that guides your reporting, and ask how character explains each action you observe.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 5",
+      "quote": "Ultimately, every nonfiction writer who successfully probes human character must develop a theory of personality that guides the reporting."
+    }
+  }
+]

@@ -106,24 +106,17 @@ export function HighlightOverlay({
   const spanStart = span?.start ?? null
   const spanEnd = span?.end ?? null
 
-  // Click-to-open with a SINGLE-OPEN contract: clicking this annotation
-  // reports its id to the parent (which closes every other popover); the
-  // overlay is open only while the parent says it owns the active slot.
-  // Clicking again hands back null, closing itself.
-  const [clickedOpen, setClickedOpen] = useState(false)
-  useLayoutEffect(() => {
-    setClickedOpen(false)
-  }, [spanStart, spanEnd])
+  // Click-to-open with a SINGLE-OPEN contract, owned entirely by the
+  // parent's activeId: this overlay renders its popover exactly while the
+  // parent names it as active. Clicking reports the id; clicking again
+  // reports null. No local "open" state exists — a per-overlay flag goes
+  // stale when another note claims the slot and resurrects every stale
+  // popover once activeId returns to null (measured live: all popovers at
+  // once after toggle-close), so visibility derives from activeId alone.
+  const popoverVisible = !openOnClickOnly || (activeId !== null && activeId === noteId)
   const toggleThis = () => {
-    const opening = !clickedOpen
-    setClickedOpen(opening)
-    onOpenChange?.(opening ? noteId ?? null : null)
+    onOpenChange?.(popoverVisible ? null : noteId ?? null)
   }
-  // The parent's activeId is the single source of truth: whoever it names
-  // owns the open slot. A stale local clickedOpen (from a previous open)
-  // must NOT keep a popover alive once another annotation has claimed it.
-  const superseded = openOnClickOnly && activeId !== null && activeId !== noteId
-  const popoverVisible = !openOnClickOnly || (!superseded && clickedOpen)
 
   // Geometry + scroll sync. The scrollport is the package's `.w-md-editor-area`
   // wrapper (overflow: auto, where react-md-editor wires its own onScroll) —
@@ -216,7 +209,7 @@ export function HighlightOverlay({
       top = Math.max(POPOVER_INSET, top)
     }
     setPopoverPos({ left, top })
-  }, [active, layout, spanStart, spanEnd, question])
+  }, [active, layout, spanStart, spanEnd, question, popoverVisible])
 
   if (!active) return null
 

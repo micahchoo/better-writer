@@ -1,0 +1,194 @@
+[
+  {
+    "id": "storycraft-ch12a-track-a-person-or-thing",
+    "question": "In your explanatory piece, don't just follow a route — track one particular person or thing, and give close-to-the-ground specificity so readers can visualize the exact places at particular times.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "you can't just follow a route; you have to track a person or a thing. An explanatory narrative requires close- to- the- ground speciﬁcity. Readers must visualize particular places at particular times."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-follow-a-moving-object",
+    "question": "Track an inanimate object that moves, knowing it will touch a series of characters along the way and bring the necessary humanity into the yarn.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "It could be a ship or a gun or a load of coal. But it must move, and in moving it will inevitably touch a series of characters. That brings the necessary humanity into the yarn. But it's the movement that matters."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-flat-a-to-z-spine",
+    "question": "Use the journey you follow as a flat spine that holds the piece together, a narrative line running A to Z rather than an arc carrying a protagonist through rising action, climax, and resolution.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "The journey of the fries will simply serve as a spine that holds the piece together, that gives it shape. But it's a ﬂat narrative line, A to Z, instead of an arc that takes a main character through rising action, a climax, and a resolution."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-stop-the-action-and-digress",
+    "question": "Every so often stop the action, pull the curtain on the narrative, and go off on a short exploration of the subject — an abstract explanation that gives depth and meaning to what the reader has been witnessing.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "But every once in a while, the writer stops the action, just pulls the curtain on the narrative. Then he goes off on a little exploration of the subject, an abstract explanation that gives depth and meaning to what the reader's been witnessing in the narrative."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-have-the-courage-to-digress",
+    "question": "Have the courage to digress, leaving the reader hanging at an intriguing point in the action line.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "Then McPhee has the courage to digress, leaving us hanging at this intriguing point in the action line so that he can explore the history of ﬂood control in the Mississippi Delta:"
+    }
+  },
+  {
+    "id": "storycraft-ch12a-digress-at-a-cliff-hanger",
+    "question": "Preserve dramatic tension by bailing out of the action line at just the right moment — create a cliff-hanger by pausing when something hangs in the balance, so the reader hangs around to see what happens when the narrative resumes.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "One secret to successful digression is to preserve dramatic tension by bailing out of the action line at just the right moment. If the writer creates a cliff- hanger by pausing when something hangs in the balance, the reader will usually hang around to see what happens when the narrative resumes."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-digress-mid-action",
+    "question": "Digress in the middle of the action, not between actions, because that's when the reader remembers well and is happier to come back.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "It's frequently best to digress in the middle of the action, not between actions, because then we remember well and we're happier to come back."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-length-of-digression",
+    "question": "Match the length of a digression to the drama at the pause — the higher the emotional valence, the longer the digression, while a pause at a less dramatic moment calls for a shorter, less intrusive one.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "the higher the emotional valence, the longer the digression."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-action-emotion-explanation-meaning",
+    "question": "Set your action scenes on the lower rungs of the ladder of abstraction where emotion rules, and place your explanation higher up where meaning holds sway.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "Action takes place on the lower rungs of the ladder of abstraction, where emotion rules. Explanation takes place farther up the ladder, where meaning holds sway."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-alternate-action-and-digression",
+    "question": "Structure the piece like a layer cake, progressing steadily through successive, top-to-bottom sections of scenic action and explanatory digression.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "Because an explanatory narrative progresses steadily through successive, top- to- bottom sections of scenic action and explanatory digression, it assumes a structure that Michael Roberts, writing coach at the Arizona Republic, likens to a layer cake."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-outline-before-writing",
+    "question": "Work out an outline before you begin writing so that, once you know the structure, you can concentrate each day on one thing and know right where it fits.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "Going through all that creates the form and the shape of the thing. It also relieves the writer, once you know the structure, to concentrate each day on one thing. You know right where it ﬁts."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-climb-the-ladder-of-abstraction",
+    "question": "Range farther up and down the ladder of abstraction than a typical journalist — interview and observe for revealing detail on the lower rungs, and look for how your specific examples fit into larger patterns on the higher ones.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "To explore the bottom rungs of the ladder, they interview and observe for revealing detail—a Muslim holy man conducting a halal inspection. To climb higher, they look for ways their speciﬁ c examples ﬁ t into larger patterns—the french fry, for example, as a stand- in for growing Paciﬁ c Rim trade."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-rely-on-observation",
+    "question": "Because you need detail you're unlikely to get any other way, rely on observation more than conventional reporters — plunge into your subjects and practice fly-on-the-wall techniques, quietly watching and listening for nuances otherwise inaccessible.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "they rely more on observation—as opposed to interviewing and document research—than conventional reporters do. They plunge into their subjects, leaving their old realities behind. Like ethnologists, they quietly watch and listen, practicing ﬂ y- on- the- wall techniques for getting at nuances that would be otherwise inaccessible."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-interrogate-the-story",
+    "question": "Tune your brain so everything around you is a source for stories — constantly interrogate your story, step back from the case at hand, and ask 'Why does this matter? Why here? Why now?'",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "You must constantly interrogate your story, she explains. To ﬁ nd a good explainer, take a couple of steps back from the case at hand, asking Why does this matter? Why here? Why now?"
+    }
+  },
+  {
+    "id": "storycraft-ch12a-beyond-conventional-sources",
+    "question": "Look beyond conventional sources — talk to janitors as well as administrators and home-care aides as well as doctors, haunt bulletin boards and chat rooms, read specialty journals, and hang around backstage where relevant things take place.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "She advises that would- be explanatory journalists look beyond conventional sources, talking to janitors as well as administrators, home- care aides as well as doctors. She suggests haunting Internet bulletin boards and chat rooms, reading specialty journals related to the topic, hanging around backstage in places where relevant things take place."
+    }
+  },
+  {
+    "id": "storycraft-ch12a-bare-the-mechanisms",
+    "question": "Ask the questions that bare the mechanisms turning your world: How do they do that? Where does that come from; where does that go? Who is that guy? How did this get to be such a mess? What's it like to be him or her?",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 12",
+      "quote": "And she offers a list of questions designed to bare the mechanisms that turn our world: How do they do that? Where does that come from; where does that go? Who is that guy? How did this get to be such a mess? What's it like to be him or her?"
+    }
+  }
+]

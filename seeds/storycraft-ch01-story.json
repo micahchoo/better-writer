@@ -1,0 +1,194 @@
+[
+  {
+    "id": "storycraft-ch01-basic-model",
+    "question": "Build your story on the protagonist-complication-resolution model: a sympathetic character encounters a complicating situation that he confronts and solves.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "A story consists of a sequence of actions that occur when a sympathetic character encounters a complicating situation that he confronts and solves."
+    }
+  },
+  {
+    "id": "storycraft-ch01-spot-ingredients",
+    "question": "Train yourself to recognize the universal ingredients of story in real-world situations before you commit to pursuing one.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "A sharp eye for story comes from understanding that its basic ingredients are universal and learning how to spot them in the real world."
+    }
+  },
+  {
+    "id": "storycraft-ch01-plot-vs-narrative",
+    "question": "Turn mere narrative into plot by deliberately selecting and arranging your events so that larger meanings can emerge.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "A plot emerges when a storyteller carefully selects and arranges material so that larger meanings can emerge."
+    }
+  },
+  {
+    "id": "storycraft-ch01-list-plot-points",
+    "question": "List the plot points in your piece—each development that sends the story spinning off in a new direction—so you can plan its trajectory and know what to include and leave out.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "One of the most valuable things I do when coaching a writer is to list the plot points."
+    }
+  },
+  {
+    "id": "storycraft-ch01-choose-protagonist",
+    "question": "Search for the person who makes things happen and make that active player your protagonist.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "when you're looking for a protagonist search for the person who makes things happen."
+    }
+  },
+  {
+    "id": "storycraft-ch01-avoid-bad-guy-protagonist",
+    "question": "Don't make a bad guy your protagonist—readers can't identify with him and will invest him with positive qualities he doesn't deserve.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "novices often want to write narratives with bad-guy protagonists, but bad guys seldom work as narrative protagonists."
+    }
+  },
+  {
+    "id": "storycraft-ch01-complication-worth-story",
+    "question": "Make sure the complication you choose is consequential enough to justify a story, not a minor irritant that merely sets the action in motion.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "Any problem constitutes a complication, but only certain complications justify a story."
+    }
+  },
+  {
+    "id": "storycraft-ch01-scale-complication",
+    "question": "Match the size of your complication to the size of the story you want—big complications power big stories, and good little complications make for good little stories.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "The bigger the complication, the bigger the story."
+    }
+  },
+  {
+    "id": "storycraft-ch01-resolution-character-effort",
+    "question": "Make the resolution a product of the character's own efforts—an active player who solves his own problem teaches the reader something useful.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "They, he insists, “absolutely and without exception, must be products of the character’s own efforts.”"
+    }
+  },
+  {
+    "id": "storycraft-ch01-resolution-change",
+    "question": "Resolve your complication either by changing the world or by changing your character himself.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "You can resolve a complication, in other words, by changing the world or changing yourself."
+    }
+  },
+  {
+    "id": "storycraft-ch01-no-resolution-forms",
+    "question": "Know which forms don't need a resolution: an explanatory narrative can follow a flat action line with no climax, and so can an essay or a vignette.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "An explanatory narrative uses an action line to explore a subject, and it requires no resolution to accomplish its purpose."
+    }
+  },
+  {
+    "id": "storycraft-ch01-loser-coping",
+    "question": "If your protagonist seems like a loser, find the constructive way he copes with his disappointment—that coping can make his story inspiring and positive.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "But that's because losing athletes, as well as losers in love, elections, workplace competitions, and the like, must ﬁ nd some constructive way to cope with their disappointments."
+    }
+  },
+  {
+    "id": "storycraft-ch01-hold-attention",
+    "question": "Hold your audience by showing readers how much is at stake and launching action sequences that keep them wondering what will happen next.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "The reaction testiﬁ ed to Tom's skill at showing readers how much was at stake and launching action sequences that put them on the edge of their seats as they wondered what would happen next."
+    }
+  },
+  {
+    "id": "storycraft-ch01-immerse-scene",
+    "question": "Immerse readers in another world by combining strong action lines with artful scene-setting that lets them join the story's characters.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "Writers accomplish that kind of diversion by combining strong action lines with artful scene- setting, reproducing realities where readers can join the story's characters."
+    }
+  },
+  {
+    "id": "storycraft-ch01-emotional-detail",
+    "question": "Stay in tune with your own emotional responses as you report, target the details that produce them, and collect those details so you can pass them along to readers.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "As he reported the story, he was in tune with his own emotional responses, targeted the details that produced them, and collected those details so that he could pass them along to readers."
+    }
+  },
+  {
+    "id": "storycraft-ch01-resolution-lesson",
+    "question": "Let your resolution carry a lesson the audience can take away and apply to their own lives.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 1",
+      "quote": "It contains the lesson that the audience carries away, the insight that the story's readers or viewers or listeners can apply to their own lives."
+    }
+  }
+]

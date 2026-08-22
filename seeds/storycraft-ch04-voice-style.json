@@ -1,0 +1,170 @@
+[
+  {
+    "id": "storycraft-ch04-avoid-journalese",
+    "question": "Rewrite your draft to strip the institutional tone: root out passive voice, stilted vocabulary, indirect syntax, and weak verbs that drown your individual voice.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "Journalese drowns individual voice in an institutional swamp of passive voice, stilted vocabulary, indirect syntax, and weak verbs."
+    }
+  },
+  {
+    "id": "storycraft-ch04-first-person-not-voice",
+    "question": "Decide whether to use first person based on your mission, not habit — first person is not voice, and voice is not first person.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "But ﬁ rst person is not voice, and voice is not ﬁ rst person."
+    }
+  },
+  {
+    "id": "storycraft-ch04-adopt-persona",
+    "question": "Adopt a persona — a distinctive stance toward your material — and ask what kind of personality you want to bring to the page.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "By adopting a persona, the writer adopts a distinctive stance toward the material, bringing an identiﬁ able personality to bear on the subject."
+    }
+  },
+  {
+    "id": "storycraft-ch04-position-narrator",
+    "question": "Decide where you stand as narrator — far in the background letting facts speak, near the audience adding commentary, or in front keeping focus on yourself.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "position refers to where writers stand as they narrate the unfolding story."
+    }
+  },
+  {
+    "id": "storycraft-ch04-consistent-voice",
+    "question": "Develop a consistent voice that readers come to expect, one that emerges as you mature, relax, and become comfortable with your literary self.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "most narrative writers develop a consistent voice that readers come to expect, one that emerges as writers mature, relax, and become more comfortable with their literary selves."
+    }
+  },
+  {
+    "id": "storycraft-ch04-level-of-diction",
+    "question": "Match your level of diction to the subject — an author's level of diction is one of the prime markers of style.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "In the world of narrative writing, an author’s level of diction is one of the prime markers of his style."
+    }
+  },
+  {
+    "id": "storycraft-ch04-cut-institutional-syntax",
+    "question": "Cut long introductory phrases and clauses that back into long, complicated sentences — they flag the institutional voice of journalese.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "Long introductory phrases and clauses that back into long, complicated sentences immediately ﬂ ag the institutional voice we call journalese."
+    }
+  },
+  {
+    "id": "storycraft-ch04-space-metaphors",
+    "question": "Space your figures of speech through the writing, dropping about one for every three paragraphs so readers never lose sight of the one ahead.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "you want to space the metaphors out without spreading them so far apart that readers lose sight of those ahead. About one ﬁ gure for every three paragraphs seems about right."
+    }
+  },
+  {
+    "id": "storycraft-ch04-metaphor-during-rewrite",
+    "question": "Hunt for the right metaphor during rewrite, not the rough draft, so puzzling over it doesn't interrupt getting through the first version.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "I’m more likely to ﬁ nd a ﬁ gure during rewrite, when puzzling over just the right metaphor doesn’t interrupt the struggle to get through the ﬁ rst version."
+    }
+  },
+  {
+    "id": "storycraft-ch04-replace-cliches",
+    "question": "As you edit, stay alert for clichés and root out hackneyed expressions, replacing them with something fresh.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "As I edit, I stay alert for clichés, which signal opportunity for rooting out hackneyed expressions and replacing them with something fresh."
+    }
+  },
+  {
+    "id": "storycraft-ch04-read-aloud",
+    "question": "Read every piece of writing out loud in a firm, clear voice, hear the false notes, and cut verbiage and simplify syntax so it sounds like you.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "The best thing any writer can do is to read every piece of writing out loud."
+    }
+  },
+  {
+    "id": "storycraft-ch04-relax-be-yourself",
+    "question": "Relax and be yourself when you write — tension makes your words rigid and formal, submerging your true voice in stiffened formality.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "But the ultimate secret to letting your voice sound on the page is simply to relax and be yourself."
+    }
+  },
+  {
+    "id": "storycraft-ch04-write-fast",
+    "question": "Write fast and loose in the first draft rather than agonizing over every word — relaxed, fast writing sounds more like yourself and is easier.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "A relaxed writer is a fast writer, and fast writers sound more like themselves."
+    }
+  },
+  {
+    "id": "storycraft-ch04-figurative-devices",
+    "question": "Turn to the full range of figurative devices beyond metaphor and simile — allusion, word play, and personification.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 4",
+      "quote": "A real stylist may turn to allusion (“his Alfred Hitchcock physique”) or word play (hot dog brands engaged in “grinding competition”) or personiﬁ cation."
+    }
+  }
+]

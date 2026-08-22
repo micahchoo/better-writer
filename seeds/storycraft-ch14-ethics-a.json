@@ -1,0 +1,290 @@
+[
+  {
+    "id": "storycraft-ch14a-dont-fudge",
+    "question": "Scan your draft for any place you bent a fact to gain drama, clarity, or style, and restore the literal truth even at the cost of the payoff.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Don’t fudge, ever, even if a tiny departure from reality produces a huge payoff in drama, clarity, or style."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-reveal-presence",
+    "question": "Keep yourself visibly present in scenes you witnessed rather than hiding your presence for the greater drama of an omniscient view.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "When you write, do you reveal your presence or opt for the greater drama of describing the two executives bargaining nose to nose by themselves?"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-dont-stage-scenes",
+    "question": "Remove any scene you created by suggesting an action to a source, since staging a scene alters reality.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "But is it kosher to alter reality by suggesting the visit?"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-warn-off-record",
+    "question": "Before using background a source shared casually, warn her that you might use it and give her the chance to take it off the record.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Or do you have to warn her that you might use it and give her a chance to take it off the record?"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-keep-clarifications-separate",
+    "question": "Keep clarifying comments a source gives you on a later call separate from the original dialogue instead of blending them into it.",
+    "verb": "rephrase",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "If you call one of your sources back to explain an earlier conversation, can you blend those clarifying comments into the ﬁ rst dialogue?"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-cut-unverifiable-monologue",
+    "question": "Cut internal monologue you cannot verify, since you can only report a subject's thoughts if they told you.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "If you ask another what she was thinking when she made an important decision, do you include that unveriﬁ able internal monologue in your narrative?"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-attribute-conflicting-versions",
+    "question": "When sources give conflicting versions of the same event, present each account with attribution rather than silently choosing one version as settled.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "If three execs have three different versions of a meeting—and they will—whose version will you choose?"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-alteration-is-ethical-choice",
+    "question": "Treat every alteration you make when turning reality into prose as an ethical choice you must consciously justify.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Every attempt to do so alters reality in some respect, and every alteration represents an ethical choice."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-get-as-close-as-possible",
+    "question": "Push your reporting and writing toward the closest possible portrayal of what actually happened, accepting that you will never get it absolutely right.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "But the only ethical approach is to get as close as possible."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-verify-facts",
+    "question": "Check every verifiable fact—temperatures, elevations, dates, names—against a source you can confirm rather than relying on memory alone.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "When I write that the spring water is ﬁ fty- one degrees, I have measured it with a thermometer."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-no-composite-characters",
+    "question": "Never build a composite character in nonfiction; combining real people belongs to fiction.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "“Where I came from,” he said, “a composite character was a ﬁction.”"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-quote-exactly",
+    "question": "Check every quotation, name spelling, and small factual detail against your reporting and correct them before publishing.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Quote exactly. Spell names correctly. Get the smallest details absolutely right."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-changing-facts-is-fiction",
+    "question": "Ask whether you are changing or inventing facts to make a better story—if so, you have crossed from nonfiction into fiction.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "If you are changing or inventing facts to make a better story, you are writing ﬁ ction."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-too-much-imagination-is-fiction",
+    "question": "Cut invented detail until your draft stays on the nonfiction side of the line between imagination and fiction.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Too much reportage and we cross into scholarship or journalism. Too much imagination and we cross into ﬁ ction."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-emotional-vs-factual-truth",
+    "question": "Elucidate in your draft the difference between emotional truth and factual truth, and be clear which one you are actually claiming.",
+    "verb": "elucidate",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Maybe you can’t get every detail right, goes the argument, but you can capture a larger meaning that’s essentially truthful."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-dont-invent-memoir-dialogue",
+    "question": "Do not invent dialogue in memoir; reconstruct only what you can verify or clearly flag as reconstructed.",
+    "verb": "rewrite",
+    "genre": ["memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "much of his dialogue was obviously invented and he clearly didn’t apply Walt Harrington’s standards to verify historical accuracy."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-flag-assumptions",
+    "question": "When you reconstruct a scene from reasonable assumptions, flag your leaps of faith with tip-off words like 'probably,' 'perhaps,' and 'maybe.'",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "But when he was reconstructing scenes based on reasonable assumptions, Preston let readers in on any leaps of faith by sprinkling his copy with tip- off words such as “probably,” “perhaps,” and “maybe.”"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-footnotes-document-sources",
+    "question": "Move cumbersome in-text attributions into footnotes to document your sources without cluttering the narrative.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "Like a more traditional historian, Larson used footnotes to document his sources, a tactic that avoids the clutter caused by attributions such as “he probably thought” or “as he recalled in his memoir.”"
+    }
+  },
+  {
+    "id": "storycraft-ch14a-readers-know-source",
+    "question": "Make sure readers can tell exactly where you learned each thing you claim to know.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "But for me the bottom line is that readers should know exactly where you learned what you claim to know."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-cut-unsourced-sensory-details",
+    "question": "Cut specific sensory details no source recorded and no source could verify, rather than inventing them.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "But how, I wondered, would you know about ﬂ ies on the windowsill, and how would you know that a train rumbled through the intersection at that exact moment? Those don’t strike me as the kind of details anyone would record, and Larson’s footnotes are silent on the matter."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-authors-note-transparency",
+    "question": "Add an author's note explaining your reporting methods so readers can judge your standards of accuracy, evidence, and fairness for themselves.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "the essay on methods he included in Devil meets my basic test of transparency. Readers can see what he did and make up their own minds about his standards of accuracy, evidence, and fairness."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-quote-only-heard-dialogue",
+    "question": "Put quotation marks around only the dialogue you heard yourself; attribute reconstructed conversation to participants' memories.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "No dialogue appears within quotation marks unless Hallman heard a conversation himself."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-privacy-name-changes",
+    "question": "Protect subjects' privacy by changing names rather than altering the facts of their lives.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "I’ve changed some of the names to ensure privacy, but in only one small instance (a hometown) have I knowingly changed any facts of details about their lives."
+    }
+  },
+  {
+    "id": "storycraft-ch14a-notebook-at-the-time",
+    "question": "Record every conversation you plan to quote in your notebook at the time or soon after, so your dialogue is exact.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 14",
+      "quote": "All of the conversations recorded in the book took place. I heard them (and participated in many of them) and wrote them down in my reporter’s notebook at the time or soon thereafter."
+    }
+  }
+]

@@ -1,0 +1,194 @@
+[
+  {
+    "id": "storycraft-ch08-dialogue-over-direct-quotes",
+    "question": "When you want to tell a true story, move your narrative from dropped-in direct quotations toward true dialogue in which your characters talk to one another.",
+    "verb": "transition",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "But if you want to tell a true story, your readers should hear your characters talk to one another."
+    }
+  },
+  {
+    "id": "storycraft-ch08-mix-physical-action",
+    "question": "Weave physical action into your dialogue scenes so readers feel they are watching the scene unfold and hearing your speakers firsthand.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "Note how McPhee mixes physical action—“the man shifted his weight”with the dialogue, reinforcing the sense that you’re there watching the scene unfold and hearing old Chap ﬁ rsthand."
+    }
+  },
+  {
+    "id": "storycraft-ch08-dialogue-does-real-work",
+    "question": "Cut dialogue that exists only for its own sake, and make sure every line of dialogue does real work, such as advancing the action.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "Of course, dialogue isn’t an end in itself; it has to do some real work."
+    }
+  },
+  {
+    "id": "storycraft-ch08-no-already-known-exposition",
+    "question": "Never put exposition in dialogue by having a character say something they would already know.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "Savvy ﬁ ction writers have long understood that you should never make your characters say something they would already know"
+    }
+  },
+  {
+    "id": "storycraft-ch08-narrator-supplies-background",
+    "question": "Supply background information yourself as narrator and reserve dialogue for the things it does best, rather than loading background into your characters' speech.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "Supply the background yourself in your role as narrator. Reserve dialogue for the things it does best."
+    }
+  },
+  {
+    "id": "storycraft-ch08-paraphrased-dialogue-background",
+    "question": "Use paraphrased dialogue when you want to approximate what the parties to a conversation said while slipping background information in as a stage whisper to the audience.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "As the narrator, you can approximate what the parties to a conversation are saying while you slip in background information as a kind of stage whisper to the audience."
+    }
+  },
+  {
+    "id": "storycraft-ch08-dialogue-develops-character",
+    "question": "Use dialogue as your primary tool for developing character, since how people speak reveals who they are.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "Because we reveal so much of who we are by how we speak, what dialogue does best of all is develop character."
+    }
+  },
+  {
+    "id": "storycraft-ch08-record-scene-action-with-dialogue",
+    "question": "Record more than conversation when you observe an unfolding scene, since the other action that is unfolding in the scene also yields meaning.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "It’s not just what a character says that gives dialogue its power. Remember, dialogue happens in the context of a scene. So the other action that’s unfolding in the scene yields meaning, too."
+    }
+  },
+  {
+    "id": "storycraft-ch08-first-person-includes-own-side",
+    "question": "In first-person narrative, include your own part of the conversation and the action that contains it, so the other character's responses appear in a context that makes them more meaningful.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "Unlike an interview, the dialogue you report includes your part of the conversation and the action that contains it. So the other character’s responses appear in a context that makes them much more meaningful."
+    }
+  },
+  {
+    "id": "storycraft-ch08-internal-monologue-advances-plot",
+    "question": "Include what is going on in your characters' minds, because narrative becomes plot only when combined with motive and internal thought advances it.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "Only when narrative combines with motive does it become plot. So what’s going on in the mind of your characters advances plot."
+    }
+  },
+  {
+    "id": "storycraft-ch08-interview-while-fresh",
+    "question": "When you plan to render a subject's inner thoughts, interview them as soon as possible after the event, before their memories degrade.",
+    "verb": "elaborate",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "For one thing, you interview as soon as possible after the event, before memories degrade."
+    }
+  },
+  {
+    "id": "storycraft-ch08-verify-recollection",
+    "question": "Verify a subject's recollection of thoughts or events by evaluating it for internal consistency and face validity, triangulating multiple witnesses, and crosschecking with documentary sources.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "You also can evaluate your source’s recollection for internal consistency and logical probability, what scientists call “face validity.” You can triangulate one account by interviewing multiple witnesses to an event or multiple participants in a conversation."
+    }
+  },
+  {
+    "id": "storycraft-ch08-paraphrase-when-unsure",
+    "question": "When you are not absolutely sure what was said, paraphrase rather than pretending you have the exact words by using quotation marks.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "If you’re not absolutely sure about what was said, you paraphrase, rather than pretending you have the exact words by using quotation marks."
+    }
+  },
+  {
+    "id": "storycraft-ch08-reconstruct-only-highlights",
+    "question": "Limit your reconstruction of thought to dramatic highlights, the intense points in a life when memory is reliable enough to kick into high gear.",
+    "verb": "cut",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "you limit your reconstruction to things that happen at dramatic highlights, the relatively rare points in a human life when the experience is so intense that memory kicks into high gear."
+    }
+  },
+  {
+    "id": "storycraft-ch08-attribute-how-you-know",
+    "question": "Attribute thought or conversation based on distant memories with phrases such as 'he recalled thinking' or 'his memory is that,' so readers know how you know what you know.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "When you’re reporting thought or conversation based on more distant memories, you can attribute with phrases such as “he recalled thinking” or “his memory is that,” or “as he would later remember.”"
+    }
+  },
+  {
+    "id": "storycraft-ch08-leery-reconstructed-dialogue",
+    "question": "Be extremely leery of putting remembered conversations from long ago inside quotation marks, since reconstructed dialogue is especially suspect.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 8",
+      "quote": "Reconstructed dialogue is especially suspect, and an ethical nonﬁ ction writer will be extremely leery of putting remembered conversations from long ago inside quotation marks."
+    }
+  }
+]

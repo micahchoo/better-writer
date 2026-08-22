@@ -1,0 +1,134 @@
+[
+  {
+    "id": "storycraft-ch03a-pov-three-questions",
+    "question": "Determine your point of view by answering three questions: through whose eyes does the reader experience the story, from which direction, and from what distance?",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "point of view boils down to the answers to three questions: Through whose eyes do we experience the story? From which direction? From what distance?"
+    }
+  },
+  {
+    "id": "storycraft-ch03a-pov-character-vs-narrator",
+    "question": "Determine whose story it is, then distinguish the POV character (the vehicle through whose eyes and ears readers move with the story) from the narrator who actually tells it.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "It has to be somebody's story, and one of the first questions any narrative writer has to answer is \u201cwhose?\u201d ... A third-person narrative may follow a single character from the beginning of the narrative arc until the end without that character ever speaking directly to the reader. But readers move through time with the POV character, seeing what that character sees and hearing what the character hears."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-limit-pov-characters",
+    "question": "Limit point-of-view changes to a few: in a magazine piece focus on no more than two or three principal characters, with just a few supporting characters, so you don't dizzy readers by spinning through a dozen viewpoints.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "A few point-of-view changes are \ufb01ne, but don\u2019t make readers dizzy by spinning through a dozen viewpoints. In a magazine piece, you\u2019re wise to focus on no more than two or three principal characters, with just a few supporting characters."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-first-person-limits",
+    "question": "Remember that first person limits you to your own perspective: you can't slip into another character's mind or voice unless you filter his comments through your own experience.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "For one thing, \ufb01rst person limits you to your own perspective. You can\u2019t slip into another POV character\u2019s mind or voice unless you \ufb01lter his comments through your own experience."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-first-person-looks-outward",
+    "question": "Keep a first-person viewpoint looking outward at the events around you, telling the story without making the author the story and without the look-at-me pyrotechnics of the self-absorbed narrator.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "his viewpoint looked outward, at the events happening around him. His unobtrusive prose lacked the look-at-me pyrotechnics of the New Journalism. And unlike, say, Hunter Thompson\u2019s Fear and Loathing in Las Vegas, it told the story without the author becoming the story."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-memoir-voice",
+    "question": "Write in the memoir voice, reporting what you see, hear, smell, and feel as you move along the action line.",
+    "verb": "elaborate",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "The author tells the story in what Peter Rubie calls \u201cthe memoir voice,\u201d telling you what he or she sees, hears, smells, and feels while moving along the action line."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-second-person-as-device",
+    "question": "Use second person sparingly in narrative, as a stylistic device to put readers inside a scene rather than as actual direct address.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "Second person does occasionally show up in narrative, usually as a stylistic device intended to put readers in a scene. In that context, it\u2019s more of a literary device than actual direct address."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-third-person-range",
+    "question": "Exploit third person's range: turn yourself into a movie camera that frames external images with vivid detail, peek inside characters' heads, rise high above a scene, and claim the prerogative of seeing into past and future.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "In third person you can turn yourself into a movie camera, using vivid detail to frame external images of scenes and characters. Or you can violate the laws of nature by peeking inside the heads of characters. You can rise high above a scene to report what\u2019s going on at the same moment in distant places. You can even claim the prerogative of seeing into past and future with you-are-there immediacy."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-dramatic-pov-scenes",
+    "question": "Write in the dramatic point of view as a series of relatively pure scenes that stick to externally verifiable reality, zeroing in on key moments and cutting the tedious daily life that connects them.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "Because it sticks to an external reality that can be veri\ufb01ed by independent observers, it\u2019s the most objective and journalistic of third-person viewpoints. Narratives with the dramatic point of view often are structured as a series of relatively pure scenes, divided typographically and other than brief bits of necessary background\u2014unsullied by digressions. Readers experience the story as any onlooker would, although the writer manipulates the scenic construction to zero in on key moments. It\u2019s reality without boredom, pivotal places and times without the often tedious daily life that connects them."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-third-person-limited",
+    "question": "Write in third-person limited: report only the world visible to your POV character, but go inside the character's head to convey what he or she thinks as that world unfolds.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "You mainly report external reality, and you report only the world visible to your POV character. But you also have the right to go inside your character\u2019s head, to convey what he or she thinks as that world unfolds around him."
+    }
+  },
+  {
+    "id": "storycraft-ch03a-third-person-omniscient",
+    "question": "Claim third-person omniscience if you want: give yourself the power to see everything, everywhere, anytime you choose, and include anything that advances the story, so long as you investigate it and report what you find accurately.",
+    "verb": "elaborate",
+    "genre": ["fiction", "creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 3",
+      "quote": "Give yourself the power to see everything, everywhere, anytime you choose. Slip into the ultimate third-person option\u2014third-person omniscient. ... So long as you take the time to investigate it and accurately report what you \ufb01nd, you\u2019re free to include anything that advances the story."
+    }
+  }
+]

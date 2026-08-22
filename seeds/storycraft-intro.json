@@ -1,0 +1,184 @@
+[
+  {
+    "id": "storycraft-intro-structure-pace-tension",
+    "question": "Give your narrative strong internal structure that regulates pace and builds dramatic tension.",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "Strong internal structure would regulate pace and create dramatic tension."
+    }
+  },
+  {
+    "id": "storycraft-intro-sources-into-characters",
+    "question": "Turn the sources of your true story into characters and its topics into scenes.",
+    "verb": "rewrite",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "Instead of sources, it would have characters. Instead of topics, it would have scenes."
+    }
+  },
+  {
+    "id": "storycraft-intro-accurate-beyond-report",
+    "question": "Keep your account scrupulously accurate while pushing toward truths beyond the reach of a routine report.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "It would be scrupulously accurate, but it would reveal truths beyond the reach of an ordinary news report."
+    }
+  },
+  {
+    "id": "storycraft-intro-match-form-to-material",
+    "question": "Match your form to your material: when a subject is best served by simple informational writing, make the key point quickly instead of building a narrative.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "But experience has taught me that most subjects are best suited to simple informational writing that makes the key point quickly."
+    }
+  },
+  {
+    "id": "storycraft-intro-avoid-forced-narrative",
+    "question": "Learn enough story theory to recognize when you are forcing narrative onto material that does not call for it.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "Another is learning enough about story theory to avoid the fatal error of forcing narrative onto inappropriate material."
+    }
+  },
+  {
+    "id": "storycraft-intro-no-narrative-windup",
+    "question": "When your audience needs a key point quickly, skip the long narrative windup and lead with it.",
+    "verb": "cut",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "if your neighbors want to know if their school will be closed, you’d be foolish to begin a report on the critical school board meeting with a long narrative windup."
+    }
+  },
+  {
+    "id": "storycraft-intro-master-narrative-forms",
+    "question": "Master a wide variety of narrative forms rather than relying on a single one.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "Mastering a wide variety of narrative forms is one key to success."
+    }
+  },
+  {
+    "id": "storycraft-intro-experience-not-required",
+    "question": "Do not let lack of experience keep you from narrative: grasp a few core principles, find an appropriate story structure, and draft from there.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "don’t let lack of experience intimidate you. Time and again I’ve seen writers with absolutely no narrative experience grasp a few core principles, ﬁ nd appropriate story structures, and draft dramatic tales that moved readers."
+    }
+  },
+  {
+    "id": "storycraft-intro-apply-principles-real-world",
+    "question": "Ground your story in specific real-world decisions, applying abstract story principles to the actual material at hand.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "Good narrative comes from speciﬁc real- world decisions made by writers and editors who not only understand the abstract principles of story, but also know how to apply them in the real world."
+    }
+  },
+  {
+    "id": "storycraft-intro-craft-over-venue",
+    "question": "Care more about how well your story is told than about where it appears.",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "where a story appeared is far less important than how well it was told."
+    }
+  },
+  {
+    "id": "storycraft-intro-immersion-reporting",
+    "question": "Use immersion reporting as a core technique for your nonfiction narrative.",
+    "verb": "concept-form",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "As Ted Conover demonstrated, both ethnography and nonﬁ ction narrative share immersion reporting as a core technique."
+    }
+  },
+  {
+    "id": "storycraft-intro-show-causality",
+    "question": "Show how one action leads to another so your story makes sense of a confusing world.",
+    "verb": "concept-form",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "Story makes sense out of a confusing universe by showing us how one action leads to another."
+    }
+  },
+  {
+    "id": "storycraft-intro-what-to-include",
+    "question": "Decide deliberately what to include in your narrative and what to leave out.",
+    "verb": "cut",
+    "genre": [
+      "creative-nonfiction"
+    ],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Introduction",
+      "quote": "Help with their reporting, help with their selection of scenes, help with their descriptions of characters, and help with their choices about what to include and what to leave out."
+    }
+  }
+]

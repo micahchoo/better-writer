@@ -1,0 +1,230 @@
+[
+  {
+    "id": "storycraft-ch09-plot-serves-theme",
+    "question": "State your theme, then check that every element of your action line—the plot—exists to serve it.",
+    "verb": "concept-form",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "In a fully realized story, the action line—what we call “plot” in ﬁction—exists to serve the theme."
+    }
+  },
+  {
+    "id": "storycraft-ch09-theme-focuses-work",
+    "question": "Write a theme statement and use it to focus both your reporting and your writing.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "Theme gives the audience a sense of time well invested. (What’s the point of reading unless reading has a point?) But it also focuses the reporting and writing."
+    }
+  },
+  {
+    "id": "storycraft-ch09-reinforce-theme",
+    "question": "Reinforce your theme at every opportunity—in the lead, at each major turn, and especially at the last word before any page break or jump.",
+    "verb": "rewrite",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "As the story took shape, the text reﬂected theme at every opportunity. The lead emphasized Gary Wall’s barren, postaccident existence:"
+    }
+  },
+  {
+    "id": "storycraft-ch09-theme-from-conviction",
+    "question": "Locate your theme inside yourself—draw it from your own convictions about cause and effect in human lives, not from the external world.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "A literary theme inevitably springs from the writer’s personal values, his or her highly individual understanding of cause and effect in human lives."
+    }
+  },
+  {
+    "id": "storycraft-ch09-cliche-theme-ok",
+    "question": "Don’t reject a theme because it is clichéd: the familiar principle becomes an eternal truth at the conceptual level.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "clichés may be an embarrassment at the sentence level, but they are at the heart of theme. “At the conceptual level,” Franklin wrote, “the cliché undergoes a strange metamorphosis: It becomes an eternal truth.”"
+    }
+  },
+  {
+    "id": "storycraft-ch09-universal-context",
+    "question": "Find the context that links your protagonist’s life with your readers’ own.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "Connecting with readers means ﬁnding the context that links the lives of your protagonists with their own."
+    }
+  },
+  {
+    "id": "storycraft-ch09-alien-life-connections",
+    "question": "If your protagonist’s life seems alien to your audience, take special pains to demonstrate the connections to their own.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "If your protagonist lives a life that seems especially alien to your audience, you must take special pains to demonstrate connections."
+    }
+  },
+  {
+    "id": "storycraft-ch09-lesson-value",
+    "question": "Articulate the lesson your theme carries—the bigger the lesson, the more value it adds for your audience.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "When you think about it, every theme incorporates a lesson. That’s the value added that draws an audience to a story in the ﬁ rst place. The bigger the lesson, the more value added."
+    }
+  },
+  {
+    "id": "storycraft-ch09-extraordinary-in-ordinary",
+    "question": "Find the extraordinary in the ordinary: tell the tale of an ordinary person facing the challenges of ordinary living.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "part of the job is to ﬁnd the extraordinary in the ordinary."
+    }
+  },
+  {
+    "id": "storycraft-ch09-theme-in-material",
+    "question": "Don’t impose a theme on your story; find it in the material and extract it from the facts the world delivers.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "memoir", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "“It’s not something that you bring to the story. It’s something that you ﬁ nd in the story and extract from the story.”"
+    }
+  },
+  {
+    "id": "storycraft-ch09-title-finds-theme",
+    "question": "When a theme won’t surface, search for an overall title for the story and its parts to orient your brain toward its essence, structure, and drive.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "“I’m always looking for an overall title,” he said, “as well as titles for the various parts and chapters. It’s a way of orienting your brain toward the essence of the story, also its structure and drive.”"
+    }
+  },
+  {
+    "id": "storycraft-ch09-theme-statement-first",
+    "question": "Write a theme statement first and use it to find both the title and the shape of the story.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "First we come up with a theme statement, and we use that to ﬁ nd both the title and the shape of the story."
+    }
+  },
+  {
+    "id": "storycraft-ch09-theme-is-sentence",
+    "question": "Express your theme as one clear, coherent sentence, not a single word.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "“A true theme is not a word but a sentence,” McKee says, “one clear, coherent sentence that expresses a story’s irreducible meaning.”"
+    }
+  },
+  {
+    "id": "storycraft-ch09-transitive-verb-theme",
+    "question": "Write your theme statement around a transitive verb so the sentence answers “what?” and shows causality.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "Because they answer the question “what?” sentences built around transitive verbs show causality. And causality is the essence of a theme that tells readers how the world works and how they can inﬂ uence it. Hence, “Action creates (what?) identity.”"
+    }
+  },
+  {
+    "id": "storycraft-ch09-three-part-premise",
+    "question": "State your theme in three parts—a character, the conflict (“leads to”), and the outcome—so it suggests the shape of your narrative.",
+    "verb": "rephrase",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "“Every good premise,” he said, “is composed of three parts, each of which is essential to a good play. Let us examine ‘Frugality leads to waste.’ The ﬁ rst part of this premise suggests character—a frugal character. The second part ‘leads to,’ suggests conﬂ ict, and the third part, ‘waste,’ suggests the end of the play.”"
+    }
+  },
+  {
+    "id": "storycraft-ch09-theme-guides-cut",
+    "question": "Use your theme statement as the standard for every decision—structure, reporting, title, and especially what to cut.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "So the theme statement suggests your structure. It guides your reporting. It helps you ﬁ nd a title. If you have to cut, it tells you what can go and what must stay."
+    }
+  },
+  {
+    "id": "storycraft-ch09-theme-first-word",
+    "question": "Before writing anything, type “theme:” at the top of the file and puzzle out the noun-verb-noun structure of your statement.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "Because a theme statement is so valuable, the ﬁ rst word I write on any project is always the same. I open a new computer screen and type “t- h- e- m- e.” Then I hit the colon key and sit there for a minute, puzzling over just the right noun- verb- noun structure for my statement."
+    }
+  },
+  {
+    "id": "storycraft-ch09-erase-theme-at-end",
+    "question": "Let the theme statement and outline guide your journey, then erase them when you arrive.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "Then I’m off on the writer’s journey, secure in the knowledge that I know my destination. When I arrive, I erase the theme statement and outline."
+    }
+  },
+  {
+    "id": "storycraft-ch09-theme-with-editor",
+    "question": "Develop your theme statement with your editor early in the process so it becomes a shared standard for decisions about the story.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 9",
+      "quote": "Hashing one out together provides common ground, a shared standard for making decisions about a story."
+    }
+  }
+]

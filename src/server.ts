@@ -17,7 +17,8 @@ import { loadEnvFile } from './env.js';
 import { makeComplete } from './llm.js';
 import { pullSeed } from './seed.js';
 import { reshape } from './reshape.js';
-import { loadDraft, saveDraft } from './draft.js';
+import { loadAnnotations, loadDraft, saveAnnotations, saveDraft } from './draft.js';
+import type { Annotation } from './types.js';
 import { resolveModelDir } from './stt/model.js';
 import { createSttClient } from './stt/client.js';
 
@@ -80,17 +81,58 @@ app.post('/ask', async (c) => {
  }
 });
 
+/** Validate an unknown value as an Annotation; null when it is not one. */
+function parseAnnotation(value: unknown): Annotation | null {
+ if (typeof value !== 'object' || value === null) return null;
+ const a = value as Record<string, unknown>;
+ if (typeof a.start !== 'number' || typeof a.end !== 'number') return null;
+ if (typeof a.fragment !== 'string' || typeof a.question !== 'string') return null;
+ if (typeof a.ts !== 'number') return null;
+ return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts };
+}
+
+/** Validate an unknown value as an Annotation[]; null when it is not one. */
+function parseAnnotations(value: unknown): Annotation[] | null {
+ if (!Array.isArray(value)) return null;
+ const out: Annotation[] = [];
+ for (const item of value) {
+  const parsed = parseAnnotation(item);
+  if (parsed === null) return null;
+  out.push(parsed);
+ }
+ return out;
+}
+
 app.post('/save', async (c) => {
- const body = await c.req.json<{ draft?: unknown }>().catch(() => null);
+ const body = await c.req
+  .json<{ draft?: unknown; annotations?: unknown }>()
+  .catch(() => null);
  const draft = body?.draft;
  if (typeof draft !== 'string') return c.json({ error: 'draft must be a string' }, 400);
- await saveDraft(draft);
- return c.json({});
+ // Absent means the client dropped all notes: always overwrite, never leave stale ones.
+ const annotations = body?.annotations === undefined ? [] : parseAnnotations(body.annotations);
+ if (annotations === null) {
+  return c.json({ error: 'annotations must be an array of {start, end, fragment, question, ts}' }, 400);
+ }
+ try {
+  await saveDraft(draft);
+  await saveAnnotations(annotations);
+  return c.json({});
+ } catch (err) {
+  console.error('[server] /save failed:', err);
+  return c.json({ error: err instanceof Error ? err.message : String(err) }, 500);
+ }
 });
 
 app.get('/load', async (c) => {
- const draft = await loadDraft();
- return c.json({ draft });
+ try {
+  const draft = await loadDraft();
+  const annotations = await loadAnnotations();
+  return c.json({ draft, annotations });
+ } catch (err) {
+  console.error('[server] /load failed:', err);
+  return c.json({ error: err instanceof Error ? err.message : String(err) }, 500);
+ }
 });
 
 // --- STT (one-shot transcribe; the worker spawns lazily on first use) ---

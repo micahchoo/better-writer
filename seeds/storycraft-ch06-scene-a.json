@@ -1,0 +1,242 @@
+[
+  {
+    "id": "storycraft-ch06a-playwright-stage",
+    "question": "Think of yourself as a playwright: create a stage, a place where your story can unfold, then people it with characters who can breathe, move, and act.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "When you set out to craft a nonfiction story, it doesn't hurt to think of yourself as a playwright. You must, after all, create a stage, a place where the story can unfold."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-scene-not-end",
+    "question": "Remember that the scene is never an end in itself: in a story, the ultimate point is action, so let the wants and needs of your characters drive the plot forward through the scenes.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "The scene is never an end in itself. In a story, the ultimate point is action."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-setting-gift-wrap",
+    "question": "Treat setting as gift wrap and story as the gift: keep description in service of the story you are telling.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Setting is the gift wrap; story is the gift."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-tap-reader-memories",
+    "question": "Do not describe the world in all its detailed complexity: tap what is already in the reader's head by carefully selecting a few details that stimulate existing memories.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "The mission is to tap what's already in the reader's head by carefully selecting a few details that stimulate existing memories."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-accurate-not-exhaustive",
+    "question": "Keep your scene-setting absolutely accurate but not exhaustive: give readers only enough detail to stimulate them to fill in the blanks themselves.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "The details must be absolutely accurate, of course, but they need not be exhaustive. All they need do is stimulate readers to fill in the blanks."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-explanatory-scenes",
+    "question": "In an explanatory narrative, make each scene hold one of the larger, more abstract points you want to make about your topic.",
+    "verb": "concept-form",
+    "genre": ["creative-nonfiction", "essay"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "In an explanatory narrative, each scene holds some of the larger, more abstract points the writer wants to make about his topic."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-scenes-along-arc",
+    "question": "Unfold each scene along the narrative arc, propelling the action line through the phases of story: open with a scene of exposition that introduces the protagonist and the backstory needed to understand the complication, then land the inciting incident in the first or second scene.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Each scene should unfold along the narrative arc, propelling the action line through the phases of story. You'll want to open a story narrative with a scene suitable for exposition, which in an opening means introducing the protagonist and providing the backstory necessary for understanding the complication."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-good-scene-tests",
+    "question": "Check each scene against these tests: does it cause a subsequent scene to occur, get driven by the main character's needs and wants, explore various ploys by the character to get his own way, and include action that changes the character's position relative to the end of the story?",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "A good scene, he says, will: cause a subsequent scene to occur, creating cause and effect. be driven by the main character's needs and wants. explore various ploys by the character to get his own way. include action that changes a character's position, relative to the end of the story."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-value-charge",
+    "question": "Make every scene change the protagonist's 'value charge'—the degree to which the character is up or down relative to the ultimate goal of resolving the complication.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "each movie scene must change what he calls the protagonist's 'value charge.' The phrase refers to the degree to which a character is up or down relative to the ultimate goal of resolving the complication."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-conflict-or-cut",
+    "question": "Drop any scene you are considering that lacks conflict and emotion: forward momentum is the overcoming of opposition.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Forward momentum is the overcoming of opposition. If a scene you're considering lacks conflict and emotion, he adds, don't bother with it."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-details-serve-purpose",
+    "question": "Make every descriptive detail meaningful: the main point of description is story progression, so cut any detail that does not serve a larger purpose.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "the main point of description is story progression. That means details must be meaningful"
+    }
+  },
+  {
+    "id": "storycraft-ch06a-chekhov-rule",
+    "question": "Apply Chekhov's Rule: do not introduce an object into a scene unless it will play a part in the action that follows.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Readers expect writers to follow Chekhov's Rule—'One must not put a loaded rifle on the stage if no one is thinking of firing it.'"
+    }
+  },
+  {
+    "id": "storycraft-ch06a-little-truths",
+    "question": "Choose details that not only create the stage that holds the action but also help make some larger point: stay primed to spot les petits vrais, the little truths of life.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Every good narrative has a larger point, and every good narrative writer is constantly primed to spot les petits vrais—'the little truths' of life. Not every detail contributes to scene building, but the best not only create the stage that holds the action, but also help make some larger point."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-collective-details",
+    "question": "Characterize groups, neighborhoods, or whole cities with collective details—the status indicators that place human beings in social context.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "He characterizes groups with collective details, the status indicators that place human beings in social context."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-scene-volume-space",
+    "question": "Set each scene so the reader gets a feeling of volume, space, and dimension, and has a sensory experience there.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "You have to set a scene so the reader gets a feeling of volume, space, dimension, and has sensory experience there."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-perspective-images",
+    "question": "Seize on perspective-rich images—a road winding into the snowy woods, a long stairway ascending in front of you, railroad tracks—to help flesh out the stages you create.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Lots of perspective-rich images can do the same thing—a road winding into the snowy woods, a long stairway ascending in front of you, railroad tracks. Seize on such devices to help flesh out the stages you create."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-approach-to-scene",
+    "question": "Create a sense of narrative motion by describing the approach to a scene, moving from the long view to the scene itself.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "You also can create a sense of narrative motion by describing the approach to a scene, moving from the long view to the scene itself."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-establishing-shot",
+    "question": "Open with an establishing shot: a wide-angle view that takes in the entire setting that will contain the sequence of actions, so readers experience the story within its surrounding landscape.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Television and movie storytellers talk about 'establishing shots,' wide-angle views that take in the entire setting that will contain a sequence of actions."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-texture-contrast",
+    "question": "Describe the scene in terms of texture: look for the elements that contrast with one another so your readers can see something other than sameness.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Look for the elements that contrast with one another, he said. You'll give your readers a richer experience if they can see something other than sameness."
+    }
+  },
+  {
+    "id": "storycraft-ch06a-how-did-it-feel",
+    "question": "Build atmosphere by asking not only 'What happened?' but also 'How did it feel?', letting carefully chosen details add up to create mood.",
+    "verb": "elucidate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 6",
+      "quote": "Larson had the good sense to ask not only 'What happened?' but also 'How did it feel?'"
+    }
+  }
+]

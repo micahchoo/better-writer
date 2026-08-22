@@ -167,6 +167,74 @@ describe('runSweep', () => {
     expect(coach.ask).not.toHaveBeenCalled()
     expect(onNote).not.toHaveBeenCalled()
   })
+
+  it('fires onProgress after every window, skipped anchors included', async () => {
+    const draft = doc(BLOCKS_10)
+    // First 3 windows only: [0-2], [3-5], [6-8].
+    const plan = planSweep(draft).slice(0, 3)
+    const responses = [
+      `Rewrite "${BLOCKS_10[3]}" elsewhere`, // window 0: anchored outside its bounds -> skipped
+      `Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`,
+      `Rewrite "${markedBlock(BLOCKS_10, 2)}" with more force`,
+    ]
+    const coach = { ask: async () => responses.shift() ?? 'What does the reader feel here?' }
+    const onNote = vi.fn()
+    const onProgress = vi.fn()
+    const notes = await runSweep(plan, { genre: 'fiction', coach, draft, onNote, onProgress })
+
+    expect(notes).toHaveLength(2)
+    expect(onNote).toHaveBeenCalledTimes(2)
+    // Progress advances one window at a time, the skipped window included.
+    expect(onProgress.mock.calls).toEqual([
+      [1, 3],
+      [2, 3],
+      [3, 3],
+    ])
+  })
+
+  it('stops before a later ask when shouldAbort turns true, resolving with the notes so far', async () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft)
+    const callOrder: string[] = []
+    const pending: Array<{ resolve: (question: string) => void }> = []
+    const coach = {
+      ask(textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
+        const index = callOrder.length
+        callOrder.push(textWindow)
+        return new Promise<string>((resolve) => {
+          pending[index] = { resolve }
+        })
+      },
+    }
+    let shouldAbort = false
+    const onNote = vi.fn()
+    const onProgress = vi.fn()
+    const sweepPromise = runSweep(plan, {
+      genre: 'fiction',
+      coach,
+      draft,
+      onNote,
+      onProgress,
+      shouldAbort: () => shouldAbort,
+    })
+
+    await Promise.resolve()
+    expect(callOrder).toHaveLength(1)
+    pending[0].resolve(`Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`)
+    // The writer hits Stop before window 1's ask starts.
+    shouldAbort = true
+    await Promise.resolve()
+
+    // Resolves normally (no throw), with only the notes that arrived first.
+    const notes = await sweepPromise
+    expect(callOrder).toHaveLength(1) // window 1 was never asked
+    expect(notes).toHaveLength(1)
+    expect(notes[0].windowIndex).toBe(0)
+    expect(notes[0].fragment).toBe(markedBlock(BLOCKS_10, 0))
+    expect(onNote).toHaveBeenCalledTimes(1)
+    // Progress stops at the last completed window; nothing fires for the aborted one.
+    expect(onProgress.mock.calls).toEqual([[1, plan.length]])
+  })
 })
 
 describe('staleAnnotations', () => {

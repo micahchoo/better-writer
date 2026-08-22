@@ -1,0 +1,146 @@
+[
+  {
+    "id": "storycraft-ch07b-expletives-rewrite",
+    "question": "Find the expletives in your prose — \"there are,\" \"there is,\" \"it was,\" and the like — and rewrite each into an active verb that generates an image.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Why not introduce a real verb that generates an image by writing, “two airplanes taxied on the runway” or “two airplanes idled on the runway,” or even “two airplanes sat on the runway”?"
+    }
+  },
+  {
+    "id": "storycraft-ch07b-cut-to-action",
+    "question": "Find every action you introduced with \"began to\" or a similar phrase, and cut to the chase — describe the action itself rather than its beginning.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "You’re almost always better off if you cut to the chase, describing the action rather than its beginning."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-time-markers",
+    "question": "Make your story's chronology unmistakable by seeding in time markers — subtle ones like the fall colors on the trees or the height of the sun — wherever the action jumps in time.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Often, time markers can be relatively subtle. You might simply note the fall colors on the trees when you open a new scene that jumps ahead from summer to autumn."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-move-between-climaxes",
+    "question": "Include plenty of highlights in your story and move readers quickly between them — leave out the parts people skip.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "As a writer, you want to include plenty of highlights, and you want to move readers quickly between them."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-slow-at-climax",
+    "question": "Invert life's pace: speed up through the boring stretches of your story and slow way down through the best parts, so the reader can feel and enter the scene.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "The paradox is that when you’re in the boring stuff, that’s when you need to speed up and when you’re in the best stuff where things are really moving rapidly, you slow down. The reason you slow down is so that the reader can really feel and process and really enter that scene."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-slow-down-mechanics",
+    "question": "Slow a climactic scene down by giving it more space on the page: more sentences, shorter sentences, more paragraph breaks, and the natural pauses you would normally skip over.",
+    "verb": "elaborate",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "You allow more space on the page. You allow more sentences. You literally write in shorter sentences. You get more paragraph breaks. You use space. You ﬁ nd pauses inside the scene that occur naturally that you would normally skip over."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-minimize-exposition",
+    "question": "When you find yourself writing exposition, step back and ask whether your readers really need it to understand what's going on — if not, cut it and get back to the action.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "When you ﬁ nd yourself writing exposition, step back, clear your head, and ask yourself, “Do my readers really need this to understand what’s going on?” If not, desist."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-two-paragraph-limit",
+    "question": "Keep any digression from the main narrative to two paragraphs or less, so exposition never stalls the action for long.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Bill Blundell says his rule of thumb is to never digress from the main narrative for more than two paragraphs."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-exposition-in-subclauses",
+    "question": "Rather than leaving the action line, drop your exposition into subordinate clauses, modifiers, and appositives — reserve the main clauses for action alone.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "Sometimes, you don’t have to leave the action line at all. Instead, you drop exposition into action sentences via subordinate clauses, modiﬁers, appositives, and other incidental elements. Reserve the main clauses for action alone."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-sandwich-technique",
+    "question": "Sandwich any necessary explanation between action, and place especially memorable action right after the digression — the repeated pattern trains readers to stick with you as you break away.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "When it’s consistently repeated, the technique trains readers to stick with you as you digress. They quickly learn that even though you’ve abandoned the action, you’ll soon be back in the thick of things. And Bill reinforces that lesson by placing especially memorable action right after any expository digression, creating little rewards that lure readers relentlessly forward."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-firsthand-action",
+    "question": "Put readers directly into the scene so they experience the action firsthand, as though they were witnessing it themselves — don't filter it through a third party.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "For the great majority of narrative, your aim as a storyteller is to put readers into a scene where they can experience the action as though they were there witnessing it themselves."
+    }
+  },
+  {
+    "id": "storycraft-ch07b-avoid-passive-detachment",
+    "question": "Watch for passive constructions like \"can be seen\" that filter action through a third party — the refuge that dodges personal responsibility — and rewrite them as direct, firsthand description.",
+    "verb": "rewrite",
+    "genre": ["creative-nonfiction"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 7",
+      "quote": "This reticence drives some newspaper reporters into passive voice, the ultimate refuge for dodging personal responsibility."
+    }
+  }
+]

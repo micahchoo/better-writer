@@ -1,0 +1,182 @@
+[
+  {
+    "id": "storycraft-ch02b-exposition-minimal",
+    "question": "Rewrite each expository segment of your story so readers understand only what they must, and no more—cut anything they can do without.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "The trick to writing a good expository segment is to tell readers what they must understand . . . and no more."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-exposition-enemy",
+    "question": "Cut your backstory down to just enough to explain how the protagonist got to this place, at this time, with the wants that drive the next phase—then clear a path forward.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Hence the principle that exposition is the enemy of narrative. Good exposition provides just enough backstory to explain how the protagonist happens to be in a particular place, at a particular time, with the wants that will lead to the next phase of the story. Thorough reporting produces overwhelming detail. Good storytellers cut through it to create a clear path leading forward."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-blend-exposition",
+    "question": "Launch your action immediately and blend your exposition into it, submerging the backstory in modifiers, subordinate clauses, and appositives.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "You launch action immediately and then blend the exposition into it, submerging it in modiﬁ ers, subordinate clauses, appositives, and the like."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-foreshadow-denial",
+    "question": "Foreshadow coming disaster subtly by showing your character's confident assumption that the worst will not happen.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Readers know full well that when a writer takes pains to tell them a character doesn’t expect the worst, she’s about to get it."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-tease-loose-end",
+    "question": "Open your narrative by teasing readers with a pronoun that lacks an antecedent or some other glaring loose end, and let the little mystery drive the story forward.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Often it’s simply a matter of teasing readers with a pronoun that lacks an antecedent or some other kind of glaring loose end. ... What happened? What sound? The standard newspaper report reveals all immediately. But little mysteries drive the narrative forward."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-rising-action-problems",
+    "question": "Check each plot point in your rising action and make sure most of them create new problems for your protagonist—a narrative is when things go wrong.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Most of those plot points will create new problems for the protagonist. As Ted Conover reminds us, “A narrative is when things go wrong.”"
+    }
+  },
+  {
+    "id": "storycraft-ch02b-plot-point-growth",
+    "question": "Make sure each new development in your story grows from the one before it, each twist leading inexorably to the next.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "“There is no moment in a play,” Lajos Egri says, “which does not grow from the one before it.”"
+    }
+  },
+  {
+    "id": "storycraft-ch02b-escalating-mysteries",
+    "question": "Arrange the mysteries in your dramatic structure in a deliberate escalating order, using smaller questions to lead into larger ones and saving the resolution of the biggest mystery for last.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "“a string of mysteries organized in a deliberate order. The mysteries will be large and small, and the writer will make good use of this variation in interest, resolving the mysteries in escalating order, using smaller questions to lead into larger ones, saving the resolution of the biggest mystery for last.”"
+    }
+  },
+  {
+    "id": "storycraft-ch02b-rise-fall-hope",
+    "question": "Give your rising action the rhythm of hope rising and falling—let your protagonist win some points and lose others so the outcome stays uncertain.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Good narrative also follows the rise and fall of hope, another characteristic of effective rising action."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-cliffhanger-kicker",
+    "question": "Close each little episode of your story with a kicker that leaves your protagonist—and your audience—dangling, waiting for what happens next.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "You don’t need to create literal cliff- hangers—Indiana Jones dangling from a sapling on a vertical face high above a river—but you do want to close out each little episode with a kicker that leaves your protagonist, and your audience, dangling."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-crisis-opening-question",
+    "question": "Decide deliberately whether to begin your story just before the inciting incident and tell it chronologically, or to begin with the crisis and use its dramatic intensity to jerk readers into the story.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Do you begin the story just before the inciting incident and tell it in chronological order? Or do you begin it with the crisis, using the dramatic intensity of that moment to grab readers by their lapels and jerk them into the story?"
+    }
+  },
+  {
+    "id": "storycraft-ch02b-kiss-flashback",
+    "question": "Before you add extensive flashbacks or flash-forwards, apply KISS—stay as close to the action as possible and resist jumping out of the chronology.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "No matter how experienced you are, you’re well advised to apply KISS anytime you consider extensive ﬂ ashbacks or ﬂ ash- forwards. ... “Beware the extended ﬂashback, the ornate ﬂ ash- forward, the so- called expert dragged forward to ‘explain.’ Stay as close to the action as possible.”"
+    }
+  },
+  {
+    "id": "storycraft-ch02b-point-of-insight",
+    "question": "Even without a true psychological transformation, ask yourself what event sets up the resolution of the crisis and treat that as your point of insight to visualize your story's full structure.",
+    "verb": "concept-form",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "Ask yourself, “What event sets up the resolution of the crisis?” Consider that your point of insight. ... having such a point helps you visualize its full structure."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-denouement-quick",
+    "question": "When you reach the falling action, answer the remaining questions and wrap things up as quickly as possible—don't push your luck and drag out the denouement.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "So don’t push your luck. Wrap things up as quickly as possible and leave the stage."
+    }
+  },
+  {
+    "id": "storycraft-ch02b-kicker-end",
+    "question": "End your story with a kicker that sums up, surprises a little, brings things full circle, plants your protagonist in their new status quo, and leaves no doubt the story has ended.",
+    "verb": "rewrite",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Storycraft",
+      "author": "Jack Hart",
+      "chapter": "Chapter 2",
+      "quote": "A good one will sum up, surprise a little, perhaps bring things full circle, ﬁrmly planting your protagonists in their new status quo. It will leave absolutely no doubt that the story has ended."
+    }
+  }
+]

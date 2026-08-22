@@ -434,70 +434,10 @@ body {
   color: var(--muted-dark);
 }
 
-.coach-sparkle {
-  flex: 0 0 auto;
-  margin-top: 2px;
-}
-
 .coach-actions {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.coach-ask {
-  font-family: var(--font-draft);
-  font-size: 12px;
-  font-weight: 500;
-  padding: 5px 12px;
-  border-radius: 6px;
-  border: 1px solid var(--accent-light);
-  background: var(--accent-light);
-  color: var(--on-accent-light);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.coach-ask:hover:not(:disabled) {
-  filter: brightness(1.08);
-}
-
-.coach-ask:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-
-.app.dark .coach-ask {
-  border-color: var(--accent-dark);
-  background: var(--accent-dark);
-  color: var(--on-accent-dark);
-}
-
-.coach-dismiss {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  border: none;
-  border-radius: 6px;
-  background: transparent;
-  color: var(--muted-light);
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.app.dark .coach-dismiss {
-  color: var(--muted-dark);
-}
-
-.coach-dismiss:hover {
-  background: var(--ring-light);
-}
-
-.app.dark .coach-dismiss:hover {
-  background: var(--ring-dark);
 }
 
 /* Sweep + clear (local mode only): sit next to Ask now in the coach panel */
@@ -576,6 +516,11 @@ body {
 
 .coach-popover {
   position: absolute;
+  /* Above every sibling .coach-highlight-layer: the layers are
+     z-index: auto (no stacking context), so any positive z-index here
+     paints and hit-tests above later notes' spans regardless of DOM
+     order; 25 only needs to exceed the sibling layers' default. */
+  z-index: 25;
   max-width: 300px;
   padding: 10px 12px;
   border-radius: 8px;

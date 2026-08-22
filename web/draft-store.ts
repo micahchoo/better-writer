@@ -6,35 +6,34 @@
  *                            GET /load), so the writer's prose is never
  *                            stuck in one machine's browser.
  *
- * Both adapters also expose question-anchor persistence. The browser store
- * keeps annotations under their own localStorage key; the server store is a
- * no-op until POST /save learns the annotations payload.
+ * Both adapters expose the same persistence contract: the draft plus the
+ * pinned notes it carries (the coach's question-anchors). The browser store
+ * keeps notes under their own localStorage key; the server adapter persists
+ * them too, because the wire contract carries them — GET /load returns
+ * {draft, annotations} and POST /save accepts {draft, annotations}, so notes
+ * survive alongside the prose on the server. /save always overwrites the
+ * server's annotation list ([] when the caller omits notes), so no read-back
+ * round-trip is ever needed to keep the two in sync.
  */
 
+import type { Annotation } from '../src/types';
 import type { CoachMode } from './coach';
+
+/** A pinned note on screen — the wire contract's Annotation under its domain name. */
+export type Note = Annotation;
 
 /**
  * A highlight the coach's question was anchored to, with the draft offsets
- * it covered at the time the question was asked.
+ * it covered at the time the question was asked. Alias of Note (Annotation);
+ * note identity and minting live in notes.ts.
  */
-export interface AnchorRecord {
-  /** character offset of the anchor's first character in the draft */
-  start: number;
-  /** character offset just past the anchor's last character */
-  end: number;
-  /** the draft text the question was anchored to */
-  fragment: string;
-  /** the coach's question this anchor came from */
-  question: string;
-  /** epoch ms when the anchor was created */
-  ts: number;
-}
+export type AnchorRecord = Annotation;
 
 export interface DraftStore {
   load(): Promise<string>;
-  save(draft: string): Promise<void>;
-  loadAnnotations(): Promise<AnchorRecord[]>;
-  saveAnnotations(annotations: AnchorRecord[]): Promise<void>;
+  save(draft: string, notes?: Note[]): Promise<void>;
+  loadAnnotations(): Promise<Note[]>;
+  saveAnnotations(notes: Note[]): Promise<void>;
 }
 
 const STORAGE_KEY = 'better-writer:draft';
@@ -55,7 +54,9 @@ export class LocalStorageDraftStore implements DraftStore {
     }
   }
 
-  async save(draft: string): Promise<void> {
+  async save(draft: string, _notes?: Note[]): Promise<void> {
+    // The browser store ignores the notes argument: notes persist under their
+    // own key via saveAnnotations, never entangled with the draft payload.
     try {
       this.storage.setItem(STORAGE_KEY, draft);
     } catch {
@@ -63,20 +64,20 @@ export class LocalStorageDraftStore implements DraftStore {
     }
   }
 
-  async loadAnnotations(): Promise<AnchorRecord[]> {
+  async loadAnnotations(): Promise<Note[]> {
     try {
       const raw = this.storage.getItem(ANNOTATIONS_KEY);
       if (!raw) return [];
       const parsed: unknown = JSON.parse(raw);
-      return Array.isArray(parsed) ? (parsed as AnchorRecord[]) : [];
+      return Array.isArray(parsed) ? (parsed as Note[]) : [];
     } catch {
       return []; // storage disabled or corrupt payload: start empty
     }
   }
 
-  async saveAnnotations(annotations: AnchorRecord[]): Promise<void> {
+  async saveAnnotations(notes: Note[]): Promise<void> {
     try {
-      this.storage.setItem(ANNOTATIONS_KEY, JSON.stringify(annotations));
+      this.storage.setItem(ANNOTATIONS_KEY, JSON.stringify(notes));
     } catch {
       // Quota exceeded or storage disabled: fail soft — the highlight is transient.
     }
@@ -85,38 +86,53 @@ export class LocalStorageDraftStore implements DraftStore {
 
 export class ServerDraftStore implements DraftStore {
   private readonly endpoint: string;
+  /** Last draft the server is known to hold — the anchor saveAnnotations
+   * persists notes against without a read-back round-trip. The caller keeps
+   * draft and notes in step (EditorApp always follows a note change with a
+   * draft save carrying the same notes), so this never desyncs the server. */
+  private draft = '';
+  /** Last notes the server is known to hold (from the most recent /load or /save). */
+  private notes: Note[] = [];
 
   constructor(endpoint = '') {
     this.endpoint = endpoint;
   }
 
   async load(): Promise<string> {
-    const res = await fetch(`${this.endpoint}/load`);
-    if (!res.ok) {
-      throw new Error(`Draft load failed: ${res.status} ${res.statusText}`);
-    }
-    const data = (await res.json()) as { draft?: string };
-    return data.draft ?? '';
+    const data = await this.fetchLoad();
+    this.draft = data.draft ?? '';
+    this.notes = data.annotations ?? []; // forward-compat: older /load payloads omit annotations
+    return this.draft;
   }
 
-  async save(draft: string): Promise<void> {
+  async save(draft: string, notes?: Note[]): Promise<void> {
+    const annotations = notes ?? []; // /save always overwrites the server's annotation list
+    this.draft = draft;
+    this.notes = annotations;
     const res = await fetch(`${this.endpoint}/save`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ draft }),
+      body: JSON.stringify({ draft, annotations }),
     });
     if (!res.ok) {
       throw new Error(`Draft save failed: ${res.status} ${res.statusText}`);
     }
   }
 
-  async loadAnnotations(): Promise<AnchorRecord[]> {
-    return []; // POST /save persists the draft only; annotations stay client-side.
+  async loadAnnotations(): Promise<Note[]> {
+    return this.notes;
   }
 
-  async saveAnnotations(_annotations: AnchorRecord[]): Promise<void> {
-    // No-op: the server's /save endpoint accepts the draft only, so there is
-    // nowhere to persist annotations until that contract changes.
+  async saveAnnotations(notes: Note[]): Promise<void> {
+    await this.save(this.draft, notes);
+  }
+
+  private async fetchLoad(): Promise<{ draft?: string; annotations?: Annotation[] }> {
+    const res = await fetch(`${this.endpoint}/load`);
+    if (!res.ok) {
+      throw new Error(`Draft load failed: ${res.status} ${res.statusText}`);
+    }
+    return (await res.json()) as { draft?: string; annotations?: Annotation[] };
   }
 }
 
