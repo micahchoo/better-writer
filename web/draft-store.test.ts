@@ -123,17 +123,100 @@ describe('draft-store annotations', () => {
       vi.unstubAllGlobals()
     }
   })
+
+  it('keeps last-known anchors when a save fails', async () => {
+    const { fetchMock, getState } = fakeServer({ draft: 'Persisted.' }, true)
+    vi.stubGlobal('fetch', fetchMock)
+    try {
+      const store = new ServerDraftStore('http://local')
+      await store.load() // learn the server's draft
+      await expect(store.save('new draft', annotations)).rejects.toThrow('Draft save failed: 500')
+      // The failed save must not have touched the server's state…
+      expect(getState()).toEqual({ draft: 'Persisted.' })
+      // …nor the store's anchors: saveAnnotations still rides the OLD draft.
+      await store.saveAnnotations(annotations)
+      expect(getState()).toEqual({ draft: 'Persisted.', annotations })
+    } finally {
+      vi.unstubAllGlobals()
+    }
+  })
+
+  it('updates anchors only after a confirmed save', async () => {
+    const { fetchMock, getState } = fakeServer({ draft: 'old' })
+    vi.stubGlobal('fetch', fetchMock)
+    try {
+      const store = new ServerDraftStore('http://local')
+      await store.load() // learn the server's draft
+      await store.save('new draft', annotations) // 200: the server confirms
+      await store.saveAnnotations([annotations[0]]) // anchored against the NEW draft
+      expect(getState()).toEqual({ draft: 'new draft', annotations: [annotations[0]] })
+    } finally {
+      vi.unstubAllGlobals()
+    }
+  })
+
+  it('passes keepalive through to /save', async () => {
+    const { fetchMock } = fakeServer()
+    vi.stubGlobal('fetch', fetchMock)
+    try {
+      const store = new ServerDraftStore('http://local')
+      await store.save('Draft text.', undefined, { keepalive: true })
+      expect(fetchMock.mock.calls.at(-1)?.[1]?.keepalive).toBe(true)
+
+      await store.save('Draft text.')
+      expect(fetchMock.mock.calls.at(-1)?.[1]?.keepalive).toBeUndefined()
+    } finally {
+      vi.unstubAllGlobals()
+    }
+  })
+
+  it('falls back to plain fetch when keepalive is rejected', async () => {
+    let state: { draft?: string; annotations?: unknown[] } = {}
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input)
+      if (url.endsWith('/save') && init?.keepalive) {
+        throw new TypeError('body too large') // Chrome's 64 KiB keepalive cap
+      }
+      if (url.endsWith('/save')) {
+        state = JSON.parse(String(init?.body)) as { draft?: string; annotations?: unknown[] }
+        return new Response(null, { status: 200 })
+      }
+      throw new Error(`fake server: unexpected fetch ${url}`)
+    })
+    vi.stubGlobal('fetch', fetchMock)
+    try {
+      const store = new ServerDraftStore('http://local')
+      await store.save('Draft text.', annotations, { keepalive: true })
+      expect(fetchMock).toHaveBeenCalledTimes(2)
+      expect(fetchMock.mock.calls[0]?.[1]?.keepalive).toBe(true)
+      expect(fetchMock.mock.calls[1]?.[1]?.keepalive).toBeUndefined()
+      expect(state).toEqual({ draft: 'Draft text.', annotations })
+
+      // The store recorded the confirmed save — later anchors ride the new draft.
+      await store.saveAnnotations([])
+      expect(state).toEqual({ draft: 'Draft text.', annotations: [] })
+    } finally {
+      vi.unstubAllGlobals()
+    }
+  })
 })
 
-/** An in-memory fake server backing ServerDraftStore's /load and /save. */
-function fakeServer(initial: { draft?: string; annotations?: unknown[] } = {}) {
+/** An in-memory fake server backing ServerDraftStore's /load and /save.
+ * When failSave is true, the first /save returns 500 and later saves succeed —
+ * enough to prove the store never records a rejected save. */
+function fakeServer(initial: { draft?: string; annotations?: unknown[] } = {}, failSave = false) {
   let state: { draft?: string; annotations?: unknown[] } = { ...initial }
+  let firstSave = true
   const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = String(input)
     if (url.endsWith('/load')) {
       return new Response(JSON.stringify(state), { status: 200 })
     }
     if (url.endsWith('/save')) {
+      if (failSave && firstSave) {
+        firstSave = false
+        return new Response('server error', { status: 500 })
+      }
       state = JSON.parse(String(init?.body)) as { draft?: string; annotations?: unknown[] }
       return new Response(null, { status: 200 })
     }

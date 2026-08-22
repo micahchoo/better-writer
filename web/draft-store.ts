@@ -31,7 +31,7 @@ export type AnchorRecord = Annotation;
 
 export interface DraftStore {
   load(): Promise<string>;
-  save(draft: string, notes?: Note[]): Promise<void>;
+  save(draft: string, notes?: Note[], opts?: { keepalive?: boolean }): Promise<void>;
   loadAnnotations(): Promise<Note[]>;
   saveAnnotations(notes: Note[]): Promise<void>;
 }
@@ -54,9 +54,10 @@ export class LocalStorageDraftStore implements DraftStore {
     }
   }
 
-  async save(draft: string, _notes?: Note[]): Promise<void> {
+  async save(draft: string, _notes?: Note[], _opts?: { keepalive?: boolean }): Promise<void> {
     // The browser store ignores the notes argument: notes persist under their
     // own key via saveAnnotations, never entangled with the draft payload.
+    // opts (keepalive) is likewise a no-op here: sync setItem needs nothing.
     try {
       this.storage.setItem(STORAGE_KEY, draft);
     } catch {
@@ -105,18 +106,35 @@ export class ServerDraftStore implements DraftStore {
     return this.draft;
   }
 
-  async save(draft: string, notes?: Note[]): Promise<void> {
+  async save(draft: string, notes?: Note[], opts?: { keepalive?: boolean }): Promise<void> {
     const annotations = notes ?? []; // /save always overwrites the server's annotation list
-    this.draft = draft;
-    this.notes = annotations;
-    const res = await fetch(`${this.endpoint}/save`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ draft, annotations }),
-    });
+    const url = `${this.endpoint}/save`;
+    const body = JSON.stringify({ draft, annotations });
+    let res: Response;
+    try {
+      res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+        ...(opts?.keepalive ? { keepalive: true } : {}),
+      });
+    } catch (err) {
+      if (!opts?.keepalive) {
+        throw err;
+      }
+      // Chrome rejects a keepalive fetch when the body exceeds the 64 KiB
+      // cap; retry once without keepalive so the save still lands.
+      res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      });
+    }
     if (!res.ok) {
       throw new Error(`Draft save failed: ${res.status} ${res.statusText}`);
     }
+    this.draft = draft;
+    this.notes = annotations;
   }
 
   async loadAnnotations(): Promise<Note[]> {

@@ -11,8 +11,7 @@ import { makeDraftStore, type AnchorRecord, type DraftStore } from './draft-stor
 import { makeNote, noteId, sameNote } from './notes'
 import { pickRecordingMimeType, transcribeAudio } from './dictation'
 import { HighlightOverlay } from './highlight'
-
-const SAVE_DELAY_MS = 1000
+import { SaveCoordinator } from './save-coordinator'
 
 export default function EditorApp() {
  const [mode, setMode] = useState<CoachMode | 'detecting'>('detecting')
@@ -47,7 +46,14 @@ export default function EditorApp() {
  const genreRef = useRef<Genre>(genre)
  const coachRef = useRef<Coach | null>(null)
  const draftStoreRef = useRef<DraftStore | null>(null)
- const saveTimerRef = useRef<number | null>(null)
+ // Built via useState's one-time initializer (not on first edit) so note
+ // ops — resolve, clear, sweep appends — can persist through it before any
+ // keystroke exists. useState (not useRef) because the value is never
+ // reassigned and must be non-null at every callsite.
+ const [coordinator] = useState(new SaveCoordinator({
+  getStore: () => draftStoreRef.current,
+  onError: (err: unknown) => setError(err instanceof Error ? err.message : String(err)),
+ }))
  const recorderRef = useRef<MediaRecorder | null>(null)
  const chunksRef = useRef<Blob[]>([])
  const annotationsRef = useRef<AnchorRecord[]>([])
@@ -125,38 +131,47 @@ export default function EditorApp() {
   }
  }, [mode])
 
- // Unmount cleanup: flush the pending save, stop any recording.
- useEffect(() => {
-  return () => {
-   if (saveTimerRef.current !== null) window.clearTimeout(saveTimerRef.current)
-   recorderRef.current?.stop()
-  }
- }, [])
-
- const handleContentChange = (value?: string) => {
-  const text = value ?? ''
-  draftRef.current = text
-  setDraft(text)
-
-  // Strip any annotation whose fragment no longer sits at its recorded
-  // offsets — a rewritten passage must not keep a stale highlight alive.
-  const valid = staleAnnotations(annotationsRef.current, text) as AnchorRecord[]
-  if (valid.length !== annotationsRef.current.length) {
-   annotationsRef.current = valid
-   setSweepNotes(valid)
-   void draftStoreRef.current?.saveAnnotations(valid).catch((err: unknown) => {
-    setError(err instanceof Error ? err.message : String(err))
-   })
-  }
-
-  // Debounced draft save.
-  if (saveTimerRef.current !== null) window.clearTimeout(saveTimerRef.current)
-  saveTimerRef.current = window.setTimeout(() => {
-   void draftStoreRef.current?.save(text, annotationsRef.current).catch((err: unknown) => {
-    setError(err instanceof Error ? err.message : String(err))
-   })
-  }, SAVE_DELAY_MS)
+// Unmount cleanup: cancel the coordinator's pending timers, stop any recording.
+useEffect(() => {
+ return () => {
+  coordinator.dispose()
+  recorderRef.current?.stop()
  }
+}, [])
+
+// Flush-on-hide: persist any pending draft when the tab hides or the page
+// unloads, so a closed tab doesn't drop the latest keystrokes. keepalive
+// lets the browser finish the request even as the page is torn down; flush
+// no-ops when nothing is pending and routes failures through onError.
+useEffect(() => {
+ const flushOnHide = () => {
+  void coordinator.flush({ keepalive: true })
+ }
+ document.addEventListener('visibilitychange', flushOnHide)
+ window.addEventListener('pagehide', flushOnHide)
+ return () => {
+  document.removeEventListener('visibilitychange', flushOnHide)
+  window.removeEventListener('pagehide', flushOnHide)
+ }
+}, [])
+
+const handleContentChange = (value?: string) => {
+ const text = value ?? ''
+ draftRef.current = text
+ setDraft(text)
+
+ // Strip any annotation whose fragment no longer sits at its recorded
+ // offsets — a rewritten passage must not keep a stale highlight alive.
+ const valid = staleAnnotations(annotationsRef.current, text) as AnchorRecord[]
+ if (valid.length !== annotationsRef.current.length) {
+  annotationsRef.current = valid
+  setSweepNotes(valid)
+  void coordinator.persistNow(text, valid)
+ }
+
+ // Debounced draft save, serialized through the coordinator.
+ coordinator.edit(text, annotationsRef.current)
+}
 
  const toggleDictation = async () => {
   if (dictationState === 'transcribing') return
@@ -228,9 +243,7 @@ export default function EditorApp() {
      // what arrived before it.
      annotationsRef.current = [...annotationsRef.current, record]
      setSweepNotes((prev) => [...prev, record])
-     void draftStoreRef.current?.saveAnnotations(annotationsRef.current).catch((err: unknown) => {
-      setError(err instanceof Error ? err.message : String(err))
-     })
+    void coordinator.persistNow(draftRef.current, annotationsRef.current)
     },
    })
   } catch (err) {
@@ -245,9 +258,7 @@ export default function EditorApp() {
  const clearNotes = () => {
   setSweepNotes([])
   annotationsRef.current = []
-  void draftStoreRef.current?.saveAnnotations([]).catch((err: unknown) => {
-   setError(err instanceof Error ? err.message : String(err))
-  })
+ void coordinator.persistNow(draftRef.current, [])
  }
 
  // Remove exactly one note, matched by its (start, end, ts) identity triple,
@@ -256,9 +267,7 @@ export default function EditorApp() {
   const isSameNote = (a: AnchorRecord) => sameNote(a, note)
   annotationsRef.current = annotationsRef.current.filter((a) => !isSameNote(a))
   setSweepNotes((prev) => prev.filter((n) => !isSameNote(n)))
-  void draftStoreRef.current?.saveAnnotations(annotationsRef.current).catch((err: unknown) => {
-   setError(err instanceof Error ? err.message : String(err))
-  })
+  void coordinator.persistNow(draftRef.current, annotationsRef.current)
  }
 
  const dictationLabel =
