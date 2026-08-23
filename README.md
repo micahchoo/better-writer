@@ -16,8 +16,9 @@ never edits, never explains.
 
 - **One question at a time** — ask when you want a fresh eye; the question
   anchors to the block under your cursor.
-- **Sweep the whole draft** (local mode) — the coach reads non-overlapping
-  3-block windows and pins one note per window as answers arrive.
+- **Sweep the whole draft** (local and BYOK modes) — the coach reads
+  non-overlapping 3-block windows and pins one note per window as answers
+  arrive.
 - **Click-to-open notes** — every sweep note paints a marker tint; click one
   to read its question in a popover. One popover open at a time.
 - **Seed bank of 1,638 craft questions** extracted verbatim from Le Guin's
@@ -28,8 +29,13 @@ never edits, never explains.
   nudge, then falls back to a topic probe.
 - **Local dictation** — press-to-talk with a local Parakeet speech model
   (optional).
-- **Two modes, zero config to switch** — the client probes `/health` on load
-  and picks static or local by itself.
+- **Three modes, zero config to switch** — the client probes `/health` on
+  load, prefers a saved BYOK key, and picks static or local by itself.
+  **BYOK (bring your own key)** — paste an OpenAI-compatible provider key
+  in the top bar; the coach runs fully in your browser. Your key and prose
+  never touch a server we run.
+- **BYOK dictation** — with a speech-capable provider configured, the same
+  press-to-talk records straight to your provider's transcription endpoint.
 
 ![editor with an open note](docs/assets/editor.png)
 
@@ -97,18 +103,21 @@ localStorage. A failed save retries once, silently.
 | `BW_STT_MODEL_DIR` | — | Local Parakeet STT dir; dictation hidden without it |
 | `BW_HOST` / `BW_PORT` | `127.0.0.1` / `4517` | Bind address |
 
-Real environment variables win over a `.env` file — see `.env.example`.
+BYOK needs no environment variable: configure it in the app's top bar. The
+key is stored in your browser only. Real environment variables win over a
+`.env` file — see `.env.example`.
 
 <details>
-<summary>How the two modes differ</summary>
+<summary>How the three modes differ</summary>
 
-| | Static | Local |
-|---|---|---|
-| Server | none | Hono + node:http on `4517` |
-| Question source | random seed, verbatim | seed pulled by genre, reshaped by the model |
-| Anchoring | block under the cursor | longest distinctive-word match near the anchor policy tiers |
-| Draft storage | browser localStorage | `data/drafts/current.md` |
-| Sweep button | hidden | available |
+| | Static | Local | BYOK |
+|---|---|---|---|
+| Server | none | Hono + node:http on `4517` | none |
+| Question source | random seed, verbatim | seed pulled by genre, reshaped by the model | seed picked in-browser, reshaped against your provider |
+| Anchoring | block under the cursor | longest distinctive-word match near the anchor policy tiers | same as local — runs in the browser |
+| Draft storage | browser localStorage | `data/drafts/current.md` | browser localStorage |
+| Sweep button | hidden | available | available |
+| Dictation | hidden | Parakeet via `/transcribe` | provider `/audio/transcriptions` (openrouter: hidden) |
 
 </details>
 
