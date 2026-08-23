@@ -73,8 +73,18 @@ app.post('/ask', async (c) => {
  }
  try {
   const seed = await pullSeed(genre as Genre);
-  const question = await reshape(seed.question, textWindow, complete);
-  return c.json({ question });
+  const reshaped = await reshape(seed.question, textWindow, complete, (info) => {
+   console.log(
+    JSON.stringify({
+     seed_id: seed.id,
+     genre,
+     failures: info.failures,
+     fallback: info.fallback,
+    }),
+   );
+  });
+  // Spread both fields so the client can label the question's provenance.
+  return c.json({ ...reshaped });
  } catch (err) {
   console.error('[server] /ask failed:', err);
   return c.json({ error: err instanceof Error ? err.message : String(err) }, 500);
@@ -88,6 +98,13 @@ function parseAnnotation(value: unknown): Annotation | null {
  if (typeof a.start !== 'number' || typeof a.end !== 'number') return null;
  if (typeof a.fragment !== 'string' || typeof a.question !== 'string') return null;
  if (typeof a.ts !== 'number') return null;
+ // `source` is optional on persisted notes; pass it through only when it is
+ // a genuine provenance label — an invalid value rejects the whole note
+ // rather than stripping provenance silently on a /save round-trip.
+ if (a.source !== undefined) {
+  if (a.source !== 'seed' && a.source !== 'reshaped' && a.source !== 'topic-probe') return null;
+  return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts, source: a.source };
+ }
  return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts };
 }
 

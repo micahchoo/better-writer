@@ -36,7 +36,7 @@ The writer's document — a Markdown file the editor edits and the coach reads. 
 _Avoid_: note, buffer
 
 **Text Window**:
-The writer's live text around the cursor: the current paragraph plus the block before it and one or two after. Passed to the model as raw text, the cursor paragraph wrapped in `[CURSOR START]` / `[CURSOR END]`. Stops at section boundaries; never reaches past one.
+The writer's live text around a focus: the block under the cursor plus one neighbor on each side (auto-ask), or a sweep-plan window cut at section boundaries within a character budget. Never the whole draft. Passed to the model as raw text, the focus block wrapped in `[CURSOR START]` / `[CURSOR END]`. Stops at section boundaries; never reaches past one.
 _Avoid_: context, snippet, excerpt
 
 **Block**:

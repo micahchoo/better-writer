@@ -55,6 +55,15 @@ export type Complete = (
   opts?: { temperature?: number },
 ) => Promise<string>;
 
+/**
+ * How a question's text was produced — surfaced to the writer as honesty
+ * about the model's part: a seed verbatim, a model reshaped it against the
+ * live text, or it fell back to a fixed topic probe. 'seed' is not currently
+ * produced by reshape (only the seed bank and static demo emit it) but exists
+ * so the UI can label every provenance honestly.
+ */
+export type QuestionSource = 'seed' | 'reshaped' | 'topic-probe';
+
 /** POST /ask — the client asks the server to reshape one question. */
 export interface AskRequest {
   text_window: string;
@@ -74,4 +83,6 @@ export interface Annotation {
   fragment: string;
   question: string;
   ts: number;
+  /** How the question was produced; absent on legacy persisted notes (pre-provenance). */
+  source?: QuestionSource;
 }

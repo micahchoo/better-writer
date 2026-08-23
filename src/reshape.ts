@@ -1,6 +1,6 @@
 import { copiesSeed, echoesText, isGrounded, isSingleQuestion, stripCursorMarkers } from './gate.js';
 import { topicProbe } from './topic-probe.js';
-import type { Complete } from './types.js';
+import type { Complete, QuestionSource } from './types.js';
 
 /**
  * System prompt for the coach model, condensed from agent_sketch.md. The
@@ -12,6 +12,18 @@ Output is the single reshaped question. Nothing else.`;
 
 /** Why a model output failed the gate; selects the corrective nudge. */
 type GateFailure = 'syntax' | 'ungrounded' | 'echo' | 'seedcopy';
+
+/**
+ * Outcome diagnostics for one reshape() call, delivered via `onAttempt`.
+ * `failures` lists the gate reason for each bad model attempt (in order);
+ * `fallback` is true when the topic probe was used; `attempts` is the number
+ * of model calls made (1 on first-pass success, 2 otherwise).
+ */
+export interface ReshapeAttempt {
+ failures: GateFailure[];
+ fallback: boolean;
+ attempts: number;
+}
 
 /**
  * Corrective nudges appended verbatim on the single retry, keyed by the
@@ -64,27 +76,40 @@ anchored to a quoted detail from the PASSAGE above.`;
  * rewrites). On a gate failure — or a thrown model error, which is treated
  * the same way — retry ONCE with the corrective suffix appended. If that
  * also fails, fall back to a fixed topic probe so the writer is never left
- * without a question.
+ * without a question. The returned `source` labels which path produced the
+ * text: 'reshaped' when a gated model output passed, 'topic-probe' on the
+ * fallback — surfaced to the writer as honesty about the model's part. When
+ * `onAttempt` is given, it is invoked once with the final outcome (failure
+ * reasons, whether the probe fallback was used, and how many model calls
+ * were made).
  */
 export async function reshape(
  seedQuestion: string,
  textWindow: string,
  complete: Complete,
-): Promise<string> {
+ onAttempt?: (info: ReshapeAttempt) => void,
+): Promise<{ question: string; source: QuestionSource }> {
  const prompt = buildPrompt(seedQuestion, textWindow);
 
-const first = await tryComplete(complete, prompt, textWindow, seedQuestion);
-if (first.ok) return first.question;
+ const first = await tryComplete(complete, prompt, textWindow, seedQuestion);
+ if (first.ok) {
+  onAttempt?.({ failures: [], fallback: false, attempts: 1 });
+  return { question: first.question, source: 'reshaped' };
+ }
 
-const retry = await tryComplete(
- complete,
- `${prompt}\n\n${RETRY_SUFFIXES[first.reason]}`,
- textWindow,
- seedQuestion,
-);
-if (retry.ok) return retry.question;
+ const retry = await tryComplete(
+  complete,
+  `${prompt}\n\n${RETRY_SUFFIXES[first.reason]}`,
+  textWindow,
+  seedQuestion,
+ );
+ if (retry.ok) {
+  onAttempt?.({ failures: [first.reason], fallback: false, attempts: 2 });
+  return { question: retry.question, source: 'reshaped' };
+ }
 
-return topicProbe(textWindow);
+ onAttempt?.({ failures: [first.reason, retry.reason], fallback: true, attempts: 2 });
+ return { question: topicProbe(textWindow), source: 'topic-probe' };
 }
 
 /**
@@ -97,19 +122,19 @@ async function tryComplete(
  textWindow: string,
  seedQuestion: string,
 ): Promise<{ ok: true; question: string } | { ok: false; reason: GateFailure }> {
-let output: string;
-try {
- output = await complete(RESHAPE_SYSTEM, [{ role: 'user', text: prompt }]);
-} catch {
- return { ok: false, reason: 'syntax' };
-}
-// Decode our transport tokens out of the answer before the gate sees it.
-const trimmed = stripCursorMarkers(output)
- .replace(/\s{2,}/g, ' ')
- .trim();
-if (!isSingleQuestion(trimmed)) return { ok: false, reason: 'syntax' };
-if (!isGrounded(trimmed, textWindow)) return { ok: false, reason: 'ungrounded' };
-if (echoesText(trimmed, textWindow)) return { ok: false, reason: 'echo' };
-if (copiesSeed(trimmed, seedQuestion)) return { ok: false, reason: 'seedcopy' };
-return { ok: true, question: trimmed };
+ let output: string;
+ try {
+  output = await complete(RESHAPE_SYSTEM, [{ role: 'user', text: prompt }]);
+ } catch {
+  return { ok: false, reason: 'syntax' };
+ }
+ // Decode our transport tokens out of the answer before the gate sees it.
+ const trimmed = stripCursorMarkers(output)
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+ if (!isSingleQuestion(trimmed)) return { ok: false, reason: 'syntax' };
+ if (!isGrounded(trimmed, textWindow)) return { ok: false, reason: 'ungrounded' };
+ if (echoesText(trimmed, textWindow)) return { ok: false, reason: 'echo' };
+ if (copiesSeed(trimmed, seedQuestion)) return { ok: false, reason: 'seedcopy' };
+ return { ok: true, question: trimmed };
 }

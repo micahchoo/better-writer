@@ -1,18 +1,19 @@
 /**
  * text-window: the pure module that assembles a "window" of markdown for the
- * coach — the marked text sent to /ask and the envelope of the cursor block
- * inside it.
+ * coach — a slice of the draft around a focus, never the whole document.
  *
  * Block = paragraph, list item, or heading (a line starting with `#`).
  * A window is built from ALREADY-EXTRACTED block texts via buildAskWindow:
  * the blocks joined with blank lines, the marked block wrapped in
- * [CURSOR START]/[CURSOR END]. findCursorEnvelope locates that marked block
- * inside a built window and reports its span as offsets into the unmarked
- * text.
+ * [CURSOR START]/[CURSOR END].
  *
  * splitBlocks is the parser: it slices markdown into blocks for callers that
- * need structure (anchor, coach-sweep). markFullDraft wraps a whole-draft
- * window around a cursor offset for the server.
+ * need structure (anchor, coach-sweep). partitionSections regroups blocks at
+ * headings and thematic breaks. cursorWindow selects the live auto-ask
+ * window: the block under the cursor plus one neighbor on each side, so a
+ * cursor-centered window matches a sweep window's shape by construction.
+ * Sweep-plan windows are cut in coach-sweep at section boundaries within a
+ * character budget; this module never assembles a whole-draft window.
  *
  * Cursor on an empty line (a gap between blocks): the next block is treated
  * as the cursor block, falling back to the last block at the end of the
@@ -21,7 +22,7 @@
 
 type BlockKind = 'paragraph' | 'list-item' | 'heading';
 
-interface Block {
+export interface Block {
   text: string;
   /** offset of the block's first character in the markdown */
   start: number;
@@ -37,26 +38,8 @@ export const CURSOR_END = '[CURSOR END]';
 const LIST_ITEM_RE = /^\s*(?:[-*+]|\d{1,9}[.)])\s+/;
 /** An ATX heading: `#`…`######` followed by a space or end of line. */
 const HEADING_RE = /^#{1,6}(?:\s|$)/;
-
-/**
- * The marked text sent to /ask: a window's blocks joined with blank lines,
- * the marked block wrapped in [CURSOR START]/[CURSOR END]. Consumers read
- * `.text` as the wire payload; buildAskWindow is the only constructor.
- */
-export interface AskWindow {
-  readonly text: string;
-}
-
-/**
- * The span of the marked block inside an UNMARKED window, as character
- * offsets. `start`/`end` index the window text with every marker token
- * removed, so `unmarked.slice(start, end)` recovers exactly the marked block
- * (including the newlines the markers sat on).
- */
-export interface CursorEnvelope {
-  start: number;
-  end: number;
-}
+/** A thematic break line: three or more `-`, `*`, or `_` (a section boundary). */
+const THEMATIC_BREAK_RE = /^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/;
 
 /**
  * Join block texts into a window with blank lines, wrapping the block at
@@ -69,47 +52,6 @@ export function buildAskWindow(blocksTexts: string[], markIndex: number | null):
   return blocksTexts
     .map((text, index) => (index === markIndex ? `${CURSOR_START}\n${text}\n${CURSOR_END}` : text))
     .join('\n\n');
-}
-
-/**
- * Locate the marked block in a built window and report its span as offsets
- * into the UNMARKED window text (marker tokens removed, nothing else
- * collapsed). Returns null when either marker is missing or the END marker
- * precedes the START marker.
- *
- * The content between the markers is unchanged by marker removal, so its
- * unmarked span is [start, end - CURSOR_START.length): the START token is
- * gone and the END token sits just after the content.
- */
-export function findCursorEnvelope(markedText: string): CursorEnvelope | null {
-  const start = markedText.indexOf(CURSOR_START);
-  const end = markedText.indexOf(CURSOR_END);
-  if (start === -1 || end === -1 || end < start) return null;
-  return { start, end: end - CURSOR_START.length };
-}
-
-/**
- * Return the full markdown with [CURSOR START]/[CURSOR END] wrapped around
- * the cursor block, so the server sees the whole draft plus the cursor
- * envelope. Cursor-block selection follows this module's rule: a cursor on an
- * empty line takes the next block, falling back to the last block at the end
- * of the document. Empty document -> empty string.
- */
-export function markFullDraft(markdown: string, cursorOffset: number): string {
-  const blocks = splitBlocks(markdown);
-  if (blocks.length === 0) return '';
-
-  const index = findCursorBlock(blocks, cursorOffset);
-  if (index === -1) return '';
-
-  const block = blocks[index];
-  return (
-    markdown.slice(0, block.start) +
-    `${CURSOR_START}\n` +
-    markdown.slice(block.start, block.end) +
-    `\n${CURSOR_END}` +
-    markdown.slice(block.end)
-  );
 }
 
 /**
@@ -166,6 +108,56 @@ export function splitBlocks(markdown: string): Block[] {
   }
   close();
   return blocks;
+}
+
+/**
+ * Partition blocks into sections at boundary blocks: a heading or a thematic
+ * break line starts a new section, and every block after a boundary belongs
+ * to that section until the next boundary. Blocks before the first boundary
+ * form their own section, so an intro paragraph that precedes the first
+ * heading is not orphaned.
+ *
+ * This is the seam the sweep planner relies on (a window never spans two
+ * sections); it preserves order, adjacency, and offsets — it only regroups.
+ */
+export function partitionSections(blocks: Block[]): Block[][] {
+  const sections: Block[][] = [];
+  for (const block of blocks) {
+    const opens = block.kind === 'heading' || THEMATIC_BREAK_RE.test(block.text.trim());
+    if (opens || sections.length === 0) {
+      sections.push([block]);
+    } else {
+      sections[sections.length - 1].push(block);
+    }
+  }
+  return sections;
+}
+
+/**
+ * Select the cursor-centered window: the block holding `caretOffset` (end
+ * inclusive), else the next block when the caret sits in a gap, else the
+ * last block past the document's end — the same rule findCursorBlock
+ * encodes. Returns the ±1-neighbor slice (edge-clipped) with the cursor
+ * block's index within that slice as `markIndex`, or null for an empty
+ * block list.
+ *
+ * This is the shared constructor askCursorWindow calls, so an auto-ask
+ * window matches a sweep window's shape by construction, never re-derived
+ * per caller.
+ */
+export function cursorWindow(
+  blocks: Block[],
+  caretOffset: number,
+): { texts: string[]; markIndex: number } | null {
+  if (blocks.length === 0) return null;
+  const center = findCursorBlock(blocks, caretOffset);
+  const from = Math.max(0, center - 1);
+  const to = Math.min(blocks.length, center + 2);
+  const windowBlocks = blocks.slice(from, to);
+  return {
+    texts: windowBlocks.map((block) => block.text),
+    markIndex: center - from,
+  };
 }
 
 /**

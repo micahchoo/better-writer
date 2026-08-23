@@ -18,6 +18,8 @@ export interface SaveCoordinatorOptions {
   getStore: () => DraftStore | null;
   /** Routes save failures to the component's error surface. */
   onError(err: unknown): void;
+  /** Reports save lifecycle for a UI pulse: 'saving' on send, 'saved' on confirmed persist. */
+  onSaveState?(phase: 'saving' | 'saved'): void;
 }
 
 interface SavePayload {
@@ -75,8 +77,14 @@ export class SaveCoordinator {
     this.retryScheduled = false;
     this.inFlight = true;
     try {
+      this.options.onSaveState?.('saving');
       await this.store?.save(payload.draft, payload.notes);
-      if (this.pending === payload) this.pending = null;
+      // Claim 'saved' only when this payload is still the latest — a newer
+      // edit superseded it mid-flight and owns the next pulse.
+      if (this.pending === payload) {
+        this.pending = null;
+        this.options.onSaveState?.('saved');
+      }
     } catch (err) {
       if (isRetry) {
         this.options.onError(err);
@@ -111,8 +119,12 @@ export class SaveCoordinator {
     const payload = this.pending;
     this.inFlight = true;
     try {
+      this.options.onSaveState?.('saving');
       await this.store?.save(payload.draft, payload.notes, opts);
-      if (this.pending === payload) this.pending = null;
+      if (this.pending === payload) {
+        this.pending = null;
+        this.options.onSaveState?.('saved');
+      }
     } catch (err) {
       this.options.onError(err);
     } finally {

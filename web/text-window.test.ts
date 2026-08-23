@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { CURSOR_END, CURSOR_START, buildAskWindow, findCursorEnvelope } from './text-window'
-
-const unmarked = (marked: string) => marked.split(CURSOR_START).join('').split(CURSOR_END).join('')
+import {
+  CURSOR_END,
+  CURSOR_START,
+  buildAskWindow,
+  cursorWindow,
+  partitionSections,
+  splitBlocks,
+} from './text-window'
 
 describe('buildAskWindow', () => {
   it('joins block texts with blank lines', () => {
@@ -26,46 +31,87 @@ describe('buildAskWindow', () => {
   })
 })
 
-describe('findCursorEnvelope', () => {
-  it('reports the marked block span as offsets into the unmarked window', () => {
-    const marked = `A.\n\n${CURSOR_START}\nB.\n${CURSOR_END}\n\nC.`
-    const envelope = findCursorEnvelope(marked)
-    expect(envelope).not.toBeNull()
-    expect(unmarked(marked).slice(envelope!.start, envelope!.end)).toBe('\nB.\n')
+describe('partitionSections', () => {
+  it('returns [] for empty input', () => {
+    expect(partitionSections([])).toEqual([])
   })
 
-  it('covers only the marked block, not its neighbors', () => {
-    // A sweep window: three blocks, only the middle marked.
-    const marked = `Alpha beta.\n\n${CURSOR_START}\nDelta zeta.\n${CURSOR_END}\n\nEta theta.`
-    const envelope = findCursorEnvelope(marked)
-    expect(envelope).not.toBeNull()
-    const text = unmarked(marked)
-    expect(text.slice(envelope!.start, envelope!.end)).toBe('\nDelta zeta.\n')
+  it('a heading mid-list starts a new section', () => {
+    const blocks = splitBlocks('- first\n- second\n\n# Head\n\nafter')
+    expect(partitionSections(blocks).map((s) => s.map((b) => b.text))).toEqual([
+      ['- first', '- second'],
+      ['# Head', 'after'],
+    ])
   })
 
-  it('covers a single-block marked window in full', () => {
-    const marked = `${CURSOR_START}\nOnly para.\n${CURSOR_END}`
-    const envelope = findCursorEnvelope(marked)
-    expect(envelope).not.toBeNull()
-    const text = unmarked(marked)
-    expect(envelope).toEqual({ start: 0, end: text.length })
-    expect(text.slice(envelope!.start, envelope!.end)).toBe('\nOnly para.\n')
+  it('a pre-heading intro paragraph is its own section', () => {
+    const blocks = splitBlocks('intro\n\n# Head\n\ntail')
+    expect(partitionSections(blocks).map((s) => s.map((b) => b.text))).toEqual([
+      ['intro'],
+      ['# Head', 'tail'],
+    ])
   })
 
-  it('returns null when no marker is present', () => {
-    expect(findCursorEnvelope('A.\n\nB.\n\nC.')).toBeNull()
+  it('consecutive headings each open a section', () => {
+    const blocks = splitBlocks('# One\n\n# Two\n\nbody')
+    expect(partitionSections(blocks).map((s) => s.map((b) => b.text))).toEqual([
+      ['# One'],
+      ['# Two', 'body'],
+    ])
   })
 
-  it('returns null when only one marker is present', () => {
-    expect(findCursorEnvelope(`${CURSOR_START}\nA.`)).toBeNull()
-    expect(findCursorEnvelope(`A.\n${CURSOR_END}`)).toBeNull()
+  it('a thematic break splits like a heading', () => {
+    const blocks = splitBlocks('before\n\n---\n\nafter')
+    expect(partitionSections(blocks).map((s) => s.map((b) => b.text))).toEqual([
+      ['before'],
+      ['---', 'after'],
+    ])
   })
 
-  it('returns null when the END marker precedes the START marker', () => {
-    expect(findCursorEnvelope(`${CURSOR_END}\nA.\n${CURSOR_START}`)).toBeNull()
+  it('leaves offsets untouched', () => {
+    const blocks = splitBlocks('intro\n\n# Head\n\ntail')
+    const sections = partitionSections(blocks)
+    expect(sections.flat()).toEqual(blocks)
+    expect(sections.flat().map((b) => [b.start, b.end])).toEqual(
+      blocks.map((b) => [b.start, b.end]),
+    )
   })
 })
 
+describe('cursorWindow', () => {
+  it('returns null for empty input', () => {
+    expect(cursorWindow([], 0)).toBeNull()
+  })
+
+  it('centers the caret block with one neighbor on each side', () => {
+    const blocks = splitBlocks('A.\n\nB.\n\nC.')
+    expect(cursorWindow(blocks, blocks[1].start + 1)).toEqual({
+      texts: ['A.', 'B.', 'C.'],
+      markIndex: 1,
+    })
+  })
+
+  it('a caret in a gap takes the next block and centers it', () => {
+    const blocks = splitBlocks('A.\n\nB.\n\nC.\n\nD.')
+    const win = cursorWindow(blocks, blocks[2].start - 1)
+    expect(win).toEqual({ texts: ['B.', 'C.', 'D.'], markIndex: 1 })
+  })
+
+  it('a caret past the end takes the last block with a backward-biased window', () => {
+    const blocks = splitBlocks('A.\n\nB.\n\nC.')
+    expect(cursorWindow(blocks, 1000)).toEqual({ texts: ['B.', 'C.'], markIndex: 1 })
+  })
+
+  it('clips at the first-block edge', () => {
+    const blocks = splitBlocks('A.\n\nB.\n\nC.')
+    expect(cursorWindow(blocks, 0)).toEqual({ texts: ['A.', 'B.'], markIndex: 0 })
+  })
+
+  it('clips at the last-block edge', () => {
+    const blocks = splitBlocks('A.\n\nB.\n\nC.')
+    expect(cursorWindow(blocks, blocks[2].end)).toEqual({ texts: ['B.', 'C.'], markIndex: 1 })
+  })
+})
 describe('marker tokens', () => {
   it('exports the exact wire tokens', () => {
     expect(CURSOR_START).toBe('[CURSOR START]')

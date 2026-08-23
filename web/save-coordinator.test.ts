@@ -34,6 +34,17 @@ function makeCoordinator(store: FakeStore, onError: Mock = vi.fn()) {
   return { coordinator, onError };
 }
 
+/** Like makeCoordinator but also records onSaveState pulses in array order. */
+function makePulseCoordinator(store: FakeStore, onError: Mock = vi.fn()) {
+  const phases: Array<'saving' | 'saved'> = [];
+  const coordinator = new SaveCoordinator({
+    getStore: () => store,
+    onError,
+    onSaveState: (p) => phases.push(p),
+  });
+  return { coordinator, phases, onError };
+}
+
 beforeEach(() => {
   vi.useFakeTimers();
 });
@@ -185,5 +196,71 @@ describe('SaveCoordinator', () => {
     coordinator.edit('edit after failure', notes);
     await vi.advanceTimersByTimeAsync(1000);
     expect(store.save).toHaveBeenLastCalledWith('edit after failure', notes);
+  });
+});
+
+describe('SaveCoordinator onSaveState', () => {
+  it('emits saving then saved after a debounced edit', async () => {
+    const store = makeStore();
+    const { coordinator, phases } = makePulseCoordinator(store);
+
+    coordinator.edit('hello', notes);
+    await vi.advanceTimersByTimeAsync(1000);
+
+    expect(store.save).toHaveBeenCalledTimes(1);
+    expect(phases).toEqual(['saving', 'saved']);
+  });
+
+  it('emits saving on each attempt and saved once when the silent retry recovers', async () => {
+    const store = makeStore();
+    store.save.mockRejectedValueOnce(new Error('network')).mockResolvedValueOnce(undefined);
+    const { coordinator, phases, onError } = makePulseCoordinator(store);
+
+    // First attempt fails silently; a retry is armed — no 'saved' yet.
+    coordinator.edit('hello', notes);
+    await vi.advanceTimersByTimeAsync(1000);
+    expect(phases).toEqual(['saving']);
+
+    // The retry succeeds -> exactly one 'saved', no error surfaced.
+    await vi.advanceTimersByTimeAsync(1000);
+    expect(phases).toEqual(['saving', 'saving', 'saved']);
+    expect(onError).not.toHaveBeenCalled();
+  });
+
+  it('suppresses saved when a newer payload arrives mid-save, then pulses on the follow-up', async () => {
+    const store = makeStore();
+    // Hold the first save in flight until the test releases it.
+    let releaseFirst!: () => void;
+    store.save
+      .mockImplementationOnce(() => new Promise<void>((res) => { releaseFirst = res; }))
+      .mockResolvedValue(undefined);
+    const { coordinator, phases } = makePulseCoordinator(store);
+
+    coordinator.edit('first', notes);
+    await vi.advanceTimersByTimeAsync(1000);
+    expect(store.save).toHaveBeenCalledTimes(1);
+    expect(phases).toEqual(['saving']);
+
+    // A newer edit supersedes the in-flight payload.
+    coordinator.edit('newer', []);
+    releaseFirst(); // in-flight save completes with a stale payload
+    await vi.advanceTimersByTimeAsync(0);
+
+    // The superseded save must not pulse 'saved'; a follow-up is re-armed.
+    expect(phases).toEqual(['saving']);
+
+    // The follow-up saves the newer payload and emits saving then saved.
+    await vi.advanceTimersByTimeAsync(1000);
+    expect(store.save).toHaveBeenCalledTimes(2);
+    expect(phases).toEqual(['saving', 'saving', 'saved']);
+  });
+
+  it('persistNow emits saving then saved on an immediate flush', async () => {
+    const store = makeStore();
+    const { coordinator, phases } = makePulseCoordinator(store);
+
+    await coordinator.persistNow('hello', notes);
+    expect(store.save).toHaveBeenCalledTimes(1);
+    expect(phases).toEqual(['saving', 'saved']);
   });
 });

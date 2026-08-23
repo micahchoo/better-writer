@@ -1,11 +1,12 @@
 import { describe, expect, it, vi } from 'vitest'
-import type { Genre } from '../src/types.js'
+import type { Genre, QuestionSource } from '../src/types.js'
 import { planSweep, runSweep, staleAnnotations } from './coach-sweep.js'
 
 /**
  * A synthetic 10-block draft whose block texts are all unique, so anchor
  * spans can be located with indexOf and quoted verbatim with no ambiguity.
- * 10 blocks -> windows [0-2], [3-5], [6-8], [9] (tail absorbed).
+ * 10 short blocks, no heading -> windows [0-2], [3-5], [6-9] (1-block tail
+ * merged into the last window).
  */
 const BLOCKS_10 = [
   'Alpha beta gamma.',
@@ -31,16 +32,30 @@ function markedBlock(blocks: string[], windowIndex: number): string {
   return windowBlocks[middle]
 }
 
+/** The marked block's text inside a window's marked payload. */
+function markedBlockText(markedText: string): string {
+  const start = markedText.indexOf('[CURSOR START]\n') + '[CURSOR START]\n'.length
+  const end = markedText.indexOf('\n[CURSOR END]', start)
+  return markedText.slice(start, end)
+}
+
+/** Drain every queued microtask so a worker-pool continuation has fully run.
+ * `await Promise.resolve()` is not enough here: a resolved window's own
+ * continuation only schedules the worker's next-ask continuation, so the
+ * pool can take two microtask rounds to claim the following window. A zero-
+ * delay macrotask runs after the whole microtask queue empties, making the
+ * intermediate assertions deterministic. */
+const flush = () => new Promise<void>((resolve) => setTimeout(resolve, 0))
+
 describe('planSweep', () => {
-  it('splits a 10-block draft into 4 non-overlapping windows with the tail absorbed', () => {
+  it('merges a 10-block tail into the last window for 3 total windows', () => {
     const draft = doc(BLOCKS_10)
     const plan = planSweep(draft)
-    expect(plan).toHaveLength(4)
-    expect(plan.map((w) => w.startOffset)).toEqual([
+    expect(plan).toHaveLength(3)
+    expect(plan.map((w) => w.bounds.start)).toEqual([
       draft.indexOf(BLOCKS_10[0]),
       draft.indexOf(BLOCKS_10[3]),
       draft.indexOf(BLOCKS_10[6]),
-      draft.indexOf(BLOCKS_10[9]),
     ])
   })
 
@@ -53,8 +68,10 @@ describe('planSweep', () => {
     expect(plan[1].markedText).toBe(
       `${BLOCKS_10[3]}\n\n[CURSOR START]\n${BLOCKS_10[4]}\n[CURSOR END]\n\n${BLOCKS_10[5]}`,
     )
-    // A one-block tail window wraps its only block.
-    expect(plan[3].markedText).toBe(`[CURSOR START]\n${BLOCKS_10[9]}\n[CURSOR END]`)
+    // The merged tail window [6-9] marks its middle block (block 7).
+    expect(plan[2].markedText).toBe(
+      `${BLOCKS_10[6]}\n\n[CURSOR START]\n${BLOCKS_10[7]}\n[CURSOR END]\n\n${BLOCKS_10[8]}\n\n${BLOCKS_10[9]}`,
+    )
     // Exactly one START and one END marker per window.
     for (const window of plan) {
       expect(window.markedText.split('[CURSOR START]')).toHaveLength(2)
@@ -62,11 +79,84 @@ describe('planSweep', () => {
     }
   })
 
-  it('wraps the earlier of the two middle blocks in an even-sized tail window', () => {
-    const draft = doc(BLOCKS_10.slice(0, 8))
+  it('wraps the earlier of the two middle blocks in an even-sized window', () => {
+    const draft = doc(BLOCKS_10)
     const plan = planSweep(draft)
+    // The merged [6-9] window is even-sized; it marks block 7 (the earlier
+    // of the two middles), never block 8.
+    expect(plan[2].markedText).toBe(
+      `${BLOCKS_10[6]}\n\n[CURSOR START]\n${BLOCKS_10[7]}\n[CURSOR END]\n\n${BLOCKS_10[8]}\n\n${BLOCKS_10[9]}`,
+    )
+    expect(plan[2].markedText).not.toContain(`[CURSOR START]\n${BLOCKS_10[8]}`)
+  })
+
+  it('forces two plans across a heading that a 3-stride would bridge', () => {
+    const intro = 'An opening paragraph.'
+    const heading = '## The Turn'
+    const body = ['The body after the heading.', 'More body.', 'Still more body.']
+    const draft = doc([intro, heading, ...body])
+    const plan = planSweep(draft)
+    // A 3-stride would group [intro, heading, body[0]]; sections force the
+    // intro into its own window and the heading's section into another.
+    expect(plan).toHaveLength(2)
+    expect(plan[0].markedText).toBe(`[CURSOR START]\n${intro}\n[CURSOR END]`)
+    expect(plan[1].markedText).toBe(
+      `${heading}\n\n[CURSOR START]\n${body[0]}\n[CURSOR END]\n\n${body[1]}\n\n${body[2]}`,
+    )
+  })
+
+  it('emits an over-budget paragraph as a single-block window without splitting', () => {
+    const big = 'x'.repeat(1300)
+    const draft = doc([big, 'Short one.', 'Short two.'])
+    const plan = planSweep(draft)
+    expect(plan).toHaveLength(2)
+    expect(plan[0].markedText).toBe(`[CURSOR START]\n${big}\n[CURSOR END]`)
+    // The 2-block tail would merge into [big], but that exceeds the budget,
+    // so the stub stays a separate window.
+    expect(plan[1].markedText).toBe(`[CURSOR START]\nShort one.\n[CURSOR END]\n\nShort two.`)
+  })
+
+  it('places cursorHint inside each window\u2019s marked block', () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft)
+    for (const window of plan) {
+      const marked = markedBlockText(window.markedText)
+      const start = draft.indexOf(marked)
+      expect(window.cursorHint).toBeGreaterThanOrEqual(start)
+      expect(window.cursorHint).toBeLessThanOrEqual(start + marked.length)
+    }
+  })
+
+  it('gives every window bounds that exactly cover its own blocks', () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft)
+    // Known grouping for 10 short blocks: [0-2], [3-5], [6-9].
+    const spans = [
+      [0, 2],
+      [3, 5],
+      [6, 9],
+    ]
+    spans.forEach(([first, last], i) => {
+      const start = draft.indexOf(BLOCKS_10[first])
+      const end = draft.indexOf(BLOCKS_10[last]) + BLOCKS_10[last].length
+      expect(plan[i].bounds).toEqual({ start, end })
+    })
+  })
+
+  it('keeps 3-block windows stable for a no-heading draft that splits evenly', () => {
+    const blocks = Array.from({ length: 9 }, (_, i) => `Paragraph ${i}.`)
+    const draft = doc(blocks)
+    const plan = planSweep(draft)
+    // 9 short blocks, no heading: exactly [0-2], [3-5], [6-8], no merge needed.
     expect(plan).toHaveLength(3)
-    expect(plan[2].markedText).toBe(`[CURSOR START]\n${BLOCKS_10[6]}\n[CURSOR END]\n\n${BLOCKS_10[7]}`)
+    expect(plan.map((w) => w.bounds.start)).toEqual([
+      draft.indexOf(blocks[0]),
+      draft.indexOf(blocks[3]),
+      draft.indexOf(blocks[6]),
+    ])
+    expect(plan[2].markedText).toBe(
+      `${blocks[6]}\n\n[CURSOR START]\n${blocks[7]}\n[CURSOR END]\n\n${blocks[8]}`,
+    )
   })
 
   it('is deterministic for the same input', () => {
@@ -81,7 +171,7 @@ describe('planSweep', () => {
 })
 
 describe('runSweep', () => {
-  it('asks windows one after another and reports notes in plan order', async () => {
+  it('asks windows through a bounded pool and reports notes in plan order', async () => {
     const draft = doc(BLOCKS_10)
     const plan = planSweep(draft)
     const callOrder: string[] = []
@@ -100,18 +190,17 @@ describe('runSweep', () => {
     const onNote = vi.fn()
     const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
 
-    // While the first window's answer is pending, no further ask may start.
+    // The pool of 2 starts two asks at once.
     await Promise.resolve()
-    expect(callOrder).toHaveLength(1)
+    expect(callOrder).toHaveLength(2)
 
-    // Resolve answers one at a time; each resolution must unlock the next ask.
+    // Resolve answers in order; each resolution unlocks the next ask.
     for (let i = 0; i < plan.length; i++) {
-      expect(callOrder).toHaveLength(i + 1)
       pending[i].resolve(`Rewrite "${markedBlock(BLOCKS_10, i)}" with more force`)
       await Promise.resolve()
     }
 
-    const notes = await sweepPromise
+    const { notes } = await sweepPromise
     expect(callOrder).toHaveLength(plan.length)
     expect(callOrder).toEqual(plan.map((w) => w.markedText))
     expect(notes).toHaveLength(plan.length)
@@ -124,6 +213,89 @@ describe('runSweep', () => {
     }
   })
 
+  it('never runs more than two asks in flight at once', async () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft)
+    let inFlight = 0
+    let maxInFlight = 0
+    const pending: Array<{ resolve: (question: string) => void }> = []
+    const coach = {
+      ask(textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
+        inFlight++
+        maxInFlight = Math.max(maxInFlight, inFlight)
+        const index = pending.length
+        return new Promise<string>((resolve) => {
+          pending[index] = {
+            resolve: (question: string) => {
+              inFlight--
+              resolve(question)
+            },
+          }
+        })
+      },
+    }
+    const onNote = vi.fn()
+    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+
+    // The pool fills to its cap of 2 immediately.
+    await Promise.resolve()
+    expect(pending).toHaveLength(2)
+    expect(maxInFlight).toBe(2)
+
+    // A new ask may start only after one resolves; the cap never grows.
+    pending[0].resolve(`Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`)
+    await flush()
+    expect(pending).toHaveLength(3)
+    expect(maxInFlight).toBe(2)
+
+    // Window 1 resolves; window 2 is already claimed, so no new ask starts.
+    pending[1].resolve(`Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`)
+    await flush()
+    expect(pending).toHaveLength(3)
+    expect(maxInFlight).toBe(2)
+
+    pending[2].resolve(`Rewrite "${markedBlock(BLOCKS_10, 2)}" with more force`)
+    const { notes } = await sweepPromise
+    expect(maxInFlight).toBe(2)
+    expect(notes).toHaveLength(plan.length)
+  })
+
+  it('emits notes in ascending window index even when answers resolve out of order', async () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft)
+    const pending: Array<(question: string) => void> = []
+    const coach = {
+      ask(_textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
+        return new Promise<string>((resolve) => {
+          pending.push(resolve)
+        })
+      },
+    }
+    const onNote = vi.fn()
+    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+
+    await Promise.resolve()
+    expect(pending).toHaveLength(2) // windows 0 and 1 in flight
+
+    const q = (i: number) => `Rewrite "${markedBlock(BLOCKS_10, i)}" with more force`
+    // Resolve in the order 1, 2, 0 — window 1 finishing frees a worker to
+    // start window 2, so the ordered emitter must hold both until window 0
+    // arrives.
+    pending[1](q(1))
+    await flush()
+    pending[2](q(2))
+    await flush()
+    expect(onNote).not.toHaveBeenCalled() // window 0 still pending blocks the prefix
+
+    pending[0](q(0))
+    await flush()
+
+    const { notes } = await sweepPromise
+    expect(onNote).toHaveBeenCalledTimes(3)
+    expect(onNote.mock.calls.map((c) => c[0].windowIndex)).toEqual([0, 1, 2])
+    expect(notes.map((n) => n.windowIndex)).toEqual([0, 1, 2])
+  })
+
   it('skips a window whose answer quotes text from elsewhere in the draft', async () => {
     const draft = doc(BLOCKS_10)
     const plan = planSweep(draft)
@@ -131,16 +303,72 @@ describe('runSweep', () => {
       `Rewrite "${BLOCKS_10[3]}" elsewhere`, // block 3 lives in window 1, not window 0
       `Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`,
       `Rewrite "${markedBlock(BLOCKS_10, 2)}" with more force`,
-      `Rewrite "${markedBlock(BLOCKS_10, 3)}" with more force`,
     ]
     const coach = { ask: async () => responses.shift() ?? 'What does the reader feel here?' }
     const onNote = vi.fn()
-    const notes = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
 
-    expect(notes).toHaveLength(3)
-    expect(onNote).toHaveBeenCalledTimes(3)
-    expect(notes.map((n) => n.windowIndex)).toEqual([1, 2, 3])
+    expect(notes).toHaveLength(2)
+    expect(onNote).toHaveBeenCalledTimes(2)
+    expect(notes.map((n) => n.windowIndex)).toEqual([1, 2])
     expect(notes[0].fragment).toBe(BLOCKS_10[4])
+  })
+
+  it('anchors a note in a merged-tail window whose last block sits inside the plan bounds', async () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft) // [0-2], [3-5], [6-9]: the merged 4-block tail
+    // Every ask quotes the LAST block of the merged tail (block 9). That
+    // block lives inside window 2's own plan bounds, so only window 2
+    // anchors; a stride-3 re-derivation would put block 9 outside and skip.
+    const coach = { ask: async () => `Rewrite "${BLOCKS_10[9]}" with more force` }
+    const onNote = vi.fn()
+    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+
+    expect(notes).toHaveLength(1)
+    expect(notes[0].windowIndex).toBe(2)
+    expect(notes[0].fragment).toBe(BLOCKS_10[9])
+    expect(onNote).toHaveBeenCalledTimes(1)
+  })
+
+  it('anchors every note in a heading-split plan using each window\u2019s own bounds', async () => {
+    const intro = 'An opening paragraph.'
+    const heading = '## The Turn'
+    const body = ['The body after the heading.', 'More body.', 'Still more body.']
+    const draft = doc([intro, heading, ...body])
+    const plan = planSweep(draft) // [intro], [heading, body0, body1, body2]
+    expect(plan).toHaveLength(2)
+    const responses = [
+      `Rewrite "${intro}" with more force`, // window 0: single-block window
+      `Rewrite "${body[2]}" with more force`, // window 1: last block of the 4-block section window
+    ]
+    const coach = { ask: async () => responses.shift() ?? 'What does the reader feel here?' }
+    const onNote = vi.fn()
+    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+
+    expect(notes).toHaveLength(2)
+    expect(notes.map((n) => n.windowIndex)).toEqual([0, 1])
+    expect(notes[0].fragment).toBe(intro)
+    expect(notes[1].fragment).toBe(body[2])
+  })
+
+  it('tie-breaks twin paragraphs at a window\u2019s two ends toward the marked block', async () => {
+    const twin = 'The lighthouse keeper never blinked.'
+    const filler = 'A gust rattled the shutters.'
+    const marked = 'Marked middle paragraph here.'
+    const tail = 'Morning arrived wet and grey.'
+    const draft = doc([twin, filler, marked, twin, tail]) // one 5-block window, marked = block 2
+    const plan = planSweep(draft)
+    expect(plan).toHaveLength(1)
+    // The quote occurs at block 0 and block 3; the plan's cursorHint sits in
+    // the marked block (block 2), which is closer to the LATER twin — so the
+    // anchor must land there, not on the first occurrence.
+    const coach = { ask: async () => `Rewrite "${twin}" with more force` }
+    const onNote = vi.fn()
+    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+
+    expect(notes).toHaveLength(1)
+    expect(notes[0].fragment).toBe(twin)
+    expect(notes[0].start).toBe(draft.lastIndexOf(twin))
   })
 
   it('skips every window when the coach answers with topic-probe questions', async () => {
@@ -152,7 +380,7 @@ describe('runSweep', () => {
       },
     }
     const onNote = vi.fn()
-    const notes = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
 
     expect(notes).toEqual([])
     expect(onNote).not.toHaveBeenCalled()
@@ -161,17 +389,18 @@ describe('runSweep', () => {
   it('returns no notes for an empty plan without calling the coach', async () => {
     const onNote = vi.fn()
     const coach = { ask: vi.fn(async () => 'anything') }
-    const notes = await runSweep([], { genre: 'fiction', coach, draft: '', onNote })
+    const { notes, asked, skipped } = await runSweep([], { genre: 'fiction', coach, draft: '', onNote })
 
     expect(notes).toEqual([])
+    expect(asked).toBe(0)
+    expect(skipped).toBe(0)
     expect(coach.ask).not.toHaveBeenCalled()
     expect(onNote).not.toHaveBeenCalled()
   })
 
   it('fires onProgress after every window, skipped anchors included', async () => {
     const draft = doc(BLOCKS_10)
-    // First 3 windows only: [0-2], [3-5], [6-8].
-    const plan = planSweep(draft).slice(0, 3)
+    const plan = planSweep(draft)
     const responses = [
       `Rewrite "${BLOCKS_10[3]}" elsewhere`, // window 0: anchored outside its bounds -> skipped
       `Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`,
@@ -180,7 +409,7 @@ describe('runSweep', () => {
     const coach = { ask: async () => responses.shift() ?? 'What does the reader feel here?' }
     const onNote = vi.fn()
     const onProgress = vi.fn()
-    const notes = await runSweep(plan, { genre: 'fiction', coach, draft, onNote, onProgress })
+    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote, onProgress })
 
     expect(notes).toHaveLength(2)
     expect(onNote).toHaveBeenCalledTimes(2)
@@ -192,7 +421,7 @@ describe('runSweep', () => {
     ])
   })
 
-  it('stops before a later ask when shouldAbort turns true, resolving with the notes so far', async () => {
+  it('stops starting windows after shouldAbort flips, counting the aborted tail as skipped', async () => {
     const draft = doc(BLOCKS_10)
     const plan = planSweep(draft)
     const callOrder: string[] = []
@@ -219,21 +448,102 @@ describe('runSweep', () => {
     })
 
     await Promise.resolve()
-    expect(callOrder).toHaveLength(1)
+    expect(callOrder).toHaveLength(2) // pool: windows 0 and 1 are in flight
     pending[0].resolve(`Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`)
-    // The writer hits Stop before window 1's ask starts.
+    pending[1].resolve(`Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`)
+    // The writer hits Stop before either worker picks up a third window.
     shouldAbort = true
-    await Promise.resolve()
 
-    // Resolves normally (no throw), with only the notes that arrived first.
-    const notes = await sweepPromise
-    expect(callOrder).toHaveLength(1) // window 1 was never asked
+    // Resolves normally (no throw), with the notes that were in flight.
+    const { notes, asked, skipped } = await sweepPromise
+    expect(callOrder).toHaveLength(2) // window 2 was never asked
+    expect(notes).toHaveLength(2)
+    expect(notes.map((n) => n.windowIndex)).toEqual([0, 1])
+    expect(notes[0].fragment).toBe(markedBlock(BLOCKS_10, 0))
+    expect(notes[1].fragment).toBe(markedBlock(BLOCKS_10, 1))
+    expect(onNote).toHaveBeenCalledTimes(2)
+    // Aborted windows count as skipped; asked + skipped always covers the plan.
+    expect(asked).toBe(2)
+    expect(skipped).toBe(1)
+    expect(asked + skipped).toBe(plan.length)
+    // Progress advances only through the windows that resolved.
+    expect(onProgress.mock.calls).toEqual([
+      [1, plan.length],
+      [2, plan.length],
+    ])
+  })
+
+  it('sums asked and skipped to exactly the plan length across anchored, unanchored, and aborted windows', async () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft) // 3 windows
+    const pending: Array<{ resolve: (question: string) => void }> = []
+    const coach = {
+      ask(_textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
+        return new Promise<string>((resolve) => {
+          pending.push({ resolve })
+        })
+      },
+    }
+    let shouldAbort = false
+    const onNote = vi.fn()
+    const sweepPromise = runSweep(plan, {
+      genre: 'fiction',
+      coach,
+      draft,
+      onNote,
+      shouldAbort: () => shouldAbort,
+    })
+
+    await Promise.resolve()
+    expect(pending).toHaveLength(2) // windows 0, 1 in flight
+    // Window 0 anchors; window 1's answer quotes a block from another window
+    // (block 0), so it fails to anchor inside window 1 -> skipped.
+    pending[0].resolve(`Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`)
+    pending[1].resolve(`Rewrite "${BLOCKS_10[0]}" elsewhere`)
+    // Abort before any new window starts; window 2 is never asked.
+    shouldAbort = true
+
+    const { notes, asked, skipped } = await sweepPromise
     expect(notes).toHaveLength(1)
     expect(notes[0].windowIndex).toBe(0)
-    expect(notes[0].fragment).toBe(markedBlock(BLOCKS_10, 0))
+    expect(asked).toBe(1)
+    expect(skipped).toBe(2) // window 1 unanchored + window 2 aborted
+    expect(asked + skipped).toBe(plan.length)
     expect(onNote).toHaveBeenCalledTimes(1)
-    // Progress stops at the last completed window; nothing fires for the aborted one.
-    expect(onProgress.mock.calls).toEqual([[1, plan.length]])
+  })
+
+  it('labels each note with the coach provenance read right after the ask', async () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft).slice(0, 1)
+    let last: QuestionSource | null = null
+    const coach = {
+      ask: async (): Promise<string> => `Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`,
+      lastSource: (): QuestionSource | null => last,
+    }
+    const onNote = vi.fn()
+
+    // null before any ask: the note carries no source.
+    const first = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+    expect(first.notes[0].source).toBeUndefined()
+
+    last = 'reshaped'
+    const reshaped = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+    expect(reshaped.notes[0].source).toBe('reshaped')
+
+    last = 'topic-probe'
+    const probed = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+    expect(probed.notes[0].source).toBe('topic-probe')
+  })
+
+  it('leaves note.source absent when the coach exposes no provenance (static)', async () => {
+    const draft = doc(BLOCKS_10)
+    const plan = planSweep(draft).slice(0, 1)
+    const coach = { ask: async (): Promise<string> => `Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force` }
+    const onNote = vi.fn()
+    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+
+    expect(notes).toHaveLength(1)
+    expect(notes[0].source).toBeUndefined()
   })
 })
 

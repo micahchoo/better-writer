@@ -16,7 +16,7 @@
  * no /health, so the deployed build is automatically static.
  */
 
-import type { AskRequest, AskResponse, ClientSeed, Genre } from '../src/types';
+import type { AskRequest, AskResponse, ClientSeed, Genre, QuestionSource } from '../src/types';
 import clientJson from '../seeds/client.json';
 
 const GENRE_AGNOSTIC: Genre = 'genre-agnostic';
@@ -28,6 +28,11 @@ export interface Coach {
    * full draft; the local server receives it as `cursor_offset` (the client
    * uses it for anchor adjacency). The static coach ignores it. */
   ask(textWindow: string, genre: Genre, cursorOffset: number): Promise<string>;
+  /** How the most recently resolved ask produced its question, or null
+   * before any ask (and always for StaticCoach, whose pick is a bare seed
+   * question with no provenance of its own). Lets a sweep label each note
+   * honestly without threading the source through every ask's return. */
+  lastSource(): QuestionSource | null;
 }
 
 /**
@@ -56,11 +61,18 @@ export class StaticCoach implements Coach {
     const pick = pool[Math.floor(Math.random() * pool.length)];
     return pick.question;
   }
+
+  lastSource(): QuestionSource | null {
+    return null;
+  }
 }
 
 export class LocalCoach implements Coach {
   /** Relative endpoint: the client and server share an origin. */
   private readonly endpoint: string;
+
+  /** Provenance of the last resolved /ask; null until one resolves. */
+  private last: QuestionSource | null = null;
 
   constructor(endpoint = '') {
     this.endpoint = endpoint;
@@ -76,8 +88,16 @@ export class LocalCoach implements Coach {
     if (!res.ok) {
       throw new Error(`Coach server /ask failed: ${res.status} ${res.statusText}`);
     }
-    const data = (await res.json()) as AskResponse;
+    // /ask returns {question, source}; the extra field stays off the public
+    // AskResponse type (the single-annotation flow ignores it) but a sweep
+    // reads it back here to label each note's provenance.
+    const data = (await res.json()) as AskResponse & { source?: QuestionSource };
+    this.last = data.source ?? null;
     return data.question;
+  }
+
+  lastSource(): QuestionSource | null {
+    return this.last;
   }
 }
 

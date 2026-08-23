@@ -210,6 +210,23 @@ body {
   border-color: var(--ok-border-dark);
 }
 
+/* Save status: the latest save-lifecycle pulse, right of the mode badge.
+   Nothing before the first save; 'Saving…' while in flight, then the clock
+   time of the confirmed save. Deliberately never auto-reverts (no timers). */
+.save-status {
+  font-family: var(--font-draft);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted-light);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.app.dark .save-status {
+  color: var(--muted-dark);
+}
+
 /* Editor area: the sheet of paper */
 .editor-container {
   position: relative;
@@ -434,10 +451,161 @@ body {
   color: var(--muted-dark);
 }
 
+/* Sweep summary: the outcome of the last sweep, above the actions row. Stays
+   put after the sweep completes (not a toast); cleared on the next sweep or
+   a full clear. */
+.coach-summary {
+  margin: 10px 0;
+  font-family: var(--font-draft);
+  font-size: 11px;
+  color: var(--muted-light);
+}
+
+.app.dark .coach-summary {
+  color: var(--muted-dark);
+}
+
+/* Sample loader: a quiet text button under the empty placeholder, so a fresh
+   page can still demonstrate a sweep. Accent on hover only. */
+.sample-load {
+  margin: 4px 0 10px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--font-coach);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--accent-light);
+  cursor: pointer;
+  text-align: left;
+}
+
+.sample-load:hover {
+  text-decoration: underline;
+}
+
+.app.dark .sample-load {
+  color: var(--accent-dark);
+}
+
+/* Inbox tray (inbox-panel.tsx): every pinned note as a row — the question in
+   the coach's serif voice, its anchor fragment in muted mono below, resolve
+   on its own line. Clicking a row body jumps the editor to the span. The
+   tray scrolls internally once it outgrows the docked panel. */
+.inbox-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.inbox-row {
+  padding: 8px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.app.dark .inbox-row {
+  border-color: var(--border-dark);
+}
+
+.inbox-row:hover {
+  border-color: var(--accent-light);
+}
+
+.app.dark .inbox-row:hover {
+  border-color: var(--accent-dark);
+}
+
+.inbox-question {
+  margin: 0 0 4px;
+  font-family: var(--font-coach);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.inbox-fragment {
+  display: block;
+  font-family: var(--font-draft);
+  font-size: 11px;
+  color: var(--muted-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app.dark .inbox-fragment {
+  color: var(--muted-dark);
+}
+
+.inbox-empty {
+  margin: 0 0 10px;
+  font-family: var(--font-coach);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted-light);
+}
+
+.app.dark .inbox-empty {
+  color: var(--muted-dark);
+}
+
 .coach-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  /* Rows wrap within the docked panel: genre + auto-ask can push the sweep
+     buttons past the viewport edge on mid-size screens (measured at 1440px). */
+  row-gap: 6px;
+}
+
+/* Genre-inline: the genre picker lives with the coach now, not the topbar —
+   "asking as" reads naturally beside Sweep. Narrower than the old topbar
+   field, same mono voice. */
+.genre-inline-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.genre-inline {
+  width: auto;
+  /* "creative-nonfiction" is the widest option; cap it so the first actions
+     row keeps room for the sweep controls. */
+  max-width: 13ch;
+}
+
+/* Auto-ask toggle: pauses the cadence driver so a writer mid-flow isn't
+   interrupted. Minimal — a quiet label over a bare checkbox. */
+.cadence-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-draft);
+  font-size: 11px;
+  color: var(--muted-light);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.app.dark .cadence-toggle {
+  color: var(--muted-dark);
+}
+
+.cadence-toggle input {
+  margin: 0;
+  accent-color: var(--accent-light);
+  cursor: pointer;
+}
+
+.app.dark .cadence-toggle input {
+  accent-color: var(--accent-dark);
 }
 
 /* Sweep + clear (local mode only): sit next to Ask now in the coach panel */
@@ -547,6 +715,23 @@ body {
     0 1px 2px rgba(0, 0, 0, 0.28),
     0 6px 16px rgba(0, 0, 0, 0.38),
    0 14px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Source chip: honest provenance for a topic-probe question — the model fell
+   back to a fixed probe, so the popover says so. Tiny uppercase mono, muted
+   (no accent): it's a footnote, not a headline. */
+.source-chip {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-family: var(--font-draft);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted-light);
+}
+
+.app.dark .source-chip {
+  color: var(--muted-dark);
 }
 
 /* Per-note resolve action inside the popover. The layer stays

@@ -25,6 +25,7 @@
  */
 
 import { useLayoutEffect, useRef, useState, type RefObject } from 'react'
+import type { QuestionSource } from '../src/types'
 
 export interface HighlightOverlayProps {
   /** The full draft, as shown in the editor. */
@@ -33,6 +34,10 @@ export interface HighlightOverlayProps {
   anchor: { start: number; end: number } | null
   /** The coach question to show in the popover; null hides the overlay. */
   question: string | null
+  /** How the question was produced (see src/types QuestionSource); a
+   * 'topic-probe' shows a small "generic" chip in the popover so the writer
+   * sees the model fell back to a fixed probe. Optional. */
+  source?: QuestionSource
   /** Fallback span (block under the cursor) used when anchor is null. */
   cursorBlock: { start: number; end: number } | null
   /** The editor's textarea, used for measurement and scroll tracking. */
@@ -82,6 +87,7 @@ export function HighlightOverlay({
   draft,
   anchor,
   question,
+  source,
   cursorBlock,
   textareaRef,
   onResolve,
@@ -275,6 +281,10 @@ export function HighlightOverlay({
             transform: 'translate(0px, 0px)',
           }}
         >
+          {/* Honest provenance: a topic-probe question came from a fixed
+              probe, not the live text — label it so the writer reads it as
+              generic rather than grounded in their words. */}
+          {source === 'topic-probe' && <span className="source-chip">generic</span>}
           {question}
           {onResolve && (
             <button type="button" className="coach-resolve" onClick={onResolve}>
