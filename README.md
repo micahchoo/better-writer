@@ -20,9 +20,9 @@ never edits, never explains.
   3-block windows and pins one note per window as answers arrive.
 - **Click-to-open notes** — every sweep note paints a marker tint; click one
   to read its question in a popover. One popover open at a time.
-- **Seed bank of 1,258 craft questions** extracted verbatim from Le Guin's
-  *Steering the Craft*, Stein's *Stein on Writing*, and Alberts' *Showing &
-  Telling*.
+- **Seed bank of 1,638 craft questions** extracted verbatim from Le Guin's
+  *Steering the Craft*, Stein's *Stein on Writing*, Alberts' *Showing &
+  Telling*, and Hart's *Storycraft*.
 - **Mechanically gated model output** — a deterministic gate rejects anything
   that is not a single grounded question, retries once with a reason-specific
   nudge, then falls back to a topic probe.
@@ -36,7 +36,7 @@ never edits, never explains.
 ## Installation
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/micahchoo/better-writer.git
 cd better-writer
 npm install
 ```
@@ -83,8 +83,10 @@ draft** to pin notes across everything you wrote.
 3. Click any tinted fragment to read its question; click again to close. The
    ✕ button or **Clear notes** removes notes.
 
-Drafts save automatically: to `data/drafts/current.md` in local mode, to
-browser localStorage in static mode.
+Drafts and pinned notes save automatically, about a second after you stop
+typing. Local mode writes `data/drafts/current.md` and
+`data/annotations/current.json`; static mode writes your browser's
+localStorage. A failed save retries once, silently.
 
 ## Configuration
 
