@@ -18,6 +18,7 @@ import { makeComplete } from './llm.js';
 import { pullSeed } from './seed.js';
 import { reshape } from './reshape.js';
 import { loadAnnotations, loadDraft, saveAnnotations, saveDraft } from './draft.js';
+import { boundaryViolation } from './boundary.js';
 import type { Annotation } from './types.js';
 import { resolveModelDir } from './stt/model.js';
 import { createSttClient } from './stt/client.js';
@@ -51,8 +52,26 @@ const MIME: Record<string, string> = {
  '.webmanifest': 'application/manifest+json',
 };
 
+const LISTEN_ADDRESS = process.env.BW_HOST ?? '127.0.0.1';
+
+/** Serializes draft/annotation IO so /load never observes a torn pair mid-/save. */
+let ioChain: Promise<unknown> = Promise.resolve();
+function ioSerial<T>(io: () => Promise<T>): Promise<T> {
+  const run = ioChain.then(io, io);
+  ioChain = run.then(() => undefined, () => undefined);
+  return run;
+}
+
 const complete = makeComplete();
 const app = new Hono();
+
+// --- local-machine boundary (src/boundary.ts) ---
+
+app.use('*', async (c, next) => {
+  const violation = boundaryViolation(LISTEN_ADDRESS, c.req.header('host'), c.req.header('origin'));
+  if (violation !== null) return c.json({ error: violation }, 403);
+  await next();
+});
 
 // --- wire contract (src/types.ts) ---
 
@@ -132,8 +151,11 @@ app.post('/save', async (c) => {
   return c.json({ error: 'annotations must be an array of {start, end, fragment, question, ts}' }, 400);
  }
  try {
-  await saveDraft(draft);
-  await saveAnnotations(annotations);
+  // Serialized so no /load can interleave between the draft and annotation writes.
+  await ioSerial(async () => {
+    await saveDraft(draft);
+    await saveAnnotations(annotations);
+  });
   return c.json({});
  } catch (err) {
   console.error('[server] /save failed:', err);
@@ -143,9 +165,11 @@ app.post('/save', async (c) => {
 
 app.get('/load', async (c) => {
  try {
-  const draft = await loadDraft();
-  const annotations = await loadAnnotations();
-  return c.json({ draft, annotations });
+  const state = await ioSerial(async () => {
+    const draft = await loadDraft();
+    return { draft, annotations: await loadAnnotations() };
+  });
+  return c.json(state);
  } catch (err) {
   console.error('[server] /load failed:', err);
   return c.json({ error: err instanceof Error ? err.message : String(err) }, 500);
@@ -325,8 +349,6 @@ const port = Number(rawPort ?? '4517');
 if (!Number.isInteger(port) || port <= 0 || port > 65535) {
  throw new Error(`invalid BW_PORT: ${JSON.stringify(rawPort)}`);
 }
-const host = process.env.BW_HOST ?? '127.0.0.1';
-
-server.listen(port, host, () => {
- console.log(`better-writer server: http://${host}:${port} (static: ${DIST_DIR})`);
+server.listen(port, LISTEN_ADDRESS, () => {
+ console.log(`better-writer server: http://${LISTEN_ADDRESS}:${port} (static: ${DIST_DIR})`);
 });
