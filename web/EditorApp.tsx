@@ -6,8 +6,18 @@ import { Mic, MicOff, X } from 'lucide-react'
 import { GENRES, type Genre } from '../src/types'
 import { extractAnchor } from './anchor'
 import { createCadence, type Cadence } from './cadence'
-import { planSweep, runSweep, staleAnnotations } from './coach-sweep'
-import { detectServerMode, makeCoach, type Coach, type CoachMode } from './coach'
+import { planSweep, reconcileAnnotations, runSweep, staleAnnotations } from './coach-sweep'
+import {
+  ByokCoach,
+  loadByokConfig,
+  saveByokConfig,
+  PRESETS,
+  TRANSCRIBES_AUDIO,
+  sttModelFor,
+  transcribeWavByok,
+  type Provider,
+} from './byok'
+import { detectServerMode, isModelBacked, makeCoach, type Coach, type CoachMode } from './coach'
 import { createEditorAccess } from './editor-access'
 import { makeDraftStore, type AnchorRecord, type DraftStore } from './draft-store'
 import { makeNote, noteId, sameNote } from './notes'
@@ -17,6 +27,15 @@ import { InboxPanel } from './inbox-panel'
 import { SAMPLE_DRAFT } from './sample-draft'
 import { SaveCoordinator } from './save-coordinator'
 import { buildAskWindow, cursorWindow, splitBlocks } from './text-window'
+
+// Model-field hints per provider — placeholders only, never written to the
+// saved config. The writer supplies the real model at save time.
+const MODEL_PLACEHOLDERS: Record<Provider, string> = {
+ openrouter: 'openai/gpt-4o-mini',
+ openai: 'gpt-4o-mini',
+ groq: 'meta-llama/llama-3.3-70b-instruct',
+ custom: 'e.g. your-model-id',
+}
 
 export default function EditorApp() {
  const [mode, setMode] = useState<CoachMode | 'detecting'>('detecting')
@@ -63,6 +82,16 @@ export default function EditorApp() {
  // Sample-draft loader is one-shot and persisted nowhere: a reload returns to
  // the real (still-empty) page, so the button offers the sample again.
  const [sampleLoaded, setSampleLoaded] = useState(false)
+ // BYOK settings panel: open flag plus the controlled form. The form is
+ // re-seeded from the saved config on every open (see openByokPanel), so these
+ // initial values are placeholders until the first open.
+ const [byokOpen, setByokOpen] = useState(false)
+ const [byokForm, setByokForm] = useState<{
+  provider: Provider
+  baseUrl: string
+  model: string
+  apiKey: string
+ }>({ provider: 'openrouter', baseUrl: PRESETS.openrouter, model: '', apiKey: '' })
 
  const editorRef = useRef<ComponentRef<typeof MDEditor>>(null)
  const draftRef = useRef('')
@@ -101,6 +130,11 @@ export default function EditorApp() {
  // captured at mount can't see React state — these refs always can.
  const sweepingRef = useRef(false)
  const cadencePausedRef = useRef(false)
+ // Mirror of `mode` so the recorder's onstop closure can read the mode at
+ // STOP time (not the mode captured when recording began). A closure captured
+ // at mount can't see React state — this ref always can.
+ const modeRef = useRef(mode)
+ modeRef.current = mode
  // The editor wrapper: hosts the scrollport (.w-md-editor-area) that the
  // inbox "focus note" jump scrolls — the textarea itself never scrolls.
  const editorWrapperRef = useRef<HTMLDivElement>(null)
@@ -130,11 +164,22 @@ export default function EditorApp() {
   return () => mediaQuery.removeEventListener('change', handleChange)
  }, [])
 
- // Mode detection: probe GET /health once. 200 JSON -> local mode
- // (LocalCoach + ServerDraftStore); anything else -> static demo
- // (StaticCoach + LocalStorageDraftStore). GitHub Pages is auto-static.
+ // Mode detection: a saved BYOK config wins — adopt byok synchronously (the
+ // whole pipeline is browser-resident, so no probe is needed). Otherwise probe
+ // GET /health once: 200 JSON -> local mode (LocalCoach + ServerDraftStore);
+ // anything else -> static demo (StaticCoach + LocalStorageDraftStore). GitHub
+ // Pages is auto-static.
  useEffect(() => {
   let cancelled = false
+  const stored = loadByokConfig()
+  if (stored) {
+   coachRef.current = new ByokCoach()
+   draftStoreRef.current = makeDraftStore('byok')
+   setMode('byok')
+   return () => {
+    cancelled = true
+   }
+  }
   void detectServerMode().then((detected) => {
    if (cancelled) return
    coachRef.current = makeCoach(detected)
@@ -146,33 +191,40 @@ export default function EditorApp() {
   }
  }, [])
 
- // Load the saved draft once the mode (and store) is known, then restore
- // every persisted annotation whose fragment still sits at its offsets.
- useEffect(() => {
-  if (mode === 'detecting' || !draftStoreRef.current) return
-  let cancelled = false
-  void draftStoreRef.current
+ // Load the saved draft from a store, then restore every persisted annotation
+ // whose fragment still sits at its offsets. Shared by the mode-load effect
+ // AND the BYOK adopt/disconnect paths, which swap the store without a reload
+ // — the writer's prose must come from whichever store the new mode reads.
+ // Latest-load-wins token: an older async load (e.g. from a mode we have
+ // already left) must not overwrite a newer one, so each call stamps a fresh
+ // seq and only the most recent is allowed to apply its result.
+ const loadSeqRef = useRef(0)
+ const loadDraftAndNotes = (store: DraftStore) => {
+  const seq = ++loadSeqRef.current
+  void store
    .load()
    .then((text) => {
-    if (!cancelled) {
-     draftRef.current = text
-     setDraft(text)
-    }
-    return draftStoreRef.current?.loadAnnotations() ?? Promise.resolve([])
+    if (seq !== loadSeqRef.current) return Promise.resolve([])
+    draftRef.current = text
+    setDraft(text)
+    return store.loadAnnotations()
    })
    .then((annotations) => {
-    if (cancelled || annotations.length === 0) return
+    if (seq !== loadSeqRef.current || annotations.length === 0) return
     const valid = staleAnnotations(annotations, draftRef.current) as AnchorRecord[]
     if (valid.length === 0) return
     annotationsRef.current = valid
     setSweepNotes(valid)
    })
    .catch((err: unknown) => {
-    if (!cancelled) setError(err instanceof Error ? err.message : String(err))
+    if (seq === loadSeqRef.current) setError(err instanceof Error ? err.message : String(err))
    })
-  return () => {
-   cancelled = true
-  }
+ }
+
+ // Load once the mode (and store) is known.
+ useEffect(() => {
+  if (mode === 'detecting' || !draftStoreRef.current) return
+  loadDraftAndNotes(draftStoreRef.current)
  }, [mode])
 
 // Unmount cleanup: cancel the coordinator's pending timers, stop any recording.
@@ -220,14 +272,16 @@ const handleContentChange = (value?: string) => {
  // the threshold AND the writer paused long enough, fire one auto-ask.
  maybeFireCadence(text)
 
-// Strip any annotation whose fragment no longer sits at its recorded
- // offsets — a rewritten passage must not keep a stale highlight alive.
- const valid = staleAnnotations(annotationsRef.current, text) as AnchorRecord[]
- if (valid.length !== annotationsRef.current.length) {
-  annotationsRef.current = valid
-  setSweepNotes(valid)
-  void coordinator.persistNow(text, valid)
- }
+// Re-validate every annotation against the new text: drop notes whose
+// fragment is gone, adopt remapped offsets for ones that moved intact.
+// Branch on changed, not length — a pure remap keeps the count, and only
+// adopting the list here keeps the highlight AND the next save correct.
+const { valid, changed } = reconcileAnnotations(annotationsRef.current, text)
+if (changed) {
+ annotationsRef.current = valid
+ setSweepNotes(valid)
+ void coordinator.persistNow(text, valid)
+}
 
  // Debounced draft save, serialized through the coordinator.
  coordinator.edit(text, annotationsRef.current)
@@ -351,7 +405,11 @@ const toggleDictation = async () => {
     stream.getTracks().forEach((track) => track.stop())
     const blob = new Blob(chunksRef.current, { type: mimeType ?? 'audio/webm' })
     setDictationState('transcribing')
-    void transcribeAudio(blob)
+    // Transport is chosen at STOP time: the recorder may have started in one
+    // mode and stopped after the writer switched (e.g. BYOK saved mid-recording).
+    // Local sends the WAV to the server's /transcribe; BYOK sends the same bytes
+    // to the writer's provider's /audio/transcriptions.
+    void (modeRef.current === 'local' ? transcribeAudio(blob) : transcribeWavByok(blob))
      .then((text) => {
       if (text.trim()) editorAccess.insertAtCursor(text.trimEnd() + ' ')
      })
@@ -442,20 +500,106 @@ const toggleDictation = async () => {
   void coordinator.persistNow(draftRef.current, annotationsRef.current)
  }
 
+ // BYOK panel: seed the form from the saved config on open (or fall back to
+ // the openrouter preset when nothing is configured yet), then toggle open.
+ const openByokPanel = () => {
+  if (byokOpen) {
+   setByokOpen(false)
+   return
+  }
+  const cfg = loadByokConfig()
+  setByokForm(
+   cfg
+    ? {
+       provider: cfg.provider as Provider,
+       baseUrl: cfg.baseUrl,
+       model: cfg.model,
+       apiKey: cfg.apiKey,
+      }
+    : { provider: 'openrouter', baseUrl: PRESETS.openrouter, model: '', apiKey: '' },
+  )
+  setByokOpen(true)
+ }
+
+ // Switching to a preset provider prefills its base URL (and locks the field
+ // against editing); custom leaves the URL to the writer. Model and key are
+ // untouched — the writer's half-typed values survive a provider change.
+ const handleProviderChange = (next: Provider) => {
+  setByokForm((f) => ({
+   ...f,
+   provider: next,
+   baseUrl: next === 'custom' ? f.baseUrl : PRESETS[next],
+  }))
+ }
+
+ // Persist the config and adopt byok immediately — the same path as detection
+ // (new ByokCoach + makeDraftStore('byok'), which is a LocalStorageDraftStore
+ // per the store's ternary), plus a draft reload so prose saved under static
+ // mode surfaces. No page reload: the writer keeps working.
+ const saveByokSettings = () => {
+  const { provider, baseUrl, model, apiKey } = byokForm
+  if (!baseUrl.trim() || !model.trim() || !apiKey.trim()) {
+   setError(
+    provider === 'custom'
+     ? 'A custom provider needs a base URL, model, and API key.'
+     : 'All fields are required — model and API key at minimum.',
+   )
+   return
+  }
+  saveByokConfig({
+   provider,
+   baseUrl: baseUrl.trim().replace(/\/+$/, ''),
+   apiKey: apiKey.trim(),
+   model: model.trim(),
+  })
+  coachRef.current = new ByokCoach()
+  draftStoreRef.current = makeDraftStore('byok')
+  setMode('byok')
+  loadDraftAndNotes(draftStoreRef.current)
+  setByokOpen(false)
+ }
+
+ // Clear the config and return to the static demo: StaticCoach +
+ // LocalStorageDraftStore (makeDraftStore('static') — its ternary only routes
+ // 'local' to the server), with the same draft reload as adoption.
+ const disconnectByok = () => {
+  saveByokConfig(null)
+  coachRef.current = makeCoach('static')
+  draftStoreRef.current = makeDraftStore('static')
+  setMode('static')
+  loadDraftAndNotes(draftStoreRef.current)
+  setByokOpen(false)
+ }
+
  const dictationLabel =
   dictationState === 'recording' ? 'Stop recording' : dictationState === 'transcribing' ? 'Transcribing…' : 'Dictate'
+
+ // Dictation availability, derived per render: always on for the local server
+ // (its Parakeet via /transcribe), and for BYOK only when the provider can
+ // take audio (openrouter cannot) AND a dictation model resolves. Reading the
+ // config here each render means saving BYOK settings re-evaluates this
+ // immediately, so the button appears as soon as a usable provider is set.
+ const byokCfg = mode === 'byok' ? loadByokConfig() : null
+ const dictationAvailable =
+  mode === 'local' ||
+  (byokCfg !== null &&
+   TRANSCRIBES_AUDIO[byokCfg.provider as Provider] &&
+   sttModelFor(byokCfg) !== null)
 
  // Pre-flight cost estimate for the Sweep button: once the draft spans six or
  // more windows, tell the writer how many questions it will ask. planSweep is
  // pure and fast, so an inline per-render computation is acceptable.
  const sweepEstimate =
-  mode === 'local' && draftRef.current.trim() !== '' && !sweeping ? planSweep(draftRef.current).length : 0
+  isModelBacked(mode) && draftRef.current.trim() !== '' && !sweeping ? planSweep(draftRef.current).length : 0
  const sweepTitle =
   sweepEstimate >= 6
    ? `Ask ~${sweepEstimate} questions across the whole draft`
    : 'Ask one coach question per window across the whole draft'
 
- const sweepControls = mode === 'local' && (
+ // Sweep draft runs for any model-backed mode: local (server model) and byok
+// (browser provider) both reshape one question per window, so the control
+// gates on isModelBacked, not mode === 'local'.
+const sweepControls = isModelBacked(mode) && (
   <>
    {sweeping ? (
     <>
@@ -501,6 +645,82 @@ const toggleDictation = async () => {
      <span className={`mode-badge mode-${mode}`} title={`${mode} coach and draft store`}>
       {mode}
      </span>
+    )}
+    {/* BYOK bring-your-own-key: shown whenever a non-local, non-detecting mode
+        is active — static (offer to connect) and byok (already connected). The
+        panel drops under the toggle; it never renders while detecting. */}
+    {(mode === 'static' || mode === 'byok') && (
+     <div className="byok-wrap">
+      <button
+       className={`byok-toggle ${byokOpen ? 'is-open' : ''}`}
+       onClick={openByokPanel}
+       title={mode === 'byok' ? 'BYOK provider settings' : 'Connect your own API key'}
+      >
+       BYOK
+      </button>
+      {byokOpen && (
+       <div className="byok-panel" role="dialog" aria-label="BYOK provider settings">
+        <label className="byok-field">
+         <span className="byok-label">Provider</span>
+         <select
+          className="genre-select"
+          value={byokForm.provider}
+          onChange={(e) => handleProviderChange(e.target.value as Provider)}
+         >
+          <option value="openrouter">openrouter</option>
+          <option value="openai">openai</option>
+          <option value="groq">groq</option>
+          <option value="custom">custom</option>
+         </select>
+        </label>
+        <label className="byok-field">
+         <span className="byok-label">Base URL</span>
+         <input
+          type="text"
+          className="byok-input"
+          value={byokForm.baseUrl}
+          disabled={byokForm.provider !== 'custom'}
+          onChange={(e) => setByokForm((f) => ({ ...f, baseUrl: e.target.value }))}
+          placeholder={PRESETS[byokForm.provider]}
+         />
+        </label>
+        <label className="byok-field">
+         <span className="byok-label">Model</span>
+         <input
+          type="text"
+          className="byok-input"
+          value={byokForm.model}
+          onChange={(e) => setByokForm((f) => ({ ...f, model: e.target.value }))}
+          placeholder={MODEL_PLACEHOLDERS[byokForm.provider]}
+         />
+        </label>
+        <label className="byok-field">
+         <span className="byok-label">API key</span>
+         <input
+          type="password"
+          className="byok-input"
+          value={byokForm.apiKey}
+          autoComplete="off"
+          onChange={(e) => setByokForm((f) => ({ ...f, apiKey: e.target.value }))}
+          placeholder="sk-…"
+         />
+        </label>
+        <div className="byok-actions">
+         <button className="byok-save" onClick={saveByokSettings}>
+          Save
+         </button>
+         {mode === 'byok' && (
+          <button className="byok-disconnect" onClick={disconnectByok}>
+           Disconnect
+          </button>
+         )}
+         <button className="byok-close" onClick={() => setByokOpen(false)}>
+          Close
+         </button>
+        </div>
+       </div>
+      )}
+     </div>
     )}
     {saveState !== 'idle' && (
      // Right of the mode badge: the save-lifecycle pulse. Nothing before the
@@ -554,7 +774,12 @@ const toggleDictation = async () => {
      </div>
     )}
 
-    {mode === 'local' && (
+    {/* Dictation routes the recorded WAV to whatever transcription the current
+        mode can provide: local posts the bytes to the server's /transcribe
+        (its Parakeet); BYOK posts the same bytes to the writer's provider's
+        /audio/transcriptions. Hidden only when the provider can't take audio
+        (openrouter) or no STT model resolves. */}
+    {dictationAvailable && (
      <div className="editor-controls">
       <button
        className={`dictate-button ${dictationState}`}
@@ -633,6 +858,9 @@ const toggleDictation = async () => {
         ))}
        </select>
       </label>
+      {/* Auto-ask stays gated on mode === 'local', NOT modelBacked: a
+          background question must not spend the writer's BYOK tokens — only
+          the local server's free model may fire unprompted. Deliberate. */}
       {mode === 'local' && (
        <label className="cadence-toggle" title="Ask one coach question automatically when the draft pauses after growing">
         <span>Auto-ask</span>

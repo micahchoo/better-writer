@@ -853,3 +853,147 @@ body {
     gap: 10px;
   }
 }
+
+/* BYOK: bring-your-own-key settings in the top bar. The wrap is the
+   positioning context; the panel drops just under the toggle. */
+.byok-wrap {
+  position: relative;
+}
+
+.byok-toggle {
+  font-family: var(--font-draft);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.app.dark .byok-toggle {
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+.byok-toggle:hover,
+.byok-toggle.is-open {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+.app.dark .byok-toggle:hover,
+.app.dark .byok-toggle.is-open {
+  border-color: var(--accent-dark);
+  color: var(--accent-dark);
+}
+
+.byok-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 120;
+  width: 300px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  background: var(--card-bg-light);
+  box-shadow: var(--shadow-light);
+  color: var(--text-light);
+  font-size: 13px;
+}
+
+.app.dark .byok-panel {
+  border-color: var(--border-dark);
+  background: var(--card-bg-dark);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+.byok-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.byok-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-light);
+}
+
+.app.dark .byok-label {
+  color: var(--muted-dark);
+}
+
+.byok-input {
+  font-family: var(--font-draft);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: var(--control-bg-light);
+  color: var(--text-light);
+  outline: none;
+}
+
+.app.dark .byok-input {
+  border-color: var(--border-dark);
+  background: var(--control-bg-dark);
+  color: var(--text-dark);
+}
+
+.byok-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.byok-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.byok-save,
+.byok-disconnect,
+.byok-close {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: var(--control-bg-light);
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.app.dark .byok-save,
+.app.dark .byok-disconnect,
+.app.dark .byok-close {
+  border-color: var(--border-dark);
+  background: var(--control-bg-dark);
+  color: var(--text-dark);
+}
+
+.byok-save {
+  color: var(--ok-text-light);
+  border-color: var(--ok-border-light);
+}
+
+.app.dark .byok-save {
+  color: var(--ok-text-dark);
+  border-color: var(--ok-border-dark);
+}
+
+.byok-disconnect {
+  color: var(--danger-light);
+  border-color: rgba(178, 63, 42, 0.45);
+}
+
+.app.dark .byok-disconnect {
+  color: var(--danger-dark);
+}
