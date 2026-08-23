@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import type { Genre, QuestionSource } from '../src/types.js'
-import { planSweep, runSweep, staleAnnotations } from './coach-sweep.js'
+import { planSweep, reconcileAnnotations, runSweep, staleAnnotations } from './coach-sweep.js'
 
 /**
  * A synthetic 10-block draft whose block texts are all unique, so anchor
@@ -560,26 +560,97 @@ describe('staleAnnotations', () => {
     expect(staleAnnotations(annotations, draft)).toEqual(annotations)
   })
 
-  it('drops annotations whose fragment no longer matches the draft', () => {
-    const draft = doc(BLOCKS_10)
-    const stale = { start: 0, end: 10, fragment: 'Alpha beta gamma.', question: 'q', ts: 1 }
+  it('remaps an annotation whose fragment moved intact after an upstream edit', () => {
+    const original = doc(BLOCKS_10)
+    const oldPos = original.indexOf(BLOCKS_10[3])
+    const annotation = { start: oldPos, end: oldPos + BLOCKS_10[3].length, fragment: BLOCKS_10[3] }
+    const edited = `Intro paragraph.\n\n${original}`
+    const newPos = edited.indexOf(BLOCKS_10[3])
+    expect(newPos).toBeGreaterThan(oldPos)
+    expect(staleAnnotations([annotation], edited)).toEqual([{ ...annotation, start: newPos, end: newPos + BLOCKS_10[3].length }])
+  })
+
+  it('preserves question and ts through a remap', () => {
+    const original = doc(BLOCKS_10)
+    const oldPos = original.indexOf(BLOCKS_10[3])
+    const annotation = { start: oldPos, end: oldPos + BLOCKS_10[3].length, fragment: BLOCKS_10[3], question: 'why?', ts: 7 }
+    const edited = `${original}\n\nEpilogue.`
+    const [remapped] = staleAnnotations([annotation], edited)
+    expect(remapped).toMatchObject({ start: edited.indexOf(BLOCKS_10[3]), question: 'why?', ts: 7 })
+  })
+
+  it('drops annotations whose fragment was deleted from the draft', () => {
+    const draft = 'Totally different prose.'
+    const stale = { start: 0, end: 17, fragment: 'Alpha beta gamma.', question: 'q', ts: 1 }
     expect(staleAnnotations([stale], draft)).toEqual([])
   })
 
-  it('keeps the valid and drops the stale in a mixed list', () => {
+  it('keeps the valid and remaps or drops the rest in a mixed list', () => {
     const draft = doc(BLOCKS_10)
     const pos = draft.indexOf(BLOCKS_10[1])
     const valid = { start: pos, end: pos + BLOCKS_10[1].length, fragment: BLOCKS_10[1], question: 'q1', ts: 1 }
-    const stale = { start: 0, end: 12, fragment: 'Alpha beta gamma.', question: 'q2', ts: 2 }
+    const stale = { start: 0, end: 12, fragment: 'not in the draft anymore', question: 'q2', ts: 2 }
     expect(staleAnnotations([valid, stale], draft)).toEqual([valid])
   })
 
-  it('drops annotations pointing past the end of the draft', () => {
+  it('prefers the nearest occurrence among duplicates', () => {
+    // 'echo' appears at offsets 8 and 29; an anchor last seen beside the
+    // second must remap to it, not to the first one.
+    const draft = 'alpha.\n\necho\n\nbeta.\n\ngamma.\n\necho\n\ndelta.'
+    const second = draft.lastIndexOf('echo')
+    const annotation = { start: second, end: second + 4, fragment: 'echo' }
+    const drifted = { ...annotation, start: annotation.start + 3, end: annotation.start + 7 }
+    const [remapped] = staleAnnotations([drifted], draft)
+    expect(remapped?.start).toBe(second)
+  })
+  it('drops an annotation when two occurrences are equidistant from its old position', () => {
+    // 'ab' at offsets 0 and 14; old position sits exactly between them.
+    const draft = 'ab\n\nxx xx xx\n\nab'
+    const annotation = { start: 7, end: 9, fragment: 'ab' }
+    expect(staleAnnotations([annotation], draft)).toEqual([])
+  })
+
+  it('drops annotations pointing past the end of the draft with no matching fragment', () => {
     const annotation = { start: 5, end: 999, fragment: 'nope' }
     expect(staleAnnotations([annotation], 'short.')).toEqual([])
   })
 
   it('handles an empty annotation list', () => {
     expect(staleAnnotations([], 'any draft')).toEqual([])
+  })
+})
+
+describe('reconcileAnnotations', () => {
+  it('reports changed=false and identity-equal entries when nothing moved', () => {
+    const draft = doc(BLOCKS_10)
+    const pos = draft.indexOf(BLOCKS_10[0])
+    const note = { start: pos, end: pos + BLOCKS_10[0].length, fragment: BLOCKS_10[0], question: 'q', ts: 1 }
+    const { valid, changed } = reconcileAnnotations([note], draft)
+    expect(changed).toBe(false)
+    expect(valid[0]).toBe(note)
+  })
+
+  it('reports changed=true for a pure remap that keeps the count identical', () => {
+    // The regression this guards: a length-only check sees no change here,
+    // so the remapped offsets were never adopted and the stale span was saved.
+    const original = doc(BLOCKS_10)
+    const oldPos = original.indexOf(BLOCKS_10[3])
+    const note = { start: oldPos, end: oldPos + BLOCKS_10[3].length, fragment: BLOCKS_10[3], question: 'q', ts: 2 }
+    const edited = `Intro.\n\n${original}`
+    const newPos = edited.indexOf(BLOCKS_10[3])
+    const untouched = { start: edited.indexOf(BLOCKS_10[5]), end: edited.indexOf(BLOCKS_10[5]) + BLOCKS_10[5].length, fragment: BLOCKS_10[5] }
+    const { valid, changed } = reconcileAnnotations([note, untouched], edited)
+    expect(valid).toHaveLength(2) // count did NOT change
+    expect(changed).toBe(true)
+    expect(valid[0]).not.toBe(note)
+    expect(valid[0]).toMatchObject({ start: newPos, end: newPos + BLOCKS_10[3].length })
+    expect(valid[1]).toBe(untouched) // identity preserved for the unmoved note
+  })
+
+  it('reports changed=true when an annotation is dropped', () => {
+    const draft = doc(BLOCKS_10)
+    const gone = { start: 0, end: 4, fragment: 'gone', question: 'q', ts: 3 }
+    const { changed } = reconcileAnnotations([gone], draft)
+    expect(changed).toBe(true)
   })
 })

@@ -300,13 +300,76 @@ export async function runSweep(
 }
 
 /**
- * Strip annotations whose fragment no longer matches the draft at their
- * offsets (text moved or edited since the annotation was created).
+ * Reconcile the current annotation list against a draft: validate (and
+ * re-anchor, see staleAnnotations), then report whether ANY entry changed —
+ * dropped entries shrink the list; remapped entries are fresh objects while
+ * untouched entries keep their identity.
+ *
+ * Consumers must branch on `changed`, not on length alone: a pure remap keeps
+ * the count identical, so a length-only check silently discards the new
+ * offsets and persists the stale spans instead.
+ *
+ * @param current the annotation list as last stored
+ * @param draft the draft text after the latest edit
+ * @returns the surviving list plus whether the caller must adopt it
+ */
+export function reconcileAnnotations<T extends AnchorRecordLike>(
+  current: T[],
+  draft: string,
+): { valid: T[]; changed: boolean } {
+  const valid = staleAnnotations(current, draft) as T[];
+  return {
+    valid,
+    changed:
+      valid.length !== current.length || valid.some((a, i) => a !== current[i]),
+  };
+}
+
+/**
+ * Validate annotations against the draft, re-anchoring instead of dropping
+ * where possible. An annotation survives when either:
+ * - its fragment still sits exactly at its recorded offsets, or
+ * - its fragment appears elsewhere intact (an upstream edit shifted the
+ *   offsets without touching the anchored text) — the annotation is remapped
+ *   to the occurrence NEAREST its old position.
+ *
+ * An annotation is dropped only when its fragment no longer exists in the
+ * draft, is empty, or has two occurrences equidistant from the old position
+ * (remapping would guess).
  *
  * @param annotations persisted annotations to check
  * @param draft the current draft markdown
- * @returns the annotations whose fragment still matches, in input order
+ * @returns the surviving annotations (moved ones on fresh offset objects),
+ *   in input order
  */
 export function staleAnnotations(annotations: AnchorRecordLike[], draft: string): AnchorRecordLike[] {
-  return annotations.filter((annotation) => draft.slice(annotation.start, annotation.end) === annotation.fragment);
+  return annotations.flatMap((annotation) => {
+    if (
+      annotation.start >= 0 &&
+      annotation.end <= draft.length &&
+      draft.slice(annotation.start, annotation.end) === annotation.fragment
+    ) {
+      return [annotation];
+    }
+    if (!annotation.fragment) return [];
+    let best = -1;
+    let bestDist = Number.POSITIVE_INFINITY;
+    let tied = false;
+    for (
+      let idx = draft.indexOf(annotation.fragment);
+      idx !== -1;
+      idx = draft.indexOf(annotation.fragment, idx + 1)
+    ) {
+      const dist = Math.abs(idx - annotation.start);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = idx;
+        tied = false;
+      } else if (dist === bestDist) {
+        tied = true;
+      }
+    }
+    if (best === -1 || tied) return [];
+    return [{ ...annotation, start: best, end: best + annotation.fragment.length }];
+  });
 }

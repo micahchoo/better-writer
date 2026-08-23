@@ -62,6 +62,16 @@ describe('draft-store annotations', () => {
     expect(await store.loadAnnotations()).toEqual(annotations)
   })
 
+  it('persists notes that ride along with save, and keeps them on notes-less saves', async () => {
+    const store = new LocalStorageDraftStore(memoryStorage())
+    // Regression: the coordinator only calls save(draft, notes); ignoring the
+    // notes argument here meant static-mode annotations never persisted.
+    await store.save('Draft text.', annotations)
+    expect(await store.loadAnnotations()).toEqual(annotations)
+    await store.save('More text.')
+    expect(await store.load()).toBe('More text.')
+    expect(await store.loadAnnotations()).toEqual(annotations)
+  })
   it('replaces the previous annotations on re-save', async () => {
     const store = new LocalStorageDraftStore(memoryStorage())
     await store.saveAnnotations(annotations)

@@ -54,12 +54,14 @@ export class LocalStorageDraftStore implements DraftStore {
     }
   }
 
-  async save(draft: string, _notes?: Note[], _opts?: { keepalive?: boolean }): Promise<void> {
-    // The browser store ignores the notes argument: notes persist under their
-    // own key via saveAnnotations, never entangled with the draft payload.
-    // opts (keepalive) is likewise a no-op here: sync setItem needs nothing.
+  async save(draft: string, notes?: Note[], _opts?: { keepalive?: boolean }): Promise<void> {
+    // Mirrors the server's wire contract: when notes ride along they replace
+    // the stored annotation list under their own key. `save(draft)` with no
+    // notes leaves the annotations untouched. opts (keepalive) is a no-op:
+    // sync setItem needs nothing.
     try {
       this.storage.setItem(STORAGE_KEY, draft);
+      if (notes !== undefined) this.saveAnnotations(notes);
     } catch {
       // Quota exceeded or storage disabled: fail soft — the writer keeps typing.
     }
