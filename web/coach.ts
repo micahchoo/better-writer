@@ -1,11 +1,14 @@
 /**
- * coach: the Coach seam — one interface, two adapters.
+ * coach: the Coach seam — one interface, three adapters.
  *
  *   StaticCoach — uniform-random pick from the bundled seed bank
  *                 (seeds/client.json, shipped as ClientSeed[] with all
  *                 provenance stripped). No model, no network.
  *   LocalCoach  — POST /ask to the local server, which reshapes one question
  *                 with the local model.
+ *   ByokCoach  — bring-your-own-key: reshapes in the browser against an
+ *                 OpenAI-compatible provider (web/byok.ts). Not constructed
+ *                 here; EditorApp builds it directly.
  *
  * Only the seed's `question` field ever reaches the writer: `verb`, `source`,
  * and `id` never leave this module.
@@ -21,7 +24,16 @@ import clientJson from '../seeds/client.json';
 
 const GENRE_AGNOSTIC: Genre = 'genre-agnostic';
 
-export type CoachMode = 'static' | 'local';
+export type CoachMode = 'static' | 'local' | 'byok';
+
+/**
+ * Whether a mode needs a model at ask time. `'detecting'` is the pre-probe
+ * state (the app has not yet decided between static and local); it is not a
+ * model-backed mode. Static mode needs no model; local and byok both do.
+ */
+export function isModelBacked(mode: CoachMode | 'detecting'): boolean {
+  return mode === 'local' || mode === 'byok';
+}
 
 export interface Coach {
   /** Ask for one craft question. `cursorOffset` is the caret offset in the
@@ -44,7 +56,20 @@ export function seedMatchesGenre(seed: ClientSeed, genre: Genre): boolean {
 }
 
 /** The pre-generated bundle, cast to the typed shape. */
-const bundledSeeds = clientJson as ClientSeed[];
+export const bundledSeeds = clientJson as ClientSeed[];
+
+/**
+ * Uniform-random pick from the genre-matching pool, or throw. Shared by
+ * StaticCoach and ByokCoach so both coaches select a seed identically — the
+ * byok coach reshapes the same bare question StaticCoach would hand out.
+ */
+export function pickSeed(seeds: ClientSeed[], genre: Genre): ClientSeed {
+  const pool = seeds.filter((seed) => seedMatchesGenre(seed, genre));
+  if (pool.length === 0) {
+    throw new Error(`No seeds available for genre "${genre}".`);
+  }
+  return pool[Math.floor(Math.random() * pool.length)];
+}
 
 export class StaticCoach implements Coach {
   private readonly seeds: ClientSeed[];
@@ -54,12 +79,7 @@ export class StaticCoach implements Coach {
   }
 
   async ask(_textWindow: string, genre: Genre, _cursorOffset: number): Promise<string> {
-    const pool = this.seeds.filter((seed) => seedMatchesGenre(seed, genre));
-    if (pool.length === 0) {
-      throw new Error(`No seeds available for genre "${genre}".`);
-    }
-    const pick = pool[Math.floor(Math.random() * pool.length)];
-    return pick.question;
+    return pickSeed(this.seeds, genre).question;
   }
 
   lastSource(): QuestionSource | null {
@@ -101,7 +121,17 @@ export class LocalCoach implements Coach {
   }
 }
 
+/**
+ * Build the coach for a mode. 'static' and 'local' are constructed here;
+ * 'byok' is NOT — EditorApp owns ByokCoach construction (it must supply the
+ * byok config UI wiring), so makeCoach throws for it rather than silently
+ * misbehaving. The throw is unreachable in normal flow: the app never calls
+ * makeCoach with 'byok'.
+ */
 export function makeCoach(mode: CoachMode): Coach {
+  if (mode === 'byok') {
+    throw new Error('byok mode constructs ByokCoach directly');
+  }
   return mode === 'local' ? new LocalCoach() : new StaticCoach();
 }
 
