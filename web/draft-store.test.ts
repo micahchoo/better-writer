@@ -30,7 +30,7 @@ const annotations: AnchorRecord[] = [
 describe('draft-store annotations', () => {
   it('round-trips annotations through localStorage', async () => {
     const store = new LocalStorageDraftStore(memoryStorage())
-    await store.saveAnnotations(annotations)
+    await store.save('Draft text.', annotations)
     expect(await store.loadAnnotations()).toEqual(annotations)
   })
 
@@ -53,11 +53,10 @@ describe('draft-store annotations', () => {
     expect(await store.loadAnnotations()).toEqual([])
   })
 
-  it('keeps draft persistence independent of annotations', async () => {
+  it('persists draft and annotations together without one clobbering the other', async () => {
     const storage = memoryStorage()
     const store = new LocalStorageDraftStore(storage)
-    await store.save('Draft text.')
-    await store.saveAnnotations(annotations)
+    await store.save('Draft text.', annotations)
     expect(await store.load()).toBe('Draft text.')
     expect(await store.loadAnnotations()).toEqual(annotations)
   })
@@ -72,11 +71,42 @@ describe('draft-store annotations', () => {
     expect(await store.load()).toBe('More text.')
     expect(await store.loadAnnotations()).toEqual(annotations)
   })
+
   it('replaces the previous annotations on re-save', async () => {
     const store = new LocalStorageDraftStore(memoryStorage())
-    await store.saveAnnotations(annotations)
-    await store.saveAnnotations([])
+    await store.save('d', annotations)
+    await store.save('d', [])
     expect(await store.loadAnnotations()).toEqual([])
+  })
+
+  it('rethrows QuotaExceededError instead of failing soft (#3)', async () => {
+    const storage = memoryStorage()
+    const store = new LocalStorageDraftStore({
+      getItem: storage.getItem,
+      setItem: vi.fn(() => {
+        throw new DOMException('quota exceeded', 'QuotaExceededError')
+      }),
+    })
+    // A storage failure must reject so the SaveCoordinator's failure/retry
+    // path counts it — never a silent fake-success stamp.
+    await expect(store.save('Draft text.')).rejects.toThrow('quota exceeded')
+  })
+
+  it('loadAnnotations skips malformed entries instead of letting them sail through (S3-15)', async () => {
+    const storage = memoryStorage()
+    storage.setItem(
+      'better-writer:annotations',
+      JSON.stringify([
+        annotations[0],
+        { start: 'oops', end: 3, fragment: 'x', question: 'q', ts: 1 }, // wrong types
+        { start: 0, end: 2, fragment: 'x', question: 'q', ts: 1, source: 'not-a-source' }, // bad provenance
+        { start: NaN, end: 5, fragment: 'x', question: 'q', ts: 1 }, // non-finite offset
+        { start: 3, end: 1, fragment: 'x', question: 'q', ts: 1 }, // inverted span
+        null,
+      ]),
+    )
+    const store = new LocalStorageDraftStore(storage)
+    expect(await store.loadAnnotations()).toEqual([annotations[0]])
   })
 
   it('round-trips draft and annotations through the wire contract', async () => {
@@ -109,26 +139,33 @@ describe('draft-store annotations', () => {
     }
   })
 
-  it('overwrites server annotations with [] when save omits notes', async () => {
+  it('keeps server annotations when save omits notes (S2-8: adapter parity)', async () => {
     const { fetchMock, getState } = fakeServer({ draft: 'old', annotations })
     vi.stubGlobal('fetch', fetchMock)
     try {
       const store = new ServerDraftStore('http://local')
-      await store.save('new draft')
-      expect(getState()).toEqual({ draft: 'new draft', annotations: [] })
+      await store.load() // learn the server's notes
+      await store.save('new draft') // notes omitted -> keep the existing list
+      expect(getState()).toEqual({ draft: 'new draft', annotations })
     } finally {
       vi.unstubAllGlobals()
     }
   })
 
-  it('saveAnnotations persists notes against the last known draft', async () => {
-    const { fetchMock, getState } = fakeServer({ draft: 'Persisted.' })
+  it('sanitizes /load annotations entry-by-entry, skipping malformed items (S3-15 server side)', async () => {
+    const { fetchMock } = fakeServer({
+      draft: 'd',
+      annotations: [
+        annotations[0],
+        { start: 'bad', end: 3, fragment: 'x', question: 'q', ts: 1 },
+        { start: 5, end: 1, fragment: 'x', question: 'q', ts: 1 },
+      ],
+    })
     vi.stubGlobal('fetch', fetchMock)
     try {
       const store = new ServerDraftStore('http://local')
-      await store.load() // learn the server's draft
-      await store.saveAnnotations(annotations)
-      expect(getState()).toEqual({ draft: 'Persisted.', annotations })
+      await store.load()
+      expect(await store.loadAnnotations()).toEqual([annotations[0]])
     } finally {
       vi.unstubAllGlobals()
     }
@@ -143,8 +180,8 @@ describe('draft-store annotations', () => {
       await expect(store.save('new draft', annotations)).rejects.toThrow('Draft save failed: 500')
       // The failed save must not have touched the server's state…
       expect(getState()).toEqual({ draft: 'Persisted.' })
-      // …nor the store's anchors: saveAnnotations still rides the OLD draft.
-      await store.saveAnnotations(annotations)
+      // …nor the store's anchors: a later save still rides the OLD draft.
+      await store.save('Persisted.', annotations)
       expect(getState()).toEqual({ draft: 'Persisted.', annotations })
     } finally {
       vi.unstubAllGlobals()
@@ -158,7 +195,7 @@ describe('draft-store annotations', () => {
       const store = new ServerDraftStore('http://local')
       await store.load() // learn the server's draft
       await store.save('new draft', annotations) // 200: the server confirms
-      await store.saveAnnotations([annotations[0]]) // anchored against the NEW draft
+      await store.save('new draft', [annotations[0]]) // notes ride the NEW draft
       expect(getState()).toEqual({ draft: 'new draft', annotations: [annotations[0]] })
     } finally {
       vi.unstubAllGlobals()
@@ -202,8 +239,8 @@ describe('draft-store annotations', () => {
       expect(fetchMock.mock.calls[1]?.[1]?.keepalive).toBeUndefined()
       expect(state).toEqual({ draft: 'Draft text.', annotations })
 
-      // The store recorded the confirmed save — later anchors ride the new draft.
-      await store.saveAnnotations([])
+      // The store recorded the confirmed save — later saves ride the new draft.
+      await store.save('Draft text.', [])
       expect(state).toEqual({ draft: 'Draft text.', annotations: [] })
     } finally {
       vi.unstubAllGlobals()

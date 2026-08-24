@@ -24,6 +24,7 @@ import { copiesSeed, echoesText, isGrounded, isSingleQuestion } from '../src/gat
 import { topicProbe } from '../src/topic-probe.js';
 import { GENRES, type Genre } from '../src/types.js';
 import { loadEnvFile } from '../src/env.js';
+import { RESHAPE_SYSTEM, RETRY_SUFFIXES, buildPrompt } from '../src/reshape.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -42,28 +43,6 @@ const META_PATH = `${OUT_DIR}/run-meta.json`;
 const SEED_POOL = 5;
 
 /**
- * System prompt for the coach model — verbatim from src/reshape.ts. The
- * seed's `verb`/`source`/`id` never reach the prompt; only its `question`.
- */
-const RESHAPE_SYSTEM = `You are the writer's coach: a small model that asks a writer ONE sharp question about their live text.
-Never write prose for the writer, never edit their text, never explain your reasoning.
-Output is the single reshaped question. Nothing else.`;
-
-/**
- * Corrective nudges appended verbatim on the single retry, keyed by the
- * first gate predicate the output failed. Verbatim from src/reshape.ts.
- */
-const RETRY_SUFFIXES: Record<GateFailure, string> = {
-  syntax: 'Return only the single question, ending in ?. Nothing else.',
-  ungrounded:
-    "Your question did not mention anything from the writer's text. Ask about a specific detail from the text and quote its exact words in the question.",
-  echo:
-    "You restated the writer's sentences back as a question. Ask about their text without repeating their sentences — quote one small detail, then ask something new about it.",
-  seedcopy:
-    "You repeated the seed question almost verbatim. Do not reuse the seed's wording; write a fresh question about the writer's text.",
-};
-
-/**
  * Plural seedcopy nudge, used only when the model saw SEVERAL craft questions
  * in one prompt (k3/k5). The singular suffix scolds "the seed's wording" —
  * there is no single seed in a k3/k5 call, so "the seed" becomes "any craft
@@ -78,25 +57,8 @@ function retrySuffix(reason: GateFailure, multi: boolean): string {
   return RETRY_SUFFIXES[reason];
 }
 
-/** The one prompt sent to the model for a single seed — byte-identical to src/reshape.ts buildPrompt. */
-function buildPrompt(question: string, textWindow: string): string {
-  return `You will reshape ONE craft question to fit the writer's passage.
-
-Craft question (the intent you must keep):
-${question}
-
-Rules:
-- Ask ONE question addressed to the writer ("you"), ending in ?
-- Anchor it to one specific detail — quote the writer's exact words
-- Keep the craft question's INTENT; use the passage only for that anchor
-- If a [CURSOR START] / [CURSOR END] region exists, anchor to a detail inside it when possible
-
-Passage:
-${textWindow}
-
-Reminder: ask ONE question that keeps the CRAFT QUESTION'S INTENT above,
-anchored to a quoted detail from the PASSAGE above.`;
-}
+// buildPrompt is imported from src/reshape.js (S4-12): one source of truth for
+// the prompt text; the plural variant below stays experiment-only.
 
 /**
  * The k3/k5 prompt: a numbered craft-question block instead of a single one.

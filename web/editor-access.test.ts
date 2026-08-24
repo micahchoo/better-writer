@@ -14,7 +14,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { EditorSelection, Transaction, type EditorState, type RangeSet } from '@codemirror/state'
 import { historyField, undo } from '@codemirror/commands'
 import { highlightExtension } from './decorations'
-import { createEditorAccess, unionRects, type Rect } from './editor-access'
+import { createEditorAccess, unionRects, type EditorAccess, type Rect } from './editor-access'
 import { EditorView, type Decoration } from '@codemirror/view'
 
 // jsdom (26) provides MutationObserver so a real EditorView can mount, but it does
@@ -47,9 +47,16 @@ function freshTarget(): HTMLElement {
   return el
 }
 
+// Seam instances created during a test. Detaching in afterEach destroys every
+// mounted EditorView before the environment tears down — a live view's observer
+// schedules rAF measures against the DOM, and one that outlives its test fires
+// after teardown, surfacing as an unhandled error (see S4-5).
 let cleanupTargets: HTMLElement[] = []
+let cleanupAccesses: EditorAccess[] = []
 
 afterEach(() => {
+  for (const a of cleanupAccesses) a.detach()
+  cleanupAccesses = []
   for (const t of cleanupTargets) {
     t.remove()
   }
@@ -59,6 +66,12 @@ afterEach(() => {
 function track(el: HTMLElement): HTMLElement {
   cleanupTargets.push(el)
   return el
+}
+
+/** Register an access so afterEach destroys its view before the env closes. */
+function trackAccess(access: EditorAccess): EditorAccess {
+  cleanupAccesses.push(access)
+  return access
 }
 
 // The highlightExtension field provides exactly one decorations provider; the
@@ -106,7 +119,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('SPIKE: mounts a real EditorView against a jsdom div and reads a cursor', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     let callbacks = 0
     access.attach(target, 'hello world', () => {
       callbacks++
@@ -134,7 +147,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('readCursor reflects the current selection head and full text', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'hello world', () => {})
 
     expect(access.readCursor()).toEqual({ offset: 0, text: 'hello world' })
@@ -148,7 +161,7 @@ describe('editor-access', () => {
 
   it('readCursor returns null when detached', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'abc', () => {})
     expect(access.readCursor()).not.toBeNull()
     access.detach()
@@ -160,7 +173,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('insertAtCursor replaces the selection and places the caret after the insert', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     const docs: string[] = []
     access.attach(target, 'hello world', (text) => docs.push(text))
 
@@ -176,7 +189,7 @@ describe('editor-access', () => {
 
   it('insertAtCursor returns false when detached and does not throw', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'abc', () => {})
     access.detach()
     expect(access.insertAtCursor('x')).toBe(false)
@@ -184,7 +197,7 @@ describe('editor-access', () => {
 
   it('insertAtCursor returns false while composing (C4) and leaves the doc untouched', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     const docs: string[] = []
     access.attach(target, 'abc', (text) => docs.push(text))
 
@@ -211,7 +224,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('replaceDocument default excludes the replacement from history but maps prior events', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'a', () => {})
     const view = mountedView(target)
     view.dispatch({ selection: EditorSelection.cursor(1) }) // caret at end of 'a'
@@ -236,7 +249,7 @@ describe('editor-access', () => {
 
   it('replaceDocument history:reset rebuilds state so undo cannot wipe the document', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'a', () => {})
     access.insertAtCursor('b') // "ab"
 
@@ -251,7 +264,7 @@ describe('editor-access', () => {
 
   it('replaceDocument fires onDocChange (default path) and resets the caret to 0', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     const docs: string[] = []
     access.attach(target, 'hello', (text) => docs.push(text))
 
@@ -262,7 +275,7 @@ describe('editor-access', () => {
 
   it('replaceDocument is a no-op when detached', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'hello', () => {})
     access.detach()
     expect(() => access.replaceDocument('nope')).not.toThrow()
@@ -273,7 +286,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('onDocChange fires once per doc-changing update, after state is updated', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     const seen: Array<{ text: string; txCount: number }> = []
     access.attach(target, 'hi', (text, transactions) => {
       seen.push({ text, txCount: transactions.length })
@@ -292,7 +305,7 @@ describe('editor-access', () => {
 
   it('onDocChange does not fire for non-doc updates (scrollToOffset)', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     let calls = 0
     access.attach(target, 'hi', () => {
       calls++
@@ -303,7 +316,7 @@ describe('editor-access', () => {
 
   it('onDocChange delivers real Transaction objects', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     let tx: readonly Transaction[] | null = null
     access.attach(target, 'hi', (_text, transactions) => {
       tx = transactions
@@ -319,7 +332,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('scrollToOffset is a no-op when detached', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'hi', () => {})
     access.detach()
     expect(() => access.scrollToOffset(5)).not.toThrow()
@@ -330,7 +343,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('rectForRange returns null when detached', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'hello', () => {})
     access.detach()
     expect(access.rectForRange(0, 1)).toBeNull()
@@ -338,7 +351,7 @@ describe('editor-access', () => {
 
   it('rectForRange returns null for an empty range even when attached', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'hello', () => {})
     expect(access.rectForRange(2, 2)).toBeNull()
     expect(access.rectForRange(3, 1)).toBeNull()
@@ -350,7 +363,7 @@ describe('editor-access', () => {
   // paths are covered above. This guards against a regression producing NaN fields.
   it('rectForRange returns a finite Rect or null when attached (no NaN)', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'hello', () => {})
     const rect = access.rectForRange(0, 5)
     if (rect === null) {
@@ -362,6 +375,31 @@ describe('editor-access', () => {
         expect(Number.isFinite(rect[k])).toBe(true)
       }
     }
+  })
+  // S4-2: coordsAtPos throws a RangeError for positions past doc end. The seam
+  // clamps to [0, docLength] (mirroring buildHighlightSet), so a beyond-doc
+  // range must neither throw nor crash — it yields a box for the clamped span
+  // when geometry exists, or null headlessly.
+  it('rectForRange clamps a beyond-doc range instead of throwing (S4-2)', () => {
+    const target = track(freshTarget())
+    const access = trackAccess(createEditorAccess())
+    access.attach(target, 'hello', () => {})
+
+    // from in range, to far past the end → clamped to [0, 5].
+    const rect = access.rectForRange(0, 1000)
+    if (rect !== null) {
+      for (const k of ['top', 'bottom', 'left', 'right'] as const) {
+        expect(Number.isFinite(rect[k])).toBe(true)
+      }
+    }
+
+    // Both ends past the end → collapse to [5, 5], an empty range → null.
+    expect(access.rectForRange(100, 200)).toBeNull()
+    // Both ends before the start → [0, 0] → null.
+    expect(access.rectForRange(-10, -5)).toBeNull()
+
+    // No throw is the contract: stray anchor offsets must not crash painting.
+    expect(() => access.rectForRange(2, 500)).not.toThrow()
   })
 
   it('unionRects returns the bounding box of two rects', () => {
@@ -377,7 +415,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('onViewportChange fires on a doc-changing update and unsubscribes', async () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'hello', () => {})
     const cb = vi.fn()
     access.onViewportChange(cb)
@@ -406,7 +444,7 @@ describe('editor-access', () => {
 
   it('showHighlights pushes a fresh decoration set onto the editor state', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess({ extensions: [highlightExtension()] })
+    const access = trackAccess(createEditorAccess({ extensions: [highlightExtension()] }))
     access.attach(target, 'hello world', () => {})
     const view = mountedView(target)
     // The highlightExtension field provides exactly one decorations provider;
@@ -438,7 +476,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('showHighlights defers during composition (facet unchanged) and flushes after it ends', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess({ extensions: [highlightExtension()] })
+    const access = trackAccess(createEditorAccess({ extensions: [highlightExtension()] }))
     access.attach(target, 'hello world', () => {})
     const view = mountedView(target)
 
@@ -449,16 +487,43 @@ describe('editor-access', () => {
     // No dispatch happens mid-composition: the decoration facet stays empty.
     access.showHighlights([{ start: 0, end: 5, tone: 'note' }])
     expect(decoClasses(providedFacetSet(view.state), view.state.doc.length)).toEqual([])
-
     // Composition ends; the next update tick flushes the deferred spans.
     setComposing(view, 0)
     view.dispatch({ selection: EditorSelection.cursor(11) }) // any update triggers the tick
     expect(decoClasses(providedFacetSet(view.state), view.state.doc.length)).toEqual(['bw-hl bw-hl-note'])
   })
 
+  // BUGS #4: a direct (non-composing) push after a parked composition batch must
+  // supersede the parked spans, not be reverted by a later flush. Reproduces:
+  // park A mid-composition, composition ends without a transaction, direct push
+  // B dispatches, then an update-listener tick must NOT revert to stale A.
+  it('a direct highlight push supersedes composition-deferred spans (BUGS #4)', () => {
+    const target = track(freshTarget())
+    const access = trackAccess(createEditorAccess({ extensions: [highlightExtension()] }))
+    access.attach(target, 'hello world', () => {})
+    const view = mountedView(target)
+
+    // Park A while composing (no dispatch happens mid-composition).
+    setComposing(view, 1)
+    access.showHighlights([{ start: 0, end: 5, tone: 'note' }])
+    expect(view.composing).toBe(true)
+    expect(decoClasses(providedFacetSet(view.state), view.state.doc.length)).toEqual([])
+
+    // Composition ends without a transaction (pendingSpans survives); a direct
+    // push B lands first and must clear the parked batch.
+    setComposing(view, 0)
+    access.showHighlights([{ start: 6, end: 11, tone: 'sharp' }])
+    expect(decoClasses(providedFacetSet(view.state), view.state.doc.length)).toEqual(['bw-hl bw-hl-sharp'])
+
+    // Any later transaction fires the update listener; the stale parked A must
+    // not be flushed over B.
+    view.dispatch({ selection: EditorSelection.cursor(11) })
+    expect(decoClasses(providedFacetSet(view.state), view.state.doc.length)).toEqual(['bw-hl bw-hl-sharp'])
+  })
+
   it('showHighlights never creates an undo event (addToHistory:false)', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess({ extensions: [highlightExtension()] })
+    const access = trackAccess(createEditorAccess({ extensions: [highlightExtension()] }))
     access.attach(target, 'hello', () => {})
     const view = mountedView(target)
 
@@ -484,7 +549,7 @@ describe('editor-access', () => {
 
   it('composition-deferred highlights are dropped on detach, not flushed into the next attach', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess({ extensions: [highlightExtension()] })
+    const access = trackAccess(createEditorAccess({ extensions: [highlightExtension()] }))
     access.attach(target, 'first', () => {})
     let view = mountedView(target)
     setComposing(view, 1)
@@ -505,7 +570,7 @@ describe('editor-access', () => {
   // ---------------------------------------------------------------------------
   it('re-attaching replaces the previous document and starts a fresh cursor', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     access.attach(target, 'first', () => {})
     access.attach(target, 'second', () => {})
 
@@ -518,7 +583,7 @@ describe('editor-access', () => {
 
   it('detach tears down the mounted DOM and clears the callback', () => {
     const target = track(freshTarget())
-    const access = createEditorAccess()
+    const access = trackAccess(createEditorAccess())
     let calls = 0
     access.attach(target, 'hello', () => {
       calls++

@@ -6,10 +6,11 @@
  * Windows never span section boundaries (a heading or thematic break starts
  * a new section — partitionSections), and grow up to 3 blocks or
  * MAX_WINDOW_CHARS of projected marked length, whichever binds first. A
- * trailing group of fewer than 3 blocks merges into the previous window
- * when the result stays within budget and stays within one section; an
- * over-budget block is emitted as its own oversized window rather than
- * split. Each window is marked with [CURSOR START]/[CURSOR END] around its
+ * trailing group of fewer than 3 blocks merges into the previous window —
+ * adding at most one block past the cap, so a merged tail may hold
+ * WINDOW_BLOCKS + 1 — when the result stays within budget and within one
+ * section; an over-budget block is emitted as its own oversized window
+ * rather than split. Each window is marked with [CURSOR START]/[CURSOR END] around its
  * MIDDLE block (the earlier of the two middles when the window has an even
  * block count), so the server's gate sees a small envelope for the question
  * to anchor to.
@@ -22,6 +23,13 @@
  * anchors INSIDE its own window's block bounds; answers that anchor nowhere
  * or elsewhere in the draft are logged and skipped (never an unanchored,
  * garbage note).
+ *
+ * On the first failing ask the sweep rejects mid-way and latches an abort:
+ * no worker claims a new window, so any ask already in flight (at most one
+ * window-slot's worth, alongside the failure) completes but nothing further
+ * is spent. Notes from windows that completed are still delivered — the
+ * failed window's slot is marked resolved so the drain prefix advances past
+ * it — and the failed window itself yields nothing.
  */
 
 import { extractAnchor } from './anchor.js';
@@ -108,8 +116,9 @@ function projectedMarkedLength(blocks: Block[]): number {
  * WINDOW_BLOCKS blocks OR when adding the next block would push the
  * projected marked length past MAX_WINDOW_CHARS (Q2). A trailing group of
  * fewer than 3 blocks merges into the previous window when the merge stays
- * within budget and within the same section (Q4); an over-budget block is
- * emitted as its own oversized window (Q3). Each window's middle block is
+ * within budget, within the same section, and keeps the merged window at or
+ * under WINDOW_BLOCKS + 1 blocks (Q4); an over-budget block is emitted as
+ * its own oversized window (Q3). Each window's middle block is
  * marked with cursor markers, and the plan carries a cursorHint at the
  * marked block's midpoint plus the window's own block bounds (Q6).
  * Empty document -> empty plan.
@@ -152,7 +161,12 @@ export function planSweep(markdown: string): SweepWindowPlan[] {
     const prev = windows[windows.length - 2];
     if (prev.section === last.section) {
       const merged = [...prev.blocks, ...last.blocks];
-      if (projectedMarkedLength(merged) <= MAX_WINDOW_CHARS) {
+      // Block-count test too: the greedy pass caps a normal window at
+      // WINDOW_BLOCKS, and the merge may fold in at most one extra block
+      // (WINDOW_BLOCKS + 1) — never a 2-block stub onto an already-full
+      // 3-block window, which would make a 5-block window. Character budget
+      // alone cannot stop that.
+      if (merged.length <= WINDOW_BLOCKS + 1 && projectedMarkedLength(merged) <= MAX_WINDOW_CHARS) {
         prev.blocks = merged;
         windows.pop();
       }
@@ -192,8 +206,11 @@ export function planSweep(markdown: string): SweepWindowPlan[] {
  * Aborting is a normal exit, not a failure: shouldAbort() is consulted before
  * STARTING each window; windows already in flight complete and are processed
  * normally, then no further window is started. Throwing is reserved for
- * coach.ask itself: a failing ask still rejects the sweep mid-way, with the
- * notes so far discarded.
+ * coach.ask itself: a failing ask rejects the sweep mid-way and latches an
+ * abort, so no further window is claimed — the only asks still issued are
+ * ones already in flight, within one window-slot. Notes from windows that
+ * completed are still delivered: the failed window's slot is marked resolved
+ * so the drain prefix advances past it, and the failed window yields nothing.
  *
  * The returned SweepResult's counters are exhaustive: `asked` is the number of
  * windows that produced an anchored note, and `skipped` is every other window
@@ -235,6 +252,10 @@ export async function runSweep(
   const byIndex: Array<SweepNote | undefined> = new Array(plan.length);
   const resolved = new Array<boolean>(plan.length).fill(false);
   let drained = 0;
+  // Abort latch set on the first failing ask (distinct from the caller's
+  // shouldAbort, which is the graceful Stop-button path and resolves the
+  // sweep normally). Once set, no worker claims another window.
+  let failed = false;
 
   function drain(): void {
     while (drained < plan.length && resolved[drained]) {
@@ -287,10 +308,23 @@ export async function runSweep(
   let next = 0;
   const worker = async (): Promise<void> => {
     while (true) {
-      if (opts.shouldAbort?.()) return;
+      if (failed || opts.shouldAbort?.()) return;
       const index = next++;
       if (index >= plan.length) return;
-      await processWindow(index);
+      try {
+        await processWindow(index);
+      } catch (err) {
+        // Latch the abort so no sibling worker claims another window (the
+        // only asks still issued are ones already in flight, at most one
+        // window-slot's worth), then mark this slot resolved so drain()'s
+        // consecutive-prefix pointer can advance past the failed window and
+        // still emit notes that later windows resolved. The failure itself
+        // yields nothing; it propagates and rejects the whole sweep.
+        failed = true;
+        resolved[index] = true;
+        drain();
+        throw err;
+      }
     }
   };
 
@@ -344,6 +378,10 @@ export function reconcileAnnotations<T extends AnchorRecordLike>(
  */
 export function staleAnnotations(annotations: AnchorRecordLike[], draft: string): AnchorRecordLike[] {
   return annotations.flatMap((annotation) => {
+    // Drop degenerate spans up front: an empty fragment or a zero-length span
+    // is invisible (buildHighlightSet requires start < end) yet would
+    // otherwise survive the exact-offset check below and ride every save.
+    if (!annotation.fragment || annotation.start >= annotation.end) return [];
     if (
       annotation.start >= 0 &&
       annotation.end <= draft.length &&
@@ -351,7 +389,6 @@ export function staleAnnotations(annotations: AnchorRecordLike[], draft: string)
     ) {
       return [annotation];
     }
-    if (!annotation.fragment) return [];
     let best = -1;
     let bestDist = Number.POSITIVE_INFINITY;
     let tied = false;

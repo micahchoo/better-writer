@@ -608,14 +608,25 @@ body {
 }
 
 .inbox-row {
+  /* Wrapper for listitem semantics; the interactive focus-jump box is the
+     inner .inbox-row-main button. */
+}
+
+.inbox-row-main {
+  display: block;
+  width: 100%;
   padding: 8px 10px;
   border: 1px solid var(--border);
   border-radius: 8px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
   cursor: pointer;
   transition: border-color 0.2s ease;
 }
 
-.inbox-row:hover {
+.inbox-row-main:hover {
   border-color: var(--accent);
 }
 

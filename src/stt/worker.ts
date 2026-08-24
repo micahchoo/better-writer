@@ -34,9 +34,16 @@
  * The model directory is resolved by the model.ts module (runs in the parent);
  * the parent sets BW_STT_MODEL_DIR before spawning so the worker can
  * just read the env var directly without re-resolving.
+ *
+ * The stdio main loop only starts when this module is executed as the child
+ * worker process (tsx src/stt/worker.ts); a unit test that imports the module
+ * to exercise the handlers gets the pure functions without a dangling
+ * readline on stdin.
  */
 
 import { createRequire } from 'node:module';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { decodeInbound, encodeOutbound, type Inbound, type Outbound } from './protocol.js';
 import { createInterface } from 'node:readline';
 import { resolveModelDir } from './model.js';
@@ -132,8 +139,25 @@ async function transcribe(
  };
 }
 
-function base64ToFloat32(b64: string): Float32Array {
+/** Decode a base64 Float32 payload.
+ *
+ *  A payload whose byte length is not a multiple of four is malformed: a
+ *  Float32Array cannot represent it, and `new Float32Array(buffer, 0, n/4)`
+ *  would otherwise silently truncate to `floor(n/4)` samples — a partial,
+ *  garbage decode that would be transcribed as if it were valid audio. Reject
+ *  it explicitly so the caller's try/catch reports a stream-error / error
+ *  instead of transcribing a corrupt prefix. Valid audio (whole Float32
+ *  samples, so always a multiple of 4 bytes) is never rejected.
+ *
+ *  Exported so tests can prove a malformed payload throws (and thus reaches
+ *  the handler's stream-error path). */
+export function base64ToFloat32(b64: string): Float32Array {
  const buf = Buffer.from(b64, 'base64');
+ if (buf.byteLength % 4 !== 0) {
+  throw new RangeError(
+   `base64 Float32 payload has ${buf.byteLength} bytes — not a multiple of 4`,
+  );
+ }
  return new Float32Array(buf.buffer, buf.byteOffset, buf.byteLength / 4);
 }
 
@@ -146,7 +170,7 @@ interface WorkerStream {
 
 const streams = new Map<string, WorkerStream>();
 
-async function openStream(id: string): Promise<void> {
+export async function openStream(id: string): Promise<void> {
  try {
   const rec = await getRecognizer();
   const stream = rec.createStream();
@@ -161,13 +185,19 @@ async function openStream(id: string): Promise<void> {
  }
 }
 
-async function pushAudio(id: string, samples: Float32Array, sampleRate: number): Promise<void> {
+export async function pushAudio(id: string, b64: string, sampleRate: number): Promise<void> {
  const ws = streams.get(id);
  if (!ws) {
   send({ type: 'stream-error', id, error: `unknown stream: ${id}` });
   return;
  }
  try {
+  // S3-11: decode inside the try — base64ToFloat32 throws a RangeError on a
+  // payload whose byte length is not a multiple of 4. Escaping here would
+  // hit the queue's .catch (which only logs) and never send a stream-error,
+  // leaving the parent's end() promise hanging. Deleted like any decode
+  // failure below so the corrupt stream cannot be reused.
+  const samples = base64ToFloat32(b64);
   const rec = await getRecognizer();
   ws.stream.acceptWaveform({ samples, sampleRate });
   const result = await rec.decodeAsync(ws.stream);
@@ -185,7 +215,7 @@ async function pushAudio(id: string, samples: Float32Array, sampleRate: number):
  }
 }
 
-async function endStream(id: string): Promise<void> {
+export async function endStream(id: string): Promise<void> {
  const ws = streams.get(id);
  if (!ws) {
   send({ type: 'stream-error', id, error: `unknown stream: ${id}` });
@@ -207,9 +237,19 @@ async function endStream(id: string): Promise<void> {
  }
 }
 
+/**
+ * Test seam: register a stream in the worker's map without loading the
+ * recognizer, so a malformed-payload test can drive `pushAudio` straight to
+ * its decode-error path (which throws before the recognizer is touched).
+ * Not used by the production loop.
+ */
+export function registerTestStream(id: string): void {
+ streams.set(id, { stream: {} as SherpaOfflineStream, lastPartial: '' });
+}
+
 // --- main loop ---
 
-async function handle(msg: Inbound): Promise<boolean> {
+export async function handle(msg: Inbound): Promise<boolean> {
  if (msg.type === 'shutdown') {
   return false;
  }
@@ -220,8 +260,7 @@ async function handle(msg: Inbound): Promise<boolean> {
  }
 
  if (msg.type === 'audio') {
-  const samples = base64ToFloat32(msg.samples);
-  await pushAudio(msg.id, samples, msg.sampleRate);
+  await pushAudio(msg.id, msg.samples, msg.sampleRate);
   return true;
  }
 
@@ -252,38 +291,49 @@ async function handle(msg: Inbound): Promise<boolean> {
  return true;
 }
 
-const rl = createInterface({ input: process.stdin });
+/** True when this module is the executed entry point (tsx worker.ts), not an import. */
+function isMain(): boolean {
+ try {
+  return resolve(process.argv[1] ?? '') === fileURLToPath(import.meta.url);
+ } catch {
+  return false;
+ }
+}
 
-// Messages run through a serial promise chain: the readline 'line' handler
-// is async but readline never awaits it, so naive handlers interleave —
-// harmless for one-shot transcribes in practice (the parent awaits each),
-// but streaming REQUIRES in-order processing (chunks of one stream must be
-// accepted in arrival order, and the final decode must see them all).
-let queue: Promise<void> = Promise.resolve();
+if (isMain()) {
+ const rl = createInterface({ input: process.stdin });
 
-rl.on('line', (line: string) => {
- const trimmed = line.trim();
- if (!trimmed) return;
+ // Messages run through a serial promise chain: the readline 'line' handler
+ // is async but readline never awaits it, so naive handlers interleave —
+ // harmless for one-shot transcribes in practice (the parent awaits each),
+ // but streaming REQUIRES in-order processing (chunks of one stream must be
+ // accepted in arrival order, and the final decode must see them all).
+ let queue: Promise<void> = Promise.resolve();
 
- queue = queue
-  .then(async () => {
-   let msg: Inbound;
-   try {
-    msg = decodeInbound(trimmed);
-   } catch {
-    send({ type: 'error', id: '', error: `Invalid message: ${trimmed}` });
-    return;
-   }
+ rl.on('line', (line: string) => {
+  const trimmed = line.trim();
+  if (!trimmed) return;
 
-   const keepGoing = await handle(msg);
-   if (!keepGoing) {
-    rl.close();
-    process.exit(0);
-   }
-  })
-  .catch((err: unknown) => {
-   // A per-message handler already reports its own failures; this is the
-   // safety net for anything that escapes it (e.g. a decode crash).
-   console.error('[stt-worker] unhandled:', err);
-  });
-});
+  queue = queue
+   .then(async () => {
+    let msg: Inbound;
+    try {
+     msg = decodeInbound(trimmed);
+    } catch {
+     send({ type: 'error', id: '', error: `Invalid message: ${trimmed}` });
+     return;
+    }
+
+    const keepGoing = await handle(msg);
+    if (!keepGoing) {
+     rl.close();
+     process.exit(0);
+    }
+   })
+   .catch((err: unknown) => {
+    // A per-message handler already reports its own failures; this is the
+    // safety net for anything that escapes it (e.g. a decode crash).
+    console.error('[stt-worker] unhandled:', err);
+   });
+ });
+}

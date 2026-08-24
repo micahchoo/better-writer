@@ -66,8 +66,15 @@ export interface StreamReadyResp {
  id: string;
 }
 
-/** Worker → parent: a partial (or, on stream-end, the final) hypothesis.
- *  `final` absent reads as false. */
+/**
+ * Worker → parent: a partial (or, on stream-end, the final) hypothesis.
+ * `final` absent reads as false.
+ *
+ * The final partial carries text alone — per-token timings are not on the
+ * streaming wire (the offline engine's stream-end decode does expose them,
+ * but the protocol does not transport them). Consumers must not fabricate
+ * empty timing arrays behind a promise of per-token data (#16).
+ */
 export interface PartialResp {
  type: 'partial';
  id: string;

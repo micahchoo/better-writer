@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { reshape } from './reshape.js';
+import type { ReshapeAttempt } from './reshape.js';
 import { TOPIC_PROBES } from './topic-probe.js';
 import type { Complete, Turn } from './types.js';
 
@@ -72,6 +73,36 @@ describe('reshape', () => {
   };
   const out = await reshape('What is at stake here?', 'abc', complete);
   expect(out.question).toBe(TOPIC_PROBES['abc'.length % TOPIC_PROBES.length]);
+  expect(out.source).toBe('topic-probe');
+ });
+
+ it('classifies a thrown model error as transport — never retried, logged honestly', async () => {
+  let calls = 0;
+  const complete: Complete = async () => {
+   calls += 1;
+   throw new Error('connection refused');
+  };
+  const attempts: ReshapeAttempt[] = [];
+  const out = await reshape('What is at stake here?', 'abc', complete, (info) => attempts.push(info));
+  // A nudge suffix cannot fix a dead socket: exactly one model call, no retry.
+  expect(calls).toBe(1);
+  expect(attempts).toEqual([{ failures: ['transport'], fallback: true, attempts: 1 }]);
+  expect(out.question).toBe(TOPIC_PROBES['abc'.length % TOPIC_PROBES.length]);
+  expect(out.source).toBe('topic-probe');
+ });
+
+ it('still retries once and logs syntax for malformed output', async () => {
+  let calls = 0;
+  const complete: Complete = async () => {
+   calls += 1;
+   return 'Sure! Here is my take: What changed? Let me think.';
+  };
+  const attempts: ReshapeAttempt[] = [];
+  const out = await reshape('What is at stake here?', 'some text', complete, (info) => attempts.push(info));
+  // A genuine gate failure still earns its single corrective retry.
+  expect(calls).toBe(2);
+  expect(attempts).toEqual([{ failures: ['syntax', 'syntax'], fallback: true, attempts: 2 }]);
+  expect(out.question).toBe(TOPIC_PROBES['some text'.length % TOPIC_PROBES.length]);
   expect(out.source).toBe('topic-probe');
  });
 

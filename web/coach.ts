@@ -1,9 +1,11 @@
 /**
  * coach: the Coach seam — one interface, three adapters.
  *
- *   StaticCoach — uniform-random pick from the bundled seed bank
+ *   StaticCoach — uniform-random pick from the seed bank
  *                 (seeds/client.json, shipped as ClientSeed[] with all
- *                 provenance stripped). No model, no network.
+ *                 provenance stripped). The bank is loaded lazily on first
+ *                 draw so it never inflates the main chunk. No model, no
+ *                 network beyond that one module fetch.
  *   LocalCoach  — POST /ask to the local server, which reshapes one question
  *                 with the local model.
  *   ByokCoach  — bring-your-own-key: reshapes in the browser against an
@@ -20,7 +22,6 @@
  */
 
 import type { AskRequest, AskResponse, ClientSeed, Genre, QuestionSource } from '../src/types';
-import clientJson from '../seeds/client.json';
 
 const GENRE_AGNOSTIC: Genre = 'genre-agnostic';
 
@@ -71,8 +72,21 @@ export function seedMatchesGenre(seed: ClientSeed, genre: Genre): boolean {
   return seed.genre.includes(GENRE_AGNOSTIC) || seed.genre.includes(genre);
 }
 
-/** The pre-generated bundle, cast to the typed shape. */
-export const bundledSeeds = clientJson as ClientSeed[];
+/**
+ * Lazily-loaded seed bank. seeds/client.json (~563KB) would inline into the
+ * main chunk under a static import; instead it ships as its own
+ * dynamic-import chunk, fetched only when a coach first draws a seed. The
+ * loaded module is cached, so a draw triggers at most ONE async load, and a
+ * second coach (ByokCoach) reuses the same cached module through this shared
+ * loader. Tests may inject explicit seeds to bypass the bank entirely.
+ */
+let seedsPromise: Promise<ClientSeed[]> | null = null
+export function loadSeeds(): Promise<ClientSeed[]> {
+  seedsPromise ??= import('../seeds/client.json').then(
+    (m) => ((m.default ?? m) as unknown) as ClientSeed[],
+  )
+  return seedsPromise
+}
 
 /**
  * The random surface the seed drawer needs: uniform [0,1) draws plus a
@@ -172,14 +186,15 @@ export function pickSeed(
   return rng.choice(complement);
 }
 export class StaticCoach implements Coach {
-  private readonly seeds: ClientSeed[];
+  private readonly seeds: ClientSeed[] | null;
 
-  constructor(seeds: ClientSeed[] = bundledSeeds) {
-    this.seeds = seeds;
+  constructor(seeds?: ClientSeed[]) {
+    this.seeds = seeds ?? null;
   }
 
   async ask(_textWindow: string, genre: Genre, _cursorOffset: number): Promise<string> {
-    return pickSeed(this.seeds, genre).question;
+    const seeds = this.seeds ?? (await loadSeeds());
+    return pickSeed(seeds, genre).question;
   }
 
   lastSource(): QuestionSource | null {

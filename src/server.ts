@@ -11,6 +11,7 @@ import { readFile } from 'node:fs/promises';
 import { extname, join, normalize, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Readable } from 'node:stream';
+import type { ReadableStream as NodeWebReadableStream } from 'node:stream/web';
 import { Hono } from 'hono';
 import { GENRES, type Genre } from './types.js';
 import { loadEnvFile } from './env.js';
@@ -20,9 +21,12 @@ import { reshape } from './reshape.js';
 import { loadAnnotations, loadDraft, saveAnnotations, saveDraft } from './draft.js';
 import { boundaryViolation } from './boundary.js';
 import type { Annotation } from './types.js';
-import { resolveModelDir } from './stt/model.js';
 import { implVerbs, measureWindow } from '../web/window-stats.js';
+import type { PositionContext } from '../web/window-stats.js';
+import { partitionSections, splitBlocks } from '../web/text-window.js';
+import { resolveModelDir } from './stt/model.js';
 import { createSttClient } from './stt/client.js';
+import type { SttClient } from './stt/client.js';
 
 /** Built client, resolved from the module (not cwd). Vite outDir is ../dist. */
 const DIST_DIR = fileURLToPath(new URL('../dist/', import.meta.url));
@@ -55,6 +59,13 @@ const MIME: Record<string, string> = {
 
 const LISTEN_ADDRESS = process.env.BW_HOST ?? '127.0.0.1';
 
+/** Port to listen on and the only Origin authority this machine trusts. */
+const rawPort = process.env.BW_PORT;
+const port = Number(rawPort ?? '4517');
+if (!Number.isInteger(port) || port <= 0 || port > 65535) {
+  throw new Error(`invalid BW_PORT: ${JSON.stringify(rawPort)}`);
+}
+
 /** Serializes draft/annotation IO so /load never observes a torn pair mid-/save. */
 let ioChain: Promise<unknown> = Promise.resolve();
 function ioSerial<T>(io: () => Promise<T>): Promise<T> {
@@ -64,12 +75,12 @@ function ioSerial<T>(io: () => Promise<T>): Promise<T> {
 }
 
 const complete = makeComplete();
-const app = new Hono();
+export const app = new Hono();
 
 // --- local-machine boundary (src/boundary.ts) ---
 
 app.use('*', async (c, next) => {
-  const violation = boundaryViolation(LISTEN_ADDRESS, c.req.header('host'), c.req.header('origin'));
+  const violation = boundaryViolation(LISTEN_ADDRESS, port, c.req.header('host'), c.req.header('origin'));
   if (violation !== null) return c.json({ error: violation }, 403);
   await next();
 });
@@ -78,6 +89,47 @@ app.use('*', async (c, next) => {
 
 /** Client's probe for local-vs-static mode: 200 means a local server is up. */
 app.get('/health', (c) => c.json({ ok: true }));
+
+/**
+ * Derive the measured window's position within its section, so the
+ * opening-/closing-position axes can fire on the local /ask path. The server
+ * only ever sees the window (never the full draft), so position is computed
+ * from the window's own block/section structure via the same pure helpers the
+ * web side uses (splitBlocks + partitionSections from web/text-window.ts): the
+ * cursor block is located by its [CURSOR START] transport marker, then
+ * measured against the section it belongs to.
+ *
+ * Approximation note: sectionBlockCount is the count visible inside the
+ * window, so a window clipped at a section or document edge undercounts its
+ * section (the web side's sweep planner shares this constraint — it also sees
+ * only its own window). A cursor block on a middle block of a large section
+ * therefore reports a lower count, which only affects the >= 3 threshold.
+ */
+export function derivePositionContext(window: string): PositionContext | null {
+  const blocks = splitBlocks(window);
+  if (blocks.length === 0) return null;
+  // The cursor block carries the transport marker; without one, fall back to
+  // treating the first block as the measured unit.
+  let cursorBlock = 0;
+  for (let i = 0; i < blocks.length; i++) {
+    if (blocks[i].text.includes('[CURSOR START]')) {
+      cursorBlock = i;
+      break;
+    }
+  }
+  const sections = partitionSections(blocks);
+  let offset = 0;
+  for (const section of sections) {
+    if (cursorBlock < offset + section.length) {
+      return {
+        sectionBlockCount: section.length,
+        blockIndexInSection: cursorBlock - offset,
+      };
+    }
+    offset += section.length;
+  }
+  return null;
+}
 
 app.post('/ask', async (c) => {
  const body = await c.req
@@ -93,9 +145,11 @@ app.post('/ask', async (c) => {
  }
  try {
   // Measure the window, map fired axes to implementation verbs, and narrow the
-  // seed draw with --lean-verbs (a soft preference). Positional axes are
-  // silently absent: measureWindow runs without a PositionContext here.
-  const leanVerbs = implVerbs(measureWindow(textWindow));
+  // seed draw with --lean-verbs (a soft preference). Position is derived from
+  // the window's own blocks (see derivePositionContext), so the opening- and
+  // closing-position axes can fire here too.
+  const position = derivePositionContext(textWindow);
+  const leanVerbs = implVerbs(measureWindow(textWindow, position ?? undefined));
   const seed = await pullSeed(genre as Genre, { leanVerbs });
   const reshaped = await reshape(seed.question, textWindow, complete, (info) => {
    console.log(
@@ -115,43 +169,65 @@ app.post('/ask', async (c) => {
  }
 });
 
-/** Validate an unknown value as an Annotation; null when it is not one. */
-function parseAnnotation(value: unknown): Annotation | null {
- if (typeof value !== 'object' || value === null) return null;
- const a = value as Record<string, unknown>;
- if (typeof a.start !== 'number' || typeof a.end !== 'number') return null;
- if (typeof a.fragment !== 'string' || typeof a.question !== 'string') return null;
- if (typeof a.ts !== 'number') return null;
- // `source` is optional on persisted notes; pass it through only when it is
- // a genuine provenance label — an invalid value rejects the whole note
- // rather than stripping provenance silently on a /save round-trip.
- if (a.source !== undefined) {
-  if (a.source !== 'seed' && a.source !== 'reshaped' && a.source !== 'topic-probe') return null;
-  return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts, source: a.source };
- }
- return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts };
+export function parseAnnotation(value: unknown): Annotation | null {
+  if (typeof value !== 'object' || value === null) return null;
+  const a = value as Record<string, unknown>;
+  if (typeof a.start !== 'number' || typeof a.end !== 'number') return null;
+  if (typeof a.fragment !== 'string' || typeof a.question !== 'string') return null;
+  if (typeof a.ts !== 'number') return null;
+  // Offsets must be finite integers with a positive, non-degenerate span. A
+  // NaN/Infinity/negative/inverted pair would corrupt the persisted set, so
+  // reject it at the door rather than letting it ride through to /load.
+  if (
+    !Number.isFinite(a.start) ||
+    !Number.isFinite(a.end) ||
+    !Number.isInteger(a.start) ||
+    !Number.isInteger(a.end) ||
+    a.start < 0 ||
+    a.end <= a.start
+  ) {
+    return null;
+  }
+  // `source` is optional on persisted notes; pass it through only when it is
+  // a genuine provenance label — an invalid value rejects the whole note
+  // rather than stripping provenance silently on a /save round-trip.
+  if (a.source !== undefined) {
+    if (a.source !== 'seed' && a.source !== 'reshaped' && a.source !== 'topic-probe') return null;
+    return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts, source: a.source };
+  }
+  return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts };
 }
 
 /** Validate an unknown value as an Annotation[]; null when it is not one. */
-function parseAnnotations(value: unknown): Annotation[] | null {
- if (!Array.isArray(value)) return null;
- const out: Annotation[] = [];
- for (const item of value) {
-  const parsed = parseAnnotation(item);
-  if (parsed === null) return null;
-  out.push(parsed);
- }
- return out;
+export function parseAnnotations(value: unknown): Annotation[] | null {
+  if (!Array.isArray(value)) return null;
+  const out: Annotation[] = [];
+  for (const item of value) {
+    const parsed = parseAnnotation(item);
+    // Skip malformed entries rather than failing the whole request: one bad
+    // offset must not nuke the rest of the writer's saved notes.
+    if (parsed !== null) out.push(parsed);
+  }
+  return out;
 }
 
 app.post('/save', async (c) => {
- const body = await c.req
-  .json<{ draft?: unknown; annotations?: unknown }>()
-  .catch(() => null);
- const draft = body?.draft;
+ const raw = await c.req.text();
+ let body: { draft?: unknown; annotations?: unknown };
+ try {
+  body = JSON.parse(raw) as { draft?: unknown; annotations?: unknown };
+ } catch {
+  // Distinguish a malformed body from a valid object with a wrong-typed
+  // field: 'not json' must not masquerade as a draft validation failure.
+  return c.json({ error: 'invalid JSON body' }, 400);
+ }
+ if (body === null || typeof body !== 'object') {
+  return c.json({ error: 'request body must be a JSON object' }, 400);
+ }
+ const draft = body.draft;
  if (typeof draft !== 'string') return c.json({ error: 'draft must be a string' }, 400);
  // Absent means the client dropped all notes: always overwrite, never leave stale ones.
- const annotations = body?.annotations === undefined ? [] : parseAnnotations(body.annotations);
+ const annotations = body.annotations === undefined ? [] : parseAnnotations(body.annotations);
  if (annotations === null) {
   return c.json({ error: 'annotations must be an array of {start, end, fragment, question, ts}' }, 400);
  }
@@ -183,15 +259,22 @@ app.get('/load', async (c) => {
 
 // --- STT (one-shot transcribe; the worker spawns lazily on first use) ---
 
-let stt: ReturnType<typeof createSttClient> | null = null;
-function sttClient(): ReturnType<typeof createSttClient> {
- stt ??= createSttClient();
- return stt;
-}
+/**
+ * A /transcribe payload shorter than this (measured at the WAV's own sample
+ * rate) is noise, not speech. Rejecting it before the worker keeps a
+ * near-empty WAV from ever reaching ONNX, which would surface a raw
+ * ConvInteger status as a client toast instead of a plain-language 400.
+ */
+const MIN_RECORDING_SECONDS = 0.1;
+
+let stt: SttClient | null = null;
 
 app.post('/transcribe', async (c) => {
  const contentType = c.req.header('content-type') ?? '';
- if (!/audio\/(?:wav|x-wav|wave)/.test(contentType)) {
+ // Anchor to the media type before parameters: 'text/plain; charset=audio/wave'
+ // must not pass, and `\b` stops audio/wav from matching audio/wave forms.
+ const mediaType = contentType.split(';')[0].trim().toLowerCase();
+ if (!/^audio\/(?:wav|x-wav|wave)\b/.test(mediaType)) {
   return c.json({ error: 'expected Content-Type audio/wav' }, 400);
  }
  const bytes = new Uint8Array(await c.req.arrayBuffer());
@@ -202,14 +285,21 @@ app.post('/transcribe', async (c) => {
  } catch (err) {
   return c.json({ error: `invalid WAV: ${err instanceof Error ? err.message : String(err)}` }, 400);
  }
+ // Bad input (a sub-100ms payload) is a 400, not a 503: it never reaches the
+ // worker, so the client gets a plain-language message rather than raw ONNX.
+ if (sampleRate <= 0 || samples.length / sampleRate < MIN_RECORDING_SECONDS) {
+  return c.json({ error: 'recording too short — record a moment of speech before transcribing' }, 400);
+ }
  try {
   // Pre-spawn check so a missing model is a fast 503, not a worker crash.
   resolveModelDir();
-  const result = await sttClient().transcribe(samples, sampleRate);
+  const result = await (stt ??= createSttClient()).transcribe(samples, sampleRate);
   return c.json({ text: result.text });
  } catch (err) {
   console.error('[server] /transcribe failed:', err);
-  return c.json({ error: err instanceof Error ? err.message : String(err) }, 503);
+  // A missing or failed recognizer is genuinely unavailable; keep the writer
+  // on plain language instead of raw ONNX internals.
+  return c.json({ error: 'transcription failed — the local speech model could not process this audio' }, 503);
  }
 });
 
@@ -304,56 +394,96 @@ function ascii(bytes: Uint8Array, from: number, to: number): string {
  return s;
 }
 
-// --- node:http adapter for Hono's fetch handler ---
+/**
+ * Body for a client's request as an undici Request body. GET and HEAD must
+ * never carry one — undici throws `TypeError: Request with GET/HEAD method
+ * cannot have body`, which would 500 a harmless probe. Empty bodies are
+ * omitted too.
+ */
+export function adapterBody(method: string | undefined, body: Buffer): BodyInit | undefined {
+  const m = method ?? 'GET';
+  if (m === 'GET' || m === 'HEAD' || body.length === 0) return undefined;
+  return body as unknown as BodyInit;
+}
 
 const server = createServer((req, res) => {
- void handle(app, req, res).catch((err) => {
-  console.error('[server] request failed:', err);
-  if (!res.headersSent) res.writeHead(500, { 'content-type': 'application/json' });
-  res.end(JSON.stringify({ error: 'internal server error' }));
- });
+  void handle(app, req, res).catch((err) => {
+    console.error('[server] request failed:', err);
+    if (!res.headersSent) res.writeHead(500, { 'content-type': 'application/json' });
+    res.end(JSON.stringify({ error: 'internal server error' }));
+  });
 });
 
 async function handle(app: Hono, req: IncomingMessage, res: ServerResponse): Promise<void> {
- const url = new URL(req.url ?? '/', `http://${req.headers.host ?? '127.0.0.1'}`);
- const chunks: Buffer[] = [];
- for await (const chunk of req) chunks.push(chunk as Buffer);
- const body = Buffer.concat(chunks);
- // IncomingHttpHeaders is not exactly HeadersInit, but undici accepts it.
- const headers = req.headers as unknown as HeadersInit;
- const request = new Request(url, {
-  method: req.method ?? 'GET',
-  headers,
-  body: body.length > 0 ? body : undefined,
- });
- const response = await app.fetch(request);
- const responseHeaders: Record<string, string> = {};
- response.headers.forEach((value, key) => {
-  responseHeaders[key] = value;
- });
- res.writeHead(response.status, responseHeaders);
- if (response.body === null) {
-  res.end();
-  return;
- }
- // The DOM and node:stream/web ReadableStream types are structurally
- // identical; the cast only unifies them for Readable.fromWeb.
- const bodyStream = response.body as import('node:stream/web').ReadableStream<Uint8Array>;
- await new Promise<void>((resolve, reject) => {
-  Readable.fromWeb(bodyStream)
-   .pipe(res)
-   .on('finish', () => resolve())
-   .on('error', reject);
- });
+  const url = new URL(req.url ?? '/', `http://${req.headers.host ?? '127.0.0.1'}`);
+  const chunks: Buffer[] = [];
+  for await (const chunk of req) chunks.push(chunk as Buffer);
+  const body = Buffer.concat(chunks);
+  // IncomingHttpHeaders is not exactly HeadersInit, but undici accepts it.
+  const headers = req.headers as unknown as HeadersInit;
+  const request = new Request(url, {
+    method: req.method ?? 'GET',
+    headers,
+    body: adapterBody(req.method, body),
+  });
+  const response = await app.fetch(request);
+  const responseHeaders: Record<string, string> = {};
+  response.headers.forEach((value, key) => {
+    responseHeaders[key] = value;
+  });
+  res.writeHead(response.status, responseHeaders);
+  if (response.body === null) {
+    res.end();
+    return;
+  }
+  // The DOM and node:stream/web ReadableStream types are structurally
+  // identical; the cast only unifies them for Readable.fromWeb.
+  const bodyStream = response.body as NodeWebReadableStream<Uint8Array>;
+  await new Promise<void>((resolve, reject) => {
+    Readable.fromWeb(bodyStream)
+      .pipe(res)
+      .on('finish', () => resolve())
+      .on('error', reject);
+  });
+}
+
+// --- shutdown: dispose the STT worker so its native model never orphans ---
+
+/** Minimal process surface registerShutdownHandlers drives; injectable for tests. */
+export interface ShutdownTarget {
+  on(event: string, handler: () => void): unknown;
+  exit(code?: number): void;
+}
+
+/**
+ * SIGINT/SIGTERM shutdown: dispose the STT worker (so its native Parakeet
+ * addon never lingers orphaned after a kill) then exit with a normal status.
+ * The first signal wins — a second one is ignored, so dispose() runs exactly
+ * once and exit() fires once. Accepts a process-like shim so tests can drive
+ * both signals without a real process.
+ */
+export function registerShutdownHandlers(proc: ShutdownTarget, dispose: () => void): void {
+  let shuttingDown = false;
+  const handler = () => {
+    if (shuttingDown) return;
+    shuttingDown = true;
+    try {
+      dispose();
+    } finally {
+      proc.exit(0);
+    }
+  };
+  proc.on('SIGINT', handler);
+  proc.on('SIGTERM', handler);
 }
 
 // --- boot ---
 
-const rawPort = process.env.BW_PORT;
-const port = Number(rawPort ?? '4517');
-if (!Number.isInteger(port) || port <= 0 || port > 65535) {
- throw new Error(`invalid BW_PORT: ${JSON.stringify(rawPort)}`);
-}
+// Dispose the STT worker on shutdown so its native model never orphans.
+registerShutdownHandlers(process, () => {
+  stt?.dispose();
+});
+
 server.listen(port, LISTEN_ADDRESS, () => {
- console.log(`better-writer server: http://${LISTEN_ADDRESS}:${port} (static: ${DIST_DIR})`);
+  console.log(`better-writer server: http://${LISTEN_ADDRESS}:${port} (static: ${DIST_DIR})`);
 });

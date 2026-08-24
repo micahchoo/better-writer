@@ -68,6 +68,11 @@ export function buildHighlightSet(spans: readonly HighlightSpan[], docLength: nu
   const length = Math.max(0, docLength)
 
   for (const span of spans) {
+    // Non-finite offsets (NaN/undefined from a malformed store) poison the
+    // Math.max/min clamp — NaN survives every comparison, passes the start<end
+    // guard, and reaches RangeSet.of where it throws inside React's commit
+    // phase. Drop them outright.
+    if (!Number.isFinite(span.start) || !Number.isFinite(span.end)) continue
     const start = Math.max(0, Math.min(span.start, length))
     const end = Math.max(0, Math.min(span.end, length))
     if (start >= end) continue

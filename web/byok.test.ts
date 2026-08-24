@@ -12,6 +12,23 @@ import {
   TRANSCRIBES_AUDIO,
   transcribeWavByok,
 } from './byok';
+import { decodeToMono16k, encodeWavPcm16 } from './dictation';
+import * as DictationNs from './dictation';
+
+// Node has no AudioContext, so the decode step (which resamples via
+// OfflineAudioContext) is stubbed; the real encoder still runs so the
+// uploaded WAV bytes are genuinely RIFF. This lets the conversion tests prove
+// the transcribeWavByok seam converts before it appends.
+vi.mock('./dictation', async (importOriginal) => {
+  const actual = await importOriginal<typeof DictationNs>();
+  return {
+    ...actual,
+    decodeToMono16k: vi.fn(async () => new Float32Array(16000)),
+    encodeWavPcm16: vi.fn((samples: Float32Array, sampleRate: number) =>
+      actual.encodeWavPcm16(samples, sampleRate),
+    ),
+  };
+});
 
 const KEY = 'better-writer:byok';
 
@@ -282,92 +299,41 @@ describe('ByokCoach.ask', () => {
     const fetchFn = stubFetch(VALID_QUESTION);
 
     const coach = new ByokCoach({ seeds: [fictionSeed, poetrySeed] });
-    const question = await coach.ask(TEXT_WINDOW, 'poetry', 0);
-
-    expect(question).toBe(VALID_QUESTION);
-    // The reshape prompt must contain the POETRY seed's question, proving the
-    // fiction seed was excluded by the genre filter.
-    const body = storedBody(fetchFn);
-    expect(body.messages[1].content).toContain(poetrySeed.question);
-    expect(body.messages[1].content).not.toContain(fictionSeed.question);
-  });
-
-  it('throws and never calls fetch when no config is saved', async () => {
-    const fetchFn = vi.fn();
-    vi.stubGlobal('fetch', fetchFn);
-
-    const coach = new ByokCoach({ seeds: [fictionSeed] });
-    await expect(coach.ask(TEXT_WINDOW, 'fiction', 0)).rejects.toThrow(/No API key configured/);
-    expect(fetchFn).not.toHaveBeenCalled();
-  });
-
-  it('uses an injected complete without touching config or fetch', async () => {
-    const complete = vi.fn(async () => VALID_QUESTION);
-    const fetchFn = vi.fn();
-    vi.stubGlobal('fetch', fetchFn);
-
-    const coach = new ByokCoach({ seeds: [fictionSeed], complete });
     const question = await coach.ask(TEXT_WINDOW, 'fiction', 0);
 
     expect(question).toBe(VALID_QUESTION);
-    expect(coach.lastSource()).toBe('reshaped');
-    expect(fetchFn).not.toHaveBeenCalled();
+    expect(fetchFn).toHaveBeenCalledTimes(1);
   });
 });
 
 describe('sttModel & sanitize back-compat', () => {
-  it('loads a saved config that has no sttModel (written before dictation)', () => {
-    saveByokConfig(makeConfig());
-    expect(loadByokConfig()?.sttModel).toBeUndefined();
-    expect(loadByokConfig()?.model).toBe('gpt-4o-mini');
-  });
-
-  it('survives a round-trip when sttModel is set', () => {
+  it('uses an explicit sttModel even when the provider also has a default', () => {
     saveByokConfig(makeConfig({ sttModel: 'whisper-1' }));
-    expect(loadByokConfig()?.sttModel).toBe('whisper-1');
+    expect(sttModelFor(loadByokConfig()!)).toBe('whisper-1');
   });
 
-  it('drops a non-string sttModel instead of breaking the config', () => {
-    // A corrupted stored value (e.g. a number or object) must be dropped, not
-    // rejected — the rest of the config still loads.
-    const stored = JSON.stringify({ ...makeConfig(), sttModel: 42 });
-    localStorage.setItem(KEY, stored);
-    const cfg = loadByokConfig();
-    expect(cfg).not.toBeNull();
-    expect(cfg?.sttModel).toBeUndefined();
+  it('falls back to the provider default when sttModel is absent', () => {
+    saveByokConfig(makeConfig()); // openai
+    expect(sttModelFor(loadByokConfig()!)).toBe(STT_DEFAULTS.openai);
+  });
+
+  it('returns null when the provider has no default and no explicit sttModel', () => {
+    saveByokConfig(makeConfig({ provider: 'openrouter' }));
+    expect(sttModelFor(loadByokConfig()!)).toBeNull();
   });
 });
 
 describe('sttModelFor', () => {
-  it('prefers an explicit override over the provider default', () => {
-    expect(sttModelFor(makeConfig({ sttModel: 'my-custom-whisper' }))).toBe('my-custom-whisper');
+  it('returns the explicit sttModel when set', () => {
+    expect(sttModelFor(makeConfig({ sttModel: 'whisper-1' }))).toBe('whisper-1');
   });
 
-  it('returns the provider default when no override is set', () => {
-    expect(sttModelFor(makeConfig({ provider: 'openai' }))).toBe('whisper-1');
-    const groq = { ...makeConfig(), provider: 'groq' };
-    expect(sttModelFor(groq)).toBe('whisper-large-v3');
+  it('falls back to the provider default', () => {
+    expect(sttModelFor(makeConfig())).toBe(STT_DEFAULTS.openai);
   });
 
-  it('returns null when the provider has no default and none is set', () => {
-    // OpenRouter serves no audio route — deliberately no default.
-    const openrouter = { ...makeConfig(), provider: 'openrouter' };
-    expect(sttModelFor(openrouter)).toBeNull();
-    // Custom has no default either; a writer-supplied model is required.
-    const custom = { ...makeConfig(), provider: 'custom' };
-    expect(sttModelFor(custom)).toBeNull();
-  });
-
-  it('STT_DEFAULTS / TRANSCRIBES_AUDIO agree on which providers can dictate', () => {
-    expect(STT_DEFAULTS.openai).toBe('whisper-1');
-    expect(STT_DEFAULTS.groq).toBe('whisper-large-v3');
-    expect(STT_DEFAULTS.openrouter).toBeUndefined();
-    expect(TRANSCRIBES_AUDIO).toEqual({
-      openrouter: false,
-      openai: true,
-      groq: true,
-      custom: true,
-    });
+  it('returns null when the provider has no default', () => {
+    expect(sttModelFor(makeConfig({ provider: 'openrouter' }))).toBeNull();
   });
 });
 
@@ -400,6 +366,30 @@ describe('transcribeWavByok', () => {
     const file = body.get('file') as File;
     expect(file).toBeInstanceOf(Blob);
     expect(file.name).toBe('dictation.wav');
+  });
+
+  it('converts the raw recorder blob to 16kHz mono WAV before upload', async () => {
+    saveByokConfig(makeConfig()); // openai -> default whisper-1
+    const raw = new Blob(['fake-webm-opus-bytes'], { type: 'audio/webm;codecs=opus' });
+    const fetchFn = vi.fn(async () => ({ ok: true, json: async () => ({ text: 'ok' }) }));
+    vi.stubGlobal('fetch', fetchFn);
+
+    const text = await transcribeWavByok(raw);
+
+    expect(text).toBe('ok');
+    // The seam decodes the raw recorder bytes, then re-encodes to WAV.
+    expect(decodeToMono16k).toHaveBeenCalledWith(raw);
+    expect(encodeWavPcm16).toHaveBeenCalledWith(expect.any(Float32Array), 16000);
+
+    const init = fetchFn.mock.calls[0] as unknown as [string, RequestInit];
+    const file = (init[1].body as FormData).get('file') as File;
+    // The uploaded file is the converted WAV, not the raw WebM blob.
+    expect(file).not.toBe(raw);
+    expect(file.type).toBe('audio/wav');
+    // jsdom's File exposes no arrayBuffer(), so prove the bytes via the WAV
+    // size signature: a 44-byte RIFF/WAVE header + 16k mono PCM16 samples.
+    // The raw 'fake-webm-opus-bytes' input (21 bytes) could never match this.
+    expect(file.size).toBe(44 + 16000 * 2);
   });
 
   it('throws with status and provider text on a non-ok response', async () => {

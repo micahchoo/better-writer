@@ -16,6 +16,10 @@ jobs:
         with:
           node-version: "20.x"
       - run: npm ci
+      # The suite is the deploy gate: nothing reaches Pages unless typecheck
+      # and all tests pass (README tells contributors to run these; CI enforces).
+      - run: npm run typecheck
+      - run: npm test
       - run: npm run build
       - uses: peaceiris/actions-gh-pages@v4
         with:

@@ -66,14 +66,36 @@ describe('InboxPanel', () => {
     expect(fragments).toEqual(['one', 'two', 'three'])
   })
 
-  it('calls onFocusNote with that note when a row body is clicked', () => {
+  it('exposes each row body as a real, tab-reachable native button', () => {
+    const notes = [
+      makeNote({ question: 'First?', ts: 1 }),
+      makeNote({ question: 'Second?', ts: 2 }),
+    ]
+    renderPanel({ notes })
+    const mains = host!.querySelectorAll<HTMLButtonElement>('.inbox-row-main')
+    expect(mains.length).toBe(2)
+    for (const main of mains) {
+      // A native <button type="button"> is focusable via Tab and activates
+      // on Enter/Space by default — the keyboard path S4-3 was missing.
+      expect(main.tagName).toBe('BUTTON')
+      expect(main.type).toBe('button')
+    }
+    // Row bodies stay inside valid listitems for the parent list semantics.
+    const items = host!.querySelectorAll('.inbox-row[role="listitem"]')
+    expect(items.length).toBe(2)
+    expect(items[0]!.querySelector('.inbox-row-main')).not.toBeNull()
+  })
+
+  it('fires onFocusNote with that note when a row body is activated', () => {
     const notes = [
       makeNote({ question: 'First?', ts: 1 }),
       makeNote({ question: 'Second?', ts: 2 }),
     ]
     const { onFocusNote } = renderPanel({ notes })
-    const secondRow = host!.querySelectorAll('.inbox-row')[1]!
-    act(() => secondRow.dispatchEvent(new MouseEvent('click', { bubbles: true })))
+    // Activating a native button is the click path both mouse and keyboard
+    // (Enter/Space) route through in a real browser.
+    const mains = host!.querySelectorAll<HTMLButtonElement>('.inbox-row-main')
+    act(() => mains[1]!.click())
     expect(onFocusNote).toHaveBeenCalledTimes(1)
     expect(onFocusNote).toHaveBeenCalledWith(notes[1])
   })

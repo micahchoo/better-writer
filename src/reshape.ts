@@ -6,18 +6,19 @@ import type { Complete, QuestionSource } from './types.js';
  * System prompt for the coach model, condensed from agent_sketch.md. The
  * seed's `verb`/`source`/`id` never reach this prompt — only its `question`.
  */
-const RESHAPE_SYSTEM = `You are the writer's coach: a small model that asks a writer ONE sharp question about their live text.
+export const RESHAPE_SYSTEM = `You are the writer's coach: a small model that asks a writer ONE sharp question about their live text.
 Never write prose for the writer, never edit their text, never explain your reasoning.
 Output is the single reshaped question. Nothing else.`;
 
 /** Why a model output failed the gate; selects the corrective nudge. */
-type GateFailure = 'syntax' | 'ungrounded' | 'echo' | 'seedcopy';
+type GateFailure = 'syntax' | 'ungrounded' | 'echo' | 'seedcopy' | 'transport';
 
 /**
  * Outcome diagnostics for one reshape() call, delivered via `onAttempt`.
  * `failures` lists the gate reason for each bad model attempt (in order);
  * `fallback` is true when the topic probe was used; `attempts` is the number
- * of model calls made (1 on first-pass success, 2 otherwise).
+ * of model calls made (1 on first-pass success or a transport failure that is
+ * never retried, 2 after a gate-failure retry).
  */
 export interface ReshapeAttempt {
  failures: GateFailure[];
@@ -30,7 +31,7 @@ export interface ReshapeAttempt {
  * first gate predicate the output failed. A reason-specific nudge exists
  * because the measured retry-rescue rate of one generic suffix was 7%.
  */
-const RETRY_SUFFIXES: Record<GateFailure, string> = {
+export const RETRY_SUFFIXES: Record<Exclude<GateFailure, 'transport'>, string> = {
  syntax:
   'Return only the single question, ending in ?. Nothing else.',
  ungrounded:
@@ -48,7 +49,7 @@ const RETRY_SUFFIXES: Record<GateFailure, string> = {
  * still in context — but a closing reminder repeats the binding constraint
  * (keep the CRAFT QUESTION'S intent) at the highest-attention position.
  */
-function buildPrompt(question: string, textWindow: string): string {
+export function buildPrompt(question: string, textWindow: string): string {
  return `You will reshape ONE craft question to fit the writer's passage.
 
 Craft question (the intent you must keep):
@@ -73,10 +74,11 @@ anchored to a quoted detail from the PASSAGE above.`;
  * Calls `complete` with the fixed reshape prompt; the output must pass the
  * full gate — syntactic (`isSingleQuestion`) plus grounding: `isGrounded`,
  * and neither `echoesText` nor `copiesSeed` (the gate rejects, never
- * rewrites). On a gate failure — or a thrown model error, which is treated
- * the same way — retry ONCE with the corrective suffix appended. If that
- * also fails, fall back to a fixed topic probe so the writer is never left
- * without a question. The returned `source` labels which path produced the
+ * rewrites). On a gate failure (a verdict on the model's output) retry ONCE
+ * with the corrective suffix appended. A thrown model error is a transport
+ * failure — a dead endpoint cannot be fixed by a nudge — so it is never
+ * retried. Either way, fall back to a fixed topic probe so the writer is
+ * never left without a question. The returned `source` labels which path produced the
  * text: 'reshaped' when a gated model output passed, 'topic-probe' on the
  * fallback — surfaced to the writer as honesty about the model's part. When
  * `onAttempt` is given, it is invoked once with the final outcome (failure
@@ -95,6 +97,13 @@ export async function reshape(
  if (first.ok) {
   onAttempt?.({ failures: [], fallback: false, attempts: 1 });
   return { question: first.question, source: 'reshaped' };
+ }
+
+ if (first.reason === 'transport') {
+  // A dead endpoint cannot be fixed by a nudge suffix — a retry would only
+  // burn a second full timeout. Report the class honestly and fall back.
+  onAttempt?.({ failures: [first.reason], fallback: true, attempts: 1 });
+  return { question: topicProbe(textWindow), source: 'topic-probe' };
  }
 
  const retry = await tryComplete(
@@ -126,7 +135,7 @@ async function tryComplete(
  try {
   output = await complete(RESHAPE_SYSTEM, [{ role: 'user', text: prompt }]);
  } catch {
-  return { ok: false, reason: 'syntax' };
+  return { ok: false, reason: 'transport' };
  }
  // Decode our transport tokens out of the answer before the gate sees it.
  const trimmed = stripCursorMarkers(output)

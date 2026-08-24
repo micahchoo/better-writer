@@ -12,9 +12,24 @@
  * is fire-and-forget (the worker processes messages in order and answers
  * partials asynchronously); `end()` resolves when the final partial lands.
  * The one-shot `transcribe()` path is unchanged.
+ *
+ * Robustness (bug-hunt #15/#16/#17, S3-8..S3-12):
+ * - `end()` on an already-failed stream settles immediately with the recorded
+ *   error instead of writing into a dead id and hanging forever (#15).
+ * - `end()` returns only what the wire actually carries — text — plus timing
+ *   arrays documented as never populated until the protocol supports them (#16).
+ * - The worker path is resolved with `fileURLToPath`, so a repo path containing
+ *   spaces or non-ASCII chars is not percent-encoded into the spawn arg (#17/S3-9).
+ * - A dead stdin (EPIPE after a worker crash) settles everything in flight as a
+ *   transport failure instead of raising an unhandled 'error' that kills the
+ *   whole server; `transcribe()` also has a timeout so a hung worker cannot
+ *   leave the request pending forever (S3-10).
+ * - `dispose()` is idempotent and settles outstanding work, ready for the
+ *   server's future SIGINT/SIGTERM hook.
  */
 
 import { spawn, type ChildProcess } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import type { Outbound } from './protocol.js';
 import { resolveModelDir } from './model.js';
 
@@ -34,13 +49,27 @@ export interface SttStreamPartial {
  final: boolean;
 }
 
+/**
+ * Final result of a streaming session. Only `text` is populated today: the
+ * final partial carries text alone over the wire (`PartialResp`), so the
+ * timing arrays are reserved and never populated until the protocol sends
+ * them. They are optional to make that absence visible instead of fabricating
+ * empty arrays behind a type that promised per-token data (#16).
+ */
+export interface SttStreamFinal {
+ text: string;
+ tokens?: string[];
+ timestamps?: number[];
+ durations?: number[];
+}
+
 /** A live streaming transcription session, correlated by `streamId`. */
 export interface SttStream {
  streamId: string;
  /** Push one chunk of audio; fire-and-forget (partials arrive via onPartial). */
  pushAudio(samples: Float32Array, sampleRate: number): void;
- /** Finalize the stream; resolves with the final transcript. */
- end(): Promise<SttTranscriptionResult>;
+ /** Finalize the stream; resolves with the final transcript (text-only today). */
+ end(): Promise<SttStreamFinal>;
  /** Subscribe to partial hypotheses. Returns an unsubscribe function. */
  onPartial(cb: (partial: SttStreamPartial) => void): () => void;
  /** Subscribe to stream-scoped failures. Returns an unsubscribe function. */
@@ -98,37 +127,79 @@ export interface SttClientOptions {
 interface StreamState {
  id: string;
  ready: Deferred<void>;
- pendingEnd: Deferred<SttTranscriptionResult> | null;
+ pendingEnd: Deferred<SttStreamFinal> | null;
+ /** Set when the stream has terminally failed; a later end() rejects with it. */
+ failed: Error | null;
+ /** Resolved final transcript, set once the stream ends successfully. */
+ finalResult: SttStreamFinal | null;
  partialCbs: Set<(partial: SttStreamPartial) => void>;
  errorCbs: Set<(err: Error) => void>;
 }
 
+/**
+ * How long a one-shot `transcribe()` waits before declaring the worker hung
+ * and settling the request as a transport failure. The budget is sized well
+ * above normal latency — the worker cold-loads a 0.6B int8 Parakeet TDT model
+ * on CPU with 4 threads on first spawn, which can take tens of seconds — while
+ * still bounding a worker whose model load never completes (which would
+ * otherwise leave the request, and the server's /transcribe handler, pending
+ * forever). 120s is far past the slowest legitimate first decode yet far below
+ * an unbounded hang.
+ */
+const TRANSCRIBE_TIMEOUT_MS = 120_000;
+
 export function createSttClient(opts?: SttClientOptions): SttClient {
  const tsxPath = opts?.tsxPath ?? 'npx';
  const workerPath = opts?.workerPath
-  ?? new URL('./worker.ts', import.meta.url).pathname;
+  ?? fileURLToPath(new URL('./worker.ts', import.meta.url));
 
  // When using npx, prepend 'tsx' as the subcommand argument.
  const spawnCmd = tsxPath;
  const spawnArgs = tsxPath === 'npx' ? ['tsx', workerPath] : [workerPath];
 
  let child: ChildProcess | null = null;
+ let disposed = false;
  let nextId = 0;
  const pending = new Map<string, Deferred<SttTranscriptionResult>>();
  const streams = new Map<string, StreamState>();
  let leftover = '';
 
+ /** Settle every in-flight one-shot and stream with `err` (transport failure). */
+ function failOutstanding(err: Error): void {
+  for (const [id, dfd] of pending) {
+   dfd.reject(err);
+   pending.delete(id);
+  }
+  for (const [id, st] of streams) {
+   st.failed = err;
+   st.ready.reject(err);
+   for (const cb of st.errorCbs) cb(err);
+   if (st.pendingEnd) {
+    st.pendingEnd.reject(err);
+    st.pendingEnd = null;
+   }
+   streams.delete(id);
+  }
+ }
+
  function ensureSpawned(): ChildProcess {
-  if (child && !child.killed) return child;
+  if (child && !child.killed && !disposed) return child;
+
+  // A request arriving after dispose() (or a worker crash) wants a live
+  // worker — clear the dispose latch and spawn fresh. The old process (if
+  // any) is already being torn down by its own SIGKILL timer / exit path,
+  // and the stale-guards below stop it from clobbering the new child.
+  disposed = false;
 
   const modelDir = resolveModelDir();
 
-  child = spawn(spawnCmd, spawnArgs, {
+  const proc = spawn(spawnCmd, spawnArgs, {
    env: { ...process.env, BW_STT_MODEL_DIR: modelDir },
    stdio: ['pipe', 'pipe', 'inherit'],
   });
+  child = proc;
 
-  child.stdout!.on('data', (chunk: Buffer) => {
+  proc.stdout!.on('data', (chunk: Buffer) => {
    leftover += chunk.toString('utf-8');
    const lines = leftover.split('\n');
    // The last element may be incomplete — keep it for the next chunk.
@@ -160,12 +231,9 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
      const partial: SttStreamPartial = { text: msg.text, final: msg.final === true };
      for (const cb of st.partialCbs) cb(partial);
      if (partial.final && st.pendingEnd) {
-      st.pendingEnd.resolve({
-       text: msg.text,
-       tokens: [],
-       timestamps: [],
-       durations: [],
-      });
+      const result: SttStreamFinal = { text: msg.text };
+      st.finalResult = result;
+      st.pendingEnd.resolve(result);
       st.pendingEnd = null;
       streams.delete(msg.id);
      }
@@ -176,6 +244,7 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
      const st = streams.get(msg.id);
      if (!st) continue;
      const err = new Error(msg.error);
+     st.failed = err;
      st.ready.reject(err);
      for (const cb of st.errorCbs) cb(err);
      if (st.pendingEnd) {
@@ -204,47 +273,33 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
    }
   });
 
-  child.on('exit', (code, signal) => {
+  proc.on('exit', (code, signal) => {
+   if (child !== proc) return; // superseded by a fresh spawn
    const reason = signal
     ? `worker killed by signal ${signal}`
     : `worker exited with code ${code}`;
-   // Reject all outstanding one-shot promises.
-   for (const [id, dfd] of pending) {
-    dfd.reject(new Error(reason));
-    pending.delete(id);
-   }
-   // Fail every live stream.
-   for (const [id, st] of streams) {
-    const err = new Error(reason);
-    st.ready.reject(err);
-    for (const cb of st.errorCbs) cb(err);
-    if (st.pendingEnd) {
-     st.pendingEnd.reject(err);
-     st.pendingEnd = null;
-    }
-    streams.delete(id);
-   }
+   failOutstanding(new Error(reason));
    child = null;
   });
 
-  child.on('error', (err) => {
-   for (const [id, dfd] of pending) {
-    dfd.reject(err);
-    pending.delete(id);
-   }
-   for (const [id, st] of streams) {
-    st.ready.reject(err);
-    for (const cb of st.errorCbs) cb(err);
-    if (st.pendingEnd) {
-     st.pendingEnd.reject(err);
-     st.pendingEnd = null;
-    }
-    streams.delete(id);
-   }
+  proc.on('error', (err) => {
+   if (child !== proc) return;
+   failOutstanding(err);
    child = null;
   });
 
-  return child;
+  // S3-10: a write to a dead pipe (EPIPE after a sherpa segfault) would
+  // otherwise surface as an unhandled 'error' event that takes the whole
+  // server process down. Treat it as a transport failure and settle
+  // everything in flight, then forget the dead child so the next request
+  // spawns fresh.
+  proc.stdin!.on('error', (err) => {
+   if (child !== proc) return;
+   failOutstanding(new Error(`worker stdin failed: ${err.message}`));
+   child = null;
+  });
+
+  return proc;
  }
 
  function float32ToBase64(samples: Float32Array): string {
@@ -253,7 +308,12 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
 
  function sendInbound(msg: string): void {
   const proc = ensureSpawned();
-  proc.stdin!.write(`${msg}\n`);
+  try {
+   proc.stdin!.write(`${msg}\n`);
+  } catch {
+   // stdin destroyed (worker already gone); the 'error'/'exit' handlers
+   // settle whatever is in flight.
+  }
  }
 
  return {
@@ -272,7 +332,30 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
     sampleRate,
    }));
 
-   return dfd.promise;
+   // S3-10: a worker whose model load never completes would otherwise leave
+   // this promise — and the server's /transcribe handler — pending forever.
+   const timer = setTimeout(() => {
+    const err = new Error(
+     `transcribe timed out after ${TRANSCRIBE_TIMEOUT_MS / 1000}s — worker presumed hung`,
+    );
+    // The worker is hung: tear it down so the next call spawns fresh. The
+    // exit handler also settles any streams / other in-flight requests.
+    if (child && !child.killed) {
+     try { child.kill('SIGKILL'); } catch { /* already gone */ }
+    }
+    const live = pending.get(id);
+    if (live) {
+     live.reject(err);
+     pending.delete(id);
+    }
+   }, TRANSCRIBE_TIMEOUT_MS);
+   timer.unref();
+
+   try {
+    return await dfd.promise;
+   } finally {
+    clearTimeout(timer);
+   }
   },
 
   async openStream(): Promise<SttStream> {
@@ -282,6 +365,8 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
     id,
     ready,
     pendingEnd: null,
+    failed: null,
+    finalResult: null,
     partialCbs: new Set(),
     errorCbs: new Set(),
    };
@@ -301,9 +386,13 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
       sampleRate,
      }));
     },
-    end(): Promise<SttTranscriptionResult> {
+    end(): Promise<SttStreamFinal> {
+     // #15: a stream that has already failed must settle immediately with
+     // the recorded error, not write into a dead id and hang forever.
+     if (state.failed) return Promise.reject(state.failed);
+     if (state.finalResult) return Promise.resolve(state.finalResult);
      if (state.pendingEnd) return state.pendingEnd.promise;
-     state.pendingEnd = deferred<SttTranscriptionResult>();
+     state.pendingEnd = deferred<SttStreamFinal>();
      sendInbound(JSON.stringify({ type: 'stream-end', id }));
      return state.pendingEnd.promise;
     },
@@ -319,19 +408,24 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
   },
 
   dispose(): void {
-   if (child && !child.killed) {
+   if (disposed) return; // idempotent
+   disposed = true;
+   const proc = child;
+   if (proc && !proc.killed) {
     // Try graceful shutdown first, then hard-kill.
     try {
-     child.stdin!.write('{"type":"shutdown"}\n');
+     proc.stdin!.write('{"type":"shutdown"}\n');
     } catch {
      // stdin may already be closed.
     }
     setTimeout(() => {
-     if (child && !child.killed) {
-      child.kill('SIGKILL');
+     if (!proc.killed) {
+      proc.kill('SIGKILL');
      }
     }, 1000).unref();
    }
+   // Settle anything still in flight — the process is going away.
+   failOutstanding(new Error('stt client disposed'));
   },
  };
 }

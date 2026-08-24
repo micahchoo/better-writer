@@ -12,9 +12,10 @@
  *    defeating same-origin policy entirely (full read AND write).
  *
  * Both die here: `Host` must name this machine, and any present `Origin`
- * must point back at the exact authority in `Host`. Absent headers are
- * allowed — curl, tests, and same-origin fetches send neither or matching
- * values.
+ * must name the exact authority we listen on — the same loopback hostname
+ * AND port. A foreign host, a different port, or a different hostname on
+ * our port all fail closed. Absent headers are allowed — curl, tests, and
+ * same-origin fetches send neither or matching values.
  */
 
 /** Hostnames that denote the local machine when used in Host/Origin. */
@@ -33,15 +34,6 @@ export function hostWithoutPort(authority: string): string {
   return hasPort ? authority.slice(0, colon) : authority;
 }
 
-/** Extract host-without-port from an Origin URL; null when it does not parse. */
-function originHost(origin: string): string | null {
-  try {
-    return hostWithoutPort(new URL(origin).host);
-  } catch {
-    return null;
-  }
-}
-
 /**
  * The decision behind every guarded route. Returns a rejection reason or
  * null when the request may proceed.
@@ -49,27 +41,48 @@ function originHost(origin: string): string | null {
  * - `host` (the HTTP Host header) must be a loopback name or exactly match
  *   the explicitly configured listen address. `undefined` (HTTP/1.0-style)
  *   passes: only tools on the machine omit it.
- * - `origin` passes when absent or when it resolves to the same authority
- *   as `Host`. Everything else — including file:// ("null") and any other
- *   scheme/host — fails closed.
+ * - `origin` passes when absent or when it names the exact authority we
+ *   listen on — the same loopback hostname AND the configured `listenPort`.
+ *   A matching hostname on a different port is still a hostile page (CSRF),
+ *   so it fails closed like every other mismatch — including file:// ("null")
+ *   and any other scheme/host.
+ *
+ * Hostnames compare case-insensitively (RFC 3986 §3.2.2). Browsers already
+ * lowercase the Origin via URL parsing, but the raw Host header does not, so
+ * both halves are normalized here.
  */
 export function boundaryViolation(
   listenAddress: string,
+  listenPort: number,
   host: string | undefined,
   origin: string | undefined,
 ): string | null {
-  let hostName = listenAddress;
+  const listenHost = listenAddress.toLowerCase();
+  let hostName = listenHost;
   if (host !== undefined) {
-    hostName = hostWithoutPort(host);
+    hostName = hostWithoutPort(host).toLowerCase();
     const known =
       LOCAL_HOSTNAMES.has(hostName) ||
-      (listenAddress !== '0.0.0.0' && listenAddress !== '' && hostName === listenAddress);
+      (listenAddress !== '0.0.0.0' && listenAddress !== '' && hostName === listenHost);
     if (!known) return `untrusted Host "${host}"`;
   } else {
     // No Host to compare against; fall back to the configured address below.
-    hostName = listenAddress === '0.0.0.0' ? '127.0.0.1' : listenAddress;
+    hostName = listenHost === '0.0.0.0' ? '127.0.0.1' : listenHost;
   }
   if (origin === undefined) return null;
-  if (originHost(origin) !== hostName) return `cross-origin request from "${origin}"`;
+  let originUrl: URL;
+  try {
+    originUrl = new URL(origin);
+  } catch {
+    // file:// pages send "null"; anything unparseable fails closed too.
+    return `cross-origin request from "${origin}"`;
+  }
+  // `originUrl.hostname` is already lowercased by URL parsing; `hostName` is
+  // normalized above. Compare the full authority: hostname AND port. Any other
+  // local service on this machine must not be able to CSRF /save from its own
+  // port.
+  if (originUrl.hostname !== hostName || originUrl.port !== String(listenPort)) {
+    return `cross-origin request from "${origin}"`;
+  }
   return null;
 }

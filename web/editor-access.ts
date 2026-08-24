@@ -64,7 +64,11 @@ export interface EditorAccess {
   replaceDocument(next: string, opts?: { history?: 'exclude' | 'reset' }): void
   /** Scroll `offset` into view. */
   scrollToOffset(offset: number): void
-  /** Bounding box of the [from,to) range, or null when detached or empty. */
+  /** Bounding box of the [from,to) range, or null when detached or empty.
+   *  Out-of-range positions are clamped to [0, docLength] (mirroring
+   *  buildHighlightSet's defensive stance in decorations.ts); a range that
+   *  collapses to empty after clamping returns null. Never throws, so a stray
+   *  anchor offset cannot crash overlay painting. */
   rectForRange(from: number, to: number): Rect | null
   /**
    * Register a callback fired (rAF-throttled) whenever the editor's viewport
@@ -248,11 +252,19 @@ export function createEditorAccess(options: EditorAccessOptions = {}): EditorAcc
     },
 
     rectForRange(from, to) {
-      if (!view || from >= to) return null
-      const a = view.coordsAtPos(from)
-      const b = view.coordsAtPos(to)
-      if (!a || !b) return null
-      return unionRects(a, b)
+      if (!view) return null
+      // Clamp defensively (mirrors buildHighlightSet): coordsAtPos throws a
+      // RangeError for positions outside [0, doc.length], so a stray anchor
+      // offset must not crash the popover's placement effect. A range that
+      // collapses to empty after clamping yields null (no box to paint).
+      const length = view.state.doc.length
+      const a = Math.max(0, Math.min(from, length))
+      const b = Math.max(0, Math.min(to, length))
+      if (a >= b) return null
+      const ra = view.coordsAtPos(a)
+      const rb = view.coordsAtPos(b)
+      if (!ra || !rb) return null
+      return unionRects(ra, rb)
     },
 
     onViewportChange(cb) {
@@ -269,6 +281,10 @@ export function createEditorAccess(options: EditorAccessOptions = {}): EditorAcc
         pendingSpans = spans
         return
       }
+      // A direct (non-composing) push supersedes anything parked during a
+      // composition — a newer authoritative batch must never be reverted to
+      // stale deferred spans by a later flush (BUGS #4).
+      pendingSpans = null
       view.dispatch({
         effects: pushHighlights.of(buildHighlightSet(spans, view.state.doc.length)),
         // A highlight push is derived decoration, not user text: it must never

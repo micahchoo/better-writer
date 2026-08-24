@@ -109,4 +109,73 @@ describe('extractAnchor', () => {
     expect(anchor).not.toBeNull()
     expect(anchor!.fragment.toLowerCase()).toContain('océano')
   })
+
+  it('keeps the longest quoted span over a cursor-nearer shorter closer', () => {
+    // The apostrophe in "writers'" is not letter-flanked on both sides (it is
+    // followed by a space), so it passes the closing-mark test. The old rule
+    // kept the cursor-nearest closer and truncated the quote to "guild meets
+    // here"; the longest-span rule keeps the whole quoted text.
+    const draft = '"the writers\' guild meets here"'
+    const anchor = extractAnchor(
+      'What does "the writers\' guild meets here" refer to?',
+      draft,
+      draft.indexOf("writers'"),
+    )
+    expect(anchor).not.toBeNull()
+    expect(anchor!.fragment).toBe('the writers\' guild meets here')
+    expect(anchor!.start).toBe(1)
+    expect(anchor!.end).toBe(1 + 'the writers\' guild meets here'.length)
+  })
+
+  it('never ends a fragment mid-word when the match is a prefix of a longer token', () => {
+    // "walk" is the first four characters of the single token "walkings"; the
+    // old end offset stopped at the prefix, clipping a glyph run. The span is
+    // pushed out to the containing token's own boundary.
+    const draft = 'She studied the walkings carefully.'
+    const anchor = extractAnchor('why walk?', draft, draft.indexOf('walk'))
+    expect(anchor).not.toBeNull()
+    expect(anchor!.fragment).toBe('walkings')
+  })
+
+  it('keeps a doubled token paired to the half the fragment starts in', () => {
+    // "cat" appears twice inside the single token "catcat"; indexOf returns
+    // the first occurrence, which is the half the fragment starts in. The end
+    // extends to the full token so the span covers both halves coherently
+    // instead of ending inside the word.
+    const draft = 'The catcat sat.'
+    const anchor = extractAnchor('about cat?', draft, draft.indexOf('cat'))
+    expect(anchor).not.toBeNull()
+    expect(anchor!.fragment).toBe('catcat')
+    expect(anchor!.start).toBe(4)
+    expect(anchor!.end).toBe(10)
+  })
+
+  it('rejects a lone generic word as a candidate', () => {
+    // "let", "first", "one" are low-distinctiveness words; a question whose
+    // only matches in the draft are such lone words must not pin a junk
+    // anchor to them (S2-7).
+    // "let", "first", "one" never appear contiguously, so only lone generic
+    // words can match — and each is rejected, leaving no candidates.
+    const draft = 'I let it pass, and then the first attempt.'
+    expect(extractAnchor('let first one?', draft, draft.indexOf('first'))).toBeNull()
+  })
+
+  it('still anchors a distinctive multi-char word', () => {
+    // A genuinely distinctive word (not a stopword, not generic, long enough)
+    // keeps anchoring after the quality floor is applied.
+    const draft = 'My grandmother kept a blue tin of yeast by the window.'
+    const anchor = extractAnchor('why grandmother?', draft, draft.indexOf('grandmother'))
+    expect(anchor).not.toBeNull()
+    expect(anchor!.fragment).toBe('grandmother')
+  })
+
+  it('keeps a tier-0 verbatim quote even when every quoted word is generic', () => {
+    // "first" and "time" are generic and would be rejected as lone-word
+    // candidates, but the verbatim quote path must still anchor the whole
+    // quoted span — quotes outrank candidate-based tiers.
+    const draft = 'She told me the first time, and I never forgot it.'
+    const anchor = extractAnchor('what did she mean by "the first time"?', draft, draft.indexOf('first'))
+    expect(anchor).not.toBeNull()
+    expect(anchor!.fragment).toBe('the first time')
+  })
 })

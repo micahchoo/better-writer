@@ -88,7 +88,20 @@ export function createDraftIo(
    */
   async function loadAnnotations(): Promise<Annotation[]> {
     try {
-      return JSON.parse(await readFile(annotationsUrl, 'utf8')) as Annotation[];
+      // First-hunt #13 / S3-15: any valid JSON parses, so a bare `as Annotation[]`
+      // cast once served `{}` or `"notes"` straight to /load and crashed the
+      // client during boot. Guard the shape like parseAnnotation does on write.
+      const parsed: unknown = JSON.parse(await readFile(annotationsUrl, 'utf8'));
+      if (!Array.isArray(parsed)) {
+        console.error('[draft] annotations file is not an array, ignoring');
+        return [];
+      }
+      return parsed.filter(
+        (a): a is Annotation =>
+          typeof a === 'object' && a !== null &&
+          Number.isInteger((a as Annotation).start) && Number.isInteger((a as Annotation).end) &&
+          (a as Annotation).start >= 0 && (a as Annotation).end > (a as Annotation).start,
+      );
     } catch (err) {
       if (err instanceof Error && 'code' in err && err.code === 'ENOENT') return [];
       console.error('[draft] corrupt annotations file, ignoring:', err);
@@ -99,8 +112,8 @@ export function createDraftIo(
   return { loadDraft, saveDraft, saveAnnotations, loadAnnotations };
 }
 
-/** The production instance: no rotation, identical to the pre-refactor module. */
-export const defaultDraftIo = createDraftIo(DRAFT_FILE, ANNOTATIONS_FILE);
+/** The production instance: every save rotates a one-deep .backup first. */
+export const defaultDraftIo = createDraftIo(DRAFT_FILE, ANNOTATIONS_FILE, { backupEveryNthSave: 1 });
 
 /** Load the draft; an empty string when no draft has been saved yet. */
 export async function loadDraft(): Promise<string> {

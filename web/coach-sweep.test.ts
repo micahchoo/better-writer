@@ -159,6 +159,24 @@ describe('planSweep', () => {
     )
   })
 
+  it('refuses a tail merge that would inflate a full window past WINDOW_BLOCKS + 1 blocks', () => {
+    // 5 short blocks, no heading: the greedy pass yields [0-2] and [3-4].
+    // The Q4 tail merge must NOT fold the 2-block stub onto the already-full
+    // 3-block window (that would be a 5-block window); the stub stands alone.
+    const blocks = Array.from({ length: 5 }, (_, i) => `Merge block ${i}.`)
+    const draft = doc(blocks)
+    const plan = planSweep(draft)
+    expect(plan).toHaveLength(2)
+    // The 2-block stub is its own window starting at block 3.
+    expect(plan[1].bounds.start).toBe(draft.indexOf(blocks[3]))
+    expect(plan[1].bounds.end).toBe(draft.indexOf(blocks[4]) + blocks[4].length)
+    // A 3-block window plus a 1-block stub still merges to a 4-block tail.
+    const ten = doc(BLOCKS_10)
+    const tenPlan = planSweep(ten)
+    expect(tenPlan).toHaveLength(3) // [0-2], [3-5], [6-9]
+    expect(tenPlan[2].bounds.end).toBe(ten.indexOf(BLOCKS_10[9]) + BLOCKS_10[9].length)
+  })
+
   it('is deterministic for the same input', () => {
     const draft = doc(BLOCKS_10)
     expect(planSweep(draft)).toEqual(planSweep(draft))
@@ -354,13 +372,14 @@ describe('runSweep', () => {
   it('tie-breaks twin paragraphs at a window\u2019s two ends toward the marked block', async () => {
     const twin = 'The lighthouse keeper never blinked.'
     const filler = 'A gust rattled the shutters.'
-    const marked = 'Marked middle paragraph here.'
-    const tail = 'Morning arrived wet and grey.'
-    const draft = doc([twin, filler, marked, twin, tail]) // one 5-block window, marked = block 2
+    const middle = 'Marked middle paragraph here.'
+    // A 4-block merged tail [0..3] — the largest a window may be (a 5-block
+    // merge is refused, see the tail-merge block-count test). Marked = block 1.
+    const draft = doc([twin, filler, middle, twin])
     const plan = planSweep(draft)
     expect(plan).toHaveLength(1)
     // The quote occurs at block 0 and block 3; the plan's cursorHint sits in
-    // the marked block (block 2), which is closer to the LATER twin — so the
+    // the marked block (block 1), which is closer to the LATER twin — so the
     // anchor must land there, not on the first occurrence.
     const coach = { ask: async () => `Rewrite "${twin}" with more force` }
     const onNote = vi.fn()
@@ -471,6 +490,88 @@ describe('runSweep', () => {
       [1, plan.length],
       [2, plan.length],
     ])
+  })
+
+  it('latches an abort on the first failing ask so no worker claims another window', async () => {
+    const blocks = Array.from({ length: 18 }, (_, i) => `Sweep block number ${i}.`)
+    const draft = doc(blocks)
+    const plan = planSweep(draft) // 6 windows
+    expect(plan).toHaveLength(6)
+
+    const asks: string[] = []
+    let finishWindow0!: (question: string) => void
+    const coach = {
+      ask(textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
+        asks.push(textWindow)
+        // Window 0's ask stays in flight; every later ask (window 1 first)
+        // fails — the probe's "ask #1 throws".
+        if (asks.length === 1) {
+          return new Promise<string>((resolve) => {
+            finishWindow0 = resolve
+          })
+        }
+        return Promise.reject(new Error('server down'))
+      },
+    }
+    const onNote = vi.fn()
+    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+
+    // The pool of 2 starts windows 0 and 1; window 1's ask throws.
+    await Promise.resolve()
+    expect(asks).toHaveLength(2)
+
+    // The sweep rejects overall on the first failure.
+    await expect(sweepPromise).rejects.toThrow('server down')
+
+    // The abort latch stops the sibling worker from claiming a new window
+    // once its in-flight ask completes: window 2 is never asked.
+    finishWindow0(`Rewrite "${markedBlock(blocks, 0)}" with more force`)
+    await flush()
+    expect(asks).toHaveLength(2) // 2 of a 6-window plan, not all six
+
+    // Window 0's note still arrives: the failed slot was marked resolved, so
+    // the drain prefix advanced past it.
+    expect(onNote).toHaveBeenCalledTimes(1)
+    expect(onNote.mock.calls[0][0].windowIndex).toBe(0)
+  })
+
+  it('emits windows that resolve after a failing window instead of dropping them', async () => {
+    const blocks = Array.from({ length: 18 }, (_, i) => `Sweep block number ${i}.`)
+    const draft = doc(blocks)
+    const plan = planSweep(draft) // 6 windows
+    expect(plan).toHaveLength(6)
+
+    const pendings: Array<{ resolve: (q: string) => void; reject: (e: Error) => void }> = []
+    const coach = {
+      ask(_textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
+        return new Promise<string>((resolve, reject) => {
+          pendings.push({ resolve, reject })
+        })
+      },
+    }
+    const onNote = vi.fn()
+    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
+    // Pre-attach a handler so the sweep's rejection is never left unhandled
+    // across the macrotask flushes below (the note assertions run after we
+    // have sequenced the later window).
+    const rejection = sweepPromise.catch((e: unknown) => e)
+
+    await Promise.resolve()
+    expect(pendings).toHaveLength(2) // windows 0 and 1 in flight
+
+    // Window 0 fails first; window 1 resolves afterwards with an anchored note.
+    pendings[0].reject(new Error('server down'))
+    await flush()
+    pendings[1].resolve(`Rewrite "${markedBlock(blocks, 1)}" with more force`)
+    await flush()
+
+    // The sweep still rejects overall, but the note that resolved past the
+    // failed window is emitted — nothing is silently binned.
+    const err = await rejection
+    expect(err).toBeInstanceOf(Error)
+    expect((err as Error).message).toBe('server down')
+    expect(onNote).toHaveBeenCalledTimes(1)
+    expect(onNote.mock.calls[0][0].windowIndex).toBe(1)
   })
 
   it('sums asked and skipped to exactly the plan length across anchored, unanchored, and aborted windows', async () => {
@@ -613,6 +714,19 @@ describe('staleAnnotations', () => {
   it('drops annotations pointing past the end of the draft with no matching fragment', () => {
     const annotation = { start: 5, end: 999, fragment: 'nope' }
     expect(staleAnnotations([annotation], 'short.')).toEqual([])
+  })
+
+  it('drops an empty-fragment annotation instead of letting it survive forever', () => {
+    const draft = doc(BLOCKS_10)
+    const empty = { start: 0, end: 0, fragment: '', question: 'q', ts: 1 }
+    // The exact-offset check would otherwise match '' === draft.slice(0, 0)
+    // and keep this invisible note riding every save forever.
+    expect(staleAnnotations([empty], draft)).toEqual([])
+    // reconcileAnnotations reports the drop so a length/identity consumer
+    // adopts the cleaned list instead of persisting the degenerate note.
+    const { valid, changed } = reconcileAnnotations([empty], draft)
+    expect(valid).toEqual([])
+    expect(changed).toBe(true)
   })
 
   it('handles an empty annotation list', () => {

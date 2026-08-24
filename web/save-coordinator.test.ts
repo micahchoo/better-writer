@@ -17,7 +17,6 @@ interface FakeStore {
   save: Mock;
   load: Mock;
   loadAnnotations: Mock;
-  saveAnnotations: Mock;
 }
 
 function makeStore(): FakeStore {
@@ -25,7 +24,6 @@ function makeStore(): FakeStore {
     save: vi.fn().mockResolvedValue(undefined),
     load: vi.fn().mockResolvedValue(''),
     loadAnnotations: vi.fn().mockResolvedValue([]),
-    saveAnnotations: vi.fn().mockResolvedValue(undefined),
   };
 }
 
@@ -115,6 +113,32 @@ describe('SaveCoordinator', () => {
     expect(onError).toHaveBeenCalledTimes(1);
   });
 
+  it('edit during detecting mode (null store) yields a failure signal, retains the payload, and never pulses saved', async () => {
+    let store: FakeStore | null = null;
+    const onError = vi.fn();
+    const phases: Array<'saving' | 'saved'> = [];
+    const coordinator = new SaveCoordinator({
+      getStore: () => store,
+      onError,
+      onSaveState: (p) => phases.push(p),
+    });
+
+    coordinator.edit('hello', notes);
+    await vi.advanceTimersByTimeAsync(1000); // first attempt: null store -> silent retry armed
+    expect(onError).not.toHaveBeenCalled();
+    expect(phases).toEqual(['saving']);
+
+    await vi.advanceTimersByTimeAsync(1000); // retry: still null -> onError surfaces
+    expect(onError).toHaveBeenCalledTimes(1);
+    expect(phases).toEqual(['saving', 'saving']);
+    expect(phases).not.toContain('saved');
+
+    // The payload was never dropped: once a store appears, flush() persists it.
+    store = makeStore();
+    await coordinator.flush();
+    expect(store.save).toHaveBeenCalledWith('hello', notes, undefined);
+  });
+
   it('flush() sends immediately without waiting on the timer, passes keepalive through, and clears the payload', async () => {
     const store = makeStore();
     const { coordinator } = makeCoordinator(store);
@@ -196,6 +220,32 @@ describe('SaveCoordinator', () => {
     coordinator.edit('edit after failure', notes);
     await vi.advanceTimersByTimeAsync(1000);
     expect(store.save).toHaveBeenLastCalledWith('edit after failure', notes);
+  });
+
+  it('persistNow+edit interleave leaves clearTimers able to cancel the live timer (no orphaned timer)', async () => {
+    const store = makeStore();
+    let release!: () => void;
+    store.save
+      .mockImplementationOnce(() => new Promise<void>((res) => { release = res; }))
+      .mockResolvedValue(undefined);
+    const { coordinator } = makeCoordinator(store);
+
+    // A keystroke arms the debounced save.
+    coordinator.edit('a', notes);
+    // A note-op forces an immediate flush; its save is held in flight.
+    const flushPromise = coordinator.persistNow('b', notes);
+    // A newer edit lands mid-flight, re-arming the debounce for the newest payload.
+    coordinator.edit('c', notes);
+    release(); // the held flush save completes
+    await flushPromise;
+    await vi.advanceTimersByTimeAsync(0);
+
+    // Only the flush save has happened; the live debounce for 'c' must be
+    // cancellable — dispose() cancels it, so no save fires afterward.
+    expect(store.save).toHaveBeenCalledTimes(1);
+    coordinator.dispose();
+    await vi.advanceTimersByTimeAsync(5000);
+    expect(store.save).toHaveBeenCalledTimes(1);
   });
 });
 

@@ -115,7 +115,43 @@ const FILTER_VERBS: Record<string, true> = {
 };
 
 const NOMINAL_SUFFIX_RE = /(?:tion|ment|ance|ence|ity|ness)$/i;
-const PASSIVE_PROXY_RE = /\b(?:was|were)\b\s+\w+ed\b/i;
+
+/**
+ * Passive-voice proxy: `was/were` + a past-participle. Requires the `-ed`
+ * word to be at least four letters (so three-letter adjectives like `red`,
+ * `fed`, `bed` cannot match) and captures it so the caller can exclude
+ * stative predicate adjectives (see STATIVE_ED).
+ */
+const PASSIVE_PROXY_RE = /\b(?:was|were)\b\s+([a-z]{2,}ed)\b/i;
+
+/**
+ * `-ed` words that read as stative predicate adjectives, not verbal passives,
+ * after `was`/`were` ("she was tired", "they were scared"). The passive proxy
+ * skips these so it flags genuine passives rather than states.
+ */
+const STATIVE_ED: Record<string, true> = {
+  tired: true, bored: true, scared: true, worried: true, excited: true,
+  surprised: true, confused: true, annoyed: true, pleased: true,
+  interested: true, disappointed: true, frustrated: true, embarrassed: true,
+  exhausted: true, frightened: true, shocked: true, amused: true,
+  relieved: true, satisfied: true, thrilled: true, delighted: true,
+  depressed: true, amazed: true, astonished: true, puzzled: true,
+  concerned: true, disturbed: true, alarmed: true, moved: true,
+};
+
+/**
+ * `-ly` words that are not adverbs: nouns, verbs, and adjectives whose final
+ * `ly` is not a productive adverbial suffix ("family", "supply", "holy").
+ * The bare `endsWith('ly')` test flags these; an explicit exclusion keeps the
+ * metric on true adverbs without needing a dictionary.
+ */
+const NON_ADVERB_LY: Record<string, true> = {
+  ally: true, apply: true, belly: true, bully: true, chilly: true, dally: true,
+  family: true, folly: true, frilly: true, gully: true, hilly: true, holy: true,
+  imply: true, italy: true, jolly: true, july: true, lily: true, only: true,
+  rally: true, reply: true, sally: true, silly: true, supply: true, tally: true,
+  ugly: true, wily: true,
+};
 
 /** Common function words; a suffix-matched word in this set is not "content". */
 const STOPWORDS: Record<string, true> = {
@@ -144,6 +180,11 @@ const WORD_RE = /[A-Za-z][A-Za-z'-]*/g;
  */
 function stripMarkdown(raw: string): string {
   let s = raw;
+  // Cursor-marker transport tokens ([CURSOR START]/[CURSOR END]) are plumbing,
+  // never writer prose; strip them first (as spaces, so adjacent words stay
+  // separate) so their words cannot join the token stream or the sentence
+  // splitter's input.
+  s = s.split('[CURSOR START]').join(' ').split('[CURSOR END]').join(' ');
   // Fenced code blocks.
   s = s.replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, ' ');
   // Inline code spans.
@@ -161,10 +202,15 @@ function stripMarkdown(raw: string): string {
   return s;
 }
 
-/** Split prose into sentences at `.`/`!`/`?`, tolerating a closing quote. */
+/**
+ * Split prose into sentences at `.`/`!`/`?`, tolerating a trailing closing
+ * quote. A quote only ends a sentence when it directly follows a terminator,
+ * so possessives ("the writers' guild") and inline quotes ("said "hello" and")
+ * never split a sentence.
+ */
 function splitSentences(prose: string): string[] {
   return prose
-    .split(/(?<=[.!?"'”’])(?:\s+|$)/)
+    .split(/(?<=[.!?][”’"']*)(?:\s+|$)/)
     .map((s) => s.trim())
     .filter((s) => s.length > 0);
 }
@@ -202,7 +248,10 @@ export function measureWindow(
   let adverbHedgeCount = 0;
   for (const w of words) {
     const lower = w.toLowerCase();
-    if (Object.hasOwn(HEDGES, lower) || (w.length > 3 && lower.endsWith('ly'))) {
+    if (
+      Object.hasOwn(HEDGES, lower) ||
+      (w.length > 3 && lower.endsWith('ly') && !Object.hasOwn(NON_ADVERB_LY, lower))
+    ) {
       adverbHedgeCount++;
     }
   }
@@ -225,7 +274,8 @@ export function measureWindow(
     }
   }
   for (const sentence of sentences) {
-    if (PASSIVE_PROXY_RE.test(sentence)) nominalCount++;
+    const m = PASSIVE_PROXY_RE.exec(sentence);
+    if (m && !Object.hasOwn(STATIVE_ED, m[1].toLowerCase())) nominalCount++;
   }
   const nominalRate = totalWords > 0 ? (nominalCount / totalWords) * 100 : 0;
 

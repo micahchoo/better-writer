@@ -91,6 +91,61 @@ const STOPWORDS: Record<string, true> = {
   above: true, below: true, near: true, far: true, long: true, short: true,
   much: true, many: true,
 };
+/**
+ * Minimum character length for a SINGLE-word fragment to be a valid anchor.
+ * Fragments of two or more words are always distinctive (a content phrase);
+ * a lone word shorter than this carries too little signal to pin the
+ * question to the draft. Calibrated so short content words still anchor
+ * ("milk", "ocean") while sub-word junk ("one", "let") and substring stubs
+ * ("ill" out of "still") fall out.
+ */
+const MIN_FRAGMENT_CHARS = 4;
+
+/**
+ * Low-distinctiveness words that cannot be the SOLE word of a fragment.
+ * These are high-frequency generic English words (ordinals, numerals,
+ * generic verbs/nouns) that carry little topical content on their own, so a
+ * lone one of them is a junk anchor ("first", "one", "time"). A generic
+ * word is still allowed inside a MULTI-word fragment ("first draft") and is
+ * never removed from the distinctive-word stream — only barred from being a
+ * lone anchor.
+ *
+ * This is NOT the gate-synced STOPWORDS table above (which decides whether a
+ * word enters the distinctive stream at all); it is an anchoring-only
+ * quality floor calibrated against the bundled sample draft. Keep it lean
+ * and domain-neutral: do not add draft-specific content words ("paste",
+ * "water") or craft terms ("scene", "character") that can be genuine anchors.
+ */
+const GENERIC_WORDS: Record<string, true> = {
+  // ordinals / numerals / quantifiers
+  first: true, second: true, third: true, last: true, next: true,
+  one: true, two: true, three: true, ten: true, single: true,
+  // time and sequence
+  time: true, times: true, day: true, days: true, year: true, years: true,
+  moment: true, moments: true, hour: true, hours: true, week: true,
+  weeks: true, month: true, months: true, morning: true, night: true,
+  // generic verbs
+  let: true, use: true, make: true, made: true, get: true, got: true,
+  take: true, took: true, give: true, gave: true, come: true, came: true,
+  go: true, went: true, look: true, looked: true, know: true, knew: true,
+  think: true, thought: true, want: true, wanted: true, need: true,
+  needed: true, feel: true, felt: true, find: true, found: true, keep: true,
+  kept: true, put: true, mean: true, meant: true, see: true, saw: true,
+  move: true, moved: true, turn: true, turned: true, read: true, work: true,
+  stop: true, follow: true, show: true, try: true, trying: true,
+  // generic nouns
+  thing: true, things: true, way: true, ways: true, part: true, parts: true,
+  point: true, points: true, kind: true, kinds: true, sort: true, end: true,
+  back: true, life: true, word: true, words: true, line: true, lines: true,
+  voice: true, set: true, stuff: true, nothing: true, everything: true,
+  // function-ish / weak adjectives & adverbs
+  still: true, never: true, always: true, now: true, against: true,
+  together: true, itself: true, self: true, real: true, hard: true, old: true,
+  new: true, good: true, big: true, small: true, little: true, sure: true,
+  right: true, great: true, really: true, often: true, sometimes: true,
+  maybe: true, finally: true, whole: true, simple: true, specific: true,
+  actual: true, different: true, other: true,
+};
 
 /**
  * A word: a run of letters/numbers, optionally with internal apostrophes
@@ -198,7 +253,28 @@ function findCandidates(
         const startToken = tokens[p];
         const endToken = tokens[p + len - 1];
         const start = startToken.start + startToken.word.indexOf(sub[0]);
-        const end = endToken.start + endToken.word.indexOf(sub[len - 1]) + sub[len - 1].length;
+        // A fragment must never end mid-word: when the matched question-word
+        // does not consume the containing token fully (e.g. "walk" inside
+        // "walkings"), push the end out to the token's own boundary. For a
+        // doubled token ("catcat") indexOf picks the first occurrence — the
+        // same half the start uses — so extending to the full token keeps
+        // that pairing coherent.
+        const endWord = endToken.word;
+        const endHit = endWord.indexOf(sub[len - 1]);
+        const consumed = endHit + sub[len - 1].length;
+        const end = consumed === endWord.length ? endToken.start + consumed : endToken.start + endWord.length;
+        // Anchor-quality floor: a single-word fragment is only a valid
+        // candidate when its lone word is genuinely distinctive — not a
+        // stopword or generic low-distinctiveness word, and long enough to
+        // carry signal. A multi-word fragment (len >= 2) is always
+        // acceptable: it is a content phrase, even if it contains generic
+        // words ("first draft").
+        if (
+          len === 1 &&
+          (STOPWORDS[sub[0]] === true || GENERIC_WORDS[sub[0]] === true || end - start < MIN_FRAGMENT_CHARS)
+        ) {
+          continue;
+        }
         candidates.push({ start, end, span: end - start });
       }
     }
@@ -258,7 +334,6 @@ export function extractAnchor(question: string, draft: string, cursorOffset: num
   const contains = buildContainsMap(tokens, qWords);
   const ngrams = buildNgramIndex(tokens);
   const candidates = findCandidates(tokens, qWords, contains, ngrams);
-  if (candidates.length === 0) return null;
   // Tier 0 — VERBATIM QUOTES. The question may quote the text directly
   // ("Never meet your heroes"). A quoted span is the strongest possible
   // signal of what the question is about: it outranks the cursor envelope,
@@ -285,31 +360,39 @@ export function extractAnchor(question: string, draft: string, cursorOffset: num
     if ((open === "'" || open === '\u2019') && (isLetter(question[i - 1]) || isLetter(question[i + 1]))) continue;
 
     let bestForThisOpen: { start: number; end: number; span: number } | null = null;
-    let bestDist = Infinity;
     for (let j = i + 3; j < question.length; j++) {
       const close = question[j];
       if (!QUOTE_MARKS.test(close)) continue;
       if ((close === "'" || close === '\u2019') && isLetter(question[j - 1]) && isLetter(question[j + 1])) continue;
       const inner = question.slice(i + 1, j).trim();
       if (inner.split(/\s+/).filter(Boolean).length < 2) continue; // too short — keep scanning outward
-      // Find EVERY occurrence and keep the closest to the cursor: repeated
-      // paragraphs (or identical filler windows) make the first occurrence
-      // global-first, which can sit in an entirely different window.
+      // For this closing candidate, find EVERY occurrence and keep the
+      // closest to the cursor: repeated paragraphs (or identical filler
+      // windows) make the first occurrence global-first, which can sit in
+      // an entirely different window.
       const needle = inner.toLowerCase();
-      const positions: number[] = [];
+      let bestForNeedle: { start: number; end: number; span: number } | null = null;
+      let bestDist = Infinity;
       let pos = lowerDraft.indexOf(needle);
       while (pos !== -1) {
-        positions.push(pos);
-        pos = lowerDraft.indexOf(needle, pos + 1);
-      }
-      // Prefer the occurrence closest to the cursor so repeated paragraphs
-      // anchor to THIS window, not an earlier twin of the same text.
-      for (const p of positions) {
-        const dist = Math.abs(p - cursorOffset);
-        if (bestForThisOpen === null || dist < bestDist || (dist === bestDist && p < bestForThisOpen.start)) {
-          bestForThisOpen = { start: p, end: p + needle.length, span: needle.length };
+        const dist = Math.abs(pos - cursorOffset);
+        if (bestForNeedle === null || dist < bestDist || (dist === bestDist && pos < bestForNeedle.start)) {
+          bestForNeedle = { start: pos, end: pos + needle.length, span: needle.length };
           bestDist = dist;
         }
+        pos = lowerDraft.indexOf(needle, pos + 1);
+      }
+      if (!bestForNeedle) continue;
+      // Among the closing candidates for this opening mark, keep the LONGEST
+      // span — the inner scan extends past each successful closing mark — so
+      // an apostrophe inside the quoted text ("the writer's words") can't
+      // truncate it. Ties break toward the earlier start in the draft.
+      if (
+        bestForThisOpen === null ||
+        bestForNeedle.span > bestForThisOpen.span ||
+        (bestForNeedle.span === bestForThisOpen.span && bestForNeedle.start < bestForThisOpen.start)
+      ) {
+        bestForThisOpen = bestForNeedle;
       }
     }
     if (bestForThisOpen && (bestQuote === null || bestForThisOpen.span > bestQuote.span)) {
@@ -323,6 +406,7 @@ export function extractAnchor(question: string, draft: string, cursorOffset: num
       fragment: draft.slice(bestQuote.start, bestQuote.end),
     };
   }
+  if (candidates.length === 0) return null;
 
 
   const blocks = splitBlocks(draft);

@@ -110,4 +110,24 @@ describe('SaveIndicator', () => {
     vi.advanceTimersByTime(SAVE_PENDING_MS + SAVE_STICKY_MS);
     expect(displays).toEqual([]);
   });
+  it('saveFailed clears an in-flight Saving back to idle (never sticks on Saving…)', () => {
+    const { indicator, displays } = makeIndicator();
+    indicator.saveStarted();
+    vi.advanceTimersByTime(SAVE_PENDING_MS);
+    expect(displays).toEqual(['saving']);
+    indicator.saveFailed();
+    expect(displays).toEqual(['saving', 'idle']);
+    // The cancelled pending/sticky timers must not fire afterward.
+    vi.advanceTimersByTime(SAVE_STICKY_MS);
+    expect(displays).toEqual(['saving', 'idle']);
+  });
+
+  it('saveFailed before the pending window elapses never shows Saving', () => {
+    const { indicator, displays } = makeIndicator();
+    indicator.saveStarted();
+    indicator.saveFailed();
+    expect(displays).toEqual([]);
+    vi.advanceTimersByTime(SAVE_PENDING_MS + SAVE_STICKY_MS);
+    expect(displays).toEqual([]);
+  });
 });

@@ -103,6 +103,20 @@ describe('hedge axis', () => {
     expect(s.values.adverbRate).toBeLessThan(4)
     expect(s.axes.has('hedge')).toBe(false)
   })
+
+  it('does not count ordinary -ly nouns, verbs, or adjectives as adverbs', () => {
+    const raw = 'The family reply was only a supply of holy folly. Italy rally ugly.'
+    const s = measureWindow(raw)
+    expect(s.values.adverbRate).toBe(0)
+    expect(s.axes.has('hedge')).toBe(false)
+  })
+
+  it('still counts a genuine -ly adverb', () => {
+    const raw = passage('quickly', 20) // 1 / 20 = 5%
+    const s = measureWindow(raw)
+    expect(s.values.adverbRate).toBeCloseTo(5)
+    expect(s.axes.has('hedge')).toBe(true)
+  })
 })
 
 describe('filter-word axis', () => {
@@ -149,6 +163,19 @@ describe('nominal axis', () => {
     const raw = 'Hence the matter, hence the trouble.'
     expect(measureWindow(raw).values.nominalRate).toBe(0)
   })
+
+  it('does not flag three-letter adjectives or stative predicate adjectives as passive', () => {
+    const raw = 'She was tired. He was bored. They were scared. It was red.'
+    const s = measureWindow(raw)
+    expect(s.values.nominalRate).toBe(0)
+    expect(s.axes.has('nominal')).toBe(false)
+  })
+
+  it('still counts a genuine past-participle passive', () => {
+    const raw = 'The gate was opened by the guard.'
+    const s = measureWindow(raw)
+    expect(s.values.nominalRate).toBeGreaterThan(0)
+  })
 })
 
 describe('opening/closing position axes', () => {
@@ -185,6 +212,32 @@ describe('opening/closing position axes', () => {
   })
 })
 
+describe('sentence splitting', () => {
+  it('does not split a sentence on a possessive apostrophe', () => {
+    const possessive =
+      "The writers' guild met. The editors' room stayed dark. Nothing else happened at all."
+    const plain =
+      'The writers guild met. The editors room stayed dark. Nothing else happened at all.'
+    expect(measureWindow(possessive).values.sentenceMean).toBe(measureWindow(plain).values.sentenceMean)
+    expect(measureWindow(possessive).values.sentenceSigma).toBe(measureWindow(plain).values.sentenceSigma)
+  })
+
+  it('does not split a sentence on a mid-sentence inline quote', () => {
+    const raw = 'He said "hello" and then left the building without another word to anyone there.'
+    const s = measureWindow(raw)
+    // One sentence: the closing quote after "hello" must not terminate it.
+    expect(s.values.sentenceSigma).toBe(0)
+    expect(s.values.sentenceMean).toBe(14)
+  })
+
+  it('splits after a terminator that closes a quoted sentence', () => {
+    const raw = 'She said "goodbye." Then she left.'
+    const s = measureWindow(raw)
+    expect(s.values.sentenceMean).toBe(3) // "She said goodbye" + "Then she left"
+    expect(s.values.sentenceSigma).toBe(0)
+  })
+})
+
 describe('markdown stripping', () => {
   it('drops link URLs so they cannot inflate word counts', () => {
     const linked = 'Here is a [link](https://example.com/very/long/url/path) in my sentence.'
@@ -211,6 +264,18 @@ describe('markdown stripping', () => {
   it('removes code spans from the prose', () => {
     const raw = 'Run `npm install` now.'
     expect(measureWindow(raw).values.sentenceMean).toBe(2)
+  })
+
+  it('strips cursor markers so they never distort any measurement', () => {
+    const clean =
+      'The writers guild met. The editors room stayed dark. Nothing else happened at all.'
+    const markedLines =
+      '[CURSOR START]\nThe writers guild met.\n[CURSOR END]\n\nThe editors room stayed dark. Nothing else happened at all.'
+    const markedInline =
+      'The writers [CURSOR START] guild met. The editors [CURSOR END] room stayed dark. Nothing else happened at all.'
+    const cleanValues = measureWindow(clean).values
+    expect(measureWindow(markedLines).values).toEqual(cleanValues)
+    expect(measureWindow(markedInline).values).toEqual(cleanValues)
   })
 })
 
@@ -282,6 +347,7 @@ describe('implVerbs', () => {
     expect(implVerbs(s)).toEqual(['concept-form', 'elaborate'])
   })
 })
+
 describe('purity', () => {
   it('is deterministic: same input twice yields deep-equal output', () => {
     const raw = '“Hello,” she said calmly, and then a decision was made quickly.'

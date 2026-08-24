@@ -13,6 +13,11 @@ import type { DraftStore, Note } from './draft-store';
 
 const SAVE_DELAY_MS = 1000;
 
+/** Thrown when trySave/flush find no active store (mode still detecting).
+ * Treated exactly like any other save failure — payload kept, one silent
+ * retry, then onError — so a null store never fakes a 'saved' pulse. */
+const NO_STORE_ERROR = 'No active storage yet — the draft has not been saved.';
+
 export interface SaveCoordinatorOptions {
   /** Supplies the active store per call, so a mode change is picked up. */
   getStore: () => DraftStore | null;
@@ -46,10 +51,7 @@ export class SaveCoordinator {
     this.clearTimers();
     this.retryScheduled = false; // a fresh edit re-arms a clean save cycle
     this.pending = { draft: text, notes };
-    this.debounceTimer = window.setTimeout(() => {
-      this.debounceTimer = null;
-      void this.trySave();
-    }, SAVE_DELAY_MS);
+    this.scheduleDebounce();
   }
 
   /**
@@ -63,11 +65,15 @@ export class SaveCoordinator {
     await this.flush();
   }
 
-
   /**
    * Attempt a save now (fire-and-forget). The first failure keeps the
    * payload and arms ONE retry; that retry's failure surfaces via onError
    * and stops — the next edit() re-arms naturally.
+   *
+   * Failure modes: a store that rejects, and NO active store (mode still
+   * detecting) — both follow the same path, so a null store keeps the
+   * payload pending, never pulses 'saved', and surfaces onError on the
+   * retry's failure.
    */
   async trySave(): Promise<void> {
     this.clearTimers();
@@ -78,7 +84,9 @@ export class SaveCoordinator {
     this.inFlight = true;
     try {
       this.options.onSaveState?.('saving');
-      await this.store?.save(payload.draft, payload.notes);
+      const store = this.store;
+      if (store === null) throw new Error(NO_STORE_ERROR);
+      await store.save(payload.draft, payload.notes);
       // Claim 'saved' only when this payload is still the latest — a newer
       // edit superseded it mid-flight and owns the next pulse.
       if (this.pending === payload) {
@@ -90,27 +98,23 @@ export class SaveCoordinator {
         this.options.onError(err);
       } else {
         this.retryScheduled = true;
-        this.retryTimer = window.setTimeout(() => {
-          this.retryTimer = null;
-          void this.trySave();
-        }, SAVE_DELAY_MS);
+        this.scheduleRetry();
       }
     } finally {
       this.inFlight = false;
-      // A newer payload arrived while this save ran: don't swallow it —
-      // re-arm the debounce so it still gets persisted.
-      if (this.pending !== null && this.pending !== payload) {
-        this.debounceTimer = window.setTimeout(() => {
-          this.debounceTimer = null;
-          void this.trySave();
-        }, SAVE_DELAY_MS);
+      // A newer payload arrived while this save ran (via edit(), which arms
+      // its own debounce, or persistNow(), which does not): if no timer is
+      // already armed for it, re-arm the debounce so it still gets persisted.
+      if (this.pending !== null && this.pending !== payload && this.debounceTimer === null) {
+        this.scheduleDebounce();
       }
     }
   }
 
   /**
    * Force an immediate save (tab hidden / page unloading). Failures surface
-   * via onError and keep the payload — the next edit() re-arms.
+   * via onError and keep the payload — the next edit() re-arms. A missing
+   * store (mode still detecting) fails the same way, never pulsing 'saved'.
    */
   async flush(opts?: { keepalive?: boolean }): Promise<void> {
     this.clearTimers();
@@ -120,7 +124,9 @@ export class SaveCoordinator {
     this.inFlight = true;
     try {
       this.options.onSaveState?.('saving');
-      await this.store?.save(payload.draft, payload.notes, opts);
+      const store = this.store;
+      if (store === null) throw new Error(NO_STORE_ERROR);
+      await store.save(payload.draft, payload.notes, opts);
       if (this.pending === payload) {
         this.pending = null;
         this.options.onSaveState?.('saved');
@@ -129,11 +135,8 @@ export class SaveCoordinator {
       this.options.onError(err);
     } finally {
       this.inFlight = false;
-      if (this.pending !== null && this.pending !== payload) {
-        this.debounceTimer = window.setTimeout(() => {
-          this.debounceTimer = null;
-          void this.trySave();
-        }, SAVE_DELAY_MS);
+      if (this.pending !== null && this.pending !== payload && this.debounceTimer === null) {
+        this.scheduleDebounce();
       }
     }
   }
@@ -156,5 +159,24 @@ export class SaveCoordinator {
       window.clearTimeout(this.retryTimer);
       this.retryTimer = null;
     }
+  }
+
+  /** Arm the debounced save. Per-schedule handle capture: the callback only
+   * clears its OWN handle, so an orphaned/overwritten timer can never null a
+   * newer timer's slot and leave it uncancellable. */
+  private scheduleDebounce(): void {
+    const timer = window.setTimeout(() => {
+      if (this.debounceTimer === timer) this.debounceTimer = null;
+      void this.trySave();
+    }, SAVE_DELAY_MS);
+    this.debounceTimer = timer;
+  }
+
+  private scheduleRetry(): void {
+    const timer = window.setTimeout(() => {
+      if (this.retryTimer === timer) this.retryTimer = null;
+      void this.trySave();
+    }, SAVE_DELAY_MS);
+    this.retryTimer = timer;
   }
 }

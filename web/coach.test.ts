@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { ClientSeed, Genre } from '../src/types'
-import { detectServerMode, isModelBacked, makeCoach, mayAutoAsk, seedMatchesGenre, StaticCoach } from './coach'
+import { detectServerMode, isModelBacked, loadSeeds, makeCoach, mayAutoAsk, seedMatchesGenre, StaticCoach } from './coach'
 
 const fiction: ClientSeed = { id: 'f1', question: 'Fiction question?', genre: ['fiction'] }
 const agnostic: ClientSeed = { id: 'a1', question: 'Any genre question?', genre: ['genre-agnostic'] }
@@ -162,5 +162,18 @@ describe('detectServerMode', () => {
       }),
     )
     expect(await detectServerMode()).toBe('static')
+  })
+})
+
+
+describe('loadSeeds (S2-11: lazy seed-bank split)', () => {
+  it('caches the loaded bank so repeated draws trigger at most one async load', async () => {
+    // The module-level loader returns the SAME promise for every caller, so a
+    // second draw (StaticCoach or ByokCoach) never triggers a second fetch.
+    const first = loadSeeds()
+    const second = loadSeeds()
+    expect(second).toBe(first)
+    const seeds = await first
+    expect(seeds.length).toBeGreaterThan(1000)
   })
 })

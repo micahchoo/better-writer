@@ -38,27 +38,25 @@ export function InboxPanel(props: InboxPanelProps): JSX.Element {
   return (
     <div className="inbox-panel" role="list" aria-label="Pinned questions">
       {notes.map((note) => (
-        <div
-          key={noteId(note)}
-          className="inbox-row"
-          role="listitem"
-          onClick={() => onFocusNote(note)}
-        >
-          {/* Row identity: the question itself, in the coach's serif voice. */}
-          <p className="inbox-question">{note.question}</p>
-          {/* The anchor text the question was grounded on — muted mono,
-              ellipsized to a single line (truncation is styled in CSS). */}
-          <span className="inbox-fragment">{note.fragment}</span>
+        <div key={noteId(note)} className="inbox-row" role="listitem">
+          {/* Row identity: the question itself, in the coach's serif voice. The
+              whole body is a real <button> so keyboard users get the same
+              focus-jump as mouse users (Enter/Space activate it natively). */}
+          <button
+            type="button"
+            className="inbox-row-main"
+            onClick={() => onFocusNote(note)}
+          >
+            <p className="inbox-question">{note.question}</p>
+            {/* The anchor text the question was grounded on — muted mono,
+                ellipsized to a single line (truncation is styled in CSS). */}
+            <span className="inbox-fragment">{note.fragment}</span>
+          </button>
           <button
             type="button"
             className="coach-resolve"
             aria-label="Mark resolved"
-            // Resolution must not also focus the note: stop propagation so
-            // the row-body click handler above never sees the dismiss.
-            onClick={(e) => {
-              e.stopPropagation();
-              onResolveNote(note);
-            }}
+            onClick={() => onResolveNote(note)}
           >
             Resolved
           </button>

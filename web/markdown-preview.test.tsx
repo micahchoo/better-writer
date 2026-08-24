@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createRoot, type Root } from 'react-dom/client'
 import { act } from 'react-dom/test-utils'
 import { MarkdownPreview, PREVIEW_DEBOUNCE_MS } from './markdown-preview'
@@ -17,29 +17,25 @@ await import('remark-gfm')
 let host: HTMLDivElement | null = null
 let root: Root | null = null
 
-// Minimal macrotask sleeper: lets the lazy Suspense boundary flush. Typed as
-// a Promise<void> so the awaiting call sites stay linear.
-function sleep(ms: number): Promise<void> {
-	return new Promise<void>((resolve) => {
-		setTimeout(resolve, ms)
-	})
-}
-
 // The renderer is loaded via React.lazy + a dynamic import, so the Suspense
-// boundary must resolve before the content is queryable. Poll until the
-// rendered content actually appears (early-exit once mounted).
+// boundary must resolve before the content is queryable. Poll (outside act)
+// until the rendered content actually appears: the pre-warmed chunk resolves
+// in microseconds, so a tight timeout fails fast instead of spinning a 10s
+// real-time deadline (React won't flush the lazy resolution inside an
+// in-act macrotask poll, which is why the old loop always ran to expiry).
 async function renderPreview(text: string) {
 	host = document.createElement('div')
 	document.body.appendChild(host)
 	root = createRoot(host)
-	const deadline = Date.now() + 10_000
-	await act(async () => {
+	act(() => {
 		root!.render(<MarkdownPreview text={text} />)
-		while (Date.now() < deadline) {
-			if (host!.querySelector('.markdown-preview')?.childElementCount) break
-			await sleep(20)
-		}
 	})
+	await vi.waitFor(
+		() => {
+			expect(host!.querySelector('.markdown-preview')?.childElementCount).toBeGreaterThan(0)
+		},
+		{ timeout: 2000, interval: 5 },
+	)
 	return host
 }
 
@@ -77,7 +73,6 @@ describe('MarkdownPreview', () => {
 			expect(el.querySelector('table')).not.toBeNull()
 			expect(el.querySelector('td')?.textContent).toBe('1')
 		},
-		20_000,
 	)
 
 	it(
@@ -91,7 +86,6 @@ describe('MarkdownPreview', () => {
 			expect(el.textContent).toContain('hello')
 			expect(el.textContent).toContain('after')
 		},
-		20_000,
 	)
 
 	it(
@@ -115,7 +109,6 @@ describe('MarkdownPreview', () => {
 			expect(links[0]?.getAttribute('href')).toBe('')
 			expect(links[1]?.getAttribute('href')).toBe('')
 		},
-		20_000,
 	)
 
 	it(
@@ -123,19 +116,25 @@ describe('MarkdownPreview', () => {
 		async () => {
 			const el = await renderPreview('first draft')
 			expect(el.querySelector('p')?.textContent).toBe('first draft')
+
 			// Re-render with a new draft; the pane must NOT update synchronously
-			// (the trailing debounce window has not elapsed).
-			await act(async () => {
-				root!.render(<MarkdownPreview text="second draft" />)
-				await sleep(0)
-			})
-			expect(el.querySelector('p')?.textContent).toBe('first draft')
-			// Advance past the trailing debounce, then the pane catches up.
-			await act(async () => {
-				await sleep(PREVIEW_DEBOUNCE_MS + 50)
-			})
-			expect(el.querySelector('p')?.textContent).toBe('second draft')
+			// (the trailing debounce window has not elapsed). Fake timers let us
+			// observe the quiet window and its expiry without real time.
+			vi.useFakeTimers()
+			try {
+				await act(async () => {
+					root!.render(<MarkdownPreview text="second draft" />)
+					await Promise.resolve()
+				})
+				expect(el.querySelector('p')?.textContent).toBe('first draft')
+				// Advance past the trailing debounce, then the pane catches up.
+				act(() => {
+					vi.advanceTimersByTime(PREVIEW_DEBOUNCE_MS + 1)
+				})
+				expect(el.querySelector('p')?.textContent).toBe('second draft')
+			} finally {
+				vi.useRealTimers()
+			}
 		},
-		20_000,
 	)
 })

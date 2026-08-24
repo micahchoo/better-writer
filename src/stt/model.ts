@@ -41,6 +41,17 @@ export function resolveModelDir(): string {
   return envDir;
  }
 
+ if (envDir) {
+  // S3-12: an explicitly-set but incomplete model dir must not be silently
+  // ignored in favor of a different model — the operator pointed at a
+  // specific folder, so name both the ignored env dir and what was used.
+  console.warn(
+   `[stt-model] BW_STT_MODEL_DIR=${envDir} is set but missing one of ` +
+   `${REQUIRED_FILES.join(', ')}; ignoring it and falling back to ` +
+   `cache at ${resolveCacheDir()}`,
+  );
+ }
+
  const cacheDir = resolveCacheDir();
  if (dirHasAllFiles(cacheDir)) {
   return cacheDir;
@@ -52,4 +63,3 @@ export function resolveModelDir(): string {
   `or ensure the cache at ${cacheDir} is populated.`,
  );
 }
-

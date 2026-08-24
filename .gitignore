@@ -37,3 +37,6 @@ opendataloader-pdf/
 *.swp
 .idea/
 .vscode/
+
+# node runtime artifact (V8 compile cache, regenerated on every run)
+node-compile-cache/

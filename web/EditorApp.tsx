@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronDown, ChevronUp, Expand, Eye, EyeOff, Mic, MicOff, Moon, Sun, X } from 'lucide-react'
 import { GENRES, type Genre } from '../src/types'
-import { extractAnchor } from './anchor'
+import { extractAnchor, type Anchor } from './anchor'
 import { createCadence, type Cadence } from './cadence'
 import { planSweep, reconcileAnnotations, runSweep, staleAnnotations } from './coach-sweep'
 import {
@@ -39,8 +39,30 @@ const MODEL_PLACEHOLDERS: Record<Provider, string> = {
  groq: 'meta-llama/llama-3.3-70b-instruct',
  custom: 'e.g. your-model-id',
 }
-// Preview toggle cycles the rendered pane off → split → full → off.
-const PREVIEW_CYCLE: Array<'off' | 'split' | 'full'> = ['off', 'split', 'full']
+/**
+ * Resolve the anchor for a completed auto-ask against ONE draft snapshot.
+ *
+ * `base` is the draft captured when the ask fired; `nowDraft` is the draft at
+ * resolution. If the writer did not type during the ask (nowDraft === base),
+ * anchor against base with the fire-time caret. If the draft advanced, re-run
+ * extractAnchor against the CURRENT draft with a fresh caret so a note never
+ * pins to stale coordinates — a length-preserving edit is the worst case, as
+ * it keeps an old anchor "in range" while shifting the text under it. Returns
+ * null (drop the note, as a sweep drops an un-anchored window) when no
+ * distinctive question word survives in the current draft.
+ */
+export function reanchorNote(
+ question: string,
+ base: string,
+ nowDraft: string,
+ caretOffset: number,
+ freshCaret: number,
+): Anchor | null {
+ if (nowDraft === base) {
+  return extractAnchor(question, base, caretOffset)
+ }
+ return extractAnchor(question, nowDraft, freshCaret)
+}
 
 export default function EditorApp() {
  const [mode, setMode] = useState<CoachMode | 'detecting'>('detecting')
@@ -74,7 +96,7 @@ export default function EditorApp() {
  // wiring) on selection/doc updates, scroller scroll, and window resize.
  // Popovers re-run placement on it so they stay pinned to their anchors.
  const [viewportTick, setViewportTick] = useState(0)
-  // Debounced save-status display (save-indicator.ts): 'Saving…' appears only
+ // Debounced save-status display (save-indicator.ts): 'Saving…' appears only
  // once a save lingers past its pending window; 'Saved' sticks for the sticky
  // window then reverts to idle. Rapid queued saves never flicker.
  const [saveDisplay, setSaveDisplay] = useState<SaveIndicatorDisplay>('idle')
@@ -94,9 +116,9 @@ export default function EditorApp() {
  // skipped = windows that produced none. Shown above the coach actions and
  // STAYS visible after the sweep completes — not a toast.
  const [sweepSummary, setSweepSummary] = useState<{
-   asked: number
-   skipped: number
-   pinned: number
+  asked: number
+  skipped: number
+  pinned: number
  } | null>(null)
  // Auto-ask cadence pause: when paused the cadence driver still observes
  // (cheap) but never fires a question.
@@ -113,7 +135,12 @@ export default function EditorApp() {
   baseUrl: string
   model: string
   apiKey: string
- }>({ provider: 'openrouter', baseUrl: PRESETS.openrouter, model: '', apiKey: '' })
+  sttModel: string
+ }>({ provider: 'openrouter', baseUrl: PRESETS.openrouter, model: '', apiKey: '', sttModel: '' })
+ // Bumped on BYOK save/disconnect so the memoized config read (byokCfg below)
+ // re-evaluates: the settings round-trip must invalidate the cached
+ // localStorage read instead of waiting for a mode change.
+ const [byokCfgVersion, setByokCfgVersion] = useState(0)
  // Tri-mode rendered preview. Split is the DEFAULT (side-by-side on load; no
 // persistence — every fresh load starts split, the user cycles from there).
 // 'off' edits full-width; 'split' shows the rendered pane LIVE beside the
@@ -122,6 +149,7 @@ export default function EditorApp() {
 // (className swap to display:none — never unmounts it) so the undo stack,
 // caret, and history survive the round-trip; the editor stays live and keeps
 // dispatching even while hidden. `draft` is the source of truth for the pane.
+const PREVIEW_CYCLE = ['off', 'split', 'full'] as const
 const [previewMode, setPreviewMode] = useState<'off' | 'split' | 'full'>('split')
 const cyclePreview = () =>
  setPreviewMode((m) => PREVIEW_CYCLE[(PREVIEW_CYCLE.indexOf(m) + 1) % PREVIEW_CYCLE.length])
@@ -141,7 +169,12 @@ const nextPreviewLabel =
  // reassigned and must be non-null at every callsite.
  const [coordinator] = useState(new SaveCoordinator({
   getStore: () => draftStoreRef.current,
-  onError: (err: unknown) => setError(err instanceof Error ? err.message : String(err)),
+  onError: (err: unknown) => {
+  setError(err instanceof Error ? err.message : String(err))
+  // A failed save must not leave the indicator stuck on 'Saving…': clear it
+  // to idle; the toast above is the failure affordance.
+  saveIndicator.saveFailed()
+ },
   // Save-lifecycle pulse for the topbar indicator: 'saving' on send, and on
   // 'saved' stamp the completion time (the HH:MM shown next to the badge).
    onSaveState: (phase) => {
@@ -184,7 +217,7 @@ const nextPreviewLabel =
   [],
  )
 
-  // Mode detection: a saved BYOK config wins — adopt byok synchronously (the
+ // Mode detection: a saved BYOK config wins — adopt byok synchronously (the
 // whole pipeline is browser-resident, so no probe is needed). Otherwise probe
  // GET /health once: 200 JSON -> local mode (LocalCoach + ServerDraftStore);
  // anything else -> static demo (StaticCoach + LocalStorageDraftStore). GitHub
@@ -212,9 +245,9 @@ const nextPreviewLabel =
  }, [])
 
  // Load the saved draft from a store, then restore every persisted annotation
- // whose fragment still sits at its offsets. Shared by the mode-load effect
- // AND the BYOK adopt/disconnect paths, which swap the store without a reload
- // — the writer's prose must come from whichever store the new mode reads.
+ // whose fragment still sits at its offsets. The mode-load effect (below) is
+ // the ONLY caller: the BYOK adopt/disconnect handlers just set the new mode
+ // and store, and let the effect's [mode] dependency fire this exactly once.
  // Latest-load-wins token: an older async load (e.g. from a mode we have
  // already left) must not overwrite a newer one, so each call stamps a fresh
  // seq and only the most recent is allowed to apply its result.
@@ -245,7 +278,9 @@ const nextPreviewLabel =
    })
  }
 
- // Load once the mode (and store) is known.
+ // Load once the mode (and store) is known. saveByokSettings/disconnectByok
+ // set the store and mode and return — this effect is what performs the one
+ // load, so adopt/disconnect never double-load.
  useEffect(() => {
   if (mode === 'detecting' || !draftStoreRef.current) return
   loadDraftAndNotes(draftStoreRef.current)
@@ -353,27 +388,38 @@ const askCursorWindow = async (text: string) => {
   cadence.reset(text)
   return
  }
- const blocks = splitBlocks(text)
+ // ONE snapshot for the whole ask: anchor span and persisted draft must come
+ // from the same text. `text` (from the fire site) is that snapshot; if the
+ // writer types while the ask is in flight, the note is re-anchored against
+ // the CURRENT draft with a fresh caret instead of pinning stale coordinates.
+ const base = text
+ const blocks = splitBlocks(base)
  if (blocks.length === 0) {
-  cadence.reset(text)
+  cadence.reset(base)
   return
  }
  const cursor = editorAccess.readCursor()
- const caretOffset = cursor?.offset ?? Math.floor(text.length / 2)
+ const caretOffset = cursor?.offset ?? Math.floor(base.length / 2)
 
  // The shared cursor-window constructor: the block under the caret centered
  // ±1 neighbor (edge-clipped), marked around the cursor block, so an auto-ask
  // window matches a sweep window's shape by construction.
  const win = cursorWindow(blocks, caretOffset)
  if (!win) {
-  cadence.reset(text)
+  cadence.reset(base)
   return
  }
  const markedText = buildAskWindow(win.texts, win.markIndex)
 
  try {
   const question = await coach.ask(markedText, genreRef.current, caretOffset)
-  const anchor = extractAnchor(question, text, caretOffset)
+  // The draft may have advanced while the ask was in flight. reanchorNote
+  // pins the note to ONE snapshot — base if unchanged, the current draft
+  // with a fresh caret otherwise — or returns null to drop the note the way
+  // a sweep drops an un-anchored window.
+  const nowDraft = draftRef.current
+  const freshCaret = editorAccess.readCursor()?.offset ?? Math.floor(nowDraft.length / 2)
+  const anchor = reanchorNote(question, base, nowDraft, caretOffset, freshCaret)
   if (anchor) {
    const record = makeNote(anchor, question)
    // Provenance from the coach, attached only when reported (legacy/static
@@ -382,15 +428,15 @@ const askCursorWindow = async (text: string) => {
    if (source) record.source = source
    annotationsRef.current = [...annotationsRef.current, record]
    setSweepNotes((prev) => [...prev, record])
-   void coordinator.persistNow(draftRef.current, annotationsRef.current)
+   // Anchor span and persisted draft come from the SAME snapshot (nowDraft).
+   void coordinator.persistNow(nowDraft, annotationsRef.current)
   }
  } catch {
   // Silent: a background ask must never surface a toast. cadence resets below.
  } finally {
-  cadence.reset(text)
+  cadence.reset(base)
  }
 }
-
 // Jump the editor to a note's span: open its popover and scroll the
 // scrollport so the anchored line is roughly centered. The scroll target is
 // the note's character offset, handed to the seam (CM6 handles line/scroll
@@ -414,7 +460,7 @@ const handleHighlightClick = (event: React.MouseEvent<HTMLDivElement>) => {
  setOpenNoteId((prev) => (prev === id ? null : id))
 }
 
-  // Genre is remembered across reloads; a handler shared by every genre select
+ // Genre is remembered across reloads; a handler shared by every genre select
 // (there is now one place it lives: the coach-actions row).
 const handleGenreChange = (next: Genre) => {
  genreRef.current = next
@@ -583,8 +629,12 @@ const toggleDictation = async () => {
        baseUrl: cfg.baseUrl,
        model: cfg.model,
        apiKey: cfg.apiKey,
+       // Seed the effective dictation model (explicit override wins over the
+       // provider default) so the field shows what will actually be used, and
+       // saving it back makes the override explicit rather than erasing it.
+       sttModel: sttModelFor(cfg) ?? '',
       }
-    : { provider: 'openrouter', baseUrl: PRESETS.openrouter, model: '', apiKey: '' },
+    : { provider: 'openrouter', baseUrl: PRESETS.openrouter, model: '', apiKey: '', sttModel: '' },
   )
   setByokOpen(true)
  }
@@ -602,10 +652,11 @@ const toggleDictation = async () => {
 
  // Persist the config and adopt byok immediately — the same path as detection
  // (new ByokCoach + makeDraftStore('byok'), which is a LocalStorageDraftStore
- // per the store's ternary), plus a draft reload so prose saved under static
- // mode surfaces. No page reload: the writer keeps working.
+ // per the store's ternary). The draft reload happens ONCE via the [mode]
+ // effect, which fires when setMode('byok') lands. No page reload: the writer
+ // keeps working.
  const saveByokSettings = () => {
-  const { provider, baseUrl, model, apiKey } = byokForm
+  const { provider, baseUrl, model, apiKey, sttModel } = byokForm
   if (!baseUrl.trim() || !model.trim() || !apiKey.trim()) {
    setError(
     provider === 'custom'
@@ -627,35 +678,44 @@ const toggleDictation = async () => {
    baseUrl: baseUrl.trim().replace(/\/+$/, ''),
    apiKey: apiKey.trim(),
    model: model.trim(),
+   // Dictation model is optional: persist it only when set, so an empty field
+   // degrades to the provider default (sanitize drops empty sttModel anyway).
+   ...(sttModel.trim() !== '' ? { sttModel: sttModel.trim() } : {}),
   })
   coachRef.current = new ByokCoach()
   draftStoreRef.current = makeDraftStore('byok')
+  // Bump the config cache so dictation availability re-evaluates immediately.
+  setByokCfgVersion((v) => v + 1)
   setMode('byok')
-  loadDraftAndNotes(draftStoreRef.current)
   setByokOpen(false)
  }
 
  // Clear the config and return to the static demo: StaticCoach +
  // LocalStorageDraftStore (makeDraftStore('static') — its ternary only routes
- // 'local' to the server), with the same draft reload as adoption.
+ // 'local' to the server). The draft reload happens ONCE via the [mode] effect.
  const disconnectByok = () => {
   saveByokConfig(null)
   coachRef.current = makeCoach('static')
   draftStoreRef.current = makeDraftStore('static')
+  setByokCfgVersion((v) => v + 1)
   setMode('static')
-  loadDraftAndNotes(draftStoreRef.current)
   setByokOpen(false)
  }
 
  const dictationLabel =
   dictationState === 'recording' ? 'Stop recording' : dictationState === 'transcribing' ? 'Transcribing…' : 'Dictate'
 
- // Dictation availability, derived per render: always on for the local server
- // (its Parakeet via /transcribe), and for BYOK only when the provider can
- // take audio (openrouter cannot) AND a dictation model resolves. Reading the
- // config here each render means saving BYOK settings re-evaluates this
- // immediately, so the button appears as soon as a usable provider is set.
- const byokCfg = mode === 'byok' ? loadByokConfig() : null
+ // Dictation availability: always on for the local server (its Parakeet via
+ // /transcribe), and for BYOK only when the provider can take audio
+ // (openrouter cannot) AND a dictation model resolves. The config is read once
+ // per (mode, byokCfgVersion) pair and cached — NOT on every render — so the
+ // keystroke hot path never pays a localStorage read + JSON.parse. Saving or
+ // disconnecting BYOK bumps byokCfgVersion, so the button appears as soon as a
+ // usable provider is set without a full reload.
+ const byokCfg = useMemo(
+  () => (mode === 'byok' ? loadByokConfig() : null),
+  [mode, byokCfgVersion],
+ )
  const dictationAvailable =
   mode === 'local' ||
   (byokCfg !== null &&
@@ -663,10 +723,13 @@ const toggleDictation = async () => {
    sttModelFor(byokCfg) !== null)
 
  // Pre-flight cost estimate for the Sweep button: once the draft spans six or
- // more windows, tell the writer how many questions it will ask. planSweep is
- // pure and fast, so an inline per-render computation is acceptable.
- const sweepEstimate =
-  isModelBacked(mode) && draftRef.current.trim() !== '' && !sweeping ? planSweep(draftRef.current).length : 0
+ // more windows, tell the writer how many questions it will ask. Memoized on
+ // the draft/mode/sweeping it actually reads so unrelated re-renders (theme,
+ // viewport ticks, popover state) never re-run planSweep's O(doc) pass.
+ const sweepEstimate = useMemo(() => {
+  if (!isModelBacked(mode) || draft.trim() === '' || sweeping) return 0
+  return planSweep(draft).length
+ }, [mode, draft, sweeping])
  const sweepTitle =
   sweepEstimate >= 6
    ? `Ask ~${sweepEstimate} questions across the whole draft`
@@ -754,82 +817,93 @@ const sweepControls = isModelBacked(mode) && (
     {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
     {theme === 'dark' ? 'Light' : 'Dark'}
    </button>
-    {/* BYOK bring-your-own-key: shown whenever a non-local, non-detecting mode
-        is active — static (offer to connect) and byok (already connected). The
-        panel drops under the toggle; it never renders while detecting. */}
-    {(mode === 'static' || mode === 'byok') && (
-     <div className="byok-wrap">
-      <button
-       className={`byok-toggle ${byokOpen ? 'is-open' : ''}`}
-       onClick={openByokPanel}
-       title={mode === 'byok' ? 'BYOK provider settings' : 'Connect your own API key'}
-      >
-       BYOK
-      </button>
-      {byokOpen && (
-       <div className="byok-panel" role="dialog" aria-label="BYOK provider settings">
-        <label className="byok-field">
-         <span className="byok-label">Provider</span>
-         <select
-          className="genre-select"
-          value={byokForm.provider}
-          onChange={(e) => handleProviderChange(e.target.value as Provider)}
-         >
-          <option value="openrouter">openrouter</option>
-          <option value="openai">openai</option>
-          <option value="groq">groq</option>
-          <option value="custom">custom</option>
-         </select>
-        </label>
-        <label className="byok-field">
-         <span className="byok-label">Base URL</span>
-         <input
-          type="text"
-          className="byok-input"
-          value={byokForm.baseUrl}
-          disabled={byokForm.provider !== 'custom'}
-          onChange={(e) => setByokForm((f) => ({ ...f, baseUrl: e.target.value }))}
-          placeholder={PRESETS[byokForm.provider]}
-         />
-        </label>
-        <label className="byok-field">
-         <span className="byok-label">Model</span>
-         <input
-          type="text"
-          className="byok-input"
-          value={byokForm.model}
-          onChange={(e) => setByokForm((f) => ({ ...f, model: e.target.value }))}
-          placeholder={MODEL_PLACEHOLDERS[byokForm.provider]}
-         />
-        </label>
-        <label className="byok-field">
-         <span className="byok-label">API key</span>
-         <input
-          type="password"
-          className="byok-input"
-          value={byokForm.apiKey}
-          autoComplete="off"
-          onChange={(e) => setByokForm((f) => ({ ...f, apiKey: e.target.value }))}
-          placeholder="sk-…"
-         />
-        </label>
-        <div className="byok-actions">
-         <button className="byok-save" onClick={saveByokSettings}>
-          Save
-         </button>
-         {mode === 'byok' && (
-          <button className="byok-disconnect" onClick={disconnectByok}>
-           Disconnect
+     {/* BYOK bring-your-own-key: shown whenever a non-local, non-detecting mode
+         is active — static (offer to connect) and byok (already connected). The
+         panel drops under the toggle; it never renders while detecting. */}
+     {(mode === 'static' || mode === 'byok') && (
+      <div className="byok-wrap">
+       <button
+        className={`byok-toggle ${byokOpen ? 'is-open' : ''}`}
+        onClick={openByokPanel}
+        title={mode === 'byok' ? 'BYOK provider settings' : 'Connect your own API key'}
+       >
+        BYOK
+       </button>
+       {byokOpen && (
+        <div className="byok-panel" role="dialog" aria-label="BYOK provider settings">
+         <label className="byok-field">
+          <span className="byok-label">Provider</span>
+          <select
+           className="genre-select"
+           value={byokForm.provider}
+           onChange={(e) => handleProviderChange(e.target.value as Provider)}
+          >
+           <option value="openrouter">openrouter</option>
+           <option value="openai">openai</option>
+           <option value="groq">groq</option>
+           <option value="custom">custom</option>
+          </select>
+         </label>
+         <label className="byok-field">
+          <span className="byok-label">Base URL</span>
+          <input
+           type="text"
+           className="byok-input"
+           value={byokForm.baseUrl}
+           disabled={byokForm.provider !== 'custom'}
+           onChange={(e) => setByokForm((f) => ({ ...f, baseUrl: e.target.value }))}
+           placeholder={PRESETS[byokForm.provider]}
+          />
+         </label>
+         <label className="byok-field">
+          <span className="byok-label">Model</span>
+          <input
+           type="text"
+           className="byok-input"
+           value={byokForm.model}
+           onChange={(e) => setByokForm((f) => ({ ...f, model: e.target.value }))}
+           placeholder={MODEL_PLACEHOLDERS[byokForm.provider]}
+          />
+         </label>
+         <label className="byok-field">
+          <span className="byok-label">Dictation model</span>
+          <input
+           type="text"
+           className="byok-input"
+           value={byokForm.sttModel}
+           onChange={(e) => setByokForm((f) => ({ ...f, sttModel: e.target.value }))}
+           placeholder="optional — e.g. whisper-1"
+           title="Optional STT model for dictation; blank uses the provider default"
+          />
+         </label>
+         <label className="byok-field">
+          <span className="byok-label">API key</span>
+          <input
+           type="password"
+           className="byok-input"
+           value={byokForm.apiKey}
+           autoComplete="off"
+           onChange={(e) => setByokForm((f) => ({ ...f, apiKey: e.target.value }))}
+           placeholder="sk-…"
+          />
+         </label>
+         <div className="byok-actions">
+          <button className="byok-save" onClick={saveByokSettings}>
+           Save
           </button>
-         )}
-         <button className="byok-close" onClick={() => setByokOpen(false)}>
-          Close
-         </button>
+          {mode === 'byok' && (
+           <button className="byok-disconnect" onClick={disconnectByok}>
+            Disconnect
+           </button>
+          )}
+          <button className="byok-close" onClick={() => setByokOpen(false)}>
+           Close
+          </button>
+         </div>
         </div>
-       </div>
-      )}
-     </div>
-    )}
+       )}
+      </div>
+     )}
        {saveDisplay !== 'idle' && (
     // Right of the mode badge: the debounced save pulse. 'Saving…' only once
     // a save lingers past its pending window; 'Saved HH:MM' sticks for the
@@ -997,10 +1071,14 @@ const sweepControls = isModelBacked(mode) && (
         ))}
        </select>
       </label>
-      {/* Auto-ask stays gated on mode === 'local', NOT modelBacked: a
-          background question must not spend the writer's BYOK tokens — only
-          the local server's free model may fire unprompted. Deliberate. */}
-      {mode === 'local' && (
+      {/* The Auto-ask checkbox is visible in EVERY mode that may auto-ask —
+          static and local (both free per mayAutoAsk). A background question
+          must never spend the writer's BYOK tokens, so byok (and detecting,
+          which has no coach yet) never render the toggle and the timer never
+          fires there. Static MUST show it: static has no Sweep control, so
+          the cadence timer is its only path to a question, and the toggle is
+          the only way to pause it. */}
+      {mayAutoAsk(mode) && (
        <label className="cadence-toggle" title="Ask one coach question automatically when the draft pauses after growing">
         <span>Auto-ask</span>
         <input

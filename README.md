@@ -68,7 +68,7 @@ Set **asking as** to your genre — fiction, creative-nonfiction, memoir, essay,
 
 | | No model | Your own model | Your own key |
 |---|---|---|---|
-| **What you get** | A question from the bank, exactly as written | The same question, rewritten to quote your actual sentences | The same, through a provider you pay for |
+| **What you get** | A question from the bank, exactly as written | The same question, rewritten to quote your actual sentences | A genre-matched question, rewritten to quote your sentences |
 | **You need** | Nothing | A model server on your machine | An API key |
 | **Your draft is saved** | In your browser | To `data/drafts/current.md` | In your browser |
 | **Your prose leaves your machine** | Never | Never | Yes — to your provider |
@@ -104,13 +104,15 @@ The bank is the only place a question can start. The model never invents one —
 <details>
 <summary>How one question gets chosen</summary>
 
-The app measures your paragraph before it picks. Seven signals can fire: how much of it is dialogue, whether every sentence runs the same length, how many hedges and `-ly` adverbs it carries, how often you write *felt*, *seemed*, or *noticed*, how heavy the abstract nouns are, and whether the paragraph opens or closes its section.
+With a model on your own machine, the app measures your paragraph before it picks. Seven signals can fire: how much of it is dialogue, whether every sentence runs the same length, how many hedges and `-ly` adverbs it carries, how often you write *felt*, *seemed*, or *noticed*, how heavy the abstract nouns are, and whether the paragraph opens or closes its section.
 
 Those signals lean the choice toward a kind of question. A paragraph full of hedges leans toward questions about cutting. A scene thick with quotes leans toward questions about dialogue.
 
 The lean changes which group it draws from. Inside that group, the draw is even. No question is ranked above another, so the app cannot develop a favorite and repeat it at you.
 
 The model then rewrites the drawn question to quote your sentences. Its output has to pass a check before you see it: one line, one question mark, no lists, and it must quote your words rather than parrot them back. If the output fails, the model gets one more try. If it fails again, you get a fixed question instead, marked as such.
+
+Bring-your-own-key skips the measurement: it draws straight from the bank, stratified by genre, then reshapes the drawn question against your provider.
 
 The full vocabulary is in [CONTEXT.md](CONTEXT.md); the decisions behind it are in [docs/adr/](docs/adr/).
 

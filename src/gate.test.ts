@@ -259,3 +259,89 @@ describe('copiesSeed', () => {
   expect(copiesSeed('', 'walk store reader feels')).toBe(false);
  });
 });
+
+describe('isSingleQuestion — output gate (S1-0)', () => {
+ const essay =
+  'The passage works because of the contrast between weight and ease. '.repeat(40) +
+  'What does the skillet weigh?';
+
+ it('rejects a rewrite of the writer sentence handed back as a question', () => {
+  expect(
+   isSingleQuestion(
+    'Try this instead: "She lifted the skillet by the wrist, a flick so offhand the iron seemed to weigh nothing at all." Does that land better for you?',
+   ),
+  ).toBe(false);
+ });
+
+ it('rejects advice followed by a question', () => {
+  expect(
+   isSingleQuestion(
+    'Your verbs are doing too little here. Cut "looked careless" and let the flick carry it; adverbs like this dilute a strong image. What would the skillet feel like to her wrist?',
+   ),
+  ).toBe(false);
+ });
+
+ it('rejects a long essay that ends in a question', () => {
+  expect(essay.length).toBeGreaterThan(280);
+  expect(isSingleQuestion(essay)).toBe(false);
+ });
+
+ it('accepts a legitimate single-question one-liner', () => {
+  expect(isSingleQuestion('What does the heavy iron skillet weigh in her wrist?')).toBe(true);
+ });
+});
+
+describe('isSingleQuestion — quotes, lists, decor, fullwidth (S3-13)', () => {
+ it('accepts a question that quotes the writer question mark', () => {
+  expect(isSingleQuestion('You wrote "why?" — what does she mean?')).toBe(true);
+  expect(isSingleQuestion('You wrote “why?” — what does she mean?')).toBe(true);
+  expect(isSingleQuestion('Vous avez écrit «pourquoi ?» — que veut-elle dire ?')).toBe(true);
+  expect(isSingleQuestion('You wrote "why？" — what does she mean?')).toBe(true);
+ });
+
+ it('does not mistake an apostrophe for a quote', () => {
+  expect(isSingleQuestion("Why didn't she come?")).toBe(true);
+ });
+
+ it('treats a fullwidth ？ as equivalent to ?', () => {
+  expect(isSingleQuestion('What is at stake？')).toBe(true);
+  expect(isSingleQuestion('What is at stake？ What changed？')).toBe(false);
+ });
+
+ it('rejects em-dash, en-dash, and plus bullets', () => {
+  expect(isSingleQuestion('— Which verb is doing the work?')).toBe(false);
+  expect(isSingleQuestion('– Which verb is doing the work?')).toBe(false);
+  expect(isSingleQuestion('+ What is at stake?')).toBe(false);
+ });
+
+ it('strips leading quotes and decor before the list check', () => {
+  expect(isSingleQuestion('"1. What is at stake?')).toBe(false);
+  expect(isSingleQuestion('**- Which detail carries the weight?**')).toBe(false);
+  expect(isSingleQuestion('\t- What is at stake?')).toBe(false);
+ });
+
+ it('keeps rejecting a bare bullet (a * followed by a space)', () => {
+  expect(isSingleQuestion('* What is at stake here?')).toBe(false);
+ });
+});
+
+describe('isGrounded — substring quality (S2-12)', () => {
+ it('rejects an internal substring match inside an unrelated word', () => {
+  expect(isGrounded('What time is it?', 'He sometimes hesitates.')).toBe(false);
+  expect(isGrounded('Does the reader know?', 'She had already gone.')).toBe(false);
+ });
+
+ it('rejects a suffix-only overlap', () => {
+  expect(isGrounded('Which ring matters?', 'During the walk he did bring it.')).toBe(false);
+ });
+
+ it('keeps rejecting short tokens inside longer words and stopword pairs', () => {
+  expect(isGrounded('Where is she going?', 'She walked to the store.')).toBe(false);
+  expect(isGrounded('What other thing?', 'My brother left.')).toBe(false);
+ });
+
+ it('still grounds on a genuine shared stem via prefix alignment', () => {
+  expect(isGrounded('Why walk here?', 'She walked home.')).toBe(true);
+  expect(isGrounded('Where did the storekeeper go?', 'She walked to the store.')).toBe(true);
+ });
+});

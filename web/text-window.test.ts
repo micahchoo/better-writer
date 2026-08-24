@@ -68,6 +68,71 @@ describe('partitionSections', () => {
     ])
   })
 
+  it('CRLF docs keep slice round-trip exact across multiple blocks (probe S2-1)', () => {
+    const draft = 'Alpha line one\r\nAlpha line two\r\n\r\nBeta block\r\n'
+    const blocks = splitBlocks(draft)
+    // Every block slices back to its (CR-stripped) text with no drift.
+    for (const b of blocks) {
+      expect(draft.slice(b.start, b.end).replace(/\r/g, '')).toBe(b.text)
+    }
+    // Exact raw-doc endpoints: each CRLF span is one char longer per CR.
+    expect(blocks[0].text).toBe('Alpha line one\nAlpha line two')
+    expect(blocks[0].start).toBe(0)
+    expect(blocks[0].end).toBe(31)
+    expect(blocks[1].text).toBe('Beta block')
+    expect(blocks[1].end).toBe(45)
+    // Blocks are contiguous and non-overlapping in raw space.
+    for (let i = 0; i + 1 < blocks.length; i++) {
+      expect(blocks[i].end).toBeLessThanOrEqual(blocks[i + 1].start)
+    }
+  })
+
+  it('LF doc slice round-trips to the exact block text', () => {
+    const draft = 'One\nTwo\n\nThree\nFour'
+    const blocks = splitBlocks(draft)
+    for (const b of blocks) {
+      expect(draft.slice(b.start, b.end)).toBe(b.text)
+    }
+  })
+
+  it('a setext-headed doc yields more than one section (probe S2-2)', () => {
+    const blocks = splitBlocks(
+      'Chapter One\n===========\nBody paragraph here.\n\nAnother\n-------\nMore body.',
+    )
+    expect(partitionSections(blocks).length).toBeGreaterThan(1)
+    // the `=` underline is a setext h1 heading block
+    expect(blocks[0].kind).toBe('heading')
+    expect(blocks[0].text).toBe('Chapter One\n===========')
+  })
+
+  it('a short dash/star underline makes a setext h2 heading', () => {
+    const dash = splitBlocks('Title\n--\nbody')
+    expect(dash[0]).toMatchObject({ kind: 'heading', text: 'Title\n--' })
+    // the heading opens a section that the following paragraph joins
+    expect(partitionSections(dash)).toEqual([[dash[0], dash[1]]])
+    // two setext headings yield two sections
+    const two = splitBlocks('One\n--\nbody\n\nTwo\n--\nmore')
+    expect(partitionSections(two).length).toBe(2)
+    const star = splitBlocks('Title\n*\nbody')
+    expect(star[0].kind).toBe('heading')
+  })
+
+  it('a thematic break glued to a paragraph splits it (probe S2-2)', () => {
+    const blocks = splitBlocks('Some text\n---\nMore text')
+    expect(blocks.map((b) => b.text)).toEqual(['Some text', '---', 'More text'])
+    expect(partitionSections(blocks).length).toBe(2)
+  })
+
+  it('setext vs thematic-break ambiguity resolves per rule', () => {
+    // *** and ___ are thematic breaks, never setext underlines
+    const starBreak = splitBlocks('Title\n***\nbody')
+    expect(starBreak[1].text).toBe('***')
+    expect(starBreak[0].kind).toBe('paragraph')
+    // a standalone --- after a blank line stays a thematic break
+    const standalone = splitBlocks('before\n\n---\n\nafter')
+    expect(standalone[1].text).toBe('---')
+  })
+
   it('leaves offsets untouched', () => {
     const blocks = splitBlocks('intro\n\n# Head\n\ntail')
     const sections = partitionSections(blocks)

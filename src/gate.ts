@@ -3,32 +3,146 @@
  *
  * The gate is deliberately syntactic — it cannot read intent — so it accepts
  * iff ALL of:
- *  - trimmed and non-empty
- *  - ends with exactly one `?` (the only `?` in the string is the last char)
- *  - single line (no `\n`)
- *  - no list marker at the start (`-`, `*`, `•`, or `1.`-style)
- *  - no trailing non-whitespace after the final `?`
+ *  - trimmed and non-empty, single line (no `\n`)
+ *  - at most MAX_QUESTION_LENGTH characters
+ *  - exactly one real question mark (`?` or fullwidth `？`), which must be
+ *    the final character — a question mark inside paired quotation marks is
+ *    quoted speech, not a second question
+ *  - no sentence-terminal punctuation (`.`, `!`, `?`, `。`, `！`, `？`)
+ *    before the final character UNLESS it is a question mark sitting inside
+ *    a pair of quotation marks ("why?" is quoted speech, not a new sentence;
+ *    a quoted `.`/`!` is NOT exempt — a quoted declarative sentence followed
+ *    by a question is two sentences, which is the S1-0 rewrite pattern)
+ *  - no list marker at the start (`-`, `*`, `•`, `+`, `—`, `–`, or
+ *    `N.`/`N)`-style), checked after leading quotes/decor are stripped so
+ *    `"1. …` / `**- …` wrappers cannot defeat the `^` anchor
+ *  - no trailing non-whitespace after the final question mark
  *
  * It rejects, never rewrites. Outputs that fail go back to the model once,
  * then fall back to a topic probe (see reshape.ts).
  */
 import { CURSOR_END, CURSOR_START } from '../web/text-window.js';
 
+/**
+ * Hard cap on a single-question output. A legitimate one-question sentence
+ * rarely exceeds ~200 characters, so 280 is comfortably above any real
+ * question while still cutting off a one-line ramble that happens to contain
+ * no sentence-final punctuation (the S1-0 long-essay shape).
+ */
+const MAX_QUESTION_LENGTH = 280;
+
+/** Sentence-final punctuation, ASCII plus fullwidth equivalents. */
+const SENTENCE_TERMINAL: Record<string, true> = {
+ '.': true, '!': true, '?': true, '。': true, '！': true, '？': true,
+};
+
+/** Quote characters that open a quoted region. */
+const OPEN_QUOTE: Record<string, string> = {
+ '"': '"',
+ '\u2018': '\u2019', // ‘ ’
+ '\u201c': '\u201d', // “ ”
+ '\u00ab': '\u00bb', // « »
+ '\u300c': '\u300d', // 「 」
+ '\u300e': '\u300f', // 『 』
+};
+/** Quote characters that close a quoted region (map close -> its opener). */
+const CLOSE_QUOTE: Record<string, string> = {
+ '"': '"',
+ '\u2019': '\u2018',
+ '\u201d': '\u201c',
+ '\u00bb': '\u00ab',
+ '\u300d': '\u300c',
+ '\u300f': '\u300e',
+};
+
+/** A straight `'` between two letters is an apostrophe, not a quote. */
+function isApostrophe(s: string, i: number): boolean {
+ return (
+  i > 0 &&
+  i + 1 < s.length &&
+  /[A-Za-z\u00C0-\u024F]/.test(s[i - 1]) &&
+  /[A-Za-z\u00C0-\u024F]/.test(s[i + 1])
+ );
+}
+
+/**
+ * For each index, whether the character sits inside a pair of quotation
+ * marks (quoted speech) rather than in the surrounding prose.
+ */
+function quoteCoverage(s: string): boolean[] {
+ const inQuote = new Array<boolean>(s.length).fill(false);
+ const open: string[] = [];
+ for (let i = 0; i < s.length; i++) {
+  inQuote[i] = open.length > 0;
+  const c = s[i];
+  if (c === "'") {
+   if (isApostrophe(s, i)) continue;
+   if (open.length > 0 && open[open.length - 1] === "'") open.pop();
+   else open.push("'");
+   continue;
+  }
+  const closer = CLOSE_QUOTE[c];
+  if (closer !== undefined) {
+   if (open.length > 0 && open[open.length - 1] === closer) open.pop();
+   else if (OPEN_QUOTE[c] !== undefined) open.push(OPEN_QUOTE[c]);
+   continue;
+  }
+  const opener = OPEN_QUOTE[c];
+  if (opener !== undefined) open.push(opener);
+ }
+ return inQuote;
+}
+
+/** Quote characters that may wrap a list marker ("1. …" inside `"` or «»). */
+const QUOTE_CHARS: Record<string, true> = {
+ '"': true, "'": true, '\u2018': true, '\u2019': true, '\u201c': true,
+ '\u201d': true, '\u00ab': true, '\u00bb': true, '\u300c': true,
+ '\u300d': true, '\u300e': true, '\u300f': true,
+};
+
+/**
+ * Strip leading decor so the `^`-anchored list check cannot be defeated by
+ * a wrapper: quotes (`"1. …`), markdown bold (`**- …`), or whitespace
+ * (`\t- …`). A bare `*`/`_` immediately followed by a space is a BULLET, not
+ * decor, so it survives and trips the list check itself.
+ */
+function stripLeadingDecor(t: string): string {
+ let i = 0;
+ while (i < t.length) {
+  const c = t[i];
+  if (/\s/.test(c) || QUOTE_CHARS[c] === true) {
+   i++;
+   continue;
+  }
+  if ((c === '*' || c === '_') && !/\s/.test(t[i + 1] ?? '')) {
+   i++;
+   continue;
+  }
+  break;
+ }
+ return t.slice(i);
+}
+
 export function isSingleQuestion(s: string): boolean {
  const t = s.trim();
  if (t.length === 0) return false;
+ if (t.length > MAX_QUESTION_LENGTH) return false;
  if (t.includes('\n')) return false;
- if (/^(?:[-*•]|\d+\.)/.test(t)) return false;
 
- let questionMark = -1;
- for (let i = 0; i < t.length; i++) {
- if (t[i] !== '?') continue;
- if (questionMark !== -1) return false; // a second `?`
- questionMark = i;
+ const u = stripLeadingDecor(t);
+ if (/^(?:[-*•+—–]|\d+[.)])/.test(u)) return false;
+
+ const last = t[t.length - 1];
+ if (last !== '?' && last !== '？') return false;
+
+ const inQuote = quoteCoverage(t);
+ for (let i = 0; i < t.length - 1; i++) {
+  const c = t[i];
+  if (SENTENCE_TERMINAL[c] !== true) continue;
+  if (inQuote[i] && (c === '?' || c === '？')) continue; // quoted question = speech
+  return false; // any other sentence-final punctuation before the end
  }
- if (questionMark === -1) return false; // no `?`
-if (questionMark !== t.length - 1) return false; // trailing text after `?`
-return true;
+ return true;
 }
 
 /**
@@ -101,10 +215,15 @@ function wordBigrams(s: string): string[] {
 
 /**
  * True iff the question shares at least one content word with the text
- * window via a substring match in either direction, where the matched
- * substring is at least 4 characters ("walk" matches "walked", but "her"
- * never matches inside "where"). An empty question or window is never
- * grounded.
+ * window, where a shared word is a full-word match or a morphological
+ * prefix ("walk" ↔ "walked", "store" ↔ "storekeeper"). Requiring the
+ * shorter word to be a PREFIX of the longer one — the overlap touching the
+ * left word boundary of the longer word — keeps genuine stem matches while
+ * rejecting accidental substring overlap in the middle or on the right
+ * ("time" inside "sometimes", "ring" inside "bring"/"during"). The 4-char
+ * floor means a short token never matches inside a longer one at all
+ * ("her" never matches inside "where", but "other" is a stopword anyway).
+ * An empty question or window is never grounded.
  */
 export function isGrounded(question: string, textWindow: string): boolean {
  const questionWords = contentWords(question);
@@ -113,7 +232,8 @@ export function isGrounded(question: string, textWindow: string): boolean {
  for (const q of questionWords) {
   for (const w of windowWords) {
    if (Math.min(q.length, w.length) < 4) continue;
-   if (q.includes(w) || w.includes(q)) return true;
+   const [shorter, longer] = q.length <= w.length ? [q, w] : [w, q];
+   if (longer.startsWith(shorter)) return true;
   }
  }
  return false;

@@ -40,6 +40,10 @@ const LIST_ITEM_RE = /^\s*(?:[-*+]|\d{1,9}[.)])\s+/;
 const HEADING_RE = /^#{1,6}(?:\s|$)/;
 /** A thematic break line: three or more `-`, `*`, or `_` (a section boundary). */
 const THEMATIC_BREAK_RE = /^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/;
+/** A setext heading underline: a run of `=` (h1) or 1-2 `-`/`*` (h2) under a
+ * paragraph. Runs of 3+ `-`/`*`/`_` are thematic breaks (above) and never
+ * reach this — so only `=+` and `-{1,2}`/`*{1,2}` are seen here. */
+const SETEXT_UNDERLINE_RE = /^\s*(?:=+|-{1,2}|\*{1,2})\s*$/;
 
 /**
  * Join block texts into a window with blank lines, wrapping the block at
@@ -58,24 +62,31 @@ export function buildAskWindow(blocksTexts: string[], markIndex: number | null):
  * Split markdown into blocks, tracking each block's offsets.
  *
  * Lines are grouped into blocks; a blank line ends a block. Within a run of
- * non-blank lines, a heading line is always its own block, a list-marker line
- * starts a new list-item block (a following non-marker line is a lazy
- * continuation of that item), and anything else continues a paragraph.
+ * non-blank lines, a heading line is always its own block, a setext underline
+ * turns the accumulated paragraph into a heading, a thematic break is always
+ * its own block (glued or standalone), a list-marker line starts a new
+ * list-item block (a following non-marker line is a lazy continuation of that
+ * item), and anything else continues a paragraph.
+ *
+ * Offsets index the raw markdown. Block text is CR-stripped, so for a CRLF
+ * source a block's `end` may sit past `text.length`; `markdown.slice(start,
+ * end)` with CRs removed equals `text`.
  */
 export function splitBlocks(markdown: string): Block[] {
   const blocks: Block[] = [];
-  let current: { lines: string[]; start: number; kind: BlockKind } | null = null;
+  let current: { lines: string[]; start: number; rawEnd: number; kind: BlockKind } | null = null;
 
   const close = () => {
     if (!current) return;
     const text = current.lines.join('\n');
-    blocks.push({ text, start: current.start, end: current.start + text.length, kind: current.kind });
+    blocks.push({ text, start: current.start, end: current.rawEnd, kind: current.kind });
     current = null;
   };
 
   let offset = 0;
   for (const rawLine of markdown.split('\n')) {
     const lineStart = offset;
+    const lineEnd = lineStart + rawLine.length; // end of the line in the raw doc (excludes the newline)
     // Strip a trailing CR so CRLF documents keep clean block text.
     const line = rawLine.endsWith('\r') ? rawLine.slice(0, -1) : rawLine;
     offset += rawLine.length + 1;
@@ -86,24 +97,47 @@ export function splitBlocks(markdown: string): Block[] {
     }
     if (HEADING_RE.test(line)) {
       close();
-      blocks.push({ text: line, start: lineStart, end: lineStart + line.length, kind: 'heading' });
+      blocks.push({ text: line, start: lineStart, end: lineEnd, kind: 'heading' });
+      continue;
+    }
+    if (THEMATIC_BREAK_RE.test(line)) {
+      // A thematic break is always its own block — even glued to the
+      // preceding paragraph it terminates that block (S2-2).
+      close();
+      blocks.push({ text: line, start: lineStart, end: lineEnd, kind: 'paragraph' });
+      continue;
+    }
+    if (
+      SETEXT_UNDERLINE_RE.test(line) &&
+      current &&
+      current.kind === 'paragraph' &&
+      current.lines.length > 0
+    ) {
+      // An underline directly under paragraph content: the paragraph is a
+      // setext heading (S2-2). 3+ `-`/`*`/`_` runs were caught above as
+      // thematic breaks, so only `=+` and 1-2 `-`/`*` land here.
+      const text = current.lines.join('\n') + '\n' + line;
+      blocks.push({ text, start: current.start, end: lineEnd, kind: 'heading' });
+      current = null;
       continue;
     }
     const isListItem = LIST_ITEM_RE.test(line);
     if (!current) {
-      current = { lines: [line], start: lineStart, kind: isListItem ? 'list-item' : 'paragraph' };
+      current = { lines: [line], start: lineStart, rawEnd: lineEnd, kind: isListItem ? 'list-item' : 'paragraph' };
     } else if (current.kind === 'list-item') {
       if (isListItem) {
         close();
-        current = { lines: [line], start: lineStart, kind: 'list-item' };
+        current = { lines: [line], start: lineStart, rawEnd: lineEnd, kind: 'list-item' };
       } else {
         current.lines.push(line); // lazy continuation of the list item
+        current.rawEnd = lineEnd;
       }
     } else if (isListItem) {
       close();
-      current = { lines: [line], start: lineStart, kind: 'list-item' };
+      current = { lines: [line], start: lineStart, rawEnd: lineEnd, kind: 'list-item' };
     } else {
       current.lines.push(line);
+      current.rawEnd = lineEnd;
     }
   }
   close();

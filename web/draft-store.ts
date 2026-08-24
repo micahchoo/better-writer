@@ -11,9 +11,13 @@
  * keeps notes under their own localStorage key; the server adapter persists
  * them too, because the wire contract carries them — GET /load returns
  * {draft, annotations} and POST /save accepts {draft, annotations}, so notes
- * survive alongside the prose on the server. /save always overwrites the
- * server's annotation list ([] when the caller omits notes), so no read-back
- * round-trip is ever needed to keep the two in sync.
+ * survive alongside the prose on the server.
+ *
+ * The two adapters share one semantic for omitted notes: `save(draft)` with
+ * no notes KEEPS the existing annotation list. The browser store leaves the
+ * annotations key untouched; the server rides the last-known list (cached
+ * from /load or a prior /save) instead of wiping — no read-back round-trip is
+ * ever needed to keep draft and notes in step.
  */
 
 import type { Annotation } from '../src/types';
@@ -33,11 +37,49 @@ export interface DraftStore {
   load(): Promise<string>;
   save(draft: string, notes?: Note[], opts?: { keepalive?: boolean }): Promise<void>;
   loadAnnotations(): Promise<Note[]>;
-  saveAnnotations(notes: Note[]): Promise<void>;
 }
 
 const STORAGE_KEY = 'better-writer:draft';
 const ANNOTATIONS_KEY = 'better-writer:annotations';
+
+/**
+ * Per-item shape guard mirroring the server's parseAnnotation rigor: a note
+ * is valid only when every required field exists with the right type and the
+ * offsets form a finite, positive span. Malformed entries are skipped, never
+ * allowed to sail through loadAnnotations as garbage.
+ */
+function parseNote(value: unknown): Note | null {
+  if (typeof value !== 'object' || value === null) return null;
+  const a = value as Record<string, unknown>;
+  if (typeof a.start !== 'number' || typeof a.end !== 'number') return null;
+  if (typeof a.fragment !== 'string' || typeof a.question !== 'string') return null;
+  if (typeof a.ts !== 'number') return null;
+  if (
+    !Number.isFinite(a.start) ||
+    !Number.isFinite(a.end) ||
+    !Number.isInteger(a.start) ||
+    !Number.isInteger(a.end) ||
+    a.start < 0 ||
+    a.end <= a.start
+  ) {
+    return null;
+  }
+  if (a.source !== undefined) {
+    if (a.source !== 'seed' && a.source !== 'reshaped' && a.source !== 'topic-probe') return null;
+    return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts, source: a.source };
+  }
+  return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts };
+}
+
+function sanitizeNotes(value: unknown): Note[] {
+  if (!Array.isArray(value)) return [];
+  const out: Note[] = [];
+  for (const item of value) {
+    const parsed = parseNote(item);
+    if (parsed !== null) out.push(parsed);
+  }
+  return out;
+}
 
 export class LocalStorageDraftStore implements DraftStore {
   private readonly storage: Pick<Storage, 'getItem' | 'setItem'>;
@@ -55,44 +97,35 @@ export class LocalStorageDraftStore implements DraftStore {
   }
 
   async save(draft: string, notes?: Note[], _opts?: { keepalive?: boolean }): Promise<void> {
-    // Mirrors the server's wire contract: when notes ride along they replace
-    // the stored annotation list under their own key. `save(draft)` with no
-    // notes leaves the annotations untouched. opts (keepalive) is a no-op:
-    // sync setItem needs nothing.
-    try {
-      this.storage.setItem(STORAGE_KEY, draft);
-      if (notes !== undefined) this.saveAnnotations(notes);
-    } catch {
-      // Quota exceeded or storage disabled: fail soft — the writer keeps typing.
-    }
+    // Shared seam semantic: omitted notes keep the existing annotation list —
+    // `save(draft)` with no notes leaves the annotations key untouched. opts
+    // (keepalive) is a no-op: sync setItem needs nothing.
+    //
+    // No soft-fail: a QuotaExceededError (or any storage failure) REJECTS so
+    // the SaveCoordinator's failure/retry path counts it and surfaces a
+    // persistent error once storage fails twice — the writer is told the
+    // draft did not land, not silently left with a 'Saved' stamp.
+    this.storage.setItem(STORAGE_KEY, draft);
+    if (notes !== undefined) this.storage.setItem(ANNOTATIONS_KEY, JSON.stringify(notes));
   }
 
   async loadAnnotations(): Promise<Note[]> {
     try {
       const raw = this.storage.getItem(ANNOTATIONS_KEY);
       if (!raw) return [];
-      const parsed: unknown = JSON.parse(raw);
-      return Array.isArray(parsed) ? (parsed as Note[]) : [];
+      return sanitizeNotes(JSON.parse(raw));
     } catch {
       return []; // storage disabled or corrupt payload: start empty
-    }
-  }
-
-  async saveAnnotations(notes: Note[]): Promise<void> {
-    try {
-      this.storage.setItem(ANNOTATIONS_KEY, JSON.stringify(notes));
-    } catch {
-      // Quota exceeded or storage disabled: fail soft — the highlight is transient.
     }
   }
 }
 
 export class ServerDraftStore implements DraftStore {
   private readonly endpoint: string;
-  /** Last draft the server is known to hold — the anchor saveAnnotations
-   * persists notes against without a read-back round-trip. The caller keeps
-   * draft and notes in step (EditorApp always follows a note change with a
-   * draft save carrying the same notes), so this never desyncs the server. */
+  /** Last draft the server is known to hold — the anchor notes are persisted
+   * against without a read-back round-trip. The caller keeps draft and notes
+   * in step (EditorApp always follows a note change with a draft save
+   * carrying the same notes), so this never desyncs the server. */
   private draft = '';
   /** Last notes the server is known to hold (from the most recent /load or /save). */
   private notes: Note[] = [];
@@ -104,12 +137,16 @@ export class ServerDraftStore implements DraftStore {
   async load(): Promise<string> {
     const data = await this.fetchLoad();
     this.draft = data.draft ?? '';
-    this.notes = data.annotations ?? []; // forward-compat: older /load payloads omit annotations
+    this.notes = sanitizeNotes(data.annotations ?? []); // forward-compat: older /load payloads omit annotations
     return this.draft;
   }
 
   async save(draft: string, notes?: Note[], opts?: { keepalive?: boolean }): Promise<void> {
-    const annotations = notes ?? []; // /save always overwrites the server's annotation list
+    // Shared seam semantic (mirrors LocalStorageDraftStore): omitted notes
+    // KEEP the existing annotation list. /save always carries a full list, so
+    // when the caller omits notes we ride the last-known list cached from
+    // /load or a prior /save — never wipe.
+    const annotations = notes ?? this.notes;
     const url = `${this.endpoint}/save`;
     const body = JSON.stringify({ draft, annotations });
     let res: Response;
@@ -141,10 +178,6 @@ export class ServerDraftStore implements DraftStore {
 
   async loadAnnotations(): Promise<Note[]> {
     return this.notes;
-  }
-
-  async saveAnnotations(notes: Note[]): Promise<void> {
-    await this.save(this.draft, notes);
   }
 
   private async fetchLoad(): Promise<{ draft?: string; annotations?: Annotation[] }> {

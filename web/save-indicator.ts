@@ -9,6 +9,9 @@
  *     began — a fast save never flashes the label.
  *   - 'Saved' stays sticky for 1500ms after confirmation, then reverts to
  *     idle.
+ *   - A failed save clears any in-flight 'Saving…' back to idle so the
+ *     indicator never sticks; the failure affordance itself is the app's
+ *     error toast, driven by the coordinator's onError.
  * Rapid queued saves never flicker: the pending 'Saving…' timer is cancelled
  * the moment a save confirms, so a burst stays on 'Saved' the whole time, and
  * a new confirmation re-arms the sticky window without dropping to idle.
@@ -50,6 +53,14 @@ export class SaveIndicator {
       this.stickyTimer = null;
       this.setDisplay('idle');
     }, SAVE_STICKY_MS);
+  }
+
+  /** Coordinator onError: a save failed to land. Clears any in-flight
+   * 'Saving…' so the indicator never sticks on it; the failure affordance is
+   * the app's error toast, which the coordinator's onError already drives. */
+  saveFailed(): void {
+    this.clearTimers();
+    this.setDisplay('idle');
   }
 
   /** Cancel pending timers (component unmount). */

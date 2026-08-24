@@ -14,7 +14,8 @@
  * the model request is made here instead of via the local server.
  */
 
-import { bundledSeeds, pickSeed, type Coach } from './coach';
+import { loadSeeds, pickSeed, type Coach } from './coach';
+import { decodeToMono16k, encodeWavPcm16 } from './dictation';
 import { reshape } from '../src/reshape';
 import type { ClientSeed, Complete, Genre, QuestionSource, Turn } from '../src/types';
 
@@ -205,13 +206,14 @@ export function makeByokComplete(cfg: ByokConfig): Complete {
 }
 
 /**
- * Transcribe a recorded WAV through the writer's own provider. The local
- * server route expects this exact encoded-WAV shape; BYOK points the same
- * bytes at the provider's /audio/transcriptions endpoint instead. Requires a
- * configured dictation model (sttModelFor) — openrouter has no audio route,
- * so there is never a model to use and this throws before any network call.
+ * Transcribe a recorded blob through the writer's own provider. Just like the
+ * local route, the raw recorder bytes (webm/opus, mp4/aac) are first decoded
+ * to 16kHz mono and wrapped in a RIFF/WAVE header, so both paths send the
+ * same WAV shape to their transport. Requires a configured dictation model
+ * (sttModelFor) — openrouter has no audio route, so there is never a model to
+ * use and this throws before any network call.
  */
-export async function transcribeWavByok(wav: Blob): Promise<string> {
+export async function transcribeWavByok(blob: Blob): Promise<string> {
   const cfg = loadByokConfig();
   if (!cfg) {
     throw new Error('No API key configured — add your key in settings');
@@ -220,6 +222,12 @@ export async function transcribeWavByok(wav: Blob): Promise<string> {
   if (!model) {
     throw new Error('No dictation model for this provider — set one in BYOK settings');
   }
+  // Convert the recorder's raw bytes to the WAV the provider's
+  // /audio/transcriptions route expects — the same conversion the local path
+  // performs. Provider APIs sniff by extension as well as content, so a .wav
+  // file must actually carry RIFF bytes or the request is rejected.
+  const mono = await decodeToMono16k(blob);
+  const wav = encodeWavPcm16(mono, 16000);
   const body = new FormData();
   body.append('file', wav, 'dictation.wav');
   body.append('model', model);
@@ -252,14 +260,14 @@ export async function transcribeWavByok(wav: Blob): Promise<string> {
  * EditorApp constructs it (not makeCoach), wiring the config UI.
  */
 export class ByokCoach implements Coach {
-  private readonly seeds: ClientSeed[];
+  private readonly seeds: ClientSeed[] | null;
   private readonly complete: Complete | null;
 
   /** Provenance of the last resolved ask; null until one resolves. */
   private last: QuestionSource | null = null;
 
   constructor(deps?: { seeds?: ClientSeed[]; complete?: Complete }) {
-    this.seeds = deps?.seeds ?? bundledSeeds;
+    this.seeds = deps?.seeds ?? null;
     this.complete = deps?.complete ?? null;
   }
 
@@ -274,7 +282,8 @@ export class ByokCoach implements Coach {
   }
 
   async ask(textWindow: string, genre: Genre, _cursorOffset: number): Promise<string> {
-    const seedQuestion = pickSeed(this.seeds, genre).question;
+    const seeds = this.seeds ?? (await loadSeeds());
+    const seedQuestion = pickSeed(seeds, genre).question;
     const { question, source } = await reshape(seedQuestion, textWindow, this.completeFor());
     this.last = source;
     return question;
