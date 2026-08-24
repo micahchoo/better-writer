@@ -1,0 +1,137 @@
+{
+  "repsPerArm": 30,
+  "rulersVsExpected": [
+    {
+      "fixture": "dialogue-scene",
+      "expected": [
+        "dialogue"
+      ],
+      "fired": [
+        "dialogue"
+      ]
+    },
+    {
+      "fixture": "hedge-criticism",
+      "expected": [
+        "hedge",
+        "rhythm"
+      ],
+      "fired": [
+        "hedge"
+      ]
+    },
+    {
+      "fixture": "nominalized-essay",
+      "expected": [
+        "nominal",
+        "rhythm"
+      ],
+      "fired": [
+        "nominal"
+      ]
+    },
+    {
+      "fixture": "filter-word-telling",
+      "expected": [
+        "filter-word"
+      ],
+      "fired": [
+        "filter-word"
+      ]
+    },
+    {
+      "fixture": "flat-rhythm",
+      "expected": [
+        "rhythm"
+      ],
+      "fired": []
+    },
+    {
+      "fixture": "control-memoir-sensory",
+      "expected": [],
+      "fired": []
+    },
+    {
+      "fixture": "opening-paragraph",
+      "expected": [
+        "opening-position"
+      ],
+      "fired": [
+        "opening-position"
+      ]
+    },
+    {
+      "fixture": "closing-paragraph",
+      "expected": [
+        "closing-position"
+      ],
+      "fired": [
+        "closing-position"
+      ]
+    },
+    {
+      "fixture": "markdown-cluttered",
+      "expected": [],
+      "fired": []
+    },
+    {
+      "fixture": "control-description",
+      "expected": [],
+      "fired": []
+    }
+  ],
+  "overall": {
+    "baseline": {
+      "loose": 0.2733333333333333,
+      "strict": 0.20333333333333334,
+      "verb": 0.38571428571428573,
+      "n": 300,
+      "seLoose": 0.025730800105594736,
+      "seVerb": 0.033589877692273964
+    },
+    "treated": {
+      "loose": 0.44333333333333336,
+      "strict": 0.36333333333333334,
+      "verb": 0.38571428571428573,
+      "n": 300,
+      "seLoose": 0.028681520699391616,
+      "seVerb": 0.033589877692273964
+    }
+  },
+  "flaggedFixtures": {
+    "baseline": {
+      "loose": 0.3142857142857143,
+      "strict": 0.21428571428571427,
+      "verb": 0.38571428571428573,
+      "n": 210,
+      "seLoose": 0.032034966318936466,
+      "seVerb": 0.033589877692273964
+    },
+    "treated": {
+      "loose": 0.5571428571428572,
+      "strict": 0.44285714285714284,
+      "verb": 0.38571428571428573,
+      "n": 210,
+      "seLoose": 0.034277209829602875,
+      "seVerb": 0.033589877692273964
+    }
+  },
+  "controlFixtures": {
+    "baseline": {
+      "loose": 0.17777777777777778,
+      "strict": 0.17777777777777778,
+      "verb": null,
+      "n": 90,
+      "seLoose": 0.04030065335921613,
+      "seVerb": null
+    },
+    "treated": {
+      "loose": 0.17777777777777778,
+      "strict": 0.17777777777777778,
+      "verb": null,
+      "n": 90,
+      "seLoose": 0.04030065335921613,
+      "seVerb": null
+    }
+  }
+}

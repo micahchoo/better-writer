@@ -1,0 +1,1010 @@
+[
+  {
+    "fixture": "closing-paragraph",
+    "rep": 0,
+    "qBase": {
+      "fixture": "closing-paragraph",
+      "rep": 0,
+      "arm": "baseline",
+      "seedId": "stein-ch02-contrast-word-33",
+      "verb": "rephrase",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "closing-paragraph",
+      "rep": 0,
+      "arm": "treated",
+      "seedId": "le-guin-sound-16",
+      "verb": "elucidate",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "closing-paragraph",
+    "rep": 1,
+    "qBase": {
+      "fixture": "closing-paragraph",
+      "rep": 1,
+      "arm": "baseline",
+      "seedId": "stein-six-senses-04",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "closing-paragraph",
+      "rep": 1,
+      "arm": "treated",
+      "seedId": "alberts-sins-summary-triage-04",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "closing-paragraph",
+    "rep": 2,
+    "qBase": {
+      "fixture": "closing-paragraph",
+      "rep": 2,
+      "arm": "baseline",
+      "seedId": "stein-dialogue-lean-08",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "closing-paragraph",
+      "rep": 2,
+      "arm": "treated",
+      "seedId": "storycraft-ch07b-cut-to-action",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "closing-paragraph",
+    "rep": 3,
+    "qBase": {
+      "fixture": "closing-paragraph",
+      "rep": 3,
+      "arm": "baseline",
+      "seedId": "stein-suspense-hold-curiosity",
+      "verb": "concept-form",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "closing-paragraph",
+      "rep": 3,
+      "arm": "treated",
+      "seedId": "alberts-ch8-tone-mood-summary",
+      "verb": "concept-form",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "closing-paragraph",
+    "rep": 4,
+    "qBase": {
+      "fixture": "closing-paragraph",
+      "rep": 4,
+      "arm": "baseline",
+      "seedId": "stein-nf-cut-suspense-killing-facts-14",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "closing-paragraph",
+      "rep": 4,
+      "arm": "treated",
+      "seedId": "storycraft-ch05-change-through-complication",
+      "verb": "concept-form",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "closing-paragraph",
+    "rep": 5,
+    "qBase": {
+      "fixture": "closing-paragraph",
+      "rep": 5,
+      "arm": "baseline",
+      "seedId": "stein-originality-03",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "closing-paragraph",
+      "rep": 5,
+      "arm": "treated",
+      "seedId": "alberts-resolution-fits-work",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "dialogue-scene",
+    "rep": 0,
+    "qBase": {
+      "fixture": "dialogue-scene",
+      "rep": 0,
+      "arm": "baseline",
+      "seedId": "stein-ch02-surprise-expectation-04",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "dialogue-scene",
+      "rep": 0,
+      "arm": "treated",
+      "seedId": "le-guin-untold-event",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "dialogue-scene",
+    "rep": 1,
+    "qBase": {
+      "fixture": "dialogue-scene",
+      "rep": 1,
+      "arm": "baseline",
+      "seedId": "stein-metaphor-mood",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "dialogue-scene",
+      "rep": 1,
+      "arm": "treated",
+      "seedId": "alberts-summary-minor-character-background",
+      "verb": "elaborate",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "dialogue-scene",
+    "rep": 2,
+    "qBase": {
+      "fixture": "dialogue-scene",
+      "rep": 2,
+      "arm": "baseline",
+      "seedId": "stein-ch04b-cut-cartoon-extremes",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "dialogue-scene",
+      "rep": 2,
+      "arm": "treated",
+      "seedId": "stein-triage-46",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "dialogue-scene",
+    "rep": 3,
+    "qBase": {
+      "fixture": "dialogue-scene",
+      "rep": 3,
+      "arm": "baseline",
+      "seedId": "stein-pace-skipping-for-effect",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "dialogue-scene",
+      "rep": 3,
+      "arm": "treated",
+      "seedId": "alberts-ch8-tone-mood-summary",
+      "verb": "concept-form",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "dialogue-scene",
+    "rep": 4,
+    "qBase": {
+      "fixture": "dialogue-scene",
+      "rep": 4,
+      "arm": "baseline",
+      "seedId": "stein-fictnonfic-specific-appearance",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "dialogue-scene",
+      "rep": 4,
+      "arm": "treated",
+      "seedId": "stein-show-self-audit-21-d",
+      "verb": "elucidate",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "dialogue-scene",
+    "rep": 5,
+    "qBase": {
+      "fixture": "dialogue-scene",
+      "rep": 5,
+      "arm": "baseline",
+      "seedId": "stein-flab-parents-mom-dad",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "dialogue-scene",
+      "rep": 5,
+      "arm": "treated",
+      "seedId": "alberts-voice-in-summary",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "filter-word-telling",
+    "rep": 0,
+    "qBase": {
+      "fixture": "filter-word-telling",
+      "rep": 0,
+      "arm": "baseline",
+      "seedId": "stein-ch02-surprise-expectation-04",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "filter-word-telling",
+      "rep": 0,
+      "arm": "treated",
+      "seedId": "le-guin-untold-event",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "filter-word-telling",
+    "rep": 1,
+    "qBase": {
+      "fixture": "filter-word-telling",
+      "rep": 1,
+      "arm": "baseline",
+      "seedId": "stein-metaphor-mood",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "filter-word-telling",
+      "rep": 1,
+      "arm": "treated",
+      "seedId": "alberts-summary-minor-character-background",
+      "verb": "elaborate",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "filter-word-telling",
+    "rep": 2,
+    "qBase": {
+      "fixture": "filter-word-telling",
+      "rep": 2,
+      "arm": "baseline",
+      "seedId": "stein-ch04b-cut-cartoon-extremes",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "filter-word-telling",
+      "rep": 2,
+      "arm": "treated",
+      "seedId": "stein-triage-46",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "filter-word-telling",
+    "rep": 3,
+    "qBase": {
+      "fixture": "filter-word-telling",
+      "rep": 3,
+      "arm": "baseline",
+      "seedId": "stein-pace-skipping-for-effect",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "filter-word-telling",
+      "rep": 3,
+      "arm": "treated",
+      "seedId": "alberts-ch8-tone-mood-summary",
+      "verb": "concept-form",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "filter-word-telling",
+    "rep": 4,
+    "qBase": {
+      "fixture": "filter-word-telling",
+      "rep": 4,
+      "arm": "baseline",
+      "seedId": "stein-fictnonfic-specific-appearance",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "filter-word-telling",
+      "rep": 4,
+      "arm": "treated",
+      "seedId": "stein-script-intent-02-b",
+      "verb": "elucidate",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "filter-word-telling",
+    "rep": 5,
+    "qBase": {
+      "fixture": "filter-word-telling",
+      "rep": 5,
+      "arm": "baseline",
+      "seedId": "stein-flab-parents-mom-dad",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "filter-word-telling",
+      "rep": 5,
+      "arm": "treated",
+      "seedId": "alberts-scene-end-dialogue",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "flat-rhythm",
+    "rep": 0,
+    "qBase": {
+      "fixture": "flat-rhythm",
+      "rep": 0,
+      "arm": "baseline",
+      "seedId": "stein-ch02-surprise-expectation-04",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "flat-rhythm",
+      "rep": 0,
+      "arm": "treated",
+      "seedId": "storycraft-ch04-avoid-journalese",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "flat-rhythm",
+    "rep": 1,
+    "qBase": {
+      "fixture": "flat-rhythm",
+      "rep": 1,
+      "arm": "baseline",
+      "seedId": "stein-metaphor-mood",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "flat-rhythm",
+      "rep": 1,
+      "arm": "treated",
+      "seedId": "storycraft-ch06b-cliffhanger",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "flat-rhythm",
+    "rep": 2,
+    "qBase": {
+      "fixture": "flat-rhythm",
+      "rep": 2,
+      "arm": "baseline",
+      "seedId": "stein-ch04b-cut-cartoon-extremes",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "flat-rhythm",
+      "rep": 2,
+      "arm": "treated",
+      "seedId": "storycraft-ch07a-tease-reader",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "flat-rhythm",
+    "rep": 3,
+    "qBase": {
+      "fixture": "flat-rhythm",
+      "rep": 3,
+      "arm": "baseline",
+      "seedId": "stein-pace-skipping-for-effect",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "flat-rhythm",
+      "rep": 3,
+      "arm": "treated",
+      "seedId": "stein-suspense-delay-with-thought",
+      "verb": "elaborate",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "flat-rhythm",
+    "rep": 4,
+    "qBase": {
+      "fixture": "flat-rhythm",
+      "rep": 4,
+      "arm": "baseline",
+      "seedId": "stein-fictnonfic-specific-appearance",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "flat-rhythm",
+      "rep": 4,
+      "arm": "treated",
+      "seedId": "alberts-quick-summary-shapes-reading",
+      "verb": "transition",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "flat-rhythm",
+    "rep": 5,
+    "qBase": {
+      "fixture": "flat-rhythm",
+      "rep": 5,
+      "arm": "baseline",
+      "seedId": "stein-flab-parents-mom-dad",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "flat-rhythm",
+      "rep": 5,
+      "arm": "treated",
+      "seedId": "alberts-ch8-metaphor-fresh",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "hedge-criticism",
+    "rep": 0,
+    "qBase": {
+      "fixture": "hedge-criticism",
+      "rep": 0,
+      "arm": "baseline",
+      "seedId": "stein-ch02-contrast-word-33",
+      "verb": "rephrase",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "hedge-criticism",
+      "rep": 0,
+      "arm": "treated",
+      "seedId": "le-guin-sound-16",
+      "verb": "elucidate",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "hedge-criticism",
+    "rep": 1,
+    "qBase": {
+      "fixture": "hedge-criticism",
+      "rep": 1,
+      "arm": "baseline",
+      "seedId": "stein-six-senses-04",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "hedge-criticism",
+      "rep": 1,
+      "arm": "treated",
+      "seedId": "alberts-sins-summary-triage-04",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "hedge-criticism",
+    "rep": 2,
+    "qBase": {
+      "fixture": "hedge-criticism",
+      "rep": 2,
+      "arm": "baseline",
+      "seedId": "stein-dialogue-lean-08",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "hedge-criticism",
+      "rep": 2,
+      "arm": "treated",
+      "seedId": "storycraft-ch07b-cut-to-action",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "hedge-criticism",
+    "rep": 3,
+    "qBase": {
+      "fixture": "hedge-criticism",
+      "rep": 3,
+      "arm": "baseline",
+      "seedId": "stein-suspense-hold-curiosity",
+      "verb": "concept-form",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "hedge-criticism",
+      "rep": 3,
+      "arm": "treated",
+      "seedId": "alberts-ch8-tone-mood-summary",
+      "verb": "concept-form",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "hedge-criticism",
+    "rep": 4,
+    "qBase": {
+      "fixture": "hedge-criticism",
+      "rep": 4,
+      "arm": "baseline",
+      "seedId": "stein-nf-cut-suspense-killing-facts-14",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "hedge-criticism",
+      "rep": 4,
+      "arm": "treated",
+      "seedId": "stein-triage-50",
+      "verb": "concept-form",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "hedge-criticism",
+    "rep": 5,
+    "qBase": {
+      "fixture": "hedge-criticism",
+      "rep": 5,
+      "arm": "baseline",
+      "seedId": "stein-originality-03",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "hedge-criticism",
+      "rep": 5,
+      "arm": "treated",
+      "seedId": "alberts-tag-verb-speech-21",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "nominalized-essay",
+    "rep": 0,
+    "qBase": {
+      "fixture": "nominalized-essay",
+      "rep": 0,
+      "arm": "baseline",
+      "seedId": "stein-cut-weakest-part-b",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "nominalized-essay",
+      "rep": 0,
+      "arm": "treated",
+      "seedId": "stein-ch02-delayed-reveal-26",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "nominalized-essay",
+    "rep": 1,
+    "qBase": {
+      "fixture": "nominalized-essay",
+      "rep": 1,
+      "arm": "baseline",
+      "seedId": "stein-titles-03",
+      "verb": "rephrase",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "nominalized-essay",
+      "rep": 1,
+      "arm": "treated",
+      "seedId": "alberts-tense-markers",
+      "verb": "transition",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "nominalized-essay",
+    "rep": 2,
+    "qBase": {
+      "fixture": "nominalized-essay",
+      "rep": 2,
+      "arm": "baseline",
+      "seedId": "stein-flab-intentional-piling",
+      "verb": "concept-form",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "nominalized-essay",
+      "rep": 2,
+      "arm": "treated",
+      "seedId": "storycraft-ch06b-setting-accumulate-details",
+      "verb": "concept-form",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "nominalized-essay",
+    "rep": 3,
+    "qBase": {
+      "fixture": "nominalized-essay",
+      "rep": 3,
+      "arm": "baseline",
+      "seedId": "stein-triage-33",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "nominalized-essay",
+      "rep": 3,
+      "arm": "treated",
+      "seedId": "alberts-cliched-revelation-02",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "nominalized-essay",
+    "rep": 4,
+    "qBase": {
+      "fixture": "nominalized-essay",
+      "rep": 4,
+      "arm": "baseline",
+      "seedId": "stein-originality-08",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "nominalized-essay",
+      "rep": 4,
+      "arm": "treated",
+      "seedId": "storycraft-ch01-resolution-change",
+      "verb": "elaborate",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "nominalized-essay",
+    "rep": 5,
+    "qBase": {
+      "fixture": "nominalized-essay",
+      "rep": 5,
+      "arm": "baseline",
+      "seedId": "stein-particularity-paragraph-19",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    },
+    "qTreat": {
+      "fixture": "nominalized-essay",
+      "rep": 5,
+      "arm": "treated",
+      "seedId": "le-guin-passive-03",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "opening-paragraph",
+    "rep": 0,
+    "qBase": {
+      "fixture": "opening-paragraph",
+      "rep": 0,
+      "arm": "baseline",
+      "seedId": "stein-ch02-surprise-expectation-04",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "opening-paragraph",
+      "rep": 0,
+      "arm": "treated",
+      "seedId": "le-guin-untold-event",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "opening-paragraph",
+    "rep": 1,
+    "qBase": {
+      "fixture": "opening-paragraph",
+      "rep": 1,
+      "arm": "baseline",
+      "seedId": "stein-metaphor-mood",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "opening-paragraph",
+      "rep": 1,
+      "arm": "treated",
+      "seedId": "alberts-summary-minor-character-background",
+      "verb": "elaborate",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "opening-paragraph",
+    "rep": 2,
+    "qBase": {
+      "fixture": "opening-paragraph",
+      "rep": 2,
+      "arm": "baseline",
+      "seedId": "stein-ch04b-cut-cartoon-extremes",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "opening-paragraph",
+      "rep": 2,
+      "arm": "treated",
+      "seedId": "stein-triage-46",
+      "verb": "rewrite",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "opening-paragraph",
+    "rep": 3,
+    "qBase": {
+      "fixture": "opening-paragraph",
+      "rep": 3,
+      "arm": "baseline",
+      "seedId": "stein-pace-skipping-for-effect",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "opening-paragraph",
+      "rep": 3,
+      "arm": "treated",
+      "seedId": "alberts-ch8-tone-mood-summary",
+      "verb": "concept-form",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": true
+    }
+  },
+  {
+    "fixture": "opening-paragraph",
+    "rep": 4,
+    "qBase": {
+      "fixture": "opening-paragraph",
+      "rep": 4,
+      "arm": "baseline",
+      "seedId": "stein-fictnonfic-specific-appearance",
+      "verb": "rewrite",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "opening-paragraph",
+      "rep": 4,
+      "arm": "treated",
+      "seedId": "stein-triage-51",
+      "verb": "transition",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  },
+  {
+    "fixture": "opening-paragraph",
+    "rep": 5,
+    "qBase": {
+      "fixture": "opening-paragraph",
+      "rep": 5,
+      "arm": "baseline",
+      "seedId": "stein-flab-parents-mom-dad",
+      "verb": "cut",
+      "looseHit": false,
+      "strictHit": false,
+      "verbAlign": false
+    },
+    "qTreat": {
+      "fixture": "opening-paragraph",
+      "rep": 5,
+      "arm": "treated",
+      "seedId": "alberts-test-summary-insertions",
+      "verb": "cut",
+      "looseHit": true,
+      "strictHit": true,
+      "verbAlign": false
+    }
+  }
+]

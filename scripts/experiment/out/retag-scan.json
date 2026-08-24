@@ -1,0 +1,41 @@
+{
+  "rewriteTotal": 605,
+  "withAnyCue": 87,
+  "withStrongAltVerbCue": 5,
+  "byAlternativeVerb": {
+    "rephrase": 4,
+    "elaborate": 1
+  },
+  "samples": [
+    {
+      "id": "le-guin-sentence-length-03",
+      "best": "rephrase",
+      "n": 2,
+      "q": "Vary your sentence lengths: a page of all-short sentences sounds stupid, a page of all-long ones sounds stuffy"
+    },
+    {
+      "id": "le-guin-sound-12",
+      "best": "rephrase",
+      "n": 2,
+      "q": "Rewrite your scene so that what happens happens in the sounds of the words and the rhythms of the sentences — "
+    },
+    {
+      "id": "le-guin-sound-15",
+      "best": "rephrase",
+      "n": 2,
+      "q": "Take your sound piece and play some more with it — improve it here and there, make the sound of it still stron"
+    },
+    {
+      "id": "stein-guts-reluctance-03",
+      "best": "elaborate",
+      "n": 3,
+      "q": "Put what you actually think into the text: overcome your natural reluctance to say the things you think."
+    },
+    {
+      "id": "stein-six-senses-02",
+      "best": "rephrase",
+      "n": 2,
+      "q": "Listen to the sounds in your scene and write them as you actually hear them, not as clichés — find a sound tha"
+    }
+  ]
+}
