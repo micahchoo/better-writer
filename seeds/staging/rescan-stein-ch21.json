@@ -1,0 +1,38 @@
+[
+  {
+    "id": "steinr-ch21-curiosity-rephrase",
+    "question": "Rephrase a flat, over-described sentence so that some word or group of words in it makes the reader ask \u201cWhy?\u201d or \u201cHow?\u201d and wants to keep reading.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "Any word or group of words that makes the reader ask \u201cWhy?\u201d or \u201cHow?\u201d also serves as an inducement for the reader to go on."
+    }
+  },
+  {
+    "id": "steinr-ch21-modifier-encompassed",
+    "question": "Cut any modifier whose meaning the surviving head word already carries, so the remaining word alone says all you need.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "The word \u201clife\u201d encompasses private and public. \u201cOver the last fifteen years\u201d provided unnecessary information that weakened the sentence."
+    }
+  },
+  {
+    "id": "steinr-ch21-chapter-ending-emotion",
+    "question": "At a chapter ending, cut any line that is excessively sentimental or too abstract to leave the reader with the right closing emotion.",
+    "verb": "cut",
+    "genre": ["fiction", "memoir"],
+    "source": {
+      "book": "Stein On Writing",
+      "author": "Sol Stein",
+      "chapter": "Chapter 21",
+      "quote": "In revising, I thought the sentence \u201cWhat does a mother do with her love?\u201d excessively sentimental. And \u201cWhy did God do nothing?\u201d was too abstract to leave the reader with a suitable emotion at the end of the chapter. I cut both sentences."
+    }
+  }
+]

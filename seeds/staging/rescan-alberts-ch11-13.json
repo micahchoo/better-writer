@@ -1,0 +1,50 @@
+[
+  {
+    "id": "albertsr-ch11-01",
+    "question": "Rephrase a passage where you state a character's emotion outright, and instead hint at the feeling through external cues the narrator observes.",
+    "verb": "rephrase",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 11-13",
+      "quote": "This style of minimally displayed emotion relies on external cues—what the narrator observes, for instance—to hint at what characters are feeling without coming right out and saying it."
+    }
+  },
+  {
+    "id": "albertsr-ch11-02",
+    "question": "Insert summary even outside natural lulls where a scene needs clarification or a fuller sense of a character's history, motivation, or emotion—a natural point of entry is still better.",
+    "verb": "transition",
+    "genre": ["fiction", "genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 11-13",
+      "quote": "They can occur (within reason) anywhere that the scene needs clarification or will benefit from our more fully understanding characters' histories, motivations, or emotions. But, if you can find a natural point of entry for your summary, all the better."
+    }
+  },
+  {
+    "id": "albertsr-ch11-03",
+    "question": "After rendering a dramatic event in scene, transition back into summary so the event reads as part of the ongoing, ordinary reality rather than an isolated shock.",
+    "verb": "transition",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 11-13",
+      "quote": "Fittingly, right after the scene of the death, O'Brien returns to his litany of the things they carried."
+    }
+  },
+  {
+    "id": "albertsr-ch11-04",
+    "question": "Pace a scene's interruptions to mirror the character's state of mind—for a drowsy character, break the foreground action with fragments that recreate in-and-out-of-consciousness.",
+    "verb": "transition",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 11-13",
+      "quote": "But the movement of the scene is intended to recreate the in-and-out-ofconsciousness experience of someone struggling, not very successfully, to stay awake."
+    }
+  }
+]

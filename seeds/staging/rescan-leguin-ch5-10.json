@@ -1,0 +1,134 @@
+[
+  {
+    "id": "leguinr-ch5-fucking-narrative",
+   "question": "Cut the emphatic qualifier 'fucking' from your narrative prose: in narration it weakens, trivializes, and invalidates. Keep it only in dialogue or interior monologue.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "But used in narrative to lend emphasis and colloquial vigor, the word does just the opposite. In fact its power to weaken, trivialize, and invalidate is stunning."
+    }
+  },
+  {
+    "id": "leguinr-ch5-suddenly-noise",
+   "question": "Find 'suddenly' used as a mere transition device, a noise, and rephrase the sentence so the event lands without it.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "Suddenly seldom means anything at all; it’s a mere transition device, a noise—“He was walking down the street. Suddenly he saw her.”"
+    }
+  },
+  {
+    "id": "leguinr-ch5-farfetched-adjective",
+   "question": "Audit any adjective whose relation to its noun is unexpected or far-fetched and forces the reader to stop: in narration this is risky. Cut it unless the stopped flow is worth it.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Adjective and Adverb",
+      "quote": "the adjective’s relation to the noun is unexpected, far-fetched, forcing the reader to stop to see the connection. This mannerism can be effective, but in narration it’s risky. Do you want to stop the flow? Is it worth it?"
+    }
+  },
+  {
+    "id": "leguinr-ch10-listing-not-describing",
+    "question": "Find any passage where you have tried to describe by listing items, and rephrase the list into description: listing is not describing, and only the relevant belongs.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "Listing is not describing. Only the relevant belongs."
+    }
+  },
+  {
+    "id": "leguinr-ch10-omit-explanations-connections",
+    "question": "Cut the explanations that connect one event or thought to the next and let the connections make themselves: the reader will make the link if you stop spelling it out.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "Woolf omits the explanations and lets the connections make themselves."
+    }
+  },
+  {
+    "id": "leguinr-ch10-violence-sameness",
+   "question": "Rephrase a passage of repeated, similar action so its interest does not rest on the sameness of the violence: mere violence doesn't make it interesting. Leap past what is inherently the same.",
+    "verb": "rephrase",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "There’s an inherent sameness to much action—the hero cuts off one knight’s head, then another, then another—and mere violence doesn’t make it interesting."
+    }
+  },
+  {
+    "id": "leguinr-ch10-cut-in-half",
+   "question": "Take a piece of narrative prose and cut it to half its word count, keeping it clear and the sensory impact vivid, without replacing specifics by generalities or using 'somehow'.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "It means counting the words and reducing them to half that many while keeping the narrative clear and the sensory impact vivid, not replacing specifics by generalities, and never using the word somehow."
+    }
+  },
+  {
+    "id": "leguinr-ch10-cut-long-speech",
+    "question": "In any piece that has dialogue, cut each long speech or long conversation in half just as implacably as you would cut the surrounding prose.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "If there’s dialogue in your piece, cut any long speech or long conversation in half just as implacably."
+    }
+  },
+  {
+    "id": "leguinr-ch10-chekhov-beginning",
+   "question": "As a rough rule in revision, if the beginning can be cut, cut it: we circle around and set things up, and the story often only begins around page three.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "In revision, as a rough rule, if the beginning can be cut, cut it."
+    }
+  },
+  {
+    "id": "leguinr-ch10-cut-leaves-trajectory",
+    "question": "Take out any passage that sticks out or leaves the main trajectory of your story, and look at the story without it: a cut that seemed sure to leave a terrible hole often joins up without a seam.",
+    "verb": "cut",
+    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "if any passage sticks out in some way, leaves the main trajectory, could possibly come out, take it out and see what the story looks like that way. Often a cut that seemed sure to leave a terrible hole joins up without a seam."
+    }
+  },
+  {
+    "id": "leguinr-ch10-self-out-of-way",
+   "question": "Rephrase any passage where your ego, wishes, or opinions intrude between the reader and the story: keep yourself out of the way and follow the story's focus and movement.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Crowding and Leaping",
+      "quote": "If I can keep myself, my ego, my wishes and opinions, my mental junk, out of the way and find the focus of the story, and follow the movement of the story, the story will tell itself."
+    }
+  }
+]

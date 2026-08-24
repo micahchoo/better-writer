@@ -1,0 +1,122 @@
+[
+  {
+    "id": "leguinr-ch3-01",
+    "question": "Find a sentence whose parts sit out of place and rearrange them: there's one best way for the parts to fit together, and finding it is your job—sometimes a slight shift, sometimes a full rewrite.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Think of it like this: there’s one best way for the parts of a sentence to fit together, and your job as a writer is to find it. You may not notice anything’s out of place till you’re rereading to revise. All that’s needed may be a slight rearrangement of order, or you may have to rethink and rewrite the sentence entirely."
+    }
+  },
+  {
+    "id": "leguinr-ch3-02",
+    "question": "Catch every dangling modifier and reconnect it to its true subject: a 'Leaving the house, a giant oak towered' construction makes trees walk and sofas eat.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "  Leaving the house, a giant oak towered over them.\n  After eating a good dinner, the sofa looks plump and alluring.\n  Almost all writers leave some danglers, and some do little harm; but\nwalking trees and carnivorous sofas can really wreck the scenery."
+    }
+  },
+  {
+    "id": "leguinr-ch3-03",
+    "question": "Where you've strung short sentences with and or but, vary the connections: used naively, conjunction-stringing sets up an infantile droning that makes the story hard to follow.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Stringing short sentences together with conjunctions is a legitimate stylistic mannerism, but used naively, it sets up a kind of infantile droning that makes the story hard to follow."
+    }
+  },
+  {
+    "id": "leguinr-ch3-04",
+    "question": "Kill the sentence so grand it stops the story: if its order, adjectives, adverbs, similes, or metaphors are so striking the reader halts to say 'Ooh!', it isn't working as a narrative sentence.",
+    "verb": "cut",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "This is where the overquoted and rather nasty advice about “killing your darlings” applies: to the sentence that’s so grand it stops the story. A sentence isn’t working as a narrative sentence if its order is so unexpected, or its adjectives and adverbs so striking, or its similes* or metaphors* so dazzling, that it stops the reader, even to say “Ooh!”"
+    }
+  },
+  {
+    "id": "leguinr-ch3-05",
+    "question": "If you dictate, cut the qualifying and embedding clauses that pile up: clause on clause clogs the narrative flow and tips into self-parody—listen with a careful ear, not in love with your own voice.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "When Henry James began dictating his novels to a secretary, his tendency to qualify and parenthesize and embed clause within clause got out of hand, clogging the narrative flow and making his prose totter on the edge of self-parody. Listening with a careful ear to one’s prose isn’t the same thing as falling in love with the sound of one’s voice."
+    }
+  },
+  {
+    "id": "leguinr-ch3-06",
+    "question": "Where you'd split two connected clauses with a period, join them with a semicolon instead to keep the flow running: Austen could have used periods but chose semicolons to hold each connection.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Many of the connections that lengthen the sentences are semicolons, so that most of these sentences would have been equally “correct” if Austen had used periods instead of semicolons. Why didn’t she?"
+    }
+  },
+  {
+    "id": "leguinr-ch3-07",
+    "question": "Break the word-length reflex: put long words in your short sentences and short words in your long ones—sentence length and word length are independent of each other.",
+    "verb": "rephrase",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "Note: Short sentences don’t have to consist of short words; long sentences don’t have to consist of long ones."
+    }
+  },
+  {
+    "id": "leguinr-ch3-08",
+    "question": "When revising, place your paragraph indents deliberately: they show connections and separations in the flow and are architecturally part of the work's long rhythmic structure.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Sentence Length and Complex Syntax",
+      "quote": "It’s always something to keep in mind when revising. It matters where you put those little indents. They show connections and separations in the flow; they are architecturally essential, part of the structure and the long rhythmic pattern of the work."
+    }
+  },
+  {
+    "id": "leguinr-ch4-01",
+    "question": "In memoir, don't force unlike events into a repetitive pattern—but do look for the pattern already present in the events of a life and let it shape the telling.",
+    "verb": "concept-form",
+    "genre": ["memoir", "creative-nonfiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "To force unlike events into a repetitive pattern certainly would be cheating. But to be aware of an existing pattern in the events of a life surely is one of the memoirist’s goals."
+    }
+  },
+  {
+    "id": "leguinr-ch4-02",
+    "question": "Build your recurring events in folktale fashion, letting them cascade: things in European tales happen in threes, in Native American stories more often in fours.",
+    "verb": "concept-form",
+    "genre": ["fiction"],
+    "source": {
+      "book": "Steering the Craft",
+      "author": "Ursula K. Le Guin",
+      "chapter": "Repetition",
+      "quote": "Folktales often repeat themselves exuberantly, both in the language and in the structure: consider “The Three Bears,” with its cascade of European triads. (Things in Europe happen in threes, things in Native American folktales more often in fours.)"
+    }
+  }
+]

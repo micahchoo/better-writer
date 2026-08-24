@@ -1,0 +1,38 @@
+[
+  {
+    "id": "albertsr-ch14-transition-purpose",
+    "question": "Review every transition between narrative units and fix any that would confuse readers about where or when things are happening or jolt them out of the story, so they are pulled along naturally.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "There are two main reasons for providing transitions in moving from one narrative unit to another. The first is that you don’t want to lose readers by confusing them about where and when things are happening. The second reason is that you don’t want your work to feel herky-jerky and discombobulated."
+    }
+  },
+  {
+    "id": "albertsr-ch14-juxtapose-suspense",
+    "question": "To build suspense, end a scene with a character in danger and juxtapose it against a scene or summary with another character before you return to the one in danger.",
+    "verb": "transition",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 16-17 / Exercises",
+      "quote": "If you have one scene end, for example, with a character in danger, you might want to juxtapose it against a summary or a scene with another character so the tension increases before you return to the character in danger. In this case juxtaposition builds suspense."
+    }
+  },
+  {
+    "id": "albertsr-ch14-cut-dragging-scene",
+    "question": "Cut any scene detail or dialogue that drags — anything that does not move the plot forward, reveal character, or engage the reader emotionally.",
+    "verb": "cut",
+    "genre": ["genre-agnostic"],
+    "source": {
+      "book": "Showing & Telling",
+      "author": "Laurie Alberts",
+      "chapter": "Chapters 14-15",
+      "quote": "- • Do they drag on and show unnecessary details, pointless dialogue, etc?"
+    }
+  }
+]
