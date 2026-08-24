@@ -40,6 +40,7 @@ export interface ClientSeed {
   id: string;
   question: string;
   genre: Genre[];
+  verb?: Verb;
 }
 
 /** A single conversation turn passed to the local model. */

@@ -39,16 +39,36 @@ export function parsePullOutput(stdout: string): Seed {
  * The genre is used once to select the seed and then discarded — it is never
  * runtime input to the model.
  *
- * When `verb` is given, the pull is narrowed to that verb's bucket via
- * `--verb`. If the verb'd call fails for ANY reason — exec rejection, or an
- * empty bucket (parsePullOutput throws on an empty JSON array) — it retries
- * ONCE with no verb and returns whatever the uniform lottery yields. Without
- * a verb, errors propagate as before.
+ * Options narrow the draw without changing the fallback contract:
+ *  - `leanVerbs` (an implementation-verb set from the /ask flow) is appended
+ *    as `--lean-verbs a,b`. retrieve.py treats it as a SOFT preference (a
+ *    two-stage draw), so it can never empty the pool — no retry is needed.
+ *    Empty/absent leanVerbs leave the command line exactly as before.
+ *
+ * The legacy second argument (`verb?: Verb`) is still accepted for
+ * backward compatibility: when a verb string is given it narrows to that
+ * verb's bucket via `--verb`. If the verb'd call fails for ANY reason —
+ * exec rejection, or an empty bucket (parsePullOutput throws on an empty
+ * JSON array) — it retries ONCE with no verb and returns whatever the
+ * uniform lottery yields. Without a verb, errors propagate as before.
  */
-export async function pullSeed(genre: Genre, verb?: Verb): Promise<Seed> {
+export interface PullSeedOptions {
+  /** Soft verb-set preference (`--lean-verbs`); never empties the pool. */
+  leanVerbs?: string[];
+}
+
+export async function pullSeed(
+ genre: Genre,
+ opts?: PullSeedOptions | Verb,
+): Promise<Seed> {
+ const verb = typeof opts === 'string' ? opts : undefined;
+ const leanVerbs = typeof opts === 'string' ? undefined : opts?.leanVerbs;
  const args = [RETRIEVE_PY, 'pull', '--genre', genre];
  if (verb !== undefined) {
   args.push('--verb', verb);
+ }
+ if (leanVerbs !== undefined && leanVerbs.length > 0) {
+  args.push('--lean-verbs', leanVerbs.join(','));
  }
  try {
   const { stdout: out } = await execFileAsync(

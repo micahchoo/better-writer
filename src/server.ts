@@ -21,6 +21,7 @@ import { loadAnnotations, loadDraft, saveAnnotations, saveDraft } from './draft.
 import { boundaryViolation } from './boundary.js';
 import type { Annotation } from './types.js';
 import { resolveModelDir } from './stt/model.js';
+import { implVerbs, measureWindow } from '../web/window-stats.js';
 import { createSttClient } from './stt/client.js';
 
 /** Built client, resolved from the module (not cwd). Vite outDir is ../dist. */
@@ -91,7 +92,11 @@ app.post('/ask', async (c) => {
   return c.json({ error: `genre must be one of: ${GENRES.join(', ')}` }, 400);
  }
  try {
-  const seed = await pullSeed(genre as Genre);
+  // Measure the window, map fired axes to implementation verbs, and narrow the
+  // seed draw with --lean-verbs (a soft preference). Positional axes are
+  // silently absent: measureWindow runs without a PositionContext here.
+  const leanVerbs = implVerbs(measureWindow(textWindow));
+  const seed = await pullSeed(genre as Genre, { leanVerbs });
   const reshaped = await reshape(seed.question, textWindow, complete, (info) => {
    console.log(
     JSON.stringify({

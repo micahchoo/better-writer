@@ -367,6 +367,7 @@
       "v-00-023"
     ],
     "preference": null,
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-00-020",
       "v-00-003",
@@ -1108,6 +1109,7 @@
         "elaborate"
       ]
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-01-012",
       "v-01-035",
@@ -1729,6 +1731,7 @@
       ],
       "p": 0.5
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-02-008",
       "v-02-011",
@@ -2050,6 +2053,7 @@
       ],
       "p": 0.5
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-03-015",
       "v-03-009",
@@ -2426,6 +2430,7 @@
       "v-04-023"
     ],
     "preference": null,
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-04-002",
       "v-04-012",
@@ -3047,6 +3052,7 @@
         "rephrase"
       ]
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-05-020",
       "v-05-027",
@@ -3668,6 +3674,7 @@
       ],
       "p": 0.9
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-06-010",
       "v-06-023",
@@ -4139,6 +4146,7 @@
       ],
       "p": 0.5
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-07-002",
       "v-07-011",
@@ -4395,6 +4403,7 @@
       "v-08-015"
     ],
     "preference": null,
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-08-015",
       "v-08-008",
@@ -4895,6 +4904,7 @@
         "cut"
       ]
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-09-010",
       "v-09-014",
@@ -5516,6 +5526,7 @@
       ],
       "p": 0.5
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-10-003",
       "v-10-032",
@@ -6438,12 +6449,2601 @@
         "concept-form"
       ]
     },
+    "genre": null,
     "expectedSeedIdSequence": [
       "v-11-058",
       "v-11-031",
       "v-11-059",
       "v-11-023",
       "v-11-047"
+    ]
+  },
+  {
+    "case": 12,
+    "seed": 54,
+    "pool": [
+      {
+        "id": "v-12-000",
+        "question": "Case 12 seed 0.",
+        "verb": "concept-form",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-001",
+        "question": "Case 12 seed 1.",
+        "verb": "elaborate",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-002",
+        "question": "Case 12 seed 2.",
+        "verb": "cut",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-003",
+        "question": "Case 12 seed 3.",
+        "verb": "rewrite",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-004",
+        "question": "Case 12 seed 4.",
+        "verb": "rephrase",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-005",
+        "question": "Case 12 seed 5.",
+        "verb": "transition",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-006",
+        "question": "Case 12 seed 6.",
+        "verb": "concept-form",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-007",
+        "question": "Case 12 seed 7.",
+        "verb": "elaborate",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-008",
+        "question": "Case 12 seed 8.",
+        "verb": "cut",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-009",
+        "question": "Case 12 seed 9.",
+        "verb": "rewrite",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-010",
+        "question": "Case 12 seed 10.",
+        "verb": "rephrase",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-011",
+        "question": "Case 12 seed 11.",
+        "verb": "transition",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-012",
+        "question": "Case 12 seed 12.",
+        "verb": "concept-form",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-013",
+        "question": "Case 12 seed 13.",
+        "verb": "elaborate",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-014",
+        "question": "Case 12 seed 14.",
+        "verb": "cut",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-015",
+        "question": "Case 12 seed 15.",
+        "verb": "rewrite",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-016",
+        "question": "Case 12 seed 16.",
+        "verb": "rephrase",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-017",
+        "question": "Case 12 seed 17.",
+        "verb": "transition",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-018",
+        "question": "Case 12 seed 18.",
+        "verb": "concept-form",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-019",
+        "question": "Case 12 seed 19.",
+        "verb": "elaborate",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-020",
+        "question": "Case 12 seed 20.",
+        "verb": "cut",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-021",
+        "question": "Case 12 seed 21.",
+        "verb": "rewrite",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-022",
+        "question": "Case 12 seed 22.",
+        "verb": "rephrase",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-023",
+        "question": "Case 12 seed 23.",
+        "verb": "transition",
+        "genre": [
+          "fiction"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1000",
+        "question": "Case 12 seed 1000.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1001",
+        "question": "Case 12 seed 1001.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1002",
+        "question": "Case 12 seed 1002.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1003",
+        "question": "Case 12 seed 1003.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1004",
+        "question": "Case 12 seed 1004.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1005",
+        "question": "Case 12 seed 1005.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1006",
+        "question": "Case 12 seed 1006.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1007",
+        "question": "Case 12 seed 1007.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1008",
+        "question": "Case 12 seed 1008.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1009",
+        "question": "Case 12 seed 1009.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1010",
+        "question": "Case 12 seed 1010.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1011",
+        "question": "Case 12 seed 1011.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1012",
+        "question": "Case 12 seed 1012.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1013",
+        "question": "Case 12 seed 1013.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1014",
+        "question": "Case 12 seed 1014.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1015",
+        "question": "Case 12 seed 1015.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1016",
+        "question": "Case 12 seed 1016.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1017",
+        "question": "Case 12 seed 1017.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1018",
+        "question": "Case 12 seed 1018.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1019",
+        "question": "Case 12 seed 1019.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1020",
+        "question": "Case 12 seed 1020.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1021",
+        "question": "Case 12 seed 1021.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1022",
+        "question": "Case 12 seed 1022.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-12-1023",
+        "question": "Case 12 seed 1023.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      }
+    ],
+    "poolIds": [
+      "v-12-000",
+      "v-12-001",
+      "v-12-002",
+      "v-12-003",
+      "v-12-004",
+      "v-12-005",
+      "v-12-006",
+      "v-12-007",
+      "v-12-008",
+      "v-12-009",
+      "v-12-010",
+      "v-12-011",
+      "v-12-012",
+      "v-12-013",
+      "v-12-014",
+      "v-12-015",
+      "v-12-016",
+      "v-12-017",
+      "v-12-018",
+      "v-12-019",
+      "v-12-020",
+      "v-12-021",
+      "v-12-022",
+      "v-12-023",
+      "v-12-1000",
+      "v-12-1001",
+      "v-12-1002",
+      "v-12-1003",
+      "v-12-1004",
+      "v-12-1005",
+      "v-12-1006",
+      "v-12-1007",
+      "v-12-1008",
+      "v-12-1009",
+      "v-12-1010",
+      "v-12-1011",
+      "v-12-1012",
+      "v-12-1013",
+      "v-12-1014",
+      "v-12-1015",
+      "v-12-1016",
+      "v-12-1017",
+      "v-12-1018",
+      "v-12-1019",
+      "v-12-1020",
+      "v-12-1021",
+      "v-12-1022",
+      "v-12-1023"
+    ],
+    "preference": null,
+    "genre": "fiction",
+    "expectedSeedIdSequence": [
+      "v-12-1004",
+      "v-12-009",
+      "v-12-015",
+      "v-12-014",
+      "v-12-023"
+    ]
+  },
+  {
+    "case": 13,
+    "seed": 55,
+    "pool": [
+      {
+        "id": "v-13-000",
+        "question": "Case 13 seed 0.",
+        "verb": "concept-form",
+        "genre": [
+          "poetry"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-001",
+        "question": "Case 13 seed 1.",
+        "verb": "elaborate",
+        "genre": [
+          "poetry"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-002",
+        "question": "Case 13 seed 2.",
+        "verb": "cut",
+        "genre": [
+          "poetry"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-003",
+        "question": "Case 13 seed 3.",
+        "verb": "rewrite",
+        "genre": [
+          "poetry"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-004",
+        "question": "Case 13 seed 4.",
+        "verb": "rephrase",
+        "genre": [
+          "poetry"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-005",
+        "question": "Case 13 seed 5.",
+        "verb": "transition",
+        "genre": [
+          "poetry"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1000",
+        "question": "Case 13 seed 1000.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1001",
+        "question": "Case 13 seed 1001.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1002",
+        "question": "Case 13 seed 1002.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1003",
+        "question": "Case 13 seed 1003.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1004",
+        "question": "Case 13 seed 1004.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1005",
+        "question": "Case 13 seed 1005.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1006",
+        "question": "Case 13 seed 1006.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1007",
+        "question": "Case 13 seed 1007.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1008",
+        "question": "Case 13 seed 1008.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1009",
+        "question": "Case 13 seed 1009.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1010",
+        "question": "Case 13 seed 1010.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1011",
+        "question": "Case 13 seed 1011.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1012",
+        "question": "Case 13 seed 1012.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1013",
+        "question": "Case 13 seed 1013.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1014",
+        "question": "Case 13 seed 1014.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1015",
+        "question": "Case 13 seed 1015.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1016",
+        "question": "Case 13 seed 1016.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1017",
+        "question": "Case 13 seed 1017.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1018",
+        "question": "Case 13 seed 1018.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1019",
+        "question": "Case 13 seed 1019.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1020",
+        "question": "Case 13 seed 1020.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1021",
+        "question": "Case 13 seed 1021.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1022",
+        "question": "Case 13 seed 1022.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1023",
+        "question": "Case 13 seed 1023.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1024",
+        "question": "Case 13 seed 1024.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1025",
+        "question": "Case 13 seed 1025.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1026",
+        "question": "Case 13 seed 1026.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1027",
+        "question": "Case 13 seed 1027.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1028",
+        "question": "Case 13 seed 1028.",
+        "verb": "rephrase",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1029",
+        "question": "Case 13 seed 1029.",
+        "verb": "transition",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1030",
+        "question": "Case 13 seed 1030.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1031",
+        "question": "Case 13 seed 1031.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1032",
+        "question": "Case 13 seed 1032.",
+        "verb": "cut",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-13-1033",
+        "question": "Case 13 seed 1033.",
+        "verb": "rewrite",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      }
+    ],
+    "poolIds": [
+      "v-13-000",
+      "v-13-001",
+      "v-13-002",
+      "v-13-003",
+      "v-13-004",
+      "v-13-005",
+      "v-13-1000",
+      "v-13-1001",
+      "v-13-1002",
+      "v-13-1003",
+      "v-13-1004",
+      "v-13-1005",
+      "v-13-1006",
+      "v-13-1007",
+      "v-13-1008",
+      "v-13-1009",
+      "v-13-1010",
+      "v-13-1011",
+      "v-13-1012",
+      "v-13-1013",
+      "v-13-1014",
+      "v-13-1015",
+      "v-13-1016",
+      "v-13-1017",
+      "v-13-1018",
+      "v-13-1019",
+      "v-13-1020",
+      "v-13-1021",
+      "v-13-1022",
+      "v-13-1023",
+      "v-13-1024",
+      "v-13-1025",
+      "v-13-1026",
+      "v-13-1027",
+      "v-13-1028",
+      "v-13-1029",
+      "v-13-1030",
+      "v-13-1031",
+      "v-13-1032",
+      "v-13-1033"
+    ],
+    "preference": null,
+    "genre": "poetry",
+    "expectedSeedIdSequence": [
+      "v-13-001",
+      "v-13-005",
+      "v-13-000",
+      "v-13-1019",
+      "v-13-005"
+    ]
+  },
+  {
+    "case": 14,
+    "seed": 56,
+    "pool": [
+      {
+        "id": "v-14-000",
+        "question": "Case 14 seed 0.",
+        "verb": "concept-form",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-001",
+        "question": "Case 14 seed 1.",
+        "verb": "elaborate",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-002",
+        "question": "Case 14 seed 2.",
+        "verb": "cut",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-003",
+        "question": "Case 14 seed 3.",
+        "verb": "rewrite",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-004",
+        "question": "Case 14 seed 4.",
+        "verb": "rephrase",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-005",
+        "question": "Case 14 seed 5.",
+        "verb": "transition",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-006",
+        "question": "Case 14 seed 6.",
+        "verb": "concept-form",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-007",
+        "question": "Case 14 seed 7.",
+        "verb": "elaborate",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-008",
+        "question": "Case 14 seed 8.",
+        "verb": "cut",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-009",
+        "question": "Case 14 seed 9.",
+        "verb": "rewrite",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-010",
+        "question": "Case 14 seed 10.",
+        "verb": "rephrase",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-011",
+        "question": "Case 14 seed 11.",
+        "verb": "transition",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-012",
+        "question": "Case 14 seed 12.",
+        "verb": "concept-form",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-013",
+        "question": "Case 14 seed 13.",
+        "verb": "elaborate",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-014",
+        "question": "Case 14 seed 14.",
+        "verb": "cut",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-015",
+        "question": "Case 14 seed 15.",
+        "verb": "rewrite",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-016",
+        "question": "Case 14 seed 16.",
+        "verb": "rephrase",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-017",
+        "question": "Case 14 seed 17.",
+        "verb": "transition",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-018",
+        "question": "Case 14 seed 18.",
+        "verb": "concept-form",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-019",
+        "question": "Case 14 seed 19.",
+        "verb": "elaborate",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-020",
+        "question": "Case 14 seed 20.",
+        "verb": "cut",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-021",
+        "question": "Case 14 seed 21.",
+        "verb": "rewrite",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-022",
+        "question": "Case 14 seed 22.",
+        "verb": "rephrase",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-023",
+        "question": "Case 14 seed 23.",
+        "verb": "transition",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-024",
+        "question": "Case 14 seed 24.",
+        "verb": "concept-form",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-025",
+        "question": "Case 14 seed 25.",
+        "verb": "elaborate",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-026",
+        "question": "Case 14 seed 26.",
+        "verb": "cut",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-027",
+        "question": "Case 14 seed 27.",
+        "verb": "rewrite",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-028",
+        "question": "Case 14 seed 28.",
+        "verb": "rephrase",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-029",
+        "question": "Case 14 seed 29.",
+        "verb": "transition",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-030",
+        "question": "Case 14 seed 30.",
+        "verb": "concept-form",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-031",
+        "question": "Case 14 seed 31.",
+        "verb": "elaborate",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-032",
+        "question": "Case 14 seed 32.",
+        "verb": "cut",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-033",
+        "question": "Case 14 seed 33.",
+        "verb": "rewrite",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-034",
+        "question": "Case 14 seed 34.",
+        "verb": "rephrase",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-035",
+        "question": "Case 14 seed 35.",
+        "verb": "transition",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-036",
+        "question": "Case 14 seed 36.",
+        "verb": "concept-form",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-037",
+        "question": "Case 14 seed 37.",
+        "verb": "elaborate",
+        "genre": [
+          "memoir"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-1000",
+        "question": "Case 14 seed 1000.",
+        "verb": "concept-form",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-14-1001",
+        "question": "Case 14 seed 1001.",
+        "verb": "elaborate",
+        "genre": [
+          "genre-agnostic"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      }
+    ],
+    "poolIds": [
+      "v-14-000",
+      "v-14-001",
+      "v-14-002",
+      "v-14-003",
+      "v-14-004",
+      "v-14-005",
+      "v-14-006",
+      "v-14-007",
+      "v-14-008",
+      "v-14-009",
+      "v-14-010",
+      "v-14-011",
+      "v-14-012",
+      "v-14-013",
+      "v-14-014",
+      "v-14-015",
+      "v-14-016",
+      "v-14-017",
+      "v-14-018",
+      "v-14-019",
+      "v-14-020",
+      "v-14-021",
+      "v-14-022",
+      "v-14-023",
+      "v-14-024",
+      "v-14-025",
+      "v-14-026",
+      "v-14-027",
+      "v-14-028",
+      "v-14-029",
+      "v-14-030",
+      "v-14-031",
+      "v-14-032",
+      "v-14-033",
+      "v-14-034",
+      "v-14-035",
+      "v-14-036",
+      "v-14-037",
+      "v-14-1000",
+      "v-14-1001"
+    ],
+    "preference": null,
+    "genre": "memoir",
+    "expectedSeedIdSequence": [
+      "v-14-1000",
+      "v-14-033",
+      "v-14-034",
+      "v-14-1001",
+      "v-14-1000"
+    ]
+  },
+  {
+    "case": 15,
+    "seed": 57,
+    "pool": [
+      {
+        "id": "v-15-000",
+        "question": "Case 15 seed 0.",
+        "verb": "concept-form",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-001",
+        "question": "Case 15 seed 1.",
+        "verb": "elaborate",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-002",
+        "question": "Case 15 seed 2.",
+        "verb": "cut",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-003",
+        "question": "Case 15 seed 3.",
+        "verb": "rewrite",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-004",
+        "question": "Case 15 seed 4.",
+        "verb": "rephrase",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-005",
+        "question": "Case 15 seed 5.",
+        "verb": "transition",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-006",
+        "question": "Case 15 seed 6.",
+        "verb": "concept-form",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-007",
+        "question": "Case 15 seed 7.",
+        "verb": "elaborate",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-008",
+        "question": "Case 15 seed 8.",
+        "verb": "cut",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-009",
+        "question": "Case 15 seed 9.",
+        "verb": "rewrite",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-010",
+        "question": "Case 15 seed 10.",
+        "verb": "rephrase",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-011",
+        "question": "Case 15 seed 11.",
+        "verb": "transition",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-012",
+        "question": "Case 15 seed 12.",
+        "verb": "concept-form",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-013",
+        "question": "Case 15 seed 13.",
+        "verb": "elaborate",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-014",
+        "question": "Case 15 seed 14.",
+        "verb": "cut",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-015",
+        "question": "Case 15 seed 15.",
+        "verb": "rewrite",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-016",
+        "question": "Case 15 seed 16.",
+        "verb": "rephrase",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-017",
+        "question": "Case 15 seed 17.",
+        "verb": "transition",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-018",
+        "question": "Case 15 seed 18.",
+        "verb": "concept-form",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-019",
+        "question": "Case 15 seed 19.",
+        "verb": "elaborate",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-020",
+        "question": "Case 15 seed 20.",
+        "verb": "cut",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-021",
+        "question": "Case 15 seed 21.",
+        "verb": "rewrite",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-022",
+        "question": "Case 15 seed 22.",
+        "verb": "rephrase",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-023",
+        "question": "Case 15 seed 23.",
+        "verb": "transition",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-024",
+        "question": "Case 15 seed 24.",
+        "verb": "concept-form",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-025",
+        "question": "Case 15 seed 25.",
+        "verb": "elaborate",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-026",
+        "question": "Case 15 seed 26.",
+        "verb": "cut",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-027",
+        "question": "Case 15 seed 27.",
+        "verb": "rewrite",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-028",
+        "question": "Case 15 seed 28.",
+        "verb": "rephrase",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-029",
+        "question": "Case 15 seed 29.",
+        "verb": "transition",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-030",
+        "question": "Case 15 seed 30.",
+        "verb": "concept-form",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-031",
+        "question": "Case 15 seed 31.",
+        "verb": "elaborate",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-032",
+        "question": "Case 15 seed 32.",
+        "verb": "cut",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-033",
+        "question": "Case 15 seed 33.",
+        "verb": "rewrite",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-034",
+        "question": "Case 15 seed 34.",
+        "verb": "rephrase",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-035",
+        "question": "Case 15 seed 35.",
+        "verb": "transition",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-036",
+        "question": "Case 15 seed 36.",
+        "verb": "concept-form",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-037",
+        "question": "Case 15 seed 37.",
+        "verb": "elaborate",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-038",
+        "question": "Case 15 seed 38.",
+        "verb": "cut",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      },
+      {
+        "id": "v-15-039",
+        "question": "Case 15 seed 39.",
+        "verb": "rewrite",
+        "genre": [
+          "essay"
+        ],
+        "source": {
+          "book": "Fixture",
+          "author": "Gen",
+          "chapter": "c",
+          "quote": "q"
+        }
+      }
+    ],
+    "poolIds": [
+      "v-15-000",
+      "v-15-001",
+      "v-15-002",
+      "v-15-003",
+      "v-15-004",
+      "v-15-005",
+      "v-15-006",
+      "v-15-007",
+      "v-15-008",
+      "v-15-009",
+      "v-15-010",
+      "v-15-011",
+      "v-15-012",
+      "v-15-013",
+      "v-15-014",
+      "v-15-015",
+      "v-15-016",
+      "v-15-017",
+      "v-15-018",
+      "v-15-019",
+      "v-15-020",
+      "v-15-021",
+      "v-15-022",
+      "v-15-023",
+      "v-15-024",
+      "v-15-025",
+      "v-15-026",
+      "v-15-027",
+      "v-15-028",
+      "v-15-029",
+      "v-15-030",
+      "v-15-031",
+      "v-15-032",
+      "v-15-033",
+      "v-15-034",
+      "v-15-035",
+      "v-15-036",
+      "v-15-037",
+      "v-15-038",
+      "v-15-039"
+    ],
+    "preference": null,
+    "genre": "essay",
+    "expectedSeedIdSequence": [
+      "v-15-002",
+      "v-15-023",
+      "v-15-037",
+      "v-15-038",
+      "v-15-001"
     ]
   }
 ]

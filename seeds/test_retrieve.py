@@ -6,10 +6,12 @@ Run from the repo root:
 
 Covers the pinned drawer contract: `pull(pool, preference, rng)` two-stage
 soft preference with the internal FLOOR=16 shrink, wildcard-inside filtering
-via `query`, seeded-RNG determinism, empty-pool behavior, and the CLI
-`--lean-verbs` wiring on pull/query. Also replays the cross-language drawer
-vector fixture (scripts/experiment/out/drawer-vectors.json) that the TS port
-must reproduce exactly.
+via `query`, the default genre preference (`default_genre_preference`) that
+specific-genre cards claim first claim on half the draws from a mixed
+genre-filtered pool, seeded-RNG determinism, empty-pool behavior, and the CLI
+`--lean-verbs`/`--genre` wiring on pull/query. Also replays the cross-language
+drawer vector fixture (scripts/experiment/out/drawer-vectors.json) that the TS
+port must reproduce exactly.
 """
 
 import json
@@ -286,13 +288,80 @@ class LegacyCliTest(unittest.TestCase):
         self.assertTrue(all(s["verb"] == "cut" for s in rows))
 
 
+class DefaultGenrePreferenceTest(unittest.TestCase):
+    """Default genre preference on a mixed genre-filtered pool.
+
+    When a --genre filter produces a pool with BOTH specific-genre cards and
+    genre-agnostic-only wildcard cards, the pull CLI (and pickSeed) apply a
+    default two-stage preference so specific-genre cards claim first claim on
+    half the draws. A single-group pool, an all-agnostic pool, or a bare
+    full-bank pull (no genre filter) keeps the legacy uniform draw.
+    """
+
+    def _mixed_pool(self):
+        # 8 specific 'fiction' + 40 agnostic-only: specific is a clear minority,
+        # so the preference lifts it well above its ~17% uniform share.
+        pool = [seed(i, "rewrite", "fiction") for i in range(8)]
+        pool += [seed(1000 + i, "rewrite", "genre-agnostic") for i in range(40)]
+        return pool
+
+    def test_engages_on_mixed_pool_with_strict_match(self):
+        pref = retrieve.default_genre_preference(["fiction"], self._mixed_pool())
+        self.assertIsNotNone(pref)
+        matched = [s for s in self._mixed_pool() if pref["match"](s)]
+        # match excludes agnostic-only cards: only the 8 specific-fiction ids.
+        self.assertEqual({s["id"] for s in matched}, {f"seed-{i:03d}" for i in range(8)})
+
+    def test_returns_none_for_single_group_pool(self):
+        all_specific = [seed(i, "rewrite", "fiction") for i in range(30)]
+        self.assertIsNone(retrieve.default_genre_preference(["fiction"], all_specific))
+        all_agnostic = [seed(i, "rewrite", "genre-agnostic") for i in range(30)]
+        self.assertIsNone(retrieve.default_genre_preference(["fiction"], all_agnostic))
+
+    def test_returns_none_without_genre_filter(self):
+        # bare full-bank pull (no chosen genre) keeps the legacy uniform draw.
+        self.assertIsNone(retrieve.default_genre_preference([], self._mixed_pool()))
+        self.assertIsNone(retrieve.default_genre_preference(None, self._mixed_pool()))
+
+    def test_draw_prefers_specific_cards(self):
+        pool = self._mixed_pool()
+        pref = retrieve.default_genre_preference(["fiction"], pool)
+        self.assertIsNotNone(pref)
+        rng = random.Random(123)
+        specific_ids = {f"seed-{i:03d}" for i in range(8)}
+        hits = sum(
+            1 for _ in range(4000) if retrieve.pull(pool, pref, rng)["id"] in specific_ids
+        )
+        # effective_p 0.5 over a pool where specific is 8/48: specific gets
+        # ~50% of draws (uniform would give ~17%). std ~ 32.
+        self.assertTrue(0.42 * 4000 <= hits <= 0.58 * 4000, hits)
+
+    def test_cli_pull_wires_default_preference(self):
+        conn, path = make_conn(self._mixed_pool())
+        self.addCleanup(conn.close)
+        self.addCleanup(os.unlink, path)
+        specific_ids = {f"seed-{i:03d}" for i in range(8)}
+        draws = 60
+        hits = 0
+        for _ in range(draws):
+            out = cli("pull", "--db", path, "--genre", "fiction", "--n", "1")
+            s = json.loads(out.stdout)[0]
+            if s["id"] in specific_ids:
+                hits += 1
+        # expected ~30/60 (50%); a uniform draw would give ~10/60.
+        self.assertGreater(hits, draws * 0.30, f"{hits}/{draws} specific")
+
+
 class DrawerVectorFixtureTest(unittest.TestCase):
     """Replay the cross-language drawer fixture against the current pull().
 
     Every case records a seeded rng, a pool, a preference shape, and the exact
-    5-draw seed-id sequence produced at generation time. Any drift in the
-    drawer contract (soft-preference math, floor shrink, fallbacks) surfaces as
-    a mismatch here — this is the oracle the TS port must match.
+    5-draw seed-id sequence produced at generation time. Cases 12-15 carry a
+    `genre` and a null `preference`, exercising the default genre preference:
+    the replay builds that preference via default_genre_preference. Any drift
+    in the drawer contract (soft-preference math, floor shrink, fallbacks,
+    default genre stratification) surfaces as a mismatch here — this is the
+    oracle the TS port must match.
     """
 
     def test_every_fixture_case_replays_identically(self):
@@ -303,6 +372,8 @@ class DrawerVectorFixtureTest(unittest.TestCase):
             with self.subTest(case=case["case"]):
                 pool = case["pool"]
                 pref = _decode_pref(case["preference"])
+                if case.get("genre"):
+                    pref = retrieve.default_genre_preference([case["genre"]], pool)
                 rng = random.Random(case["seed"])
                 seq = [
                     retrieve.pull(pool, pref, rng)["id"]

@@ -59,18 +59,102 @@ export function seedMatchesGenre(seed: ClientSeed, genre: Genre): boolean {
 export const bundledSeeds = clientJson as ClientSeed[];
 
 /**
- * Uniform-random pick from the genre-matching pool, or throw. Shared by
- * StaticCoach and ByokCoach so both coaches select a seed identically — the
- * byok coach reshapes the same bare question StaticCoach would hand out.
+ * The random surface the seed drawer needs: uniform [0,1) draws plus a
+ * uniform pick from a sequence — the same surface seeds/retrieve.py's `pull`
+ * expects of its `rng` argument, so a seeded MT19937 can reproduce server
+ * draws exactly (see coach-pickseed tests). Production uses the
+ * Math.random-backed default.
  */
-export function pickSeed(seeds: ClientSeed[], genre: Genre): ClientSeed {
+export interface RngLike {
+  random(): number;
+  choice<T>(seq: T[]): T;
+}
+
+/** The default rng: plain Math.random — the pre-parity uniform drawer. */
+const MATH_RNG: RngLike = {
+  random: () => Math.random(),
+  choice: (seq) => seq[Math.floor(Math.random() * seq.length)],
+};
+
+/**
+ * Soft preference for pickSeed: prefer seeds whose verb is in `verbs`, with a
+ * two-stage draw at probability `p` (default 0.5). Mirrors the preference
+ * dict of seeds/retrieve.py's pull().
+ */
+export interface SeedPreference {
+  verbs?: string[];
+  p?: number;
+}
+
+/**
+ * Matched-pile size at which the soft-preference probability stops shrinking
+ * (FLOOR in seeds/retrieve.py).
+ */
+const PULL_FLOOR = 16;
+
+/**
+ * With an explicit `preference` (verbs set) it reproduces retrieve.py's
+ * pull(): a two-stage draw that with probability effective_p
+ * (min(p ?? 0.5, matched/16)) picks uniformly from the matched pile, else
+ * uniformly from its complement. The verbs-preference OVERRIDES the default
+ * genre stratification (folded OUT to avoid double-narrowing), mirroring the
+ * CLI where --lean-verbs wins over --genre's default.
+ *
+ * With no explicit preference, an internal default genre preference engages
+ * when the genre filter produced a genuinely mixed pool — at least one card
+ * strictly carries `genre` AND at least one matches only via the
+ * genre-agnostic wildcard. Then specific-genre cards claim first claim on half
+ * the draws (p 0.5, PULL_FLOOR shrink), matching retrieve.py's
+ * default_genre_preference. A single-group pool (all specific, or all
+ * agnostic-only) or a bare full-bank pull keeps the legacy uniform draw.
+ * `rng` is injectable for reproducible draws; it defaults to Math.random.
+ */
+export function pickSeed(
+  seeds: ClientSeed[],
+  genre: Genre,
+  preference?: SeedPreference,
+  rng: RngLike = MATH_RNG,
+): ClientSeed {
   const pool = seeds.filter((seed) => seedMatchesGenre(seed, genre));
   if (pool.length === 0) {
     throw new Error(`No seeds available for genre "${genre}".`);
   }
-  return pool[Math.floor(Math.random() * pool.length)];
+  if (preference && preference.verbs && preference.verbs.length > 0) {
+    const verbs = new Set(preference.verbs);
+    const matched = pool.filter((seed) => verbs.has(seed.verb ?? ''));
+    if (matched.length === 0) {
+      return rng.choice(pool);
+    }
+    const effectiveP = Math.min(preference.p ?? 0.5, matched.length / PULL_FLOOR);
+    if (rng.random() < effectiveP) {
+      return rng.choice(matched);
+    }
+    const matchedIds = new Set(matched.map((s) => s.id));
+    const complement = pool.filter((s) => !matchedIds.has(s.id));
+    if (complement.length === 0) {
+      return rng.choice(pool);
+    }
+    return rng.choice(complement);
+  }
+  // No explicit preference: default genre stratification over a mixed pool.
+  const specific = pool.filter((seed) => seed.genre.includes(genre));
+  const agnosticOnly = pool.filter(
+    (seed) => !seed.genre.includes(genre) && seed.genre.includes(GENRE_AGNOSTIC),
+  );
+  if (specific.length === 0 || agnosticOnly.length === 0) {
+    return rng.choice(pool);
+  }
+  const effectiveP = Math.min(0.5, specific.length / PULL_FLOOR);
+  if (rng.random() < effectiveP) {
+    return rng.choice(specific);
+  }
+  const specificIds = new Set(specific.map((s) => s.id));
+  const complement = pool.filter((s) => !specificIds.has(s.id));
+  if (complement.length === 0) {
+    return rng.choice(pool);
+  }
+  return rng.choice(complement);
 }
-
 export class StaticCoach implements Coach {
   private readonly seeds: ClientSeed[];
 
