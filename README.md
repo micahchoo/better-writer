@@ -1,44 +1,32 @@
 # Better Writer
 
-[![sweep demo](docs/assets/sweep.gif)](#the-sweep)
-
 An agent-backed Markdown editor that asks one sharp craft question about the
-text around your cursor — and never writes a word for you.
+text around your cursor. It never writes a word for you.
+
+[![sweep demo](docs/assets/sweep.gif)](#usage)
 
 ## Why
 
 Writing coaches help most when they ask instead of tell. Better Writer pins
-that idea to your text: it highlights the exact span a question is about, in
-your draft, beside your words. The model has one job — ask. It never drafts,
-never edits, never explains.
+that idea to your text: a question highlights the exact span it is about,
+inside your draft. The model has one job — ask. It never drafts, never edits,
+never explains.
 
 ## Features
 
-- **One question at a time** — ask when you want a fresh eye; the question
-  anchors to the block under your cursor.
-- **Sweep the whole draft** (local and BYOK modes) — the coach reads
-  non-overlapping 3-block windows and pins one note per window as answers
-  arrive.
-- **Click-to-open notes** — every sweep note paints a marker tint; click one
-  to read its question in a popover. One popover open at a time.
+- **One question at a time** — anchored to the block under your cursor.
+  **Sweep** walks the whole draft and pins one note per window.
 - **Seed bank of 1,757 craft questions** extracted verbatim from Le Guin's
   *Steering the Craft*, Stein's *Stein on Writing*, Alberts' *Showing &
   Telling*, and Hart's *Storycraft*.
-- **Ruler-guided pulls** — pure text measurements (dialogue density, sentence
-  rhythm, hedge and filter-word rates) softly steer which intervention verbs
-  the drawer prefers; the draw stays random inside the preferred pile.
-- **Mechanically gated model output** — a deterministic gate rejects anything
-  that is not a single grounded question, retries once with a reason-specific
-  nudge, then falls back to a topic probe.
-- **Local dictation** — press-to-talk with a local Parakeet speech model
-  (optional).
-- **Three modes, zero config to switch** — the client probes `/health` on
-  load, prefers a saved BYOK key, and picks static or local by itself.
-  **BYOK (bring your own key)** — paste an OpenAI-compatible provider key
-  in the top bar; the coach runs fully in your browser. Your key and prose
-  never touch a server we run.
-- **BYOK dictation** — with a speech-capable provider configured, the same
-  press-to-talk records straight to your provider's transcription endpoint.
+- **Ruler-guided pulls** — plain text measurements (dialogue density, sentence
+  rhythm, hedge-word rates) steer which intervention verbs the drawer prefers.
+  The draw stays random inside the preferred pile.
+- **Mechanically gated output** — a deterministic gate rejects anything that is
+  not a single grounded question; the model composes freely but commits
+  nothing.
+- **Three modes, zero config to switch** — static demo, local model, or your
+  own provider key (BYOK). Local dictation included.
 
 ![editor with an open note](docs/assets/editor.png)
 
@@ -50,13 +38,12 @@ cd better-writer
 npm install
 ```
 
-Requirements: Node 20+, npm. Local mode additionally needs any
-OpenAI-compatible completion server (llama.cpp, Ollama) on `127.0.0.1:8088`.
+Node 20+, npm. Full mode additionally needs any OpenAI-compatible completion
+server (llama.cpp, Ollama) on `127.0.0.1:8088`.
 
 ## Quickstart
 
-Static demo — no model, no server. The coach draws seed questions from the
-stratified drawer, verbatim; drafts persist in the browser:
+Static demo — no model, no server:
 
 ```bash
 npm run dev
@@ -69,33 +56,12 @@ one local model:
 npm start
 ```
 
-Then open http://127.0.0.1:4517. Write a few sentences, click **Ask now**,
-and answer by revising. With a model attached you can also click **Sweep
+Open http://127.0.0.1:4517. Put the caret in a paragraph, click **Ask now**,
+and answer by revising until the question stops being true. Click **Sweep
 draft** to pin notes across everything you wrote.
 
-## Usage
-
-### Ask about the text around your cursor
-
-1. Put the caret in the paragraph you want coaching on.
-2. Click **Ask now** (bottom panel).
-3. A highlight appears over the phrase the question is about; revise until it
-   stops being true, then dismiss.
-
-### Sweep the whole draft
-
-1. Click **Sweep draft**. The coach walks the draft in non-overlapping
-   3-block windows.
-2. Notes appear progressively — one highlight per window whose answer could
-   be anchored inside that window. Answers that never ground in their own
-   window are dropped silently.
-3. Click any tinted fragment to read its question; click again to close. The
-   ✕ button or **Clear notes** removes notes.
-
-Drafts and pinned notes save automatically, about a second after you stop
-typing. Local mode writes `data/drafts/current.md` and
-`data/annotations/current.json`; static mode writes your browser's
-localStorage. A failed save retries once, silently.
+Drafts save automatically about a second after you stop typing — local mode to
+`data/drafts/current.md`, static mode to browser localStorage.
 
 ## Configuration
 
@@ -106,20 +72,17 @@ localStorage. A failed save retries once, silently.
 | `BW_STT_MODEL_DIR` | — | Local Parakeet STT dir; dictation hidden without it |
 | `BW_HOST` / `BW_PORT` | `127.0.0.1` / `4517` | Bind address |
 
-BYOK needs no environment variable: configure it in the app's top bar. The
-key is stored in your browser only. Real environment variables win over a
-`.env` file — see `.env.example`.
+BYOK needs no environment variable: set it in the app's top bar. The key lives
+in your browser only.
 
 <details>
-<summary>How the three modes differ</summary>
+<summary>The three modes</summary>
 
 | | Static | Local | BYOK |
 |---|---|---|---|
 | Server | none | Hono + node:http on `4517` | none |
-| Question source | stratified random seed, verbatim | seed pulled by genre + verb lean, reshaped by the model | same drawer, picked in-browser, reshaped against your provider |
-| Anchoring | block under the cursor | longest distinctive-word match near the anchor policy tiers | same as local — runs in the browser |
+| Question source | stratified random seed, verbatim | seed pulled by genre + verb lean, reshaped by the model | same drawer in-browser, reshaped against your provider |
 | Draft storage | browser localStorage | `data/drafts/current.md` | browser localStorage |
-| Sweep button | hidden | available | available |
 | Dictation | hidden | Parakeet via `/transcribe` | provider `/audio/transcriptions` (openrouter: hidden) |
 
 </details>
@@ -127,22 +90,18 @@ key is stored in your browser only. Real environment variables win over a
 ## Development
 
 ```bash
-npm test           # full unit suite: gate, reshape, seed, drawer vectors,
-                   # window rulers, text-window, coach-sweep, editor, theme
+npm test           # full unit suite
 npm run typecheck  # tsc --noEmit
-npm run build      # static build to dist/ (relative paths, GitHub Pages ready)
+npm run build      # static build to dist/ (GitHub Pages ready)
 ```
 
-The architecture seams are documented in `CONTEXT.md`, and the decisions
-behind them in `docs/adr/` — start with `0005-model-output-mechanically-gated`
-and `0006-static-demo-mode-with-fake-coach`.
+The vocabulary lives in `CONTEXT.md`; the decisions in `docs/adr/`.
 
 ## Contributing
 
-Issues and pull requests welcome. Keep the discipline: local models only, no
-hosted APIs; the model composes freely but commits nothing; seed provenance
-never reaches the model or the page. Run `npm test && npm run typecheck`
-before opening a PR.
+Issues and pull requests welcome. Keep the discipline: local models only; the
+model composes freely but commits nothing; seed provenance never reaches the
+model or the page. Run `npm test && npm run typecheck` before opening a PR.
 
 ## License
 
