@@ -26,8 +26,13 @@ _Avoid_: category, type, mode
 A seed's provenance — `{ book, author, chapter, quote }`, the quote verbatim from the source book. The anti-hallucination anchor; never fed to the model and never surfaced to the writer.
 _Avoid_: citation, attribution, reference
 
+**Drawer**:
+The pull procedure shared by every coach mode: split the candidate pool into a preferred pile and the rest, draw from one pile by weighted coin (probability shrinks automatically when the preferred pile is thin), sample uniformly inside whichever pile wins. A uniform draw when nothing is preferred. Preference never eliminates candidates.
+_Avoid_: ranker, recommender, top-pick
+
 **Pull**:
-Fetch one seed whose genre list matches the chosen genre. A uniform random sample — never the top pick — so no single question becomes a favorite.
+Fetch one seed whose genre list matches the chosen genre, through the Drawer. Without further preference this is a stratified draw — specific-genre cards get first claim on half the draws, so a favorite can't emerge and narrow genres aren't drowned by genre-agnostic cards.
+_Avoid_: ranker, top-pick
 
 ### The text
 

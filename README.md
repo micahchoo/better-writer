@@ -21,9 +21,12 @@ never edits, never explains.
   arrive.
 - **Click-to-open notes** — every sweep note paints a marker tint; click one
   to read its question in a popover. One popover open at a time.
-- **Seed bank of 1,638 craft questions** extracted verbatim from Le Guin's
+- **Seed bank of 1,757 craft questions** extracted verbatim from Le Guin's
   *Steering the Craft*, Stein's *Stein on Writing*, Alberts' *Showing &
   Telling*, and Hart's *Storycraft*.
+- **Ruler-guided pulls** — pure text measurements (dialogue density, sentence
+  rhythm, hedge and filter-word rates) softly steer which intervention verbs
+  the drawer prefers; the draw stays random inside the preferred pile.
 - **Mechanically gated model output** — a deterministic gate rejects anything
   that is not a single grounded question, retries once with a reason-specific
   nudge, then falls back to a topic probe.
@@ -52,8 +55,8 @@ OpenAI-compatible completion server (llama.cpp, Ollama) on `127.0.0.1:8088`.
 
 ## Quickstart
 
-Static demo — no model, no server. The coach asks random seed questions
-verbatim; drafts persist in the browser:
+Static demo — no model, no server. The coach draws seed questions from the
+stratified drawer, verbatim; drafts persist in the browser:
 
 ```bash
 npm run dev
@@ -113,7 +116,7 @@ key is stored in your browser only. Real environment variables win over a
 | | Static | Local | BYOK |
 |---|---|---|---|
 | Server | none | Hono + node:http on `4517` | none |
-| Question source | random seed, verbatim | seed pulled by genre, reshaped by the model | seed picked in-browser, reshaped against your provider |
+| Question source | stratified random seed, verbatim | seed pulled by genre + verb lean, reshaped by the model | same drawer, picked in-browser, reshaped against your provider |
 | Anchoring | block under the cursor | longest distinctive-word match near the anchor policy tiers | same as local — runs in the browser |
 | Draft storage | browser localStorage | `data/drafts/current.md` | browser localStorage |
 | Sweep button | hidden | available | available |
@@ -124,7 +127,8 @@ key is stored in your browser only. Real environment variables win over a
 ## Development
 
 ```bash
-npm test           # unit suites: gate, reshape, seed, text-window, trigger, coach-sweep
+npm test           # full unit suite: gate, reshape, seed, drawer vectors,
+                   # window rulers, text-window, coach-sweep, editor, theme
 npm run typecheck  # tsc --noEmit
 npm run build      # static build to dist/ (relative paths, GitHub Pages ready)
 ```
