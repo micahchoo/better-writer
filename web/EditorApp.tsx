@@ -15,7 +15,7 @@ import {
   transcribeWavByok,
   type Provider,
 } from './byok'
-import { detectServerMode, isModelBacked, makeCoach, type Coach, type CoachMode } from './coach'
+import { detectServerMode, isModelBacked, makeCoach, mayAutoAsk, type Coach, type CoachMode } from './coach'
 import { createEditorAccess } from './editor-access'
 import CodeMirrorHost, { editorTheme } from './codemirror-host'
 import { highlightExtension } from './decorations'
@@ -325,10 +325,18 @@ if (changed) {
 
 // The shared cadence driver used by BOTH the content-change handler and the
 // 5 s poll. observe() is cheap and side-effect-free; firing is suppressed
-// while a sweep runs or the writer paused the Auto-ask toggle.
+// while a sweep runs, when the writer paused the Auto-ask toggle, or when the
+// mode bills the writer per ask (mayAutoAsk — the Auto-ask CHECKBOX is hidden
+// outside 'local', but hiding a control is not a gate: without this the timer
+// still fired in byok and spent the writer's tokens unprompted).
 const maybeFireCadence = (text: string) => {
  const phase = cadence.observe(text)
- if (phase === 'ready' && !sweepingRef.current && !cadencePausedRef.current) {
+ if (
+  phase === 'ready' &&
+  mayAutoAsk(modeRef.current) &&
+  !sweepingRef.current &&
+  !cadencePausedRef.current
+ ) {
   void askCursorWindow(text)
  }
 }

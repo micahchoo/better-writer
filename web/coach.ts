@@ -35,6 +35,22 @@ export function isModelBacked(mode: CoachMode | 'detecting'): boolean {
   return mode === 'local' || mode === 'byok';
 }
 
+/**
+ * Whether the cadence timer may fire an ask nobody clicked for.
+ *
+ * The rule is cost, not capability (ADR 0007): a background timer must never
+ * spend the writer's money. Static draws a bundled seed and local calls the
+ * writer's own server — both are free, so both may fire. BYOK bills the
+ * writer per call, so it never may; in that mode the writer asks by clicking
+ * Sweep draft. `'detecting'` has no coach yet and must not fire either.
+ *
+ * Static MUST stay allowed: it has no Sweep control, so the cadence timer is
+ * its only path to a question and the hosted demo goes inert without it.
+ */
+export function mayAutoAsk(mode: CoachMode | 'detecting'): boolean {
+  return mode === 'static' || mode === 'local';
+}
+
 export interface Coach {
   /** Ask for one craft question. `cursorOffset` is the caret offset in the
    * full draft; the local server receives it as `cursor_offset` (the client

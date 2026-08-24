@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { ClientSeed, Genre } from '../src/types'
-import { detectServerMode, makeCoach, seedMatchesGenre, StaticCoach } from './coach'
+import { detectServerMode, isModelBacked, makeCoach, mayAutoAsk, seedMatchesGenre, StaticCoach } from './coach'
 
 const fiction: ClientSeed = { id: 'f1', question: 'Fiction question?', genre: ['fiction'] }
 const agnostic: ClientSeed = { id: 'a1', question: 'Any genre question?', genre: ['genre-agnostic'] }
@@ -59,6 +59,30 @@ describe('StaticCoach', () => {
   it('throws a descriptive error when no seed matches the genre', async () => {
     const coach = new StaticCoach([fiction])
     await expect(coach.ask('ignored', 'poetry', 0)).rejects.toThrow(/poetry/)
+  })
+})
+
+describe('mayAutoAsk', () => {
+  it('never fires unprompted in byok — a timer must not spend the writer\'s tokens', () => {
+    expect(mayAutoAsk('byok')).toBe(false)
+  })
+
+  it('never fires before the mode is known', () => {
+    expect(mayAutoAsk('detecting')).toBe(false)
+  })
+
+  it('fires in the free modes', () => {
+    // Static MUST stay true: it has no Sweep control, so the cadence timer is
+    // its only path to a question and the hosted demo goes inert without it.
+    expect(mayAutoAsk('static')).toBe(true)
+    expect(mayAutoAsk('local')).toBe(true)
+  })
+
+  it('is narrower than isModelBacked — the two must never be confused', () => {
+    // The bug this guards: gating the timer on isModelBacked (or on nothing,
+    // trusting the hidden Auto-ask checkbox) lets byok fire unprompted.
+    expect(isModelBacked('byok')).toBe(true)
+    expect(mayAutoAsk('byok')).toBe(false)
   })
 })
 
