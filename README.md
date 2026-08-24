@@ -1,97 +1,147 @@
 # Better Writer
 
-A local-first Markdown editor whose only intelligence is the question it asks.
-It reads your paragraph through fixed measurements, picks one craft question
-that fits what the measurements say, and pins that question to your own
-sentences. It never writes, edits, or explains — you do all of it.
+You write. It asks you one question about what you just wrote. It never touches your words.
 
-[![sweep demo](docs/assets/sweep.gif)](#how-a-question-reaches-your-page)
+Here is a real question the app pinned to a real sentence, using the sample draft it ships with:
 
-## What makes it a product, not a chat box
+> **You wrote:**
+> My grandmother cooked with her wrists, not her hands. She lifted the heavy iron skillet with a flick that looked careless and set it on the burner as if it weighed nothing.
+>
+> **It asked:**
+> When you describe her lifting the heavy iron skillet with a flick that "looked careless," does that detail serve the credibility of her skill, or is it simply decorative?
 
-Three guarantees, enforced by code rather than intention:
+The question stays attached to your sentence until you dismiss it. There is no chat window, no suggested rewrite, no "here is a better version." You do all the writing.
 
-1. **The model asks, nothing else.** Every reply must pass a mechanical gate:
-   exactly one question, grounded in your text, ending in `?`. Failure means
-   one corrective retry, then a fixed fallback probe. A question reaches you
-   only after that gate.
-2. **Selection is measured, not vibes.** Six rulers run over your paragraph —
-   dialogue density, sentence-length variance, hedge-word rate, filter-verb
-   rate, nominalization load, position inside the section. They steer which
-   *kind* of question gets drawn: hedge-storms lean toward trim questions,
-   quote-heavy scenes toward scene-and-dialogue ones.
-3. **The draw stays honest.** Whatever pile the rulers prefer, the card comes
-   out of it by uniform shuffle. No ranking, no favorites, no repeated pet
-   advice — narrowing changes *which shelf*, never *which card*.
+**[Try it in your browser →](https://micahchoo.github.io/better-writer/)** No install, no account, no key.
 
-## Where the questions come from
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/editor-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/editor-light.png">
+  <img src="docs/assets/editor-light.png" alt="The editor with one question pinned to the phrase 'heavy iron skillet'">
+</picture>
 
-1,757 cards distilled verbatim from four craft books — Ursula K. Le Guin's
-*Steering the Craft*, Sol Stein's *Stein on Writing*, Laurie Alberts'
-*Showing & Telling*, Jack Hart's *Storycraft*. Each card carries its source
-quote for auditing; neither the quote nor the book's name ever reaches the
-model or your screen.
+## What it never does
 
-## Three ways to run it
+- It never writes a sentence for you.
+- It never edits your draft.
+- It never explains itself or gives advice.
+- It never sends your writing to a company. Your draft stays on your machine.
 
-| | Static | Local | Bring your own key |
-|---|---|---|---|
-| Intelligence | none — draws cards verbatim | one local model reshapes each card against your words | your OpenAI-compatible provider does, in your browser |
-| Draft storage | browser localStorage | `data/drafts/current.md` | browser localStorage |
-| Needs | nothing | llama.cpp / Ollama on `127.0.0.1:8088` | a provider key, set in the top bar |
+These are not polite instructions in a prompt. The app can only display one question. Anything else the model produces is thrown away.
 
-The client probes and picks a mode by itself. Dictation ships too — Parakeet
-locally, or your provider's transcription endpoint when a key supports it.
+## Installation
 
-## Run it
+You need [Node](https://nodejs.org) 20 or later.
 
 ```bash
 git clone https://github.com/micahchoo/better-writer.git
 cd better-writer
 npm install
+npm run dev
 ```
 
-Node 20+. Then either:
+Open the address the terminal prints. This is the same demo as the link above: no model, no setup.
 
-```bash
-npm run dev    # static demo, no model needed
-```
+To get questions written in your own words, you need a model. See [Choose how it thinks](#choose-how-it-thinks).
 
-or, with a completion server running locally:
+## Getting started
+
+The app opens on an empty page.
+
+1. Click **Load a sample draft** if you want prose to try it on. Or start typing your own.
+2. Keep writing. After about 30 new words and a 20-second pause, one question appears, attached to a sentence.
+3. Click any highlighted phrase to read its question.
+4. Revise until the question is no longer true, then click **Resolved** to dismiss it.
+
+To question a whole draft at once, click **Sweep draft**. It walks the document one window at a time and pins a question to each. **Clear notes** removes them all.
+
+![A sweep running: the sample draft loads, then questions appear one window at a time](docs/assets/sweep.gif)
+
+Set **asking as** to your genre — fiction, creative-nonfiction, memoir, essay, poetry, or genre-agnostic. It changes which questions you are asked.
+
+> [!NOTE]
+> **Sweep draft** and the **Auto-ask** switch need a model, so they only appear when one is connected. In the no-model demo, questions still arrive on their own after a pause.
+
+## Choose how it thinks
+
+| | No model | Your own model | Your own key |
+|---|---|---|---|
+| **What you get** | A craft question, word for word from the book it came from | The same question, rewritten to quote your actual sentences | The same, through a provider you pay for |
+| **You need** | Nothing | A model server on your machine | An API key |
+| **Your draft is saved** | In your browser | To `data/drafts/current.md` | In your browser |
+
+The app detects which one it can use and switches by itself.
+
+**Your own model.** Run [llama.cpp](https://github.com/ggml-org/llama.cpp) or [Ollama](https://ollama.com) on `127.0.0.1:8088`, then:
 
 ```bash
 npm start      # serves http://127.0.0.1:4517
 ```
 
-Put the caret in a paragraph and click **Ask now**. Revise until the pinned
-question stops being true, dismiss it. **Sweep draft** repeats that across the
-whole document, window by window.
+**Your own key.** Click the key icon in the top bar and enter your provider, model, and key. It stays in your browser and goes only to the provider you named.
 
-Configuration lives in environment variables (`BW_LLM_BASE_URL`,
-`BW_LLM_MODEL`, `BW_HOST`, `BW_PORT`, `BW_STT_MODEL_DIR`) — see
-[`.env.example`](.env.example).
+Dictation works in both: locally through Parakeet, or through your provider's transcription endpoint.
 
-![editor with an open note](docs/assets/editor.png)
+## Where the questions come from
 
-## Under the hood
+1,757 questions, taken word for word from four books on writing craft:
 
-- Editor substrate: [CodeMirror 6](docs/adr/0008-cm6-editor-substrate.md), the
-  fork decision in [ADR 0003](docs/adr/0003-buffertab-fork-storage-and-cm6-seam.md).
-- The rulers, drawer, gate, and seed vocabulary are documented in
-  [`CONTEXT.md`](CONTEXT.md); the decisions behind them in `docs/adr/`.
+| Book | Author | Questions |
+|---|---|---|
+| *Stein on Writing* | Sol Stein | 792 |
+| *Storycraft* | Jack Hart | 387 |
+| *Showing & Telling* | Laurie Alberts | 345 |
+| *Steering the Craft* | Ursula K. Le Guin | 233 |
+
+Every question carries the sentence from the book that produced it. That quote is there so the question can be checked against its source. It is never shown to you and never sent to the model, so no book gets to advertise itself in your margin.
+
+<details>
+<summary>How one question gets chosen</summary>
+
+The app measures your paragraph before it picks. Seven signals can fire: how much of it is dialogue, whether every sentence runs the same length, how many hedges and `-ly` adverbs it carries, how often you write *felt*, *seemed*, or *noticed*, how heavy the abstract nouns are, and whether the paragraph opens or closes its section.
+
+Those signals lean the choice toward a kind of question. A paragraph full of hedges leans toward questions about cutting. A scene thick with quotes leans toward questions about dialogue.
+
+The lean changes which group it draws from. Inside that group, the draw is even. No question is ranked above another, so the app cannot develop a favorite and repeat it at you.
+
+The model then rewrites the drawn question to quote your sentences. Its output has to pass a check before you see it: one line, one question mark, no lists, and it must quote your words rather than parrot them back. If the output fails, the model gets one more try. If it fails again, you get a fixed question instead, marked as such.
+
+The full vocabulary is in [CONTEXT.md](CONTEXT.md); the decisions behind it are in [docs/adr/](docs/adr/).
+
+</details>
+
+## Settings
+
+Copy [`.env.example`](.env.example) to `.env` and edit it.
+
+| Variable | Default | What it does |
+|---|---|---|
+| `BW_LLM_BASE_URL` | `http://127.0.0.1:8088/v1` | Your local model endpoint |
+| `BW_LLM_MODEL` | `bonsai-27b` | Which model to ask |
+| `BW_HOST` | `127.0.0.1` | Address the server binds to |
+| `BW_PORT` | `4517` | Port the server binds to |
+| `BW_STT_MODEL_DIR` | unset | Parakeet folder; dictation is off without it |
+
+## Development
 
 ```bash
-npm test           # full unit suite, including drawer vectors and rulers
+npm test           # unit suite
 npm run typecheck  # tsc --noEmit
-npm run build      # static build to dist/ (GitHub Pages ready)
+npm run build      # static build into dist/
 ```
+
+The editor is built on [CodeMirror 6](docs/adr/0008-cm6-editor-substrate.md). Every architectural decision has a short record in [docs/adr/](docs/adr/).
 
 ## Contributing
 
-Issues and pull requests welcome. The rules are short: local models only; the
-model never commits anything; seed provenance stays invisible. Run
-`npm test && npm run typecheck` before opening a PR.
+Issues and pull requests are welcome. Three rules hold:
+
+- The model runs on the writer's machine or on their own key. Never ours.
+- The model never writes into the draft.
+- A book's name and quotes never reach the writer or the model.
+
+Run `npm test && npm run typecheck` before you open a pull request.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
