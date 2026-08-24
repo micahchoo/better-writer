@@ -25,6 +25,9 @@ Books/
 # chunked/transcribed chapters derived from source material - intermediate
 # extraction state; the committable output is the curated seeds/ pairs
 extract/chunks/
+# local pdftotext extractions of the books (full copyrighted text stays out)
+scripts/experiment/out/le-guin-2015-full.txt
+scripts/experiment/out/le-guin-2015-extract.md
 
 # vendored third-party tooling (its own repo)
 opendataloader-pdf/
