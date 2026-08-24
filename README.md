@@ -1,36 +1,49 @@
 # Better Writer
 
-An agent-backed Markdown editor that asks one sharp craft question about the
-text around your cursor. It never writes a word for you.
+A local-first Markdown editor whose only intelligence is the question it asks.
+It reads your paragraph through fixed measurements, picks one craft question
+that fits what the measurements say, and pins that question to your own
+sentences. It never writes, edits, or explains — you do all of it.
 
-[![sweep demo](docs/assets/sweep.gif)](#usage)
+[![sweep demo](docs/assets/sweep.gif)](#how-a-question-reaches-your-page)
 
-## Why
+## What makes it a product, not a chat box
 
-Writing coaches help most when they ask instead of tell. Better Writer pins
-that idea to your text: a question highlights the exact span it is about,
-inside your draft. The model has one job — ask. It never drafts, never edits,
-never explains.
+Three guarantees, enforced by code rather than intention:
 
-## Features
+1. **The model asks, nothing else.** Every reply must pass a mechanical gate:
+   exactly one question, grounded in your text, ending in `?`. Failure means
+   one corrective retry, then a fixed fallback probe. A question reaches you
+   only after that gate.
+2. **Selection is measured, not vibes.** Six rulers run over your paragraph —
+   dialogue density, sentence-length variance, hedge-word rate, filter-verb
+   rate, nominalization load, position inside the section. They steer which
+   *kind* of question gets drawn: hedge-storms lean toward trim questions,
+   quote-heavy scenes toward scene-and-dialogue ones.
+3. **The draw stays honest.** Whatever pile the rulers prefer, the card comes
+   out of it by uniform shuffle. No ranking, no favorites, no repeated pet
+   advice — narrowing changes *which shelf*, never *which card*.
 
-- **One question at a time** — anchored to the block under your cursor.
-  **Sweep** walks the whole draft and pins one note per window.
-- **Seed bank of 1,757 craft questions** extracted verbatim from Le Guin's
-  *Steering the Craft*, Stein's *Stein on Writing*, Alberts' *Showing &
-  Telling*, and Hart's *Storycraft*.
-- **Ruler-guided pulls** — plain text measurements (dialogue density, sentence
-  rhythm, hedge-word rates) steer which intervention verbs the drawer prefers.
-  The draw stays random inside the preferred pile.
-- **Mechanically gated output** — a deterministic gate rejects anything that is
-  not a single grounded question; the model composes freely but commits
-  nothing.
-- **Three modes, zero config to switch** — static demo, local model, or your
-  own provider key (BYOK). Local dictation included.
+## Where the questions come from
 
-![editor with an open note](docs/assets/editor.png)
+1,757 cards distilled verbatim from four craft books — Ursula K. Le Guin's
+*Steering the Craft*, Sol Stein's *Stein on Writing*, Laurie Alberts'
+*Showing & Telling*, Jack Hart's *Storycraft*. Each card carries its source
+quote for auditing; neither the quote nor the book's name ever reaches the
+model or your screen.
 
-## Installation
+## Three ways to run it
+
+| | Static | Local | Bring your own key |
+|---|---|---|---|
+| Intelligence | none — draws cards verbatim | one local model reshapes each card against your words | your OpenAI-compatible provider does, in your browser |
+| Draft storage | browser localStorage | `data/drafts/current.md` | browser localStorage |
+| Needs | nothing | llama.cpp / Ollama on `127.0.0.1:8088` | a provider key, set in the top bar |
+
+The client probes and picks a mode by itself. Dictation ships too — Parakeet
+locally, or your provider's transcription endpoint when a key supports it.
+
+## Run it
 
 ```bash
 git clone https://github.com/micahchoo/better-writer.git
@@ -38,70 +51,46 @@ cd better-writer
 npm install
 ```
 
-Node 20+, npm. Full mode additionally needs any OpenAI-compatible completion
-server (llama.cpp, Ollama) on `127.0.0.1:8088`.
-
-## Quickstart
-
-Static demo — no model, no server:
+Node 20+. Then either:
 
 ```bash
-npm run dev
+npm run dev    # static demo, no model needed
 ```
 
-Full mode — build, serve, and reshape each seed against your live text with
-one local model:
+or, with a completion server running locally:
 
 ```bash
-npm start
+npm start      # serves http://127.0.0.1:4517
 ```
 
-Open http://127.0.0.1:4517. Put the caret in a paragraph, click **Ask now**,
-and answer by revising until the question stops being true. Click **Sweep
-draft** to pin notes across everything you wrote.
+Put the caret in a paragraph and click **Ask now**. Revise until the pinned
+question stops being true, dismiss it. **Sweep draft** repeats that across the
+whole document, window by window.
 
-Drafts save automatically about a second after you stop typing — local mode to
-`data/drafts/current.md`, static mode to browser localStorage.
+Configuration lives in environment variables (`BW_LLM_BASE_URL`,
+`BW_LLM_MODEL`, `BW_HOST`, `BW_PORT`, `BW_STT_MODEL_DIR`) — see
+[`.env.example`](.env.example).
 
-## Configuration
+![editor with an open note](docs/assets/editor.png)
 
-| Variable | Default | What it does |
-|---|---|---|
-| `BW_LLM_BASE_URL` | `http://127.0.0.1:8088/v1` | OpenAI-compatible endpoint |
-| `BW_LLM_MODEL` | `bonsai-27b` | Model id |
-| `BW_STT_MODEL_DIR` | — | Local Parakeet STT dir; dictation hidden without it |
-| `BW_HOST` / `BW_PORT` | `127.0.0.1` / `4517` | Bind address |
+## Under the hood
 
-BYOK needs no environment variable: set it in the app's top bar. The key lives
-in your browser only.
-
-<details>
-<summary>The three modes</summary>
-
-| | Static | Local | BYOK |
-|---|---|---|---|
-| Server | none | Hono + node:http on `4517` | none |
-| Question source | stratified random seed, verbatim | seed pulled by genre + verb lean, reshaped by the model | same drawer in-browser, reshaped against your provider |
-| Draft storage | browser localStorage | `data/drafts/current.md` | browser localStorage |
-| Dictation | hidden | Parakeet via `/transcribe` | provider `/audio/transcriptions` (openrouter: hidden) |
-
-</details>
-
-## Development
+- Editor substrate: [CodeMirror 6](docs/adr/0008-cm6-editor-substrate.md), the
+  fork decision in [ADR 0003](docs/adr/0003-buffertab-fork-storage-and-cm6-seam.md).
+- The rulers, drawer, gate, and seed vocabulary are documented in
+  [`CONTEXT.md`](CONTEXT.md); the decisions behind them in `docs/adr/`.
 
 ```bash
-npm test           # full unit suite
+npm test           # full unit suite, including drawer vectors and rulers
 npm run typecheck  # tsc --noEmit
 npm run build      # static build to dist/ (GitHub Pages ready)
 ```
 
-The vocabulary lives in `CONTEXT.md`; the decisions in `docs/adr/`.
-
 ## Contributing
 
-Issues and pull requests welcome. Keep the discipline: local models only; the
-model composes freely but commits nothing; seed provenance never reaches the
-model or the page. Run `npm test && npm run typecheck` before opening a PR.
+Issues and pull requests welcome. The rules are short: local models only; the
+model never commits anything; seed provenance stays invisible. Run
+`npm test && npm run typecheck` before opening a PR.
 
 ## License
 
