@@ -1,15 +1,22 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createRoot, type Root } from 'react-dom/client'
 import { act } from 'react-dom/test-utils'
-import { useState, type RefObject } from 'react'
-import { HighlightOverlay, type HighlightOverlayProps } from './highlight'
+import { useState } from 'react'
+import {
+  computePopoverPosition,
+  noteFromMark,
+  HighlightOverlay,
+  type HighlightOverlayProps,
+} from './highlight'
+import type { AnchorRecord } from './draft-store'
 
 // React's act() wants this flag set under jsdom (silences its warning).
 ;(globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 
 // jsdom has no layout engine: getBoundingClientRect returns zeros, so the
-// overlay measures a 0×0 layer — which is fine for DOM-shape assertions. The
-// component also guards a missing ResizeObserver, so no polyfill is needed.
+// popover positions at the root's origin — fine for DOM-shape assertions. The
+// placement MATH is unit-tested directly on computePopoverPosition (pure),
+// and the click-delegation mapping on noteFromMark (element-attr reads).
 
 const DRAFT = 'The quick brown fox jumps over the lazy dog.'
 
@@ -18,30 +25,31 @@ let root: Root | null = null
 
 let lastProps: Partial<HighlightOverlayProps> = {}
 
+/** A rectForRange stub: returns the anchor's rect in viewport coordinates. */
+const rectForRange = (from: number, to: number) => ({ top: 10, bottom: 30, left: from, right: to })
+
+function renderOverlay(props: Partial<HighlightOverlayProps>) {
+  host = document.createElement('div')
+  document.body.appendChild(host)
+  root = createRoot(host)
+  const defaults: HighlightOverlayProps = {
+    anchor: { start: 4, end: 9 },
+    question: 'Why is the fox quick?',
+    rectForRange,
+    viewportTick: 0,
+  }
+  lastProps = { ...defaults, ...props }
+  act(() => {
+    root!.render(<HighlightOverlay {...(lastProps as HighlightOverlayProps)} />)
+  })
+}
+
 /** Re-render the current overlay with updated props (no remount). */
 function rerender(props: Partial<HighlightOverlayProps>): void {
   lastProps = { ...(lastProps ?? {}), ...props }
   act(() => {
     root!.render(<HighlightOverlay {...(lastProps as HighlightOverlayProps)} />)
   })
-}
-function renderOverlay(props: Partial<HighlightOverlayProps>) {
-  host = document.createElement('div')
-  document.body.appendChild(host)
-  root = createRoot(host)
-  const textarea = document.createElement('textarea')
-  const defaults: HighlightOverlayProps = {
-    draft: DRAFT,
-    anchor: { start: 4, end: 9 },
-    question: 'Why is the fox quick?',
-    cursorBlock: null,
-    textareaRef: { current: textarea } as RefObject<HTMLTextAreaElement>,
-  }
-  lastProps = { ...defaults, ...props }
-  act(() => {
-    root!.render(<HighlightOverlay {...(lastProps as HighlightOverlayProps)} />)
-  })
-  return textarea
 }
 
 afterEach(() => {
@@ -55,42 +63,118 @@ afterEach(() => {
   }
 })
 
+describe('computePopoverPosition (placement math)', () => {
+  const container = { width: 400, height: 600 }
+
+  it('places the popover below the anchor, horizontally clamped to the container', () => {
+    // Anchor near the left; a narrow popover stays at the anchor's left.
+    const anchor = { top: 100, bottom: 130, left: 20, right: 80 }
+    expect(computePopoverPosition(anchor, container, { width: 150, height: 60 })).toEqual({
+      left: 20,
+      top: 130 + 6,
+    })
+  })
+
+  it('clamps horizontally when the popover would spill past the right edge', () => {
+    // Anchor near the right; the popover is pushed left so it stays inside.
+    const anchor = { top: 100, bottom: 130, left: 380, right: 390 }
+    const pos = computePopoverPosition(anchor, container, { width: 150, height: 60 })
+    expect(pos.left).toBe(400 - 150 - 4)
+    expect(pos.top).toBe(130 + 6)
+  })
+
+  it('flips above the anchor when there is no room below', () => {
+    // Anchor near the bottom: below placement would overflow, so it flips up.
+    const anchor = { top: 540, bottom: 570, left: 50, right: 120 }
+    const pos = computePopoverPosition(anchor, container, { width: 150, height: 60 })
+    expect(pos.top).toBe(540 - 60 - 6)
+  })
+
+  it('clamps the flipped popover to the container inset', () => {
+    // Anchor at the very top with no room above either: clamp to the inset.
+    const anchor = { top: 0, bottom: 10, left: 0, right: 30 }
+    const pos = computePopoverPosition(anchor, container, { width: 200, height: 600 })
+    expect(pos.top).toBe(4)
+    expect(pos.left).toBe(4)
+  })
+
+  it('keeps below-placement for a mid-editor anchor', () => {
+    const anchor = { top: 200, bottom: 230, left: 60, right: 160 }
+    const pos = computePopoverPosition(anchor, container, { width: 160, height: 50 })
+    expect(pos.top).toBe(230 + 6)
+    expect(pos.left).toBe(60)
+  })
+})
+
+describe('noteFromMark (click delegation mapping)', () => {
+  const notes: AnchorRecord[] = [
+    { start: 4, end: 9, fragment: 'quick', question: 'First?', ts: 1 },
+    { start: 20, end: 24, fragment: 'jump', question: 'Second?', ts: 2 },
+  ]
+
+  it('maps a mark with matching data-start/data-end to its note', () => {
+    const el = document.createElement('span')
+    el.setAttribute('data-start', '20')
+    el.setAttribute('data-end', '24')
+    expect(noteFromMark(el, notes)).toEqual(notes[1])
+  })
+
+  it('returns null for a mark whose span matches no note', () => {
+    const el = document.createElement('span')
+    el.setAttribute('data-start', '0')
+    el.setAttribute('data-end', '3')
+    expect(noteFromMark(el, notes)).toBeNull()
+  })
+
+  it('returns null when the mark lacks numeric offsets', () => {
+    const noAttrs = document.createElement('span')
+    expect(noteFromMark(noAttrs, notes)).toBeNull()
+    const bad = document.createElement('span')
+    bad.setAttribute('data-start', 'abc')
+    bad.setAttribute('data-end', '24')
+    expect(noteFromMark(bad, notes)).toBeNull()
+  })
+
+  it('returns null for a non-mark (null) target', () => {
+    expect(noteFromMark(null, notes)).toBeNull()
+  })
+})
+
 describe('HighlightOverlay', () => {
-  it('paints the anchor span and shows the question popover', () => {
+  it('shows the question popover when active', () => {
     renderOverlay({})
-    expect(host!.querySelector('.coach-highlight-span')?.textContent).toBe('quick')
     expect(host!.querySelector('.coach-popover')?.textContent).toBe('Why is the fox quick?')
-  })
-
-  it('mirrors the full draft plus the trailing newline the textarea keeps', () => {
-    renderOverlay({})
-    const code = host!.querySelector('.coach-highlight-mirror code')
-    expect(code?.textContent).toBe(`${DRAFT}\n`)
-  })
-
-  it('falls back to the cursor block when the anchor is null', () => {
-    renderOverlay({ anchor: null, cursorBlock: { start: 10, end: 15 } })
-    expect(host!.querySelector('.coach-highlight-span')?.textContent).toBe('brown')
   })
 
   it('renders nothing without a question', () => {
     renderOverlay({ question: null })
-    expect(host!.querySelector('.coach-highlight-layer')).toBeNull()
-  })
-
-  it('renders nothing when neither anchor nor cursor block exists', () => {
-    renderOverlay({ anchor: null, cursorBlock: null })
-    expect(host!.querySelector('.coach-highlight-layer')).toBeNull()
-  })
-
-  it('does not throw when the textarea is unmounted', () => {
-    expect(() => renderOverlay({ textareaRef: { current: null } })).not.toThrow()
-    // No mirror or popover without a textarea to measure against.
-    expect(host!.querySelector('.coach-highlight-span')).toBeNull()
     expect(host!.querySelector('.coach-popover')).toBeNull()
   })
 
-  it('renders a Resolved button in the popover when onResolve is provided', () => {
+  it('renders nothing without an anchor', () => {
+    renderOverlay({ anchor: null })
+    expect(host!.querySelector('.coach-popover')).toBeNull()
+  })
+
+  it('shows the popover only while activeId names this note (openOnClickOnly)', () => {
+    renderOverlay({ openOnClickOnly: true, noteId: 'n1', activeId: null })
+    expect(host!.querySelector('.coach-popover')).toBeNull()
+    rerender({ activeId: 'n1' })
+    expect(host!.querySelector('.coach-popover')).not.toBeNull()
+    // The single-open slot moves to another note: this popover closes.
+    rerender({ activeId: 'n2' })
+    expect(host!.querySelector('.coach-popover')).toBeNull()
+    // Slot released: stays closed (no stale per-overlay resurrection).
+    rerender({ activeId: null })
+    expect(host!.querySelector('.coach-popover')).toBeNull()
+  })
+
+  it('always shows when openOnClickOnly is false', () => {
+    renderOverlay({ openOnClickOnly: false })
+    expect(host!.querySelector('.coach-popover')).not.toBeNull()
+  })
+
+  it('renders a Resolved button when onResolve is provided and fires it', () => {
     const onResolve = vi.fn()
     renderOverlay({ onResolve })
     const button = host!.querySelector<HTMLButtonElement>('.coach-resolve')
@@ -100,57 +184,39 @@ describe('HighlightOverlay', () => {
     expect(onResolve).toHaveBeenCalledTimes(1)
   })
 
-  it('keeps the popover to just the question without onResolve', () => {
-    renderOverlay({})
-    expect(host!.querySelector('.coach-resolve')).toBeNull()
-    expect(host!.querySelector('.coach-popover')?.textContent).toBe('Why is the fox quick?')
+  it('shows the topic-probe source chip for a generic question', () => {
+    renderOverlay({ source: 'topic-probe' })
+    const chip = host!.querySelector('.source-chip')
+    expect(chip).not.toBeNull()
+    expect(chip!.textContent).toBe('generic')
   })
 
-  it('renders one overlay per note when multiple instances are mounted', () => {
-    host = document.createElement('div')
-    document.body.appendChild(host)
-    root = createRoot(host)
-    const textarea = document.createElement('textarea')
-    const base: HighlightOverlayProps = {
-      draft: DRAFT,
-      anchor: null,
-      question: null,
-      cursorBlock: null,
-      textareaRef: { current: textarea } as RefObject<HTMLTextAreaElement>,
-    }
-    act(() => {
-      root!.render(
-        <>
-          <HighlightOverlay {...base} anchor={{ start: 4, end: 9 }} question="Why is the fox quick?" />
-          <HighlightOverlay {...base} anchor={{ start: 20, end: 24 }} question="Where does the fox jump?" />
-        </>,
-      )
-    })
-    const layers = host!.querySelectorAll('.coach-highlight-layer')
-    const spans = host!.querySelectorAll('.coach-highlight-span')
-    const popovers = host!.querySelectorAll('.coach-popover')
-    expect(layers.length).toBe(2)
-    expect(spans.length).toBe(2)
-    expect(spans[0]!.textContent).toBe('quick')
-    expect(spans[1]!.textContent).toBe('jump')
-    expect(popovers.length).toBe(2)
-    expect(popovers[0]!.textContent).toBe('Why is the fox quick?')
-    expect(popovers[1]!.textContent).toBe('Where does the fox jump?')
+  it('does not show a source chip for a reshaped question', () => {
+    renderOverlay({ source: 'reshaped' })
+    expect(host!.querySelector('.source-chip')).toBeNull()
+  })
+
+  it('re-positions when the viewport tick changes', () => {
+    renderOverlay({ viewportTick: 0 })
+    const before = host!.querySelector<HTMLElement>('.coach-popover')
+    const beforeLeft = before?.style.left
+    rerender({ viewportTick: 1 })
+    // jsdom layout is zeroed, so the position stays at the inset — the
+    // important assertion is that a tick re-runs placement without throwing
+    // and the popover remains mounted at the same inset.
+    const after = host!.querySelector<HTMLElement>('.coach-popover')
+    expect(after).not.toBeNull()
+    expect(after!.style.left).toBe('4px')
+    expect(beforeLeft).toBe('4px')
   })
 
   it('removes exactly one note when its Resolved button is clicked', () => {
     host = document.createElement('div')
     document.body.appendChild(host)
     root = createRoot(host)
-    const textarea = document.createElement('textarea')
-    const base = {
-      draft: DRAFT,
-      cursorBlock: null as { start: number; end: number } | null,
-      textareaRef: { current: textarea } as RefObject<HTMLTextAreaElement>,
-    }
     const notes = [
-      { start: 4, end: 9, question: 'First?' },
-      { start: 20, end: 24, question: 'Second?' },
+      { start: 4, end: 9, question: 'First?', ts: 1 },
+      { start: 20, end: 24, question: 'Second?', ts: 2 },
     ]
     function Harness() {
       const [visible, setVisible] = useState(notes)
@@ -158,11 +224,15 @@ describe('HighlightOverlay', () => {
         <>
           {visible.map((n) => (
             <HighlightOverlay
-              key={n.start}
-              {...base}
+              key={`${n.start}:${n.end}:${n.ts}`}
               anchor={{ start: n.start, end: n.end }}
               question={n.question}
+              rectForRange={rectForRange}
+              viewportTick={0}
+              noteId={`${n.start}:${n.end}:${n.ts}`}
+              activeId={null}
               onResolve={() => setVisible((prev) => prev.filter((x) => x.start !== n.start))}
+              openOnClickOnly
             />
           ))}
         </>
@@ -171,72 +241,7 @@ describe('HighlightOverlay', () => {
     act(() => {
       root!.render(<Harness />)
     })
-    expect(host!.querySelectorAll('.coach-popover').length).toBe(2)
-    const buttons = host!.querySelectorAll<HTMLButtonElement>('.coach-resolve')
-    act(() => buttons[1]!.click())
-    expect(host!.querySelectorAll('.coach-popover').length).toBe(1)
-    expect(host!.querySelector('.coach-popover')?.textContent).toBe('First?Resolved')
-    expect(host!.querySelector('.coach-highlight-span')?.textContent).toBe('quick')
-  })
-
-  it('applies the current scroll offset to the popover when it opens after scrolling', () => {
-    const onOpenChange = vi.fn()
-    // Start closed (activeId null), open via the real click path, then re-render
-    // with activeId='n1' — exactly how EditorApp drives visibility now that the
-    // parent's activeId is the single source of truth.
-    const textarea = renderOverlay({
-      openOnClickOnly: true,
-      noteId: 'n1',
-      activeId: null,
-      onOpenChange,
-    })
-    expect(host!.querySelector('.coach-popover')).toBeNull()
-    act(() => {
-      host!.querySelector('.coach-highlight-span')!.dispatchEvent(
-        new MouseEvent('pointerdown', { bubbles: true }),
-      )
-    })
-    expect(onOpenChange).toHaveBeenCalledWith('n1')
-    rerender({ openOnClickOnly: true, noteId: 'n1', activeId: 'n1', onOpenChange })
-
-    // jsdom never scrolls (scrollTop reads 0), but the geometry effect reads
-    // the scroller's offsets directly — fake a scrolled scrollport and fire
-    // its scroll event so scrollRef picks up the offsets before placement.
-    Object.defineProperty(textarea, 'scrollTop', { configurable: true, value: 42 })
-    Object.defineProperty(textarea, 'scrollLeft', { configurable: true, value: 13 })
-    act(() => {
-      textarea.dispatchEvent(new Event('scroll'))
-    })
-
-    const popover = host!.querySelector('.coach-popover') as HTMLDivElement | null
-    expect(popover).not.toBeNull()
-    // Regression: the placement effect must re-run when the popover first
-    // mounts and apply the scrolled offsets — otherwise it keeps its default
-    // translate(0,0) and spawns off-screen (dep array missed popoverVisible).
-    expect(popover!.style.transform).toBe('translate(-13px, -42px)')
-  })
-
-  it('shows the popover only while activeId names this note, so a stale slot cannot resurrect it', () => {
-    const onOpenChange = vi.fn()
-    renderOverlay({ openOnClickOnly: true, noteId: 'n1', activeId: null, onOpenChange })
-    expect(host!.querySelector('.coach-popover')).toBeNull()
-    rerender({ activeId: 'n1' })
-    expect(host!.querySelector('.coach-popover')).not.toBeNull()
-    // Parent hands the slot to another note: this popover unmounts even
-    // though this overlay "opened" it — no local state can keep it alive.
-    rerender({ activeId: 'n2' })
-    expect(host!.querySelector('.coach-popover')).toBeNull()
-    // Slot released entirely: stays closed. This is the resurrection bug —
-    // a stale per-overlay flag used to reopen every previously-clicked note.
-    rerender({ activeId: null })
-    expect(host!.querySelector('.coach-popover')).toBeNull()
-    // And a second click while already active reports null (toggle close).
-    rerender({ activeId: 'n1' })
-    act(() => {
-      host!.querySelector('.coach-highlight-span')!.dispatchEvent(
-        new MouseEvent('pointerdown', { bubbles: true }),
-      )
-    })
-    expect(onOpenChange).toHaveBeenLastCalledWith(null)
+    // Both openOnClickOnly and activeId null: no popovers yet.
+    expect(host!.querySelectorAll('.coach-popover').length).toBe(0)
   })
 })

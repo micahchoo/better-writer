@@ -5,57 +5,80 @@
    coach speaks in an editorial serif (Newsreader).
    Token primitives: surface (bg / card / control), four text tiers worth of
    separation, border progression, ONE accent (terracotta), semantic danger +
-   marker. Every component value below traces back to these. */
+   marker. Every component value below traces back to these.
+
+   Theme model: every color is a custom property. :root carries the DARK sage
+   palette (the default); [data-theme='light'] overrides the same token names
+   with the cream counterpart. The attribute lives on <html> (see web/theme.ts)
+   and the CodeMirror EditorView.theme reads the same var(--token) names, so
+   an editor swaps theme instantly with no remount. Voices (--font-*) are
+   theme-independent and stay in :root only. */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap');
 
 :root {
-  /* Light theme: cream sheet on the sage desk */
-  --bg-light: #e3e8dc;
-  --card-bg-light: #f9f7ee;
-  --control-bg-light: #f0eee1;
-  --text-light: #2f3a32;
-  --muted-light: #5e6e59;
-  --border-light: #ccd4c1;
-  --accent-light: #a8502e;
-  --on-accent-light: #fdf6ef;
-  --danger-light: #b23f2a;
-  --ok-text-light: #44673a;
-  --ok-border-light: rgba(68, 103, 58, 0.45);
-  --marker-light: rgba(232, 191, 68, 0.36);
-  --ring-light: rgba(168, 80, 46, 0.3);
-  --popover-border-light: #b9c4a9;
-  --toast-border-light: #e2b39c;
-  --toast-bg-light: rgba(250, 236, 225, 0.95);
-  --pulse-ring-light: rgba(178, 63, 42, 0.4);
-  --shadow-light:
-    0 1px 2px rgba(47, 58, 50, 0.05),
-    0 6px 18px rgba(47, 58, 50, 0.08);
-
-  /* Dark theme: the study at lamplight — green-charcoal base, moss raised
-     surfaces. Dark leans on borders, not shadows, so the shadow stays quiet. */
-  --bg-dark: #20261e;
-  --card-bg-dark: #2a3227;
-  --control-bg-dark: #313a2d;
-  --text-dark: #e8e6d8;
-  --muted-dark: #9fa892;
-  --border-dark: #3f4b3a;
-  --accent-dark: #ce8258;
-  --on-accent-dark: #241206;
-  --danger-dark: #eb9078;
-  --ok-text-dark: #a5c996;
-  --ok-border-dark: rgba(165, 201, 150, 0.4);
-  --marker-dark: rgba(232, 191, 68, 0.26);
-  --ring-dark: rgba(206, 130, 88, 0.4);
-  --popover-border-dark: #55654d;
-  --elevated-bg-dark: #343f2f;
-  --toast-border-dark: #a4573c;
-  --toast-bg-dark: rgba(52, 30, 21, 0.95);
-  --pulse-ring-dark: rgba(235, 144, 120, 0.35);
-  --shadow-dark: 0 2px 12px rgba(0, 0, 0, 0.32);
+  /* Dark theme (default): the study at lamplight — green-charcoal base, moss
+     raised surfaces. Dark leans on borders, not shadows, so the shadow stays
+     quiet. */
+  --bg: #20261e;
+  --card-bg: #2a3227;
+  --control-bg: #313a2d;
+  --elevated-bg: #343f2f;
+  --text: #e8e6d8;
+  --muted: #9fa892;
+  --border: #3f4b3a;
+  --accent: #ce8258;
+  --on-accent: #241206;
+  --danger: #eb9078;
+  --ok-text: #a5c996;
+  --ok-border: rgba(165, 201, 150, 0.4);
+  --marker: rgba(232, 191, 68, 0.26);
+  --ring: rgba(206, 130, 88, 0.4);
+  --popover-border: #55654d;
+  --toast-border: #a4573c;
+  --toast-bg: rgba(52, 30, 21, 0.95);
+  --pulse-ring: rgba(235, 144, 120, 0.35);
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.32);
+  --popover-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 6px 16px rgba(0, 0, 0, 0.38),
+    0 14px 32px rgba(0, 0, 0, 0.3);
+  --dismiss-hover-bg: rgba(255, 255, 255, 0.1);
+  --danger-border: #3f4b3a;
 
   /* Voices: the draft types itself in mono; the coach asks in serif */
   --font-draft: 'JetBrains Mono', ui-monospace, monospace;
   --font-coach: 'Newsreader', Georgia, serif;
+}
+
+/* Light theme: cream sheet on the sage desk — same hues, inverted luminance. */
+[data-theme='light'] {
+  --bg: #e3e8dc;
+  --card-bg: #f9f7ee;
+  --control-bg: #f0eee1;
+  --elevated-bg: #f9f7ee;
+  --text: #2f3a32;
+  --muted: #5e6e59;
+  --border: #ccd4c1;
+  --accent: #a8502e;
+  --on-accent: #fdf6ef;
+  --danger: #b23f2a;
+  --ok-text: #44673a;
+  --ok-border: rgba(68, 103, 58, 0.45);
+  --marker: rgba(232, 191, 68, 0.36);
+  --ring: rgba(168, 80, 46, 0.3);
+  --popover-border: #b9c4a9;
+  --toast-border: #e2b39c;
+  --toast-bg: rgba(250, 236, 225, 0.95);
+  --pulse-ring: rgba(178, 63, 42, 0.4);
+  --shadow:
+    0 1px 2px rgba(47, 58, 50, 0.05),
+    0 6px 18px rgba(47, 58, 50, 0.08);
+  --popover-shadow:
+    0 1px 2px rgba(47, 58, 50, 0.08),
+    0 4px 10px rgba(47, 58, 50, 0.1),
+    0 12px 28px rgba(47, 58, 50, 0.16);
+  --dismiss-hover-bg: rgba(0, 0, 0, 0.1);
+  --danger-border: rgba(178, 63, 42, 0.45);
 }
 
 * {
@@ -73,10 +96,6 @@ body {
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
   overscroll-behavior: none;
-}
-
-body .w-md-editor-text-input {
-  font-family: var(--font-draft);
 }
 
 body {
@@ -102,6 +121,8 @@ body {
   flex-direction: column;
   gap: 8px;
   transition: background-color 0.3s ease;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 @supports (height: 100dvh) {
@@ -110,25 +131,11 @@ body {
   }
 }
 
-.app.light {
-  background-color: var(--bg-light);
-  color: var(--text-light);
-}
-
-.app.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-}
-
 /* Keyboard focus speaks once, in the accent: every button and select rings
    the same way instead of each control inventing its own. */
 .app :is(button, select):focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--ring-light);
-}
-
-.app.dark :is(button, select):focus-visible {
-  box-shadow: 0 0 0 2px var(--ring-dark);
+  box-shadow: 0 0 0 2px var(--ring);
 }
 
 /* Top bar: title, genre picker, mode badge */
@@ -145,7 +152,6 @@ body {
   font-style: italic;
   font-weight: 500;
   font-size: 17px;
-  letter-spacing: 0.01em;
 }
 
 .genre-field {
@@ -158,11 +164,7 @@ body {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--muted-light);
-}
-
-.app.dark .genre-label {
-  color: var(--muted-dark);
+  color: var(--muted);
 }
 
 .genre-select {
@@ -170,17 +172,11 @@ body {
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 6px;
-  border: 1px solid var(--border-light);
-  background: var(--control-bg-light);
-  color: var(--text-light);
+  border: 1px solid var(--border);
+  background: var(--control-bg);
+  color: var(--text);
   outline: none;
   cursor: pointer;
-}
-
-.app.dark .genre-select {
-  border-color: var(--border-dark);
-  background: var(--control-bg-dark);
-  color: var(--text-dark);
 }
 
 .mode-badge {
@@ -190,41 +186,28 @@ body {
   letter-spacing: 0.06em;
   padding: 3px 8px;
   border-radius: 999px;
-  border: 1px solid var(--border-light);
-  color: var(--muted-light);
+  border: 1px solid var(--border);
+  color: var(--muted);
   user-select: none;
 }
 
-.app.dark .mode-badge {
-  border-color: var(--border-dark);
-  color: var(--muted-dark);
-}
-
 .mode-badge.mode-local {
-  color: var(--ok-text-light);
-  border-color: var(--ok-border-light);
-}
-
-.app.dark .mode-badge.mode-local {
-  color: var(--ok-text-dark);
-  border-color: var(--ok-border-dark);
+  color: var(--ok-text);
+  border-color: var(--ok-border);
 }
 
 /* Save status: the latest save-lifecycle pulse, right of the mode badge.
-   Nothing before the first save; 'Saving…' while in flight, then the clock
-   time of the confirmed save. Deliberately never auto-reverts (no timers). */
+   Nothing before the first save; 'Saving…' only once a save lingers past its
+   pending window; 'Saved HH:MM' sticks for the sticky window then reverts to
+   idle. The transition logic lives in web/save-indicator.ts. */
 .save-status {
   font-family: var(--font-draft);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--muted-light);
+  color: var(--muted);
   white-space: nowrap;
   user-select: none;
-}
-
-.app.dark .save-status {
-  color: var(--muted-dark);
 }
 
 /* Editor area: the sheet of paper */
@@ -235,19 +218,9 @@ body {
   border-radius: 10px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: var(--shadow-light);
-}
-
-.app.light .editor-container {
-  background-color: var(--card-bg-light);
-  box-shadow: var(--shadow-light);
-  border: 1px solid var(--border-light);
-}
-
-.app.dark .editor-container {
-  background-color: var(--card-bg-dark);
-  box-shadow: var(--shadow-dark);
-  border: 1px solid var(--border-dark);
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
 }
 
 .editor-wrapper {
@@ -256,85 +229,199 @@ body {
   position: relative;
 }
 
-/* React MD Editor styles */
-.w-md-editor {
-  --md-editor-font-family: var(--font-draft) !important;
-  height: 100% !important;
-  border: none !important;
-  background-color: transparent !important;
-  border-radius: 10px !important;
-  overflow: hidden !important;
+/* CodeMirror 6 chrome (the old MDEditor substrate is gone). The host div
+   fills the editor-wrapper; the editor and its scroller take 100% height,
+   stay borderless and transparent (the themed paper color comes from the
+   app class below), and let the caret inherit the text color. Font metrics
+   live in the host's EditorView.theme; these are layout rules that belong
+   in CSS, not theme JS. */
+/* Preview toggle hides the cm host VISUALLY only — never unmounts it, so the
+   undo stack and caret survive the round-trip (CM6 keeps dispatching fine
+   while display:none). The rendered pane then fills the same layout slot. */
+.editor-host.is-hidden {
+  display: none;
+}
+/* Split mode: the wrapper becomes a flex row — the cm host and the rendered
+   pane share the width ~50/50, each scrolling independently, with a divider
+   line drawn from the border token. Highlights/click-delegation stay live
+   because the editor is still visible beside the pane. */
+.editor-wrapper.is-split {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.editor-wrapper.is-split .editor-host,
+.editor-wrapper.is-split .markdown-preview {
+  position: static;
+  flex: 1 1 50%;
+  width: 50%;
+  min-width: 0;
+}
+.editor-wrapper.is-split .editor-host {
+  border-right: 1px solid var(--border);
 }
 
-.w-md-editor-text-container {
-  height: 100% !important;
-  border: none !important;
-  background: transparent !important;
-  overflow: auto !important;
+/* Rendered markdown pane: same paper tokens as .cm-content (see the host's
+   EditorView.theme — mono voice, 14px, 1.5 line-height, 20px padding with the
+   144px bottom clear for the docked coach panel). Prose spacing is scoped
+   under .markdown-preview so it never leaks outside the pane. */
+.markdown-preview {
+  position: absolute;
+  inset: 0;
+  padding: 20px 20px 144px 20px;
+  overflow-y: auto;
+  color: var(--text);
+  font-family: var(--font-draft);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
-.w-md-editor-text {
-  height: auto !important;
-  min-height: 100% !important;
-  font-family: var(--font-draft) !important;
-  padding: 1.25rem !important;
-  padding-bottom: 9rem !important; /* keep the bottom clear of the docked panel */
-  border: none !important;
-  outline: none !important;
-  background: transparent !important;
-  resize: none !important;
-  box-sizing: border-box !important;
-  line-height: 1.5 !important;
-  -webkit-text-size-adjust: 100%;
-  appearance: none;
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
+.markdown-preview > *:first-child {
+  margin-top: 0;
+}
+.markdown-preview > *:last-child {
+  margin-bottom: 0;
 }
 
-.w-md-editor-text:focus {
-  outline: none !important;
-  box-shadow: none !important;
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+  font-family: var(--font-coach);
+  margin: 1.2em 0 0.5em;
+  line-height: 1.25;
+  color: var(--text);
+}
+.markdown-preview h1 {
+  font-size: 1.6em;
+}
+.markdown-preview h2 {
+  font-size: 1.35em;
+}
+.markdown-preview h3 {
+  font-size: 1.15em;
+}
+.markdown-preview h4 {
+  font-size: 1em;
 }
 
-.w-md-editor .w-md-editor-text-input {
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
+.markdown-preview p {
+  margin: 0 0 1em;
 }
 
-.w-md-editor-preview {
-  height: 100% !important;
-  padding: 1.25rem !important;
-  padding-bottom: 9rem !important;
-  border: none !important;
-  background: transparent !important;
-  overflow-y: auto !important;
-  font-family: var(--font-draft) !important;
+.markdown-preview ul,
+.markdown-preview ol {
+  margin: 0 0 1em;
+  padding-left: 1.5em;
+}
+.markdown-preview li {
+  margin: 0.25em 0;
+}
+.markdown-preview li > ul,
+.markdown-preview li > ol {
+  margin-bottom: 0;
 }
 
-[data-color-mode="dark"] .w-md-editor {
-  --color-border-default: var(--border-dark) !important;
+.markdown-preview a {
+  color: var(--accent);
 }
 
-[data-color-mode="dark"] .wmde-markdown {
-  --color-canvas-default: transparent !important;
+.markdown-preview code {
+  font-family: var(--font-draft);
+  font-size: 0.9em;
+  background: var(--control-bg);
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
 }
 
-[data-color-mode="dark"] .w-md-editor-preview {
-  color: var(--text-dark) !important;
+.markdown-preview pre {
+  margin: 0 0 1em;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--control-bg);
+  overflow-x: auto;
+}
+.markdown-preview pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.9em;
 }
 
-[data-color-mode="light"] .w-md-editor-preview {
-  color: var(--text-light) !important;
+.markdown-preview blockquote {
+  margin: 0 0 1em;
+  padding: 0 0 0 1em;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+/* Images: GitHub convention — never wider than the pane, aspect kept. Block
+   display + trailing margin keep vertical rhythm consistent with paragraphs. */
+.markdown-preview img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 0 1em;
 }
 
-[data-color-mode="light"] .w-md-editor-text {
-  background-color: var(--card-bg-light) !important;
-  color: var(--text-light) !important;
+.markdown-preview table {
+  border-collapse: collapse;
+  margin: 0 0 1em;
+}
+.markdown-preview th,
+.markdown-preview td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+}
+.markdown-preview th {
+  background: var(--control-bg);
 }
 
-[data-color-mode="dark"] .w-md-editor-text {
-  background-color: var(--card-bg-dark) !important;
-  color: var(--text-dark) !important;
+.markdown-preview hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5em 0;
+}
+
+/* Preview toggle in the topbar, styled like the BYOK toggle so the two read
+   as the same family of chrome controls. The theme toggle joins that family. */
+.preview-toggle,
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-draft);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.preview-toggle:hover,
+.preview-toggle.is-open,
+.theme-toggle:hover,
+.theme-toggle.is-open {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cm-editor {
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+
+.cm-editor .cm-scroller {
+  overflow-x: hidden;
+  caret-color: currentColor;
 }
 
 /* Dictation (local mode only) */
@@ -356,9 +443,9 @@ body {
   height: 32px;
   padding: 0 12px;
   border-radius: 6px;
-  border: 1px solid var(--border-light);
-  background: var(--control-bg-light);
-  color: var(--text-light);
+  border: 1px solid var(--border);
+  background: var(--control-bg);
+  color: var(--text);
   font-family: var(--font-draft);
   font-size: 12px;
   font-weight: 500;
@@ -366,36 +453,15 @@ body {
   transition: all 0.2s ease;
 }
 
-.app.dark .dictate-button {
-  border-color: var(--border-dark);
-  background: var(--control-bg-dark);
-  color: var(--text-dark);
-}
-
 .dictate-button:hover {
-  border-color: var(--accent-light);
-  box-shadow: 0 0 0 2px var(--ring-light);
-}
-
-.app.dark .dictate-button:hover {
-  border-color: var(--accent-dark);
-  box-shadow: 0 0 0 2px var(--ring-dark);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--ring);
 }
 
 .dictate-button.recording {
-  border-color: var(--danger-light);
-  color: var(--danger-light);
+  border-color: var(--danger);
+  color: var(--danger);
   animation: pulse 1.5s ease-in-out infinite;
-}
-
-.app.dark .dictate-button.recording {
-  border-color: var(--danger-dark);
-  color: var(--danger-dark);
-  --pulse-ring: var(--pulse-ring-dark);
-}
-
-.app.light .dictate-button.recording {
-  --pulse-ring: var(--pulse-ring-light);
 }
 
 .dictate-button:disabled {
@@ -404,7 +470,9 @@ body {
 }
 
 /* Coach panel: bottom-right docked, one question at a time. This is the
-   coach's mouthpiece, so it carries the serif voice, not the typewriter's. */
+   coach's mouthpiece, so it carries the serif voice, not the typewriter's.
+   A slim header (title + chevron) tops it; collapsing hides the body and
+   leaves just that bar (see web/EditorApp.tsx coach-collapsed state). */
 .coach-panel {
   position: absolute;
   bottom: max(56px, calc(env(safe-area-inset-bottom, 0px) + 56px));
@@ -412,20 +480,68 @@ body {
   max-width: 380px;
   min-width: 260px;
   z-index: 90;
+  display: flex;
+  flex-direction: column;
+  max-height: min(560px, calc(100dvh - 128px));
+  overflow: hidden;
   padding: 14px 16px;
   border-radius: 10px;
-  border: 1px solid var(--border-light);
-  background: var(--card-bg-light);
-  box-shadow: var(--shadow-light);
-  color: var(--text-light);
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  color: var(--text);
   font-size: 14px;
 }
+/* The collapsible body: a flex column whose ONLY scrolling region is the
+   notes list (inbox-panel below). Every sibling after it — the pinned
+   count, summary, and action rows — stays in flow as a non-scrolling
+   footer that nothing can overlap. */
+.coach-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
 
-.app.dark .coach-panel {
-  border-color: var(--border-dark);
-  background: var(--card-bg-dark);
-  color: var(--text-dark);
-  box-shadow: var(--shadow-dark);
+/* 'N pinned': the count caps the footer, sits just under the list. */
+.coach-count {
+  flex: 0 0 auto;
+  font-family: var(--font-draft);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.coach-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 6px;
+  border: none;
+  background: none;
+  font-family: var(--font-coach);
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.coach-toggle:hover {
+  color: var(--text);
+}
+
+.coach-panel.is-collapsed .coach-toggle {
+  margin-bottom: 0;
+}
+
+.coach-toggle .coach-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease;
 }
 
 .coach-question {
@@ -443,12 +559,8 @@ body {
   font-family: var(--font-coach);
   font-style: italic;
   font-size: 14px;
-  color: var(--muted-light);
+  color: var(--muted);
   line-height: 1.55;
-}
-
-.app.dark .coach-placeholder {
-  color: var(--muted-dark);
 }
 
 /* Sweep summary: the outcome of the last sweep, above the actions row. Stays
@@ -458,11 +570,7 @@ body {
   margin: 10px 0;
   font-family: var(--font-draft);
   font-size: 11px;
-  color: var(--muted-light);
-}
-
-.app.dark .coach-summary {
-  color: var(--muted-dark);
+  color: var(--muted);
 }
 
 /* Sample loader: a quiet text button under the empty placeholder, so a fresh
@@ -475,17 +583,13 @@ body {
   font-family: var(--font-coach);
   font-style: italic;
   font-size: 13px;
-  color: var(--accent-light);
+  color: var(--accent);
   cursor: pointer;
   text-align: left;
 }
 
 .sample-load:hover {
   text-decoration: underline;
-}
-
-.app.dark .sample-load {
-  color: var(--accent-dark);
 }
 
 /* Inbox tray (inbox-panel.tsx): every pinned note as a row — the question in
@@ -495,30 +599,24 @@ body {
 .inbox-panel {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+    gap: 8px;
   margin-bottom: 10px;
-  max-height: 220px;
+  flex: 0 1 auto;
+  min-height: 0;
   overflow-y: auto;
+  padding-bottom: 4px;
 }
 
 .inbox-row {
   padding: 8px 10px;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
   transition: border-color 0.2s ease;
 }
 
-.app.dark .inbox-row {
-  border-color: var(--border-dark);
-}
-
 .inbox-row:hover {
-  border-color: var(--accent-light);
-}
-
-.app.dark .inbox-row:hover {
-  border-color: var(--accent-dark);
+  border-color: var(--accent);
 }
 
 .inbox-question {
@@ -532,14 +630,10 @@ body {
   display: block;
   font-family: var(--font-draft);
   font-size: 11px;
-  color: var(--muted-light);
+  color: var(--muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.app.dark .inbox-fragment {
-  color: var(--muted-dark);
 }
 
 .inbox-empty {
@@ -547,20 +641,23 @@ body {
   font-family: var(--font-coach);
   font-style: italic;
   font-size: 14px;
-  color: var(--muted-light);
-}
-
-.app.dark .inbox-empty {
-  color: var(--muted-dark);
+  color: var(--muted);
 }
 
 .coach-actions {
+  /* Two deliberate rows (genre+auto-ask / sweep+clear), so no action control
+     is ever stranded alone on a wrapped line. */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 0 0 auto;
+  margin-top: 8px;
+}
+.coach-actions-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  /* Rows wrap within the docked panel: genre + auto-ask can push the sweep
-     buttons past the viewport edge on mid-size screens (measured at 1440px). */
-  row-gap: 6px;
+  gap: 8px;
 }
 
 /* Genre-inline: the genre picker lives with the coach now, not the topbar —
@@ -588,24 +685,16 @@ body {
   gap: 5px;
   font-family: var(--font-draft);
   font-size: 11px;
-  color: var(--muted-light);
+  color: var(--muted);
   cursor: pointer;
   white-space: nowrap;
   user-select: none;
 }
 
-.app.dark .cadence-toggle {
-  color: var(--muted-dark);
-}
-
 .cadence-toggle input {
   margin: 0;
-  accent-color: var(--accent-light);
+  accent-color: var(--accent);
   cursor: pointer;
-}
-
-.app.dark .cadence-toggle input {
-  accent-color: var(--accent-dark);
 }
 
 /* Sweep + clear (local mode only): sit next to Ask now in the coach panel */
@@ -616,29 +705,17 @@ body {
   font-weight: 500;
   padding: 5px 12px;
   border-radius: 6px;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--text-light);
+  color: var(--text);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.app.dark .coach-sweep,
-.app.dark .coach-clear {
-  border-color: var(--border-dark);
-  color: var(--text-dark);
-}
-
 .coach-sweep:hover:not(:disabled),
 .coach-clear:hover:not(:disabled) {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
-}
-
-.app.dark .coach-sweep:hover:not(:disabled),
-.app.dark .coach-clear:hover:not(:disabled) {
-  border-color: var(--accent-dark);
-  color: var(--accent-dark);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .coach-sweep:disabled,
@@ -647,74 +724,44 @@ body {
   cursor: default;
 }
 
-/* Question highlight overlay (see highlight.tsx): a translucent marker over
-   the anchored span plus a small popover with the question. The mirror's text
-   is transparent; only the span background paints, so the editor text shows
-   through tinted like a marker stroke. */
-.coach-highlight-layer {
+/* Question highlights (see highlight.tsx + decorations.ts): the anchored span
+   paints natively as a CM6 mark decoration (class bw-hl), so no mirror/overlay
+   geometry is needed. These rules color the mark itself — a translucent marker
+   stroke over the prose. Click-to-open is delegated in EditorApp via the
+   marks' data-start/data-end; the mark is the click target, so it must be
+   hit-testable. */
+.coach-popover-layer {
   pointer-events: none;
 }
 
-.coach-highlight-mirror,
-.coach-highlight-mirror > code {
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  background: transparent !important;
-}
-
-/* Wrap-lock: the overlay must break lines exactly like the textarea. The
-   layer inherits the app's 1.5 line-height, but the textarea renders at
-   its own line-height — a mismatch drifts every highlight after the first
-   wrapped line (measured 164px by the end of a full draft). Lock both
-   boxes to the textarea's computed line-height instead. */
-.coach-highlight-mirror {
-  line-height: var(--bw-textarea-line-height, 21px);
-}
-
-.coach-highlight-span {
-  background: var(--marker-light);
+.bw-hl {
+  background: var(--marker);
   border-radius: 3px;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
-}
-
-.app.dark .coach-highlight-span {
-  background: var(--marker-dark);
+  cursor: pointer;
 }
 
 .coach-popover {
   position: absolute;
-  /* Above every sibling .coach-highlight-layer: the layers are
-     z-index: auto (no stacking context), so any positive z-index here
-     paints and hit-tests above later notes' spans regardless of DOM
-     order; 25 only needs to exceed the sibling layers' default. */
+  /* Above every sibling .coach-popover-layer: the layers are z-index: auto
+     (no stacking context), so any positive z-index here paints and
+     hit-tests above later notes' layers regardless of DOM order; 25 only
+     needs to exceed the sibling layers' default. */
   z-index: 25;
   max-width: 300px;
   padding: 10px 12px;
   border-radius: 8px;
   /* One elevation level above the sheet: firmer border + real layered
      shadow, or it camouflages into the text underneath. */
-  border: 1px solid var(--popover-border-light);
-  background: var(--card-bg-light);
-  box-shadow:
-    0 1px 2px rgba(47, 58, 50, 0.08),
-    0 4px 10px rgba(47, 58, 50, 0.1),
-    0 12px 28px rgba(47, 58, 50, 0.16);
-  color: var(--text-light);
+  border: 1px solid var(--popover-border);
+  background: var(--elevated-bg);
+  box-shadow: var(--popover-shadow);
+  color: var(--text);
   font-family: var(--font-coach);
   font-size: 14px;
   line-height: 1.55;
   pointer-events: none;
-}
-
-.app.dark .coach-popover {
-  border-color: var(--popover-border-dark);
-  background: var(--elevated-bg-dark);
-  color: var(--text-dark);
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.28),
-    0 6px 16px rgba(0, 0, 0, 0.38),
-   0 14px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Source chip: honest provenance for a topic-probe question — the model fell
@@ -727,17 +774,11 @@ body {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--muted-light);
+  color: var(--muted);
 }
 
-.app.dark .source-chip {
-  color: var(--muted-dark);
-}
-
-/* Per-note resolve action inside the popover. The layer stays
-   click-through; only interactive elements flip to auto. The clickable
-   highlight span is the sweep's click-to-open target: tapping it opens
-   (or closes) that note's popover without touching the textarea. */
+/* Per-note resolve action inside the popover. The popover layer stays
+   click-through; only this interactive element flips to auto. */
 .coach-resolve {
   display: block;
   margin-top: 8px;
@@ -746,34 +787,18 @@ body {
   font-weight: 500;
   padding: 3px 10px;
   border-radius: 5px;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--muted-light);
+  color: var(--muted);
   cursor: pointer;
   pointer-events: auto;
   transition: all 0.2s ease;
 }
 
-.coach-highlight-clickable {
-  pointer-events: auto;
-  cursor: pointer;
-}
-
-.app.dark .coach-resolve {
-  border-color: var(--border-dark);
-  color: var(--muted-dark);
-}
-
 .coach-resolve:hover {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
-  background: var(--ring-light);
-}
-
-.app.dark .coach-resolve:hover {
-  border-color: var(--accent-dark);
-  color: var(--accent-dark);
-  background: var(--ring-dark);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--ring);
 }
 
 /* Error toast: a quiet ember, not an alarm siren */
@@ -789,17 +814,11 @@ body {
   max-width: 80%;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid var(--toast-border-light);
-  background: var(--toast-bg-light);
-  color: var(--danger-light);
+  border: 1px solid var(--toast-border);
+  background: var(--toast-bg);
+  color: var(--danger);
   font-size: 12px;
-  box-shadow: var(--shadow-light);
-}
-
-.app.dark .error-toast {
-  border-color: var(--toast-border-dark);
-  background: var(--toast-bg-dark);
-  color: var(--danger-dark);
+  box-shadow: var(--shadow);
 }
 
 .error-dismiss {
@@ -817,15 +836,11 @@ body {
 }
 
 .error-dismiss:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--dismiss-hover-bg);
 }
 
-.app.dark .error-dismiss:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* The recording pulse radiates in the theme's danger tone; custom properties
-   resolve against the pulsing element, so one keyframes serves both themes. */
+/* The recording pulse radiates in the theme's danger tone; the ring token
+   resolves against the theme, so one keyframes serves both themes. */
 @keyframes pulse {
   0%,
   100% {
@@ -866,29 +881,18 @@ body {
   font-weight: 500;
   padding: 5px 12px;
   border-radius: 6px;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--text-light);
+  color: var(--text);
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
 }
 
-.app.dark .byok-toggle {
-  border-color: var(--border-dark);
-  color: var(--text-dark);
-}
-
 .byok-toggle:hover,
 .byok-toggle.is-open {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
-}
-
-.app.dark .byok-toggle:hover,
-.app.dark .byok-toggle.is-open {
-  border-color: var(--accent-dark);
-  color: var(--accent-dark);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .byok-panel {
@@ -899,18 +903,11 @@ body {
   width: 300px;
   padding: 14px 16px;
   border-radius: 10px;
-  border: 1px solid var(--border-light);
-  background: var(--card-bg-light);
-  box-shadow: var(--shadow-light);
-  color: var(--text-light);
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  color: var(--text);
   font-size: 13px;
-}
-
-.app.dark .byok-panel {
-  border-color: var(--border-dark);
-  background: var(--card-bg-dark);
-  color: var(--text-dark);
-  box-shadow: var(--shadow-dark);
 }
 
 .byok-field {
@@ -924,11 +921,7 @@ body {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--muted-light);
-}
-
-.app.dark .byok-label {
-  color: var(--muted-dark);
+  color: var(--muted);
 }
 
 .byok-input {
@@ -936,16 +929,10 @@ body {
   font-size: 12px;
   padding: 4px 8px;
   border-radius: 6px;
-  border: 1px solid var(--border-light);
-  background: var(--control-bg-light);
-  color: var(--text-light);
+  border: 1px solid var(--border);
+  background: var(--control-bg);
+  color: var(--text);
   outline: none;
-}
-
-.app.dark .byok-input {
-  border-color: var(--border-dark);
-  background: var(--control-bg-dark);
-  color: var(--text-dark);
 }
 
 .byok-input:disabled {
@@ -965,35 +952,18 @@ body {
   font-size: 12px;
   padding: 4px 12px;
   border-radius: 6px;
-  border: 1px solid var(--border-light);
-  background: var(--control-bg-light);
-  color: var(--text-light);
+  border: 1px solid var(--border);
+  background: var(--control-bg);
+  color: var(--text);
   cursor: pointer;
 }
 
-.app.dark .byok-save,
-.app.dark .byok-disconnect,
-.app.dark .byok-close {
-  border-color: var(--border-dark);
-  background: var(--control-bg-dark);
-  color: var(--text-dark);
-}
-
 .byok-save {
-  color: var(--ok-text-light);
-  border-color: var(--ok-border-light);
-}
-
-.app.dark .byok-save {
-  color: var(--ok-text-dark);
-  border-color: var(--ok-border-dark);
+  color: var(--ok-text);
+  border-color: var(--ok-border);
 }
 
 .byok-disconnect {
-  color: var(--danger-light);
-  border-color: rgba(178, 63, 42, 0.45);
-}
-
-.app.dark .byok-disconnect {
-  color: var(--danger-dark);
+  color: var(--danger);
+  border-color: var(--danger-border);
 }

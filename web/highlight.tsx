@@ -1,47 +1,41 @@
 /**
- * highlight: the question-highlight overlay.
+ * highlight: the coach-question popover.
  *
- * Paints a soft background over the draft span a coach question is anchored
- * to (or, when the anchor is missing — static demo — the block under the
- * cursor), plus a small popover near it showing the question.
+ * Task 5 — the mirror-div geometry machine is gone. Highlights paint natively
+ * as CodeMirror mark decorations (see decorations.ts), so this module is
+ * reduced to the one thing the editor cannot paint: the small popover that
+ * shows a question near its anchored span.
  *
- * Layout: the classic mirror-div technique. The overlay is an absolutely
- * positioned layer covering the scrollport's visible box (the package's
- * `.w-md-editor-area` — the textarea itself is height:100% of the grown text
- * container and never scrolls). Inside it, a mirror div (reusing the package's
- * own `w-md-editor-text-pre` class so font/padding/line-height/wrapping match
- * the visible text exactly) spans the textarea's full content box and renders
- * the draft with transparent text, the anchor span carrying a translucent
- * background. The textarea below shows its real text through the tint, so the
- * highlight reads like a marker stroke over the prose.
+ * Positioning: the popover reads the anchor's bounding box from the seam via
+ * `rectForRange(anchor.start, anchor.end)` (a CM6 coordsAtPos union, in
+ * viewport coordinates). The seam's `onViewportChange` (wired by the host)
+ * bumps a monotonically increasing `viewportTick` on selection/doc updates,
+ * scroller scroll, and window resize; this component re-runs its placement
+ * effect on that tick so the popover stays glued to the anchored text.
  *
- * Scrolling: we listen for `scroll` on the scrollport and translate the mirror
- * (and the popover) by the negative offsets — content stays glued to the
- * anchored text without re-rendering on scroll.
- *
- * Known limitation: wrap alignment assumes overlay scrollbars (Linux/Chromium
- * target); platforms with reserved scrollbar gutters can misalign wrapping by
- * the gutter width.
+ * Click-open: sweep notes pass `openOnClickOnly` — the popover opens only
+ * while the parent names this note as active (the SINGLE-OPEN contract, owned
+ * entirely by the parent's activeId, unchanged from the mirror era). The
+ * actual span click is delegated by EditorApp from the host wrapper div via
+ * the marks' data-start/data-end attributes; this component never handles
+ * clicks.
  */
 
-import { useLayoutEffect, useRef, useState, type RefObject } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import type { QuestionSource } from '../src/types'
+import type { AnchorRecord } from './draft-store'
 
 export interface HighlightOverlayProps {
-  /** The full draft, as shown in the editor. */
-  draft: string
-  /** The span the question is about; null in the static demo (see cursorBlock). */
+  /** The span the question is about; null hides the overlay. */
   anchor: { start: number; end: number } | null
   /** The coach question to show in the popover; null hides the overlay. */
   question: string | null
   /** How the question was produced (see src/types QuestionSource); a
-   * 'topic-probe' shows a small "generic" chip in the popover so the writer
-   * sees the model fell back to a fixed probe. Optional. */
+   * 'topic-probe' shows a small "generic" chip so the writer sees the model
+   * fell back to a fixed probe. Optional. */
   source?: QuestionSource
-  /** Fallback span (block under the cursor) used when anchor is null. */
-  cursorBlock: { start: number; end: number } | null
-  /** The editor's textarea, used for measurement and scroll tracking. */
-  textareaRef: RefObject<HTMLTextAreaElement>
+  /** Bounding box getter for a doc range (viewport coords), from the seam. */
+  rectForRange: (from: number, to: number) => { top: number; bottom: number; left: number; right: number } | null
   /** Called when the Resolved button inside the popover is clicked. */
   onResolve?: () => void
   /**
@@ -58,21 +52,13 @@ export interface HighlightOverlayProps {
    */
   noteId?: string
   activeId?: string | null
-  onOpenChange?: (id: string | null) => void
-}
-
-interface Layout {
-  left: number
-  top: number
-  width: number
-  height: number
-  /** The textarea's full content-box size (mirror spans the whole document). */
-  mirrorWidth: number
-  mirrorHeight: number
-  /** The textarea's computed padding (content origin alignment). */
-  padding: string
-  /** The textarea's computed line-height (wrap-lock with the mirror). */
-  lineHeight: string
+  /**
+   * Monotonically increasing viewport tick, bumped by the seam's
+   * onViewportChange (host wiring). Re-running placement on this keeps the
+   * popover pinned to the anchor across selection/doc updates, scroll, and
+   * resize.
+   */
+  viewportTick: number
 }
 
 interface PopoverPos {
@@ -83,216 +69,131 @@ interface PopoverPos {
 const POPOVER_GAP = 6
 const POPOVER_INSET = 4
 
+/** A rectangle in viewport or root-relative coordinates. */
+export interface BoxRect {
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
+/**
+ * Map a clicked highlight mark back to the note it decorates (click-open
+ * parity). The mark carries data-start/data-end (doc offsets, see
+ * decorations.ts buildHighlightSet); the note whose span matches is returned,
+ * or null when the click was not on a note's mark. Pure aside from reading
+ * the element's attributes — unit-tested with a stubbed element.
+ */
+export function noteFromMark(mark: Element | null, notes: AnchorRecord[]): AnchorRecord | null {
+  if (!mark) return null
+  const start = Number(mark.getAttribute('data-start'))
+  const end = Number(mark.getAttribute('data-end'))
+  if (!Number.isFinite(start) || !Number.isFinite(end)) return null
+  return notes.find((n) => n.start === start && n.end === end) ?? null
+}
+
+/**
+ * Pure popover placement math (unit-tested without a DOM layout engine).
+ *
+ * Places the popover below the anchor's bottom edge, clamped horizontally to
+ * the container; when it would overflow the container's bottom it flips above
+ * the anchor's top edge instead. All coordinates are in the same (root-
+ * relative) space; the caller translates viewport coords before calling.
+ */
+export function computePopoverPosition(
+  anchor: BoxRect,
+  container: { width: number; height: number },
+  popover: { width: number; height: number },
+): { left: number; top: number } {
+  const left = Math.max(POPOVER_INSET, Math.min(anchor.left, container.width - popover.width - POPOVER_INSET))
+  const below = anchor.bottom + POPOVER_GAP
+  const top =
+    below + popover.height > container.height - POPOVER_INSET
+      ? Math.max(POPOVER_INSET, anchor.top - popover.height - POPOVER_GAP)
+      : Math.max(POPOVER_INSET, below)
+  return { left, top }
+}
+
 export function HighlightOverlay({
-  draft,
   anchor,
   question,
   source,
-  cursorBlock,
-  textareaRef,
+  rectForRange,
   onResolve,
   openOnClickOnly = false,
   noteId,
   activeId = null,
-  onOpenChange,
+  viewportTick,
 }: HighlightOverlayProps) {
   const rootRef = useRef<HTMLDivElement>(null)
-  const mirrorRef = useRef<HTMLDivElement>(null)
-  const highlightRef = useRef<HTMLSpanElement>(null)
   const popoverRef = useRef<HTMLDivElement>(null)
-  const scrollRef = useRef({ left: 0, top: 0 })
-
-  const [layout, setLayout] = useState<Layout | null>(null)
   const [popoverPos, setPopoverPos] = useState<PopoverPos | null>(null)
 
-  // The span to paint: the anchor when the question grounded, otherwise the
-  // cursor block (static demo questions cannot ground).
-  const span = anchor ?? cursorBlock
-  const active = span !== null && question !== null && question !== ''
-  const spanStart = span?.start ?? null
-  const spanEnd = span?.end ?? null
+  const active = anchor !== null && question !== null && question !== ''
+  const spanStart = anchor?.start ?? null
+  const spanEnd = anchor?.end ?? null
 
-  // Click-to-open with a SINGLE-OPEN contract, owned entirely by the
-  // parent's activeId: this overlay renders its popover exactly while the
-  // parent names it as active. Clicking reports the id; clicking again
-  // reports null. No local "open" state exists — a per-overlay flag goes
-  // stale when another note claims the slot and resurrects every stale
-  // popover once activeId returns to null (measured live: all popovers at
-  // once after toggle-close), so visibility derives from activeId alone.
+  // SINGLE-OPEN contract: visibility derives from activeId alone (see the
+  // mirror-era comment — a stale per-overlay flag resurrects every popover
+  // once the slot returns to null, measured live).
   const popoverVisible = !openOnClickOnly || (activeId !== null && activeId === noteId)
-  const toggleThis = () => {
-    onOpenChange?.(popoverVisible ? null : noteId ?? null)
-  }
 
-  // Geometry + scroll sync. The scrollport is the package's `.w-md-editor-area`
-  // wrapper (overflow: auto, where react-md-editor wires its own onScroll) —
-  // the textarea itself is height:100% of the grown text container and never
-  // scrolls. We position over the scrollport's visible box, size the mirror to
-  // the textarea's full content box, and translate by the scrollport offsets.
-  // The transform is applied imperatively so scrolling never re-renders React.
-  useLayoutEffect(() => {
-    if (!active) return
-    const textarea = textareaRef.current
-    const root = rootRef.current
-    if (!textarea || !root) return
-
-    // Fallbacks cover non-package DOM (custom renderTextarea, tests).
-    const scroller = textarea.closest('.w-md-editor-area') ?? textarea.parentElement ?? textarea
-
-    const applyScroll = () => {
-      const { left, top } = scrollRef.current
-      const transform = `translate(${-left}px, ${-top}px)`
-      if (mirrorRef.current) mirrorRef.current.style.transform = transform
-      if (popoverRef.current) popoverRef.current.style.transform = transform
-    }
-
-    const measure = () => {
-      const areaRect = scroller.getBoundingClientRect()
-      const rootRect = root.getBoundingClientRect()
-      const cs = getComputedStyle(textarea)
-      scrollRef.current = { left: scroller.scrollLeft, top: scroller.scrollTop }
-      applyScroll()
-      setLayout({
-        left: areaRect.left - rootRect.left,
-        top: areaRect.top - rootRect.top,
-        width: areaRect.width,
-        height: areaRect.height,
-        mirrorWidth: textarea.offsetWidth,
-        mirrorHeight: textarea.offsetHeight,
-        padding: `${cs.paddingTop} ${cs.paddingRight} ${cs.paddingBottom} ${cs.paddingLeft}`,
-        // Wrap-lock: the textarea lays out at its own line-height (here
-        // 21px) while the overlay would otherwise inherit the app's 1.5.
-        // A mismatch drifts every highlight after the first wrapped line.
-        lineHeight: cs.lineHeight,
-      })
-    }
-    measure()
-
-    const onScroll = () => {
-      scrollRef.current = { left: scroller.scrollLeft, top: scroller.scrollTop }
-      applyScroll()
-    }
-    scroller.addEventListener('scroll', onScroll, { passive: true })
-
-    // Re-measure when the editor resizes (scrollport box) or the document
-    // grows (textarea content box).
-    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null
-    ro?.observe(scroller)
-    ro?.observe(textarea)
-
-    return () => {
-      scroller.removeEventListener('scroll', onScroll)
-      ro?.disconnect()
-    }
-  }, [active, spanStart, spanEnd, textareaRef])
-
-  // Popover placement: below the anchor's first line, clamped to the layer,
+  // Placement: below the anchor's first line, clamped to the editor box,
   // flipped above when the anchor sits in the bottom part of the editor.
+  // Re-runs on every viewport tick so the popover follows its text.
   useLayoutEffect(() => {
-    if (!active || !layout) return
-    // The mirror/popover are mounted now — apply the initial scroll offset
-    // (the geometry effect runs before they exist).
-    const { left: sl, top: st } = scrollRef.current
-    const transform = `translate(${-sl}px, ${-st}px)`
-    if (mirrorRef.current) mirrorRef.current.style.transform = transform
-    if (popoverRef.current) popoverRef.current.style.transform = transform
-
-    const highlight = highlightRef.current
+    if (!active || !popoverVisible || anchor === null) return
+    const rect = rectForRange(anchor.start, anchor.end)
+    const root = rootRef.current
     const popover = popoverRef.current
-    if (!highlight) return
-    const lineHeight = highlight.offsetHeight || 18
-    const rawLeft = highlight.offsetLeft
-    const rawTop = highlight.offsetTop
-    let left = rawLeft
-    let top = rawTop + lineHeight + POPOVER_GAP
-    if (popover) {
-      const pw = popover.offsetWidth
-      const ph = popover.offsetHeight
-      left = Math.max(POPOVER_INSET, Math.min(rawLeft, layout.width - pw - POPOVER_INSET))
-      if (top + ph > layout.height - POPOVER_INSET) {
-        top = rawTop - ph - POPOVER_GAP
-      }
-      top = Math.max(POPOVER_INSET, top)
+    if (!rect || !root || !popover) return
+
+    const rootRect = root.getBoundingClientRect()
+    // Translate the viewport-relative anchor rect into the root's box, then
+    // defer the placement math to the pure helper (unit-tested directly).
+    const anchorInRoot: BoxRect = {
+      top: rect.top - rootRect.top,
+      bottom: rect.bottom - rootRect.top,
+      left: rect.left - rootRect.left,
+      right: rect.right - rootRect.left,
     }
-    setPopoverPos({ left, top })
-  }, [active, layout, spanStart, spanEnd, question, popoverVisible])
+    setPopoverPos(
+      computePopoverPosition(
+        anchorInRoot,
+        { width: rootRect.width, height: rootRect.height },
+        { width: popover.offsetWidth, height: popover.offsetHeight },
+      ),
+    )
+  }, [active, popoverVisible, spanStart, spanEnd, question, viewportTick, rectForRange])
 
-  if (!active) return null
-
-  const before = draft.slice(0, spanStart!)
-  const fragment = draft.slice(spanStart!, spanEnd!)
-  const after = draft.slice(spanEnd!)
-  // The package's own mirror renders `markdown + "\n"` (the textarea keeps a
-  // final caret line); match it so scroll heights line up at the bottom.
-  const mirrorText = '\n'
+  if (!active || !popoverVisible) return null
 
   return (
     <div
       ref={rootRef}
-      className="coach-highlight-layer"
-      style={{
-        position: 'absolute',
-        left: layout?.left ?? 0,
-        top: layout?.top ?? 0,
-        width: layout?.width ?? 0,
-        height: layout?.height ?? 0,
-        overflow: 'hidden',
-        pointerEvents: 'none',
-      }}
+      className="coach-popover-layer"
+      style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}
     >
-      {layout && (
-        <div
-          ref={mirrorRef}
-          className="coach-highlight-mirror w-md-editor-text-pre"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: layout.mirrorWidth,
-            height: layout.mirrorHeight,
-            padding: layout.padding,
-            lineHeight: layout.lineHeight,
-            transform: 'translate(0px, 0px)',
-          }}
-        >
-          <code>
-            {before}
-            <span
-              ref={highlightRef}
-              className={openOnClickOnly ? 'coach-highlight-span coach-highlight-clickable' : 'coach-highlight-span'}
-              // Click-to-open: sweep notes pass openOnClickOnly — the highlight paints always, the popover opens only while clicked.
-              onPointerDown={openOnClickOnly ? toggleThis : undefined}
-            >
-              {fragment}
-            </span>
-            {after}
-            {mirrorText}
-          </code>
-        </div>
-      )}
-      {layout && popoverVisible && (
-        <div
-          ref={popoverRef}
-          className="coach-popover"
-          style={{
-            position: 'absolute',
-            left: popoverPos?.left ?? 0,
-            top: popoverPos?.top ?? 0,
-            transform: 'translate(0px, 0px)',
-          }}
-        >
-          {/* Honest provenance: a topic-probe question came from a fixed
-              probe, not the live text — label it so the writer reads it as
-              generic rather than grounded in their words. */}
-          {source === 'topic-probe' && <span className="source-chip">generic</span>}
-          {question}
-          {onResolve && (
-            <button type="button" className="coach-resolve" onClick={onResolve}>
-              Resolved
-            </button>
-          )}
-        </div>
-      )}
+      <div
+        ref={popoverRef}
+        className="coach-popover"
+        style={{
+          position: 'absolute',
+          left: popoverPos?.left ?? 0,
+          top: popoverPos?.top ?? 0,
+        }}
+      >
+        {/* Honest provenance: a topic-probe question came from a fixed
+            probe, not the live text — label it so the writer reads it as
+            generic rather than grounded in their words. */}
+        {source === 'topic-probe' && <span className="source-chip">generic</span>}
+        {question}
+        {onResolve && (
+          <button type="button" className="coach-resolve" onClick={onResolve}>
+            Resolved
+          </button>
+        )}
+      </div>
     </div>
   )
 }

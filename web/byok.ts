@@ -83,15 +83,17 @@ function isProvider(value: string): value is Provider {
  * always; http only for a loopback host, where the writer is on their own
  * machine (e.g. a local OpenAI-compatible server).
  */
-function isValidBaseUrl(baseUrl: string): boolean {
+export function isValidBaseUrl(baseUrl: string): boolean {
   let url: URL;
   try {
     url = new URL(baseUrl);
   } catch {
     return false;
   }
-  const loopback =
-    url.hostname === 'localhost' || url.hostname === '127.0.0.1' || url.hostname === '::1';
+  // WHATWG URL keeps the brackets in an IPv6 hostname ('[::1]') — strip them
+  // so a literal ::1 loopback matches alongside localhost / 127.0.0.1.
+  const host = url.hostname.replace(/^\[|\]$/g, '');
+  const loopback = host === 'localhost' || host === '127.0.0.1' || host === '::1';
   return url.protocol === 'https:' || (loopback && url.protocol === 'http:');
 }
 

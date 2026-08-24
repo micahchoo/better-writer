@@ -1,8 +1,5 @@
-import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
-import MDEditor from '@uiw/react-md-editor'
-import '@uiw/react-md-editor/markdown-editor.css'
-import '@uiw/react-markdown-preview/markdown.css'
-import { Mic, MicOff, X } from 'lucide-react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ChevronDown, ChevronUp, Expand, Eye, EyeOff, Mic, MicOff, Moon, Sun, X } from 'lucide-react'
 import { GENRES, type Genre } from '../src/types'
 import { extractAnchor } from './anchor'
 import { createCadence, type Cadence } from './cadence'
@@ -10,6 +7,7 @@ import { planSweep, reconcileAnnotations, runSweep, staleAnnotations } from './c
 import {
   ByokCoach,
   loadByokConfig,
+  isValidBaseUrl,
   saveByokConfig,
   PRESETS,
   TRANSCRIBES_AUDIO,
@@ -19,14 +17,19 @@ import {
 } from './byok'
 import { detectServerMode, isModelBacked, makeCoach, type Coach, type CoachMode } from './coach'
 import { createEditorAccess } from './editor-access'
+import CodeMirrorHost, { editorTheme } from './codemirror-host'
+import { highlightExtension } from './decorations'
 import { makeDraftStore, type AnchorRecord, type DraftStore } from './draft-store'
 import { makeNote, noteId, sameNote } from './notes'
 import { pickRecordingMimeType, transcribeAudio } from './dictation'
-import { HighlightOverlay } from './highlight'
+import { HighlightOverlay, noteFromMark } from './highlight'
 import { InboxPanel } from './inbox-panel'
+import { MarkdownPreview } from './markdown-preview'
 import { SAMPLE_DRAFT } from './sample-draft'
 import { SaveCoordinator } from './save-coordinator'
+import { SaveIndicator, type SaveIndicatorDisplay } from './save-indicator'
 import { buildAskWindow, cursorWindow, splitBlocks } from './text-window'
+import { useTheme } from './theme'
 
 // Model-field hints per provider — placeholders only, never written to the
 // saved config. The writer supplies the real model at save time.
@@ -36,10 +39,15 @@ const MODEL_PLACEHOLDERS: Record<Provider, string> = {
  groq: 'meta-llama/llama-3.3-70b-instruct',
  custom: 'e.g. your-model-id',
 }
+// Preview toggle cycles the rendered pane off → split → full → off.
+const PREVIEW_CYCLE: Array<'off' | 'split' | 'full'> = ['off', 'split', 'full']
 
 export default function EditorApp() {
  const [mode, setMode] = useState<CoachMode | 'detecting'>('detecting')
- const [theme, setTheme] = useState<'light' | 'dark'>('light')
+ // App theme owned by <html data-theme> (see theme.ts): useTheme applies the
+ // theme to the root element and persists the toggle; CSS and the CM editor
+ // read the same var(--token) values, so a swap restyles instantly.
+ const [theme, setTheme] = useTheme()
  const [draft, setDraft] = useState('')
  // Genre is remembered across reloads; anything not in GENRES (stale value,
  // storage disabled) falls back to the agnostic default.
@@ -62,12 +70,26 @@ export default function EditorApp() {
  // by the note's identity string. Two popovers can never overlap because a
  // new open supersedes the previous one.
  const [openNoteId, setOpenNoteId] = useState<string | null>(null)
- // Save lifecycle pulse: 'saving' on send, 'saved' once the store confirms.
- // 'idle' until the first save ever. Deliberately never auto-reverts — a
- // completed save reads "Saved HH:MM" until the next save begins.
- const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved'>('idle')
+ // Monotonic viewport tick, bumped by the seam's onViewportChange (host
+ // wiring) on selection/doc updates, scroller scroll, and window resize.
+ // Popovers re-run placement on it so they stay pinned to their anchors.
+ const [viewportTick, setViewportTick] = useState(0)
+  // Debounced save-status display (save-indicator.ts): 'Saving…' appears only
+ // once a save lingers past its pending window; 'Saved' sticks for the sticky
+ // window then reverts to idle. Rapid queued saves never flicker.
+ const [saveDisplay, setSaveDisplay] = useState<SaveIndicatorDisplay>('idle')
+ const [saveIndicator] = useState(() => new SaveIndicator(setSaveDisplay))
  // Wall-clock time of the last confirmed save, captured AT save-completion.
  const [saveTime, setSaveTime] = useState<Date | null>(null)
+ // Coach panel collapse: minimized shows only the slim header bar (chevron),
+ // expanded shows the body. Persisted so a reload keeps the panel collapsed.
+ const [coachCollapsed, setCoachCollapsed] = useState<boolean>(() => {
+  try {
+   return window.localStorage.getItem('better-writer:coach-collapsed') === '1'
+  } catch {
+   return false // storage disabled: default expanded
+  }
+ })
  // Outcome of the last sweep (see SweepResult): pinned = anchored notes,
  // skipped = windows that produced none. Shown above the coach actions and
  // STAYS visible after the sweep completes — not a toast.
@@ -92,8 +114,21 @@ export default function EditorApp() {
   model: string
   apiKey: string
  }>({ provider: 'openrouter', baseUrl: PRESETS.openrouter, model: '', apiKey: '' })
+ // Tri-mode rendered preview. Split is the DEFAULT (side-by-side on load; no
+// persistence — every fresh load starts split, the user cycles from there).
+// 'off' edits full-width; 'split' shows the rendered pane LIVE beside the
+// editor (the renderer debounces ~250ms inside markdown-preview.tsx so
+// keystrokes never pay an O(doc) pass); 'full' hides the cm host VISUALLY
+// (className swap to display:none — never unmounts it) so the undo stack,
+// caret, and history survive the round-trip; the editor stays live and keeps
+// dispatching even while hidden. `draft` is the source of truth for the pane.
+const [previewMode, setPreviewMode] = useState<'off' | 'split' | 'full'>('split')
+const cyclePreview = () =>
+ setPreviewMode((m) => PREVIEW_CYCLE[(PREVIEW_CYCLE.indexOf(m) + 1) % PREVIEW_CYCLE.length])
+// The toggle's label names the NEXT action: off→split, split→full, full→off.
+const nextPreviewLabel =
+ previewMode === 'off' ? 'Show split preview' : previewMode === 'split' ? 'Expand preview' : 'Back to editing'
 
- const editorRef = useRef<ComponentRef<typeof MDEditor>>(null)
  const draftRef = useRef('')
  // Start from the restored genre so a sweep right after reload (which reads
  // genreRef.current) uses the persisted choice, not the agnostic default.
@@ -109,10 +144,15 @@ export default function EditorApp() {
   onError: (err: unknown) => setError(err instanceof Error ? err.message : String(err)),
   // Save-lifecycle pulse for the topbar indicator: 'saving' on send, and on
   // 'saved' stamp the completion time (the HH:MM shown next to the badge).
-  onSaveState: (phase) => {
-   setSaveState(phase)
-   if (phase === 'saved') setSaveTime(new Date())
-  },
+   onSaveState: (phase) => {
+  // Feed raw pulses into the debounced indicator; stamp the completion time
+  // on confirm (the HH:MM shown next to the badge).
+  if (phase === 'saving') saveIndicator.saveStarted()
+  else {
+   saveIndicator.saveSucceeded()
+   setSaveTime(new Date())
+  }
+ },
  }))
  const recorderRef = useRef<MediaRecorder | null>(null)
  const chunksRef = useRef<Blob[]>([])
@@ -135,37 +175,17 @@ export default function EditorApp() {
  // at mount can't see React state — this ref always can.
  const modeRef = useRef(mode)
  modeRef.current = mode
- // The editor wrapper: hosts the scrollport (.w-md-editor-area) that the
- // inbox "focus note" jump scrolls — the textarea itself never scrolls.
- const editorWrapperRef = useRef<HTMLDivElement>(null)
-
- // The one editor adapter, wired to the MDEditor ref (textarea surface —
- // react-md-editor v4 has no CodeMirror view; see editor-access.ts).
+ // The one editor adapter, wired to the CM6 seam and themed to match the old
+ // textarea surface. Built once via useMemo (the host mounts it); the theme
+ // (and, in Task 5, the highlight extension) ride in through the seam's
+ // `extensions` passthrough so no caller ever touches the EditorView.
  const editorAccess = useMemo(
-   () => createEditorAccess({ getTextarea: () => editorRef.current?.textarea ?? null }),
-   [],
+  () => createEditorAccess({ extensions: [editorTheme, highlightExtension()] }),
+  [],
  )
 
- // Keep the overlay's textarea ref populated. Assigned during render (not in
- // an effect) so HighlightOverlay's layout effects see the element in the
- // same commit — a parent effect would run after the child's. This MUST be
- // a stable ref object: HighlightOverlay reads `textareaRef.current` both
- // inside its effects and in the render pass.
- const overlayTextareaRef = useRef<HTMLTextAreaElement | null>(null)
- overlayTextareaRef.current = editorRef.current?.textarea ?? null
-
- // Light/dark from the OS.
- useEffect(() => {
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-  const updateTheme = (isDark: boolean) => setTheme(isDark ? 'dark' : 'light')
-  updateTheme(mediaQuery.matches)
-  const handleChange = (e: MediaQueryListEvent) => updateTheme(e.matches)
-  mediaQuery.addEventListener('change', handleChange)
-  return () => mediaQuery.removeEventListener('change', handleChange)
- }, [])
-
- // Mode detection: a saved BYOK config wins — adopt byok synchronously (the
- // whole pipeline is browser-resident, so no probe is needed). Otherwise probe
+  // Mode detection: a saved BYOK config wins — adopt byok synchronously (the
+// whole pipeline is browser-resident, so no probe is needed). Otherwise probe
  // GET /health once: 200 JSON -> local mode (LocalCoach + ServerDraftStore);
  // anything else -> static demo (StaticCoach + LocalStorageDraftStore). GitHub
  // Pages is auto-static.
@@ -207,6 +227,10 @@ export default function EditorApp() {
     if (seq !== loadSeqRef.current) return Promise.resolve([])
     draftRef.current = text
     setDraft(text)
+    // Push the restored doc into the editor. The reset path does NOT fire
+    // onDocChange, so the setDraft above stays the authoritative state sync
+    // and no spurious save/reconcile runs. No-op if the host hasn't attached.
+    editorAccess.replaceDocument(text, { history: 'reset' })
     return store.loadAnnotations()
    })
    .then((annotations) => {
@@ -228,9 +252,10 @@ export default function EditorApp() {
  }, [mode])
 
 // Unmount cleanup: cancel the coordinator's pending timers, stop any recording.
-useEffect(() => {
+ useEffect(() => {
  return () => {
   coordinator.dispose()
+  saveIndicator.dispose()
   recorderRef.current?.stop()
  }
 }, [])
@@ -262,6 +287,17 @@ useEffect(() => {
  }, 5000)
  return () => window.clearInterval(timer)
 }, [])
+
+// C2 — derived marks: highlights are REBUILT from reconciled React state on
+// every draft/annotation change and pushed wholesale through the seam's
+// showHighlights. Nothing in CM6 maps highlight positions across transactions
+// independently; the StateField simply replaces the set each time. The tone is
+// uniform (the marker style is shared); per-note offset data rides on the
+// marks' data-start/data-end for click delegation.
+useEffect(() => {
+ const spans = sweepNotes.map((note) => ({ start: note.start, end: note.end, tone: 'note' }))
+ editorAccess.showHighlights(spans)
+}, [sweepNotes, draft, editorAccess])
 
 const handleContentChange = (value?: string) => {
  const text = value ?? ''
@@ -348,22 +384,29 @@ const askCursorWindow = async (text: string) => {
 }
 
 // Jump the editor to a note's span: open its popover and scroll the
-// scrollport so the anchored line is roughly centered. The scrollport is the
-// package's .w-md-editor-area — the textarea itself is full-height and never
-// scrolls. Line mapping is approximate: count newlines before the span times
-// the textarea's line-height.
+// scrollport so the anchored line is roughly centered. The scroll target is
+// the note's character offset, handed to the seam (CM6 handles line/scroll
+// mapping internally — no line-height math here).
 const handleFocusNote = (note: AnchorRecord) => {
  setOpenNoteId(noteId(note))
- const textarea = overlayTextareaRef.current
- const area = editorWrapperRef.current?.querySelector<HTMLElement>('.w-md-editor-area')
- if (!textarea || !area) return
- const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight || '21')
- const linesBefore = (draftRef.current.slice(0, note.start).match(/\n/g) ?? []).length
- const target = linesBefore * lineHeight - area.clientHeight * 0.35
- area.scrollTop = Math.max(0, Math.min(target, area.scrollHeight - area.clientHeight))
+ editorAccess.scrollToOffset(note.start)
 }
 
-// Genre is remembered across reloads; a handler shared by every genre select
+// Click-open parity: the host wrapper div delegates span clicks here. CM6
+// paints the highlights as native mark decorations carrying data-start/
+// data-end (see decorations.ts buildHighlightSet), so a click on a mark
+// resolves back to its note and toggles the SINGLE-OPEN slot — clicking an
+// open note closes it, clicking a closed one opens it (the mirror-era
+// toggle behavior).
+const handleHighlightClick = (event: React.MouseEvent<HTMLDivElement>) => {
+ const mark = (event.target as HTMLElement).closest('.bw-hl')
+ const note = noteFromMark(mark, sweepNotes)
+ if (!note) return
+ const id = noteId(note)
+ setOpenNoteId((prev) => (prev === id ? null : id))
+}
+
+  // Genre is remembered across reloads; a handler shared by every genre select
 // (there is now one place it lives: the coach-actions row).
 const handleGenreChange = (next: Genre) => {
  genreRef.current = next
@@ -375,6 +418,23 @@ const handleGenreChange = (next: Genre) => {
   // doesn't survive a reload.
  }
 }
+
+// Collapse/expand the coach panel, persisting the choice so a reload keeps
+// the panel as the writer left it.
+const toggleCoachCollapsed = () => {
+ setCoachCollapsed((prev) => {
+  const next = !prev
+  try {
+   window.localStorage.setItem('better-writer:coach-collapsed', next ? '1' : '0')
+  } catch {
+   // Storage disabled: fail soft — the choice just doesn't survive reloads.
+  }
+  return next
+ })
+}
+
+// Swap the app theme (applied to <html data-theme> by useTheme's setter).
+const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
 
 // Zero-padded HH:MM in local time for the save indicator.
 const formatClock = (date: Date) => {
@@ -546,6 +606,14 @@ const toggleDictation = async () => {
    )
    return
   }
+ // Same policy loadByokConfig applies on read — an unsafe URL would persist
+ // here and then silently disconnect on the next ask, so reject it now.
+ if (!isValidBaseUrl(baseUrl.trim().replace(/\/+$/, ''))) {
+  setError(
+   'That base URL is not safe to send a key to: use https, or http only for localhost/127.0.0.1.',
+  )
+  return
+ }
   saveByokConfig({
    provider,
    baseUrl: baseUrl.trim().replace(/\/+$/, ''),
@@ -637,8 +705,8 @@ const sweepControls = isModelBacked(mode) && (
   </>
  )
 
- return (
-  <div className={`app ${theme}`} data-color-mode={theme}>
+  return (
+ <div className="app">
    <header className="topbar">
     <span className="app-title">Better Writer</span>
     {mode !== 'detecting' && (
@@ -646,6 +714,38 @@ const sweepControls = isModelBacked(mode) && (
       {mode}
      </span>
     )}
+     {/* Preview toggle: cycles off → split → full → off. 'split' shows the
+      rendered pane LIVE beside the editor; 'full' swaps the cm host for the
+      pane in the SAME layout slot (editor hidden via display:none, never
+      unmounted, so undo/caret/history survive). Label/title name the NEXT
+      action the button will perform. */}
+  <button
+   className={`preview-toggle ${previewMode !== 'off' ? 'is-open' : ''}`}
+   onClick={cyclePreview}
+   title={nextPreviewLabel}
+   aria-label={nextPreviewLabel}
+   aria-pressed={previewMode !== 'off'}
+  >
+   {previewMode === 'off' ? (
+    <Eye size={14} />
+   ) : previewMode === 'split' ? (
+    <Expand size={14} />
+   ) : (
+    <EyeOff size={14} />
+   )}
+   {previewMode === 'off' ? 'Preview' : previewMode === 'split' ? 'Split' : 'Edit'}
+  </button>
+   {/* Theme toggle: flips <html data-theme> (dark/light). Sun in dark mode
+       (click for light), Moon in light mode. Same family as Preview/BYOK. */}
+   <button
+    className="theme-toggle"
+    onClick={toggleTheme}
+    title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+    aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+   >
+    {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+    {theme === 'dark' ? 'Light' : 'Dark'}
+   </button>
     {/* BYOK bring-your-own-key: shown whenever a non-local, non-detecting mode
         is active — static (offer to connect) and byok (already connected). The
         panel drops under the toggle; it never renders while detecting. */}
@@ -722,47 +822,52 @@ const sweepControls = isModelBacked(mode) && (
       )}
      </div>
     )}
-    {saveState !== 'idle' && (
-     // Right of the mode badge: the save-lifecycle pulse. Nothing before the
-     // first save; 'Saving…' while in flight, then the confirmed time. Never
-     // auto-reverts (deliberate — no timers).
-     <span className="save-status" aria-live="polite">
-      {saveState === 'saving' ? 'Saving…' : saveTime ? `Saved ${formatClock(saveTime)}` : ''}
-     </span>
-    )}
+       {saveDisplay !== 'idle' && (
+    // Right of the mode badge: the debounced save pulse. 'Saving…' only once
+    // a save lingers past its pending window; 'Saved HH:MM' sticks for the
+    // sticky window then reverts to idle (see save-indicator.ts).
+    <span className="save-status" aria-live="polite">
+     {saveDisplay === 'saving' ? 'Saving…' : saveTime ? `Saved ${formatClock(saveTime)}` : 'Saved'}
+    </span>
+   )}
    </header>
 
-   <main className="editor-container">
-    <div className="editor-wrapper" ref={editorWrapperRef}>
-     <MDEditor
-      ref={editorRef}
-      value={draft}
-      onChange={handleContentChange}
-      data-color-mode={theme}
-      visibleDragbar={false}
-      hideToolbar
-      preview="live"
-      autoFocus
+     <main className="editor-container">
+   <div className={`editor-wrapper ${previewMode === 'split' ? 'is-split' : ''}`}>
+    {/* The host is HIDDEN (display:none via .is-hidden) only in 'full'; in
+        'off' and 'split' it is visible and click delegation stays live (the
+        editor is on screen, so highlight clicks resolve normally). Never
+        unmounts — the undo stack/caret/history survive every mode change. */}
+    <div
+     className={`editor-host ${previewMode === 'full' ? 'is-hidden' : ''}`}
+     onClick={previewMode === 'full' ? undefined : handleHighlightClick}
+    >
+     <CodeMirrorHost
+      editorAccess={editorAccess}
+      initialText={draft}
+      onDocChange={handleContentChange}
+      onViewportChange={() => setViewportTick((t) => t + 1)}
      />
-     {sweepNotes.map((note) => {
-      const id = noteId(note)
-      return (
-       <HighlightOverlay
-        key={id}
-        draft={draft}
-        anchor={{ start: note.start, end: note.end }}
-        question={note.question}
-        source={note.source}
-        cursorBlock={null}
-        textareaRef={overlayTextareaRef}
-        noteId={id}
-        activeId={openNoteId}
-        onOpenChange={setOpenNoteId}
-        onResolve={() => resolveNote(note)}
-        openOnClickOnly
-       />
-      )
-     })}
+    </div>
+    {(previewMode === 'split' || previewMode === 'full') && <MarkdownPreview text={draft} />}
+    {previewMode !== 'full' &&
+      sweepNotes.map((note) => {
+       const id = noteId(note)
+       return (
+        <HighlightOverlay
+         key={id}
+         anchor={{ start: note.start, end: note.end }}
+         question={note.question}
+         source={note.source}
+         rectForRange={editorAccess.rectForRange}
+         viewportTick={viewportTick}
+         noteId={id}
+         activeId={openNoteId}
+         onResolve={() => resolveNote(note)}
+         openOnClickOnly
+        />
+       )
+      })}
     </div>
 
     {error && (
@@ -797,8 +902,27 @@ const sweepControls = isModelBacked(mode) && (
      </div>
     )}
 
-    <section className="coach-panel" aria-label="Writing coach">
-     {sweepNotes.length > 0 ? (
+       <section
+    className={`coach-panel ${coachCollapsed ? 'is-collapsed' : ''}`}
+    aria-label="Writing coach"
+   >
+    {/* Slim header bar: title + chevron. Collapsing hides the body below and
+        leaves just this bar (state persisted in better-writer:coach-collapsed). */}
+    <button
+     className="coach-toggle"
+     onClick={toggleCoachCollapsed}
+     aria-expanded={!coachCollapsed}
+     aria-controls="coach-body"
+     title={coachCollapsed ? 'Expand coach panel' : 'Collapse coach panel'}
+    >
+     <span>Coach</span>
+     <span className="coach-toggle-icon" aria-hidden="true">
+      {coachCollapsed ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
+     </span>
+    </button>
+    {!coachCollapsed && (
+     <div id="coach-body" className="coach-body">
+      {sweepNotes.length > 0 ? (
       <>
        {/* The inbox tray: every pinned note, with a per-row jump + resolve. */}
        <InboxPanel
@@ -819,7 +943,13 @@ const sweepControls = isModelBacked(mode) && (
       <button
        className="sample-load"
        onClick={() => {
+        // Buffer write through the seam, with a true history reset (C3): the
+        // sample replaces the empty page wholesale and undo can never wipe it.
+        editorAccess.replaceDocument(SAMPLE_DRAFT, { history: 'reset' })
         draftRef.current = SAMPLE_DRAFT
+        // The reset path does NOT fire onDocChange, so handleContentChange
+        // never runs — sync React state explicitly here, and let the
+        // coordinator persist the loaded draft as before.
         setDraft(SAMPLE_DRAFT)
         coordinator.edit(SAMPLE_DRAFT, annotationsRef.current)
         setSampleLoaded(true)
@@ -841,9 +971,10 @@ const sweepControls = isModelBacked(mode) && (
         : `Pinned ${sweepSummary.pinned}.`}
       </p>
      )}
-     <div className="coach-actions">
-      {/* Genre moved here, next to the ask controls: "asking as" reads
-          naturally beside Sweep. Same persistence/state as before. */}
+         <div className="coach-actions">
+     {/* Row 1: genre picker + auto-ask. Deliberate pairing so they never
+         strand a control on its own wrapped line. */}
+     <div className="coach-actions-row">
       <label className="genre-inline-field" title="Genre steers which seed the coach pulls">
        <span className="genre-label">asking as</span>
        <select
@@ -877,8 +1008,12 @@ const sweepControls = isModelBacked(mode) && (
         />
        </label>
       )}
-      {sweepControls}
      </div>
+     {/* Row 2: sweep + clear together, so the footer never strands one. */}
+     {isModelBacked(mode) && <div className="coach-actions-row">{sweepControls}</div>}
+    </div>
+     </div>
+    )}
     </section>
    </main>
   </div>

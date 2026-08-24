@@ -3,6 +3,7 @@ import type { ClientSeed } from '../src/types';
 import {
   ByokCoach,
   loadByokConfig,
+  isValidBaseUrl,
   makeByokComplete,
   PRESETS,
   saveByokConfig,
@@ -82,6 +83,27 @@ beforeEach(() => {
 afterEach(() => {
   vi.unstubAllGlobals();
   localStorage.clear();
+});
+
+describe('isValidBaseUrl (save-time policy)', () => {
+  it('accepts https for any host', () => {
+    expect(isValidBaseUrl('https://api.openai.com/v1')).toBe(true);
+    expect(isValidBaseUrl('https://openrouter.ai/api/v1')).toBe(true);
+  });
+
+  it('accepts http only for exact loopback hostnames', () => {
+    expect(isValidBaseUrl('http://127.0.0.1:8080')).toBe(true);
+    expect(isValidBaseUrl('http://[::1]:11434/v1')).toBe(true);
+    // A DNS-rebinding name that resolves to loopback keeps its hostname
+    // string, so the policy still rejects it.
+    expect(isValidBaseUrl('http://evil.example:11434/v1')).toBe(false);
+    expect(isValidBaseUrl('http://localhost.attacker.com')).toBe(false);
+  });
+
+  it('rejects values that do not parse as URLs', () => {
+    expect(isValidBaseUrl('not a url')).toBe(false);
+    expect(isValidBaseUrl('')).toBe(false);
+  });
 });
 
 describe('PRESETS', () => {
