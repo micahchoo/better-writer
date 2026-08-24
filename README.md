@@ -25,9 +25,11 @@ The question stays attached to your sentence until you dismiss it. There is no c
 - It never writes a sentence for you.
 - It never edits your draft.
 - It never explains itself or gives advice.
-- It never sends your writing to a company. Your draft stays on your machine.
+- It never phones home. There is no account, no telemetry, and no server of ours between you and your words.
 
 These are not polite instructions in a prompt. The app can only display one question. Anything else the model produces is thrown away.
+
+**Where your words go.** With no model, or with your own model on your own machine, nothing leaves it. If you connect your own API key, that changes: the paragraph around your cursor goes to the provider you picked, and **Sweep draft** sends the whole draft that way, one window at a time. Dictation audio goes to the same provider. That is what the key is for, and you pay for every call. Your draft *file* is never uploaded in any mode — it lives in your browser or on your disk.
 
 ## Installation
 
@@ -60,15 +62,16 @@ To question a whole draft at once, click **Sweep draft**. It walks the document 
 Set **asking as** to your genre — fiction, creative-nonfiction, memoir, essay, poetry, or genre-agnostic. It changes which questions you are asked.
 
 > [!NOTE]
-> **Sweep draft** and the **Auto-ask** switch need a model, so they only appear when one is connected. In the no-model demo, questions still arrive on their own after a pause.
+> **Sweep draft** appears once a model is connected. The **Auto-ask** switch appears only when the model runs on your own machine. In the no-model demo, questions still arrive on their own after a pause.
 
 ## Choose how it thinks
 
 | | No model | Your own model | Your own key |
 |---|---|---|---|
-| **What you get** | A craft question, word for word from the book it came from | The same question, rewritten to quote your actual sentences | The same, through a provider you pay for |
+| **What you get** | A question from the bank, exactly as written | The same question, rewritten to quote your actual sentences | The same, through a provider you pay for |
 | **You need** | Nothing | A model server on your machine | An API key |
 | **Your draft is saved** | In your browser | To `data/drafts/current.md` | In your browser |
+| **Your prose leaves your machine** | Never | Never | Yes — to your provider |
 
 The app detects which one it can use and switches by itself.
 
@@ -78,22 +81,25 @@ The app detects which one it can use and switches by itself.
 npm start      # serves http://127.0.0.1:4517
 ```
 
-**Your own key.** Click the key icon in the top bar and enter your provider, model, and key. It stays in your browser and goes only to the provider you named.
+**Your own key.** Click the key icon in the top bar and pick OpenRouter, OpenAI, Groq, or any OpenAI-compatible URL, then enter your model and key. The key is kept in your browser and is sent only to the base URL you named.
 
-Dictation works in both: locally through Parakeet, or through your provider's transcription endpoint.
+Dictation works with a local Parakeet model, or through your provider's transcription endpoint. OpenRouter serves no audio route, so on OpenRouter the **Dictate** button hides rather than fail.
 
 ## Where the questions come from
 
-1,757 questions, taken word for word from four books on writing craft:
+A bank of 1,757 craft questions written for this project, each tagged by genre and by the kind of change it asks for:
 
-| Book | Author | Questions |
-|---|---|---|
-| *Stein on Writing* | Sol Stein | 792 |
-| *Storycraft* | Jack Hart | 387 |
-| *Showing & Telling* | Laurie Alberts | 345 |
-| *Steering the Craft* | Ursula K. Le Guin | 233 |
+| Asks you to | Questions |
+|---|---|
+| rewrite | 605 |
+| form a concept | 422 |
+| cut | 229 |
+| elaborate | 202 |
+| rephrase | 125 |
+| transition | 109 |
+| elucidate | 65 |
 
-Every question carries the sentence from the book that produced it. That quote is there so the question can be checked against its source. It is never shown to you and never sent to the model, so no book gets to advertise itself in your margin.
+The bank is the only place a question can start. The model never invents one — it takes a question from the bank and rewrites it to quote your sentences. You see a question about your own paragraph and nothing else.
 
 <details>
 <summary>How one question gets chosen</summary>
@@ -138,7 +144,7 @@ Issues and pull requests are welcome. Three rules hold:
 
 - The model runs on the writer's machine or on their own key. Never ours.
 - The model never writes into the draft.
-- A book's name and quotes never reach the writer or the model.
+- Seed provenance stays invisible: it reaches neither the writer nor the model.
 
 Run `npm test && npm run typecheck` before you open a pull request.
 
