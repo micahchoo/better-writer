@@ -113,28 +113,46 @@ const MATH_RNG: RngLike = {
  */
 export interface SeedPreference {
   verbs?: string[];
-  p?: number;
+  /** Per-seed weight for a matched seed; defaults to PREFERENCE_WEIGHT. */
+  weight?: number;
 }
 
 /**
- * Matched-pile size at which the soft-preference probability stops shrinking
- * (FLOOR in seeds/retrieve.py).
+ * How much likelier a PREFERRED seed is than a non-preferred one, PER SEED
+ * (PREFERENCE_WEIGHT in seeds/retrieve.py — keep the two in step).
  */
-const PULL_FLOOR = 16;
+const PREFERENCE_WEIGHT = 3;
+
+/**
+ * Stage-one probability of drawing from the matched pile, derived from the
+ * two pile sizes so that the per-seed ratio is exactly `weight`.
+ *
+ * The old rule set the probability of the PILE (min(0.5, matched/16)), so the
+ * per-seed rate was 0.5/matched and moved with pile size instead of intent:
+ * fiction's 898 genre-specific seeds ended up 0.64x as likely PER SEED as the
+ * 563 agnostic ones — backwards — while poetry's 8 specific seeds took ~51%
+ * of all draws (H2-3).
+ */
+function stageOneProbability(matched: number, complement: number, weight: number): number {
+  const weighted = weight * matched;
+  return weighted / (weighted + complement);
+}
 
 /**
  * With an explicit `preference` (verbs set) it reproduces retrieve.py's
- * pull(): a two-stage draw that with probability effective_p
- * (min(p ?? 0.5, matched/16)) picks uniformly from the matched pile, else
- * uniformly from its complement. The verbs-preference OVERRIDES the default
+ * pull(): a two-stage draw that with probability
+ * `stageOneProbability(matched, complement, weight)` picks uniformly from the
+ * matched pile, else uniformly from its complement — so a matched seed is
+ * exactly `weight` times likelier per seed than an unmatched one, whatever
+ * the piles measure. The verbs-preference OVERRIDES the default
  * genre stratification (folded OUT to avoid double-narrowing), mirroring the
  * CLI where --lean-verbs wins over --genre's default.
  *
  * With no explicit preference, an internal default genre preference engages
  * when the genre filter produced a genuinely mixed pool — at least one card
  * strictly carries `genre` AND at least one matches only via the
- * genre-agnostic wildcard. Then specific-genre cards claim first claim on half
- * the draws (p 0.5, PULL_FLOOR shrink), matching retrieve.py's
+ * genre-agnostic wildcard. Then each specific-genre card is PREFERENCE_WEIGHT
+ * times likelier than each agnostic one, matching retrieve.py's
  * default_genre_preference. A single-group pool (all specific, or all
  * agnostic-only) or a bare full-bank pull keeps the legacy uniform draw.
  * `rng` is injectable for reproducible draws; it defaults to Math.random.
@@ -155,12 +173,12 @@ export function pickSeed(
     if (matched.length === 0) {
       return rng.choice(pool);
     }
-    const effectiveP = Math.min(preference.p ?? 0.5, matched.length / PULL_FLOOR);
-    if (rng.random() < effectiveP) {
-      return rng.choice(matched);
-    }
     const matchedIds = new Set(matched.map((s) => s.id));
     const complement = pool.filter((s) => !matchedIds.has(s.id));
+    const weight = preference.weight ?? PREFERENCE_WEIGHT;
+    if (rng.random() < stageOneProbability(matched.length, complement.length, weight)) {
+      return rng.choice(matched);
+    }
     if (complement.length === 0) {
       return rng.choice(pool);
     }
@@ -174,12 +192,11 @@ export function pickSeed(
   if (specific.length === 0 || agnosticOnly.length === 0) {
     return rng.choice(pool);
   }
-  const effectiveP = Math.min(0.5, specific.length / PULL_FLOOR);
-  if (rng.random() < effectiveP) {
-    return rng.choice(specific);
-  }
   const specificIds = new Set(specific.map((s) => s.id));
   const complement = pool.filter((s) => !specificIds.has(s.id));
+  if (rng.random() < stageOneProbability(specific.length, complement.length, PREFERENCE_WEIGHT)) {
+    return rng.choice(specific);
+  }
   if (complement.length === 0) {
     return rng.choice(pool);
   }

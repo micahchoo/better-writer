@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { implVerbs, IMPL_VERBS, measureWindow, type WindowStats } from './window-stats'
+import { countProseWords, implVerbs, IMPL_VERBS, measureWindow, type WindowStats } from './window-stats'
 
 /** A sentence of exactly `n` neutral words, ending in a period. */
 function sentenceOf(n: number): string {
@@ -352,5 +352,233 @@ describe('purity', () => {
   it('is deterministic: same input twice yields deep-equal output', () => {
     const raw = '“Hello,” she said calmly, and then a decision was made quickly.'
     expect(measureWindow(raw)).toEqual(measureWindow(raw))
+  })
+})
+
+/**
+ * R2/R3: both metrics were "fixed" with exclusion tables sized to the words a
+ * single probe string happened to contain, so the probe passed while ordinary
+ * prose still scored a higher false rate than the real thing. These tests hold
+ * the metrics to a RATE over passages the fix was not written from, which is
+ * the only shape of test that can catch a table shaped to its own probe.
+ */
+describe('adverbRate — the -ly class, not the probe words (R2)', () => {
+  /** Prose deliberately loaded with -ly words that are NOT adverbs. */
+  const NON_ADVERB_PROSE = [
+    'She was lonely. The lovely garden felt friendly. A deadly quiet settled.',
+    'It was likely costly. The elderly neighbour kept an orderly, timely house.',
+    'The assembly met. He felt melancholy. An anomaly appeared; the monopoly grew.',
+    'They rely on it. Numbers multiply. Bees comply. We supply pressure and apply it.',
+    'The family gathered on the hilly, chilly ground beside the ugly holly.',
+    'A butterfly, a dragonfly, and one silly jolly bully crossed the weekly ledger.',
+  ]
+
+  it('scores zero adverbs across prose full of -ly non-adverbs', () => {
+    for (const prose of NON_ADVERB_PROSE) {
+      expect(measureWindow(prose).values.adverbRate).toBe(0)
+    }
+  })
+
+  it('never fires the hedge axis on that prose', () => {
+    for (const prose of NON_ADVERB_PROSE) {
+      expect(measureWindow(prose).axes.has('hedge')).toBe(false)
+    }
+  })
+
+  it('still counts genuine -ly adverbs, and fires the axis on them', () => {
+    const s = measureWindow('She quickly walked. He slowly turned. It suddenly stopped.')
+    expect(s.values.adverbRate).toBeGreaterThan(4)
+    expect(s.axes.has('hedge')).toBe(true)
+  })
+
+  it('keeps words that are both adjective and manner adverb', () => {
+    // "kindly" is deliberately absent from the exclusion table.
+    expect(measureWindow('He kindly agreed to wait.').values.adverbRate).toBeGreaterThan(0)
+  })
+})
+
+describe('nominalRate — passives need an explicit marker (R3)', () => {
+  it('counts a passive with an agent phrase, regular or irregular participle', () => {
+    expect(measureWindow('The window was destroyed by the storm.').values.nominalRate).toBeGreaterThan(0)
+    expect(measureWindow('The window was broken by the storm.').values.nominalRate).toBeGreaterThan(0)
+    expect(measureWindow('The vase was quietly removed by the maid.').values.nominalRate).toBeGreaterThan(0)
+  })
+
+  it('counts a progressive passive, which has no adjectival reading', () => {
+    expect(measureWindow('The bridge was being repaired.').values.nominalRate).toBeGreaterThan(0)
+  })
+
+  it('scores zero on predicate adjectives, whatever the participle', () => {
+    // None of these were in the old STATIVE_ED table; all of them scored.
+    for (const prose of [
+      'She was ashamed. He was determined. They were convinced.',
+      'The door was locked. The sky was clouded. His voice was strained.',
+      'She was tired. He was bored. They were scared. It was red.',
+      'The room was finished. The plan was settled. The matter was closed.',
+    ]) {
+      const s = measureWindow(prose)
+      expect(s.values.nominalRate).toBe(0)
+      expect(s.axes.has('nominal')).toBe(false)
+    }
+  })
+
+  it('does not mistake an ordinary -en word before "by" for a participle', () => {
+    expect(measureWindow('He was often by the window.').values.nominalRate).toBe(0)
+    expect(measureWindow('She was tired by then.').values.nominalRate).toBe(0)
+  })
+
+  it('accepts the known cost: an agentless passive is not counted', () => {
+    // Documented in the PASSIVE_AGENT_RE comment — precision over recall.
+    expect(measureWindow('The letters were burned.').values.nominalRate).toBe(0)
+  })
+
+  it('still counts suffix nominalizations, the metric primary contributor', () => {
+    const s = measureWindow('The implementation of the arrangement showed a certain hesitance.')
+    expect(s.values.nominalRate).toBeGreaterThan(5)
+    expect(s.axes.has('nominal')).toBe(true)
+  })
+})
+
+/**
+ * H1-4/H1-6: R2 closed the -ly adjective/noun/verb classes with a table, but
+ * proper nouns ending in -ly are an OPEN class no table can close, and the
+ * table's own docstring contradicted the frequency words sitting in it.
+ */
+describe('adverbRate — proper nouns and axis scope (H1-4, H1-6)', () => {
+  it('does not count a name ending in -ly, wherever it sits', () => {
+    for (const name of ['Emily', 'Kelly', 'Wally', 'Sicily', 'Tully', 'Shelly', 'Beverly', 'Kimberly']) {
+      const s = measureWindow(`${name} left the room without saying one word to him`)
+      expect(s.values.adverbRate).toBe(0)
+      expect(s.axes.has('hedge')).toBe(false)
+    }
+    expect(measureWindow('She told Kelly to wait here now.').values.adverbRate).toBe(0)
+    expect(measureWindow('The letter from Beverly arrived.').values.adverbRate).toBe(0)
+  })
+
+  it('still counts an adverb that opens a sentence', () => {
+    // Capitalized like a name, but followed by the subject or a comma.
+    for (const prose of [
+      'Slowly he turned to face her.',
+      'Quietly, she left the room.',
+      'Carefully the door opened wide.',
+      'Grimly they marched on.',
+    ]) {
+      expect(measureWindow(prose).values.adverbRate).toBeGreaterThan(0)
+    }
+  })
+
+  it('still counts an ordinary mid-sentence adverb', () => {
+    expect(measureWindow('He turned slowly to face her.').values.adverbRate).toBeGreaterThan(0)
+    expect(measureWindow('Emily left the room quietly.').values.adverbRate).toBeGreaterThan(0)
+  })
+
+  it('excludes frequency and time -ly words, per the axis manner scope', () => {
+    // H1-6: these ARE adverbs, but they modify when, not how, so they sit
+    // outside what the hedge axis measures. The docstring now says so.
+    expect(measureWindow('She arrives early. He trains daily. They meet weekly.').values.adverbRate).toBe(0)
+    // A manner adverb that doubles as an adjective still counts.
+    expect(measureWindow('He kindly agreed to wait for her.').values.adverbRate).toBeGreaterThan(0)
+  })
+})
+
+/**
+ * H1-1/H1-2/H1-3/H1-7: four more heuristics keyed on exact tables, a bare
+ * suffix test, and character classes rather than the English class they name.
+ */
+describe('filterRate — every inflection, not six past-tense forms (H1-1)', () => {
+  const same = 'She {feel} it. He {seem} tired. They {notice}. She {realize}. He {watch}. She {wonder}.'
+  const forms = {
+    past: ['felt', 'seemed', 'noticed', 'realized', 'watched', 'wondered'],
+    present: ['feels', 'seems', 'notices', 'realizes', 'watches', 'wonders'],
+    gerund: ['feeling', 'seeming', 'noticing', 'realizing', 'watching', 'wondering'],
+  }
+  const build = (fs: string[]) =>
+    same.replace('{feel}', fs[0]).replace('{seem}', fs[1]).replace('{notice}', fs[2])
+      .replace('{realize}', fs[3]).replace('{watch}', fs[4]).replace('{wonder}', fs[5])
+
+  it('fires the axis regardless of tense', () => {
+    for (const [label, fs] of Object.entries(forms)) {
+      const s = measureWindow(build(fs))
+      expect(s.axes.has('filter-word'), label).toBe(true)
+      expect(s.values.filterRate, label).toBeGreaterThan(2)
+    }
+  })
+
+  it('accepts the British -ise spelling', () => {
+    expect(measureWindow('She realised it was late.').values.filterRate).toBeGreaterThan(0)
+  })
+})
+
+describe('splitSentences — abbreviations and ellipses (H1-2)', () => {
+  it('does not split on a title dot', () => {
+    const withTitles = measureWindow('Mr. Darcy wrote. Mrs. Smith read. Dr. Lee slept. St. John waited.')
+    // Four sentences of three words each: mean 3, no spread.
+    expect(withTitles.values.sentenceMean).toBe(3)
+    expect(withTitles.values.sentenceSigma).toBe(0)
+  })
+
+  it('does not split inside an ellipsis', () => {
+    const a = measureWindow('He walked down the hall... then paused. She waited.')
+    const b = measureWindow('He walked down the hall then paused. She waited.')
+    expect(a.values.sentenceMean).toBe(b.values.sentenceMean)
+  })
+
+  it('still splits ordinary sentences, including after a closing quote', () => {
+    const s = measureWindow('"Go home," she said. He stayed where he was.')
+    expect(s.values.sentenceMean).toBeGreaterThan(0)
+    expect(measureWindow('One two three. Four five six.').values.sentenceMean).toBe(3)
+  })
+
+  it('keeps splitting after words that merely look like abbreviations', () => {
+    // "no" and "etc" are deliberately absent from the table, so the dot after
+    // "no" still ends a sentence: two sentences (3 words, 2 words) -> mean 2.5,
+    // not one 5-word sentence.
+    expect(measureWindow('She said no. He left.').values.sentenceMean).toBe(2.5)
+  })
+})
+
+describe('nominalRate — suffix spelling is not a nominalization (H1-3)', () => {
+  it('does not count words whose ending is not a suffix', () => {
+    const s = measureWindow('They mention the witness and comment on the garment.')
+    expect(s.values.nominalRate).toBe(0)
+    expect(s.axes.has('nominal')).toBe(false)
+  })
+
+  it('does not count a suffix word used as a verb', () => {
+    // "mention" IS deverbal, so it is not in the exclusion table; the noun
+    // -position test is what keeps the verb use out.
+    expect(measureWindow('They mention it often.').values.nominalRate).toBe(0)
+  })
+
+  it('still counts real nominalizations in noun position', () => {
+    const s = measureWindow('The implementation of the arrangement showed a certain hesitance.')
+    expect(s.values.nominalRate).toBeGreaterThan(5)
+    expect(s.axes.has('nominal')).toBe(true)
+  })
+})
+
+describe('dialogueDensity — hard-wrapped speech (H1-7)', () => {
+  it('scores wrapped speech the same as unwrapped', () => {
+    const wrapped = measureWindow('"I cannot believe\nyou did that," she said.')
+    const flat = measureWindow('"I cannot believe you did that," she said.')
+    expect(wrapped.values.dialogueDensity).toBeCloseTo(flat.values.dialogueDensity, 10)
+    expect(wrapped.axes.has('dialogue')).toBe(true)
+  })
+
+  it('still ends a span at a blank line, so an unclosed quote cannot run away', () => {
+    const s = measureWindow('"an unclosed quote\n\nA whole separate paragraph of ordinary prose here.')
+    expect(s.values.dialogueDensity).toBe(0)
+  })
+})
+
+describe('countProseWords — cadence and window-stats agree (H1-5)', () => {
+  it('does not count markdown scaffolding as words', () => {
+    const doc = '# Heading\n\n- one\n- two\n\n```\ncode\n```\n\n---\n\n**bold** and `tick`'
+    expect(countProseWords(doc)).toBeLessThan(doc.split(/\s+/).filter(Boolean).length)
+  })
+
+  it('counts the same words measureWindow measures', () => {
+    const prose = 'She lifted the skillet and set it on the burner.'
+    expect(countProseWords(prose)).toBe(10)
   })
 })

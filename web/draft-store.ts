@@ -64,11 +64,25 @@ function parseNote(value: unknown): Note | null {
   ) {
     return null;
   }
+  const out: Note = {
+    start: a.start,
+    end: a.end,
+    fragment: a.fragment,
+    question: a.question,
+    ts: a.ts,
+  };
   if (a.source !== undefined) {
     if (a.source !== 'seed' && a.source !== 'reshaped' && a.source !== 'topic-probe') return null;
-    return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts, source: a.source };
+    out.source = a.source;
   }
-  return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts };
+  // Optional and advisory: context only disambiguates a duplicate fragment
+  // (H9-1), so a malformed value is dropped, never a reason to reject a note.
+  const ctx = a.context;
+  if (typeof ctx === 'object' && ctx !== null) {
+    const { before, after } = ctx as Record<string, unknown>;
+    if (typeof before === 'string' && typeof after === 'string') out.context = { before, after };
+  }
+  return out;
 }
 
 function sanitizeNotes(value: unknown): Note[] {

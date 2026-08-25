@@ -87,6 +87,21 @@ app.use('*', async (c, next) => {
 
 // --- wire contract (src/types.ts) ---
 
+/**
+ * Log the real failure, tell the client nothing about our internals.
+ *
+ * `/ask`, `/save` and `/load` used to return `err.message` verbatim, so a seed
+ * pull failure answered with retrieve.py's stderr and filesystem paths while
+ * `/transcribe` — the other guarded route — deliberately returned a generic
+ * 503. The two disagreed about disclosure and the coach endpoint was the one
+ * leaking (H4-3). The server console keeps the detail; the writer gets a
+ * sentence they can act on.
+ */
+function internalError(route: string, err: unknown, message: string): { error: string } {
+  console.error(`[server] ${route} failed:`, err);
+  return { error: message };
+}
+
 /** Client's probe for local-vs-static mode: 200 means a local server is up. */
 app.get('/health', (c) => c.json({ ok: true }));
 
@@ -164,8 +179,7 @@ app.post('/ask', async (c) => {
   // Spread both fields so the client can label the question's provenance.
   return c.json({ ...reshaped });
  } catch (err) {
-  console.error('[server] /ask failed:', err);
-  return c.json({ error: err instanceof Error ? err.message : String(err) }, 500);
+  return c.json(internalError('/ask', err, 'the coach could not answer — see the server log'), 500);
  }
 });
 
@@ -195,7 +209,21 @@ export function parseAnnotation(value: unknown): Annotation | null {
     if (a.source !== 'seed' && a.source !== 'reshaped' && a.source !== 'topic-probe') return null;
     return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts, source: a.source };
   }
-  return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts };
+  const out: Annotation = {
+    start: a.start,
+    end: a.end,
+    fragment: a.fragment,
+    question: a.question,
+    ts: a.ts,
+  };
+  const ctx = a.context;
+  if (typeof ctx === 'object' && ctx !== null) {
+    const { before, after } = ctx as Record<string, unknown>;
+    // Carried through, never trusted: context only disambiguates duplicates
+    // (H9-1), so a malformed value is dropped rather than failing the note.
+    if (typeof before === 'string' && typeof after === 'string') out.context = { before, after };
+  }
+  return out;
 }
 
 /** Validate an unknown value as an Annotation[]; null when it is not one. */
@@ -239,8 +267,7 @@ app.post('/save', async (c) => {
   });
   return c.json({});
  } catch (err) {
-  console.error('[server] /save failed:', err);
-  return c.json({ error: err instanceof Error ? err.message : String(err) }, 500);
+  return c.json(internalError('/save', err, 'the draft could not be saved — see the server log'), 500);
  }
 });
 
@@ -252,8 +279,7 @@ app.get('/load', async (c) => {
   });
   return c.json(state);
  } catch (err) {
-  console.error('[server] /load failed:', err);
-  return c.json({ error: err instanceof Error ? err.message : String(err) }, 500);
+  return c.json(internalError('/load', err, 'the draft could not be loaded — see the server log'), 500);
  }
 });
 
@@ -414,10 +440,62 @@ const server = createServer((req, res) => {
   });
 });
 
+/**
+ * Largest request body the server will buffer. `/save` reads the whole body
+ * into memory and writes it to disk, so without a cap one request could
+ * exhaust memory and fill the disk — a 50 MB draft was accepted and written
+ * (H4-2). The boundary's own premise is that other local processes are
+ * hostile to `/save`, which makes this the same threat model.
+ *
+ * 5 MB is far above any real draft (the sample is ~2 KB) and far below a
+ * problem.
+ */
+export const MAX_BODY_BYTES = 5 * 1024 * 1024;
+
+/**
+ * A Host header safe to build a URL from: a bracketed IPv6 literal or a
+ * hostname, each with an optional numeric port. `handle` builds a URL from
+ * the UNTRUSTED Host before Hono runs, so a malformed value threw inside the
+ * adapter and surfaced as a generic 500 — the documented fail-closed 403 was
+ * unreachable for exactly the inputs it exists to reject (H4-1).
+ */
+export const SAFE_HOST_RE = /^(?:\[[0-9A-Fa-f:.]+\]|[A-Za-z0-9.-]+)(?::\d{1,5})?$/;
+
+function endJson(res: ServerResponse, status: number, payload: unknown): void {
+  if (!res.headersSent) res.writeHead(status, { 'content-type': 'application/json' });
+  res.end(JSON.stringify(payload));
+}
+
 async function handle(app: Hono, req: IncomingMessage, res: ServerResponse): Promise<void> {
-  const url = new URL(req.url ?? '/', `http://${req.headers.host ?? '127.0.0.1'}`);
+  // Validate Host BEFORE it reaches the URL constructor, so a malformed value
+  // fails closed with the boundary's own 403 rather than crashing the adapter.
+  const rawHost = req.headers.host;
+  if (rawHost !== undefined && !SAFE_HOST_RE.test(rawHost)) {
+    endJson(res, 403, { error: `untrusted Host "${rawHost}"` });
+    req.resume();
+    return;
+  }
+  const url = new URL(req.url ?? '/', `http://${rawHost ?? '127.0.0.1'}`);
+  const declared = Number(req.headers['content-length'] ?? '0');
+  if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) {
+    endJson(res, 413, { error: 'request body too large' });
+    req.resume();
+    return;
+  }
   const chunks: Buffer[] = [];
-  for await (const chunk of req) chunks.push(chunk as Buffer);
+  let received = 0;
+  for await (const chunk of req) {
+    const buf = chunk as Buffer;
+    received += buf.length;
+    // Enforce on RECEIVED bytes too: Content-Length can lie or be absent
+    // (chunked transfer). Stop reading as soon as the cap is passed.
+    if (received > MAX_BODY_BYTES) {
+      endJson(res, 413, { error: 'request body too large' });
+      req.destroy();
+      return;
+    }
+    chunks.push(buf);
+  }
   const body = Buffer.concat(chunks);
   // IncomingHttpHeaders is not exactly HeadersInit, but undici accepts it.
   const headers = req.headers as unknown as HeadersInit;

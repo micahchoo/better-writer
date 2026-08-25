@@ -74,6 +74,9 @@ function makeConfig(
 function stubFetch(content: string): ReturnType<typeof vi.fn> {
   const fn = vi.fn(async () => ({
     ok: true,
+    // A real Response exposes text(); readJson reads the body through it so a
+    // non-JSON 200 becomes a message about the provider (H7-3).
+    text: async () => JSON.stringify({ choices: [{ message: { content } }] }),
     json: async () => ({ choices: [{ message: { content } }] }),
   }));
   vi.stubGlobal('fetch', fn);
@@ -344,6 +347,7 @@ describe('transcribeWavByok', () => {
     saveByokConfig(makeConfig()); // openai -> default whisper-1
     const fetchFn = vi.fn(async (_input: unknown, _init: unknown) => ({
       ok: true,
+      text: async () => JSON.stringify({ text: '  the keeper winds the clock  ' }),
       json: async () => ({ text: '  the keeper winds the clock  ' }),
     }));
     vi.stubGlobal('fetch', fetchFn);
@@ -371,7 +375,11 @@ describe('transcribeWavByok', () => {
   it('converts the raw recorder blob to 16kHz mono WAV before upload', async () => {
     saveByokConfig(makeConfig()); // openai -> default whisper-1
     const raw = new Blob(['fake-webm-opus-bytes'], { type: 'audio/webm;codecs=opus' });
-    const fetchFn = vi.fn(async () => ({ ok: true, json: async () => ({ text: 'ok' }) }));
+    const fetchFn = vi.fn(async () => ({
+      ok: true,
+      text: async () => JSON.stringify({ text: 'ok' }),
+      json: async () => ({ text: 'ok' }),
+    }));
     vi.stubGlobal('fetch', fetchFn);
 
     const text = await transcribeWavByok(raw);
@@ -413,12 +421,97 @@ describe('transcribeWavByok', () => {
     expect(fetchFn).not.toHaveBeenCalled();
   });
 
-  it('throws and never calls fetch when the provider has no dictation model', async () => {
+  it('throws and never calls fetch when the provider cannot transcribe', async () => {
     saveByokConfig(makeConfig({ provider: 'openrouter' }));
     const fetchFn = vi.fn();
     vi.stubGlobal('fetch', fetchFn);
 
-    await expect(transcribeWavByok(WAV)).rejects.toThrow(/No dictation model/);
+    await expect(transcribeWavByok(WAV)).rejects.toThrow(/cannot transcribe audio/);
     expect(fetchFn).not.toHaveBeenCalled();
+  });
+
+  /**
+   * H7-2: TRANSCRIBES_AUDIO was documentation, not enforcement. The guard read
+   * sttModelFor only, so a STALE override defeated it — EditorApp's provider
+   * switch preserves the sttModel field, so openai -> openrouter leaves
+   * "whisper-1" behind and the writer's key went to a route that 404s.
+   */
+  it('refuses a stale sttModel on a provider with no audio route (H7-2)', async () => {
+    saveByokConfig(makeConfig({ provider: 'openrouter', sttModel: 'whisper-1' }));
+    const fetchFn = vi.fn();
+    vi.stubGlobal('fetch', fetchFn);
+
+    await expect(transcribeWavByok(WAV)).rejects.toThrow(/cannot transcribe audio/);
+    expect(fetchFn).not.toHaveBeenCalled();
+  });
+});
+
+/**
+ * H7-1: sanitize blessed whitespace-padded configs, so loadByokConfig
+ * certified a config that can never work (a baseUrl with a trailing space
+ * assembles "/v1%20/chat/completions") instead of falling back to setup.
+ */
+describe('sanitize trims before validating (H7-1)', () => {
+  it('trims a padded baseUrl, key, and model', () => {
+    saveByokConfig(makeConfig({
+      baseUrl: 'https://api.openai.com/v1 ',
+      apiKey: 'sk-abc ',
+      model: ' gpt-4o-mini ',
+    }));
+    const cfg = loadByokConfig();
+    expect(cfg?.baseUrl).toBe('https://api.openai.com/v1');
+    expect(cfg?.apiKey).toBe('sk-abc');
+    expect(cfg?.model).toBe('gpt-4o-mini');
+  });
+
+  it('treats a whitespace-only sttModel as absent, not as truthy', () => {
+    saveByokConfig(makeConfig({ sttModel: '   ' }));
+    expect(loadByokConfig()?.sttModel).toBeUndefined();
+  });
+
+  it('rejects a config whose fields are only whitespace', () => {
+    localStorage.setItem(
+      'better-writer:byok',
+      JSON.stringify({ provider: 'openai', baseUrl: 'https://a.co/v1', apiKey: '  ', model: 'm' }),
+    );
+    expect(loadByokConfig()).toBeNull();
+  });
+});
+
+/**
+ * H7-3: provider bodies were pasted verbatim into user-facing errors (a 502
+ * HTML page landed whole in a toast), and a 200 with a non-JSON body escaped
+ * as a raw SyntaxError.
+ */
+describe('provider error bodies are bounded and readable (H7-3)', () => {
+  it('caps a long error body instead of pasting it whole', async () => {
+    saveByokConfig(makeConfig());
+    vi.stubGlobal('fetch', vi.fn(async () => ({
+      ok: false,
+      status: 502,
+      statusText: 'Bad Gateway',
+      text: async () => `<html><body>${'x'.repeat(5000)}</body></html>`,
+    })));
+    const complete = makeByokComplete(loadByokConfig()!);
+    await expect(complete('sys', [{ role: 'user', text: 'p' }])).rejects.toThrow(
+      /502 Bad Gateway/,
+    );
+    const err = await complete('sys', [{ role: 'user', text: 'p' }]).catch((e: Error) => e);
+    expect((err as Error).message.length).toBeLessThan(300);
+  });
+
+  it('turns a non-JSON 200 into a message about the provider', async () => {
+    saveByokConfig(makeConfig());
+    vi.stubGlobal('fetch', vi.fn(async () => ({
+      ok: true,
+      text: async () => '<html>not json</html>',
+      json: async () => {
+        throw new SyntaxError('Unexpected token <');
+      },
+    })));
+    const complete = makeByokComplete(loadByokConfig()!);
+    await expect(complete('sys', [{ role: 'user', text: 'p' }])).rejects.toThrow(
+      /non-JSON response/,
+    );
   });
 });

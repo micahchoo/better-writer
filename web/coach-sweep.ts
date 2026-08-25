@@ -34,7 +34,7 @@
 
 import { extractAnchor } from './anchor.js';
 import type { AnchorRecord } from './draft-store.js';
-import { buildAskWindow, partitionSections, splitBlocks } from './text-window.js';
+import { buildAskWindow, partitionSections, splitBlocks, THEMATIC_BREAK_RE } from './text-window.js';
 import type { Block } from './text-window.js';
 import type { Genre, QuestionSource } from '../src/types.js';
 
@@ -50,7 +50,10 @@ const MAX_WINDOW_CHARS = 1200;
  * The anchor-shape staleAnnotations consumes: the span + fragment subset of
  * an AnchorRecord, so persisted annotations pass through directly.
  */
-export type AnchorRecordLike = Pick<AnchorRecord, 'start' | 'end' | 'fragment'>;
+export type AnchorRecordLike = Pick<AnchorRecord, 'start' | 'end' | 'fragment'> & {
+  /** Optional neighbourhood captured at mint time; disambiguates duplicates (H9-1). */
+  context?: { before: string; after: string };
+};
 
 /** A single sweep annotation, ready to persist alongside single annotations. */
 export interface SweepNote {
@@ -104,6 +107,11 @@ export interface SweepWindowPlan {
  * surrounding newlines. Used as the budget proxy (Q2); a single block
  * over the budget still becomes its own window (Q3).
  */
+/** A `---`/`***`/`___` rule: a separator, never prose to ask about (H9-2). */
+function isThematicBreak(block: Block): boolean {
+  return THEMATIC_BREAK_RE.test(block.text.trim());
+}
+
 function projectedMarkedLength(blocks: Block[]): number {
   const textLength = blocks.reduce((sum, block) => sum + block.text.length, 0);
   return textLength + 2 * (blocks.length - 1) + 28;
@@ -137,7 +145,14 @@ export function planSweep(markdown: string): SweepWindowPlan[] {
   const sections = partitionSections(blocks);
   sections.forEach((section, sectionIndex) => {
     let current: Block[] = [];
-    for (const block of section) {
+    // A thematic break is a SEPARATOR, not prose. partitionSections already
+    // uses it to start a section, but splitBlocks also keeps it as a
+    // first-class paragraph, so it could become a window's marked block —
+    // "[CURSOR START]\n---\n[CURSOR END]" — or, at the end of a draft, a
+    // whole window whose entire content is "---". Such a window has no
+    // quotable words, so the ask fails isGrounded, spends the retry and falls
+    // back to a topic probe, costing a token in byok for nothing (H9-2).
+    for (const block of section.filter((b) => !isThematicBreak(b))) {
       if (current.length === 0) {
         current = [block];
         continue;
@@ -376,6 +391,20 @@ export function reconcileAnnotations<T extends AnchorRecordLike>(
  * @returns the surviving annotations (moved ones on fresh offset objects),
  *   in input order
  */
+/** Length of the longest common suffix of two strings. */
+function commonSuffix(a: string, b: string): number {
+  let n = 0;
+  while (n < a.length && n < b.length && a[a.length - 1 - n] === b[b.length - 1 - n]) n++;
+  return n;
+}
+
+/** Length of the longest common prefix of two strings. */
+function commonPrefix(a: string, b: string): number {
+  let n = 0;
+  while (n < a.length && n < b.length && a[n] === b[n]) n++;
+  return n;
+}
+
 export function staleAnnotations(annotations: AnchorRecordLike[], draft: string): AnchorRecordLike[] {
   return annotations.flatMap((annotation) => {
     // Drop degenerate spans up front: an empty fragment or a zero-length span
@@ -389,14 +418,56 @@ export function staleAnnotations(annotations: AnchorRecordLike[], draft: string)
     ) {
       return [annotation];
     }
-    let best = -1;
-    let bestDist = Number.POSITIVE_INFINITY;
-    let tied = false;
+    const occurrences: number[] = [];
     for (
       let idx = draft.indexOf(annotation.fragment);
       idx !== -1;
       idx = draft.indexOf(annotation.fragment, idx + 1)
     ) {
+      occurrences.push(idx);
+    }
+    if (occurrences.length === 0) return [];
+
+    // More than one occurrence: distance from the STALE ABSOLUTE start is the
+    // wrong discriminator. A pure insertion before both shifts every
+    // occurrence equally, so the earlier duplicate becomes "nearest" and the
+    // writer's pinned highlight jumps to a different identical sentence
+    // (H9-1). Context — the text that was AROUND this span when the note was
+    // minted — survives that shift, so it decides when it is available.
+    if (occurrences.length > 1 && annotation.context) {
+      const { before, after } = annotation.context;
+      let ctxBest = -1;
+      let ctxScore = -1;
+      let ctxTied = false;
+      for (const idx of occurrences) {
+        const seenBefore = draft.slice(Math.max(0, idx - before.length), idx);
+        const seenAfter = draft.slice(idx + annotation.fragment.length).slice(0, after.length);
+        const score = commonSuffix(before, seenBefore) + commonPrefix(after, seenAfter);
+        if (score > ctxScore) {
+          ctxScore = score;
+          ctxBest = idx;
+          ctxTied = false;
+        } else if (score === ctxScore) {
+          ctxTied = true;
+        }
+      }
+      // A tie means the context cannot tell them apart either (identical
+      // neighbourhoods); fall through to distance rather than guess.
+      if (ctxBest !== -1 && !ctxTied && ctxScore > 0) {
+        return [
+          {
+            ...annotation,
+            start: ctxBest,
+            end: ctxBest + annotation.fragment.length,
+          },
+        ];
+      }
+    }
+
+    let best = -1;
+    let bestDist = Number.POSITIVE_INFINITY;
+    let tied = false;
+    for (const idx of occurrences) {
       const dist = Math.abs(idx - annotation.start);
       if (dist < bestDist) {
         bestDist = dist;

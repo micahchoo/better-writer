@@ -57,9 +57,13 @@ describe('isSingleQuestion', () => {
  expect(isSingleQuestion('What is at stake here?\t')).toBe(true);
  });
 
-it('rejects a question with a second question mark anywhere', () => {
+it('rejects a SECOND question, but not emphatic punctuation on one', () => {
+ // Two questions: the first `?` is a real sentence end.
  expect(isSingleQuestion('What is at stake? Really?')).toBe(false);
- expect(isSingleQuestion('What is at stake here???')).toBe(false);
+ // One question with an emphatic terminal cluster — the same rule that lets
+ // "Why?!" through (H2-1). Rejecting it would spend the retry and hand the
+ // writer a fixed topic probe instead of their own question.
+ expect(isSingleQuestion('What is at stake here???')).toBe(true);
 });
 });
 
@@ -106,11 +110,12 @@ describe('isGrounded', () => {
   ).toBe(false);
  });
 
- it('matches substrings in both directions, case-insensitively', () => {
-  // Question word contained in a window word: "walk" in "WALKED".
+ it('matches an inflection of the same word, case-insensitively', () => {
+  // Question word is the base of a window word: "walk" / "WALKED".
   expect(isGrounded('How does the WALK feel?', 'She WALKED to the store.')).toBe(true);
-  // Window word contained in a question word: "store" in "storekeeper".
-  expect(isGrounded('Where did the storekeeper go?', 'She walked to the store.')).toBe(true);
+  // A COMPOUND is a different word, not an inflection: "storekeeper" shares
+  // no stem with "store", the same way "roommate" shares none with "room".
+  expect(isGrounded('Where did the storekeeper go?', 'She walked to the store.')).toBe(false);
  });
 
  it('never matches via a short token inside a longer one', () => {
@@ -340,8 +345,99 @@ describe('isGrounded — substring quality (S2-12)', () => {
   expect(isGrounded('What other thing?', 'My brother left.')).toBe(false);
  });
 
- it('still grounds on a genuine shared stem via prefix alignment', () => {
+ it('still grounds on a genuine shared stem', () => {
   expect(isGrounded('Why walk here?', 'She walked home.')).toBe(true);
-  expect(isGrounded('Where did the storekeeper go?', 'She walked to the store.')).toBe(true);
+ });
+});
+
+/**
+ * R4: the prefix rule that replaced the substring rule still grounded on
+ * accident whenever the accident sat at the FRONT of the longer word, and it
+ * dropped every inflection that changes a letter. Stem comparison is the
+ * contract now; these cases are the class, not the four words a probe printed.
+ */
+describe('isGrounded — stem comparison (R4)', () => {
+ it('rejects a coincidental prefix, which the old rule accepted', () => {
+  expect(isGrounded('What is the mother doing?', 'The moth circled.')).toBe(false);
+  expect(isGrounded('Which room matters?', "He entered the roommate's space.")).toBe(false);
+  expect(isGrounded('What does the fall mean?', 'She fell and the fallout spread.')).toBe(false);
+  expect(isGrounded('Why the light?', 'The lightning struck.')).toBe(false);
+ });
+
+ it('keeps rejecting an internal or suffix substring, as the prefix rule did', () => {
+  expect(isGrounded('What time is it?', 'He sometimes hesitates.')).toBe(false);
+  expect(isGrounded('Which ring matters?', 'During the walk he did bring it.')).toBe(false);
+ });
+
+ it('grounds an inflection that changes a letter, which the old rule dropped', () => {
+  // y -> i: the commonest inflection in English prose.
+  expect(isGrounded('What does she carry?', 'She carried the box.')).toBe(true);
+  expect(isGrounded('Whose story is this?', 'The stories repeat.')).toBe(true);
+  // Doubled final consonant.
+  expect(isGrounded('Why stop here?', 'He stopped at the door.')).toBe(true);
+  // Silent -e.
+  expect(isGrounded('What does she store?', 'She stored the jars.')).toBe(true);
+  // -ing against a 3-letter base, which the old 4-char floor could not reach.
+  expect(isGrounded('Why running?', 'She was running hard.')).toBe(true);
+ });
+
+ it('leaves irregular forms unmatched, the accepted cost of a light stemmer', () => {
+  expect(isGrounded('Why running?', 'She ran hard.')).toBe(false);
+  expect(isGrounded('Why the knife?', 'The knives lay out.')).toBe(false);
+ });
+});
+
+/**
+ * H2-1/H2-2: two recall defects in the gate's syntax predicates. A rejected
+ * output is not free — it spends the single retry and hands the writer a
+ * fixed topic probe instead of a question about their own sentence.
+ */
+describe('isSingleQuestion — abbreviations, decimals, emphatic ends (H2-1)', () => {
+ it('accepts a genuine question containing an abbreviation', () => {
+  expect(isSingleQuestion('Is Dr. Smith coming?')).toBe(true);
+  expect(isSingleQuestion('Did you see Mr. and Mrs. Jones?')).toBe(true);
+  expect(isSingleQuestion("Where is St. Paul's cathedral?")).toBe(true);
+  expect(isSingleQuestion('Does the text use e.g. or i.e.?')).toBe(true);
+ });
+
+ it('accepts a decimal inside a question', () => {
+  expect(isSingleQuestion('Why does 3.5 matter here?')).toBe(true);
+ });
+
+ it('accepts an emphatic terminal cluster containing a question mark', () => {
+  expect(isSingleQuestion('Why?!')).toBe(true);
+  expect(isSingleQuestion('How dare you?!')).toBe(true);
+ });
+
+ it('still rejects a cluster with no question mark at all', () => {
+  expect(isSingleQuestion('Cut that line!')).toBe(false);
+  expect(isSingleQuestion('Really!!')).toBe(false);
+ });
+
+ it('keeps rejecting two sentences, including after an abbreviation', () => {
+  expect(isSingleQuestion('Look at this. What do you mean?')).toBe(false);
+  expect(isSingleQuestion('Did you ask her? Or did she?')).toBe(false);
+  // "etc" and "no" are deliberately NOT exempt: they routinely end sentences.
+  expect(isSingleQuestion('She said no. What now?')).toBe(false);
+  expect(isSingleQuestion('Cut the adverbs, etc. What else?')).toBe(false);
+ });
+});
+
+describe('gate predicates fold accents before comparing (H2-2)', () => {
+ it('catches an echo that normalizes the accent away', () => {
+  expect(echoesText('The cafe is loud?', 'The café is loud.')).toBe(true);
+ });
+
+ it('catches a near-copy of the seed that drops the accent', () => {
+  expect(copiesSeed('cafe in the plaza', 'café in the plaza')).toBe(true);
+ });
+
+ it('grounds an accented word against itself', () => {
+  expect(isGrounded('What about the café?', 'The café was loud.')).toBe(true);
+  expect(isGrounded('Why déjà vu?', 'She felt déjà vu.')).toBe(true);
+ });
+
+ it('does not ground unrelated words that merely share ASCII letters', () => {
+  expect(isGrounded('What about the fiancée?', 'The cafe was loud.')).toBe(false);
  });
 });

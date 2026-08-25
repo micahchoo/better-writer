@@ -12,13 +12,22 @@
  * ("canny" matches inside "uncanny"), so fragments may start or end inside a
  * draft word only where the word itself is matched.
  *
- * Anchor policy (in priority order):
+ * Anchor policy, applied in two passes. Candidates are ranked by QUALITY —
+ * a multi-word phrase, then a lone word that is long and non-generic, then a
+ * short or generic lone word — and the pass below runs over the strong tiers
+ * first, over everything only if they are empty:
  *   1. LONGEST fragment fully inside the cursor envelope (the cursor block
  *      plus one block on each side, never crossing a heading),
  *   2. NEAREST fragment to cursorOffset (min |fragment.start - cursorOffset|),
  *   3. LONGEST fragment anywhere.
  * Ties at any tier break toward the first occurrence in the draft. Returns
  * null when no distinctive question word appears in the draft at all.
+ *
+ * The winner is then WIDENED if it is a lone word: the anchor becomes the
+ * sentence containing that word, clipped to its own block and capped at
+ * MAX_ANCHOR_CHARS. So the span the writer sees highlighted is always a
+ * phrase or a sentence — never one bare word — while the reach of the
+ * matching stays what it was. See toAnchor for why both halves are needed.
  */
 
 import { splitBlocks } from './text-window.js';
@@ -28,14 +37,31 @@ export interface Anchor {
   start: number;
   /** character offset just past the anchor's last character */
   end: number;
-  /** the matched draft text, i.e. draft.slice(start, end) */
+  /** the anchored draft text, i.e. draft.slice(start, end) */
   fragment: string;
+  /**
+   * The span the question's own words matched, always inside [start, end).
+   * Equal to the anchor for a phrase match; narrower when a lone word was
+   * widened to its sentence (see toAnchor). Kept so a consumer can mark the
+   * matched word inside the highlighted sentence, and so the matching rules
+   * stay observable now that the anchor is no longer the raw match.
+   */
+  match: { start: number; end: number };
 }
 
 /** A draft word token with its character range in the draft. */
 interface Token {
-  /** the word, lowercased */
+  /** the word, lowercased — the comparison form, never a source of offsets */
   word: string;
+  /**
+   * Draft offset for each index of `word`, plus one final entry for its end.
+   * Lowercasing is NOT length-preserving — Turkish `İ` (U+0130) lowercases to
+   * two code units — so an index into `word` cannot be added to `start` to get
+   * a draft offset. It produced anchors that leaked whitespace, started inside
+   * the wrong token, and could end past the end of the document (H3-1). Every
+   * offset derived from a comparison index goes through this map.
+   */
+  offsets: number[];
   /** offset of the word's first character in the draft */
   start: number;
   /** offset just past the word's last character */
@@ -47,7 +73,18 @@ interface Candidate {
   start: number;
   end: number;
   span: number;
+  /** how many question words the match consumed; 1 means a lone word */
+  words: number;
+  /** Quality tier — see QUALITY_*. Selection prefers the highest available. */
+  quality: number;
 }
+
+/** A multi-word match: a content phrase, always the best anchor available. */
+const QUALITY_PHRASE = 2;
+/** A lone word that is long enough and not generic — a usable anchor. */
+const QUALITY_DISTINCTIVE = 1;
+/** A lone word that is short or generic — used only when nothing else matched. */
+const QUALITY_WEAK = 0;
 
 /** The structural slice of a text-window block the anchor module consumes. */
 interface BlockLike {
@@ -157,7 +194,23 @@ const WORD_RE = /[\p{L}\p{N}]+(?:['\u2019][\p{L}\p{N}]+)*/gu;
 function tokenize(text: string): Token[] {
   const tokens: Token[] = [];
   for (const match of text.matchAll(WORD_RE)) {
-    tokens.push({ word: match[0].toLowerCase(), start: match.index, end: match.index + match[0].length });
+    const raw = match[0];
+    const start = match.index;
+    // Lower one code point at a time, recording where each produced character
+    // came from, so a comparison index maps back to an exact draft offset.
+    // A fold that expands (İ -> i + combining dot) maps every character it
+    // produced to the start of the code point that produced it.
+    let word = '';
+    const offsets: number[] = [];
+    let rawOffset = start;
+    for (const cp of raw) {
+      const lowered = cp.toLowerCase();
+      for (let k = 0; k < lowered.length; k++) offsets.push(rawOffset);
+      word += lowered;
+      rawOffset += cp.length;
+    }
+    offsets.push(start + raw.length); // end sentinel
+    tokens.push({ word, offsets, start, end: start + raw.length });
   }
   return tokens;
 }
@@ -252,30 +305,35 @@ function findCandidates(
       for (const p of positions) {
         const startToken = tokens[p];
         const endToken = tokens[p + len - 1];
-        const start = startToken.start + startToken.word.indexOf(sub[0]);
-        // A fragment must never end mid-word: when the matched question-word
-        // does not consume the containing token fully (e.g. "walk" inside
-        // "walkings"), push the end out to the token's own boundary. For a
-        // doubled token ("catcat") indexOf picks the first occurrence — the
-        // same half the start uses — so extending to the full token keeps
-        // that pairing coherent.
-        const endWord = endToken.word;
-        const endHit = endWord.indexOf(sub[len - 1]);
-        const consumed = endHit + sub[len - 1].length;
-        const end = consumed === endWord.length ? endToken.start + consumed : endToken.start + endWord.length;
-        // Anchor-quality floor: a single-word fragment is only a valid
-        // candidate when its lone word is genuinely distinctive — not a
-        // stopword or generic low-distinctiveness word, and long enough to
-        // carry signal. A multi-word fragment (len >= 2) is always
-        // acceptable: it is a content phrase, even if it contains generic
-        // words ("first draft").
-        if (
-          len === 1 &&
-          (STOPWORDS[sub[0]] === true || GENERIC_WORDS[sub[0]] === true || end - start < MIN_FRAGMENT_CHARS)
-        ) {
-          continue;
-        }
-        candidates.push({ start, end, span: end - start });
+        // Both offsets come from the token's own index map, never from
+        // `start + index`: lowercasing can change length (H3-1).
+        const start = startToken.offsets[startToken.word.indexOf(sub[0])];
+        // A fragment must never end mid-word (first-hunt #14): the end is
+        // ALWAYS the containing token's own boundary, whether or not the
+        // matched question-word consumed the token fully ("walk" inside
+        // "walkings" ends at "walkings"). For a doubled token ("catcat") the
+        // start takes the first occurrence, so extending to the full token
+        // keeps that pairing coherent.
+        const end = endToken.end;
+        // Anchor quality is RANKED here, never used to discard. A multi-word
+        // fragment is a content phrase and always best; a lone word that is
+        // long enough and not generic is usable; a short or generic lone word
+        // is the last resort.
+        //
+        // Discarding the last resort is what the first attempt at this did,
+        // and it cut the share of questions that anchored at all from 60% to
+        // 17% — an un-anchored question is dropped, so the writer got nothing
+        // instead of getting something weak (R1). Ranking keeps the reach and
+        // still steers selection toward the better match.
+        const quality =
+          len > 1
+            ? QUALITY_PHRASE
+            : STOPWORDS[sub[0]] === true ||
+                GENERIC_WORDS[sub[0]] === true ||
+                end - start < MIN_FRAGMENT_CHARS
+              ? QUALITY_WEAK
+              : QUALITY_DISTINCTIVE;
+        candidates.push({ start, end, span: end - start, words: len, quality });
       }
     }
   }
@@ -311,8 +369,137 @@ function cursorEnvelope(blocks: BlockLike[], index: number): { start: number; en
   return { start: before ? before.start : block.start, end: after ? after.end : block.end };
 }
 
-function toAnchor(draft: string, candidate: Candidate): Anchor {
-  return { start: candidate.start, end: candidate.end, fragment: draft.slice(candidate.start, candidate.end) };
+/**
+ * Longest span a widened anchor may cover. A sentence longer than this is a
+ * run-on; highlighting all of it would swamp the draft, so the widening falls
+ * back to a bounded window centred on the matched word.
+ */
+const MAX_ANCHOR_CHARS = 200;
+
+const SENTENCE_END = /[.!?]/;
+const CLOSING_MARK = /["'”’)\]]/;
+
+/**
+ * The sentence containing `candidate`, clipped to `lo`..`hi` (its own block, so
+ * a widened anchor can never cross a heading or reach into a neighbouring
+ * paragraph).
+ */
+function sentenceSpan(
+  draft: string,
+  candidate: Candidate,
+  lo: number,
+  hi: number,
+): { start: number; end: number } {
+  let start = candidate.start;
+  while (start > lo && !SENTENCE_END.test(draft[start - 1])) start--;
+  // Step past the terminator's own closing marks and the space after it.
+  while (start < candidate.start && (/\s/.test(draft[start]) || CLOSING_MARK.test(draft[start]))) start++;
+  let end = candidate.end;
+  while (end < hi && !SENTENCE_END.test(draft[end - 1])) end++;
+  while (end < hi && CLOSING_MARK.test(draft[end])) end++;
+  while (end > candidate.end && /\s/.test(draft[end - 1])) end--;
+  return { start, end };
+}
+
+/**
+ * A window of at most MAX_ANCHOR_CHARS around `candidate`, snapped outward-in
+ * to whitespace so it never begins or ends mid-word.
+ */
+function boundedWindow(
+  draft: string,
+  candidate: Candidate,
+  lo: number,
+  hi: number,
+): { start: number; end: number } {
+  const slack = Math.max(0, MAX_ANCHOR_CHARS - candidate.span);
+  let start = Math.max(lo, candidate.start - Math.floor(slack / 2));
+  let end = Math.min(hi, start + MAX_ANCHOR_CHARS);
+  while (start > lo && start < candidate.start && /\S/.test(draft[start - 1])) start++;
+  while (end < hi && end > candidate.end && /\S/.test(draft[end])) end--;
+  while (start < candidate.start && /\s/.test(draft[start])) start++;
+  while (end > candidate.end && /\s/.test(draft[end - 1])) end--;
+  return { start, end };
+}
+
+/**
+ * Turn the winning candidate into the anchor the writer sees.
+ *
+ * A multi-word match is already a phrase and is returned as matched. A LONE
+ * WORD is widened to the sentence that contains it, because a question pinned
+ * to one bare word tells the writer nothing — "why does the rhythm change
+ * here?" highlighted over `sound` is noise, over the sentence holding `sound`
+ * it is a craft note. This is the whole of S2-7: the recorded defect was that
+ * the demo pins questions to single, meaningless words, and a floor that
+ * filtered those words out only stopped it from pinning at all (R1). Widening
+ * removes single-word anchors by construction rather than by suppression.
+ *
+ * Widening never leaves the candidate's own block, and never exceeds
+ * MAX_ANCHOR_CHARS.
+ */
+function toAnchor(draft: string, candidate: Candidate, blocks: BlockLike[]): Anchor {
+  let { start, end } = candidate;
+  if (candidate.words === 1) {
+    const block = blocks.find((b) => candidate.start >= b.start && candidate.end <= b.end);
+    const lo = block ? block.start : 0;
+    const hi = block ? block.end : draft.length;
+    const sentence = sentenceSpan(draft, candidate, lo, hi);
+    const widened =
+      sentence.end - sentence.start > MAX_ANCHOR_CHARS
+        ? boundedWindow(draft, candidate, lo, hi)
+        : sentence;
+    // Never widen to LESS than the match itself.
+    start = Math.min(widened.start, candidate.start);
+    end = Math.max(widened.end, candidate.end);
+  }
+  return {
+    start,
+    end,
+    fragment: draft.slice(start, end),
+    match: { start: candidate.start, end: candidate.end },
+  };
+}
+
+/**
+ * Apply the three-tier anchor policy (envelope / nearest / longest) to one
+ * candidate set. Returns null when the set is empty.
+ */
+function selectCandidate(
+  candidates: Candidate[],
+  envelope: { start: number; end: number } | null,
+  cursorOffset: number,
+): Candidate | null {
+  if (candidates.length === 0) return null;
+
+  // 1. Longest fragment fully inside the cursor envelope.
+  if (envelope) {
+    let best: Candidate | null = null;
+    for (const c of candidates) {
+      if (c.start < envelope.start || c.end > envelope.end) continue;
+      if (best === null || c.span > best.span || (c.span === best.span && c.start < best.start)) best = c;
+    }
+    if (best) return best;
+  }
+
+  // 2. Nearest fragment to the cursor; ties break to the first occurrence.
+  let nearest: Candidate | null = null;
+  let nearestDist = Infinity;
+  for (const c of candidates) {
+    const dist = Math.abs(c.start - cursorOffset);
+    if (nearest === null || dist < nearestDist || (dist === nearestDist && c.start < nearest.start)) {
+      nearest = c;
+      nearestDist = dist;
+    }
+  }
+  if (nearest) return nearest;
+
+  // 3. Longest fragment anywhere (unreachable while the set is non-empty).
+  let longest: Candidate | null = null;
+  for (const c of candidates) {
+    if (longest === null || c.span > longest.span || (c.span === longest.span && c.start < longest.start)) {
+      longest = c;
+    }
+  }
+  return longest;
 }
 
 /**
@@ -404,6 +591,7 @@ export function extractAnchor(question: string, draft: string, cursorOffset: num
       start: bestQuote.start,
       end: bestQuote.end,
       fragment: draft.slice(bestQuote.start, bestQuote.end),
+      match: { start: bestQuote.start, end: bestQuote.end },
     };
   }
   if (candidates.length === 0) return null;
@@ -412,34 +600,12 @@ export function extractAnchor(question: string, draft: string, cursorOffset: num
   const blocks = splitBlocks(draft);
   const envelope = blocks.length > 0 ? cursorEnvelope(blocks, cursorBlockIndex(blocks, cursorOffset)) : null;
 
-  // 1. Longest fragment fully inside the cursor envelope.
-  if (envelope) {
-    let best: Candidate | null = null;
-    for (const c of candidates) {
-      if (c.start < envelope.start || c.end > envelope.end) continue;
-      if (best === null || c.span > best.span || (c.span === best.span && c.start < best.start)) best = c;
-    }
-    if (best) return toAnchor(draft, best);
-  }
-
-  // 2. Nearest fragment to the cursor; ties break to the first occurrence.
-  let nearest: Candidate | null = null;
-  let nearestDist = Infinity;
-  for (const c of candidates) {
-    const dist = Math.abs(c.start - cursorOffset);
-    if (nearest === null || dist < nearestDist || (dist === nearestDist && c.start < nearest.start)) {
-      nearest = c;
-      nearestDist = dist;
-    }
-  }
-  if (nearest) return toAnchor(draft, nearest);
-
-  // 3. Longest fragment anywhere (reached only when no fragment exists).
-  let longest: Candidate | null = null;
-  for (const c of candidates) {
-    if (longest === null || c.span > longest.span || (c.span === longest.span && c.start < longest.start)) {
-      longest = c;
-    }
-  }
-  return longest ? toAnchor(draft, longest) : null;
+  // Quality first, then the three-tier policy WITHIN that quality. A phrase or
+  // a distinctive word anywhere beats a generic word next to the cursor; only
+  // when neither exists does the weak set get its turn.
+  const strong = candidates.filter((c) => c.quality > QUALITY_WEAK);
+  const winner =
+    selectCandidate(strong, envelope, cursorOffset) ??
+    selectCandidate(candidates, envelope, cursorOffset);
+  return winner ? toAnchor(draft, winner, blocks) : null;
 }

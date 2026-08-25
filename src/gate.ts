@@ -5,14 +5,16 @@
  * iff ALL of:
  *  - trimmed and non-empty, single line (no `\n`)
  *  - at most MAX_QUESTION_LENGTH characters
- *  - exactly one real question mark (`?` or fullwidth `？`), which must be
- *    the final character — a question mark inside paired quotation marks is
- *    quoted speech, not a second question
+ *  - it ends in a terminal CLUSTER of `?`/`!` (either width) containing at
+ *    least one question mark, so "Why?!" is one question and "Really!" is
+ *    not one at all
  *  - no sentence-terminal punctuation (`.`, `!`, `?`, `。`, `！`, `？`)
- *    before the final character UNLESS it is a question mark sitting inside
- *    a pair of quotation marks ("why?" is quoted speech, not a new sentence;
- *    a quoted `.`/`!` is NOT exempt — a quoted declarative sentence followed
- *    by a question is two sentences, which is the S1-0 rewrite pattern)
+ *    before that cluster, with two exemptions: a question mark sitting
+ *    inside a pair of quotation marks ("why?" is quoted speech, not a new
+ *    sentence — a quoted `.`/`!` is NOT exempt, since a quoted declarative
+ *    followed by a question is two sentences, the S1-0 rewrite pattern), and
+ *    a `.` that belongs to a word or a number rather than to a sentence
+ *    ("Dr. Smith", "3.5", "e.g.")
  *  - no list marker at the start (`-`, `*`, `•`, `+`, `—`, `–`, or
  *    `N.`/`N)`-style), checked after leading quotes/decor are stripped so
  *    `"1. …` / `**- …` wrappers cannot defeat the `^` anchor
@@ -123,6 +125,49 @@ function stripLeadingDecor(t: string): string {
  return t.slice(i);
 }
 
+/**
+ * Abbreviations whose dot is not a sentence end. Rejecting them made the gate
+ * fail genuine one-sentence questions ("Is Dr. Smith coming?"), which spends
+ * the single retry and hands the writer a fixed topic probe instead (H2-1).
+ */
+const GATE_ABBREVIATIONS: Record<string, true> = {
+ mr: true, mrs: true, ms: true, mx: true, dr: true, prof: true, rev: true,
+ hon: true, st: true, mt: true, sr: true, jr: true, lt: true, sgt: true,
+ capt: true, gen: true, col: true, gov: true, pres: true, vs: true, cf: true,
+ al: true, eg: true, ie: true, fig: true, vol: true, ch: true, pp: true,
+ approx: true, dept: true,
+};
+// "etc" and "no" are deliberately absent: both routinely DO end a sentence
+// ("She said no."), so exempting their dot would let two sentences through.
+
+/**
+ * True when the `.` at `i` is part of a word or a number rather than the end
+ * of a sentence: a decimal point (3.5), an internal dot (e.g., i.e.), or the
+ * dot of a known abbreviation.
+ */
+function isNonTerminalDot(t: string, i: number): boolean {
+ const prev = t[i - 1];
+ const next = t[i + 1];
+ if (prev !== undefined && next !== undefined) {
+  if (/[0-9]/.test(prev) && /[0-9]/.test(next)) return true;
+  // No space after the dot and letters on both sides: inside a word, never
+  // a sentence boundary ("e.g.", "i.e.", "u.s.").
+  if (/[A-Za-z]/.test(prev) && /[A-Za-z]/.test(next)) return true;
+ }
+ // Walk back over letters AND internal dots, so a dotted abbreviation is read
+ // whole ("e.g." -> "eg") rather than as its last letter ("g").
+ let j = i - 1;
+ while (j >= 0 && /[A-Za-z.]/.test(t[j])) j--;
+ const word = t.slice(j + 1, i).replace(/\./g, '').toLowerCase();
+ return GATE_ABBREVIATIONS[word] === true;
+}
+
+/** `?` and `!` in both widths — the characters a terminal cluster may hold. */
+const CLUSTER_MARK: Record<string, true> = {
+ '?': true, '!': true, '？': true, '！': true,
+};
+const QUESTION_MARK: Record<string, true> = { '?': true, '？': true };
+
 export function isSingleQuestion(s: string): boolean {
  const t = s.trim();
  if (t.length === 0) return false;
@@ -132,14 +177,24 @@ export function isSingleQuestion(s: string): boolean {
  const u = stripLeadingDecor(t);
  if (/^(?:[-*•+—–]|\d+[.)])/.test(u)) return false;
 
- const last = t[t.length - 1];
- if (last !== '?' && last !== '？') return false;
+ // The output ends in a terminal CLUSTER of `?`/`!` that must contain at
+ // least one question mark. One cluster is one terminal, so "Why?!" is a
+ // single question rather than two sentences (H2-1); "Really!" still fails.
+ let clusterStart = t.length;
+ while (clusterStart > 0 && CLUSTER_MARK[t[clusterStart - 1]] === true) clusterStart--;
+ if (clusterStart === t.length) return false; // no terminal at all
+ let hasQuestion = false;
+ for (let i = clusterStart; i < t.length; i++) {
+  if (QUESTION_MARK[t[i]] === true) hasQuestion = true;
+ }
+ if (!hasQuestion) return false;
 
  const inQuote = quoteCoverage(t);
- for (let i = 0; i < t.length - 1; i++) {
+ for (let i = 0; i < clusterStart; i++) {
   const c = t[i];
   if (SENTENCE_TERMINAL[c] !== true) continue;
-  if (inQuote[i] && (c === '?' || c === '？')) continue; // quoted question = speech
+  if (inQuote[i] && QUESTION_MARK[c] === true) continue; // quoted question = speech
+  if (c === '.' && isNonTerminalDot(t, i)) continue; // abbreviation or decimal
   return false; // any other sentence-final punctuation before the end
  }
  return true;
@@ -189,10 +244,25 @@ const STOPWORDS: Record<string, true> = {
  much: true, many: true,
 };
 
-/** Lowercase alphanumeric tokens of length >= 3 that are not stopwords. */
+/**
+ * Fold a string to the comparison form every predicate here tokenizes from:
+ * lowercased, decomposed, with combining marks removed, so "café" and "cafe"
+ * are the same token.
+ *
+ * The old form split on `/[^a-z0-9]+/`, which treats every non-ASCII
+ * character as a DELIMITER: "café" became "caf", "déjà" vanished entirely
+ * (both fragments under the 3-char floor), and the two predicates built to
+ * catch the model restating the passage were blind to any accented word — the
+ * exact output an accent-normalizing model produces (H2-2).
+ */
+function foldForCompare(s: string): string {
+ return s.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '');
+}
+
+/** Tokens of length >= 3, Unicode letters and numbers, diacritics folded. */
 function contentWords(s: string): Set<string> {
  const words = new Set<string>();
- for (const token of s.toLowerCase().split(/[^a-z0-9]+/)) {
+ for (const token of foldForCompare(s).split(/[^\p{L}\p{N}]+/u)) {
   if (token.length < 3) continue;
   if (STOPWORDS[token] === true) continue;
   words.add(token);
@@ -202,9 +272,8 @@ function contentWords(s: string): Set<string> {
 
 /** Adjacent-word bigrams, lowercased with punctuation stripped. */
 function wordBigrams(s: string): string[] {
- const tokens = s
-  .toLowerCase()
-  .split(/[^a-z0-9]+/)
+ const tokens = foldForCompare(s)
+  .split(/[^\p{L}\p{N}]+/u)
   .filter((t) => t.length > 0);
  const bigrams: string[] = [];
  for (let i = 0; i + 1 < tokens.length; i++) {
@@ -214,27 +283,67 @@ function wordBigrams(s: string): string[] {
 }
 
 /**
- * True iff the question shares at least one content word with the text
- * window, where a shared word is a full-word match or a morphological
- * prefix ("walk" ↔ "walked", "store" ↔ "storekeeper"). Requiring the
- * shorter word to be a PREFIX of the longer one — the overlap touching the
- * left word boundary of the longer word — keeps genuine stem matches while
- * rejecting accidental substring overlap in the middle or on the right
- * ("time" inside "sometimes", "ring" inside "bring"/"during"). The 4-char
- * floor means a short token never matches inside a longer one at all
- * ("her" never matches inside "where", but "other" is a stopword anyway).
- * An empty question or window is never grounded.
+ * Reduce a word to a comparison stem, so an inflected form and its base
+ * collapse to the same key ("walk"/"walked", "carry"/"carried",
+ * "story"/"stories", "run"/"running").
+ *
+ * This is a light suffix stripper, not a linguistic stemmer — it exists only
+ * to decide "same word?" for grounding:
+ *  - strip ONE inflectional suffix (`ing`, `ied`/`ies`→`y`, `ed`, `es`, `s`),
+ *  - drop a trailing silent `e` ("store"→"stor", so "stored"→"stor" agrees),
+ *  - fold a trailing `y` to `i` ("carry"→"carri" agrees with "carried"),
+ *  - undo a doubled final consonant ("stopped"→"stopp"→"stop").
+ *
+ * Comparing STEMS rather than substrings or prefixes is what makes grounding
+ * mean "the question names a word that is in the text". A prefix test grounds
+ * on accident whenever the accident sits at the front — "moth" in "mother",
+ * "room" in "roommate", "light" in "lightning", "fall" in "fallout" — and it
+ * misses every inflection that changes a letter, which are the commonest ones
+ * in prose ("carry"/"carried", "story"/"stories"). Stems reject the first
+ * class and keep the second.
+ *
+ * Irregular forms it cannot reach ("run"/"ran", "write"/"wrote",
+ * "knife"/"knives") stay unmatched. That is the accepted cost: grounding is
+ * one of four gate predicates, and a miss falls back to a topic probe rather
+ * than showing the writer a question about words they never wrote.
+ */
+function stem(word: string): string {
+ let s = word;
+ if (s.length > 4 && s.endsWith('ing')) s = s.slice(0, -3);
+ else if (s.length > 4 && (s.endsWith('ied') || s.endsWith('ies'))) s = s.slice(0, -3) + 'y';
+ else if (s.length > 3 && (s.endsWith('ed') || s.endsWith('es'))) s = s.slice(0, -2);
+ else if (s.length > 3 && s.endsWith('s') && !s.endsWith('ss')) s = s.slice(0, -1);
+ if (s.length > 3 && s.endsWith('e')) s = s.slice(0, -1);
+ if (s.endsWith('y')) s = s.slice(0, -1) + 'i';
+ const last = s[s.length - 1];
+ if (s.length > 3 && last === s[s.length - 2] && !'aeiou'.includes(last)) s = s.slice(0, -1);
+ return s;
+}
+
+/**
+ * True iff the question and the text window share a content word, compared by
+ * STEM (see `stem`) so inflections agree and coincidental overlap does not.
+ * A stem must be at least 3 characters and at least one of the two original
+ * words at least 4, which keeps short tokens from colliding while still
+ * grounding "run" against "running". An empty question or window is never
+ * grounded.
  */
 export function isGrounded(question: string, textWindow: string): boolean {
  const questionWords = contentWords(question);
  const windowWords = contentWords(textWindow);
  if (questionWords.size === 0 || windowWords.size === 0) return false;
+ const windowStems = new Map<string, number>();
+ for (const w of windowWords) {
+  const key = stem(w);
+  const longest = windowStems.get(key) ?? 0;
+  if (w.length > longest) windowStems.set(key, w.length);
+ }
  for (const q of questionWords) {
-  for (const w of windowWords) {
-   if (Math.min(q.length, w.length) < 4) continue;
-   const [shorter, longer] = q.length <= w.length ? [q, w] : [w, q];
-   if (longer.startsWith(shorter)) return true;
-  }
+  const hit = windowStems.get(stem(q));
+  if (hit === undefined) continue;
+  if (stem(q).length < 3) continue;
+  if (Math.max(q.length, hit) < 4) continue;
+  return true;
  }
  return false;
 }

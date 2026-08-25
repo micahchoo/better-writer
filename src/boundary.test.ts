@@ -71,3 +71,27 @@ describe('boundaryViolation', () => {
     expect(reason).toContain('cross-origin');
   });
 });
+
+/**
+ * H4-1: hostWithoutPort returned everything up to `]` regardless of what
+ * followed, so "[::1]evil.com" normalized to a loopback literal and would
+ * have been ACCEPTED had the URL parse in handle() not crashed first.
+ */
+describe('bracketed IPv6 authority suffixes (H4-1)', () => {
+  it('keeps a well-formed bracketed host, with or without a port', () => {
+    expect(hostWithoutPort('[::1]')).toBe('[::1]');
+    expect(hostWithoutPort('[::1]:4517')).toBe('[::1]');
+  });
+
+  it('does not normalize away a suffix that is not a port', () => {
+    for (const authority of ['[::1]evil.com', '[::1]:evil', '[::1]. evil', '[::1]/x']) {
+      expect(hostWithoutPort(authority), authority).toBe(authority);
+    }
+  });
+
+  it('so a bracket-suffixed Host fails the boundary closed', () => {
+    expect(boundaryViolation('127.0.0.1', 4517, '[::1]evil.com', undefined)).toMatch(
+      /untrusted Host/,
+    );
+  });
+});

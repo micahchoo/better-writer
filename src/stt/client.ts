@@ -23,7 +23,8 @@
  * - A dead stdin (EPIPE after a worker crash) settles everything in flight as a
  *   transport failure instead of raising an unhandled 'error' that kills the
  *   whole server; `transcribe()` also has a timeout so a hung worker cannot
- *   leave the request pending forever (S3-10).
+ *   leave the request pending forever (S3-10), and `openStream()` has the same
+ *   deadline on its stream-ready wait (H8-1).
  * - `dispose()` is idempotent and settles outstanding work, ready for the
  *   server's future SIGINT/SIGTERM hook.
  */
@@ -147,6 +148,15 @@ interface StreamState {
  * an unbounded hang.
  */
 const TRANSCRIBE_TIMEOUT_MS = 120_000;
+
+/**
+ * Deadline for the worker to answer `stream-open`. Shorter than the transcribe
+ * deadline because nothing is being decoded yet — the worker only has to
+ * acknowledge the session. `transcribe()` has had a deadline since S3-10;
+ * `openStream()` awaited `ready` with none at all, so a live-but-stuck worker
+ * left the caller pending until dispose() (H8-1).
+ */
+const STREAM_OPEN_TIMEOUT_MS = 30_000;
 
 export function createSttClient(opts?: SttClientOptions): SttClient {
  const tsxPath = opts?.tsxPath ?? 'npx';
@@ -374,7 +384,32 @@ export function createSttClient(opts?: SttClientOptions): SttClient {
 
    sendInbound(JSON.stringify({ type: 'stream-open', id }));
 
-   await ready.promise;
+   // H8-1: bound the wait for stream-ready. A worker that spawned but never
+   // answers is indistinguishable from a slow one, so treat it exactly as
+   // transcribe() does — reject, tear the worker down so the next call spawns
+   // fresh, and let the exit handler settle everything else in flight.
+   const openTimer = setTimeout(() => {
+    const err = new Error(
+     `stream-open timed out after ${STREAM_OPEN_TIMEOUT_MS / 1000}s — worker presumed hung`,
+    );
+    const live = streams.get(id);
+    if (live) {
+     live.failed = err;
+     live.ready.reject(err);
+     for (const cb of live.errorCbs) cb(err);
+     streams.delete(id);
+    }
+    if (child && !child.killed) {
+     try { child.kill('SIGKILL'); } catch { /* already gone */ }
+    }
+   }, STREAM_OPEN_TIMEOUT_MS);
+   openTimer.unref();
+
+   try {
+    await ready.promise;
+   } finally {
+    clearTimeout(openTimer);
+   }
 
    return {
     streamId: id,

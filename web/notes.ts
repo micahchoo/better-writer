@@ -40,14 +40,32 @@ export interface AnchorSpan {
  * defaults to now; pass an explicit ts to pin a note to a past event (e.g.
  * replaying a persisted batch) or to make construction deterministic in tests.
  */
-export function makeNote(anchor: AnchorSpan, question: string, ts: number = Date.now()): Note {
-  return {
+/** Characters of surrounding draft stored with a note to disambiguate it. */
+export const CONTEXT_CHARS = 32;
+
+export function makeNote(
+  anchor: AnchorSpan,
+  question: string,
+  ts: number = Date.now(),
+  draft?: string,
+): Note {
+  const note: Note = {
     start: anchor.start,
     end: anchor.end,
     fragment: anchor.fragment,
     question,
     ts,
   };
+  // Capture the surrounding text when the caller has the draft, so a fragment
+  // that occurs more than once can be re-grounded by what is AROUND it rather
+  // than by distance from a stale offset (H9-1).
+  if (draft !== undefined) {
+    note.context = {
+      before: draft.slice(Math.max(0, anchor.start - CONTEXT_CHARS), anchor.start),
+      after: draft.slice(anchor.end, anchor.end + CONTEXT_CHARS),
+    };
+  }
+  return note;
 }
 
 /** The identity triple — the subset of a note that says "this is that note". */

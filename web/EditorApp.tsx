@@ -202,6 +202,9 @@ const nextPreviewLabel =
  // tick must not fire an auto-ask mid-sweep or while paused, but a closure
  // captured at mount can't see React state — these refs always can.
  const sweepingRef = useRef(false)
+ // Raised for the duration of an auto-ask so the cadence poll cannot fire a
+ // second one concurrently (H6-1).
+ const askInFlightRef = useRef(false)
  const cadencePausedRef = useRef(false)
  // Mirror of `mode` so the recorder's onstop closure can read the mode at
  // STOP time (not the mode captured when recording began). A closure captured
@@ -267,9 +270,12 @@ const nextPreviewLabel =
     return store.loadAnnotations()
    })
    .then((annotations) => {
-    if (seq !== loadSeqRef.current || annotations.length === 0) return
+    if (seq !== loadSeqRef.current) return
+    // Adopt the loaded list even when it is EMPTY. Early-returning on
+    // `annotations.length === 0` skipped the reset, so switching to a store
+    // with no notes left the previous store's notes on screen — and the next
+    // save wrote them into the NEW store (H6-3).
     const valid = staleAnnotations(annotations, draftRef.current) as AnchorRecord[]
-    if (valid.length === 0) return
     annotationsRef.current = valid
     setSweepNotes(valid)
    })
@@ -370,6 +376,7 @@ const maybeFireCadence = (text: string) => {
   phase === 'ready' &&
   mayAutoAsk(modeRef.current) &&
   !sweepingRef.current &&
+  !askInFlightRef.current &&
   !cadencePausedRef.current
  ) {
   void askCursorWindow(text)
@@ -411,6 +418,12 @@ const askCursorWindow = async (text: string) => {
  }
  const markedText = buildAskWindow(win.texts, win.markIndex)
 
+ // H6-1: hold the in-flight latch for the whole ask. cadence.observe() does
+ // not self-reset and the only re-arm is cadence.reset in the finally BELOW,
+ // which runs after the await — so every poll during a slow ask observed
+ // 'ready' again and fired a second, concurrent ask. That is normal
+ // operation whenever the model answers slower than the poll.
+ askInFlightRef.current = true
  try {
   const question = await coach.ask(markedText, genreRef.current, caretOffset)
   // The draft may have advanced while the ask was in flight. reanchorNote
@@ -421,7 +434,7 @@ const askCursorWindow = async (text: string) => {
   const freshCaret = editorAccess.readCursor()?.offset ?? Math.floor(nowDraft.length / 2)
   const anchor = reanchorNote(question, base, nowDraft, caretOffset, freshCaret)
   if (anchor) {
-   const record = makeNote(anchor, question)
+   const record = makeNote(anchor, question, Date.now(), nowDraft)
    // Provenance from the coach, attached only when reported (legacy/static
    // asks carry none).
    const source = coach.lastSource()
@@ -434,6 +447,7 @@ const askCursorWindow = async (text: string) => {
  } catch {
   // Silent: a background ask must never surface a toast. cadence resets below.
  } finally {
+  askInFlightRef.current = false
   cadence.reset(base)
  }
 }
@@ -544,7 +558,11 @@ const toggleDictation = async () => {
  // if one ask throws, runSweep aborts and the error surfaces here.
  const sweepDraft = async () => {
   const coach = coachRef.current
-  if (!coach || sweeping) return
+  // Gate on the REF, not React state: two clicks can land before React
+  // commits `sweeping`, so the state read let both enter and every window was
+  // asked twice — billed twice in byok (H6-2). The ref is set synchronously
+  // below, so it is the only latch a second click can observe.
+  if (!coach || sweepingRef.current) return
   const fullText = draftRef.current
   if (!fullText.trim()) {
    setError('There is no text yet — write something first.')
@@ -569,6 +587,7 @@ const toggleDictation = async () => {
       { start: note.start, end: note.end, fragment: note.fragment },
       note.question,
       note.ts,
+      fullText,
      )
      // Attach the note's provenance when the sweep reported one, so the
      // topic-probe chip can label honest questions. Persisted shape stays

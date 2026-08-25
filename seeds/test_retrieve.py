@@ -5,7 +5,7 @@ Run from the repo root:
     python3 -m unittest discover -s seeds -p 'test_*.py'
 
 Covers the pinned drawer contract: `pull(pool, preference, rng)` two-stage
-soft preference with the internal FLOOR=16 shrink, wildcard-inside filtering
+soft preference with the internal per-seed weighting, wildcard-inside filtering
 via `query`, the default genre preference (`default_genre_preference`) that
 specific-genre cards claim first claim on half the draws from a mixed
 genre-filtered pool, seeded-RNG determinism, empty-pool behavior, and the CLI
@@ -30,7 +30,7 @@ sys.path.insert(0, str(_REPO))
 
 import retrieve  # noqa: E402
 
-FLOOR = retrieve.FLOOR
+PREFERENCE_WEIGHT = retrieve.PREFERENCE_WEIGHT
 VERBS = ("rewrite", "cut", "rephrase")
 
 # Cross-language drawer fixture (scripts/experiment/gen-drawer-vectors.py): the
@@ -46,8 +46,8 @@ def _decode_pref(pref):
     verbs = pref.get("match")
     match = None if verbs is None else (lambda s, vs=frozenset(verbs): s["verb"] in vs)
     obj = {"match": match}
-    if "p" in pref:
-        obj["p"] = pref["p"]
+    if "weight" in pref:
+        obj["weight"] = pref["weight"]
     return obj
 
 
@@ -113,46 +113,58 @@ class PullNoPreferenceTest(unittest.TestCase):
         self.assertEqual(drawn["verb"], "rewrite")  # only complement exists
 
 
-class TwoStageHitRateTest(unittest.TestCase):
-    """~p hit-rate on the matched pile when the floor is respected."""
+class PerSeedWeightTest(unittest.TestCase):
+    """H2-3: the weight fixes the PER-SEED ratio, whatever the piles measure.
 
-    def test_hit_rate_about_p_with_floor_respected(self):
-        # matched pile (20) >= FLOOR (16): effective_p stays at p = 0.5.
-        pool = make_pool(40, verbs=("cut", "rewrite"))  # 20 cut, 20 rewrite
-        pref = {"match": lambda s: s["verb"] == "cut", "p": 0.5}
-        rng = random.Random(11)
-        hits = sum(1 for _ in range(2000) if retrieve.pull(pool, pref, rng)["verb"] == "cut")
-        # expected ~1000 (effective_p == p == 0.5, no shrink); std ~ 22
-        self.assertTrue(880 <= hits <= 1120, hits)
+    The old rule set the probability of the PILE, so the per-seed rate was
+    0.5/len(matched): it inverted on large matched piles and concentrated tiny
+    ones. These tests pin the invariant that replaced it — a matched seed is
+    PREFERENCE_WEIGHT times likelier than an unmatched one — at three pile
+    shapes chosen to break the old rule.
+    """
+
+    def per_seed_ratio(self, n_matched, n_complement, seed_value, draws=40000):
+        pool = [seed(i, "cut") for i in range(n_matched)] + [
+            seed(i, "rewrite") for i in range(n_matched, n_matched + n_complement)
+        ]
+        pref = {"match": lambda s: s["verb"] == "cut"}
+        rng = random.Random(seed_value)
+        hits = sum(1 for _ in range(draws) if retrieve.pull(pool, pref, rng)["verb"] == "cut")
+        per_matched = (hits / draws) / n_matched
+        per_complement = ((draws - hits) / draws) / n_complement
+        return per_matched / per_complement
+
+    def test_balanced_piles(self):
+        self.assertAlmostEqual(self.per_seed_ratio(20, 20, 11), PREFERENCE_WEIGHT, delta=0.35)
+
+    def test_large_matched_pile_does_not_invert(self):
+        # The fiction shape: 898/563 used to prefer the COMPLEMENT 0.64:1.
+        self.assertAlmostEqual(self.per_seed_ratio(90, 56, 13), PREFERENCE_WEIGHT, delta=0.35)
+
+    def test_tiny_matched_pile_is_not_concentrated(self):
+        # The poetry shape: 8/580 used to give eight seeds ~51% of all draws.
+        pool = [seed(i, "cut") for i in range(8)] + [seed(i, "rewrite") for i in range(8, 588)]
+        pref = {"match": lambda s: s["verb"] == "cut"}
+        rng = random.Random(17)
+        draws = 40000
+        hits = sum(1 for _ in range(draws) if retrieve.pull(pool, pref, rng)["verb"] == "cut")
+        self.assertLess(hits / draws, 0.10, "tiny matched pile must not dominate")
+        self.assertAlmostEqual(self.per_seed_ratio(8, 580, 17), PREFERENCE_WEIGHT, delta=0.5)
 
     def test_both_piles_represented(self):
         pool = make_pool(40, verbs=("cut", "rewrite"))
-        pref = {"match": lambda s: s["verb"] == "cut", "p": 0.5}
+        pref = {"match": lambda s: s["verb"] == "cut"}
         rng = random.Random(2)
         seen = {retrieve.pull(pool, pref, rng)["verb"] for _ in range(500)}
         self.assertEqual(seen, {"cut", "rewrite"})
 
-
-class FloorShrinkTest(unittest.TestCase):
-    """effective_p shrinks when matched_count / FLOOR < p."""
-
-    def test_shrink_below_floor(self):
-        # 4 matched / 36 complement: effective_p = min(0.5, 4/16) = 0.25.
-        pool = [seed(i, "cut") for i in range(4)] + [seed(i, "rewrite") for i in range(4, 40)]
-        pref = {"match": lambda s: s["verb"] == "cut", "p": 0.5}
-        rng = random.Random(13)
+    def test_explicit_weight_overrides_the_default(self):
+        pool = make_pool(40, verbs=("cut", "rewrite"))
+        pref = {"match": lambda s: s["verb"] == "cut", "weight": 1.0}
+        rng = random.Random(23)
         hits = sum(1 for _ in range(4000) if retrieve.pull(pool, pref, rng)["verb"] == "cut")
-        # expected ~1000 (effective_p 0.25), NOT 2000. std ~ 27.
-        self.assertTrue(850 <= hits <= 1150, hits)
-
-    def test_no_shrink_at_or_above_floor(self):
-        # 8 matched == FLOOR/2: effective_p = min(0.5, 8/16) = 0.5 (no shrink).
-        pool = [seed(i, "cut") for i in range(8)] + [seed(i, "rewrite") for i in range(8, 40)]
-        pref = {"match": lambda s: s["verb"] == "cut", "p": 0.5}
-        rng = random.Random(17)
-        hits = sum(1 for _ in range(2000) if retrieve.pull(pool, pref, rng)["verb"] == "cut")
-        # expected ~1000 at effective_p 0.5 (not shrunk to 0.25).
-        self.assertTrue(880 <= hits <= 1120, hits)
+        # weight 1 == no preference at all: an even split over equal piles.
+        self.assertTrue(1850 <= hits <= 2150, hits)
 
 
 class DeterminismTest(unittest.TestCase):
@@ -332,24 +344,42 @@ class DefaultGenrePreferenceTest(unittest.TestCase):
         hits = sum(
             1 for _ in range(4000) if retrieve.pull(pool, pref, rng)["id"] in specific_ids
         )
-        # effective_p 0.5 over a pool where specific is 8/48: specific gets
-        # ~50% of draws (uniform would give ~17%). std ~ 32.
-        self.assertTrue(0.42 * 4000 <= hits <= 0.58 * 4000, hits)
+        # Per-seed weighting (H2-3): specific is 8 of 48, so its SHARE is
+        # 3*8/(3*8+40) = 37.5% — above the ~17% a uniform draw would give,
+        # and each specific card is exactly 3x likelier than each agnostic
+        # one. The old rule handed the 8-card pile a flat 50%.
+        self.assertTrue(0.33 * 4000 <= hits <= 0.42 * 4000, hits)
 
     def test_cli_pull_wires_default_preference(self):
+        # STRUCTURAL, not statistical: 60 subprocess draws cannot separate the
+        # weighted rate (37.5%) from uniform (16.7%) — the old version of this
+        # test was a 2-sigma coin flip. Assert the CLI reaches the preference
+        # path and returns a valid seed; the RATE is pinned in-process, with a
+        # seeded RNG and 40k draws, by PerSeedWeightTest and the test below.
         conn, path = make_conn(self._mixed_pool())
         self.addCleanup(conn.close)
         self.addCleanup(os.unlink, path)
+        out = cli("pull", "--db", path, "--genre", "fiction", "--n", "1")
+        drawn = json.loads(out.stdout)
+        self.assertEqual(len(drawn), 1)
+        # A --genre fiction pull returns a card that carries fiction OR the
+        # genre-agnostic wildcard; both are inside the filtered pool.
+        self.assertTrue(
+            {"fiction", "genre-agnostic"} & set(drawn[0]["genre"]), drawn[0]["genre"]
+        )
+        self.assertIsNotNone(
+            retrieve.default_genre_preference(["fiction"], self._mixed_pool())
+        )
+
+    def test_specific_share_matches_the_weight(self):
+        pool = self._mixed_pool()
+        pref = retrieve.default_genre_preference(["fiction"], pool)
         specific_ids = {f"seed-{i:03d}" for i in range(8)}
-        draws = 60
-        hits = 0
-        for _ in range(draws):
-            out = cli("pull", "--db", path, "--genre", "fiction", "--n", "1")
-            s = json.loads(out.stdout)[0]
-            if s["id"] in specific_ids:
-                hits += 1
-        # expected ~30/60 (50%); a uniform draw would give ~10/60.
-        self.assertGreater(hits, draws * 0.30, f"{hits}/{draws} specific")
+        rng = random.Random(7)
+        draws = 40000
+        hits = sum(1 for _ in range(draws) if retrieve.pull(pool, pref, rng)["id"] in specific_ids)
+        # 3*8 / (3*8 + 40) = 37.5%; a uniform draw over 48 cards gives 16.7%.
+        self.assertAlmostEqual(hits / draws, 0.375, delta=0.02)
 
 
 class DrawerVectorFixtureTest(unittest.TestCase):
@@ -359,8 +389,8 @@ class DrawerVectorFixtureTest(unittest.TestCase):
     5-draw seed-id sequence produced at generation time. Cases 12-15 carry a
     `genre` and a null `preference`, exercising the default genre preference:
     the replay builds that preference via default_genre_preference. Any drift
-    in the drawer contract (soft-preference math, floor shrink, fallbacks,
-    default genre stratification) surfaces as a mismatch here — this is the
+    in the drawer contract (soft-preference math, per-seed weighting,
+    fallbacks, default genre stratification) surfaces as a mismatch here — this is the
     oracle the TS port must match.
     """
 
@@ -387,3 +417,107 @@ class DrawerVectorFixtureTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SchemaEnforcementTest(unittest.TestCase):
+    """H5-1: _validate checked key presence only, so schema.json's enums and
+    minLength floors were a spec nothing enforced. An unknown-genre seed is
+    permanently unreachable by every genre query and nothing flagged it."""
+
+    def base(self, **kw):
+        s = {
+            "id": "x1",
+            "question": "What is at stake?",
+            "verb": "cut",
+            "genre": ["fiction"],
+            "source": {"book": "b", "author": "a", "chapter": "c", "quote": "q"},
+        }
+        s.update(kw)
+        return s
+
+    def test_rejects_an_unknown_verb(self):
+        with self.assertRaisesRegex(ValueError, "unknown verb"):
+            retrieve._validate(self.base(verb="teleport"))
+
+    def test_rejects_an_unknown_genre(self):
+        with self.assertRaisesRegex(ValueError, "unknown genre"):
+            retrieve._validate(self.base(genre=["horror"]))
+
+    def test_rejects_an_empty_question_or_quote(self):
+        with self.assertRaisesRegex(ValueError, "question"):
+            retrieve._validate(self.base(question="   "))
+        with self.assertRaisesRegex(ValueError, "quote"):
+            retrieve._validate(
+                self.base(source={"book": "b", "author": "a", "chapter": "c", "quote": ""})
+            )
+
+    def test_accepts_every_declared_verb_and_genre(self):
+        for verb in retrieve.VERBS:
+            retrieve._validate(self.base(verb=verb))
+        for genre in retrieve.GENRES:
+            retrieve._validate(self.base(genre=[genre]))
+
+    def test_the_live_bank_satisfies_the_stricter_validator(self):
+        path = _REPO / "seeds" / "bank.jsonl"
+        bad = []
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                if not line.strip():
+                    continue
+                try:
+                    retrieve._validate(json.loads(line))
+                except ValueError as e:
+                    bad.append(str(e))
+        self.assertEqual(bad, [], f"{len(bad)} bank seed(s) fail validation")
+
+
+class DuplicateIdTest(unittest.TestCase):
+    """H5-2: two extraction files carried the same id with DIFFERENT questions.
+    The upsert kept whichever landed last and len(rows) reported success either
+    way, so a distinct seed vanished from the bank leaving no signal."""
+
+    def seed(self, sid, question):
+        return {
+            "id": sid,
+            "question": question,
+            "verb": "cut",
+            "genre": ["fiction"],
+            "source": {"book": "b", "author": "a", "chapter": "c", "quote": "q"},
+        }
+
+    def test_refuses_a_duplicate_id_within_one_batch(self):
+        conn, path = make_conn([])
+        self.addCleanup(conn.close)
+        self.addCleanup(os.unlink, path)
+        with self.assertRaisesRegex(ValueError, "duplicate id"):
+            retrieve.insert_seeds(conn, [self.seed("d1", "one?"), self.seed("d1", "two?")])
+
+    def test_reports_inserted_and_replaced_separately(self):
+        conn, path = make_conn([])
+        self.addCleanup(conn.close)
+        self.addCleanup(os.unlink, path)
+        self.assertEqual(retrieve.insert_seeds(conn, [self.seed("d2", "one?")]), (1, 0))
+        self.assertEqual(retrieve.insert_seeds(conn, [self.seed("d2", "two?")]), (0, 1))
+
+    def test_no_extraction_file_shares_an_id_with_another(self):
+        self.assertEqual(retrieve.duplicate_ids(), {})
+
+
+class DirectoryContractTest(unittest.TestCase):
+    """H5-4: seeds/*.json is not uniformly a seed artifact. A naive glob
+    reported every id in the bank as a duplicate, because client.json is a
+    generated export of the very files it was compared against."""
+
+    def test_excludes_generated_and_constants_files(self):
+        names = {p.name for p in retrieve.extraction_files()}
+        self.assertNotIn("client.json", names)
+        self.assertNotIn("schema.json", names)
+        self.assertNotIn("vocab.json", names)
+        self.assertGreater(len(names), 10)
+
+    def test_every_extraction_file_is_a_list_of_seeds(self):
+        for path in retrieve.extraction_files():
+            data = json.loads(path.read_text(encoding="utf-8"))
+            self.assertIsInstance(data, list, path.name)
+            for seed in data:
+                retrieve._validate(seed)

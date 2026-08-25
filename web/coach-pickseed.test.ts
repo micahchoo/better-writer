@@ -127,7 +127,7 @@ interface DrawerCase {
   seed: number;
   pool: Array<{ id: string; question: string; verb: string; genre: string[] }>;
   poolIds: string[];
-  preference: { match?: string[]; p?: number } | null;
+  preference: { match?: string[]; weight?: number } | null;
   genre?: string | null;
   expectedSeedIdSequence: string[];
 }
@@ -155,10 +155,10 @@ function toClientSeeds(c: DrawerCase): ClientSeed[] {
   }));
 }
 
-/** Fixture preference {match: [verbs], p?} -> pickSeed preference {verbs, p?}. */
+/** Fixture preference {match: [verbs], weight?} -> pickSeed {verbs, weight?}. */
 function toPreference(pref: DrawerCase['preference']): SeedPreference | undefined {
   if (!pref) return undefined;
-  return { verbs: pref.match, p: pref.p };
+  return { verbs: pref.match, weight: pref.weight };
 }
 
 describe('pickSeed parity with seeds/retrieve.py pull', () => {

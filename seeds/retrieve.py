@@ -31,7 +31,11 @@ from pathlib import Path
 
 DB_PATH = Path(__file__).resolve().parent / "bank.sqlite"
 
-FLOOR = 16  # matched-pile size at which the soft-preference probability stops shrinking
+# How much likelier a PREFERRED seed is than a non-preferred one, per seed.
+# Not a pile-level probability: the two-stage draw derives its stage-one
+# probability from this weight and the two pile sizes, so the per-seed ratio is
+# exactly PREFERENCE_WEIGHT whatever the piles measure. See pull().
+PREFERENCE_WEIGHT = 3.0
 
 _CREATE = """
 CREATE TABLE IF NOT EXISTS seeds (
@@ -49,17 +53,91 @@ CREATE TABLE IF NOT EXISTS seeds (
 _COLS = ("id", "question", "verb", "genre", "book", "author", "chapter", "quote")
 
 
+# Enumerations and length floors declared by schema.json. Kept here as the
+# ENFORCED copy: _validate used to check key presence and non-empty genres
+# only, so an unknown verb, an unknown genre, or an empty question all stored
+# cleanly (H5-1). An unknown-genre seed is permanently unreachable by every
+# genre query and nothing flagged it. Keep in step with seeds/schema.json.
+VERBS = frozenset(
+    ("rewrite", "elaborate", "elucidate", "cut", "transition", "concept-form", "rephrase")
+)
+GENRES = frozenset(
+    ("fiction", "creative-nonfiction", "memoir", "essay", "poetry", "genre-agnostic")
+)
+
+
+# --- the seeds/ directory contract (H5-4) ---
+#
+# `seeds/*.json` is NOT uniformly "a seed artifact", and pretending it is makes
+# every glob-based validator false-positive. Three kinds of file live here:
+#
+#   extraction files  a JSON LIST of seeds, one per craft-book chapter — the
+#                     only inputs `add` should ever be pointed at;
+#   generated exports client.json (the whole bank, re-emitted for the browser);
+#   constants         schema.json (the contract) and vocab.json (genres/verbs).
+#
+# The contract was implicit, so a naive glob over seeds/*.json reported 1638
+# "duplicate ids" — every id in the bank, once from its chapter file and once
+# from the generated export. `extraction_files()` is the explicit rule.
+NON_EXTRACTION_FILES = frozenset(("schema.json", "vocab.json", "client.json"))
+
+
+def extraction_files(directory=None):
+    """Every seeds/*.json that is an extraction file, sorted by name."""
+    directory = Path(directory) if directory else Path(__file__).resolve().parent
+    return sorted(
+        p for p in directory.glob("*.json") if p.name not in NON_EXTRACTION_FILES
+    )
+
+
+def duplicate_ids(directory=None):
+    """Ids that appear in more than one extraction file, mapped to those files.
+
+    Two chapter files carried the same id with DIFFERENT questions; the upsert
+    kept whichever landed last and the ch12-15 variant was lost from the bank
+    with no signal at all (H5-2). insert_seeds now refuses a duplicate within
+    one batch; this catches the across-file case, which no single call sees.
+    """
+    seen = {}
+    for path in extraction_files(directory):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if not isinstance(data, list):
+            continue
+        for seed in data:
+            if isinstance(seed, dict) and "id" in seed:
+                seen.setdefault(seed["id"], []).append(path.name)
+    return {sid: files for sid, files in seen.items() if len(files) > 1}
+
+
 def _validate(seed):
-    """Check a seed dict against the canonical schema shape; raise ValueError."""
+    """Check a seed dict against the canonical schema; raise ValueError.
+
+    Enforces what schema.json DECLARES, not just the shape: required keys,
+    the verb and genre enumerations, and the non-empty floors on question and
+    quote. A seed that fails here never reaches the bank.
+    """
     missing = [k for k in ("id", "question", "verb", "genre", "source") if k not in seed]
     if missing:
         raise ValueError(f"seed missing required key(s) {missing}: {seed.get('id', '<no id>')!r}")
+    sid = seed["id"]
     src = seed["source"]
     missing = [k for k in ("book", "author", "chapter", "quote") if k not in src]
     if missing:
-        raise ValueError(f"seed {seed['id']!r} source missing key(s) {missing}")
+        raise ValueError(f"seed {sid!r} source missing key(s) {missing}")
     if not isinstance(seed["genre"], list) or not seed["genre"]:
-        raise ValueError(f"seed {seed['id']!r} genre must be a non-empty list")
+        raise ValueError(f"seed {sid!r} genre must be a non-empty list")
+    if not isinstance(seed["question"], str) or not seed["question"].strip():
+        raise ValueError(f"seed {sid!r} question must be a non-empty string")
+    if not isinstance(src["quote"], str) or not src["quote"].strip():
+        raise ValueError(f"seed {sid!r} source.quote must be a non-empty string")
+    if seed["verb"] not in VERBS:
+        raise ValueError(f"seed {sid!r} has unknown verb {seed['verb']!r}; expected one of {sorted(VERBS)}")
+    unknown = [g for g in seed["genre"] if g not in GENRES]
+    if unknown:
+        raise ValueError(f"seed {sid!r} has unknown genre(s) {unknown}; expected from {sorted(GENRES)}")
 
 
 def init_db(path):
@@ -81,9 +159,26 @@ def _row_to_seed(row):
 
 
 def insert_seeds(conn, seeds):
-    """Upsert seed objects by id; accept a single object or a list. Returns count."""
+    """Upsert seed objects by id; accept a single object or a list.
+
+    Returns (inserted, replaced): how many ids were new and how many overwrote
+    an existing row. The count alone hid a real loss — two extraction files
+    carried the same id with DIFFERENT questions, the upsert kept whichever
+    landed last, and len(rows) reported success either way (H5-2). A duplicate
+    id WITHIN one call is a mistake in the input and raises.
+    """
     if isinstance(seeds, dict):
         seeds = [seeds]
+    seeds = list(seeds)
+    seen = {}
+    for s in seeds:
+        sid = s.get("id")
+        if sid in seen:
+            raise ValueError(
+                f"duplicate id {sid!r} in this batch: "
+                f"{seen[sid]!r} and {s.get('question')!r} cannot both be stored"
+            )
+        seen[sid] = s.get("question")
     rows = []
     for s in seeds:
         _validate(s)
@@ -99,6 +194,15 @@ def insert_seeds(conn, seeds):
                 s["source"]["quote"],
             )
         )
+    ids = [r[0] for r in rows]
+    existing = set()
+    for i in range(0, len(ids), 500):
+        chunk = ids[i : i + 500]
+        cur = conn.execute(
+            f"SELECT id FROM seeds WHERE id IN ({','.join('?' * len(chunk))})", chunk
+        )
+        existing.update(r[0] for r in cur.fetchall())
+    inserted = len(ids) - len(existing)
     conn.executemany(
         f"""INSERT INTO seeds ({", ".join(_COLS)})
             VALUES ({", ".join("?" * len(_COLS))})
@@ -109,7 +213,7 @@ def insert_seeds(conn, seeds):
         rows,
     )
     conn.commit()
-    return len(rows)
+    return inserted, len(rows) - inserted
 
 
 def _all(conn):
@@ -135,7 +239,7 @@ def _parse_verbs(value):
 def _lean_preference(lean_verbs):
     """Build a soft preference for --lean-verbs from its comma-set value."""
     verbs = _parse_verbs(lean_verbs)
-    return {"match": lambda s: s["verb"] in verbs, "p": 0.5}
+    return {"match": lambda s: s["verb"] in verbs}
 
 
 def default_genre_preference(genres, pool):
@@ -161,7 +265,7 @@ def default_genre_preference(genres, pool):
     ]
     if not specific or not agnostic_only:
         return None
-    return {"match": lambda s, c=frozenset(chosen): bool(set(s["genre"]) & c), "p": 0.5}
+    return {"match": lambda s, c=frozenset(chosen): bool(set(s["genre"]) & c)}
 
 
 def query(conn, genres=None, verb=None, lean_verbs=None):
@@ -188,12 +292,21 @@ def pull(pool, preference=None, rng=random):
     pool: an iterable of canonical seed dicts, already hard-filtered by the
       caller (via query). This is the drawer's only input; callers never
       pre-split piles.
-    preference: None, or {"match": callable(seed)->bool, "p": float}. The
-      matched pile is the subset for which match(seed) is true. A two-stage
-      draw runs: with probability effective_p pick uniformly from the matched
-      pile, otherwise uniformly from its complement.
-    effective_p = min(p, len(matched) / FLOOR): a size-aware shrink so a tiny
-      matched pile is only weakly preferred. p defaults to 0.5.
+    preference: None, or {"match": callable(seed)->bool, "weight": float}.
+      The matched pile is the subset for which match(seed) is true. A
+      two-stage draw runs: with probability effective_p pick uniformly from
+      the matched pile, otherwise uniformly from its complement.
+    effective_p = w*m / (w*m + c), where m and c are the matched and
+      complement pile sizes and w is `weight` (default PREFERENCE_WEIGHT).
+      This makes the PER-SEED probability of a matched seed exactly w times
+      that of an unmatched one, whatever the piles measure.
+
+      The previous rule — min(p, m / FLOOR), p 0.5 — set the probability of
+      the PILE, so the per-seed rate was 0.5/m and inverted or exploded with
+      pile size: fiction (m=898, c=563) preferred agnostic seeds 0.64:1, the
+      opposite of the intent, while poetry (m=8, c=580) gave eight seeds ~51%
+      of all draws (H2-3). Nothing about the numbers said which behaviour was
+      wanted; the weight says it.
     rng: any object exposing .random() and .choice(); defaults to the random
       module. Pass random.Random(x) for reproducible draws.
     With no preference, or an empty matched pile, this is a uniform draw over
@@ -210,11 +323,13 @@ def pull(pool, preference=None, rng=random):
     matched = [s for s in pool if match(s)]
     if not matched:
         return rng.choice(pool)
-    effective_p = min(preference.get("p", 0.5), len(matched) / FLOOR)
-    if rng.random() < effective_p:
-        return rng.choice(matched)
     matched_ids = {s["id"] for s in matched}
     complement = [s for s in pool if s["id"] not in matched_ids]
+    weight = preference.get("weight", PREFERENCE_WEIGHT)
+    weighted = weight * len(matched)
+    effective_p = weighted / (weighted + len(complement))
+    if rng.random() < effective_p:
+        return rng.choice(matched)
     if not complement:
         return rng.choice(pool)
     return rng.choice(complement)
@@ -282,8 +397,12 @@ def main(argv=None):
         print(f"table ready at {args.db} ({n} seeds)")
     elif args.command == "add":
         seeds = _load_seeds_file(args.file)
-        n = insert_seeds(conn, seeds)
-        print(f"added {n} seed(s) to {args.db}")
+        inserted, replaced = insert_seeds(conn, seeds)
+        print(f"added {inserted} new seed(s) to {args.db}")
+        if replaced:
+            # H5-2: a replacement is a silent LOSS when the two rows are
+            # different seeds that happen to share an id. Say so.
+            print(f"WARNING: {replaced} existing seed(s) were overwritten by id")
     elif args.command == "query":
         _print_json(query(conn, genres=args.genre, verb=args.verb, lean_verbs=args.lean_verbs))
     elif args.command == "pull":

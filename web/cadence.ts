@@ -19,6 +19,8 @@
  * otherwise a polling loop would silently reset the pause forever.
  */
 
+import { countProseWords } from './window-stats.js';
+
 export const WORD_THRESHOLD = 30;
 export const PAUSE_MS = 20_000;
 
@@ -45,9 +47,13 @@ export function createCadence(opts?: {
   let lastWordCount: number | null = null;
   let lastEditAt = 0;
 
-  /** Word count: whitespace-delimited tokens, empties filtered. */
-  const words = (text: string): number =>
-    text.split(/\s+/).filter((token) => token.length > 0).length;
+  /**
+   * Word count: PROSE words, via window-stats' own counter. Cadence gates an
+   * interruption, so it must not be tripped by markdown scaffolding — `##`,
+   * `**`, bullets and `---` are not new prose (H1-5). Sharing the counter is
+   * what keeps the two modules from disagreeing about what a word is.
+   */
+  const words = (text: string): number => countProseWords(text);
 
   return {
     observe(text: string, now: number = Date.now()): CadencePhase {

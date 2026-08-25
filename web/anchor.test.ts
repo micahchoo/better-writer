@@ -46,16 +46,19 @@ describe('extractAnchor', () => {
     const draft = 'The OCEAN is vast.'
     const anchor = extractAnchor('why ocean?', draft, draft.indexOf('OCEAN'))
     expect(anchor).not.toBeNull()
-    expect(anchor!.fragment).toBe('OCEAN')
+    // The MATCH keeps the draft's own casing; the anchor widens to the
+    // sentence around it, because a lone word is never the anchor (R1).
+    expect(draft.slice(anchor!.match.start, anchor!.match.end)).toBe('OCEAN')
+    expect(anchor!.fragment).toBe('The OCEAN is vast.')
   })
 
-  it('strips punctuation at fragment boundaries', () => {
+  it('strips punctuation at match boundaries', () => {
     const draft = 'Then came the ocean, and the shore.'
     const anchor = extractAnchor('why ocean?', draft, draft.indexOf('ocean'))
     expect(anchor).not.toBeNull()
-    expect(anchor!.fragment).toBe('ocean')
-    expect(anchor!.start).toBe(draft.indexOf('ocean'))
-    expect(anchor!.end).toBe(draft.indexOf('ocean') + 'ocean'.length)
+    // The comma after "ocean" never enters the match.
+    expect(anchor!.match.start).toBe(draft.indexOf('ocean'))
+    expect(anchor!.match.end).toBe(draft.indexOf('ocean') + 'ocean'.length)
   })
 
   it('matches a word sequence inside a longer draft word', () => {
@@ -69,8 +72,7 @@ describe('extractAnchor', () => {
     const draft = 'The first market opened early. The second market stayed late.'
     const anchor = extractAnchor('about market?', draft, draft.lastIndexOf('market'))
     expect(anchor).not.toBeNull()
-    expect(anchor!.fragment).toBe('market')
-    expect(anchor!.start).toBe(draft.indexOf('market'))
+    expect(anchor!.match.start).toBe(draft.indexOf('market'))
   })
 
   it('handles a cursor at the end of the draft', () => {
@@ -95,7 +97,7 @@ describe('extractAnchor', () => {
     const draft = `${filler} omega.\n\nMiddle block filler text.\n\nFinal block with the cursor here.`
     const anchor = extractAnchor('alpha beta gamma omega?', draft, draft.indexOf('cursor'))
     expect(anchor).not.toBeNull()
-    expect(anchor!.fragment).toBe('omega')
+    expect(draft.slice(anchor!.match.start, anchor!.match.end)).toBe('omega')
   })
 
   it('returns null for an empty draft', () => {
@@ -134,7 +136,7 @@ describe('extractAnchor', () => {
     const draft = 'She studied the walkings carefully.'
     const anchor = extractAnchor('why walk?', draft, draft.indexOf('walk'))
     expect(anchor).not.toBeNull()
-    expect(anchor!.fragment).toBe('walkings')
+    expect(draft.slice(anchor!.match.start, anchor!.match.end)).toBe('walkings')
   })
 
   it('keeps a doubled token paired to the half the fragment starts in', () => {
@@ -145,19 +147,21 @@ describe('extractAnchor', () => {
     const draft = 'The catcat sat.'
     const anchor = extractAnchor('about cat?', draft, draft.indexOf('cat'))
     expect(anchor).not.toBeNull()
-    expect(anchor!.fragment).toBe('catcat')
-    expect(anchor!.start).toBe(4)
-    expect(anchor!.end).toBe(10)
+    expect(anchor!.match.start).toBe(4)
+    expect(anchor!.match.end).toBe(10)
   })
 
-  it('rejects a lone generic word as a candidate', () => {
-    // "let", "first", "one" are low-distinctiveness words; a question whose
-    // only matches in the draft are such lone words must not pin a junk
-    // anchor to them (S2-7).
-    // "let", "first", "one" never appear contiguously, so only lone generic
-    // words can match — and each is rejected, leaving no candidates.
+  it('anchors a lone generic word to its sentence rather than to the word', () => {
+    // "let", "first", "one" are low-distinctiveness words. They are the LAST
+    // resort, never discarded: dropping them is what cut the anchored share
+    // from 60% to 17%, and an un-anchored question is thrown away (R1). The
+    // anchor is the sentence, so the writer never sees a question pinned to
+    // the bare word "first".
     const draft = 'I let it pass, and then the first attempt.'
-    expect(extractAnchor('let first one?', draft, draft.indexOf('first'))).toBeNull()
+    const anchor = extractAnchor('let first one?', draft, draft.indexOf('first'))
+    expect(anchor).not.toBeNull()
+    expect(anchor!.fragment).toBe(draft)
+    expect(anchor!.fragment.split(/\s+/).length).toBeGreaterThan(1)
   })
 
   it('still anchors a distinctive multi-char word', () => {
@@ -166,7 +170,8 @@ describe('extractAnchor', () => {
     const draft = 'My grandmother kept a blue tin of yeast by the window.'
     const anchor = extractAnchor('why grandmother?', draft, draft.indexOf('grandmother'))
     expect(anchor).not.toBeNull()
-    expect(anchor!.fragment).toBe('grandmother')
+    expect(draft.slice(anchor!.match.start, anchor!.match.end)).toBe('grandmother')
+    expect(anchor!.fragment).toBe(draft)
   })
 
   it('keeps a tier-0 verbatim quote even when every quoted word is generic', () => {
@@ -177,5 +182,105 @@ describe('extractAnchor', () => {
     const anchor = extractAnchor('what did she mean by "the first time"?', draft, draft.indexOf('first'))
     expect(anchor).not.toBeNull()
     expect(anchor!.fragment).toBe('the first time')
+  })
+})
+
+/**
+ * R1: the first attempt at S2-7 raised a quality floor that DISCARDED weak
+ * single-word candidates. It cut the share of draws that anchored at all from
+ * 60% to 17% while single-word anchors only fell 98.5% -> 94.1%, and an
+ * un-anchored question is dropped, so the demo mostly stopped saying anything.
+ * The contract now has two halves — rank, never discard; widen a lone word to
+ * its sentence — and both need holding down.
+ */
+describe('anchor widening (R1)', () => {
+  it('never returns a single-word anchor', () => {
+    const draft = 'She lifted the skillet. The oil hissed against the cold metal.'
+    for (const question of ['why skillet?', 'about the oil?', 'what of the metal?']) {
+      const anchor = extractAnchor(question, draft, draft.indexOf('oil'))
+      expect(anchor).not.toBeNull()
+      expect(anchor!.fragment.trim().split(/\s+/).length).toBeGreaterThan(1)
+    }
+  })
+
+  it('widens to the sentence, not the whole block', () => {
+    const draft = 'The rice cooked slowly. She watched the yeast rise. Then it was done.'
+    const anchor = extractAnchor('why yeast?', draft, draft.indexOf('yeast'))
+    expect(anchor!.fragment).toBe('She watched the yeast rise.')
+  })
+
+  it('does not widen a multi-word phrase match', () => {
+    const draft = 'The uncanny valley effect is real, and it unsettles people.'
+    const anchor = extractAnchor('canny valley', draft, draft.indexOf('valley'))
+    expect(anchor!.fragment).toBe('canny valley')
+    expect(anchor!.match.start).toBe(anchor!.start)
+    expect(anchor!.match.end).toBe(anchor!.end)
+  })
+
+  it('never widens across a block boundary', () => {
+    const draft = 'First paragraph mentions the skillet\n\nSecond paragraph is separate'
+    const anchor = extractAnchor('why skillet?', draft, draft.indexOf('skillet'))
+    expect(anchor!.fragment).not.toContain('Second paragraph')
+    expect(anchor!.end).toBeLessThanOrEqual(draft.indexOf('\n\n'))
+  })
+
+  it('caps a run-on sentence instead of highlighting all of it', () => {
+    const draft = `The skillet ${'and more filler words '.repeat(40)}kept going`
+    const anchor = extractAnchor('why skillet?', draft, draft.indexOf('skillet'))
+    expect(anchor).not.toBeNull()
+    expect(anchor!.end - anchor!.start).toBeLessThanOrEqual(200)
+    // The cap still never cuts a word in half.
+    expect(anchor!.fragment).toBe(anchor!.fragment.trim())
+    expect(draft.slice(anchor!.match.start, anchor!.match.end)).toBe('skillet')
+  })
+
+  it('prefers a distinctive word over a generic one, then widens that sentence', () => {
+    const draft = 'It was the first time. She kneaded the dough on the counter.'
+    const anchor = extractAnchor('about the first dough?', draft, 0)
+    // "first" is generic and sits nearer the cursor; "dough" is distinctive
+    // and wins the quality pass regardless.
+    expect(draft.slice(anchor!.match.start, anchor!.match.end)).toBe('dough')
+  })
+
+  it('always keeps the match inside the anchor it widened to', () => {
+    const draft = 'The window above the sink was fogged with steam, and she drew circles in it.'
+    const anchor = extractAnchor('why the steam?', draft, draft.indexOf('steam'))
+    expect(anchor!.match.start).toBeGreaterThanOrEqual(anchor!.start)
+    expect(anchor!.match.end).toBeLessThanOrEqual(anchor!.end)
+    expect(anchor!.fragment).toBe(draft.slice(anchor!.start, anchor!.end))
+  })
+})
+
+/**
+ * H3-1: offsets were computed by adding an index of the LOWERCASED token to
+ * the token's raw start. Lowercasing is not length-preserving (Turkish İ
+ * folds to two code units), so matches leaked whitespace, started inside the
+ * wrong token, and could end past the end of the document.
+ */
+describe('offsets survive a length-changing case fold (H3-1)', () => {
+  const cases: Array<[string, string, string, string]> = [
+    ['İ before the match', 'aaa bbb İtyped ccc', 'why typed?', 'typed'],
+    ['İ earlier in the draft', 'İstanbul then the skillet sat there', 'why skillet?', 'skillet'],
+    ['plain ASCII control', 'aaa bbb xtyped ccc', 'why typed?', 'typed'],
+  ]
+
+  it('maps the match back to the exact raw draft span', () => {
+    for (const [label, draft, question, expected] of cases) {
+      const anchor = extractAnchor(question, draft, 0)
+      expect(anchor, label).not.toBeNull()
+      expect(draft.slice(anchor!.match.start, anchor!.match.end), label).toBe(expected)
+    }
+  })
+
+  it('never produces a span past the end of the document', () => {
+    for (const draft of ['about İstanbul', 'İ', 'the skillet İ', 'İtyped']) {
+      for (const question of ['why skillet?', 'why typed?', 'why istanbul?']) {
+        const anchor = extractAnchor(question, draft, draft.length)
+        if (anchor === null) continue
+        expect(anchor.end).toBeLessThanOrEqual(draft.length)
+        expect(anchor.match.end).toBeLessThanOrEqual(draft.length)
+        expect(anchor.fragment).toBe(draft.slice(anchor.start, anchor.end))
+      }
+    }
   })
 })

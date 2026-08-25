@@ -314,3 +314,45 @@ describe('SaveCoordinator onSaveState', () => {
     expect(phases).toEqual(['saving', 'saved']);
   });
 });
+
+/**
+ * H3-2: dispose() cleared the timers, but a save already IN FLIGHT re-armed a
+ * debounce from its finally block as it settled, so a newer payload was
+ * persisted strictly AFTER unmount. getStore() is read at fire time, so the
+ * ghost save could even land in a mode-switched store.
+ */
+describe('dispose is final (H3-2)', () => {
+  it('does not persist a payload queued before dispose', async () => {
+    const store = makeStore();
+    let release!: () => void;
+    const gate = new Promise<void>((r) => {
+      release = r;
+    });
+    store.save.mockImplementationOnce(async () => {
+      await gate;
+    });
+    const { coordinator } = makeCoordinator(store);
+
+    coordinator.persistNow('A', []);        // starts immediately, blocks on the gate
+    await Promise.resolve();
+    coordinator.edit('B', []);              // newer payload queued behind it
+    coordinator.dispose();                  // unmount while A is still in flight
+
+    release();
+    await vi.advanceTimersByTimeAsync(2000);
+
+    expect(store.save).toHaveBeenCalledTimes(1);
+    expect(store.save.mock.calls[0][0]).toBe('A');
+  });
+
+  it('ignores an edit() that arrives after dispose', async () => {
+    const store = makeStore();
+    const { coordinator } = makeCoordinator(store);
+
+    coordinator.dispose();
+    coordinator.edit('late', []);
+    await vi.advanceTimersByTimeAsync(2000);
+
+    expect(store.save).not.toHaveBeenCalled();
+  });
+});

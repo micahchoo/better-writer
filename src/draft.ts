@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import type { Annotation } from './types.js';
 
 /** data/drafts/current.md, resolved from the module (not cwd). */
@@ -38,13 +38,54 @@ export function createDraftIo(
   // Count of saveDraft calls, so rotation lands on the Nth, 2Nth, ... write.
   let saveCount = 0;
 
-  async function loadDraft(): Promise<string> {
+  /**
+   * Serializes every operation this seam performs, so a load can never observe
+   * a write in progress.
+   *
+   * The server has its own ioSerial around the draft+annotation PAIR, but the
+   * seam is exported and used directly by tests and any non-server caller,
+   * where nothing protected it: an 800-race probe against 8 MB payloads
+   * reproduced both a stale read and a torn one (H9-3). Serializing here makes
+   * the seam safe by construction rather than by its caller remembering.
+   */
+  let chain: Promise<unknown> = Promise.resolve();
+  function serial<T>(io: () => Promise<T>): Promise<T> {
+    const run = chain.then(io, io);
+    chain = run.then(() => undefined, () => undefined);
+    return run;
+  }
+
+  /**
+   * Write via a temporary file and rename. `writeFile` truncates and then
+   * writes, so a reader outside this process — or a crash mid-write — can see
+   * a half-written draft. `rename` is atomic within a filesystem, so a reader
+   * sees either the old file or the new one, never a partial one.
+   */
+  async function writeAtomic(target: URL, text: string): Promise<void> {
+    const tmp = new URL(`${target.pathname}.tmp`, target);
     try {
-      return await readFile(draftUrl, 'utf8');
+      await writeFile(tmp, text, 'utf8');
+      await rename(tmp, target);
     } catch (err) {
-      if (err instanceof Error && 'code' in err && err.code === 'ENOENT') return '';
-      throw err;
+      // Creating the temp file needs a WRITABLE DIRECTORY; overwriting an
+      // existing file only needs the file's own write bit. Where the directory
+      // refuses us, fall back to a direct write: a save that lands without the
+      // crash-atomicity guarantee beats a save that does not land at all. Say
+      // so, because the guarantee is silently gone for this write.
+      console.error('[draft] atomic write unavailable, writing in place:', err);
+      await writeFile(target, text, 'utf8');
     }
+  }
+
+  async function loadDraft(): Promise<string> {
+    return serial(async () => {
+      try {
+        return await readFile(draftUrl, 'utf8');
+      } catch (err) {
+        if (err instanceof Error && 'code' in err && err.code === 'ENOENT') return '';
+        throw err;
+      }
+    });
   }
 
   /** Back up the current on-disk draft before overwriting, when rotation is due. */
@@ -71,14 +112,18 @@ export function createDraftIo(
   }
 
   async function saveDraft(text: string): Promise<void> {
-    await mkdir(new URL('.', draftUrl), { recursive: true });
-    await maybeBackup(text);
-    await writeFile(draftUrl, text, 'utf8');
+    return serial(async () => {
+      await mkdir(new URL('.', draftUrl), { recursive: true });
+      await maybeBackup(text);
+      await writeAtomic(draftUrl, text);
+    });
   }
 
   async function saveAnnotations(list: Annotation[]): Promise<void> {
-    await mkdir(new URL('.', annotationsUrl), { recursive: true });
-    await writeFile(annotationsUrl, `${JSON.stringify(list)}\n`, 'utf8');
+    return serial(async () => {
+      await mkdir(new URL('.', annotationsUrl), { recursive: true });
+      await writeAtomic(annotationsUrl, `${JSON.stringify(list)}\n`);
+    });
   }
 
   /**
@@ -87,6 +132,7 @@ export function createDraftIo(
    * block loading the editor.
    */
   async function loadAnnotations(): Promise<Annotation[]> {
+    return serial(async () => {
     try {
       // First-hunt #13 / S3-15: any valid JSON parses, so a bare `as Annotation[]`
       // cast once served `{}` or `"notes"` straight to /load and crashed the
@@ -107,6 +153,7 @@ export function createDraftIo(
       console.error('[draft] corrupt annotations file, ignoring:', err);
       return [];
     }
+    });
   }
 
   return { loadDraft, saveDraft, saveAnnotations, loadAnnotations };

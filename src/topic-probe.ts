@@ -10,7 +10,7 @@ export const TOPIC_PROBES: readonly string[] = [
  'What would a reader not yet know need to be told first?',
  'What changed between the start of this passage and its end?',
  'What does the speaker want here, and what stands in the way?',
- 'Say in one plain sentence what this passage is really about.',
+ 'What is this passage really about, in one plain sentence?',
 ];
 
 /**

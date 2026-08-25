@@ -25,7 +25,14 @@ const LOCAL_HOSTNAMES = new Set(['127.0.0.1', 'localhost', '[::1]', '::1']);
 export function hostWithoutPort(authority: string): string {
   if (authority.startsWith('[')) {
     const close = authority.indexOf(']');
-    return close === -1 ? authority : authority.slice(0, close + 1);
+    if (close === -1) return authority;
+    // Anything after `]` must be exactly `:digits`. Returning the bracketed
+    // part regardless meant "[::1]evil.com" normalized to loopback and would
+    // have been ACCEPTED had the URL parse not crashed first (H4-1). Return
+    // the whole string so the caller's loopback test fails it.
+    const rest = authority.slice(close + 1);
+    if (rest !== '' && !/^:\d+$/.test(rest)) return authority;
+    return authority.slice(0, close + 1);
   }
   // Exactly one colon with digits behind it: host:port. Multiple colons mean
   // unbracketed IPv6, which carries no parseable port suffix.

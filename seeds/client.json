@@ -433,6 +433,24 @@
     "verb": "rewrite"
   },
   {
+    "id": "alberts-ch12-scene-purpose-check",
+    "question": "Ask of each scene whether it moves the plot forward, reveals character, and engages the reader emotionally; cut what drags with unnecessary details or pointless dialogue, or start the scene sooner or later.",
+    "genre": [
+      "genre-agnostic"
+    ],
+    "verb": "cut"
+  },
+  {
+    "id": "alberts-ch12-voice-in-summary",
+    "question": "Write your summaries to carry your narrative voice—voice is often best displayed in summary, not buried in the information.",
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
+    "verb": "rewrite"
+  },
+  {
     "id": "alberts-ch8-detail-associations",
     "question": "Replace a random detail in a summary with one whose associations reinforce the character or situation you are writing about.",
     "genre": [

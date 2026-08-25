@@ -3,7 +3,11 @@
     "id": "alberts-scene-moments-in-summary",
     "question": "In a piece carried mostly by summary, stop the ongoing flow of summary and render in scene only the moments of utmost importance to your narrator or protagonist.",
     "verb": "rewrite",
-    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -15,7 +19,11 @@
     "id": "alberts-primal-scene-center",
     "question": "Identify the scene at the center of your story—the event everything else spins around, the one that must be returned to—and make sure it is the event you dramatize.",
     "verb": "concept-form",
-    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -27,7 +35,9 @@
     "id": "alberts-earned-abstraction",
     "question": "Before lifting your story into big summarized abstractions, supply the specificity of concrete details so the reader trusts you.",
     "verb": "elaborate",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -39,7 +49,11 @@
     "id": "alberts-summary-exclusion-caveat",
     "question": "Before writing a piece of fiction that relies on summary to the near exclusion of scene, consider that very few writers carry it off outside a book-length work; creative nonfiction, with its reliance on reflection, tolerates it better.",
     "verb": "concept-form",
-    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -51,7 +65,9 @@
     "id": "alberts-forward-motion",
     "question": "Cut any passage, fast or slow, that does not contribute to the forward movement of the whole.",
     "verb": "cut",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -63,7 +79,9 @@
     "id": "alberts-human-condition-pauses",
     "question": "Do not rush from major plot point to major plot point; let the story pause long enough for the reader to learn something about the human condition along the way.",
     "verb": "elaborate",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -75,7 +93,9 @@
     "id": "alberts-breathing-space",
     "question": "After a stretch of fast-paced action, give readers breathing space with a slower section—scene or summary.",
     "verb": "transition",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -87,7 +107,9 @@
     "id": "alberts-pace-vs-form",
     "question": "Remember that pace comes from time, not form: a scene can be slow because it mimics a deliberate progression of time, and a summary can be rapid because it compresses minutes, days, years.",
     "verb": "concept-form",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -99,7 +121,9 @@
     "id": "alberts-compress-time-spans",
     "question": "Compress the spans of time that do not need examination into a single sentence of summary—“Over the next two years Ralph saw his father only a few times”—and save scene for the spans that require careful attention.",
     "verb": "rephrase",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -111,7 +135,11 @@
     "id": "alberts-slow-scene-with-summary",
     "question": "Slow a scene’s pace by deliberately inserting background summary into the ongoing scene.",
     "verb": "transition",
-    "genre": ["fiction", "creative-nonfiction", "memoir"],
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -123,7 +151,9 @@
     "id": "alberts-cut-scene-bog",
     "question": "Cut unnecessary conversations and irrelevant background exposition from your scenes—they slow the pace until the reader loses sight of what’s at stake in the scene.",
     "verb": "cut",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -135,7 +165,9 @@
     "id": "alberts-diagnose-pace",
     "question": "Mark the places where you get bored reading your own draft and the holes where it rushes; work out why each drags or races, then cut or add so the narrative moves forward smoothly and compellingly.",
     "verb": "elucidate",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -147,7 +179,12 @@
     "id": "alberts-reflection-beyond-scene",
     "question": "When you follow a scene with reflective summary, make the reflection deepen understanding of the scene or take the reader beyond its events—never restate what the scene has already shown.",
     "verb": "rewrite",
-    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -159,7 +196,12 @@
     "id": "alberts-reflection-fresh",
     "question": "Cut a follow-up reflection that is obvious, general, or obscure; keep only what adds something important that engages readers and enlarges the scope of the story.",
     "verb": "cut",
-    "genre": ["fiction", "creative-nonfiction", "memoir", "essay"],
+    "genre": [
+      "fiction",
+      "creative-nonfiction",
+      "memoir",
+      "essay"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -171,7 +213,10 @@
     "id": "alberts-rich-summary",
     "question": "Make your summaries richly detailed—a summary rendered with rich detail reads as fully dramatized and keeps the story from flattening.",
     "verb": "elaborate",
-    "genre": ["memoir", "creative-nonfiction"],
+    "genre": [
+      "memoir",
+      "creative-nonfiction"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -183,7 +228,9 @@
     "id": "alberts-genre-proportions",
     "question": "Set your scene-to-summary ratio by genre: in a thriller keep summary to what readers need plus connective tissue between scenes, in romance favor scenes that share the protagonist’s emotions, and in science fiction use exposition to establish the world but scene for the important events.",
     "verb": "concept-form",
-    "genre": ["fiction"],
+    "genre": [
+      "fiction"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -192,10 +239,14 @@
     }
   },
   {
-    "id": "alberts-voice-in-summary",
+    "id": "alberts-ch12-voice-in-summary",
     "question": "Write your summaries to carry your narrative voice—voice is often best displayed in summary, not buried in the information.",
     "verb": "rewrite",
-    "genre": ["fiction", "memoir", "creative-nonfiction"],
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -207,7 +258,11 @@
     "id": "alberts-integrate-history",
     "question": "Integrate any inserted history or place description into the overall intention of the story so it echoes the events within the scenes rather than arriving at random.",
     "verb": "rewrite",
-    "genre": ["fiction", "memoir", "creative-nonfiction"],
+    "genre": [
+      "fiction",
+      "memoir",
+      "creative-nonfiction"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -219,7 +274,9 @@
     "id": "alberts-alternation",
     "question": "Find an alternation between scene and summary, showing and telling, somewhere on the spectrum of predominance.",
     "verb": "transition",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -231,7 +288,10 @@
     "id": "alberts-open-with-scene",
     "question": "Open with a brief, vividly rendered scene that hooks the reader, then follow with the background summary—starting with the context loses interest.",
     "verb": "transition",
-    "genre": ["memoir", "creative-nonfiction"],
+    "genre": [
+      "memoir",
+      "creative-nonfiction"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -243,7 +303,9 @@
     "id": "alberts-intention-first",
     "question": "Before deciding how much scene and summary to use, get clear on what you wish to accomplish in the overall work; your proportions depend on what’s at stake and what you want to emphasize.",
     "verb": "concept-form",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -255,7 +317,9 @@
     "id": "alberts-emotion-vs-intellect",
     "question": "Choose scene or summary point by point by asking whether you want to engage the reader’s emotions or intellect—there is no formula for how much to show and how much to tell.",
     "verb": "concept-form",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -264,10 +328,12 @@
     }
   },
   {
-    "id": "alberts-scene-purpose-check",
+    "id": "alberts-ch12-scene-purpose-check",
     "question": "Ask of each scene whether it moves the plot forward, reveals character, and engages the reader emotionally; cut what drags with unnecessary details or pointless dialogue, or start the scene sooner or later.",
     "verb": "cut",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -279,7 +345,9 @@
     "id": "alberts-summary-to-scene",
     "question": "Find the significant events and moments of change you have only summarized and render them in scene.",
     "verb": "rewrite",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -291,7 +359,9 @@
     "id": "alberts-summary-length",
     "question": "Cut summaries that run so long the emotional connection is lost, and give readers a breather where scenes pile up.",
     "verb": "cut",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -303,7 +373,9 @@
     "id": "alberts-smooth-shift",
     "question": "Check that every shift from scene to summary feels smooth.",
     "verb": "transition",
-    "genre": ["genre-agnostic"],
+    "genre": [
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",
@@ -315,7 +387,10 @@
     "id": "alberts-climax-fast-sections",
     "question": "When your story is truly action-based and the action is rising toward a dramatic climax, let fast sections follow on each other’s heels until the climax is reached.",
     "verb": "transition",
-    "genre": ["fiction", "genre-agnostic"],
+    "genre": [
+      "fiction",
+      "genre-agnostic"
+    ],
     "source": {
       "book": "Showing & Telling",
       "author": "Laurie Alberts",

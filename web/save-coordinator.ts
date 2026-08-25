@@ -34,6 +34,9 @@ interface SavePayload {
 
 export class SaveCoordinator {
   private readonly options: SaveCoordinatorOptions;
+  /** Set by dispose(); a disposed coordinator never arms another save (H3-2). */
+  private disposed = false;
+
   private debounceTimer: number | null = null;
   private retryTimer: number | null = null;
   /** A retry is armed after the first failure; the second failure surfaces and stops. */
@@ -77,7 +80,7 @@ export class SaveCoordinator {
    */
   async trySave(): Promise<void> {
     this.clearTimers();
-    if (this.pending === null || this.inFlight) return;
+    if (this.disposed || this.pending === null || this.inFlight) return;
     const payload = this.pending;
     const isRetry = this.retryScheduled;
     this.retryScheduled = false;
@@ -105,7 +108,12 @@ export class SaveCoordinator {
       // A newer payload arrived while this save ran (via edit(), which arms
       // its own debounce, or persistNow(), which does not): if no timer is
       // already armed for it, re-arm the debounce so it still gets persisted.
-      if (this.pending !== null && this.pending !== payload && this.debounceTimer === null) {
+      if (
+        !this.disposed &&
+        this.pending !== null &&
+        this.pending !== payload &&
+        this.debounceTimer === null
+      ) {
         this.scheduleDebounce();
       }
     }
@@ -119,7 +127,7 @@ export class SaveCoordinator {
   async flush(opts?: { keepalive?: boolean }): Promise<void> {
     this.clearTimers();
     this.retryScheduled = false;
-    if (this.pending === null || this.inFlight) return;
+    if (this.disposed || this.pending === null || this.inFlight) return;
     const payload = this.pending;
     this.inFlight = true;
     try {
@@ -135,14 +143,28 @@ export class SaveCoordinator {
       this.options.onError(err);
     } finally {
       this.inFlight = false;
-      if (this.pending !== null && this.pending !== payload && this.debounceTimer === null) {
+      if (
+        !this.disposed &&
+        this.pending !== null &&
+        this.pending !== payload &&
+        this.debounceTimer === null
+      ) {
         this.scheduleDebounce();
       }
     }
   }
 
-  /** Cancel pending timers (component unmount). */
+  /**
+   * Cancel pending timers (component unmount). Latches `disposed`, which the
+   * finally-block re-arm consults: clearing the timers alone could not stop a
+   * save that was already IN FLIGHT from arming a fresh debounce as it
+   * settled, so a newer payload was persisted strictly after unmount — and
+   * `getStore()` is read at fire time, so the ghost save could even land in a
+   * mode-switched store (H3-2). Disposal is final; a disposed coordinator
+   * never saves again.
+   */
   dispose(): void {
+    this.disposed = true;
     this.clearTimers();
   }
 
@@ -165,6 +187,11 @@ export class SaveCoordinator {
    * clears its OWN handle, so an orphaned/overwritten timer can never null a
    * newer timer's slot and leave it uncancellable. */
   private scheduleDebounce(): void {
+    // The single choke point for arming a save. A disposed coordinator arms
+    // nothing — from a caller, a retry, or an in-flight save's finally-block
+    // re-arm — which is what makes "disposal is final" true rather than just
+    // documented (H3-2).
+    if (this.disposed) return;
     const timer = window.setTimeout(() => {
       if (this.debounceTimer === timer) this.debounceTimer = null;
       void this.trySave();

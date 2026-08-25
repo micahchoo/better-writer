@@ -119,3 +119,40 @@ describe('createDraftIo backup rotation', () => {
     }
   });
 });
+
+/**
+ * H9-3: the seam is exported and used directly by tests and any non-server
+ * caller, where nothing serialized it — the server's ioSerial only wraps the
+ * routes. writeFile truncates then writes, so a load racing a save observed
+ * torn or stale content (reproduced over 800 races with 8 MB payloads).
+ */
+describe('createDraftIo serializes its own IO (H9-3)', () => {
+  it('never lets a load observe a partial write', async () => {
+    const io = createDraftIo(draftUrl, annotationsUrl);
+    const A = 'a'.repeat(200_000);
+    const B = 'b'.repeat(200_000);
+    await io.saveDraft(A);
+
+    const reads: Array<Promise<string>> = [];
+    const ops: Array<Promise<unknown>> = [];
+    for (let i = 0; i < 60; i++) {
+      ops.push(io.saveDraft(i % 2 ? A : B));
+      const read = io.loadDraft();
+      reads.push(read);
+      ops.push(read);
+    }
+    await Promise.all(ops);
+
+    for (const text of await Promise.all(reads)) {
+      expect(text === A || text === B, `torn read of length ${text.length}`).toBe(true);
+    }
+  });
+
+  it('writes through a temp file so a reader sees old or new, never half', async () => {
+    const io = createDraftIo(draftUrl, annotationsUrl);
+    await io.saveDraft('complete content');
+    expect(readFileSync(draftPath(), 'utf8')).toBe('complete content');
+    // The temp file must not survive a successful write.
+    expect(() => readFileSync(`${draftPath()}.tmp`, 'utf8')).toThrow();
+  });
+});

@@ -75,6 +75,42 @@ export function sttModelFor(cfg: ByokConfig): string | null {
   return cfg.sttModel ?? STT_DEFAULTS[cfg.provider as Provider] ?? null;
 }
 
+/** Longest provider error body pasted into a message the writer will read. */
+const MAX_ERROR_DETAIL = 200;
+
+/**
+ * Best-effort provider error text, bounded and stripped of markup.
+ *
+ * A non-ok response used to have its whole body pasted into the thrown
+ * message, so a 502 HTML proxy page landed entire in a toast (H7-3). Keep
+ * enough to diagnose, never enough to swamp the UI.
+ */
+async function errorDetail(res: Response): Promise<string> {
+  let body = '';
+  try {
+    body = await res.text();
+  } catch {
+    return '';
+  }
+  const flat = body.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (flat.length === 0) return '';
+  return flat.length > MAX_ERROR_DETAIL ? `${flat.slice(0, MAX_ERROR_DETAIL)}…` : flat;
+}
+
+/**
+ * Parse a JSON response body, turning a non-JSON 200 into a message about the
+ * provider rather than a raw `SyntaxError: Unexpected token <` (H7-3).
+ */
+async function readJson<T>(res: Response, what: string): Promise<T> {
+  const body = await res.text();
+  try {
+    return JSON.parse(body) as T;
+  } catch {
+    const flat = body.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, MAX_ERROR_DETAIL);
+    throw new Error(`${what}: provider returned a non-JSON response — ${flat || '(empty body)'}`);
+  }
+}
+
 function isProvider(value: string): value is Provider {
   return (PROVIDERS as readonly string[]).includes(value);
 }
@@ -112,16 +148,34 @@ function sanitize(value: unknown): ByokConfig | null {
   if (typeof value !== 'object' || value === null) return null;
   const { provider, baseUrl, apiKey, model, sttModel } = value as Record<string, unknown>;
   if (typeof provider !== 'string' || !isProvider(provider)) return null;
-  if (typeof baseUrl !== 'string' || baseUrl.length === 0) return null;
-  if (typeof apiKey !== 'string' || apiKey.length === 0) return null;
-  if (typeof model !== 'string' || model.length === 0) return null;
-  const normalized = stripTrailingSlashes(baseUrl);
+  // TRIM before every emptiness test (H7-1). The in-app form trims on save,
+  // so a padded value only arrives from hand-edited or hostile localStorage —
+  // but then sanitize used to CERTIFY a config that can never work: a baseUrl
+  // of "https://api.openai.com/v1 " assembles a request path of
+  // "/v1%20/chat/completions", a guaranteed 404, and a padded key is sent as
+  // a padded key. Falling back to setup is the honest outcome; blessing a
+  // broken config is not.
+  if (typeof baseUrl !== 'string') return null;
+  if (typeof apiKey !== 'string') return null;
+  if (typeof model !== 'string') return null;
+  const trimmedKey = apiKey.trim();
+  const trimmedModel = model.trim();
+  if (trimmedKey.length === 0 || trimmedModel.length === 0) return null;
+  const normalized = stripTrailingSlashes(baseUrl.trim());
+  if (normalized.length === 0) return null;
   if (!isValidBaseUrl(normalized)) return null;
-  const out: ByokConfig = { provider, baseUrl: normalized, apiKey, model };
-  // sttModel is optional: keep it only as a non-empty string, so a corrupted
-  // or absent value degrades to "no dictation model" rather than breaking
-  // the whole config. Old saved configs (no sttModel key) still load.
-  if (typeof sttModel === 'string' && sttModel.length > 0) out.sttModel = sttModel;
+  const out: ByokConfig = {
+    provider,
+    baseUrl: normalized,
+    apiKey: trimmedKey,
+    model: trimmedModel,
+  };
+  // sttModel is optional: keep it only as a non-empty string AFTER trimming,
+  // so a corrupted, absent, or whitespace-only value degrades to "no dictation
+  // model" rather than reading as truthy. Old configs (no key) still load.
+  if (typeof sttModel === 'string' && sttModel.trim().length > 0) {
+    out.sttModel = sttModel.trim();
+  }
   return out;
 }
 
@@ -189,18 +243,13 @@ export function makeByokComplete(cfg: ByokConfig): Complete {
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
     if (!res.ok) {
-      let detail = '';
-      try {
-        detail = await res.text();
-      } catch {
-        // best-effort provider error text; ignore if the body is unreadable
-      }
+      const detail = await errorDetail(res);
       const suffix = detail ? ` — ${detail}` : '';
       throw new Error(`BYOK coach request failed: ${res.status} ${res.statusText}${suffix}`);
     }
-    const data = (await res.json()) as {
+    const data = await readJson<{
       choices?: Array<{ message?: { content?: string } }>;
-    };
+    }>(res, 'BYOK coach request failed');
     return (data.choices?.[0]?.message?.content ?? '').trim();
   };
 }
@@ -210,13 +259,21 @@ export function makeByokComplete(cfg: ByokConfig): Complete {
  * local route, the raw recorder bytes (webm/opus, mp4/aac) are first decoded
  * to 16kHz mono and wrapped in a RIFF/WAVE header, so both paths send the
  * same WAV shape to their transport. Requires a configured dictation model
- * (sttModelFor) — openrouter has no audio route, so there is never a model to
- * use and this throws before any network call.
+ * (sttModelFor) AND a provider that TRANSCRIBES_AUDIO — openrouter has no
+ * audio route, so both checks throw before any network call.
  */
 export async function transcribeWavByok(blob: Blob): Promise<string> {
   const cfg = loadByokConfig();
   if (!cfg) {
     throw new Error('No API key configured — add your key in settings');
+  }
+  // TRANSCRIBES_AUDIO is the contract, so ENFORCE it before the network call
+  // (H7-2). Guarding only on sttModelFor let a stale override defeat it: the
+  // provider switch preserves the sttModel field, so openai -> openrouter
+  // leaves "whisper-1" behind and the writer's API key was POSTed to a route
+  // that does not exist.
+  if (!TRANSCRIBES_AUDIO[cfg.provider as Provider]) {
+    throw new Error(`${cfg.provider} cannot transcribe audio — switch provider to dictate`);
   }
   const model = sttModelFor(cfg);
   if (!model) {
@@ -240,16 +297,11 @@ export async function transcribeWavByok(blob: Blob): Promise<string> {
     signal: AbortSignal.timeout(60_000),
   });
   if (!res.ok) {
-    let detail = '';
-    try {
-      detail = await res.text();
-    } catch {
-      // best-effort provider error text; ignore if the body is unreadable
-    }
+    const detail = await errorDetail(res);
     const suffix = detail ? ` — ${detail}` : '';
     throw new Error(`Dictation request failed: ${res.status} ${res.statusText}${suffix}`);
   }
-  const data = (await res.json()) as { text?: string };
+  const data = await readJson<{ text?: string }>(res, 'Dictation request failed');
   return (data.text ?? '').trim();
 }
 

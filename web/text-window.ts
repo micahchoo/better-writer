@@ -39,7 +39,9 @@ const LIST_ITEM_RE = /^\s*(?:[-*+]|\d{1,9}[.)])\s+/;
 /** An ATX heading: `#`…`######` followed by a space or end of line. */
 const HEADING_RE = /^#{1,6}(?:\s|$)/;
 /** A thematic break line: three or more `-`, `*`, or `_` (a section boundary). */
-const THEMATIC_BREAK_RE = /^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/;
+/** A `---`/`***`/`___` rule. Exported so the sweep planner tests the same
+ * thing the block splitter does, rather than carrying its own copy. */
+export const THEMATIC_BREAK_RE = /^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/;
 /** A setext heading underline: a run of `=` (h1) or 1-2 `-`/`*` (h2) under a
  * paragraph. Runs of 3+ `-`/`*`/`_` are thematic breaks (above) and never
  * reach this — so only `=+` and `-{1,2}`/`*{1,2}` are seen here. */

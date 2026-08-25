@@ -1728,8 +1728,7 @@
     "preference": {
       "match": [
         "transition"
-      ],
-      "p": 0.5
+      ]
     },
     "genre": null,
     "expectedSeedIdSequence": [
@@ -2050,8 +2049,7 @@
     "preference": {
       "match": [
         "rewrite"
-      ],
-      "p": 0.5
+      ]
     },
     "genre": null,
     "expectedSeedIdSequence": [
@@ -3055,7 +3053,7 @@
     "genre": null,
     "expectedSeedIdSequence": [
       "v-05-020",
-      "v-05-027",
+      "v-05-028",
       "v-05-026",
       "v-05-028",
       "v-05-020"
@@ -3672,13 +3670,13 @@
       "match": [
         "elaborate"
       ],
-      "p": 0.9
+      "weight": 8
     },
     "genre": null,
     "expectedSeedIdSequence": [
-      "v-06-010",
-      "v-06-023",
-      "v-06-039",
+      "v-06-007",
+      "v-06-025",
+      "v-06-025",
       "v-06-037",
       "v-06-007"
     ]
@@ -4143,8 +4141,7 @@
     "preference": {
       "match": [
         "transition"
-      ],
-      "p": 0.5
+      ]
     },
     "genre": null,
     "expectedSeedIdSequence": [
@@ -4910,7 +4907,7 @@
       "v-09-014",
       "v-09-017",
       "v-09-025",
-      "v-09-029"
+      "v-09-028"
     ]
   },
   {
@@ -5523,8 +5520,7 @@
     "preference": {
       "match": [
         "transition"
-      ],
-      "p": 0.5
+      ]
     },
     "genre": null,
     "expectedSeedIdSequence": [
@@ -6451,11 +6447,11 @@
     },
     "genre": null,
     "expectedSeedIdSequence": [
-      "v-11-058",
+      "v-11-055",
       "v-11-031",
-      "v-11-059",
-      "v-11-023",
-      "v-11-047"
+      "v-11-057",
+      "v-11-021",
+      "v-11-045"
     ]
   },
   {
@@ -8422,11 +8418,11 @@
     "preference": null,
     "genre": "memoir",
     "expectedSeedIdSequence": [
-      "v-14-1000",
+      "v-14-035",
       "v-14-033",
       "v-14-034",
       "v-14-1001",
-      "v-14-1000"
+      "v-14-006"
     ]
   },
   {

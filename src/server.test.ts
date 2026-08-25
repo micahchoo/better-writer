@@ -82,3 +82,41 @@ describe('parseAnnotations (#7: NaN/Infinity/negative/inverted offsets rejected)
     expect(server.parseAnnotations([{ ...valid, start: NaN }])).toEqual([]);
   });
 });
+
+/**
+ * H4-2/H4-3: no body cap (a 50 MB /save was accepted, buffered and written to
+ * disk), and /ask answered with err.message verbatim — retrieve.py stderr and
+ * filesystem paths — while /transcribe deliberately returned generic errors.
+ *
+ * The body cap lives in the node:http adapter, ahead of Hono, so it cannot be
+ * reached through app.request(); it is verified live in FIXED.md (a 6 MB POST
+ * returns 413 and nothing reaches disk). What is unit-testable is the Host
+ * predicate that guards URL construction, and the disclosure contract.
+ */
+describe('request limits and error disclosure (H4-1, H4-2, H4-3)', () => {
+  it('accepts only a well-formed Host authority', () => {
+    for (const ok of ['127.0.0.1', '127.0.0.1:4517', 'localhost', '[::1]', '[::1]:4517']) {
+      expect(server.SAFE_HOST_RE.test(ok), ok).toBe(true);
+    }
+    for (const bad of ['[::1]evil.com', '[::1]:evil', '127.0.0.1:evil', '::1', 'a b']) {
+      expect(server.SAFE_HOST_RE.test(bad), bad).toBe(false);
+    }
+  });
+
+  it('caps the request body well below a memory-exhausting size', () => {
+    expect(server.MAX_BODY_BYTES).toBe(5 * 1024 * 1024);
+  });
+
+  it('does not put an internal message in an /ask 500', async () => {
+    const res = await server.app.request('/ask', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', host: '127.0.0.1' },
+      body: JSON.stringify({ text_window: 'some prose here', genre: 'fiction' }),
+    });
+    if (res.status === 500) {
+      const body = (await res.json()) as { error: string };
+      expect(body.error).toBe('the coach could not answer — see the server log');
+      expect(body.error).not.toMatch(/seed pull|\.py/);
+    }
+  });
+});

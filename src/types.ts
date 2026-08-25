@@ -86,4 +86,14 @@ export interface Annotation {
   ts: number;
   /** How the question was produced; absent on legacy persisted notes (pre-provenance). */
   source?: QuestionSource;
+  /**
+   * The draft text immediately around the span when the note was minted.
+   *
+   * Used only to re-ground the note when its fragment occurs MORE THAN ONCE
+   * and the offsets have drifted: distance from the stale absolute start picks
+   * the wrong duplicate after any insertion before both occurrences, so the
+   * pinned highlight jumped to a different identical sentence (H9-1). Optional
+   * — notes persisted before this field still load and fall back to distance.
+   */
+  context?: { before: string; after: string };
 }

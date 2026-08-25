@@ -9,7 +9,7 @@ exactly; tests in seeds/test_retrieve.py replay every case against the current
 implementation to keep the oracle in sync.
 
 Cases 0-11 exercise the explicit-preference two-stage drawer core; cases 12-15
-exercise the default genre preference (specific-genre cards claim first claim
+exercise the default genre preference (each specific-genre card is PREFERENCE_WEIGHT times likelier per seed
 on half the draws from a mixed pool) that the pull CLI and pickSeed apply when
 a genre filter produced a mixed pool. For those cases `preference` is null and
 `genre` records the chosen genre.
@@ -72,7 +72,7 @@ def make_genre_pool(case, n_specific, n_agnostic, genre="fiction"):
 
 def case_pool(idx):
     """Return (pool, preference, genre) for case idx. preference is None, or a
-    JSON-serializable dict {"match": [verbs...]} with optional "p" (omitted p
+    JSON-serializable dict {"match": [verbs...]} with optional "weight" (omitted weight
     exercises retrieve.pull's default of 0.5). genre is None except for the
     default-genre-preference cases (12-15), where it records the chosen genre
     and preference stays None."""
@@ -80,14 +80,14 @@ def case_pool(idx):
         # no preference: legacy uniform draw over a mixed pool.
         return build_pool(idx, 24, IMPL_VERBS), None, None
     if idx == 1:
-        # match-verbs with default p; matched pile == FLOOR exactly (no shrink).
+        # match-verbs at the default weight; matched pile 16, complement 24.
         return build_pool(idx, 48, IMPL_VERBS), {"match": ["concept-form", "elaborate"]}, None
     if idx == 2:
-        # small matched pile (6 < FLOOR) forcing the floor shrink: effective_p 0.375.
-        return build_pool(idx, 40, IMPL_VERBS), {"match": ["transition"], "p": 0.5}, None
+        # small matched pile (6): weighting keeps its per-seed rate 3x, not its share.
+        return build_pool(idx, 40, IMPL_VERBS), {"match": ["transition"]}, None
     if idx == 3:
         # full matched pile: complement empty -> uniform choice over the pool.
-        return build_pool(idx, 20, ["rewrite"]), {"match": ["rewrite"], "p": 0.5}, None
+        return build_pool(idx, 20, ["rewrite"]), {"match": ["rewrite"]}, None
     if idx == 4:
         # no preference over a genre-agnostic-heavy pool (wildcard cards).
         pool = build_pool(idx, 24, IMPL_VERBS, genres=["genre-agnostic", "genre-agnostic", "genre-agnostic", "fiction"])
@@ -96,29 +96,29 @@ def case_pool(idx):
         # match-verbs default p over a pool mixing genre-agnostic wildcard cards.
         return build_pool(idx, 40, IMPL_VERBS), {"match": ["cut", "rephrase"]}, None
     if idx == 6:
-        # small matched pile (7 < FLOOR) with p above default: shrink to 7/16 = 0.4375.
-        return build_pool(idx, 40, IMPL_VERBS), {"match": ["elaborate"], "p": 0.9}, None
+        # small matched pile (7) with a weight well above the default.
+        return build_pool(idx, 40, IMPL_VERBS), {"match": ["elaborate"], "weight": 8}, None
     if idx == 7:
         # empty matched pile (match verb absent) -> uniform fallback over pool.
-        return build_pool(idx, 30, ["rewrite", "cut", "rephrase"]), {"match": ["transition"], "p": 0.5}, None
+        return build_pool(idx, 30, ["rewrite", "cut", "rephrase"]), {"match": ["transition"]}, None
     if idx == 8:
-        # no preference over a pool sized exactly at FLOOR.
+        # no preference over a 16-card pool.
         return build_pool(idx, 16, IMPL_VERBS), None, None
     if idx == 9:
-        # match-verbs default p with matched pile == FLOOR (16 cut / 16 rewrite).
+        # match-verbs at the default weight (16 cut / 16 rewrite).
         return build_pool(idx, 32, ["cut", "rewrite"]), {"match": ["cut"]}, None
     if idx == 10:
         # tiny matched pile (1 seed): effective_p 1/16 = 0.0625.
-        return build_pool(idx, 40, ["rewrite"] * 39 + ["transition"]), {"match": ["transition"], "p": 0.5}, None
+        return build_pool(idx, 40, ["rewrite"] * 39 + ["transition"]), {"match": ["transition"]}, None
     if idx == 11:
-        # match-verbs default p, large matched pile (30) >= FLOOR, full verb span.
+        # match-verbs at the default weight, large matched pile (30), full verb span.
         return build_pool(idx, 60, IMPL_VERBS), {"match": ["rewrite", "elaborate", "concept-form"]}, None
     if idx == 12:
-        # default genre preference over a mixed pool; specific pile (24) >= FLOOR
+        # default genre preference over a mixed pool; specific pile (24)
         # -> effective_p 0.5. match = strict fiction membership (agnostic-only excluded).
         return make_genre_pool(idx, 24, 24, "fiction"), None, "fiction"
     if idx == 13:
-        # mixed pool with a small specific pile (6 < FLOOR): effective_p 6/16 = 0.375.
+        # mixed pool with a small specific pile (6): per-seed rate stays 3x.
         return make_genre_pool(idx, 6, 34, "poetry"), None, "poetry"
     if idx == 14:
         # mixed pool with a tiny agnostic-only complement (2): specific still preferred.
@@ -135,8 +135,8 @@ def pref_obj(pref):
     verbs = pref.get("match")
     match = None if verbs is None else (lambda s, vs=frozenset(verbs): s["verb"] in vs)
     obj = {"match": match}
-    if "p" in pref:
-        obj["p"] = pref["p"]
+    if "weight" in pref:
+        obj["weight"] = pref["weight"]
     return obj
 
 
