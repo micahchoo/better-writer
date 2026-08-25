@@ -13,18 +13,18 @@ stayed behind in [BUGS.md](BUGS.md).
 
 | Finding | Check | Result |
 |---|---|---|
-| S1-0 | `.bughunt/probe14.ts` drives the real `reshape()` | All three attack shapes (rewrite the writer's sentence, advice-then-ask, 2708-char essay) now **blocked** and fall back to a topic probe; the legitimate one-liner still passes |
-| S1-1 / #2 | `.bughunt/probe4.ts` | `error: No active storage yet…`, payload **retained** in `pending`, no `'saved'` pulse |
-| S1-2 | `.bughunt/probe6.ts` | 6-window plan, ask #1 throws → **2 of 6** asks issued (was 6 of 6), later note **delivered** (was zero) |
+| S1-0 | `scripts/probes/probe14.ts` drives the real `reshape()` | All three attack shapes (rewrite the writer's sentence, advice-then-ask, 2708-char essay) now **blocked** and fall back to a topic probe; the legitimate one-liner still passes |
+| S1-1 / #2 | `scripts/probes/probe4.ts` | `error: No active storage yet…`, payload **retained** in `pending`, no `'saved'` pulse |
+| S1-2 | `scripts/probes/probe6.ts` | 6-window plan, ask #1 throws → **2 of 6** asks issued (was 6 of 6), later note **delivered** (was zero) |
 | S1-3 | Live process test: server on `BW_PORT=4599`, one `/transcribe`, `kill -TERM` | Worker chain **gone**. Was 4 surviving processes holding Parakeet weights |
-| S2-1 / S2-2 | `.bughunt/probe1.ts` | CRLF slice round-trips byte-exact; setext doc splits into 2 sections |
-| S2-3 | `.bughunt/probe3.ts` | Possessive prose mean 4.67 — identical to the same text without apostrophes |
+| S2-1 / S2-2 | `scripts/probes/probe1.ts` | CRLF slice round-trips byte-exact; setext doc splits into 2 sections |
+| S2-3 | `scripts/probes/probe3.ts` | Possessive prose mean 4.67 — identical to the same text without apostrophes |
 | S2-9 | `.github/workflows/deploy.yml` | `npm run typecheck` and `npm test` now gate `npm run build` |
 | S2-10 | `src/server.ts#derivePositionContext` | Real code fix, not a README hedge — `/ask` derives position from the window's own blocks and passes it to `measureWindow`; the docstring states its approximation honestly |
 | S2-11 | `npm run build` | Seed bank is its own 397.62 kB chunk; **0** occurrences of a sampled seed id in the 467 kB main chunk |
 | #6 | `web/EditorApp.tsx:869` | "Dictation model" field really renders; blank degrades to provider default |
-| S4-11 | `.bughunt/probe17.ts` | undefined / string / NaN / reversed offsets all → set size 0 |
-| S4-13 | `.bughunt/probe15.ts` | 8 planner shapes, 0 windows over budget, 5-block doc → 2 windows |
+| S4-11 | `scripts/probes/probe17.ts` | undefined / string / NaN / reversed offsets all → set size 0 |
+| S4-13 | `scripts/probes/probe15.ts` | 8 planner shapes, 0 windows over budget, 5-block doc → 2 windows |
 
 ## Residual notes on accepted fixes
 
@@ -43,7 +43,7 @@ These do not overturn the fix; they are worth knowing.
 - **S3-14** — `staleAnnotations` drops degenerate spans up front, as the
   docstring says. Separately, `reconcileAnnotations` still keeps a note whose
   fragment happens to match at its **old** offsets after an edit moved it
-  (`.bughunt/probe16.ts` case 5). That was never a recorded finding; noting it
+  (`scripts/probes/probe16.ts` case 5). That was never a recorded finding; noting it
   here so the next hunt does not re-derive it.
 
 ---
@@ -501,7 +501,7 @@ A separate sweep of the same tree, run from a green baseline: `npx tsc
 below therefore sits **underneath** a passing suite — none is a failing test.
 
 Method differs from the pass above: findings are driven by executable probes
-(kept in `.bughunt/`), a live server on `BW_PORT=4599` with the Parakeet model
+(kept in `scripts/probes/`), a live server on `BW_PORT=4599` with the Parakeet model
 present, and raw-socket requests where `fetch` normalises away the thing under
 test.
 
@@ -559,7 +559,7 @@ text.
 
 So any amount of prose passes, as long as it is on one line and the only
 question mark is the final character. Driving the real `reshape()` with a stub
-model (`.bughunt/probe14.ts`):
+model (`scripts/probes/probe14.ts`):
 
 ```
 PASSED GATE [REWRITES THE WRITER'S SENTENCE]
@@ -615,7 +615,7 @@ if (this.pending === payload) {
 }
 ```
 
-Probe (`.bughunt/probe4.ts`), using exactly EditorApp's `getStore: () =>
+Probe (`scripts/probes/probe4.ts`), using exactly EditorApp's `getStore: () =>
 draftStoreRef.current` while that ref is null:
 
 ```
@@ -652,7 +652,7 @@ Two faults compound:
    `resolved[index] = true` (the throw is before that line). The drain pointer
    parks at the failed index forever and every later note is silently dropped.
 
-Probe (`.bughunt/probe6.ts`) — a 6-window plan where only ask #1 throws:
+Probe (`scripts/probes/probe6.ts`) — a 6-window plan where only ask #1 throws:
 
 ```
 plan windows: 6
@@ -714,7 +714,7 @@ block's lines joined with `'\n'` — but the CR was already stripped, so a
 multi-line block's `end` is short by one character per line break in the
 source.
 
-Probe (`.bughunt/probe1.ts`) on `'Alpha line one\r\nAlpha line two\r\n\r\nBeta block\r\n'`:
+Probe (`scripts/probes/probe1.ts`) on `'Alpha line one\r\nAlpha line two\r\n\r\nBeta block\r\n'`:
 
 ```
 {"text":"Alpha line one\nAlpha line two","start":0,"end":29,
@@ -746,7 +746,7 @@ Markdown dialect the app renders (react-markdown handles it in the preview
 pane). `splitBlocks` folded both lines into a single **paragraph**, so
 `partitionSections` never saw a boundary.
 
-Probe (`.bughunt/probe1.ts`):
+Probe (`scripts/probes/probe1.ts`):
 
 ```
 [["paragraph","Chapter One\n==========="],
@@ -757,7 +757,7 @@ sections: 1
 ```
 
 Four blocks, two headings, **one** section. And the consequence, from the
-planner audit (`.bughunt/probe15.ts`):
+planner audit (`scripts/probes/probe15.ts`):
 
 ```
 setext doc: 5 blocks, 1 sections, 1 windows
@@ -788,7 +788,7 @@ The lookbehind treated **any** apostrophe or quote mark before whitespace as a
 sentence end. Plural possessives (`the writers' guild`) and quoted words
 mid-sentence both split a sentence in two.
 
-Probe (`.bughunt/probe3.ts`), same prose with and without possessives:
+Probe (`scripts/probes/probe3.ts`), same prose with and without possessives:
 
 ```
 possessive apostrophe => mean 2.80  sigma 1.17
@@ -1057,7 +1057,7 @@ authority unchanged. `originHost`, by contrast, goes through `new URL(...)`,
 and WHATWG URL lowercases the host. The two halves of one check normalise
 differently.
 
-Raw-socket probe (`.bughunt/probe8.mjs` — `fetch` rewrites `Host`, so this
+Raw-socket probe (`scripts/probes/probe8.mjs` — `fetch` rewrites `Host`, so this
 must be done on a socket):
 
 ```
@@ -1237,7 +1237,7 @@ That is exactly the shape the prompt asks the model to produce — "quote the
 writer's exact words". A draft containing a question therefore burns the retry
 and lands on a topic probe.
 
-Two smaller misses in the same predicate (`.bughunt/probe13.ts`):
+Two smaller misses in the same predicate (`scripts/probes/probe13.ts`):
 
 ```
 true   — Which verb is doing the work?      (em-dash bullet; the list check
@@ -1266,7 +1266,7 @@ if (annotation.start >= 0 && annotation.end <= draft.length &&
 if (!annotation.fragment) return [];   // never reached for a valid [n,n) span
 ```
 
-Probe (`.bughunt/probe16.ts`): `{start:0, end:0, fragment:''}` →
+Probe (`scripts/probes/probe16.ts`): `{start:0, end:0, fragment:''}` →
 `out 1, changed=false`. The note survives every edit forever.
 `buildHighlightSet` then drops it (`start >= end`), so it is invisible in the
 editor but still occupies a row in the **InboxPanel** with a blank fragment,
@@ -1509,7 +1509,7 @@ if (start >= end) continue;
 
 With `undefined` or `NaN` in, both become `NaN`, and `NaN >= NaN` is **false**,
 so the guard passes and a `range(NaN, NaN)` reaches `RangeSet.of`. Probe
-(`.bughunt/probe17.ts`):
+(`scripts/probes/probe17.ts`):
 
 ```
 THROWS  undefined offsets -> Cannot read properties of null (reading 'endSide')
@@ -1555,7 +1555,7 @@ STOPWORDS (with an explicit "keep the two tables in sync" comment), and
 `WINDOW_BLOCKS = 3` and the header says windows "grow up to 3 blocks or
 MAX_WINDOW_CHARS … whichever binds first". The Q4 tail merge then appends a stub
 of up to two blocks with only a character-budget test, no block-count test.
-Probe (`.bughunt/probe15.ts`), a 5-block document:
+Probe (`scripts/probes/probe15.ts`), a 5-block document:
 
 ```
 setext doc: 5 blocks, 1 sections, 1 windows
@@ -1654,7 +1654,7 @@ a `match: {start, end}` field carrying the span the question's words actually
 matched, so the matching rules stay observable — and so a consumer can mark the
 matched word inside the highlighted sentence.
 
-Measured with `.bughunt/probe-s27.ts`, 4000 fiction draws against
+Measured with `scripts/probes/probe-s27.ts`, 4000 fiction draws against
 `SAMPLE_DRAFT`:
 
 | | pre-hunt | f37a156 | now |
@@ -1681,7 +1681,7 @@ is enumerable and the keepable set is not — which is the right way round.
 Words that are commonly both adjective and manner adverb ("kindly") are
 deliberately absent, so their adverbial use still counts.
 
-Measured (`.bughunt/t1.ts`), on prose the fix was not written from:
+Measured (`scripts/probes/t1.ts`), on prose the fix was not written from:
 
 ```
 adjectives in -ly (fiction)   adverbRate 40.0 -> 0.0   hedge axis: fired -> silent
@@ -1716,7 +1716,7 @@ agentless passive and is not counted. That is the right trade — the passive
 credit is a bonus on top of `nominalRate`'s primary suffix count, and a bonus
 that fires on the wrong sentences is worse than one that fires on fewer.
 
-Measured (`.bughunt/t1.ts`):
+Measured (`scripts/probes/t1.ts`):
 
 ```
 stative -ed not in the old table   nominalRate 33.3 -> 0.0
@@ -1739,7 +1739,7 @@ Irregulars (run/ran, knife/knives) stay unmatched, and the docstring says so
 instead of claiming the rule "keeps genuine stem matches".
 
 R4 also demanded the recall number that the prefix fix never took. Measured
-with `.bughunt/t3-grounding.ts` — all 1757 seed-bank questions against the
+with `scripts/probes/t3-grounding.ts` — all 1757 seed-bank questions against the
 real sweep windows of `SAMPLE_DRAFT`, 3514 pairs:
 
 ```
@@ -1763,7 +1763,7 @@ A parallel hunt added 30 more findings (H1-1..H9-3) at the post-R1-R4 tree.
 Three of them land on code changed in this session, so they were verified and
 fixed first. The rest are open in [BUGS.md](BUGS.md).
 
-Each was independently reproduced before being fixed (`.bughunt/v-a.ts`,
+Each was independently reproduced before being fixed (`scripts/probes/v-a.ts`,
 `v-a2.ts`) — the previous round found 5 of 61 claimed resolutions did not
 hold, so a reported finding is treated as a hypothesis until it runs.
 
@@ -1838,7 +1838,7 @@ Emily/Kelly/Wally/Sicily/Tully/Shelly "<name> left the room..." adverbRate 11.1 
 control without a name                                          adverbRate 0    axes []
 ```
 
-Repro: `.bughunt/h1-probe2.ts`. R2's design ("enumerate the closed classes")
+Repro: `scripts/probes/h1-probe2.ts`. R2's design ("enumerate the closed classes")
 cannot cover proper nouns — an open class. Note the fix state at recording
 time: Bailey and Riley pass, the other six names fail; the exclusion set was
 again grown by exactly the tested words. No fixed table fixes this class.
@@ -1854,7 +1854,7 @@ deliberately kept so their adverbial use counts (citing kindly/fully/wholly).
 But early/daily/weekly/monthly/yearly/nightly/hourly/quarterly — also dual —
 are listed, so `"She arrives early. He trains daily..."` scores adverbRate
 0.00 while `"He kindly agreed."` scores 33.3. Internal inconsistency with the
-documented contract, not a coverage gap. Repro: `.bughunt/h1-probe2.ts`.
+documented contract, not a coverage gap. Repro: `scripts/probes/h1-probe2.ts`.
 
 ## H3-1 — U+0130 case-folding shifts anchor offsets past the token, sometimes past the document
 
@@ -1867,7 +1867,7 @@ initial-İ:   match=[15,24) slice="İstanbul "            match leaks whitespace
 İ-prefix-in-token "İtyped": match=[6,11) slice="yped "  wrong start AND leak
 ```
 
-Repro: `.bughunt/h3-anchor-final.ts`; randomized sweep (60 docs × emoji/
+Repro: `scripts/probes/h3-anchor-final.ts`; randomized sweep (60 docs × emoji/
 accents/CRLF) hits whenever İ sits in/before a matched word. `match` is a
 test-encoded contract ("trailing punctuation/whitespace never enters the
 match"); notes.ts persists the unclamped anchor verbatim. Consumers clamp,
@@ -1887,7 +1887,7 @@ described at its true scale in [BUGS.md](BUGS.md) rather than partly done.
 
 Every finding was independently reproduced before being fixed — the earlier
 round found 5 of 61 claimed resolutions did not hold, so a reported finding is
-a hypothesis until it runs. Probes: `.bughunt/v-a.ts`, `v-a2.ts`, `v-b.ts`,
+a hypothesis until it runs. Probes: `scripts/probes/v-a.ts`, `v-a2.ts`, `v-b.ts`,
 `v-b2.ts`, `v-c.ts`, `v-c2.ts`, `v-d.ts`, `v-e.mjs`, `v-h91.ts`, `v-h92.ts`,
 `v-h93.ts`, `h5-quotes-full.py`.
 
@@ -2062,7 +2062,11 @@ measurements re-run unchanged.
   stated, the duplicate check found exactly the 2 real collisions above.
 
 
-<!-- original finding text, as recorded by the wave hunts -->
+<!-- Original finding text, as recorded by the wave hunts, kept verbatim.
+     A few `.bughunt/` paths below point at the uncommitted working set rather
+     than at scripts/probes/ — those specific scripts were dropped in curation
+     (exploratory runs, notes files, and a temp database). The scripts that
+     back a live claim were all kept; see scripts/probes/README.md. -->
 
 ## H1-1 — Filter verbs: only six past-tense forms exist (web/window-stats.ts)
 
@@ -2075,7 +2079,7 @@ past      (same six, -ed forms)                          -> filterRate 27.27 axe
 -ing      (feeling/watching/noticing/wondering/realizing) -> filterRate 0.00 axes []
 ```
 
-Repro: `.bughunt/h1-probe.ts`. Two windows with identical content score 0 %
+Repro: `scripts/probes/h1-probe.ts`. Two windows with identical content score 0 %
 vs 27 % purely on tense — the R2/R3 probe-shape again. Because a fired axis
 drives `implVerbs()` → `--lean-verbs` → the seed draw, present/continuous
 narration saturated with interiority gets no steering at all.
@@ -2095,7 +2099,7 @@ same text without the title periods                              -> mean 3.0 sig
 without the ellipsis                                             -> mean 4.5 (2 sentences)
 ```
 
-Repro: `.bughunt/h1-probe2.ts`. Titles like Mr./Dr./St. are ubiquitous in
+Repro: `scripts/probes/h1-probe2.ts`. Titles like Mr./Dr./St. are ubiquitous in
 fiction; the rhythm-axis stats are wrong by ~3x there.
 
 **Solid:** skip known abbreviation dots (a short list is defensible because
@@ -2111,7 +2115,7 @@ with those endings:
 "They mention the witness and comment on the garment."    nominalRate 44.44 axes ['nominal']
 ```
 
-Repro: `.bughunt/h1-probe.ts`. Zero actual nominalizations in either line;
+Repro: `scripts/probes/h1-probe.ts`. Zero actual nominalizations in either line;
 "moment" alone crosses the 5 % threshold in a short window. Distinct from R3
 (the stative `-ed` table): this suffix counter needs no passive voice to be
 wrong.
@@ -2132,7 +2136,7 @@ observe(doc, 0)     -> armed
 observe(doc, 30_000)-> ready   // fires a coaching question on no new prose
 ```
 
-Repro: `.bughunt/h1-probe2.ts`. window-stats deliberately strips these same
+Repro: `scripts/probes/h1-probe2.ts`. window-stats deliberately strips these same
 tokens when measuring (`stripMarkdown`), so the two modules disagree about
 what a word is; the interruption gate is tripped by scaffolding.
 
@@ -2148,7 +2152,7 @@ what a word is; the interruption gate is tripped by scaffolding.
 '"I cannot believe you did that," she said.'  -> dialogueDensity 0.714 axes ['dialogue']
 ```
 
-Repro: `.bughunt/h1-probe.ts`. Low impact under the app's one-paragraph-per-
+Repro: `scripts/probes/h1-probe.ts`. Low impact under the app's one-paragraph-per-
 line convention; higher if drafts ever wrap.
 
 ## H2-1 — isSingleQuestion's false negatives: abbreviations, decimals, "?!"
@@ -2163,7 +2167,7 @@ FAIL  "Does the text use e.g. or i.e.?"   FAIL  "Why?!" / "How dare you?!"
 PASS  multi-question controls correctly rejected ("Did you ask her? Or did she?")
 ```
 
-Repro: `.bughunt/h2-gate.ts`, `h2-confirm.ts`. Each rejected string is ONE
+Repro: `scripts/probes/h2-gate.ts`, `h2-confirm.ts`. Each rejected string is ONE
 genuine question; failing the gate spends the single retry and hands back a
 fixed topic probe. This is R4's shape (recall lost to a syntax predicate) but
 on `isSingleQuestion` — R6 covered only its advice pass-through.
@@ -2183,7 +2187,7 @@ echoesText("The cafe is loud?", "The café is loud.")  false  // same echo, miss
 copiesSeed(seed "café in the plaza", q "cafe in the plaza") false  // near-copy escapes
 ```
 
-Repro: `.bughunt/h2-confirm.ts`. Accent-normalizing models routinely produce
+Repro: `scripts/probes/h2-confirm.ts`. Accent-normalizing models routinely produce
 exactly the second form; both predicates built to catch restatement are blind
 to it. Same lossy-tokenization class as R4.
 
@@ -2194,7 +2198,7 @@ NFKD-strip diacritics before comparison.
 
 `pickSeed`: `effectiveP = Math.min(0.5, specific.length/16)` then uniform
 inside each pile. Per-seed rate is therefore 0.5/pile size — measured over
-20 000 draws per genre (`.bughunt/h2-pickseed-groups.ts`):
+20 000 draws per genre (`scripts/probes/h2-pickseed-groups.ts`):
 
 ```
 fiction  specific=898 agn=563   per-seed ratio 0.64  (PREFERS AGNOSTIC — inverted)
@@ -2218,7 +2222,7 @@ cannot be inferred from the current numbers.
 about." — ends in '.', fails the app's own `isSingleQuestion`. On every
 fallback where `textWindow.length % 6 === 5` the writer receives a directive.
 The guaranteed-to-run path violates the one-question contract the README
-sells (R6). Repro: `.bughunt/h2-gate.ts`.
+sells (R6). Repro: `scripts/probes/h2-gate.ts`.
 
 ## H3-2 — dispose() leaks a post-unmount save via the finally re-arm
 
@@ -2232,7 +2236,7 @@ timers after in-flight done  : 1   (finally re-armed)
 saves received               : ["A","B"]   // "B" persisted strictly after unmount
 ```
 
-Repro: `.bughunt/h3-savecoord-dispose.ts`. Violates dispose()'s own docstring
+Repro: `scripts/probes/h3-savecoord-dispose.ts`. Violates dispose()'s own docstring
 and the module's "can never double-send" claim; getStore() evaluated at fire
 time means the ghost save can even target a mode-switched store.
 
@@ -2249,7 +2253,7 @@ uncaught exception is the first gate. Underneath, `hostWithoutPort` returns
 everything up to `]` regardless of what follows, so `[::1]evil.com` would
 normalize to loopback and be accepted if the parse did not crash first.
 Verified against an isolated instance (BW_PORT=4771, /tmp copy); 4517 and the
-repo's data/ untouched. Repro: `.bughunt/h4-boundary.mjs`, log excerpt in
+repo's data/ untouched. Repro: `scripts/probes/h4-boundary.mjs`, log excerpt in
 `.bughunt/h4-FINDINGS.md`.
 
 **Solid:** validate/sanitize Host in middleware that runs before URL
@@ -2262,7 +2266,7 @@ POST /save with a 50 MB draft → 200 `{}`; `data/drafts/current.md` becomes
 52,428,800 bytes. Fully buffered (`c.req.text()`); two concurrent large saves
 double the memory. The boundary's premise is that local processes are hostile
 to /save; memory+disk exhaustion via one request is open. JSON nesting itself
-is handled well (5M-deep arrays → clean 400). Repro: `.bughunt/h4-payload.mjs`.
+is handled well (5M-deep arrays → clean 400). Repro: `scripts/probes/h4-payload.mjs`.
 
 **Solid:** enforce Content-Length and streamed-byte caps (e.g. 5 MB draft,
 tighter for annotations) with 413.
@@ -2275,7 +2279,7 @@ verbatim, exposing internals incl. retrieve.py stderr paths. The provider-
 failure path is graceful (200 topic-probe fallback, nothing leaked), and
 /transcribe deliberately returns generic 503s: the two protected endpoints
 disagree about disclosure, and the coach endpoint is the leaking one.
-Repro: `.bughunt/h4-final.mjs`.
+Repro: `scripts/probes/h4-final.mjs`.
 
 ## H5-1 — schema.json is a spec, not a gate: unknown verb/genre and empty question store cleanly
 
@@ -2290,7 +2294,7 @@ empty-question           -> accepted, landed=True   (would be fed to the model)
 missing-quote            -> ValueError raised cleanly (the one enforced field)
 ```
 
-Repro: `.bughunt/h5-validate.py`. An unknown-genre seed becomes dead weight
+Repro: `scripts/probes/h5-validate.py`. An unknown-genre seed becomes dead weight
 for the query axis forever; nothing flags it.
 
 **Solid:** load schema.json's enums/minLength in _validate, and have export
@@ -2303,7 +2307,7 @@ both carry id `alberts-voice-in-summary` (likewise `alberts-scene-purpose-
 check`) with DIFFERENT questions/chapters. The upsert (`ON CONFLICT(id) DO
 UPDATE`) kept only the intro variant; the ch12-15 variant is gone from the
 bank, and `insert_seeds` reports len(input) either way — the loss leaves no
-signal. Repro: `.bughunt/h5-schema.py`.
+signal. Repro: `scripts/probes/h5-schema.py`.
 
 **Solid:** detect duplicate ids across seeds/*.json at validation time, and
 surface rows-replaced from insert_seeds.
@@ -2314,7 +2318,7 @@ surface rows-replaced from insert_seeds.
 seed validator false-positives on it, and the directory contract is implicit.
 Also recorded during the audit: 71 bank ids (sweep children, `-b`/`-c`/-d`)
 exist in no chapter/staging file — expected post-sweep drift, worth one line
-in docs, not a store bug. Repro: `.bughunt/h5-schema.py`.
+in docs, not a store bug. Repro: `scripts/probes/h5-schema.py`.
 
 ---
 
@@ -2325,7 +2329,7 @@ in docs, not a store bug. Repro: `.bughunt/h5-schema.py`.
 await. Every 5 s poll during a slow ask therefore observes `ready` again:
 
 ```
-.bughunt/h6-cadence-doublefire.ts:
+scripts/probes/h6-cadence-doublefire.ts:
 asks fired by t=40s: 2 (t=25s, 30s)   max concurrent asks in flight = 2
 EXPECTED 1 / max 1  -> DOUBLE-FIRE CONFIRMED
 ```
@@ -2343,7 +2347,7 @@ durable latch is `sweepingRef`. Two clicks land before React commits state;
 both enter:
 
 ```
-.bughunt/h6-sweep-reentry.ts: planSweep = 3 windows; coach.ask invoked 6 times (expected 3)
+scripts/probes/h6-sweep-reentry.ts: planSweep = 3 windows; coach.ask invoked 6 times (expected 3)
 ```
 
 Duplicate asks for every window; duplicate notes survive dedupe (timestamps
@@ -2355,7 +2359,7 @@ differ). Fix: gate on `sweepingRef.current`.
 the annotationsRef/sweepNotes reset:
 
 ```
-.bughunt/h6-mode-switch-empty.ts: source 2 notes -> destination empty store;
+scripts/probes/h6-mode-switch-empty.ts: source 2 notes -> destination empty store;
 on screen after load: 2 stale notes; next save persisted 1 into the NEW store
 ```
 
@@ -2366,7 +2370,7 @@ sequence is current.
 ## H7-1 — Whitespace-padded BYOK configs are blessed by sanitize (S3)
 
 ```
-.bughunt/h7-fuzz.ts: baseUrl "https://api.openai.com/v1 " -> LOADS with space kept
+scripts/probes/h7-fuzz.ts: baseUrl "https://api.openai.com/v1 " -> LOADS with space kept
   assembled request URL pathname becomes "/v1%20/chat/completions" (guaranteed 404)
 apiKey "sk-abc " -> LOADS; sttModel "   " -> LOADS as truthy
 slash duplication IS stripped correctly; null/non-string fields rejected correctly
@@ -2382,7 +2386,7 @@ sanitize.
 transcribeWavByok guards only on `sttModelFor()`, never on TRANSCRIBES_AUDIO:
 
 ```
-.bughunt/h7-request.ts probe I: provider=openrouter + explicit sttModel='whisper-1'
+scripts/probes/h7-request.ts probe I: provider=openrouter + explicit sttModel='whisper-1'
   -> real POST to https://openrouter.ai/api/v1/audio/transcriptions, resolves (no throw)
 ```
 
@@ -2396,7 +2400,7 @@ stale value defeats the guard — the API key goes out to a route that will
 Non-ok responses paste res body text into the thrown message with no cap
 (a 502 HTML proxy page lands whole in the toast); an ok response with a
 non-JSON body escapes as raw `SyntaxError: Unexpected token <`. Same shape
-in transcribeWav via dictation.ts. `.bughunt/h7-request.ts` section C/E,
+in transcribeWav via dictation.ts. `scripts/probes/h7-request.ts` section C/E,
 `.bughunt/h7-dictation.ts` B.
 
 ## H8-1 — openStream() hangs forever against a live-but-stuck worker (S3)
@@ -2404,7 +2408,7 @@ in transcribeWav via dictation.ts. `.bughunt/h7-request.ts` section C/E,
 `transcribe()` arms TRANSCRIBE_TIMEOUT_MS=120s + SIGKILL (the S3-10 fix);
 `openStream()` awaits ready.promise with no deadline at all. Same
 ensureSpawned worker that never answers stream-ready → STILL PENDING after
-3 s and beyond; only dispose() settles it (`.bughunt/h8-openstream-timeout.ts`).
+3 s and beyond; only dispose() settles it (`scripts/probes/h8-openstream-timeout.ts`).
 
 ## H9-1 — Duplicate fragments: the pinned highlight jumps to the wrong occurrence
 
@@ -2413,7 +2417,7 @@ any insertion before both occurrences of a fragment, the EARLIER duplicate is
 "nearest" and wins:
 
 ```
-.bughunt/h9-multi.ts: 'echo' at 19 and 44, annotation on SECOND.
+scripts/probes/h9-multi.ts: 'echo' at 19 and 44, annotation on SECOND.
 insert 40 chars between them -> remapped to start=19 (FIRST/WRONG);
 insert 40 chars BEFORE both   -> also flips to FIRST (wrong).
 trigger: any insert k>=13 chars before both occurrences.
@@ -2432,7 +2436,7 @@ a section at it; planSweep then groups it with the next paragraph or leaves
 it alone:
 
 ```
-.bughunt/h9-plan.ts: break-heavy doc -> 3 windows whose markedText wraps '---':
+scripts/probes/h9-plan.ts: break-heavy doc -> 3 windows whose markedText wraps '---':
   "[CURSOR START]\n---\n[CURSOR END]\n\nPara two."
 lone trailing break -> one window whose ENTIRE content is '---'
 ```
@@ -2447,8 +2451,8 @@ sweep plan as sections already do.
 Reproduced 800-race probes against createDraftIo with 8 MB payloads:
 
 ```
-.bughunt/h9-race2.ts, agent run: full=798 old=1 empty=0 PARTIAL=1
-.bughunt/h9-race2.ts, rerun:     full=799 old=1 empty=0 partial=0
+scripts/probes/h9-race2.ts, agent run: full=798 old=1 empty=0 PARTIAL=1
+scripts/probes/h9-race2.ts, rerun:     full=799 old=1 empty=0 partial=0
 ```
 
 writeFile truncates then writes, so a load racing a save observes torn or

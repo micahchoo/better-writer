@@ -1,0 +1,11 @@
+import { measureWindow } from '../../web/window-stats.js'
+const r = (t: string) => measureWindow(t).values.adverbRate.toFixed(1)
+console.log('--- names must NOT count ---')
+for (const t of ['Emily left the room quietly.', 'She told Kelly to wait here now.', 'The letter from Beverly arrived.', 'Sicily and Italy were on the map.'])
+ console.log(' ', r(t).padStart(5), t)
+console.log('--- sentence-opening adverbs MUST count ---')
+for (const t of ['Slowly he turned to face her.', 'Quietly, she left the room.', 'Carefully the door opened wide.', 'Grimly they marched on.'])
+ console.log(' ', r(t).padStart(5), t)
+console.log('--- mid-sentence adverbs MUST count ---')
+for (const t of ['He turned slowly to face her.', 'She spoke quietly and left.'])
+ console.log(' ', r(t).padStart(5), t)

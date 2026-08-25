@@ -50,9 +50,12 @@ python3 -m pytest seeds/test_retrieve.py   # 39 tests
 - `text-window` exports `THEMATIC_BREAK_RE`.
 - `seeds/bank.*` went 1757 -> 1759 seeds (two recovered from an id collision).
 
-## Probes (`.bughunt/`, untracked, all re-runnable)
+## Probes (`scripts/probes/`, committed, all re-runnable)
 
-`npx tsx .bughunt/<name>.ts` from the repo root; `node` for `.mjs`.
+`npx tsx scripts/probes/<name>.ts` from the repo ROOT; `node` for `.mjs`,
+`python3` for `.py`. See `scripts/probes/README.md` for which probe backs
+which finding. 48 curated from a working set of 90; the rest were broken,
+superseded, or covered behaviour that came back clean.
 
 - Round two: `probe-s27` (anchor quality, 4000 draws), `t1` (-ly / passive),
   `t2` (isGrounded, gate advice), `t3-grounding` (grounding rate before/after),

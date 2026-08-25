@@ -13,5 +13,12 @@
     "isolatedModules": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["src", "web", "scripts", "vite.config.ts", "vitest.config.ts"]
+  "include": ["src", "web", "scripts", "vite.config.ts", "vitest.config.ts"],
+  // scripts/probes are measurement instruments, not production code: they
+  // reach into internals, stub globals, and cast freely so the thing being
+  // measured stays legible. Holding them to the strict production config
+  // would bury each measurement in appeasement casts. They run under tsx,
+  // which does not typecheck; scripts/probes/README.md is the contract that
+  // they must RUN, and all of them were verified against this tree.
+  "exclude": ["scripts/probes"]
 }

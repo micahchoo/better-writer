@@ -46,7 +46,7 @@ returned 200.
 
 Not a re-opened entry — a new one that the S1-0 fix brings into range.
 
-The S1-0 fix is real and I verified it (`.bughunt/probe14.ts`: all three attack
+The S1-0 fix is real and I verified it (`scripts/probes/probe14.ts`: all three attack
 shapes now blocked). It earns the strongest of the three README claims. But
 `README.md:25-30` hangs three claims on it — two of the four bullets, plus the
 sentence that tells the reader why to believe them — and the gate is syntactic
@@ -60,7 +60,7 @@ by design, so it can only reach the last:
 > These are not polite instructions in a prompt. The app can only display one
 > question. Anything else the model produces is thrown away.
 
-Measured with `.bughunt/t2.ts` against the hardened gate:
+Measured with `scripts/probes/t2.ts` against the hardened gate:
 
 ```
 true   "Rewrite the whole paragraph in second person?"
@@ -89,7 +89,7 @@ rewrite one.
 # Wave three — class-level hunt, 2026-08-24
 
 Twenty verified defects at the post-R1–R4 working tree (tsc clean, 29 files /
-484 tests green). Evidence for each is an executed probe under `.bughunt/`;
+484 tests green). Evidence for each is an executed probe under `scripts/probes/`;
 all probes re-run clean there. The recurring pattern is the one that produced
 R2/R3: a heuristic keyed on exact tables, bare suffix tests, and ASCII
 character classes instead of the English class it names.
@@ -123,7 +123,7 @@ character classes instead of the English class it names.
 repair", and calls it the anti-hallucination anchor. It is the one field that
 proves a seed came from a real craft book rather than from a model.
 
-**Scale, measured over the WHOLE bank** (`.bughunt/h5-quotes-full.py`, a
+**Scale, measured over the WHOLE bank** (`scripts/probes/h5-quotes-full.py`, a
 ligature/smart-quote/hyphenation-tolerant substring match against `Books/`):
 
 ```
@@ -159,7 +159,7 @@ failure pattern this whole review has been correcting (see R1-R4).
    non-contiguous sentences has SEVERAL verbatim quotes, and `quote: string`
    cannot say so. Allow `source.quotes: string[]`, each verbatim, keeping
    `quote` for the single-span case.
-2. A normalizing verifier promoted out of `.bughunt/` into the seed tooling,
+2. A normalizing verifier promoted out of `scripts/probes/` into the seed tooling,
    so ligature and hyphenation artifacts stop counting as drift and the real
    number is trustworthy.
 3. A pass over what survives (1), repairing or splitting each quote against
@@ -195,7 +195,7 @@ A second round covered the files the first pass skipped: EditorApp
 orchestration, web/byok.ts + web/dictation.ts, src/stt/** and the deep CM6
 seam. Seven more verified defects — two S2 (both are double-fire shapes: a
 missing in-flight guard and a guard reading the wrong variable), five S3.
-All evidence re-executed against this tree; probes under `.bughunt/`
+All evidence re-executed against this tree; probes under `scripts/probes/`
 (h6-/h7-/h8- prefixes). dictation.ts itself and most of the STT decode path
 came back clean.
 
