@@ -56,11 +56,12 @@ were dropped, as were probes for behaviour that came back clean.
 | `v-c.ts`, `v-c2.ts` | H2-1/H2-2, and H2-3's per-seed ratio at three pile shapes |
 | `v-d.ts` | H3-2 |
 | `v-e.mjs` | H4-1/H4-2 over raw sockets (needs a live server) |
+| `orphan-test.mjs` | S1-3 — the STT worker must die with the server (needs a live server and the Parakeet model) |
 | `v-h91.ts`, `v-h92.ts`, `v-h93.ts` | H9-1/H9-2/H9-3 |
 
 ## Probes that need a live server
 
-`probe8.mjs`, `v-e.mjs`, `h4-*.mjs`. Port 4517 is usually taken, so start one
+`probe8.mjs`, `v-e.mjs`, `h4-*.mjs`, `orphan-test.mjs`. Port 4517 is usually taken, so start one
 on a free port and point the probe at it:
 
 ```
