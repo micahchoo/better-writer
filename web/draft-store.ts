@@ -1,27 +1,5 @@
-/**
- * draft-store: the DraftStore seam — two adapters behind one interface.
- *
- *   LocalStorageDraftStore — drafts live in the browser (static demo).
- *   ServerDraftStore       — drafts live on the local server (POST /save,
- *                            GET /load), so the writer's prose is never
- *                            stuck in one machine's browser.
- *
- * Both adapters expose the same persistence contract: the draft plus the
- * pinned notes it carries (the coach's question-anchors). The browser store
- * keeps notes under their own localStorage key; the server adapter persists
- * them too, because the wire contract carries them — GET /load returns
- * {draft, annotations} and POST /save accepts {draft, annotations}, so notes
- * survive alongside the prose on the server.
- *
- * The two adapters share one semantic for omitted notes: `save(draft)` with
- * no notes KEEPS the existing annotation list. The browser store leaves the
- * annotations key untouched; the server rides the last-known list (cached
- * from /load or a prior /save) instead of wiping — no read-back round-trip is
- * ever needed to keep draft and notes in step.
- */
-
-import type { Annotation } from '../src/types';
-import type { CoachMode } from './coach';
+import type { Annotation } from '../src/core/types';
+export type DraftStorage = 'browser' | 'server';
 
 /** A pinned note on screen — the wire contract's Annotation under its domain name. */
 export type Note = Annotation;
@@ -41,6 +19,7 @@ export interface DraftStore {
 
 const STORAGE_KEY = 'better-writer:draft';
 const ANNOTATIONS_KEY = 'better-writer:annotations';
+const SNAPSHOT_KEY = 'better-writer:document';
 
 /**
  * Per-item shape guard mirroring the server's parseAnnotation rigor: a note
@@ -71,6 +50,7 @@ function parseNote(value: unknown): Note | null {
     question: a.question,
     ts: a.ts,
   };
+  if (typeof a.id === 'string' && a.id.length > 0) out.id = a.id;
   if (a.source !== undefined) {
     if (a.source !== 'seed' && a.source !== 'reshaped' && a.source !== 'topic-probe') return null;
     out.source = a.source;
@@ -95,42 +75,45 @@ function sanitizeNotes(value: unknown): Note[] {
   return out;
 }
 
+/** Draft and annotations commit in one localStorage operation. Legacy keys remain readable. */
 export class LocalStorageDraftStore implements DraftStore {
-  private readonly storage: Pick<Storage, 'getItem' | 'setItem'>;
+  private loaded?: { draft: string; notes: Note[] };
+  constructor(private readonly storage: Pick<Storage, 'getItem' | 'setItem'> = window.localStorage) {}
 
-  constructor(storage: Pick<Storage, 'getItem' | 'setItem'> = window.localStorage) {
-    this.storage = storage;
+  private readSnapshot(): { draft: string; notes: Note[] } {
+    try {
+      const raw = this.storage.getItem(SNAPSHOT_KEY);
+      if (raw) {
+        const value = JSON.parse(raw);
+        if (value?.version === 1 && typeof value.draft === 'string') {
+          return { draft: value.draft, notes: sanitizeNotes(value.annotations) };
+        }
+      }
+    } catch { /* Fall back to legacy data if the new snapshot is unreadable. */ }
+    let draft = '', notes: Note[] = [];
+    try { draft = this.storage.getItem(STORAGE_KEY) ?? ''; } catch { /* storage unavailable */ }
+    try {
+      const raw = this.storage.getItem(ANNOTATIONS_KEY);
+      if (raw) notes = sanitizeNotes(JSON.parse(raw));
+    } catch { /* corrupt legacy notes */ }
+    return { draft, notes };
   }
 
   async load(): Promise<string> {
-    try {
-      return this.storage.getItem(STORAGE_KEY) ?? '';
-    } catch {
-      return ''; // storage disabled (private mode): start empty
-    }
+    this.loaded = this.readSnapshot();
+    return this.loaded.draft;
   }
 
   async save(draft: string, notes?: Note[], _opts?: { keepalive?: boolean }): Promise<void> {
-    // Shared seam semantic: omitted notes keep the existing annotation list —
-    // `save(draft)` with no notes leaves the annotations key untouched. opts
-    // (keepalive) is a no-op: sync setItem needs nothing.
-    //
-    // No soft-fail: a QuotaExceededError (or any storage failure) REJECTS so
-    // the SaveCoordinator's failure/retry path counts it and surfaces a
-    // persistent error once storage fails twice — the writer is told the
-    // draft did not land, not silently left with a 'Saved' stamp.
-    this.storage.setItem(STORAGE_KEY, draft);
-    if (notes !== undefined) this.storage.setItem(ANNOTATIONS_KEY, JSON.stringify(notes));
+    const snapshot = { draft, notes: notes ?? (this.loaded ?? this.readSnapshot()).notes };
+    // setItem is atomic: quota failure retains the previous complete snapshot.
+    // Preserve legacy keys as a fallback; successful saves migrate by precedence.
+    this.storage.setItem(SNAPSHOT_KEY, JSON.stringify({ version: 1, draft, annotations: snapshot.notes }));
+    this.loaded = snapshot;
   }
 
   async loadAnnotations(): Promise<Note[]> {
-    try {
-      const raw = this.storage.getItem(ANNOTATIONS_KEY);
-      if (!raw) return [];
-      return sanitizeNotes(JSON.parse(raw));
-    } catch {
-      return []; // storage disabled or corrupt payload: start empty
-    }
+    return (this.loaded ?? this.readSnapshot()).notes;
   }
 }
 
@@ -203,6 +186,6 @@ export class ServerDraftStore implements DraftStore {
   }
 }
 
-export function makeDraftStore(mode: CoachMode): DraftStore {
-  return mode === 'local' ? new ServerDraftStore() : new LocalStorageDraftStore();
+export function makeDraftStore(storage: DraftStorage): DraftStore {
+  return storage === 'server' ? new ServerDraftStore() : new LocalStorageDraftStore();
 }

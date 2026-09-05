@@ -5,23 +5,22 @@ Date: 2026-08-24. Three rounds have run over this codebase: a two-hunt report
 class-level hunt in three waves (H1-1..H9-3, 30 findings). Everything resolved
 and measured has moved to [FIXED.md](FIXED.md).
 
-Three things are open. Two are README claims — writing decisions about what
-the product promises, left for the author. The third is an editorial project
-on the seed bank, not a code defect, and is described with its true scale
-rather than partly done.
+One item remains open: H5-3, the seed provenance audit.
+R5 and R6 were resolved in the session refactor on 2026-09-05.
+The historical findings below retain their original evidence.
 
 `npx tsc --noEmit` clean; `npx vitest run` 531 tests green;
 `python3 -m pytest seeds/test_retrieve.py` 39 tests green.
 
 | # | Kind | Area | Open question |
 |---|------|------|----------------|
-| R5 | doc | README.md | `BW_STT_MODEL_DIR` is documented as required; it is not |
-| R6 | doc | README.md | Two of the three promises made for the gate are not gate properties |
+| R5 (resolved) | doc | README.md | `BW_STT_MODEL_DIR` is documented as required; it is not |
+| R6 (resolved) | doc | README.md | Two of the three promises made for the gate are not gate properties |
 | H5-3 | data | seeds/bank.* | 194 of 1759 source quotes are not verbatim |
 
 ---
 
-## R5 — The `BW_STT_MODEL_DIR` README line is still false (was S3-12, half done)
+## R5 — RESOLVED 2026-09-05 — The `BW_STT_MODEL_DIR` README line is still false (was S3-12, half done)
 
 The code half is done and done well: `resolveModelDir` now warns, naming both
 the ignored env dir and the cache it fell back to (`src/stt/model.ts:43-52`).
@@ -42,7 +41,7 @@ returned 200.
 
 ---
 
-## R6 — The README hangs three promises on the gate; it earns one
+## R6 — RESOLVED 2026-09-05 — The README hangs three promises on the gate; it earns one
 
 Not a re-opened entry — a new one that the S1-0 fix brings into range.
 

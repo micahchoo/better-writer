@@ -1,5 +1,5 @@
 import { extractAnchor } from '../../web/anchor.js'
-import { measureWindow } from '../../web/window-stats.js'
+import { measureWindow } from '../../src/core/window-stats.js'
 
 console.log('=== H3-1: U+0130 offsets ===')
 for (const [label, draft, q] of [

@@ -1,4 +1,4 @@
-import { measureWindow } from '../../web/window-stats.js'
+import { measureWindow } from '../../src/core/window-stats.js'
 const r = (t: string) => { const m = measureWindow(t); return `adverbRate ${m.values.adverbRate.toFixed(1)} nominalRate ${m.values.nominalRate.toFixed(1)} axes ${JSON.stringify([...m.axes])}` }
 for (const [label, text] of [
  ['adjectives in -ly (fiction)', 'She was lonely. The lovely garden felt friendly. A deadly quiet. It was likely costly.'],

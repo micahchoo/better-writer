@@ -7,14 +7,19 @@
  * under jsdom, so this file installs the same Range geometry polyfill the
  * editor-access tests use, pre-warms the lazy markdown chunk, and drives the
  * real React tree through createRoot + act. The draft store is mocked so
- * adopt/disconnect load counts are observable and no test writes real
+ * document load counts are observable and no test writes real
  * localStorage draft/annotation keys.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createRoot, type Root } from 'react-dom/client'
-import { act } from 'react-dom/test-utils'
-import EditorApp, { reanchorNote } from './EditorApp'
+import { act } from 'react'
+import EditorApp from './EditorApp'
 import * as coachSweep from './coach-sweep'
+import * as coachAdapters from './coach'
+import * as cadenceModule from './cadence'
+import { EditorView } from '@codemirror/view'
+import { DocumentSession } from './document-session'
+import type { CoachInput, CoachResult } from '../src/core/types'
 import { loadByokConfig, saveByokConfig } from './byok'
 import { SAMPLE_DRAFT } from './sample-draft'
 
@@ -42,7 +47,7 @@ await import('remark-gfm')
 // Counting draft-store mock: EditorApp and SaveCoordinator only need
 // makeDraftStore at runtime (their DraftStore/AnchorRecord imports are
 // types). Every store shares one load counter + draft/annotation state so
-// tests can assert "exactly one load" on adopt/disconnect.
+// tests can assert model switches never load a different document.
 const storeState = {
   loadCalls: 0,
   draft: '',
@@ -149,6 +154,7 @@ afterEach(() => {
     host.remove()
     host = null
   }
+  vi.useRealTimers()
   vi.unstubAllGlobals()
   vi.restoreAllMocks()
   localStorage.clear()
@@ -162,41 +168,6 @@ beforeEach(() => {
   storeState.loadCalls = 0
   storeState.draft = ''
   storeState.annotations = []
-})
-
-describe('reanchorNote (S4-4: pre-await anchoring)', () => {
-  const draftA =
-    'The lighthouse keeper winds the clock every morning. The ritual steadies his hands against the dark.'
-
-  it('anchors against the fire-time snapshot when the draft did not change', () => {
-    const anchor = reanchorNote('What does the keeper fear?', draftA, draftA, 10, 10)
-    expect(anchor).not.toBeNull()
-    expect(draftA.slice(anchor!.start, anchor!.end)).toContain('keeper')
-  })
-
-  it('re-anchors against the current draft on a length-preserving edit during the ask', () => {
-    // Same length, different words: "keeper" -> "keeper", but a length-preserving
-    // substitution that shifts the anchor target so the OLD coordinates would
-    // pin the note to the wrong text. Replace "clock" (5) with "docks" and
-    // "morning" (7) with "evening" (7) — same total length, new content.
-    const changed = draftA.replace('clock every morning', 'docks every evening')
-    expect(changed.length).toBe(draftA.length)
-    // The old anchor pointed at "keeper"; with the edit, re-anchoring must use
-    // the fresh caret against the NEW draft, not the stale fire-time offsets.
-    const freshCaret = changed.indexOf('keeper') + 3
-    const anchor = reanchorNote('What does the keeper fear?', draftA, changed, 10, freshCaret)
-    expect(anchor).not.toBeNull()
-    expect(changed.slice(anchor!.start, anchor!.end)).toContain('keeper')
-    // The anchor's fragment MUST come from the current draft.
-    expect(changed.slice(anchor!.start, anchor!.end)).toBe(changed.slice(anchor!.start, anchor!.end))
-    expect(draftA.slice(anchor!.start, anchor!.end)).not.toBe('') // sanity
-  })
-
-  it('drops the note (returns null) when the edit removes every distinctive word', () => {
-    const changed = 'The apples ferment in the barrel. The sweet juice steadies the farmer hands.'
-    const anchor = reanchorNote('What does the keeper fear?', draftA, changed, 10, 5)
-    expect(anchor).toBeNull()
-  })
 })
 
 describe('BYOK panel (S2: sttModel survives a round-trip)', () => {
@@ -251,8 +222,8 @@ describe('BYOK panel (S2: sttModel survives a round-trip)', () => {
   })
 })
 
-describe('adopt/disconnect (S4: exactly one load)', () => {
-  it('adopting BYOK and disconnecting each load the store exactly once', async () => {
+describe('model connection preserves document ownership', () => {
+  it('adopting BYOK and disconnecting do not reload the store', async () => {
     const el = await mountApp('static')
     expect(storeState.loadCalls).toBe(1) // mount -> static -> one load
 
@@ -261,14 +232,14 @@ describe('adopt/disconnect (S4: exactly one load)', () => {
     openAndFillByok(el, { provider: 'openai', sttModel: 'whisper-1' })
     click(el.querySelector('.byok-save'))
     expect(el.querySelector('.mode-badge')?.textContent).toBe('byok')
-    expect(storeState.loadCalls).toBe(1) // the [mode] effect, and only it
+    expect(storeState.loadCalls).toBe(0)
 
     // Disconnect back to static.
     storeState.loadCalls = 0
     click(el.querySelector('.byok-toggle')) // reopen
     click(el.querySelector('.byok-disconnect'))
     expect(el.querySelector('.mode-badge')?.textContent).toBe('static')
-    expect(storeState.loadCalls).toBe(1) // again exactly one
+    expect(storeState.loadCalls).toBe(0)
   })
 })
 
@@ -313,4 +284,143 @@ describe('sweepEstimate memo (S4: not recomputed on unrelated state)', () => {
     click(el.querySelector('.theme-toggle'))
     expect(spy.mock.calls.length).toBe(callsAfterSample)
   })
+})
+
+const SESSION_DRAFT = 'The lighthouse keeper winds the clock every morning. The ritual steadies his hands against the dark.'
+function editor(el: HTMLElement): EditorView {
+  const view = EditorView.findFromDOM(el.querySelector('.cm-content') as HTMLElement)
+  if (!view) throw new Error('missing CodeMirror view')
+  return view
+}
+function seedDocument(): void {
+  storeState.draft = SESSION_DRAFT
+  const start = SESSION_DRAFT.indexOf('keeper')
+  storeState.annotations = [{ id: 'persisted-note', start, end: start + 6, fragment: 'keeper', question: 'What does the keeper fear?', ts: 1 }]
+}
+function pendingCoach() {
+  const requests: Array<{ input: CoachInput; signal?: AbortSignal; finish: (result: CoachResult) => void }> = []
+  const ask = vi.fn((input: CoachInput, signal?: AbortSignal) => new Promise<CoachResult>(finish => requests.push({ input, signal, finish })))
+  vi.spyOn(coachAdapters, 'makeCoach').mockReturnValue({ ask })
+  return requests
+}
+function evidence(input: CoachInput): CoachResult {
+  const start = input.textWindow.indexOf('keeper')
+  if (start < 0) throw new Error('test window does not contain expected evidence')
+  return { kind: 'question', question: 'What does the keeper hide?', source: 'reshaped', evidence: { quote: 'keeper', start, end: start + 6 } }
+}
+function autoAskOnEdit(): void {
+  vi.spyOn(cadenceModule, 'createCadence').mockReturnValue({ observe: () => 'ready', reset: () => {} })
+}
+
+describe('rendered document and coaching sessions', () => {
+  it('loads saved BYOK once and preserves document and notes on reconnect/disconnect', async () => {
+    seedDocument()
+    saveByokConfig({ provider: 'openai', baseUrl: 'https://api.openai.com/v1', apiKey: 'k', model: 'm' })
+    const el = await mountApp('local')
+    expect(el.querySelector('.mode-badge')?.textContent).toBe('byok')
+    const view = editor(el)
+    expect(view.state.doc.toString()).toBe(SESSION_DRAFT)
+    expect(el.querySelector('.coach-count')?.textContent).toBe('1 pinned')
+    click(el.querySelector('.byok-toggle'))
+    click(el.querySelector('.byok-save'))
+    click(el.querySelector('.byok-toggle'))
+    click(el.querySelector('.byok-disconnect'))
+    expect(storeState.loadCalls).toBe(1)
+    expect(editor(el)).toBe(view)
+    expect(view.state.doc.toString()).toBe(SESSION_DRAFT)
+    expect(el.querySelector('.coach-count')?.textContent).toBe('1 pinned')
+  })
+
+  it('keeps local document ownership and ongoing typing when connecting BYOK', async () => {
+    seedDocument()
+    const el = await mountApp('local')
+    const view = editor(el)
+    act(() => view.dispatch({ changes: { from: 0, insert: 'Before. ' } }))
+    openAndFillByok(el)
+    click(el.querySelector('.byok-save'))
+    act(() => view.dispatch({ changes: { from: view.state.doc.length, insert: ' After.' } }))
+    expect(el.querySelector('.mode-badge')?.textContent).toBe('byok')
+    expect(storeState.loadCalls).toBe(1)
+    expect(editor(el)).toBe(view)
+    expect(view.state.doc.toString()).toBe(`Before. ${SESSION_DRAFT} After.`)
+    expect(el.querySelector('.coach-count')?.textContent).toBe('1 pinned')
+    expect(el.querySelector('.bw-hl')?.textContent).toBe('keeper')
+    expect(localStorage.getItem('better-writer:document-storage')).toBe('server')
+  })
+
+  it('maps delayed automatic evidence through the document session', async () => {
+    seedDocument(); autoAskOnEdit()
+    const requests = pendingCoach()
+    const accept = vi.spyOn(DocumentSession.prototype, 'add')
+    const el = await mountApp('local'), view = editor(el)
+    act(() => view.dispatch({ changes: { from: view.state.doc.length, insert: ' More.' } }))
+    expect(requests).toHaveLength(1)
+    act(() => view.dispatch({ changes: { from: 0, insert: 'Prefix. ' } }))
+    await act(async () => requests[0].finish(evidence(requests[0].input)))
+    expect(accept).toHaveBeenCalledTimes(1)
+    expect(accept.mock.results[0].value).toBe(true)
+    expect(el.querySelector('.coach-count')?.textContent).toBe('2 pinned')
+    expect(accept.mock.calls[0][1]?.draft).not.toContain('Prefix.')
+  })
+
+  it('aborts automatic coaching on clear and ignores late provider results', async () => {
+    seedDocument(); autoAskOnEdit()
+    const requests = pendingCoach()
+    const accept = vi.spyOn(DocumentSession.prototype, 'add')
+    const el = await mountApp('local'), view = editor(el)
+    act(() => view.dispatch({ changes: { from: view.state.doc.length, insert: ' More.' } }))
+    expect(requests).toHaveLength(1)
+    click(el.querySelector('.coach-clear'))
+    expect(requests[0].signal?.aborted).toBe(true)
+    await act(async () => requests[0].finish(evidence(requests[0].input)))
+    expect(accept).not.toHaveBeenCalled()
+    expect(el.querySelector('.coach-count')).toBeNull()
+    expect(el.querySelector('.bw-hl')).toBeNull()
+  })
+
+  it('aborts a sweep when switching model and ignores its late provider response', async () => {
+    seedDocument()
+    const requests = pendingCoach()
+    const accept = vi.spyOn(DocumentSession.prototype, 'add')
+    const el = await mountApp('local')
+    click(el.querySelector('.coach-sweep'))
+    expect(requests).toHaveLength(1)
+    openAndFillByok(el); click(el.querySelector('.byok-save'))
+    expect(requests[0].signal?.aborted).toBe(true)
+    await act(async () => requests[0].finish(evidence(requests[0].input)))
+    expect(accept).not.toHaveBeenCalled()
+    expect(el.querySelector('.coach-count')?.textContent).toBe('1 pinned')
+    expect(el.querySelector('.coach-sweep')?.textContent).toBe('Sweep draft')
+  })
+
+  it('passes sweep evidence through document ownership and rejects touched anchors', async () => {
+    seedDocument()
+    const requests = pendingCoach()
+    const accept = vi.spyOn(DocumentSession.prototype, 'add')
+    const el = await mountApp('local'), view = editor(el)
+    click(el.querySelector('.coach-sweep'))
+    const start = SESSION_DRAFT.indexOf('keeper')
+    act(() => view.dispatch({ changes: { from: start, to: start + 6, insert: 'sailor' } }))
+    await act(async () => requests[0].finish(evidence(requests[0].input)))
+    expect(accept).toHaveBeenCalledTimes(1)
+    expect(accept.mock.results[0].value).toBe(false)
+    expect(el.querySelector('.coach-count')).toBeNull()
+    expect(el.querySelector('.bw-hl')).toBeNull()
+  })
+})
+
+it('preserves a model choice made while initial server detection is pending', async () => {
+  saveByokConfig({ provider: 'openai', baseUrl: 'https://api.openai.com/v1', apiKey: 'k', model: 'm' })
+  let finishHealth!: (response: Response) => void
+  vi.stubGlobal('fetch', vi.fn(() => new Promise<Response>(resolve => { finishHealth = resolve })))
+  host = document.createElement('div'); document.body.appendChild(host)
+  root = createRoot(host)
+  await act(async () => { root!.render(<EditorApp />) })
+  expect(host.querySelector('.mode-badge')?.textContent).toBe('byok')
+  click(host.querySelector('.byok-toggle'))
+  click(host.querySelector('.byok-disconnect'))
+  expect(host.querySelector('.mode-badge')?.textContent).toBe('static')
+  await act(async () => { finishHealth(new Response('{"status":"ok"}', { headers: { 'Content-Type': 'application/json' } })) })
+  expect(host.querySelector('.mode-badge')?.textContent).toBe('static')
+  expect(storeState.loadCalls).toBe(1)
 })

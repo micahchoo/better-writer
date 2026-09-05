@@ -1,11 +1,11 @@
 import { complete } from '@mariozechner/pi-ai';
 import type { Model, Context } from '@mariozechner/pi-ai';
-import type { Complete, Turn } from './types.js';
+import type { Complete, Turn } from './core/types.js';
 
 const DEFAULT_BASE_URL = 'http://127.0.0.1:8088/v1';
 const DEFAULT_MODEL_ID = 'bonsai-27b';
 const DEFAULT_TIMEOUT_MS = 180_000;
-const DEFAULT_MAX_TOKENS = 16384;
+const DEFAULT_MAX_TOKENS = 512;
 
 /** Build a pi-ai Model for a local OpenAI-compatible endpoint
  * (llama.cpp and Ollama both serve /v1/chat/completions). */
@@ -53,7 +53,8 @@ export function makeComplete(options?: { timeoutMs?: number; maxTokens?: number 
   const timeoutMs = options?.timeoutMs ?? DEFAULT_TIMEOUT_MS;
   const maxTokens = options?.maxTokens ?? DEFAULT_MAX_TOKENS;
 
-  return async (system: string, turns: Turn[], opts?: { temperature?: number }): Promise<string> => {
+  return async (system: string, turns: Turn[], opts?: { temperature?: number; signal?: AbortSignal }): Promise<string> => {
+    opts?.signal?.throwIfAborted();
     // pi-ai serializes assistant content by filtering CONTENT BLOCKS — a plain
     // string throws inside its provider. User content may be a string;
     // assistant content must be [{type:'text', text}].
@@ -71,9 +72,10 @@ export function makeComplete(options?: { timeoutMs?: number; maxTokens?: number 
 
     const context = { systemPrompt: system, messages } as Context;
 
-    // One controller per call, and only the timer aborts it — so an 'aborted'
-    // stopReason is always our elapsed budget, never a caller's signal.
+    // Caller cancellation propagates; elapsed model budgets remain failures.
     const controller = new AbortController();
+    const abortFromCaller = () => controller.abort(opts?.signal?.reason);
+    opts?.signal?.addEventListener('abort', abortFromCaller, { once: true });
     const timer = setTimeout(() => controller.abort(), timeoutMs);
 
     const callOptions = {
@@ -87,13 +89,17 @@ export function makeComplete(options?: { timeoutMs?: number; maxTokens?: number 
     try {
       response = await complete(model, context, callOptions);
     } catch (err) {
+      opts?.signal?.throwIfAborted();
       if (controller.signal.aborted) {
         throw coachFailure(cfg, `timed out after ${timeoutMs / 1000}s`);
       }
       throw coachFailure(cfg, err instanceof Error ? err.message : String(err));
     } finally {
       clearTimeout(timer);
+      opts?.signal?.removeEventListener('abort', abortFromCaller);
     }
+
+    opts?.signal?.throwIfAborted();
 
     if (response.stopReason === 'error' || response.stopReason === 'aborted') {
       if (controller.signal.aborted) {

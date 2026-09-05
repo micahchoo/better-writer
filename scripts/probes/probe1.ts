@@ -1,4 +1,4 @@
-import { splitBlocks, partitionSections } from '../../web/text-window.js'
+import { splitBlocks, partitionSections } from '../../src/core/text-window.js'
 
 console.log('--- CRLF offsets ---')
 const crlf = 'Alpha line one\r\nAlpha line two\r\n\r\nBeta block\r\n'

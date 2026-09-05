@@ -53,7 +53,7 @@ export interface Turn {
 export type Complete = (
   system: string,
   turns: Turn[],
-  opts?: { temperature?: number },
+  opts?: { temperature?: number; signal?: AbortSignal },
 ) => Promise<string>;
 
 /**
@@ -65,20 +65,30 @@ export type Complete = (
  */
 export type QuestionSource = 'seed' | 'reshaped' | 'topic-probe';
 
-/** POST /ask — the client asks the server to reshape one question. */
-export interface AskRequest {
-  text_window: string;
-  /** Character offset of the cursor in the draft; used client-side for anchor adjacency. The server ignores it. */
-  cursor_offset: number;
+/** A contiguous window, with focus offsets relative to its text. */
+export interface CoachInput {
+  textWindow: string;
   genre: Genre;
+  cursorOffset: number;
+  focus?: { start: number; end: number };
+  position?: { sectionBlockCount: number; blockIndexInSection: number };
 }
 
-export interface AskResponse {
-  question: string;
+/** Evidence offsets are computed by code, relative to the input window. */
+export type CoachResult =
+  | { kind: 'question'; question: string; source: QuestionSource;
+      evidence?: { quote: string; start: number; end: number } }
+  | { kind: 'skip'; reason: 'no-fit' | 'invalid-output' }
+  | { kind: 'unavailable'; retryable: boolean };
+
+export interface Coach {
+  ask(input: CoachInput, signal?: AbortSignal): Promise<CoachResult>;
 }
 
 /** One pinned craft-question note: the anchor span plus the question, persisted alongside the draft. */
 export interface Annotation {
+  /** Persistent identity; optional only for legacy stored annotations. */
+  id?: string;
   start: number;
   end: number;
   fragment: string;

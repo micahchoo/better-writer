@@ -1,7 +1,7 @@
 import { execFile, type ExecFileException } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import type { Genre, Seed, Verb } from './types.js';
+import type { Genre, Seed, Verb } from './core/types.js';
 
 const execFileAsync = promisify(execFile);
 

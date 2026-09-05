@@ -1,18 +1,6 @@
-import { describe, expect, it, beforeAll } from 'vitest';
-import type * as ServerModule from './server';
-
-// server.ts binds a real socket at module load (BW_PORT, default 4517). Point
-// it at an isolated port so importing the module for its pure helpers never
-// touches the live origin — and never POSTs anything to it, so no data writes.
-let server: typeof ServerModule;
-
-// The module must be imported AFTER BW_PORT is set, or it would bind the live
-// 4517 port: static import evaluates the module before this file's body runs,
-// so only a runtime import can observe the env override.
-beforeAll(async () => {
-  process.env.BW_PORT = '49873';
-  server = await import('./server');
-});
+import { describe, expect, it, vi } from 'vitest';
+vi.mock('./llm', () => ({ makeComplete: () => async () => { throw new Error('private /seeds/retrieve.py detail'); } }));
+import * as server from './server';
 
 describe('adapterBody (#5: GET/HEAD with a body must not 500)', () => {
   it('omits the body for GET — the exact case undici used to throw on', () => {
@@ -107,16 +95,13 @@ describe('request limits and error disclosure (H4-1, H4-2, H4-3)', () => {
     expect(server.MAX_BODY_BYTES).toBe(5 * 1024 * 1024);
   });
 
-  it('does not put an internal message in an /ask 500', async () => {
+  it('does not expose internal details in unavailable results', async () => {
     const res = await server.app.request('/ask', {
       method: 'POST',
       headers: { 'content-type': 'application/json', host: '127.0.0.1' },
-      body: JSON.stringify({ text_window: 'some prose here', genre: 'fiction' }),
+      body: JSON.stringify({ textWindow: 'Her copper kettle stayed cold.', cursorOffset: 0, genre: 'fiction' }),
     });
-    if (res.status === 500) {
-      const body = (await res.json()) as { error: string };
-      expect(body.error).toBe('the coach could not answer — see the server log');
-      expect(body.error).not.toMatch(/seed pull|\.py/);
-    }
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ kind: 'unavailable', retryable: true });
   });
 });

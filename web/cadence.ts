@@ -19,7 +19,7 @@
  * otherwise a polling loop would silently reset the pause forever.
  */
 
-import { countProseWords } from './window-stats.js';
+import { countProseWords } from '../src/core/window-stats.js';
 
 export const WORD_THRESHOLD = 30;
 export const PAUSE_MS = 20_000;

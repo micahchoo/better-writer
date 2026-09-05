@@ -8,7 +8,7 @@
  */
 import { readFileSync } from 'node:fs';
 import { pickSeed, seedMatchesGenre } from '../../web/coach.js';
-import type { ClientSeed, Genre } from '../../src/types.js';
+import type { ClientSeed, Genre } from '../../src/core/types.js';
 
 const seeds = JSON.parse(readFileSync('seeds/client.json', 'utf8')) as ClientSeed[];
 const GENRES: Genre[] = ['fiction', 'creative-nonfiction', 'memoir', 'essay', 'poetry', 'genre-agnostic'];

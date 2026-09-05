@@ -7,7 +7,7 @@ An agent-backed Markdown editor that asks the writer one sharp craft question ab
 ### The bank
 
 **Seed**:
-One actionable craft question derived verbatim from a craft-book claim. The bank's unit of storage. The runtime payload is the seed's `question` field only.
+One actionable craft question derived verbatim from a craft-book claim. The bank's unit of storage. Only the `question` field enters the model prompt. A request can supply up to three candidate questions.
 _Avoid_: prompt, exercise, drill
 
 **Question**:
@@ -31,7 +31,7 @@ The pull procedure shared by every coach mode: split the candidate pool into a p
 _Avoid_: ranker, recommender, top-pick
 
 **Pull**:
-Fetch one seed whose genre list matches the chosen genre, through the Drawer. Without further preference this is a stratified draw — specific-genre cards get first claim on half the draws, so a favorite can't emerge and narrow genres aren't drowned by genre-agnostic cards.
+Fetch one seed whose genre list matches the chosen genre, through the Drawer. Without further preference, each specific-genre seed has three times the weight of an agnostic-only seed. Runtime candidate draws also spread intervention kinds.
 _Avoid_: ranker, top-pick
 
 ### The text
@@ -41,7 +41,7 @@ The writer's document — a Markdown file the editor edits and the coach reads. 
 _Avoid_: note, buffer
 
 **Text Window**:
-The writer's live text around a focus: the block under the cursor plus one neighbor on each side (auto-ask), or a sweep-plan window cut at section boundaries within a character budget. Never the whole draft. Passed to the model as raw text, the focus block wrapped in `[CURSOR START]` / `[CURSOR END]`. Stops at section boundaries; never reaches past one.
+The writer's live text around a focus: the block under the cursor plus one neighbor on each side (auto-ask), or a sweep-plan window cut at section boundaries within a character budget. Never the whole draft. Contains contiguous draft text, focus offsets, and actual section-position metadata. The prompt includes the passage and focus as JSON strings. Stops at section boundaries.
 _Avoid_: context, snippet, excerpt
 
 **Block**:
@@ -53,17 +53,17 @@ A heading line (or horizontal rule) that ends a chapter or section. The text win
 ### The coach
 
 **Reshape**:
-Specialize a pulled seed's question against the text window. Keep the seed's intent; replace its generic nouns with the words actually in the text. Produce one question, addressed to the writer, in their own words.
+Select an applicable candidate and specialize its craft intent against the text window. Produce one question with an exact evidence quote, or abstain.
 
 **Topic Probe**:
-A fixed, agent-side list of content-level questions for when a seed cannot be reshaped against the window. Lives in the agent, not the bank.
+A fixed fallback used by the legacy evaluation baseline. The current agent abstains instead. Existing saved annotations can still carry this source label.
 
 **Annotation**:
-One pinned note: the anchor span plus its question, saved with the draft. Lives at data/annotations/current.json on the server; in the browser when no server exists.
+One pinned note: a persistent ID, anchor span, and question, saved with the draft. Live edits map the span without changing its ID. Lives at data/annotations/current.json on the server; in the browser when no server exists.
 _Avoid_: comment, bookmark
 
 **Output Gate**:
-The mechanical check the reshaped output must pass before it reaches the writer: one sentence, ending in `?`, no list, no trailing text. A failed output gets one corrective retry, then falls back to a topic probe. The gate rejects; it never rewrites.
+The mechanical checks before display: question syntax, exact unique evidence in the focus, evidence use, seed-copy rejection, and echo rejection. Invalid output gets one corrective retry, then no annotation. These checks do not prove semantic relevance.
 _Avoid_: validator, filter, sanitizer
 
 **Coach Panel**:
@@ -71,12 +71,30 @@ The docked bottom-right UI region for coach output. Shows pinned notes and sweep
 _Avoid_: chat log
 
 **Word-Count Trigger**:
-Planned rule for pulling a question: thirty net-new words written since the last question, then a short idle pause. Not wired in the app yet.
+Automatic coaching runs after thirty net-new prose words and a twenty-second pause. It runs only in static and local modes.
 
 **Coach**:
-The small local model whose only job is to ask. Runs locally — no hosted API. It composes freely and commits nothing; the code verifies, the model only asks.
+The model whose only job is to ask or abstain. It runs locally or through the writer's own provider key. Code checks its output. It has no draft-editing operation.
 _Avoid_: assistant, clerk, editor
 
 **Fake Coach**:
 The model stand-in for static hosting: no model, no server. The coach shows a randomly pulled seed's `question` verbatim. Powers the GitHub Pages demo; persistence falls back to the browser.
 _Avoid_: mock, stub, placeholder
+
+## Session ownership
+
+**Document Session**:
+Owns one storage adapter, draft revision, annotations, and save lifecycle.
+Model changes do not replace this session.
+A late annotation is accepted only when its document and evidence still match.
+
+**Coaching Session**:
+Owns one active ask or sweep, its captured coach, and its cancellation signal.
+A model change, Stop, Clear notes, or disposal invalidates pending results.
+
+**Evidence**:
+An exact quote that occurs once in the focus block and appears unchanged in the question.
+Code computes its offsets. A touched quote invalidates its annotation during live edits.
+
+**Abstention**:
+A normal result when no candidate fits. Invalid output and model unavailability have separate outcomes.

@@ -1,4 +1,4 @@
-import { measureWindow } from '../../web/window-stats.js'
+import { measureWindow } from '../../src/core/window-stats.js'
 const r = (t: string) => measureWindow(t).values.adverbRate.toFixed(1)
 console.log('--- names must NOT count ---')
 for (const t of ['Emily left the room quietly.', 'She told Kelly to wait here now.', 'The letter from Beverly arrived.', 'Sicily and Italy were on the map.'])

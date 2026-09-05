@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { countProseWords, implVerbs, IMPL_VERBS, measureWindow, type WindowStats } from './window-stats'
+import { countProseWords, implVerbs, IMPL_VERBS, measureWindow, type WindowStats } from '../src/core/window-stats'
 
 /** A sentence of exactly `n` neutral words, ending in a period. */
 function sentenceOf(n: number): string {

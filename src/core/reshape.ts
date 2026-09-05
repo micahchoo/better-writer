@@ -1,3 +1,4 @@
+/** Legacy single-seed baseline for experiments. Production uses agent.ts. */
 import { copiesSeed, echoesText, isGrounded, isSingleQuestion, stripCursorMarkers } from './gate.js';
 import { topicProbe } from './topic-probe.js';
 import type { Complete, QuestionSource } from './types.js';

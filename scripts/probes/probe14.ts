@@ -1,6 +1,6 @@
-import { reshape } from '../../src/reshape.js'
-import type { Complete } from '../../src/types.js'
-import { CURSOR_START, CURSOR_END } from '../../web/text-window.js'
+import { reshape } from '../../src/core/reshape.js'
+import type { Complete } from '../../src/core/types.js'
+import { CURSOR_START, CURSOR_END } from '../../src/core/text-window.js'
 
 const win = `My grandmother cooked with her wrists, not her hands.\n\n${CURSOR_START}\nShe lifted the heavy iron skillet with a flick that looked careless and set it on the burner as if it weighed nothing.\n${CURSOR_END}\n\nThe kitchen smelled of scorched butter.`
 const seed = 'Check whether a physical detail earns its place in the scene.'

@@ -1,5 +1,5 @@
-import { isSingleQuestion, isGrounded, echoesText, copiesSeed, stripCursorMarkers } from '../../src/gate.js'
-import { CURSOR_START, CURSOR_END } from '../../web/text-window.js'
+import { isSingleQuestion, isGrounded, echoesText, copiesSeed, stripCursorMarkers } from '../../src/core/gate.js'
+import { CURSOR_START, CURSOR_END } from '../../src/core/text-window.js'
 
 const t = (label: string, v: unknown) => console.log(`${String(v).padEnd(5)} ${label}`)
 

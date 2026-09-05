@@ -8,7 +8,7 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { measureWindow } from '../../web/window-stats';
+import { measureWindow } from '../../src/core/window-stats';
 import {
   loadSeeds,
   pullBaseline,

@@ -20,7 +20,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import type { ClientSeed, Genre, Verb } from '../src/types';
+import type { ClientSeed, Genre, Verb } from '../src/core/types';
 import { pickSeed, type RngLike, type SeedPreference } from './coach';
 
 /**

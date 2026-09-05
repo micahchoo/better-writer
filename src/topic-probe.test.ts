@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { TOPIC_PROBES, topicProbe } from './topic-probe.js';
-import { isSingleQuestion } from './gate.js';
+import { TOPIC_PROBES, topicProbe } from './core/topic-probe.js';
+import { isSingleQuestion } from './core/gate.js';
 
 /**
  * H2-4: probe [5] was an imperative ending in '.', so on every fallback where

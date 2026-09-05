@@ -23,7 +23,7 @@
  * It rejects, never rewrites. Outputs that fail go back to the model once,
  * then fall back to a topic probe (see reshape.ts).
  */
-import { CURSOR_END, CURSOR_START } from '../web/text-window.js';
+import { CURSOR_END, CURSOR_START } from './text-window.js';
 
 /**
  * Hard cap on a single-question output. A legitimate one-question sentence

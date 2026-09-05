@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronDown, ChevronUp, Expand, Eye, EyeOff, Mic, MicOff, Moon, Sun, X } from 'lucide-react'
-import { GENRES, type Genre } from '../src/types'
-import { extractAnchor, type Anchor } from './anchor'
+import { GENRES, type Genre, type CoachInput } from '../src/core/types'
+import { extractAnchor } from './anchor'
 import { createCadence, type Cadence } from './cadence'
-import { planSweep, reconcileAnnotations, runSweep, staleAnnotations } from './coach-sweep'
+import { planSweep, cursorPlan } from './coach-sweep'
 import {
   ByokCoach,
   loadByokConfig,
@@ -19,16 +19,19 @@ import { detectServerMode, isModelBacked, makeCoach, mayAutoAsk, type Coach, typ
 import { createEditorAccess } from './editor-access'
 import CodeMirrorHost, { editorTheme } from './codemirror-host'
 import { highlightExtension } from './decorations'
-import { makeDraftStore, type AnchorRecord, type DraftStore } from './draft-store'
-import { makeNote, noteId, sameNote } from './notes'
+import { makeDraftStore, type AnchorRecord } from './draft-store'
+import { makeNote, noteId } from './notes'
 import { pickRecordingMimeType, transcribeAudio } from './dictation'
 import { HighlightOverlay, noteFromMark } from './highlight'
 import { InboxPanel } from './inbox-panel'
 import { MarkdownPreview } from './markdown-preview'
 import { SAMPLE_DRAFT } from './sample-draft'
-import { SaveCoordinator } from './save-coordinator'
+import { parseCoachResult } from '../src/core/contract'
+import { DocumentSession, type DocumentSnapshot } from './document-session'
+import { CoachingSession, type CoachingState } from './coaching-session'
+import type { Transaction } from '@codemirror/state'
+import type { TextChange } from './annotations'
 import { SaveIndicator, type SaveIndicatorDisplay } from './save-indicator'
-import { buildAskWindow, cursorWindow, splitBlocks } from './text-window'
 import { useTheme } from './theme'
 
 // Model-field hints per provider — placeholders only, never written to the
@@ -39,38 +42,15 @@ const MODEL_PLACEHOLDERS: Record<Provider, string> = {
  groq: 'meta-llama/llama-3.3-70b-instruct',
  custom: 'e.g. your-model-id',
 }
-/**
- * Resolve the anchor for a completed auto-ask against ONE draft snapshot.
- *
- * `base` is the draft captured when the ask fired; `nowDraft` is the draft at
- * resolution. If the writer did not type during the ask (nowDraft === base),
- * anchor against base with the fire-time caret. If the draft advanced, re-run
- * extractAnchor against the CURRENT draft with a fresh caret so a note never
- * pins to stale coordinates — a length-preserving edit is the worst case, as
- * it keeps an old anchor "in range" while shifting the text under it. Returns
- * null (drop the note, as a sweep drops an un-anchored window) when no
- * distinctive question word survives in the current draft.
- */
-export function reanchorNote(
- question: string,
- base: string,
- nowDraft: string,
- caretOffset: number,
- freshCaret: number,
-): Anchor | null {
- if (nowDraft === base) {
-  return extractAnchor(question, base, caretOffset)
- }
- return extractAnchor(question, nowDraft, freshCaret)
-}
-
 export default function EditorApp() {
  const [mode, setMode] = useState<CoachMode | 'detecting'>('detecting')
  // App theme owned by <html data-theme> (see theme.ts): useTheme applies the
  // theme to the root element and persists the toggle; CSS and the CM editor
  // read the same var(--token) values, so a swap restyles instantly.
  const [theme, setTheme] = useTheme()
- const [draft, setDraft] = useState('')
+ const [documentState, setDocumentState] = useState<DocumentSnapshot>({ id: '', revision: 0, draft: '', notes: [], ready: false })
+ const draft = documentState.draft
+ const sweepNotes = documentState.notes
  // Genre is remembered across reloads; anything not in GENRES (stale value,
  // storage disabled) falls back to the agnostic default.
  const [genre, setGenre] = useState<Genre>(() => {
@@ -83,11 +63,11 @@ export default function EditorApp() {
  })
  const [error, setError] = useState<string | null>(null)
  const [dictationState, setDictationState] = useState<'idle' | 'recording' | 'transcribing'>('idle')
- const [sweeping, setSweeping] = useState(false)
+ const [coachingState, setCoachingState] = useState<CoachingState>('idle')
+ const sweeping = coachingState === 'sweeping'
  // Sweep progress: completed window count over the plan length, null when idle.
  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null)
  // Sweep notes on screen: one highlight per note across the whole draft.
- const [sweepNotes, setSweepNotes] = useState<AnchorRecord[]>([])
  // SINGLE-OPEN contract: at most one note popover is open at a time, keyed
  // by the note's identity string. Two popovers can never overlap because a
  // new open supersedes the previous one.
@@ -119,6 +99,8 @@ export default function EditorApp() {
   asked: number
   skipped: number
   pinned: number
+  unavailable: number
+  noFit: number
  } | null>(null)
  // Auto-ask cadence pause: when paused the cadence driver still observes
  // (cheap) but never fires a question.
@@ -157,54 +139,19 @@ const cyclePreview = () =>
 const nextPreviewLabel =
  previewMode === 'off' ? 'Show split preview' : previewMode === 'split' ? 'Expand preview' : 'Back to editing'
 
- const draftRef = useRef('')
- // Start from the restored genre so a sweep right after reload (which reads
- // genreRef.current) uses the persisted choice, not the agnostic default.
+ const documentRef = useRef<DocumentSession | null>(null)
+ const coachingRef = useRef<CoachingSession | null>(null)
+ const connectionGenerationRef = useRef(0)
+ const pendingTextRef = useRef<string | null>(null)
  const genreRef = useRef<Genre>(genre)
- const coachRef = useRef<Coach | null>(null)
- const draftStoreRef = useRef<DraftStore | null>(null)
- // Built via useState's one-time initializer (not on first edit) so note
- // ops — resolve, clear, sweep appends — can persist through it before any
- // keystroke exists. useState (not useRef) because the value is never
- // reassigned and must be non-null at every callsite.
- const [coordinator] = useState(new SaveCoordinator({
-  getStore: () => draftStoreRef.current,
-  onError: (err: unknown) => {
-  setError(err instanceof Error ? err.message : String(err))
-  // A failed save must not leave the indicator stuck on 'Saving…': clear it
-  // to idle; the toast above is the failure affordance.
-  saveIndicator.saveFailed()
- },
-  // Save-lifecycle pulse for the topbar indicator: 'saving' on send, and on
-  // 'saved' stamp the completion time (the HH:MM shown next to the badge).
-   onSaveState: (phase) => {
-  // Feed raw pulses into the debounced indicator; stamp the completion time
-  // on confirm (the HH:MM shown next to the badge).
-  if (phase === 'saving') saveIndicator.saveStarted()
-  else {
-   saveIndicator.saveSucceeded()
-   setSaveTime(new Date())
-  }
- },
- }))
  const recorderRef = useRef<MediaRecorder | null>(null)
  const chunksRef = useRef<Blob[]>([])
- const annotationsRef = useRef<AnchorRecord[]>([])
- // Sweep cancel latch: set by the Stop button, read by runSweep's
- // shouldAbort before each window so the in-flight ask finishes cleanly.
- const abortSweepRef = useRef(false)
+ const mountedRef = useRef(false)
  // Cadence state machine (cadence.ts). Lazy-initialized through useRef so
  // re-renders never rebuild the machine; the 5s poll closure reads this ref.
  const cadenceRef = useRef<Cadence | null>(null)
  if (cadenceRef.current === null) cadenceRef.current = createCadence()
  const cadence = cadenceRef.current
- // Mirrors of `sweeping` / `cadencePaused` for the interval closure: a 5s
- // tick must not fire an auto-ask mid-sweep or while paused, but a closure
- // captured at mount can't see React state — these refs always can.
- const sweepingRef = useRef(false)
- // Raised for the duration of an auto-ask so the cadence poll cannot fire a
- // second one concurrently (H6-1).
- const askInFlightRef = useRef(false)
  const cadencePausedRef = useRef(false)
  // Mirror of `mode` so the recorder's onstop closure can read the mode at
  // STOP time (not the mode captured when recording began). A closure captured
@@ -220,111 +167,73 @@ const nextPreviewLabel =
   [],
  )
 
- // Mode detection: a saved BYOK config wins — adopt byok synchronously (the
-// whole pipeline is browser-resident, so no probe is needed). Otherwise probe
- // GET /health once: 200 JSON -> local mode (LocalCoach + ServerDraftStore);
- // anything else -> static demo (StaticCoach + LocalStorageDraftStore). GitHub
- // Pages is auto-static.
+ // Storage is selected once when the document opens. Changing a model
+ // connection never reloads the document or changes its save destination.
  useEffect(() => {
   let cancelled = false
-  const stored = loadByokConfig()
-  if (stored) {
-   coachRef.current = new ByokCoach()
-   draftStoreRef.current = makeDraftStore('byok')
-   setMode('byok')
-   return () => {
-    cancelled = true
-   }
-  }
-  void detectServerMode().then((detected) => {
-   if (cancelled) return
-   coachRef.current = makeCoach(detected)
-   draftStoreRef.current = makeDraftStore(detected)
-   setMode(detected)
+  mountedRef.current = true
+  const connectionGeneration = connectionGenerationRef.current
+  const configured = loadByokConfig()
+  const unavailable: Coach = { ask: async () => ({ kind: 'unavailable', retryable: false }) }
+  const coaching = new CoachingSession(configured ? new ByokCoach({ config: configured }) : unavailable, {
+   onState: setCoachingState,
   })
+  coachingRef.current = coaching
+  if (configured) setMode('byok')
+  void detectServerMode().then(async detected => {
+   if (cancelled) return
+   // A configuration saved while detection was pending also takes priority.
+   if (connectionGeneration === connectionGenerationRef.current && !configured) {
+    coaching.configure(makeCoach(detected))
+    setMode(detected)
+   }
+   let storage: 'browser' | 'server' = configured ? 'browser' : detected === 'local' ? 'server' : 'browser'
+   try {
+    const saved = localStorage.getItem('better-writer:document-storage')
+    if (saved === 'browser' || saved === 'server') storage = saved
+    localStorage.setItem('better-writer:document-storage', storage)
+   } catch { /* Storage choice can still live for this session. */ }
+   const session = new DocumentSession(makeDraftStore(storage), {
+    onChange: setDocumentState,
+    onError: err => { setError(err instanceof Error ? err.message : String(err)); saveIndicator.saveFailed() },
+    onSaveState: phase => {
+     if (phase === 'saving') saveIndicator.saveStarted()
+     else { saveIndicator.saveSucceeded(); setSaveTime(new Date()) }
+    },
+   })
+   documentRef.current = session
+   if (pendingTextRef.current !== null) session.edit(pendingTextRef.current)
+   await session.load()
+   if (!cancelled) {
+    editorAccess.replaceDocument(session.snapshot.draft, { history: 'reset' })
+    cadence.reset(session.snapshot.draft)
+   }
+  })
+  const flush = () => { void documentRef.current?.flush({ keepalive: true }) }
+  document.addEventListener('visibilitychange', flush)
+  window.addEventListener('pagehide', flush)
   return () => {
    cancelled = true
+   mountedRef.current = false
+   document.removeEventListener('visibilitychange', flush)
+   window.removeEventListener('pagehide', flush)
+   coaching.dispose()
+   const session = documentRef.current
+   void session?.flush()
+   session?.dispose()
+   documentRef.current = null
+   coachingRef.current = null
+   saveIndicator.dispose()
+   if (recorderRef.current?.state === 'recording') recorderRef.current.stop()
   }
  }, [])
 
- // Load the saved draft from a store, then restore every persisted annotation
- // whose fragment still sits at its offsets. The mode-load effect (below) is
- // the ONLY caller: the BYOK adopt/disconnect handlers just set the new mode
- // and store, and let the effect's [mode] dependency fire this exactly once.
- // Latest-load-wins token: an older async load (e.g. from a mode we have
- // already left) must not overwrite a newer one, so each call stamps a fresh
- // seq and only the most recent is allowed to apply its result.
- const loadSeqRef = useRef(0)
- const loadDraftAndNotes = (store: DraftStore) => {
-  const seq = ++loadSeqRef.current
-  void store
-   .load()
-   .then((text) => {
-    if (seq !== loadSeqRef.current) return Promise.resolve([])
-    draftRef.current = text
-    setDraft(text)
-    // Push the restored doc into the editor. The reset path does NOT fire
-    // onDocChange, so the setDraft above stays the authoritative state sync
-    // and no spurious save/reconcile runs. No-op if the host hasn't attached.
-    editorAccess.replaceDocument(text, { history: 'reset' })
-    return store.loadAnnotations()
-   })
-   .then((annotations) => {
-    if (seq !== loadSeqRef.current) return
-    // Adopt the loaded list even when it is EMPTY. Early-returning on
-    // `annotations.length === 0` skipped the reset, so switching to a store
-    // with no notes left the previous store's notes on screen — and the next
-    // save wrote them into the NEW store (H6-3).
-    const valid = staleAnnotations(annotations, draftRef.current) as AnchorRecord[]
-    annotationsRef.current = valid
-    setSweepNotes(valid)
-   })
-   .catch((err: unknown) => {
-    if (seq === loadSeqRef.current) setError(err instanceof Error ? err.message : String(err))
-   })
- }
-
- // Load once the mode (and store) is known. saveByokSettings/disconnectByok
- // set the store and mode and return — this effect is what performs the one
- // load, so adopt/disconnect never double-load.
- useEffect(() => {
-  if (mode === 'detecting' || !draftStoreRef.current) return
-  loadDraftAndNotes(draftStoreRef.current)
- }, [mode])
-
-// Unmount cleanup: cancel the coordinator's pending timers, stop any recording.
- useEffect(() => {
- return () => {
-  coordinator.dispose()
-  saveIndicator.dispose()
-  recorderRef.current?.stop()
- }
-}, [])
-
-// Flush-on-hide: persist any pending draft when the tab hides or the page
-// unloads, so a closed tab doesn't drop the latest keystrokes. keepalive
-// lets the browser finish the request even as the page is torn down; flush
-// no-ops when nothing is pending and routes failures through onError.
-useEffect(() => {
- const flushOnHide = () => {
-  void coordinator.flush({ keepalive: true })
- }
-document.addEventListener('visibilitychange', flushOnHide)
-window.addEventListener('pagehide', flushOnHide)
-return () => {
- document.removeEventListener('visibilitychange', flushOnHide)
- window.removeEventListener('pagehide', flushOnHide)
-}
-}, [])
-
 // Auto-ask poll: cadence re-checks every 5 s even with no further typing, so
 // a draft that grew past the threshold and then went quiet still fires while
-// the writer reads. The closure only reads refs (cadence, draftRef, the
-// suppression mirrors, the setters), so a mount-time capture never goes
-// stale — an empty dep array is safe here.
+// the writer reads. Session state is read at each tick.
 useEffect(() => {
  const timer = window.setInterval(() => {
-  maybeFireCadence(draftRef.current)
+  maybeFireCadence(documentRef.current?.snapshot.draft ?? '')
  }, 5000)
  return () => window.clearInterval(timer)
 }, [])
@@ -340,116 +249,59 @@ useEffect(() => {
  editorAccess.showHighlights(spans)
 }, [sweepNotes, draft, editorAccess])
 
-const handleContentChange = (value?: string) => {
- const text = value ?? ''
- draftRef.current = text
- setDraft(text)
-
- // Cadence: feed every change through the machine; if the draft grew past
- // the threshold AND the writer paused long enough, fire one auto-ask.
- maybeFireCadence(text)
-
-// Re-validate every annotation against the new text: drop notes whose
-// fragment is gone, adopt remapped offsets for ones that moved intact.
-// Branch on changed, not length — a pure remap keeps the count, and only
-// adopting the list here keeps the highlight AND the next save correct.
-const { valid, changed } = reconcileAnnotations(annotationsRef.current, text)
-if (changed) {
- annotationsRef.current = valid
- setSweepNotes(valid)
- void coordinator.persistNow(text, valid)
-}
-
- // Debounced draft save, serialized through the coordinator.
- coordinator.edit(text, annotationsRef.current)
-}
-
-// The shared cadence driver used by BOTH the content-change handler and the
-// 5 s poll. observe() is cheap and side-effect-free; firing is suppressed
-// while a sweep runs, when the writer paused the Auto-ask toggle, or when the
-// mode bills the writer per ask (mayAutoAsk — the Auto-ask CHECKBOX is hidden
-// outside 'local', but hiding a control is not a gate: without this the timer
-// still fired in byok and spent the writer's tokens unprompted).
-const maybeFireCadence = (text: string) => {
- const phase = cadence.observe(text)
- if (
-  phase === 'ready' &&
-  mayAutoAsk(modeRef.current) &&
-  !sweepingRef.current &&
-  !askInFlightRef.current &&
-  !cadencePausedRef.current
- ) {
-  void askCursorWindow(text)
- }
-}
-
-// Auto-ask: fire ONE coach question in a pause, without touching the editor
-// canvas. A 3-block window is built around the cursor block (like runSweep's
-// windows) so the ask grounds near where the writer is working; the resulting
-// note joins the inbox and persists like any other. Failures are silent (this
-// is background pestering, not a user-initiated flow) but cadence is always
-// re-armed so a bad ask can't wedge the cycle.
-const askCursorWindow = async (text: string) => {
- const coach = coachRef.current
- if (!coach) {
-  cadence.reset(text)
+const handleContentChange = (value: string, transactions?: readonly Transaction[]) => {
+ const session = documentRef.current
+ if (!session) {
+  pendingTextRef.current = value
+  setDocumentState(previous => ({ ...previous, draft: value }))
   return
  }
- // ONE snapshot for the whole ask: anchor span and persisted draft must come
- // from the same text. `text` (from the fire site) is that snapshot; if the
- // writer types while the ask is in flight, the note is re-anchored against
- // the CURRENT draft with a fresh caret instead of pinning stale coordinates.
- const base = text
- const blocks = splitBlocks(base)
- if (blocks.length === 0) {
-  cadence.reset(base)
-  return
- }
- const cursor = editorAccess.readCursor()
- const caretOffset = cursor?.offset ?? Math.floor(base.length / 2)
-
- // The shared cursor-window constructor: the block under the caret centered
- // ±1 neighbor (edge-clipped), marked around the cursor block, so an auto-ask
- // window matches a sweep window's shape by construction.
- const win = cursorWindow(blocks, caretOffset)
- if (!win) {
-  cadence.reset(base)
-  return
- }
- const markedText = buildAskWindow(win.texts, win.markIndex)
-
- // H6-1: hold the in-flight latch for the whole ask. cadence.observe() does
- // not self-reset and the only re-arm is cadence.reset in the finally BELOW,
- // which runs after the await — so every poll during a slow ask observed
- // 'ready' again and fired a second, concurrent ask. That is normal
- // operation whenever the model answers slower than the poll.
- askInFlightRef.current = true
- try {
-  const question = await coach.ask(markedText, genreRef.current, caretOffset)
-  // The draft may have advanced while the ask was in flight. reanchorNote
-  // pins the note to ONE snapshot — base if unchanged, the current draft
-  // with a fresh caret otherwise — or returns null to drop the note the way
-  // a sweep drops an un-anchored window.
-  const nowDraft = draftRef.current
-  const freshCaret = editorAccess.readCursor()?.offset ?? Math.floor(nowDraft.length / 2)
-  const anchor = reanchorNote(question, base, nowDraft, caretOffset, freshCaret)
-  if (anchor) {
-   const record = makeNote(anchor, question, Date.now(), nowDraft)
-   // Provenance from the coach, attached only when reported (legacy/static
-   // asks carry none).
-   const source = coach.lastSource()
-   if (source) record.source = source
-   annotationsRef.current = [...annotationsRef.current, record]
-   setSweepNotes((prev) => [...prev, record])
-   // Anchor span and persisted draft come from the SAME snapshot (nowDraft).
-   void coordinator.persistNow(nowDraft, annotationsRef.current)
+ if (transactions?.length) {
+  for (const transaction of transactions) {
+   if (!transaction.docChanged) continue
+   const changes: TextChange[] = []
+   transaction.changes.iterChanges((from, to, _fromNew, _toNew, inserted) => {
+    changes.push({ from, to, insert: inserted.toString() })
+   })
+   session.edit(transaction.newDoc.toString(), changes)
   }
- } catch {
-  // Silent: a background ask must never surface a toast. cadence resets below.
- } finally {
-  askInFlightRef.current = false
-  cadence.reset(base)
+ } else session.edit(value)
+ maybeFireCadence(value)
+}
+
+const maybeFireCadence = (text: string) => {
+ if (cadence.observe(text) === 'ready' && mayAutoAsk(modeRef.current) &&
+     coachingRef.current?.state === 'idle' && documentRef.current?.snapshot.ready && !cadencePausedRef.current) {
+  void askCursorWindow()
  }
+}
+
+const askCursorWindow = async () => {
+ const session = documentRef.current
+ const coaching = coachingRef.current
+ if (!session || !coaching) return
+ const captured = session.capture()
+ const caretOffset = editorAccess.readCursor()?.offset ?? Math.floor(captured.draft.length / 2)
+ const window = cursorPlan(captured.draft, caretOffset)
+ if (!window) { cadence.reset(captured.draft); return }
+ // Reset at dispatch, so cancellation cannot let an old completion reset
+ // the cadence of a newer run.
+ cadence.reset(captured.draft)
+ try {
+  const input: CoachInput = { textWindow: window.textWindow, focus: window.focus, position: window.position,
+   genre: genreRef.current, cursorOffset: caretOffset }
+  const answer = await coaching.ask(input)
+  const result = answer?.kind === 'question' && answer.source === 'reshaped' ? parseCoachResult(answer, input) : answer
+  if (!result || result.kind !== 'question') return
+  const anchor = result.evidence
+   ? { start: window.bounds.start + result.evidence.start, end: window.bounds.start + result.evidence.end, fragment: result.evidence.quote }
+   : result.source === 'seed' ? extractAnchor(result.question, captured.draft, caretOffset) : null
+  if (anchor) {
+   const note = makeNote(anchor, result.question, Date.now(), captured.draft)
+   note.source = result.source
+   session.add(note, captured)
+  }
+ } catch { /* Automatic coaching stays quiet when unavailable. */ }
 }
 // Jump the editor to a note's span: open its popover and scroll the
 // scrollport so the anchored line is roughly centered. The scroll target is
@@ -477,6 +329,8 @@ const handleHighlightClick = (event: React.MouseEvent<HTMLDivElement>) => {
  // Genre is remembered across reloads; a handler shared by every genre select
 // (there is now one place it lives: the coach-actions row).
 const handleGenreChange = (next: Genre) => {
+ coachingRef.current?.cancel()
+ setProgress(null)
  genreRef.current = next
  setGenre(next)
  try {
@@ -519,7 +373,10 @@ const toggleDictation = async () => {
   }
   setError(null)
   try {
+   const recordingMode = modeRef.current
+   const recordingConfig = loadByokConfig()
    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+   if (!mountedRef.current) { stream.getTracks().forEach(track => track.stop()); return }
    const mimeType = pickRecordingMimeType()
    const recorder = mimeType
     ? new MediaRecorder(stream, { mimeType })
@@ -531,20 +388,18 @@ const toggleDictation = async () => {
    }
    recorder.onstop = () => {
     stream.getTracks().forEach((track) => track.stop())
+    if (!mountedRef.current) return
     const blob = new Blob(chunksRef.current, { type: mimeType ?? 'audio/webm' })
     setDictationState('transcribing')
-    // Transport is chosen at STOP time: the recorder may have started in one
-    // mode and stopped after the writer switched (e.g. BYOK saved mid-recording).
-    // Local sends the WAV to the server's /transcribe; BYOK sends the same bytes
-    // to the writer's provider's /audio/transcriptions.
-    void (modeRef.current === 'local' ? transcribeAudio(blob) : transcribeWavByok(blob))
+    // Keep the connection captured when recording began.
+    void (recordingMode === 'local' ? transcribeAudio(blob) : transcribeWavByok(blob, recordingConfig))
      .then((text) => {
-      if (text.trim()) editorAccess.insertAtCursor(text.trimEnd() + ' ')
+      if (mountedRef.current && text.trim()) editorAccess.insertAtCursor(text.trimEnd() + ' ')
      })
      .catch((err: unknown) => {
       setError(err instanceof Error ? err.message : String(err))
      })
-     .finally(() => setDictationState('idle'))
+     .finally(() => { if (mountedRef.current) setDictationState('idle') })
    }
    recorder.start()
    setDictationState('recording')
@@ -553,84 +408,43 @@ const toggleDictation = async () => {
   }
  }
 
- // Sweep the WHOLE draft: plan non-overlapping windows, then run them one at
- // a time. Each note renders the moment its own ask resolves (progressive);
- // if one ask throws, runSweep aborts and the error surfaces here.
  const sweepDraft = async () => {
-  const coach = coachRef.current
-  // Gate on the REF, not React state: two clicks can land before React
-  // commits `sweeping`, so the state read let both enter and every window was
-  // asked twice — billed twice in byok (H6-2). The ref is set synchronously
-  // below, so it is the only latch a second click can observe.
-  if (!coach || sweepingRef.current) return
-  const fullText = draftRef.current
-  if (!fullText.trim()) {
-   setError('There is no text yet — write something first.')
-   return
-  }
-  abortSweepRef.current = false
-  sweepingRef.current = true
-  setSweeping(true)
-  // A new sweep supersedes the last sweep's summary.
+  const session = documentRef.current
+  const coaching = coachingRef.current
+  if (!session || !coaching || coaching.state === 'sweeping') return
+  const captured = session.capture()
+  if (!captured.draft.trim()) { setError('There is no text yet — write something first.'); return }
   setSweepSummary(null)
   setError(null)
+  let pinned = 0
   try {
-   const plan = planSweep(fullText)
-   const result = await runSweep(plan, {
-    genre: genreRef.current,
-    coach,
-    draft: fullText,
+   const result = await coaching.sweep(planSweep(captured.draft), {
+    genre: genreRef.current, draft: captured.draft,
     onProgress: (done, total) => setProgress({ done, total }),
-    shouldAbort: () => abortSweepRef.current,
-    onNote: (note) => {
-     const record: AnchorRecord = makeNote(
-      { start: note.start, end: note.end, fragment: note.fragment },
-      note.question,
-      note.ts,
-      fullText,
-     )
-     // Attach the note's provenance when the sweep reported one, so the
-     // topic-probe chip can label honest questions. Persisted shape stays
-     // backward compatible: source is an optional field.
-     if (note.source) record.source = note.source
-     // Append and persist incrementally, so a reload mid-sweep keeps
-     // what arrived before it.
-     annotationsRef.current = [...annotationsRef.current, record]
-     setSweepNotes((prev) => [...prev, record])
-    void coordinator.persistNow(draftRef.current, annotationsRef.current)
+    onNote: note => {
+     const record = makeNote(note, note.question, note.ts, captured.draft)
+     record.source = note.source
+     if (session.add(record, captured)) pinned++
     },
    })
-   // pinned = notes actually anchored (SweepResult counts asked === notes.length).
-   setSweepSummary({
-    asked: result.asked,
-    skipped: result.skipped,
-    pinned: result.notes.length,
-   })
+   if (result) {
+    setSweepSummary({ asked: result.requested, skipped: result.skipped + result.asked - pinned, pinned, unavailable: result.unavailable, noFit: result.noFit })
+    setProgress(null)
+   }
   } catch (err) {
-   setError(err instanceof Error ? err.message : String(err))
-  } finally {
-   sweepingRef.current = false
-   setSweeping(false)
-   setProgress(null)
+   if (mountedRef.current) { setError(err instanceof Error ? err.message : String(err)); setProgress(null) }
   }
  }
 
- // Wipe every annotation.
  const clearNotes = () => {
-  setSweepNotes([])
-  annotationsRef.current = []
-  // Clearing every note also retires the last sweep's summary.
+  coachingRef.current?.cancel()
+  documentRef.current?.clear()
   setSweepSummary(null)
- void coordinator.persistNow(draftRef.current, [])
+  setProgress(null)
  }
-
- // Remove exactly one note, matched by its (start, end, ts) identity triple,
- // from the screen and from persisted storage.
  const resolveNote = (note: AnchorRecord) => {
-  const isSameNote = (a: AnchorRecord) => sameNote(a, note)
-  annotationsRef.current = annotationsRef.current.filter((a) => !isSameNote(a))
-  setSweepNotes((prev) => prev.filter((n) => !isSameNote(n)))
-  void coordinator.persistNow(draftRef.current, annotationsRef.current)
+  documentRef.current?.resolve(note)
+  if (openNoteId === noteId(note)) setOpenNoteId(null)
  }
 
  // BYOK panel: seed the form from the saved config on open (or fall back to
@@ -669,11 +483,7 @@ const toggleDictation = async () => {
   }))
  }
 
- // Persist the config and adopt byok immediately — the same path as detection
- // (new ByokCoach + makeDraftStore('byok'), which is a LocalStorageDraftStore
- // per the store's ternary). The draft reload happens ONCE via the [mode]
- // effect, which fires when setMode('byok') lands. No page reload: the writer
- // keeps working.
+ // Reconfigure coaching while keeping the current document session.
  const saveByokSettings = () => {
   const { provider, baseUrl, model, apiKey, sttModel } = byokForm
   if (!baseUrl.trim() || !model.trim() || !apiKey.trim()) {
@@ -701,21 +511,23 @@ const toggleDictation = async () => {
    // degrades to the provider default (sanitize drops empty sttModel anyway).
    ...(sttModel.trim() !== '' ? { sttModel: sttModel.trim() } : {}),
   })
-  coachRef.current = new ByokCoach()
-  draftStoreRef.current = makeDraftStore('byok')
+  connectionGenerationRef.current++
+  coachingRef.current?.configure(new ByokCoach())
+  setProgress(null)
+  setSweepSummary(null)
   // Bump the config cache so dictation availability re-evaluates immediately.
   setByokCfgVersion((v) => v + 1)
   setMode('byok')
   setByokOpen(false)
  }
 
- // Clear the config and return to the static demo: StaticCoach +
- // LocalStorageDraftStore (makeDraftStore('static') — its ternary only routes
- // 'local' to the server). The draft reload happens ONCE via the [mode] effect.
+ // Disconnect the paid provider without reopening the document.
  const disconnectByok = () => {
   saveByokConfig(null)
-  coachRef.current = makeCoach('static')
-  draftStoreRef.current = makeDraftStore('static')
+  connectionGenerationRef.current++
+  coachingRef.current?.configure(makeCoach('static'))
+  setProgress(null)
+  setSweepSummary(null)
   setByokCfgVersion((v) => v + 1)
   setMode('static')
   setByokOpen(false)
@@ -767,9 +579,10 @@ const sweepControls = isModelBacked(mode) && (
      <button
       className="coach-cancel coach-sweep"
       onClick={() => {
-       abortSweepRef.current = true
+       coachingRef.current?.cancel()
+       setProgress(null)
       }}
-      title="Stop after the current window"
+      title="Cancel pending questions"
      >
       Stop
      </button>
@@ -836,10 +649,8 @@ const sweepControls = isModelBacked(mode) && (
     {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
     {theme === 'dark' ? 'Light' : 'Dark'}
    </button>
-     {/* BYOK bring-your-own-key: shown whenever a non-local, non-detecting mode
-         is active — static (offer to connect) and byok (already connected). The
-         panel drops under the toggle; it never renders while detecting. */}
-     {(mode === 'static' || mode === 'byok') && (
+     {/* Model connections are independent of document storage. */}
+     {mode !== 'detecting' && (
       <div className="byok-wrap">
        <button
         className={`byok-toggle ${byokOpen ? 'is-open' : ''}`}
@@ -1039,20 +850,16 @@ const sweepControls = isModelBacked(mode) && (
      )}
      {/* Sample loader: only while the page is empty (mode known, no draft, not
          yet loaded once). Loading a sample writes it straight into the draft
-         and the coordinator — the sweep then has real prose to chew on. */}
-     {mode !== 'detecting' && draftRef.current.trim() === '' && !sampleLoaded && (
+         and its document session. */}
+     {documentState.ready && draft.trim() === '' && !sampleLoaded && (
       <button
        className="sample-load"
        onClick={() => {
         // Buffer write through the seam, with a true history reset (C3): the
         // sample replaces the empty page wholesale and undo can never wipe it.
         editorAccess.replaceDocument(SAMPLE_DRAFT, { history: 'reset' })
-        draftRef.current = SAMPLE_DRAFT
-        // The reset path does NOT fire onDocChange, so handleContentChange
-        // never runs — sync React state explicitly here, and let the
-        // coordinator persist the loaded draft as before.
-        setDraft(SAMPLE_DRAFT)
-        coordinator.edit(SAMPLE_DRAFT, annotationsRef.current)
+        documentRef.current?.edit(SAMPLE_DRAFT)
+        cadence.reset(SAMPLE_DRAFT)
         setSampleLoaded(true)
        }}
        title="Replace the empty page with example prose you can sweep"
@@ -1065,8 +872,10 @@ const sweepControls = isModelBacked(mode) && (
      {sweepSummary && (
       <p
        className="coach-summary"
-       title="Skips are windows whose answer didn't anchor to a span in the draft."
+       title="A window may have no suitable question, invalid evidence, or an unavailable model."
       >
+       {sweepSummary.unavailable > 0 ? `Coach unavailable for ${sweepSummary.unavailable} windows. ` : ''}
+       {sweepSummary.pinned === 0 && sweepSummary.noFit > 0 ? 'No suitable question found. ' : ''}
        {sweepSummary.skipped > 0
         ? `Pinned ${sweepSummary.pinned} · skipped ${sweepSummary.skipped}.`
         : `Pinned ${sweepSummary.pinned}.`}
@@ -1108,7 +917,7 @@ const sweepControls = isModelBacked(mode) && (
           cadencePausedRef.current = paused
           setCadencePaused(paused)
           // Re-arm on toggle so un-pausing never fires an immediate question.
-          cadence.reset(draftRef.current)
+          cadence.reset(documentRef.current?.snapshot.draft ?? '')
          }}
         />
        </label>

@@ -22,7 +22,7 @@
  */
 
 import { useLayoutEffect, useRef, useState } from 'react'
-import type { QuestionSource } from '../src/types'
+import type { QuestionSource } from '../src/core/types'
 import type { AnchorRecord } from './draft-store'
 
 export interface HighlightOverlayProps {

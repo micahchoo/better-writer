@@ -6,7 +6,7 @@ import {
   cursorWindow,
   partitionSections,
   splitBlocks,
-} from './text-window'
+} from '../src/core/text-window'
 
 describe('buildAskWindow', () => {
   it('joins block texts with blank lines', () => {

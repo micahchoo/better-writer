@@ -8,19 +8,18 @@
  * It is never logged and never sent anywhere except the configured baseUrl.
  * Calls are unauthenticated otherwise and time out after 60s.
  *
- * The reshape/gate semantics are identical to LocalCoach's: a seed question
- * is specialized by the model, the output must pass the same gate, and on a
- * gate failure it falls back to a topic probe. Only the transport differs —
+ * Selection, evidence verification, abstention, and retry policy are shared
+ * with LocalCoach through the runtime-neutral coaching core. Only the transport differs —
  * the model request is made here instead of via the local server.
  */
 
-import { loadSeeds, pickSeed, type Coach } from './coach';
+import { loadSeeds, drawCandidates } from '../src/core/seeds';
 import { decodeToMono16k, encodeWavPcm16 } from './dictation';
-import { reshape } from '../src/reshape';
-import type { ClientSeed, Complete, Genre, QuestionSource, Turn } from '../src/types';
+import { askFromCandidates } from '../src/core/agent';
+import type { ClientSeed, Complete, Coach, CoachInput, CoachResult, Turn } from '../src/core/types';
 
 const STORAGE_KEY = 'better-writer:byok';
-const MAX_TOKENS = 256;
+const MAX_TOKENS = 512;
 const TIMEOUT_MS = 60_000;
 
 /** The OpenAI-compatible providers the dropdown offers, with their defaults. */
@@ -219,14 +218,14 @@ export function saveByokConfig(cfg: ByokConfig | null): void {
 
 /**
  * A Complete backed by an OpenAI-compatible provider. Maps (system, turns)
- * to chat messages the same way the local pipeline does: a single system
- * message plus the user turns joined by blank lines.
+ * to chat messages with the same user/assistant roles as the local transport.
  */
 export function makeByokComplete(cfg: ByokConfig): Complete {
-  return async (system: string, turns: Turn[], opts?: { temperature?: number }): Promise<string> => {
+  return async (system: string, turns: Turn[], opts?: { temperature?: number; signal?: AbortSignal }): Promise<string> => {
+    opts?.signal?.throwIfAborted();
     const messages = [
       { role: 'system', content: system },
-      { role: 'user', content: turns.map((t) => t.text).join('\n\n') },
+      ...turns.map(turn => ({ role: turn.role === 'agent' ? 'assistant' : 'user', content: turn.text })),
     ];
     const res = await fetch(`${cfg.baseUrl}/chat/completions`, {
       method: 'POST',
@@ -240,7 +239,7 @@ export function makeByokComplete(cfg: ByokConfig): Complete {
         temperature: opts?.temperature ?? 0.7,
         max_tokens: MAX_TOKENS,
       }),
-      signal: AbortSignal.timeout(TIMEOUT_MS),
+      signal: opts?.signal ? AbortSignal.any([opts.signal, AbortSignal.timeout(TIMEOUT_MS)]) : AbortSignal.timeout(TIMEOUT_MS),
     });
     if (!res.ok) {
       const detail = await errorDetail(res);
@@ -262,8 +261,8 @@ export function makeByokComplete(cfg: ByokConfig): Complete {
  * (sttModelFor) AND a provider that TRANSCRIBES_AUDIO — openrouter has no
  * audio route, so both checks throw before any network call.
  */
-export async function transcribeWavByok(blob: Blob): Promise<string> {
-  const cfg = loadByokConfig();
+export async function transcribeWavByok(blob: Blob, config?: ByokConfig | null): Promise<string> {
+  const cfg = config === undefined ? loadByokConfig() : config;
   if (!cfg) {
     throw new Error('No API key configured — add your key in settings');
   }
@@ -315,33 +314,20 @@ export class ByokCoach implements Coach {
   private readonly seeds: ClientSeed[] | null;
   private readonly complete: Complete | null;
 
-  /** Provenance of the last resolved ask; null until one resolves. */
-  private last: QuestionSource | null = null;
-
-  constructor(deps?: { seeds?: ClientSeed[]; complete?: Complete }) {
+  constructor(deps?: { seeds?: ClientSeed[]; complete?: Complete; config?: ByokConfig }) {
     this.seeds = deps?.seeds ?? null;
-    this.complete = deps?.complete ?? null;
+    const config = deps?.config ?? loadByokConfig();
+    // Freeze the connection for this adapter's lifetime. A settings change
+    // constructs another adapter and cancels the previous coaching session.
+    this.complete = deps?.complete ?? (config ? makeByokComplete({ ...config }) : null);
   }
 
-  /** The Complete to reshape with: an injected one, else the saved config. */
-  private completeFor(): Complete {
-    if (this.complete) return this.complete;
-    const cfg = loadByokConfig();
-    if (!cfg) {
-      throw new Error('No API key configured — add your key in settings');
-    }
-    return makeByokComplete(cfg);
-  }
-
-  async ask(textWindow: string, genre: Genre, _cursorOffset: number): Promise<string> {
-    const seeds = this.seeds ?? (await loadSeeds());
-    const seedQuestion = pickSeed(seeds, genre).question;
-    const { question, source } = await reshape(seedQuestion, textWindow, this.completeFor());
-    this.last = source;
-    return question;
-  }
-
-  lastSource(): QuestionSource | null {
-    return this.last;
+  async ask(input: CoachInput, signal?: AbortSignal): Promise<CoachResult> {
+    signal?.throwIfAborted();
+    if (!this.complete) return { kind: 'unavailable', retryable: false };
+    const seeds = this.seeds ?? await loadSeeds();
+    signal?.throwIfAborted();
+    const candidates = drawCandidates(seeds, input);
+    return askFromCandidates(input, candidates.map(seed => seed.question), this.complete, signal);
   }
 }

@@ -1,4 +1,4 @@
-import { measureWindow } from '../../web/window-stats';
+import { measureWindow } from '../../src/core/window-stats';
 import { createCadence } from '../../web/cadence';
 
 const sentencesOf = (raw: string) => {

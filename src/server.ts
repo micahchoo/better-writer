@@ -8,22 +8,20 @@
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { statSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { extname, join, normalize, sep } from 'node:path';
+import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Readable } from 'node:stream';
 import type { ReadableStream as NodeWebReadableStream } from 'node:stream/web';
 import { Hono } from 'hono';
-import { GENRES, type Genre } from './types.js';
+import { GENRES, type Genre } from './core/types.js';
 import { loadEnvFile } from './env.js';
 import { makeComplete } from './llm.js';
-import { pullSeed } from './seed.js';
-import { reshape } from './reshape.js';
+import { loadSeeds, drawCandidates } from './core/seeds.js';
+import { askFromCandidates } from './core/agent.js';
+import { parseCoachInput } from './core/contract.js';
 import { loadAnnotations, loadDraft, saveAnnotations, saveDraft } from './draft.js';
 import { boundaryViolation } from './boundary.js';
-import type { Annotation } from './types.js';
-import { implVerbs, measureWindow } from '../web/window-stats.js';
-import type { PositionContext } from '../web/window-stats.js';
-import { partitionSections, splitBlocks } from '../web/text-window.js';
+import type { Annotation } from './core/types.js';
 import { resolveModelDir } from './stt/model.js';
 import { createSttClient } from './stt/client.js';
 import type { SttClient } from './stt/client.js';
@@ -105,82 +103,21 @@ function internalError(route: string, err: unknown, message: string): { error: s
 /** Client's probe for local-vs-static mode: 200 means a local server is up. */
 app.get('/health', (c) => c.json({ ok: true }));
 
-/**
- * Derive the measured window's position within its section, so the
- * opening-/closing-position axes can fire on the local /ask path. The server
- * only ever sees the window (never the full draft), so position is computed
- * from the window's own block/section structure via the same pure helpers the
- * web side uses (splitBlocks + partitionSections from web/text-window.ts): the
- * cursor block is located by its [CURSOR START] transport marker, then
- * measured against the section it belongs to.
- *
- * Approximation note: sectionBlockCount is the count visible inside the
- * window, so a window clipped at a section or document edge undercounts its
- * section (the web side's sweep planner shares this constraint — it also sees
- * only its own window). A cursor block on a middle block of a large section
- * therefore reports a lower count, which only affects the >= 3 threshold.
- */
-export function derivePositionContext(window: string): PositionContext | null {
-  const blocks = splitBlocks(window);
-  if (blocks.length === 0) return null;
-  // The cursor block carries the transport marker; without one, fall back to
-  // treating the first block as the measured unit.
-  let cursorBlock = 0;
-  for (let i = 0; i < blocks.length; i++) {
-    if (blocks[i].text.includes('[CURSOR START]')) {
-      cursorBlock = i;
-      break;
-    }
-  }
-  const sections = partitionSections(blocks);
-  let offset = 0;
-  for (const section of sections) {
-    if (cursorBlock < offset + section.length) {
-      return {
-        sectionBlockCount: section.length,
-        blockIndexInSection: cursorBlock - offset,
-      };
-    }
-    offset += section.length;
-  }
-  return null;
-}
-
 app.post('/ask', async (c) => {
- const body = await c.req
-  .json<{ text_window?: unknown; genre?: unknown }>()
-  .catch(() => null);
- const textWindow = body?.text_window;
- const genre = body?.genre;
- if (typeof textWindow !== 'string') {
-  return c.json({ error: 'text_window must be a string' }, 400);
- }
- if (typeof genre !== 'string' || !(GENRES as readonly string[]).includes(genre)) {
-  return c.json({ error: `genre must be one of: ${GENRES.join(', ')}` }, 400);
- }
- try {
-  // Measure the window, map fired axes to implementation verbs, and narrow the
-  // seed draw with --lean-verbs (a soft preference). Position is derived from
-  // the window's own blocks (see derivePositionContext), so the opening- and
-  // closing-position axes can fire here too.
-  const position = derivePositionContext(textWindow);
-  const leanVerbs = implVerbs(measureWindow(textWindow, position ?? undefined));
-  const seed = await pullSeed(genre as Genre, { leanVerbs });
-  const reshaped = await reshape(seed.question, textWindow, complete, (info) => {
-   console.log(
-    JSON.stringify({
-     seed_id: seed.id,
-     genre,
-     failures: info.failures,
-     fallback: info.fallback,
-    }),
-   );
-  });
-  // Spread both fields so the client can label the question's provenance.
-  return c.json({ ...reshaped });
- } catch (err) {
-  return c.json(internalError('/ask', err, 'the coach could not answer — see the server log'), 500);
- }
+  const input = parseCoachInput(await c.req.json().catch(() => null));
+  if (!input) return c.json({ error: 'invalid coaching window, focus, position, or genre' }, 400);
+  const signal = c.req.raw.signal;
+  try {
+    signal.throwIfAborted();
+    const candidates = drawCandidates(await loadSeeds(), input);
+    signal.throwIfAborted();
+    const result = await askFromCandidates(input, candidates.map(seed => seed.question), complete, signal);
+    return c.json(result);
+  } catch (err) {
+    if (signal.aborted) return c.json({ kind: 'unavailable', retryable: false }, 408);
+    internalError('/ask', err, 'the coach could not answer');
+    return c.json({ kind: 'unavailable', retryable: true }, 503);
+  }
 });
 
 export function parseAnnotation(value: unknown): Annotation | null {
@@ -207,7 +144,7 @@ export function parseAnnotation(value: unknown): Annotation | null {
   // rather than stripping provenance silently on a /save round-trip.
   if (a.source !== undefined) {
     if (a.source !== 'seed' && a.source !== 'reshaped' && a.source !== 'topic-probe') return null;
-    return { start: a.start, end: a.end, fragment: a.fragment, question: a.question, ts: a.ts, source: a.source };
+    // Source is copied below with the other optional annotation fields.
   }
   const out: Annotation = {
     start: a.start,
@@ -216,6 +153,8 @@ export function parseAnnotation(value: unknown): Annotation | null {
     question: a.question,
     ts: a.ts,
   };
+  if (typeof a.id === 'string' && a.id.length > 0) out.id = a.id;
+  if (a.source === 'seed' || a.source === 'reshaped' || a.source === 'topic-probe') out.source = a.source;
   const ctx = a.context;
   if (typeof ctx === 'object' && ctx !== null) {
     const { before, after } = ctx as Record<string, unknown>;
@@ -499,12 +438,17 @@ async function handle(app: Hono, req: IncomingMessage, res: ServerResponse): Pro
   const body = Buffer.concat(chunks);
   // IncomingHttpHeaders is not exactly HeadersInit, but undici accepts it.
   const headers = req.headers as unknown as HeadersInit;
+  const controller = new AbortController();
+  const abort = () => { if (!res.writableEnded) controller.abort(); };
+  res.on('close', abort);
   const request = new Request(url, {
     method: req.method ?? 'GET',
     headers,
     body: adapterBody(req.method, body),
+    signal: controller.signal,
   });
   const response = await app.fetch(request);
+  if (controller.signal.aborted) return;
   const responseHeaders: Record<string, string> = {};
   response.headers.forEach((value, key) => {
     responseHeaders[key] = value;
@@ -555,13 +499,12 @@ export function registerShutdownHandlers(proc: ShutdownTarget, dispose: () => vo
   proc.on('SIGTERM', handler);
 }
 
-// --- boot ---
+/** Importing routes opens no sockets; only the executable starts listening. */
+export function startServer() {
+  registerShutdownHandlers(process, () => { stt?.dispose(); server.close(); });
+  return server.listen(port, LISTEN_ADDRESS, () => {
+    console.log(`better-writer server: http://${LISTEN_ADDRESS}:${port} (static: ${DIST_DIR})`);
+  });
+}
 
-// Dispose the STT worker on shutdown so its native model never orphans.
-registerShutdownHandlers(process, () => {
-  stt?.dispose();
-});
-
-server.listen(port, LISTEN_ADDRESS, () => {
-  console.log(`better-writer server: http://${LISTEN_ADDRESS}:${port} (static: ${DIST_DIR})`);
-});
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) startServer();

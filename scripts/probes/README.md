@@ -2,7 +2,9 @@
 
 The evidence behind the findings in [BUGS.md](../../BUGS.md) and
 [FIXED.md](../../FIXED.md). Every number those documents quote came out of a
-script here, and every one of these still runs.
+script here. These scripts target the historical interfaces from those findings.
+The session refactor changed the coaching request contract. Current behavioral
+checks live beside the modules, and `npm run eval:agent` exercises Bonsai.
 
 **Run from the repo root**, never from this directory:
 

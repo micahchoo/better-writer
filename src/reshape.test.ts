@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
-import { reshape } from './reshape.js';
-import type { ReshapeAttempt } from './reshape.js';
-import { TOPIC_PROBES } from './topic-probe.js';
-import type { Complete, Turn } from './types.js';
+import { reshape } from './core/reshape.js';
+import type { ReshapeAttempt } from './core/reshape.js';
+import { TOPIC_PROBES } from './core/topic-probe.js';
+import type { Complete, Turn } from './core/types.js';
 
 /**
  * The corrective nudges keyed by gate-failure reason (must mirror reshape.ts

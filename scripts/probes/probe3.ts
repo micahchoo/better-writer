@@ -1,4 +1,4 @@
-import { measureWindow } from '../../web/window-stats.js'
+import { measureWindow } from '../../src/core/window-stats.js'
 
 const cases: Array<[string,string]> = [
   ['possessive apostrophe', "The writers' guild met. The editors' room stayed dark. Nothing else happened at all."],

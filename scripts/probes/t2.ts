@@ -1,4 +1,4 @@
-import { isGrounded, isSingleQuestion } from '../../src/gate.js'
+import { isGrounded, isSingleQuestion } from '../../src/core/gate.js'
 console.log('--- isGrounded prefix rule: remaining false positives? ---')
 for (const [q, w] of [
  ['What does the character want?', 'The charactor sheet lists them.'],

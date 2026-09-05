@@ -1,19 +1,16 @@
-import { describe, expect, it, beforeAll } from 'vitest';
-import type * as ServerModule from './server';
-import { buildAskWindow } from '../web/text-window.js';
-import { measureWindow } from '../web/window-stats.js';
+import { describe, expect, it, beforeEach, vi } from 'vitest';
+import type { CoachInput } from './core/types';
+const { complete, loadSeeds } = vi.hoisted(() => ({ complete: vi.fn(), loadSeeds: vi.fn() }));
+vi.mock('./llm', () => ({ makeComplete: () => complete }));
+vi.mock('./core/seeds', async (original) => ({ ...await original<typeof import('./core/seeds')>(), loadSeeds }));
+import * as server from './server';
 
-// server.ts binds a real socket at module load (BW_PORT, default 4517). Point
-// it at an isolated port so importing the module never touches the live
-// origin — and never POSTs anything to it, so no data writes.
-let server: typeof ServerModule;
-
-// The module must be imported AFTER BW_PORT is set, or it would bind the live
-// 4517 port: static import evaluates the module before this file's body runs,
-// so only a runtime import can observe the env override.
-beforeAll(async () => {
-  process.env.BW_PORT = '49874';
-  server = await import('./server');
+beforeEach(() => {
+  complete.mockReset();
+  loadSeeds.mockReset().mockResolvedValue([
+    { id: 'setting', question: 'What does the setting reveal about the conflict?', genre: ['genre-agnostic'], verb: 'elaborate' },
+    { id: 'senses', question: 'How might sensory details carry emotional weight?', genre: ['genre-agnostic'], verb: 'rephrase' },
+  ]);
 });
 
 /** A minimal PCM16 mono 16 kHz WAV payload holding `sampleCount` samples. */
@@ -163,30 +160,67 @@ describe('/save JSON parsing (S4-9: distinguish parse failure from bad field)', 
   });
 });
 
-describe('local /ask position wiring (S2-10: opening/closing axes fire)', () => {
-  const blocks = ['Alpha one.', 'Beta two.', 'Gamma three.'];
+describe('/ask shared agent wiring', () => {
+  const input: CoachInput = {
+    textWindow: 'Morning came. Her copper kettle stayed cold.', genre: 'fiction', cursorOffset: 100,
+    focus: { start: 14, end: 43 }, position: { sectionBlockCount: 10, blockIndexInSection: 5 },
+  };
+  const request = (body: unknown = input) => server.app.request('/ask', {
+    method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body),
+  });
+  const valid = { kind: 'question', candidate: 1, question: 'What do you want the "copper kettle" to suggest about her reluctance?', quote: 'copper kettle' };
 
-  it('fires opening-position when the cursor block opens its section', () => {
-    const win = buildAskWindow(blocks, 0);
-    expect(server.derivePositionContext(win)).toEqual({ sectionBlockCount: 3, blockIndexInSection: 0 });
-    const stats = measureWindow(win, server.derivePositionContext(win) ?? undefined);
-    expect(stats.axes.has('opening-position')).toBe(true);
-    expect(stats.axes.has('closing-position')).toBe(false);
+  it('uses candidate selection and returns grounded window-relative evidence', async () => {
+    complete.mockResolvedValue(JSON.stringify(valid));
+    const response = await request();
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ kind: 'question', question: valid.question, source: 'reshaped', evidence: { quote: 'copper kettle', start: 18, end: 31 } });
+    const prompt = complete.mock.calls[0][1][0].text;
+    expect(prompt).toContain('What does the setting reveal');
+    expect(prompt).toContain('How might sensory details');
+    expect(prompt).toContain('Her copper kettle stayed cold.');
+    expect(complete.mock.calls[0][2].signal).toBeInstanceOf(AbortSignal);
   });
 
-  it('fires closing-position when the cursor block closes its section', () => {
-    const win = buildAskWindow(blocks, 2);
-    expect(server.derivePositionContext(win)).toEqual({ sectionBlockCount: 3, blockIndexInSection: 2 });
-    const stats = measureWindow(win, server.derivePositionContext(win) ?? undefined);
-    expect(stats.axes.has('closing-position')).toBe(true);
-    expect(stats.axes.has('opening-position')).toBe(false);
+  it('preserves explicit no-fit without retry', async () => {
+    complete.mockResolvedValue('{"kind":"skip"}');
+    expect(await (await request()).json()).toEqual({ kind: 'skip', reason: 'no-fit' });
+    expect(complete).toHaveBeenCalledTimes(1);
   });
 
-  it('fires neither for a cursor block in the middle of its section', () => {
-    const win = buildAskWindow(blocks, 1);
-    expect(server.derivePositionContext(win)).toEqual({ sectionBlockCount: 3, blockIndexInSection: 1 });
-    const stats = measureWindow(win, server.derivePositionContext(win) ?? undefined);
-    expect(stats.axes.has('opening-position')).toBe(false);
-    expect(stats.axes.has('closing-position')).toBe(false);
+  it('returns invalid-output after two malformed answers', async () => {
+    complete.mockResolvedValue('unstructured advice');
+    expect(await (await request()).json()).toEqual({ kind: 'skip', reason: 'invalid-output' });
+    expect(complete).toHaveBeenCalledTimes(2);
+  });
+
+  it('keeps model outages distinct from skip and performs no retry', async () => {
+    complete.mockRejectedValue(new Error('private provider details'));
+    expect(await (await request()).json()).toEqual({ kind: 'unavailable', retryable: true });
+    expect(complete).toHaveBeenCalledTimes(1);
+  });
+
+  it('reports seed-loading failure as unavailable without internal details', async () => {
+    loadSeeds.mockRejectedValue(new Error('private filesystem path'));
+    const log = vi.spyOn(console, 'error').mockImplementation(() => {});
+    try {
+      const response = await request();
+      expect(response.status).toBe(503);
+      expect(await response.json()).toEqual({ kind: 'unavailable', retryable: true });
+      expect(complete).not.toHaveBeenCalled();
+    } finally { log.mockRestore(); }
+  });
+
+  it.each([
+    { text_window: input.textWindow, genre: 'fiction' },
+    { ...input, focus: { start: -1, end: 20 } },
+    { ...input, focus: { start: 5, end: 999 } },
+    { ...input, position: { sectionBlockCount: 2, blockIndexInSection: 2 } },
+    { ...input, cursorOffset: 0.5 },
+    { ...input, genre: 'wrong' },
+  ])('rejects malformed request before loading seeds', async body => {
+    expect((await request(body)).status).toBe(400);
+    expect(loadSeeds).not.toHaveBeenCalled();
+    expect(complete).not.toHaveBeenCalled();
   });
 });

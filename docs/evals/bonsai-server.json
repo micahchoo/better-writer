@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-09-05T08:37:32.483Z",
+  "url": "http://127.0.0.1:49882",
+  "health": 200,
+  "input": {
+    "textWindow": "My grandmother cooked with her wrists, not her hands. She lifted the heavy iron skillet with a flick that looked careless and set it on the burner as if it weighed nothing. I stood in the doorway and waited for her to notice me.",
+    "genre": "memoir",
+    "cursorOffset": 0,
+    "focus": {
+      "start": 0,
+      "end": 228
+    },
+    "position": {
+      "sectionBlockCount": 1,
+      "blockIndexInSection": 0
+    }
+  },
+  "result": {
+    "kind": "question",
+    "source": "reshaped",
+    "question": "How does the detail 'cooked with her wrists, not her hands' shape the reader's understanding of her character?",
+    "evidence": {
+      "quote": "cooked with her wrists, not her hands",
+      "start": 15,
+      "end": 52
+    }
+  },
+  "canceled": true
+}

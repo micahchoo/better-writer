@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createDraftIo } from './draft.js';
-import type { Annotation } from './types.js';
+import type { Annotation } from './core/types.js';
 
 /** One temp directory per test, torn down after — real fs, no mocks. */
 let dir: string;

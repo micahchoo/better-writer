@@ -8,6 +8,7 @@ describe('note identity', () => {
   it('mints the full note shape from an anchor + question', () => {
     const note = makeNote(ANCHOR, QUESTION, 1_720_000_000_000)
     expect(note).toEqual({
+      id: expect.any(String),
       start: 4,
       end: 18,
       fragment: 'A hard sentence.',
@@ -26,10 +27,10 @@ describe('note identity', () => {
     }
   })
 
-  it('is stable: identical inputs mint identical ids', () => {
+  it('distinguishes independently minted notes with identical inputs', () => {
     const a = makeNote(ANCHOR, QUESTION, 1_720_000_000_000)
     const b = makeNote(ANCHOR, QUESTION, 1_720_000_000_000)
-    expect(noteId(a)).toBe(noteId(b))
+    expect(noteId(a)).not.toBe(noteId(b))
   })
 
   it('distinguishes notes minted at different times', () => {
@@ -60,7 +61,7 @@ describe('note identity', () => {
     const b = makeNote(ANCHOR, QUESTION, 1_720_000_000_000)
     const c = makeNote(ANCHOR, QUESTION, 1_720_000_001_000)
     const d = makeNote({ ...ANCHOR, start: 0 }, QUESTION, 1_720_000_000_000)
-    expect(sameNote(a, b)).toBe(true)
+    expect(sameNote(a, b)).toBe(false)
     expect(sameNote(a, c)).toBe(false)
     expect(sameNote(a, d)).toBe(false)
   })

@@ -9,8 +9,8 @@ import {
   echoesText,
   isSingleQuestion,
   isGrounded,
-} from '../../src/gate.js';
-import { TOPIC_PROBES } from '../../src/topic-probe.js';
+} from '../../src/core/gate.js';
+import { TOPIC_PROBES } from '../../src/core/topic-probe.js';
 
 const p = (label: string, v: unknown) => console.log(`${v ? 'PASS' : 'FAIL'}  ${label}: ${JSON.stringify(v)}`);
 

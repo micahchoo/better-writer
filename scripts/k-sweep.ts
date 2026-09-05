@@ -20,11 +20,11 @@ import { appendFileSync, mkdirSync, readFileSync, truncateSync, writeFileSync } 
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { planSweep } from '../web/coach-sweep.js';
-import { copiesSeed, echoesText, isGrounded, isSingleQuestion } from '../src/gate.js';
-import { topicProbe } from '../src/topic-probe.js';
-import { GENRES, type Genre } from '../src/types.js';
+import { copiesSeed, echoesText, isGrounded, isSingleQuestion } from '../src/core/gate.js';
+import { topicProbe } from '../src/core/topic-probe.js';
+import { GENRES, type Genre } from '../src/core/types.js';
 import { loadEnvFile } from '../src/env.js';
-import { RESHAPE_SYSTEM, RETRY_SUFFIXES, buildPrompt } from '../src/reshape.js';
+import { RESHAPE_SYSTEM, RETRY_SUFFIXES, buildPrompt } from '../src/core/reshape.js';
 
 const execFileAsync = promisify(execFile);
 

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { ClientSeed } from '../src/types';
+import type { ClientSeed, CoachInput } from '../src/core/types';
 import {
   ByokCoach,
   loadByokConfig,
@@ -39,7 +39,9 @@ const TEXT_WINDOW =
 
 // Passes the full gate against TEXT_WINDOW: single '?' at the end, no newline,
 // shares "keeper" (grounded), echoes no text bigram, copies no seed word.
-const VALID_QUESTION = 'What does the keeper fear will fail him when the light goes out?';
+const VALID_QUESTION = 'What do you want the "keeper" to fear when the light goes out?';
+const ASK_INPUT: CoachInput = { textWindow: TEXT_WINDOW, genre: 'fiction', cursorOffset: 0 };
+const MODEL_OUTPUT = JSON.stringify({ kind: 'question', candidate: 1, question: VALID_QUESTION, quote: 'keeper' });
 
 const fictionSeed: ClientSeed = {
   id: 's1',
@@ -217,7 +219,7 @@ describe('makeByokComplete', () => {
 
     const body = JSON.parse(init.body);
     expect(body.model).toBe('gpt-4o-mini');
-    expect(body.max_tokens).toBe(256);
+    expect(body.max_tokens).toBe(512);
     expect(body.temperature).toBe(0.7);
     expect(body.messages).toHaveLength(2);
     expect(body.messages[0].role).toBe('system');
@@ -226,7 +228,7 @@ describe('makeByokComplete', () => {
     expect(body.messages[1].content).toBe('the prompt');
   });
 
-  it('joins multiple turns with blank lines and honors a custom temperature', async () => {
+  it('preserves conversation roles and honors a custom temperature', async () => {
     const fetchFn = stubFetch('ok');
     const complete = makeByokComplete(makeConfig());
     await complete('sys', [{ role: 'user', text: 'one' }, { role: 'agent', text: 'two' }], {
@@ -234,7 +236,7 @@ describe('makeByokComplete', () => {
     });
     const body = storedBody(fetchFn);
     expect(body.temperature).toBe(0.1);
-    expect(body.messages[1].content).toBe('one\n\ntwo');
+    expect(body.messages.slice(1)).toEqual([{ role: 'user', content: 'one' }, { role: 'assistant', content: 'two' }]);
   });
 
   it('throws with status and provider text on a non-ok response', async () => {
@@ -269,42 +271,39 @@ describe('makeByokComplete', () => {
 });
 
 describe('ByokCoach.ask', () => {
-  it('reshapes a seed against the window and reports lastSource "reshaped"', async () => {
+  it('reshapes a seed against the window and returns source and exact evidence', async () => {
     saveByokConfig(makeConfig());
-    const fetchFn = stubFetch(VALID_QUESTION);
+    const fetchFn = stubFetch(MODEL_OUTPUT);
 
     const coach = new ByokCoach({ seeds: [fictionSeed] });
-    const question = await coach.ask(TEXT_WINDOW, 'fiction', 0);
+    const question = await coach.ask(ASK_INPUT);
 
-    expect(question).toBe(VALID_QUESTION);
-    expect(coach.lastSource()).toBe('reshaped');
+    expect(question).toMatchObject({ kind: 'question', question: VALID_QUESTION, source: 'reshaped', evidence: { quote: 'keeper', start: 15, end: 21 } });
 
     // The request body carries the seed's question through the reshape prompt.
     const body = storedBody(fetchFn);
     expect(body.messages[1].content).toContain(fictionSeed.question);
   });
 
-  it('falls back to a topic probe when the model output fails the gate twice', async () => {
+  it('skips when the model output fails validation twice', async () => {
     saveByokConfig(makeConfig());
     const fetchFn = stubFetch('yes'); // not a single question -> syntax failure, twice
 
     const coach = new ByokCoach({ seeds: [fictionSeed] });
-    const question = await coach.ask(TEXT_WINDOW, 'fiction', 0);
+    const question = await coach.ask(ASK_INPUT);
 
     expect(fetchFn).toHaveBeenCalledTimes(2); // first attempt + one retry
-    expect(coach.lastSource()).toBe('topic-probe');
-    expect(question).toBeTruthy();
-    expect(question.endsWith('?')).toBe(true);
+    expect(question).toEqual({ kind: 'skip', reason: 'invalid-output' });
   });
 
   it('honors the genre filter when picking the seed', async () => {
     saveByokConfig(makeConfig());
-    const fetchFn = stubFetch(VALID_QUESTION);
+    const fetchFn = stubFetch(MODEL_OUTPUT);
 
     const coach = new ByokCoach({ seeds: [fictionSeed, poetrySeed] });
-    const question = await coach.ask(TEXT_WINDOW, 'fiction', 0);
+    const question = await coach.ask(ASK_INPUT);
 
-    expect(question).toBe(VALID_QUESTION);
+    expect(question).toMatchObject({ kind: 'question', question: VALID_QUESTION, source: 'reshaped', evidence: { quote: 'keeper', start: 15, end: 21 } });
     expect(fetchFn).toHaveBeenCalledTimes(1);
   });
 });
@@ -515,3 +514,74 @@ describe('provider error bodies are bounded and readable (H7-3)', () => {
     );
   });
 });
+
+
+describe('ByokCoach sessions', () => {
+  it('keeps saved connection settings fixed for the adapter lifetime', async () => {
+    saveByokConfig(makeConfig())
+    const coach = new ByokCoach({ seeds: [fictionSeed] })
+    saveByokConfig(makeConfig({ baseUrl: 'https://example.com/v1', apiKey: 'other-key', model: 'other-model' }))
+    const fetchFn = stubFetch(MODEL_OUTPUT)
+    await coach.ask(ASK_INPUT)
+    const [url, init] = fetchFn.mock.calls[0] as [string, RequestInit]
+    expect(url).toBe('https://api.openai.com/v1/chat/completions')
+    expect(init.headers).toMatchObject({ Authorization: 'Bearer test-key' })
+    expect(storedBody(fetchFn).model).toBe('gpt-4o-mini')
+  })
+
+  it('keeps explicit connection settings fixed even if their original object changes', async () => {
+    const config = makeConfig()
+    const coach = new ByokCoach({ seeds: [fictionSeed], config })
+    config.apiKey = 'changed-key'
+    config.model = 'changed-model'
+    const fetchFn = stubFetch(MODEL_OUTPUT)
+    await coach.ask(ASK_INPUT)
+    const [, init] = fetchFn.mock.calls[0] as [string, RequestInit]
+    expect(init.headers).toMatchObject({ Authorization: 'Bearer test-key' })
+    expect(storedBody(fetchFn).model).toBe('gpt-4o-mini')
+  })
+
+  it('returns no-fit without retry', async () => {
+    saveByokConfig(makeConfig())
+    const fetchFn = stubFetch('{"kind":"skip"}')
+    expect(await new ByokCoach({ seeds: [fictionSeed] }).ask(ASK_INPUT)).toEqual({ kind: 'skip', reason: 'no-fit' })
+    expect(fetchFn).toHaveBeenCalledTimes(1)
+  })
+
+  it('returns unavailable on transport failure without retry', async () => {
+    saveByokConfig(makeConfig())
+    const fetchFn = vi.fn().mockRejectedValue(new Error('offline'))
+    vi.stubGlobal('fetch', fetchFn)
+    expect(await new ByokCoach({ seeds: [fictionSeed] }).ask(ASK_INPUT)).toEqual({ kind: 'unavailable', retryable: true })
+    expect(fetchFn).toHaveBeenCalledTimes(1)
+  })
+
+  it('cancels the provider fetch without producing a fallback or retry', async () => {
+    saveByokConfig(makeConfig())
+    let transportSignal!: AbortSignal
+    const fetchFn = vi.fn((_url, init: RequestInit) => new Promise((_resolve, reject) => {
+      transportSignal = init.signal!
+      transportSignal.addEventListener('abort', () => reject(new Error('provider aborted')))
+    }))
+    vi.stubGlobal('fetch', fetchFn)
+    const controller = new AbortController()
+    const pending = new ByokCoach({ seeds: [fictionSeed] }).ask(ASK_INPUT, controller.signal)
+    const reason = new Error('session closed')
+    controller.abort(reason)
+    await expect(pending).rejects.toBe(reason)
+    expect(transportSignal.aborted).toBe(true)
+    expect(fetchFn).toHaveBeenCalledTimes(1)
+  })
+
+  it('returns independent metadata for out-of-order completions', async () => {
+    let resolveFirst!: (value: string) => void
+    const complete = vi.fn().mockImplementationOnce(() => new Promise<string>(resolve => { resolveFirst = resolve }))
+      .mockResolvedValueOnce('{"kind":"skip"}')
+    const coach = new ByokCoach({ seeds: [fictionSeed], complete })
+    const first = coach.ask(ASK_INPUT)
+    const second = await coach.ask(ASK_INPUT)
+    resolveFirst(MODEL_OUTPUT)
+    expect(await first).toMatchObject({ kind: 'question', source: 'reshaped', question: VALID_QUESTION })
+    expect(second).toEqual({ kind: 'skip', reason: 'no-fit' })
+  })
+})

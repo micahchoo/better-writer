@@ -1,0 +1,129 @@
+{
+  "reviewer": "AI agent",
+  "note": "Output labels were hidden, but selected candidate indices may reveal the arm. This is not an independent human assessment. Reviewer had previously scored an earlier output set for the same passages.",
+  "rubric": {
+    "relevance": "0 irrelevant or missed valid candidate on abstention; 1 partial; 2 strong or correct no-fit abstention",
+    "intent": "0 lost; 1 partial; 2 preserved, judged against selected_candidate when provided, otherwise first candidate; null for abstention",
+    "non_prescriptive": "1 explores choice or effect; 0 assumes repair or directs a rewrite; null for abstention",
+    "hallucinated_premise": "Invented narrative or author facts; unsupported repair assumptions are scored under non_prescriptive"
+  },
+  "ratings": [
+    {
+      "id": 0,
+      "relevance": 2,
+      "intent": 2,
+      "non_prescriptive": 0,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 8,
+      "relevance": 2,
+      "intent": 2,
+      "non_prescriptive": 1,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 12,
+      "relevance": 0,
+      "intent": 1,
+      "non_prescriptive": 1,
+      "hallucinated_premise": true
+    },
+    {
+      "id": 3,
+      "relevance": 1,
+      "intent": 0,
+      "non_prescriptive": 1,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 14,
+      "relevance": 1,
+      "intent": 2,
+      "non_prescriptive": 0,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 11,
+      "relevance": 2,
+      "intent": 1,
+      "non_prescriptive": 1,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 5,
+      "relevance": 0,
+      "intent": null,
+      "non_prescriptive": null,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 15,
+      "relevance": 1,
+      "intent": 1,
+      "non_prescriptive": 1,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 7,
+      "relevance": 2,
+      "intent": 2,
+      "non_prescriptive": 1,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 6,
+      "relevance": 2,
+      "intent": 2,
+      "non_prescriptive": 0,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 2,
+      "relevance": 1,
+      "intent": 2,
+      "non_prescriptive": 1,
+      "hallucinated_premise": true
+    },
+    {
+      "id": 9,
+      "relevance": 1,
+      "intent": 0,
+      "non_prescriptive": 1,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 1,
+      "relevance": 2,
+      "intent": 2,
+      "non_prescriptive": 1,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 4,
+      "relevance": 1,
+      "intent": 0,
+      "non_prescriptive": 1,
+      "hallucinated_premise": false
+    },
+    {
+      "id": 10,
+      "relevance": 1,
+      "intent": 2,
+      "non_prescriptive": 1,
+      "hallucinated_premise": true
+    },
+    {
+      "id": 13,
+      "relevance": 2,
+      "intent": null,
+      "non_prescriptive": null,
+      "hallucinated_premise": false
+    }
+  ],
+  "limitations": [
+    "Generic effect questions can lose selected craft intent: id 3 asks about motion although candidate 2 asks for characterization at rest; id 9 asks about a scene image although candidate 3 asks for a few characterizing details.",
+    "Exact passage details do not prevent fabricated premises: id 2 assumes lovers and companionship; id 10 attributes witness uncertainty to the writer; id 12 invents a relationship and misunderstanding.",
+    "Abstention at id 5 misses the applicable flat-reading exercise. Some relevance and intent judgments remain interpretive: id 15 addresses a visual detail but does not examine the selected telling-to-scene distinction."
+  ]
+}

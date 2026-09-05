@@ -30,7 +30,7 @@
  * matching stays what it was. See toAnchor for why both halves are needed.
  */
 
-import { splitBlocks } from './text-window.js';
+import { splitBlocks } from '../src/core/text-window.js';
 
 export interface Anchor {
   /** character offset of the anchor's first character in the draft */

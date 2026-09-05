@@ -1,4 +1,4 @@
-import { measureWindow } from '../../web/window-stats.js'
+import { measureWindow } from '../../src/core/window-stats.js'
 const v = (t: string) => { const m = measureWindow(t); return m.values }
 console.log('=== H1-1 filter verbs: tense sensitivity ===')
 console.log('past   ', v('She felt cold. He seemed tired. They noticed it. She realized. He watched. She wondered.').filterRate.toFixed(2))

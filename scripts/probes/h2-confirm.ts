@@ -5,7 +5,7 @@
  * matches; (b) copiesSeed accent-drop escape; (c) emphatic "Why?!" rejected;
  * (d) copiesSeed runs on corrupted accent-stripped tokens.
  */
-import { copiesSeed, echoesText, isSingleQuestion } from '../../src/gate.js';
+import { copiesSeed, echoesText, isSingleQuestion } from '../../src/core/gate.js';
 
 console.log('=== (a) echoesText accent-asymmetry (window accented, question plain) ===');
 // Near-verbatim echo, matching accents: SHOULD and DOES trip (1.0)

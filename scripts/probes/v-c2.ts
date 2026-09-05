@@ -1,5 +1,5 @@
 import { pickSeed } from '../../web/coach.js'
-import type { ClientSeed, Genre } from '../../src/types.js'
+import type { ClientSeed, Genre } from '../../src/core/types.js'
 const mk = (id: string, g: string[]): ClientSeed => ({ id, question: id + '?', verb: 'cut', genre: g } as ClientSeed)
 function ratio(nSpecific: number, nAgnostic: number, genre: Genre) {
   const seeds = [...Array.from({length:nSpecific},(_,i)=>mk('s'+i,[genre])), ...Array.from({length:nAgnostic},(_,i)=>mk('a'+i,['genre-agnostic']))]

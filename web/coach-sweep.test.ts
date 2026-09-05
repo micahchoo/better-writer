@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
-import type { Genre, QuestionSource } from '../src/types.js'
-import { planSweep, reconcileAnnotations, runSweep, staleAnnotations } from './coach-sweep.js'
+import type { Coach, CoachInput, CoachResult } from '../src/core/types.js'
+import { cursorPlan, planSweep, reconcileAnnotations, runSweep, staleAnnotations } from './coach-sweep.js'
 
 /**
  * A synthetic 10-block draft whose block texts are all unique, so anchor
@@ -188,466 +188,6 @@ describe('planSweep', () => {
   })
 })
 
-describe('runSweep', () => {
-  it('asks windows through a bounded pool and reports notes in plan order', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft)
-    const callOrder: string[] = []
-    const pending: Array<{ resolve: (question: string) => void }> = []
-    const coach = {
-      ask(textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
-        const index = callOrder.length
-        callOrder.push(textWindow)
-        // Promise.withResolvers needs the es2024 lib; this project targets
-        // es2022, so the executor form is the only way to hold a resolver.
-        return new Promise<string>((resolve) => {
-          pending[index] = { resolve }
-        })
-      },
-    }
-    const onNote = vi.fn()
-    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    // The pool of 2 starts two asks at once.
-    await Promise.resolve()
-    expect(callOrder).toHaveLength(2)
-
-    // Resolve answers in order; each resolution unlocks the next ask.
-    for (let i = 0; i < plan.length; i++) {
-      pending[i].resolve(`Rewrite "${markedBlock(BLOCKS_10, i)}" with more force`)
-      await Promise.resolve()
-    }
-
-    const { notes } = await sweepPromise
-    expect(callOrder).toHaveLength(plan.length)
-    expect(callOrder).toEqual(plan.map((w) => w.markedText))
-    expect(notes).toHaveLength(plan.length)
-    expect(onNote).toHaveBeenCalledTimes(plan.length)
-    for (let i = 0; i < plan.length; i++) {
-      expect(onNote.mock.calls[i][0]).toEqual(notes[i])
-      expect(notes[i].windowIndex).toBe(i)
-      expect(notes[i].fragment).toBe(markedBlock(BLOCKS_10, i))
-      expect(draft.slice(notes[i].start, notes[i].end)).toBe(notes[i].fragment)
-    }
-  })
-
-  it('never runs more than two asks in flight at once', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft)
-    let inFlight = 0
-    let maxInFlight = 0
-    const pending: Array<{ resolve: (question: string) => void }> = []
-    const coach = {
-      ask(textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
-        inFlight++
-        maxInFlight = Math.max(maxInFlight, inFlight)
-        const index = pending.length
-        return new Promise<string>((resolve) => {
-          pending[index] = {
-            resolve: (question: string) => {
-              inFlight--
-              resolve(question)
-            },
-          }
-        })
-      },
-    }
-    const onNote = vi.fn()
-    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    // The pool fills to its cap of 2 immediately.
-    await Promise.resolve()
-    expect(pending).toHaveLength(2)
-    expect(maxInFlight).toBe(2)
-
-    // A new ask may start only after one resolves; the cap never grows.
-    pending[0].resolve(`Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`)
-    await flush()
-    expect(pending).toHaveLength(3)
-    expect(maxInFlight).toBe(2)
-
-    // Window 1 resolves; window 2 is already claimed, so no new ask starts.
-    pending[1].resolve(`Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`)
-    await flush()
-    expect(pending).toHaveLength(3)
-    expect(maxInFlight).toBe(2)
-
-    pending[2].resolve(`Rewrite "${markedBlock(BLOCKS_10, 2)}" with more force`)
-    const { notes } = await sweepPromise
-    expect(maxInFlight).toBe(2)
-    expect(notes).toHaveLength(plan.length)
-  })
-
-  it('emits notes in ascending window index even when answers resolve out of order', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft)
-    const pending: Array<(question: string) => void> = []
-    const coach = {
-      ask(_textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
-        return new Promise<string>((resolve) => {
-          pending.push(resolve)
-        })
-      },
-    }
-    const onNote = vi.fn()
-    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    await Promise.resolve()
-    expect(pending).toHaveLength(2) // windows 0 and 1 in flight
-
-    const q = (i: number) => `Rewrite "${markedBlock(BLOCKS_10, i)}" with more force`
-    // Resolve in the order 1, 2, 0 — window 1 finishing frees a worker to
-    // start window 2, so the ordered emitter must hold both until window 0
-    // arrives.
-    pending[1](q(1))
-    await flush()
-    pending[2](q(2))
-    await flush()
-    expect(onNote).not.toHaveBeenCalled() // window 0 still pending blocks the prefix
-
-    pending[0](q(0))
-    await flush()
-
-    const { notes } = await sweepPromise
-    expect(onNote).toHaveBeenCalledTimes(3)
-    expect(onNote.mock.calls.map((c) => c[0].windowIndex)).toEqual([0, 1, 2])
-    expect(notes.map((n) => n.windowIndex)).toEqual([0, 1, 2])
-  })
-
-  it('skips a window whose answer quotes text from elsewhere in the draft', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft)
-    const responses = [
-      `Rewrite "${BLOCKS_10[3]}" elsewhere`, // block 3 lives in window 1, not window 0
-      `Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`,
-      `Rewrite "${markedBlock(BLOCKS_10, 2)}" with more force`,
-    ]
-    const coach = { ask: async () => responses.shift() ?? 'What does the reader feel here?' }
-    const onNote = vi.fn()
-    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    expect(notes).toHaveLength(2)
-    expect(onNote).toHaveBeenCalledTimes(2)
-    expect(notes.map((n) => n.windowIndex)).toEqual([1, 2])
-    expect(notes[0].fragment).toBe(BLOCKS_10[4])
-  })
-
-  it('anchors a note in a merged-tail window whose last block sits inside the plan bounds', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft) // [0-2], [3-5], [6-9]: the merged 4-block tail
-    // Every ask quotes the LAST block of the merged tail (block 9). That
-    // block lives inside window 2's own plan bounds, so only window 2
-    // anchors; a stride-3 re-derivation would put block 9 outside and skip.
-    const coach = { ask: async () => `Rewrite "${BLOCKS_10[9]}" with more force` }
-    const onNote = vi.fn()
-    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    expect(notes).toHaveLength(1)
-    expect(notes[0].windowIndex).toBe(2)
-    expect(notes[0].fragment).toBe(BLOCKS_10[9])
-    expect(onNote).toHaveBeenCalledTimes(1)
-  })
-
-  it('anchors every note in a heading-split plan using each window\u2019s own bounds', async () => {
-    const intro = 'An opening paragraph.'
-    const heading = '## The Turn'
-    const body = ['The body after the heading.', 'More body.', 'Still more body.']
-    const draft = doc([intro, heading, ...body])
-    const plan = planSweep(draft) // [intro], [heading, body0, body1, body2]
-    expect(plan).toHaveLength(2)
-    const responses = [
-      `Rewrite "${intro}" with more force`, // window 0: single-block window
-      `Rewrite "${body[2]}" with more force`, // window 1: last block of the 4-block section window
-    ]
-    const coach = { ask: async () => responses.shift() ?? 'What does the reader feel here?' }
-    const onNote = vi.fn()
-    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    expect(notes).toHaveLength(2)
-    expect(notes.map((n) => n.windowIndex)).toEqual([0, 1])
-    expect(notes[0].fragment).toBe(intro)
-    expect(notes[1].fragment).toBe(body[2])
-  })
-
-  it('tie-breaks twin paragraphs at a window\u2019s two ends toward the marked block', async () => {
-    const twin = 'The lighthouse keeper never blinked.'
-    const filler = 'A gust rattled the shutters.'
-    const middle = 'Marked middle paragraph here.'
-    // A 4-block merged tail [0..3] — the largest a window may be (a 5-block
-    // merge is refused, see the tail-merge block-count test). Marked = block 1.
-    const draft = doc([twin, filler, middle, twin])
-    const plan = planSweep(draft)
-    expect(plan).toHaveLength(1)
-    // The quote occurs at block 0 and block 3; the plan's cursorHint sits in
-    // the marked block (block 1), which is closer to the LATER twin — so the
-    // anchor must land there, not on the first occurrence.
-    const coach = { ask: async () => `Rewrite "${twin}" with more force` }
-    const onNote = vi.fn()
-    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    expect(notes).toHaveLength(1)
-    expect(notes[0].fragment).toBe(twin)
-    expect(notes[0].start).toBe(draft.lastIndexOf(twin))
-  })
-
-  it('skips every window when the coach answers with topic-probe questions', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft)
-    const coach = {
-      async ask(): Promise<string> {
-        return 'What does the reader feel about pacing and structure in this passage?'
-      },
-    }
-    const onNote = vi.fn()
-    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    expect(notes).toEqual([])
-    expect(onNote).not.toHaveBeenCalled()
-  })
-
-  it('returns no notes for an empty plan without calling the coach', async () => {
-    const onNote = vi.fn()
-    const coach = { ask: vi.fn(async () => 'anything') }
-    const { notes, asked, skipped } = await runSweep([], { genre: 'fiction', coach, draft: '', onNote })
-
-    expect(notes).toEqual([])
-    expect(asked).toBe(0)
-    expect(skipped).toBe(0)
-    expect(coach.ask).not.toHaveBeenCalled()
-    expect(onNote).not.toHaveBeenCalled()
-  })
-
-  it('fires onProgress after every window, skipped anchors included', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft)
-    const responses = [
-      `Rewrite "${BLOCKS_10[3]}" elsewhere`, // window 0: anchored outside its bounds -> skipped
-      `Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`,
-      `Rewrite "${markedBlock(BLOCKS_10, 2)}" with more force`,
-    ]
-    const coach = { ask: async () => responses.shift() ?? 'What does the reader feel here?' }
-    const onNote = vi.fn()
-    const onProgress = vi.fn()
-    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote, onProgress })
-
-    expect(notes).toHaveLength(2)
-    expect(onNote).toHaveBeenCalledTimes(2)
-    // Progress advances one window at a time, the skipped window included.
-    expect(onProgress.mock.calls).toEqual([
-      [1, 3],
-      [2, 3],
-      [3, 3],
-    ])
-  })
-
-  it('stops starting windows after shouldAbort flips, counting the aborted tail as skipped', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft)
-    const callOrder: string[] = []
-    const pending: Array<{ resolve: (question: string) => void }> = []
-    const coach = {
-      ask(textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
-        const index = callOrder.length
-        callOrder.push(textWindow)
-        return new Promise<string>((resolve) => {
-          pending[index] = { resolve }
-        })
-      },
-    }
-    let shouldAbort = false
-    const onNote = vi.fn()
-    const onProgress = vi.fn()
-    const sweepPromise = runSweep(plan, {
-      genre: 'fiction',
-      coach,
-      draft,
-      onNote,
-      onProgress,
-      shouldAbort: () => shouldAbort,
-    })
-
-    await Promise.resolve()
-    expect(callOrder).toHaveLength(2) // pool: windows 0 and 1 are in flight
-    pending[0].resolve(`Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`)
-    pending[1].resolve(`Rewrite "${markedBlock(BLOCKS_10, 1)}" with more force`)
-    // The writer hits Stop before either worker picks up a third window.
-    shouldAbort = true
-
-    // Resolves normally (no throw), with the notes that were in flight.
-    const { notes, asked, skipped } = await sweepPromise
-    expect(callOrder).toHaveLength(2) // window 2 was never asked
-    expect(notes).toHaveLength(2)
-    expect(notes.map((n) => n.windowIndex)).toEqual([0, 1])
-    expect(notes[0].fragment).toBe(markedBlock(BLOCKS_10, 0))
-    expect(notes[1].fragment).toBe(markedBlock(BLOCKS_10, 1))
-    expect(onNote).toHaveBeenCalledTimes(2)
-    // Aborted windows count as skipped; asked + skipped always covers the plan.
-    expect(asked).toBe(2)
-    expect(skipped).toBe(1)
-    expect(asked + skipped).toBe(plan.length)
-    // Progress advances only through the windows that resolved.
-    expect(onProgress.mock.calls).toEqual([
-      [1, plan.length],
-      [2, plan.length],
-    ])
-  })
-
-  it('latches an abort on the first failing ask so no worker claims another window', async () => {
-    const blocks = Array.from({ length: 18 }, (_, i) => `Sweep block number ${i}.`)
-    const draft = doc(blocks)
-    const plan = planSweep(draft) // 6 windows
-    expect(plan).toHaveLength(6)
-
-    const asks: string[] = []
-    let finishWindow0!: (question: string) => void
-    const coach = {
-      ask(textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
-        asks.push(textWindow)
-        // Window 0's ask stays in flight; every later ask (window 1 first)
-        // fails — the probe's "ask #1 throws".
-        if (asks.length === 1) {
-          return new Promise<string>((resolve) => {
-            finishWindow0 = resolve
-          })
-        }
-        return Promise.reject(new Error('server down'))
-      },
-    }
-    const onNote = vi.fn()
-    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    // The pool of 2 starts windows 0 and 1; window 1's ask throws.
-    await Promise.resolve()
-    expect(asks).toHaveLength(2)
-
-    // The sweep rejects overall on the first failure.
-    await expect(sweepPromise).rejects.toThrow('server down')
-
-    // The abort latch stops the sibling worker from claiming a new window
-    // once its in-flight ask completes: window 2 is never asked.
-    finishWindow0(`Rewrite "${markedBlock(blocks, 0)}" with more force`)
-    await flush()
-    expect(asks).toHaveLength(2) // 2 of a 6-window plan, not all six
-
-    // Window 0's note still arrives: the failed slot was marked resolved, so
-    // the drain prefix advanced past it.
-    expect(onNote).toHaveBeenCalledTimes(1)
-    expect(onNote.mock.calls[0][0].windowIndex).toBe(0)
-  })
-
-  it('emits windows that resolve after a failing window instead of dropping them', async () => {
-    const blocks = Array.from({ length: 18 }, (_, i) => `Sweep block number ${i}.`)
-    const draft = doc(blocks)
-    const plan = planSweep(draft) // 6 windows
-    expect(plan).toHaveLength(6)
-
-    const pendings: Array<{ resolve: (q: string) => void; reject: (e: Error) => void }> = []
-    const coach = {
-      ask(_textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
-          pendings.push({ resolve, reject })
-        })
-      },
-    }
-    const onNote = vi.fn()
-    const sweepPromise = runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-    // Pre-attach a handler so the sweep's rejection is never left unhandled
-    // across the macrotask flushes below (the note assertions run after we
-    // have sequenced the later window).
-    const rejection = sweepPromise.catch((e: unknown) => e)
-
-    await Promise.resolve()
-    expect(pendings).toHaveLength(2) // windows 0 and 1 in flight
-
-    // Window 0 fails first; window 1 resolves afterwards with an anchored note.
-    pendings[0].reject(new Error('server down'))
-    await flush()
-    pendings[1].resolve(`Rewrite "${markedBlock(blocks, 1)}" with more force`)
-    await flush()
-
-    // The sweep still rejects overall, but the note that resolved past the
-    // failed window is emitted — nothing is silently binned.
-    const err = await rejection
-    expect(err).toBeInstanceOf(Error)
-    expect((err as Error).message).toBe('server down')
-    expect(onNote).toHaveBeenCalledTimes(1)
-    expect(onNote.mock.calls[0][0].windowIndex).toBe(1)
-  })
-
-  it('sums asked and skipped to exactly the plan length across anchored, unanchored, and aborted windows', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft) // 3 windows
-    const pending: Array<{ resolve: (question: string) => void }> = []
-    const coach = {
-      ask(_textWindow: string, _genre: Genre, _cursorOffset: number): Promise<string> {
-        return new Promise<string>((resolve) => {
-          pending.push({ resolve })
-        })
-      },
-    }
-    let shouldAbort = false
-    const onNote = vi.fn()
-    const sweepPromise = runSweep(plan, {
-      genre: 'fiction',
-      coach,
-      draft,
-      onNote,
-      shouldAbort: () => shouldAbort,
-    })
-
-    await Promise.resolve()
-    expect(pending).toHaveLength(2) // windows 0, 1 in flight
-    // Window 0 anchors; window 1's answer quotes a block from another window
-    // (block 0), so it fails to anchor inside window 1 -> skipped.
-    pending[0].resolve(`Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`)
-    pending[1].resolve(`Rewrite "${BLOCKS_10[0]}" elsewhere`)
-    // Abort before any new window starts; window 2 is never asked.
-    shouldAbort = true
-
-    const { notes, asked, skipped } = await sweepPromise
-    expect(notes).toHaveLength(1)
-    expect(notes[0].windowIndex).toBe(0)
-    expect(asked).toBe(1)
-    expect(skipped).toBe(2) // window 1 unanchored + window 2 aborted
-    expect(asked + skipped).toBe(plan.length)
-    expect(onNote).toHaveBeenCalledTimes(1)
-  })
-
-  it('labels each note with the coach provenance read right after the ask', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft).slice(0, 1)
-    let last: QuestionSource | null = null
-    const coach = {
-      ask: async (): Promise<string> => `Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force`,
-      lastSource: (): QuestionSource | null => last,
-    }
-    const onNote = vi.fn()
-
-    // null before any ask: the note carries no source.
-    const first = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-    expect(first.notes[0].source).toBeUndefined()
-
-    last = 'reshaped'
-    const reshaped = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-    expect(reshaped.notes[0].source).toBe('reshaped')
-
-    last = 'topic-probe'
-    const probed = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-    expect(probed.notes[0].source).toBe('topic-probe')
-  })
-
-  it('leaves note.source absent when the coach exposes no provenance (static)', async () => {
-    const draft = doc(BLOCKS_10)
-    const plan = planSweep(draft).slice(0, 1)
-    const coach = { ask: async (): Promise<string> => `Rewrite "${markedBlock(BLOCKS_10, 0)}" with more force` }
-    const onNote = vi.fn()
-    const { notes } = await runSweep(plan, { genre: 'fiction', coach, draft, onNote })
-
-    expect(notes).toHaveLength(1)
-    expect(notes[0].source).toBeUndefined()
-  })
-})
-
 describe('staleAnnotations', () => {
   it('keeps annotations whose fragment still matches the draft', () => {
     const draft = doc(BLOCKS_10)
@@ -766,5 +306,159 @@ describe('reconcileAnnotations', () => {
     const gone = { start: 0, end: 4, fragment: 'gone', question: 'q', ts: 3 }
     const { changed } = reconcileAnnotations([gone], draft)
     expect(changed).toBe(true)
+  })
+})
+
+function deferred<T>() {
+  let resolve!: (value: T) => void
+  let reject!: (error: Error) => void
+  const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no })
+  return { promise, resolve, reject }
+}
+function answer(input: CoachInput, source: 'seed' | 'reshaped' = 'reshaped'): CoachResult {
+  const focus = input.focus!
+  const quote = input.textWindow.slice(focus.start, focus.end)
+  return { kind: 'question', question: `Why "${quote}"?`, source, evidence: { ...focus, quote } }
+}
+
+describe('runSweep result and lifetime contract', () => {
+  const draft = doc(BLOCKS_10)
+  const plan = planSweep(draft)
+  it('preserves raw separators and actual section position in the request', async () => {
+    const raw = '# Title\n\nFirst.\n\n\nSecond.\n\nThird.\n\nFourth.'
+    const windows = planSweep(raw)
+    const coach: Coach = { ask: vi.fn(async input => answer(input)) }
+    await runSweep(windows, { coach, draft: raw, genre: 'fiction', onNote() {} })
+    for (const window of windows) {
+      expect(window.textWindow).toBe(raw.slice(window.bounds.start, window.bounds.end))
+      expect(window.position.sectionBlockCount).toBe(5)
+    }
+    expect(windows[1].position.blockIndexInSection).toBe(3)
+    expect(coach.ask).toHaveBeenCalledWith(expect.objectContaining({ textWindow: windows[1].textWindow, position: windows[1].position }), expect.any(AbortSignal))
+  })
+  it('drains in plan order and keeps provenance with reversed completion', async () => {
+    const pending = plan.map(() => deferred<CoachResult>())
+    const inputs: CoachInput[] = []
+    const coach: Coach = { ask: input => { inputs.push(input); return pending[inputs.length - 1].promise } }
+    const onNote = vi.fn()
+    const running = runSweep(plan, { coach, draft, genre: 'fiction', onNote })
+    pending[1].resolve(answer(inputs[1], 'seed'))
+    await flush()
+    expect(onNote).not.toHaveBeenCalled()
+    expect(inputs).toHaveLength(3)
+    pending[2].resolve(answer(inputs[2]))
+    pending[0].resolve(answer(inputs[0]))
+    const result = await running
+    expect(result.notes.map(n => n.windowIndex)).toEqual([0, 1, 2])
+    expect(result.notes.map(n => n.source)).toEqual(['reshaped', 'seed', 'reshaped'])
+    expect(result.asked).toBe(3)
+  })
+  it('counts no-fit, invalid output, and unavailable as skipped', async () => {
+    const results: CoachResult[] = [{ kind: 'skip', reason: 'no-fit' }, { kind: 'skip', reason: 'invalid-output' }, { kind: 'unavailable', retryable: true }]
+    const coach: Coach = { ask: async () => results.shift()! }
+    const onNote = vi.fn()
+    expect(await runSweep(plan, { coach, draft, genre: 'fiction', onNote })).toMatchObject({ notes: [], asked: 0, skipped: 3, requested: 3, noFit: 1, invalid: 1, unavailable: 1, unanchored: 0 })
+    expect(onNote).not.toHaveBeenCalled()
+  })
+  it('rejects missing and forged evidence for reshaped questions', async () => {
+    const results: CoachResult[] = [
+      { kind: 'question', source: 'reshaped', question: `Why "${BLOCKS_10[1]}"?` },
+      { kind: 'question', source: 'reshaped', question: 'Why?', evidence: { quote: 'forged', start: 0, end: 6 } },
+      { kind: 'question', source: 'reshaped', question: 'Why?', evidence: { quote: BLOCKS_10[9], start: -1, end: 10 } },
+    ]
+    const result = await runSweep(plan, { coach: { ask: async () => results.shift()! }, draft, genre: 'fiction', onNote() {} })
+    expect(result.skipped).toBe(3)
+  })
+  it('rejects evidence outside focus and evidence absent from the question', async () => {
+    const coach: Coach = { ask: async input => {
+      const quote = input.textWindow.split('\n')[0]
+      return { kind: 'question', source: 'reshaped', question: `Why "${quote}"?`, evidence: { quote, start: 0, end: quote.length } }
+    } }
+    const outside = await runSweep(plan, { coach, draft, genre: 'fiction', onNote() {} })
+    expect(outside.unanchored).toBe(3)
+    const unused: Coach = { ask: async input => ({ ...answer(input), question: 'Why this detail?' } as CoachResult) }
+    const absent = await runSweep(plan, { coach: unused, draft, genre: 'fiction', onNote() {} })
+    expect(absent.unanchored).toBe(3)
+  })
+  it('stops midflight and prevents all late callbacks even if the coach ignores abort', async () => {
+    const pending = deferred<CoachResult>()
+    const signals: AbortSignal[] = []
+    const inputs: CoachInput[] = []
+    const coach: Coach = { ask: (input, signal) => { inputs.push(input); signals.push(signal!); return pending.promise } }
+    const controller = new AbortController()
+    const onNote = vi.fn(); const onProgress = vi.fn()
+    const running = runSweep(plan, { coach, draft, genre: 'fiction', onNote, onProgress, signal: controller.signal })
+    controller.abort()
+    expect(await running).toMatchObject({ notes: [], asked: 0, skipped: 3 })
+    expect(signals.every(s => s.aborted)).toBe(true)
+    pending.resolve(answer(inputs[0]))
+    await flush()
+    expect(onNote).not.toHaveBeenCalled()
+    expect(onProgress).not.toHaveBeenCalled()
+    expect(inputs).toHaveLength(2)
+  })
+  it('aborts siblings on rejection with no callbacks after settlement', async () => {
+    const pending = [deferred<CoachResult>(), deferred<CoachResult>()]
+    const inputs: CoachInput[] = []; const signals: AbortSignal[] = []
+    const coach: Coach = { ask: (input, signal) => { inputs.push(input); signals.push(signal!); return pending[inputs.length - 1].promise } }
+    const onNote = vi.fn(); const onProgress = vi.fn()
+    const running = runSweep(plan, { coach, draft, genre: 'fiction', onNote, onProgress })
+    pending[0].reject(new Error('server down'))
+    await expect(running).rejects.toThrow('server down')
+    expect(signals.every(s => s.aborted)).toBe(true)
+    pending[1].resolve(answer(inputs[1]))
+    await flush()
+    expect(onNote).not.toHaveBeenCalled()
+    expect(onProgress).not.toHaveBeenCalled()
+    expect(inputs).toHaveLength(2)
+  })
+  it('does not drain a later result past a failed earlier window', async () => {
+    const pending = plan.map(() => deferred<CoachResult>())
+    const inputs: CoachInput[] = []
+    const coach: Coach = { ask: input => { inputs.push(input); return pending[inputs.length - 1].promise } }
+    const onNote = vi.fn()
+    const running = runSweep(plan, { coach, draft, genre: 'fiction', onNote })
+    pending[1].resolve(answer(inputs[1])); await flush()
+    pending[0].reject(new Error('failed'))
+    await expect(running).rejects.toThrow('failed')
+    pending[2].resolve(answer(inputs[2])); await flush()
+    expect(onNote).not.toHaveBeenCalled()
+  })
+  it('allows static quoted seeds only inside their own window', async () => {
+    const quote = BLOCKS_10[9]
+    const coach: Coach = { ask: async () => ({ kind: 'question', source: 'seed', question: `Why "${quote}"?` }) }
+    const result = await runSweep(plan, { coach, draft, genre: 'fiction', onNote() {} })
+    expect(result.notes.map(n => n.windowIndex)).toEqual([2])
+    expect(result.asked + result.skipped).toBe(plan.length)
+  })
+  it('anchors repeated evidence to its own raw window offsets', async () => {
+    const repeated = 'The same sentence.'
+    const raw = doc(['One.', repeated, 'Two.', 'Three.', repeated, 'Four.'])
+    const windows = planSweep(raw)
+    const coach: Coach = { ask: async input => ({ kind: 'question', source: 'reshaped', question: `Why "${repeated}"?`, evidence: { quote: repeated, ...input.focus! } }) }
+    const result = await runSweep(windows, { coach, draft: raw, genre: 'fiction', onNote() {} })
+    expect(result.notes.map(n => n.start)).toEqual([raw.indexOf(repeated), raw.lastIndexOf(repeated)])
+  })
+  it('returns exhaustive counters for an empty plan', async () => {
+    const ask = vi.fn()
+    expect(await runSweep([], { coach: { ask }, draft: '', genre: 'fiction', onNote() {} })).toMatchObject({ notes: [], asked: 0, skipped: 0 })
+    expect(ask).not.toHaveBeenCalled()
+  })
+})
+
+
+describe('cursorPlan', () => {
+  it('keeps raw CRLF and reports section position outside the selected window', () => {
+    const raw = '# First\r\n\r\nBefore.\r\n\r\n# Second\r\n\r\nA.\r\n\r\nB.\r\n\r\nC.\r\n\r\nD.'
+    const window = cursorPlan(raw, raw.indexOf('C.'))!
+    expect(window.textWindow).toBe('B.\r\n\r\nC.\r\n\r\nD.')
+    expect(window.position).toEqual({ sectionBlockCount: 5, blockIndexInSection: 3 })
+    expect(window.textWindow.slice(window.focus.start, window.focus.end)).toBe('C.\r')
+  })
+  it('clips neighbors to section bounds and does not ask about a rule', () => {
+    const raw = 'Before.\n\n---\n\nAfter.\n\nLast.'
+    expect(cursorPlan(raw, raw.indexOf('After.'))!.textWindow).toBe('After.\n\nLast.')
+    expect(cursorPlan(raw, raw.indexOf('---'))).toBeNull()
+    expect(cursorPlan('', 0)).toBeNull()
   })
 })

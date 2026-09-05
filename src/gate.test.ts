@@ -4,7 +4,7 @@ import {
  echoesText,
  isGrounded,
  isSingleQuestion,
-} from './gate.js';
+} from './core/gate.js';
 
 describe('isSingleQuestion', () => {
  it('accepts a single clean question', () => {

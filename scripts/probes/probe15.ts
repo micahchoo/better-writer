@@ -1,5 +1,5 @@
 import { planSweep } from '../../web/coach-sweep.js'
-import { splitBlocks, partitionSections, CURSOR_START, CURSOR_END } from '../../web/text-window.js'
+import { splitBlocks, partitionSections, CURSOR_START, CURSOR_END } from '../../src/core/text-window.js'
 import { SAMPLE_DRAFT } from '../../web/sample-draft.js'
 
 function audit(name: string, md: string) {

@@ -271,3 +271,55 @@ function fakeServer(initial: { draft?: string; annotations?: unknown[] } = {}, f
   })
   return { fetchMock, getState: () => state }
 }
+
+describe('persistent annotation identity', () => {
+  it('preserves id and context when loading server annotations', async () => {
+    const note = { ...annotations[0], id: 'stable-note', context: { before: 'before', after: 'after' } };
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ draft: 'Hello world.', annotations: [note] }) });
+    vi.stubGlobal('fetch', fetchMock);
+    try {
+      const store = new ServerDraftStore();
+      await store.load();
+      expect(await store.loadAnnotations()).toEqual([note]);
+      await store.save('Hello world.');
+      expect(JSON.parse(fetchMock.mock.calls[1][1].body).annotations).toEqual([note]);
+    } finally { vi.unstubAllGlobals(); }
+  });
+});
+
+describe('atomic browser snapshots', () => {
+  it('retains the complete old snapshot when a save hits quota', async () => {
+    const storage = memoryStorage();
+    const original = new LocalStorageDraftStore(storage);
+    await original.save('old', annotations);
+    const failing = new LocalStorageDraftStore({ getItem: storage.getItem, setItem: () => { throw new DOMException('quota', 'QuotaExceededError'); } });
+    await expect(failing.save('new', [])).rejects.toThrow('quota');
+    const reloaded = new LocalStorageDraftStore(storage);
+    expect(await reloaded.load()).toBe('old');
+    expect(await reloaded.loadAnnotations()).toEqual(annotations);
+  });
+
+  it('reads legacy keys then migrates without modifying them', async () => {
+    const storage = memoryStorage();
+    storage.setItem('better-writer:draft', 'legacy');
+    storage.setItem('better-writer:annotations', JSON.stringify(annotations));
+    const document = new LocalStorageDraftStore(storage);
+    expect(await document.load()).toBe('legacy');
+    expect(await document.loadAnnotations()).toEqual(annotations);
+    await document.save('migrated', []);
+    expect(storage.getItem('better-writer:draft')).toBe('legacy');
+    expect(storage.getItem('better-writer:annotations')).toBe(JSON.stringify(annotations));
+    const reloaded = new LocalStorageDraftStore(storage);
+    expect(await reloaded.load()).toBe('migrated');
+    expect(await reloaded.loadAnnotations()).toEqual([]);
+  });
+
+  it('returns annotations from the same load snapshot despite an intervening tab write', async () => {
+    const storage = memoryStorage();
+    const reader = new LocalStorageDraftStore(storage), writer = new LocalStorageDraftStore(storage);
+    await writer.save('old', annotations);
+    expect(await reader.load()).toBe('old');
+    await writer.save('new', []);
+    expect(await reader.loadAnnotations()).toEqual(annotations);
+  });
+});

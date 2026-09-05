@@ -1,5 +1,5 @@
 import { copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
-import type { Annotation } from './types.js';
+import type { Annotation } from './core/types.js';
 
 /** data/drafts/current.md, resolved from the module (not cwd). */
 const DRAFT_FILE = new URL('../data/drafts/current.md', import.meta.url);

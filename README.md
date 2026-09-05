@@ -20,14 +20,16 @@ The question stays attached to your sentence until you dismiss it. There is no c
   <img src="docs/assets/editor-light.png" alt="The editor with one question pinned to the phrase 'heavy iron skillet'">
 </picture>
 
-## What it never does
+## What the coach can do
 
-- It never writes a sentence for you.
-- It never edits your draft.
-- It never explains itself or gives advice.
-- It never phones home. There is no account, no telemetry, and no server of ours between you and your words.
+The coach displays questions as annotations. It has no operation that changes your draft.
+Every model question starts with a candidate from the craft bank.
+The prompt asks the model to explore your writing choices without advice or replacement prose.
 
-These are not polite instructions in a prompt. The app can only display one question. Anything else the model produces is thrown away.
+Code checks the question format and its exact evidence quote before displaying it.
+Those checks do not prove that a question is useful or preserves the seed's intent.
+If no candidate fits, the coach can ask nothing.
+There is no account, telemetry, or server of ours between you and your words.
 
 **Where your words go.** With no model, or with your own model on your own machine, nothing leaves it. If you connect your own API key, that changes: the paragraph around your cursor goes to the provider you picked, and **Sweep draft** sends the whole draft that way, one window at a time. Dictation audio goes to the same provider. That is what the key is for, and you pay for every call. Your draft *file* is never uploaded in any mode — it lives in your browser or on your disk.
 
@@ -51,11 +53,11 @@ To get questions written in your own words, you need a model. See [Choose how it
 The app opens on an empty page.
 
 1. Click **Load a sample draft** if you want prose to try it on. Or start typing your own.
-2. Keep writing. After about 30 new words and a 20-second pause, one question appears, attached to a sentence.
+2. Keep writing. After about 30 new words and a 20-second pause, the coach checks for a suitable question.
 3. Click any highlighted phrase to read its question.
 4. Revise until the question is no longer true, then click **Resolved** to dismiss it.
 
-To question a whole draft at once, click **Sweep draft**. It walks the document one window at a time and pins a question to each. **Clear notes** removes them all.
+To question a whole draft at once, click **Sweep draft**. It checks each window and pins questions with exact evidence. Some windows produce no question. **Stop** cancels pending requests. **Clear notes** removes them all.
 
 ![A sweep running: the sample draft loads, then questions appear one window at a time](docs/assets/sweep.gif)
 
@@ -68,12 +70,15 @@ Set **asking as** to your genre — fiction, creative-nonfiction, memoir, essay,
 
 | | No model | Your own model | Your own key |
 |---|---|---|---|
-| **What you get** | A question from the bank, exactly as written | The same question, rewritten to quote your actual sentences | A genre-matched question, rewritten to quote your sentences |
+| **What you get** | A question from the bank, exactly as written | An applicable craft question with an exact quote | The same agent through your provider |
 | **You need** | Nothing | A model server on your machine | An API key |
-| **Your draft is saved** | In your browser | To `data/drafts/current.md` | In your browser |
+| **Initial draft location** | In your browser | `data/drafts/current.md` | In your browser |
 | **Your prose leaves your machine** | Never | Never | Yes — to your provider |
 
-The app detects which one it can use and switches by itself.
+The app detects its initial connection and remembers the document location.
+Changing or disconnecting an API key keeps the current draft, annotations, and storage destination.
+The BYOK settings are also available with a local model.
+Browser saves store the draft and annotations together. Older browser drafts remain readable.
 
 **Your own model.** Run [llama.cpp](https://github.com/ggml-org/llama.cpp) or [Ollama](https://ollama.com) on `127.0.0.1:8088`, then:
 
@@ -87,34 +92,40 @@ Dictation works with a local Parakeet model, or through your provider's transcri
 
 ## Where the questions come from
 
-A bank of 1,757 craft questions written for this project, each tagged by genre and by the kind of change it asks for:
+A bank of 1,759 craft questions written for this project, each tagged by genre and by the kind of change it asks for:
 
 | Asks you to | Questions |
 |---|---|
-| rewrite | 605 |
+| rewrite | 606 |
 | form a concept | 422 |
-| cut | 229 |
+| cut | 230 |
 | elaborate | 202 |
 | rephrase | 125 |
 | transition | 109 |
 | elucidate | 65 |
 
-The bank is the only place a question can start. The model never invents one — it takes a question from the bank and rewrites it to quote your sentences. You see a question about your own paragraph and nothing else.
+The bank supplies the craft questions. The model selects an applicable candidate and reshapes it around an exact detail from your passage.
+Seed IDs, verbs, and source books never enter the model prompt.
 
 <details>
 <summary>How one question gets chosen</summary>
 
-With a model on your own machine, the app measures your paragraph before it picks. Seven signals can fire: how much of it is dialogue, whether every sentence runs the same length, how many hedges and `-ly` adverbs it carries, how often you write *felt*, *seemed*, or *noticed*, how heavy the abstract nouns are, and whether the paragraph opens or closes its section.
+Local and BYOK modes use the same selection policy.
+The app measures dialogue, sentence rhythm, hedges, filter words, abstract nouns, and section position.
+These signals give some intervention kinds a soft preference.
+The draw selects up to three distinct questions and favors different intervention kinds within that small set.
 
-Those signals lean the choice toward a kind of question. A paragraph full of hedges leans toward questions about cutting. A scene thick with quotes leans toward questions about dialogue.
+The model selects one applicable candidate or abstains.
+It returns a question and an exact quote from the focus block.
+Code checks the output shape, question format, quote spelling, quote uniqueness, and quote use in the question.
+Code also rejects copied seed wording and passage echoes. It computes annotation offsets from the quote.
 
-The lean changes which group it draws from. Inside that group, the draw is even. No question is ranked above another, so the app cannot develop a favorite and repeat it at you.
+Invalid output gets one corrective retry that includes the rejected response.
+A second failure produces no annotation. A connection failure appears separately from a passage with no suitable question.
+Automatic coaching remains quiet on failure. A sweep reports unavailable windows.
 
-The model then rewrites the drawn question to quote your sentences. Its output has to pass a check before you see it: one line, one question mark, no lists, and it must quote your words rather than parrot them back. If the output fails, the model gets one more try. If it fails again, you get a fixed question instead, marked as such.
-
-Bring-your-own-key skips the measurement: it draws straight from the bank, stratified by genre, then reshapes the drawn question against your provider.
-
-The full vocabulary is in [CONTEXT.md](CONTEXT.md); the decisions behind it are in [docs/adr/](docs/adr/).
+The full vocabulary is in [CONTEXT.md](CONTEXT.md).
+The session design is in [ADR 0009](docs/adr/0009-document-and-coaching-sessions.md).
 
 </details>
 
@@ -128,7 +139,7 @@ Copy [`.env.example`](.env.example) to `.env` and edit it.
 | `BW_LLM_MODEL` | `bonsai-27b` | Which model to ask |
 | `BW_HOST` | `127.0.0.1` | Address the server binds to |
 | `BW_PORT` | `4517` | Port the server binds to |
-| `BW_STT_MODEL_DIR` | unset | Parakeet folder; dictation is off without it |
+| `BW_STT_MODEL_DIR` | unset | Parakeet folder override; dictation also accepts the default model cache |
 
 ## Development
 
@@ -136,9 +147,10 @@ Copy [`.env.example`](.env.example) to `.env` and edit it.
 npm test           # unit suite
 npm run typecheck  # tsc --noEmit
 npm run build      # static build into dist/
+npm run eval:agent # synthetic fixtures against Bonsai on port 8088
 ```
 
-The editor is built on [CodeMirror 6](docs/adr/0008-cm6-editor-substrate.md). Every architectural decision has a short record in [docs/adr/](docs/adr/).
+The editor is built on [CodeMirror 6](docs/adr/0008-cm6-editor-substrate.md). Architectural decisions have short records in [docs/adr/](docs/adr/).
 
 ## Contributing
 

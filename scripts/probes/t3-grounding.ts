@@ -5,7 +5,7 @@
  * of how many good questions it started failing.
  */
 import { readFileSync } from 'node:fs'
-import { isGrounded } from '../../src/gate.js'
+import { isGrounded } from '../../src/core/gate.js'
 import { SAMPLE_DRAFT } from '../../web/sample-draft.js'
 import { planSweep } from '../../web/coach-sweep.js'
 
